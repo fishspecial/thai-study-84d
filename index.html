@@ -244,11 +244,27 @@ code{background:var(--surface);padding:1px 5px;border-radius:4px;font-size:12px}
     <button class="btn" id="btnRecheck">重新检测</button>
     <button class="btn" id="btnStop">停止</button>
   </div>
+  <div class="ctl" id="onlineRow" style="margin-top:8px">
+    <label class="sub">在线语音源</label>
+    <select id="ttsSrc">
+      <option value="auto">自动（Google 优先，失败转有道）</option>
+      <option value="google">Google 翻译 TTS</option>
+      <option value="youdao">有道词典 TTS</option>
+    </select>
+    <button class="btn" id="btnTtsTest">测试在线语音</button>
+  </div>
+  <p class="sub" id="ttsResult" style="margin:0 0 6px"></p>
   <p class="sub" id="engineMsg" style="margin-bottom:0"></p>
 </div>
 
 <div class="note">
-  <p style="margin-top:0"><strong>点任意一行立即朗读。</strong>如果检测不到泰语语音，会自动切到「在线语音」，无需本机装任何东西。</p>
+  <p style="margin-top:0"><strong>点任意一行立即朗读。</strong>检测不到泰语语音时自动用「在线语音」，无需本机装任何东西。</p>
+  <p><strong>在线语音用的是这两个公开接口</strong>（都是免密钥的第三方 TTS 端点）：</p>
+  <ul style="font-size:12px">
+    <li><code>translate.google.com/translate_tts</code> — Google 翻译的朗读接口，音色最自然；需要能访问 Google</li>
+    <li><code>dict.youdao.com/dictvoice</code> — 有道词典的朗读接口，国内网络可直接访问</li>
+  </ul>
+  <p><strong>听不到声音先点「测试在线语音」</strong>，它会逐个测这两个源并告诉你哪个能用、耗时多少，然后自动选可用的那个。</p>
   <p style="margin-bottom:0">每行右侧 <code>S</code> = 复制这句泰文并打开 speecher.org，到那边粘贴后播放（要下 MP3 时用）。speecher.org 不支持 URL 传参，所以无法点一下自动朗读，只能这样绕。</p>
 </div>
 
@@ -551,29 +567,82 @@ function thVoices(){
   return speechSynthesis.getVoices().filter(function(v){ return /^th/i.test(v.lang || ""); });
 }
 var onlineAudio = null;
-function ttsUrl(text){
-  return "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=th&q=" + encodeURIComponent(text);
+var PROVIDERS = [
+  {id:"google", label:"Google 翻译 TTS", ok:null,
+   url:function(t){ return "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=th&q=" + encodeURIComponent(t); }},
+  {id:"youdao", label:"有道词典 TTS", ok:null,
+   url:function(t){ return "https://dict.youdao.com/dictvoice?audio=" + encodeURIComponent(t) + "&le=th"; }}
+];
+function providerOrder(){
+  var p = document.getElementById("ttsSrc").value;
+  if(p === "google") return [PROVIDERS[0]];
+  if(p === "youdao") return [PROVIDERS[1]];
+  var okFirst = PROVIDERS.filter(function(x){ return x.ok === true; });
+  if(okFirst.length) return [okFirst[0], PROVIDERS.filter(function(x){ return x !== okFirst[0]; })[0]];
+  return [PROVIDERS[0], PROVIDERS[1]];
 }
-function speakOnline(text, el){
+function speakOnline(text, el, idx){
+  idx = idx || 0;
+  var order = providerOrder();
+  if(idx >= order.length){
+    if(el) el.classList.remove("playing");
+    toast("在线语音全部失败：网络可能不通，请用右侧 S 按钮走 Speecher");
+    return;
+  }
+  var prov = order[idx];
   try{
     if(onlineAudio){ onlineAudio.pause(); onlineAudio = null; }
-    var a = new Audio(ttsUrl(text));
+    var a = new Audio();
+    a.preload = "auto";
     a.playbackRate = Number(document.getElementById("rate").value);
     if(lastEl) lastEl.classList.remove("playing");
     if(el){ el.classList.add("playing"); lastEl = el; }
-    a.onended = function(){ if(el) el.classList.remove("playing"); };
-    a.onerror = function(){
-      if(el) el.classList.remove("playing");
-      toast("在线语音加载失败，试试右侧 S 按钮走 Speecher");
-    };
+    a.onended = function(){ if(el) el.classList.remove("playing"); prov.ok = true; };
+    a.onerror = function(){ speakOnline(text, el, idx + 1); };
     onlineAudio = a;
-    var p = a.play();
-    if(p && p.catch) p.catch(function(){
-      if(el) el.classList.remove("playing");
-      toast("点一下屏幕再试在线语音（浏览器要求先有点击）");
-    });
-  }catch(e){ toast("在线语音不可用，试试右侧 S 按钮"); }
+    a.src = prov.url(text);
+    var pr = a.play();
+    if(pr && pr.catch) pr.catch(function(){ if(a.onerror) a.onerror(); });
+  }catch(e){ speakOnline(text, el, idx + 1); }
 }
+function testProvider(prov, cb){
+  var a = new Audio();
+  var done = false, t0 = Date.now();
+  var timer = setTimeout(function(){ if(!done){ done = true; try{ a.pause(); }catch(e){} cb(false, Date.now()-t0); } }, 9000);
+  function ok(){ if(!done){ done = true; clearTimeout(timer); cb(true, Date.now()-t0); } }
+  a.oncanplay = ok;
+  a.onplaying = ok;
+  a.onerror = function(){ if(!done){ done = true; clearTimeout(timer); cb(false, Date.now()-t0); } };
+  a.src = prov.url("สวัสดีครับ");
+  a.load();
+  var p = a.play();
+  if(p && p.catch) p.catch(function(){});
+}
+document.getElementById("btnTtsTest").addEventListener("click", function(){
+  var out = document.getElementById("ttsResult");
+  out.innerHTML = "测试中…";
+  var lines = [], i = 0;
+  function next(){
+    if(i >= PROVIDERS.length){
+      out.innerHTML = lines.join("<br>");
+      var firstOk = PROVIDERS.filter(function(p){ return p.ok === true; })[0];
+      if(firstOk){
+        document.getElementById("ttsSrc").value = firstOk.id;
+        out.innerHTML += "<br><strong>已自动选择：" + firstOk.label + "</strong>。如果听不到声音，检查手机是否静音或开了静音开关。";
+      }else{
+        out.innerHTML += "<br><strong>两个源都不可用</strong>：当前网络可能屏蔽了这两个接口。改用每行右侧的 <code>S</code> 按钮走 speecher.org。";
+      }
+      return;
+    }
+    var prov = PROVIDERS[i];
+    testProvider(prov, function(okFlag, ms){
+      prov.ok = okFlag;
+      lines.push(prov.label + "：" + (okFlag ? "可用（" + (ms/1000).toFixed(1) + " 秒）" : "不可用（加载失败或超时）"));
+      i++; next();
+    });
+  }
+  next();
+});
 function initVoices(){
   var sel = document.getElementById("voiceSel");
   var msg = document.getElementById("engineMsg");
