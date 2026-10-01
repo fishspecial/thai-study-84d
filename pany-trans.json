@@ -1,0 +1,9876 @@
+{
+ "words": [
+  {
+   "w": "เงิน",
+   "c": 74,
+   "df": 47,
+   "func": false,
+   "ex": 82,
+   "r": "ŋən",
+   "e": "money, funds",
+   "z": "金钱、资金",
+   "fromDict": 1
+  },
+  {
+   "w": "แค่",
+   "c": 62,
+   "df": 58,
+   "func": false,
+   "ex": 11,
+   "r": "khɛ̂ɛ",
+   "e": "only, just, merely, a mere",
+   "z": "仅仅、仅仅是",
+   "fromDict": 1
+  },
+  {
+   "w": "ก่อน",
+   "c": 51,
+   "df": 44,
+   "func": false,
+   "ex": 40,
+   "r": "kɔ̀ɔn",
+   "e": "before, by (a time), prior to; first, beforehand, for now",
+   "z": "之前、在（一次）之前；之前；首先、事先、现在",
+   "fromDict": 1
+  },
+  {
+   "w": "ตัว",
+   "c": 49,
+   "df": 45,
+   "func": false,
+   "ex": 14,
+   "r": "tua",
+   "e": "body, physical body, build; [classifier for animals], [classifier for clothes], [classifier for furniture], [classifier for letters or certain objects]",
+   "z": "身体、体型； [动物分类器]、[衣服分类器]、[家具分类器]、[字母或某些物体分类器]",
+   "fromDict": 1
+  },
+  {
+   "w": "ความ",
+   "c": 43,
+   "df": 29,
+   "func": false,
+   "ex": 8,
+   "r": "khwaam",
+   "e": "-ness, being ..., abstract noun marker",
+   "z": "-ness、being ...、抽象名词标记",
+   "fromDict": 1
+  },
+  {
+   "w": "ร้าน",
+   "c": 42,
+   "df": 32,
+   "func": false,
+   "ex": 84,
+   "r": "ráan",
+   "e": "shop, store, restaurant, commercial establishment",
+   "z": "商店、商店、餐馆、商业机构",
+   "fromDict": 1
+  },
+  {
+   "w": "ใส่",
+   "c": 41,
+   "df": 29,
+   "func": false,
+   "ex": 4,
+   "r": "sày",
+   "e": "put in, add, enter, fill in; wear, put on, have on",
+   "z": "放入、添加、输入、填写； wear、put on、have on",
+   "fromDict": 1
+  },
+  {
+   "w": "ไม่มี",
+   "c": 35,
+   "df": 35,
+   "func": false,
+   "ex": 92,
+   "r": "mây mii",
+   "e": "not exist, not have, there is no",
+   "z": "不存在",
+   "fromDict": 1
+  },
+  {
+   "w": "เพื่อน",
+   "c": 35,
+   "df": 26,
+   "func": false,
+   "ex": 116,
+   "r": "phʉ̂an",
+   "e": "friend",
+   "z": "朋友",
+   "fromDict": 1
+  },
+  {
+   "w": "อย่า",
+   "c": 34,
+   "df": 32,
+   "func": false,
+   "ex": 9,
+   "r": "yàa",
+   "e": "do not..., don&#39;t...",
+   "z": "不要……",
+   "fromDict": 1
+  },
+  {
+   "w": "บ้าน",
+   "c": 34,
+   "df": 31,
+   "func": false,
+   "ex": 121,
+   "r": "bâan",
+   "e": "house, home",
+   "z": "房子、家",
+   "fromDict": 1
+  },
+  {
+   "w": "ทำให้",
+   "c": 33,
+   "df": 33,
+   "func": false,
+   "ex": 5,
+   "r": "tham hây",
+   "e": "make (someone do or become something), cause (something to happen)",
+   "z": "使（某人做某事或成为某事）、导致（某事发生）",
+   "fromDict": 1
+  },
+  {
+   "w": "จีน",
+   "c": 32,
+   "df": 28,
+   "func": false,
+   "ex": 123,
+   "z": "中国",
+   "e": "China"
+  },
+  {
+   "w": "ชอบ",
+   "c": 31,
+   "df": 25,
+   "func": false,
+   "ex": 6,
+   "r": "chɔ̂ɔp",
+   "e": "like, be fond of, be pleased with",
+   "z": "喜欢、喜欢、满意",
+   "fromDict": 1
+  },
+  {
+   "w": "เวลา",
+   "c": 30,
+   "df": 26,
+   "func": false,
+   "ex": 4,
+   "r": "weelaa",
+   "e": "time, time of day, period of time; when, whenever",
+   "z": "时间、一天中的时间、一段时间；当、每当",
+   "fromDict": 1
+  },
+  {
+   "w": "ทำงาน",
+   "c": 29,
+   "df": 29,
+   "func": false,
+   "ex": 41,
+   "r": "tham ŋaan",
+   "e": "work, do one&#39;s job, carry out work; operate, function, work (properly)",
+   "z": "工作、做自己的工作、开展工作；操作、发挥作用、工作（正确地）",
+   "fromDict": 1
+  },
+  {
+   "w": "คืน",
+   "c": 28,
+   "df": 22,
+   "func": false,
+   "ex": 77,
+   "r": "khʉʉn",
+   "e": "night, evening",
+   "z": "晚上",
+   "fromDict": 1
+  },
+  {
+   "w": "เมื่อ",
+   "c": 24,
+   "df": 24,
+   "func": false,
+   "ex": 77,
+   "r": "mʉ̂a",
+   "e": "when, once (something happens), upon (doing something)",
+   "z": "何时、一次（某事发生）、当（做某事）",
+   "fromDict": 1
+  },
+  {
+   "w": "หน้า",
+   "c": 24,
+   "df": 23,
+   "func": false,
+   "ex": 86,
+   "r": "nâa",
+   "e": "face, facial appearance, facial expression; in front of, before [in location]; next, coming, following",
+   "z": "面容、容貌、面部表情；在[地点]之前、之前；下一个、接下来、跟随",
+   "fromDict": 1
+  },
+  {
+   "w": "เห็น",
+   "c": 24,
+   "df": 20,
+   "func": false,
+   "ex": 117,
+   "r": "hěn",
+   "e": "see, catch sight of, witness",
+   "z": "看到、见证",
+   "fromDict": 1
+  },
+  {
+   "w": "ค่อย",
+   "c": 23,
+   "df": 23,
+   "func": false,
+   "ex": 108,
+   "r": "khɔ̂y",
+   "e": "slowly, little by little, gradually; then, do later, do after that",
+   "z": "慢慢地、一点一点地、渐渐地；然后、稍后做、在那之后做",
+   "fromDict": 1
+  },
+  {
+   "w": "แม่",
+   "c": 23,
+   "df": 20,
+   "func": false,
+   "ex": 117,
+   "r": "mɛ̂ɛ",
+   "e": "mother, mom",
+   "z": "妈妈",
+   "fromDict": 1
+  },
+  {
+   "w": "ประเทศ",
+   "c": 23,
+   "df": 18,
+   "func": false,
+   "ex": 257,
+   "r": "prathêet",
+   "e": "country, nation",
+   "z": "国家、民族",
+   "fromDict": 1
+  },
+  {
+   "w": "เคย",
+   "c": 22,
+   "df": 18,
+   "func": false,
+   "ex": 6,
+   "r": "khəəy",
+   "e": "have ever done, have done before, used to, was once",
+   "z": "曾经做过、以前做过、曾经做过、曾经做过",
+   "fromDict": 1
+  },
+  {
+   "w": "งาน",
+   "c": 21,
+   "df": 17,
+   "func": false,
+   "ex": 78,
+   "r": "ŋaan",
+   "e": "work, job, employment, duties",
+   "z": "工作、工作、就业、职责",
+   "fromDict": 1
+  },
+  {
+   "w": "ไม่ใช่",
+   "c": 20,
+   "df": 19,
+   "func": false,
+   "ex": 30,
+   "r": "mây chây",
+   "e": "be not, not be; no, that’s not right",
+   "z": "不是、不是；不、那是不对的",
+   "fromDict": 1
+  },
+  {
+   "w": "การ",
+   "c": 19,
+   "df": 15,
+   "func": false,
+   "ex": 49,
+   "r": "kaan",
+   "e": "the act of doing, the process of doing, doing [as a noun]",
+   "z": "做的行为、做的过程、做[作为名词]",
+   "fromDict": 1
+  },
+  {
+   "w": "กว่า",
+   "c": 19,
+   "df": 18,
+   "func": false,
+   "ex": 93,
+   "r": "kwàa",
+   "e": "than, more; -er [comparison]",
+   "z": "比、更多； -呃[比较]",
+   "fromDict": 1
+  },
+  {
+   "w": "ไหน",
+   "c": 18,
+   "df": 17,
+   "func": false,
+   "ex": 6,
+   "r": "nǎy",
+   "e": "where; which one, which",
+   "z": "在哪里;哪一个、哪一个",
+   "fromDict": 1
+  },
+  {
+   "w": "หลัง",
+   "c": 18,
+   "df": 17,
+   "func": false,
+   "ex": 97,
+   "r": "lǎŋ",
+   "e": "back (of the body), back (of the hand, etc.); behind, at the back of; after, after doing, following",
+   "z": "（身体的）背部、（手部等的）背部；后面、在后面；之后、做完之后、遵循",
+   "fromDict": 1
+  },
+  {
+   "w": "สามารถ",
+   "c": 18,
+   "df": 16,
+   "func": false,
+   "ex": 100,
+   "r": "sǎamâat",
+   "e": "can, be able to",
+   "z": "能够",
+   "fromDict": 1
+  },
+  {
+   "w": "อาหาร",
+   "c": 18,
+   "df": 15,
+   "func": false,
+   "ex": 110,
+   "r": "aahǎan",
+   "e": "food, meal, diet",
+   "z": "食物、膳食、饮食",
+   "fromDict": 1
+  },
+  {
+   "w": "ที่รัก",
+   "c": 17,
+   "df": 17,
+   "func": false,
+   "ex": 5,
+   "z": "亲爱的",
+   "e": "darling"
+  },
+  {
+   "w": "เป็นไร",
+   "c": 17,
+   "df": 16,
+   "func": false,
+   "ex": 107,
+   "z": "事情",
+   "e": "matter"
+  },
+  {
+   "w": "เสื้อผ้า",
+   "c": 17,
+   "df": 16,
+   "func": false,
+   "ex": 243,
+   "r": "sʉ̂a phâa",
+   "e": "clothes, clothing",
+   "z": "衣服",
+   "fromDict": 1
+  },
+  {
+   "w": "เพิ่ง",
+   "c": 16,
+   "df": 16,
+   "func": false,
+   "ex": 70,
+   "r": "phə̂ŋ",
+   "e": "just; only recently, only now",
+   "z": "只是;仅仅最近、仅仅现在",
+   "fromDict": 1
+  },
+  {
+   "w": "ก็ได้",
+   "c": 16,
+   "df": 16,
+   "func": false,
+   "ex": 107,
+   "r": "kɔ̂ɔ dâay",
+   "e": "may; can [permission], ... is also fine, do not have to [ไม่ + verb + ก็ได้], any ... is fine [question word + ก็ได้]",
+   "z": "可能;可以[许可]、...也可以、不必[ไม่+动词+ก็ได้]、任何...都可以[疑问词+ก็ได้]",
+   "fromDict": 1
+  },
+  {
+   "w": "เกิน",
+   "c": 16,
+   "df": 16,
+   "func": false,
+   "ex": 118,
+   "r": "kəən",
+   "e": "exceed, go beyond, surpass",
+   "z": "超越",
+   "fromDict": 1
+  },
+  {
+   "w": "เล่น",
+   "c": 16,
+   "df": 15,
+   "func": false,
+   "ex": 166,
+   "r": "lên",
+   "e": "play, have fun",
+   "z": "玩、玩得开心",
+   "fromDict": 1
+  },
+  {
+   "w": "หากว่า",
+   "c": 16,
+   "df": 15,
+   "func": false,
+   "ex": 394,
+   "z": "如果",
+   "e": "if"
+  },
+  {
+   "w": "ผู้ชาย",
+   "c": 15,
+   "df": 15,
+   "func": false,
+   "ex": 6,
+   "r": "phûu chaay",
+   "e": "man, adult male",
+   "z": "男子、成年男性",
+   "fromDict": 1
+  },
+  {
+   "w": "น้ำ",
+   "c": 14,
+   "df": 13,
+   "func": false,
+   "ex": 40,
+   "r": "náam",
+   "e": "water, liquid, fluid, juice",
+   "z": "水、液体、流体、果汁",
+   "fromDict": 1
+  },
+  {
+   "w": "มือ",
+   "c": 14,
+   "df": 14,
+   "func": false,
+   "ex": 83,
+   "r": "mʉʉ",
+   "e": "hand",
+   "z": "手",
+   "fromDict": 1
+  },
+  {
+   "w": "ผู้",
+   "c": 14,
+   "df": 14,
+   "func": false,
+   "ex": 84,
+   "r": "phûu",
+   "e": "person who..., one who..., -er; -or [person-forming element]",
+   "z": "一个......的人、一个......、-呃； - 或 [人形成元素]",
+   "fromDict": 1
+  },
+  {
+   "w": "พวก",
+   "c": 14,
+   "df": 9,
+   "func": false,
+   "ex": 107,
+   "r": "phûak",
+   "e": "[plural marker for people], group of",
+   "z": "[人的复数标记]、一组",
+   "fromDict": 1
+  },
+  {
+   "w": "เก็บ",
+   "c": 14,
+   "df": 14,
+   "func": false,
+   "ex": 108,
+   "r": "kèp",
+   "e": "pick up, collect, pick (crops); put away, tidy up; keep, store, save",
+   "z": "拾取、收集、采摘（庄稼）；收拾好、收拾好；保留、储存、保存",
+   "fromDict": 1
+  },
+  {
+   "w": "ชุด",
+   "c": 14,
+   "df": 12,
+   "func": false,
+   "ex": 158,
+   "r": "chút",
+   "e": "outfit, clothing, costume; set, kit, collection",
+   "z": "服装、服装；套装、套件、收藏品",
+   "fromDict": 1
+  },
+  {
+   "w": "ข้าว",
+   "c": 13,
+   "df": 13,
+   "func": false,
+   "ex": 32,
+   "r": "khâaw",
+   "e": "food, meal; rice plant, rice, cooked rice",
+   "z": "食物、膳食；水稻植物、水稻、煮熟的米饭",
+   "fromDict": 1
+  },
+  {
+   "w": "ลาว",
+   "c": 13,
+   "df": 13,
+   "func": false,
+   "ex": 80,
+   "z": "老挝",
+   "e": "Laos"
+  },
+  {
+   "w": "พ่อ",
+   "c": 13,
+   "df": 11,
+   "func": false,
+   "ex": 86,
+   "r": "phɔ̂ɔ",
+   "e": "father, dad",
+   "z": "父亲、爸爸",
+   "fromDict": 1
+  },
+  {
+   "w": "ชีวิต",
+   "c": 13,
+   "df": 12,
+   "func": false,
+   "ex": 110,
+   "r": "chiiwít",
+   "e": "life, lifetime",
+   "z": "生命、一生",
+   "fromDict": 1
+  },
+  {
+   "w": "หนึ่ง",
+   "c": 13,
+   "df": 12,
+   "func": false,
+   "ex": 110,
+   "r": "nʉ̀ŋ",
+   "e": "1",
+   "z": "1",
+   "fromDict": 1
+  },
+  {
+   "w": "อื่น",
+   "c": 13,
+   "df": 12,
+   "func": false,
+   "ex": 118,
+   "r": "ʉ̀ʉn",
+   "e": "other, another, different",
+   "z": "其他的、另外的、不同的",
+   "fromDict": 1
+  },
+  {
+   "w": "ม้ง",
+   "c": 12,
+   "df": 10,
+   "func": false,
+   "ex": 3,
+   "z": "苗族",
+   "e": "Hmong"
+  },
+  {
+   "w": "นาน",
+   "c": 12,
+   "df": 12,
+   "func": false,
+   "ex": 18,
+   "r": "naan",
+   "e": "long (in time or duration), long-term",
+   "z": "长期（时间或持续时间）、长期",
+   "fromDict": 1
+  },
+  {
+   "w": "เรียน",
+   "c": 12,
+   "df": 12,
+   "func": false,
+   "ex": 30,
+   "r": "rian",
+   "e": "learn, study, attend school",
+   "z": "学习、学习、上学",
+   "fromDict": 1
+  },
+  {
+   "w": "ภาษา",
+   "c": 12,
+   "df": 10,
+   "func": false,
+   "ex": 30,
+   "r": "phaasǎa",
+   "e": "language; [classifier for languages]",
+   "z": "语言; [语言分类器]",
+   "fromDict": 1
+  },
+  {
+   "w": "เดียว",
+   "c": 12,
+   "df": 12,
+   "func": false,
+   "ex": 91,
+   "r": "diaw",
+   "e": "only, single",
+   "z": "唯一的、单一的",
+   "fromDict": 1
+  },
+  {
+   "w": "ยืม",
+   "c": 12,
+   "df": 10,
+   "func": false,
+   "ex": 108,
+   "r": "yʉʉm",
+   "e": "borrow",
+   "z": "借",
+   "fromDict": 1
+  },
+  {
+   "w": "หญิง",
+   "c": 12,
+   "df": 11,
+   "func": false,
+   "ex": 127,
+   "r": "yǐŋ",
+   "e": "woman, women; female, for women",
+   "z": "女人、女人；女性的、女性用的",
+   "fromDict": 1
+  },
+  {
+   "w": "ราคา",
+   "c": 12,
+   "df": 11,
+   "func": false,
+   "ex": 440,
+   "r": "raakhaa",
+   "e": "price, cost",
+   "z": "价格、成本",
+   "fromDict": 1
+  },
+  {
+   "w": "เกี่ยว",
+   "c": 11,
+   "df": 11,
+   "func": false,
+   "ex": 91,
+   "r": "kìaw",
+   "e": "be related to, be involved in",
+   "z": "与 相关、参与",
+   "fromDict": 1
+  },
+  {
+   "w": "ประจำ",
+   "c": 11,
+   "df": 10,
+   "func": false,
+   "ex": 110,
+   "r": "pracam",
+   "e": "regularly, habitually, often, as a routine; regular, usual, habitual, recurring",
+   "z": "经常地、习惯性地、作为例行公事；定期的、通常的、习惯性的、经常发生的",
+   "fromDict": 1
+  },
+  {
+   "w": "โทรศัพท์",
+   "c": 11,
+   "df": 11,
+   "func": false,
+   "ex": 170,
+   "r": "thoorasàp",
+   "e": "telephone, phone",
+   "z": "电话",
+   "fromDict": 1
+  },
+  {
+   "w": "เหล้า",
+   "c": 11,
+   "df": 9,
+   "func": false,
+   "ex": 177,
+   "r": "lâw",
+   "e": "alcoholic drink, alcohol",
+   "z": "酒精饮料、酒精",
+   "fromDict": 1
+  },
+  {
+   "w": "กำลัง",
+   "c": 11,
+   "df": 10,
+   "func": false,
+   "ex": 237,
+   "r": "kamlaŋ",
+   "e": "be doing; be in the process of",
+   "z": "正在做；正在",
+   "fromDict": 1
+  },
+  {
+   "w": "เที่ยว",
+   "c": 10,
+   "df": 9,
+   "func": false,
+   "ex": 3,
+   "r": "thîaw",
+   "e": "travel for pleasure, visit (for sightseeing), go out for fun",
+   "z": "旅游、参观（观光）、出去玩",
+   "fromDict": 1
+  },
+  {
+   "w": "แฟน",
+   "c": 10,
+   "df": 8,
+   "func": false,
+   "ex": 18,
+   "r": "fɛɛn",
+   "e": "boyfriend, girlfriend, romantic partner, spouse [informal]; fan, supporter, admirer",
+   "z": "boyfriend、girlfriend、romantic partner、spouse [informal];粉丝、支持者、崇拜者",
+   "fromDict": 1
+  },
+  {
+   "w": "เท่า",
+   "c": 10,
+   "df": 10,
+   "func": false,
+   "ex": 87,
+   "r": "thâw",
+   "e": "equal, as much as, as ... as",
+   "z": "等于、一样多、一样……一样",
+   "fromDict": 1
+  },
+  {
+   "w": "เดือน",
+   "c": 10,
+   "df": 7,
+   "func": false,
+   "ex": 110,
+   "r": "dʉan",
+   "e": "month (calendar); month(s) (unit of duration)",
+   "z": "月（日历）；月（持续时间单位）",
+   "fromDict": 1
+  },
+  {
+   "w": "ชาย",
+   "c": 10,
+   "df": 10,
+   "func": false,
+   "ex": 117,
+   "r": "chaay",
+   "e": "man, male person, male",
+   "z": "男人、男性、男性",
+   "fromDict": 1
+  },
+  {
+   "w": "ดื่ม",
+   "c": 10,
+   "df": 5,
+   "func": false,
+   "ex": 177,
+   "r": "dʉ̀ʉm",
+   "e": "drink, have (a drink)",
+   "z": "喝、喝（喝一杯）",
+   "fromDict": 1
+  },
+  {
+   "w": "พรุ่ง",
+   "c": 10,
+   "df": 9,
+   "func": false,
+   "ex": 246,
+   "z": "明天",
+   "e": "Tomorrow"
+  },
+  {
+   "w": "เวียดนาม",
+   "c": 10,
+   "df": 9,
+   "func": false,
+   "ex": 255,
+   "z": "越南",
+   "e": "Vietnam"
+  },
+  {
+   "w": "ตรวจ",
+   "c": 10,
+   "df": 10,
+   "func": false,
+   "ex": 257,
+   "e": "check",
+   "z": "查看"
+  },
+  {
+   "w": "ที่ไหน",
+   "c": 10,
+   "df": 10,
+   "func": false,
+   "ex": 327,
+   "r": "thîi nǎy",
+   "e": "where",
+   "z": "在哪里",
+   "fromDict": 1
+  },
+  {
+   "w": "ปกติ",
+   "c": 10,
+   "df": 10,
+   "func": false,
+   "ex": 329,
+   "r": "pokatì",
+   "e": "normal, usual, regular, ordinary; usually, normally, ordinarily, regularly",
+   "z": "正常、平常、普通；通常、通常、定期",
+   "fromDict": 1
+  },
+  {
+   "w": "เชื่อ",
+   "c": 9,
+   "df": 9,
+   "func": false,
+   "ex": 13,
+   "r": "chʉ̂a",
+   "e": "believe, trust, believe (that ...), have faith in",
+   "z": "相信、信任、相信（...）、有信心",
+   "fromDict": 1
+  },
+  {
+   "w": "ไหร่",
+   "c": 9,
+   "df": 9,
+   "func": false,
+   "ex": 78,
+   "e": "How much?",
+   "z": "多少？"
+  },
+  {
+   "w": "บิน",
+   "c": 9,
+   "df": 9,
+   "func": false,
+   "ex": 78,
+   "r": "bin",
+   "e": "fly; fly (travel by plane)",
+   "z": "飞;飞（乘飞机旅行）",
+   "fromDict": 1
+  },
+  {
+   "w": "เครื่อง",
+   "c": 9,
+   "df": 7,
+   "func": false,
+   "ex": 98,
+   "r": "khrʉ̂aŋ",
+   "e": "machine, device, engine; tool, equipment, supplies; [counter for machines and similar equipment]",
+   "z": "机器、装置、发动机；工具、设备、用品； [机器和类似设备的计数器]",
+   "fromDict": 1
+  },
+  {
+   "w": "ธุรกิจ",
+   "c": 9,
+   "df": 5,
+   "func": false,
+   "ex": 108,
+   "r": "thurakìt",
+   "e": "business, commercial enterprise",
+   "z": "商业、商业企业",
+   "fromDict": 1
+  },
+  {
+   "w": "จ่าย",
+   "c": 9,
+   "df": 7,
+   "func": false,
+   "ex": 108,
+   "r": "càay",
+   "e": "pay, pay for, spend (money), pay (tax, debt, salary)",
+   "z": "支付、花费（钱）、支付（税、债务、工资）",
+   "fromDict": 1
+  },
+  {
+   "w": "ท้อง",
+   "c": 9,
+   "df": 7,
+   "func": false,
+   "ex": 122,
+   "r": "thɔ́ɔŋ",
+   "e": "belly, abdomen, womb",
+   "z": "腹部、腹部、子宫",
+   "fromDict": 1
+  },
+  {
+   "w": "พัก",
+   "c": 9,
+   "df": 9,
+   "func": false,
+   "ex": 141,
+   "r": "phák",
+   "e": "rest, take a break, pause",
+   "z": "休息、休息一下、暂停",
+   "fromDict": 1
+  },
+  {
+   "w": "ห้อง",
+   "c": 9,
+   "df": 8,
+   "func": false,
+   "ex": 155,
+   "r": "hɔ̂ŋ",
+   "e": "room",
+   "z": "房间",
+   "fromDict": 1
+  },
+  {
+   "w": "นึง",
+   "c": 9,
+   "df": 9,
+   "func": false,
+   "ex": 155,
+   "e": "One",
+   "z": "一"
+  },
+  {
+   "w": "พยาบาล",
+   "c": 9,
+   "df": 9,
+   "func": false,
+   "ex": 233,
+   "r": "phayaabaan",
+   "e": "nurse",
+   "z": "护士",
+   "fromDict": 1
+  },
+  {
+   "w": "สะใภ้",
+   "c": 9,
+   "df": 8,
+   "func": false,
+   "ex": 256,
+   "z": "媳妇",
+   "e": "Daughter-in-law"
+  },
+  {
+   "w": "หมด",
+   "c": 9,
+   "df": 9,
+   "func": false,
+   "ex": 264,
+   "r": "mòt",
+   "e": "run out, be used up, be finished, come to an end; all, completely, entirely, totally",
+   "z": "run out、用完、结束、结束；全部、完全",
+   "fromDict": 1
+  },
+  {
+   "w": "เล็บ",
+   "c": 9,
+   "df": 9,
+   "func": false,
+   "ex": 562,
+   "r": "lép",
+   "e": "fingernail, toenail, claw; talon",
+   "z": "手指甲、脚趾甲、爪子；爪",
+   "fromDict": 1
+  },
+  {
+   "w": "คงจะ",
+   "c": 8,
+   "df": 8,
+   "func": false,
+   "ex": 2,
+   "r": "khoŋ cà",
+   "e": "probably, will probably, would probably",
+   "z": "可能、将可能",
+   "fromDict": 1
+  },
+  {
+   "w": "หนัก",
+   "c": 8,
+   "df": 8,
+   "func": false,
+   "ex": 30,
+   "r": "nàk",
+   "e": "heavy, weighing",
+   "z": "重的、称重的",
+   "fromDict": 1
+  },
+  {
+   "w": "อาบ",
+   "c": 8,
+   "df": 7,
+   "func": false,
+   "ex": 40,
+   "r": "àap",
+   "e": "bathe, wash (someone&#39;s body)",
+   "z": "洗澡、清洗（某人的身体）",
+   "fromDict": 1
+  },
+  {
+   "w": "ช่วง",
+   "c": 8,
+   "df": 8,
+   "func": false,
+   "ex": 41,
+   "r": "chûaŋ",
+   "e": "period, time span, time of day",
+   "z": "时期、时间跨度、一天中的时间",
+   "fromDict": 1
+  },
+  {
+   "w": "เสร็จ",
+   "c": 8,
+   "df": 8,
+   "func": false,
+   "ex": 78,
+   "r": "sèt",
+   "e": "be finished, be ready (after preparation), finish (doing something)",
+   "z": "完成、准备好（准备之后）、完成（做某事）",
+   "fromDict": 1
+  },
+  {
+   "w": "เริ่ม",
+   "c": 8,
+   "df": 7,
+   "func": false,
+   "ex": 108,
+   "r": "rə̂əm",
+   "e": "start, begin, begin to do, start becoming",
+   "z": "开始、开始做、开始成为",
+   "fromDict": 1
+  },
+  {
+   "w": "มากกว่า",
+   "c": 8,
+   "df": 7,
+   "func": false,
+   "ex": 109,
+   "z": "多于",
+   "e": "more than"
+  },
+  {
+   "w": "ยอม",
+   "c": 8,
+   "df": 7,
+   "func": false,
+   "ex": 117,
+   "r": "yɔɔm",
+   "e": "agree to, accept; be willing to, be prepared to, not mind doing",
+   "z": "同意、接受；愿意、准备好、不介意做",
+   "fromDict": 1
+  },
+  {
+   "w": "ลอง",
+   "c": 8,
+   "df": 7,
+   "func": false,
+   "ex": 122,
+   "r": "lɔɔŋ",
+   "e": "try, try doing, test, try out, sample, try on",
+   "z": "尝试、尝试做、测试、试用、样品、试穿",
+   "fromDict": 1
+  },
+  {
+   "w": "เข้าไป",
+   "c": 8,
+   "df": 8,
+   "func": false,
+   "ex": 156,
+   "z": "进入",
+   "e": "into"
+  },
+  {
+   "w": "ต่าง",
+   "c": 8,
+   "df": 7,
+   "func": false,
+   "ex": 288,
+   "r": "tàaŋ",
+   "e": "different, not the same",
+   "z": "不同、不一样",
+   "fromDict": 1
+  },
+  {
+   "w": "อัน",
+   "c": 8,
+   "df": 8,
+   "func": false,
+   "ex": 292,
+   "r": "an",
+   "e": "[classifier for small things], piece; item [classifier]; this one, that one, which one, one",
+   "z": "[小东西分类器]、件；项目[分类器]；这个、那个、哪一个",
+   "fromDict": 1
+  },
+  {
+   "w": "ชาว",
+   "c": 8,
+   "df": 6,
+   "func": false,
+   "ex": 303,
+   "r": "chaaw",
+   "e": "people of, residents of, members of",
+   "z": "的人民、居民、成员",
+   "fromDict": 1
+  },
+  {
+   "w": "ชื่อ",
+   "c": 8,
+   "df": 6,
+   "func": false,
+   "ex": 310,
+   "r": "chʉ̂ʉ",
+   "e": "name, title",
+   "z": "姓名、头衔",
+   "fromDict": 1
+  },
+  {
+   "w": "ถ่าย",
+   "c": 8,
+   "df": 8,
+   "func": false,
+   "ex": 396,
+   "r": "thàay",
+   "e": "take a photo, film, photograph",
+   "z": "拍照片、拍电影、拍照",
+   "fromDict": 1
+  },
+  {
+   "w": "เสื้อ",
+   "c": 8,
+   "df": 7,
+   "func": false,
+   "ex": 458,
+   "r": "sʉ̂a",
+   "e": "shirt, upper-body garment",
+   "z": "衬衫、上身服装",
+   "fromDict": 1
+  },
+  {
+   "w": "ยาย",
+   "c": 8,
+   "df": 7,
+   "func": false,
+   "ex": 475,
+   "r": "yaay",
+   "e": "maternal grandmother, Grandma [maternal]",
+   "z": "外婆、祖母 [母亲]",
+   "fromDict": 1
+  },
+  {
+   "w": "ตาม",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 27,
+   "r": "taam",
+   "e": "follow, come after, go after, chase, pursue; according to, in accordance with, as stated by, based on",
+   "z": "追随、跟随、跟随、追逐、追求；根据、按照、根据",
+   "fromDict": 1
+  },
+  {
+   "w": "ไทย",
+   "c": 7,
+   "df": 6,
+   "func": false,
+   "ex": 30,
+   "r": "thay",
+   "e": "Thai, of Thailand, Thai-style; Thai, the Thai language",
+   "z": "Thai、泰国的、泰式的；泰语、泰语",
+   "fromDict": 1
+  },
+  {
+   "w": "รูป",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 64,
+   "r": "rûup",
+   "e": "photo, picture; image; [classifier for photos and pictures]",
+   "z": "照片、图片；图像; [照片和图片分类器]",
+   "fromDict": 1
+  },
+  {
+   "w": "ขอโทษ",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 88,
+   "r": "khɔ̌ɔ thôot",
+   "e": "apologize, say sorry; excuse me, pardon me, sorry?",
+   "z": "道歉、说对不起；对不起、对不起、对不起？",
+   "fromDict": 1
+  },
+  {
+   "w": "สิ่ง",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 100,
+   "r": "sìŋ",
+   "e": "thing, item, matter, object",
+   "z": "事物、项目、物质、对象",
+   "fromDict": 1
+  },
+  {
+   "w": "ค่า",
+   "c": 7,
+   "df": 4,
+   "func": false,
+   "ex": 100,
+   "r": "khâa",
+   "e": "cost, fee, charge, payment",
+   "z": "成本、费用、收费、付款",
+   "fromDict": 1
+  },
+  {
+   "w": "เปล่า",
+   "c": 7,
+   "df": 6,
+   "func": false,
+   "ex": 106,
+   "r": "plàaw",
+   "e": "no, nothing; or not? [yes-or-no question]",
+   "z": "不、什么也没有；或不？ [是或否问题]",
+   "fromDict": 1
+  },
+  {
+   "w": "หุ้น",
+   "c": 7,
+   "df": 5,
+   "func": false,
+   "ex": 108,
+   "z": "分享",
+   "e": "share"
+  },
+  {
+   "w": "เสีย",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 109,
+   "r": "sǐa",
+   "e": "break down, be out of order, spoil (food); lose, miss (an opportunity), waste, suffer a loss",
+   "z": "损坏、出故障、损坏（食物）；失去、错过（机会）、浪费、遭受损失",
+   "fromDict": 1
+  },
+  {
+   "w": "บาง",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 121,
+   "r": "baaŋ",
+   "e": "some, certain",
+   "z": "一些、某些",
+   "fromDict": 1
+  },
+  {
+   "w": "แหวน",
+   "c": 7,
+   "df": 6,
+   "func": false,
+   "ex": 128,
+   "r": "wɛ̌ɛn",
+   "e": "ring (worn on a finger)",
+   "z": "戒指（戴在手指上）",
+   "fromDict": 1
+  },
+  {
+   "w": "แต่งงาน",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 129,
+   "r": "tɛ̀ŋ ŋaan",
+   "e": "get married",
+   "z": "结婚",
+   "fromDict": 1
+  },
+  {
+   "w": "สามี",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 170,
+   "r": "sǎamii",
+   "e": "husband",
+   "z": "丈夫",
+   "fromDict": 1
+  },
+  {
+   "w": "แต่ง",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 174,
+   "r": "tɛ̀ŋ",
+   "e": "decorate, embellish, customize; dress, groom oneself; get married [short for แต่งงาน]",
+   "z": "装饰、美化、定制；着装、打扮自己；结婚 [แต่งงาน 的缩写]",
+   "fromDict": 1
+  },
+  {
+   "w": "กลาง",
+   "c": 7,
+   "df": 5,
+   "func": false,
+   "ex": 243,
+   "r": "klaaŋ",
+   "e": "middle, center; medium, middle, central, common; shared, neutral",
+   "z": "中间、中心；中、中央、普通；共享、中立",
+   "fromDict": 1
+  },
+  {
+   "w": "งั้น",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 245,
+   "r": "ŋán",
+   "e": "then, in that case, otherwise",
+   "z": "那么、在这种情况下、否则",
+   "fromDict": 1
+  },
+  {
+   "w": "ผอม",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 295,
+   "r": "phɔ̌ɔm",
+   "e": "thin, skinny, slim; lose weight, become thinner",
+   "z": "瘦、苗条；减肥、变瘦",
+   "fromDict": 1
+  },
+  {
+   "w": "หนัง",
+   "c": 7,
+   "df": 6,
+   "func": false,
+   "ex": 416,
+   "r": "nǎŋ",
+   "e": "movie, film; skin, animal hide, leather",
+   "z": "电影、电影；皮、兽皮、皮革",
+   "fromDict": 1
+  },
+  {
+   "w": "ใจร้าย",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 444,
+   "r": "cayráay",
+   "e": "mean, heartless, cruel",
+   "z": "卑鄙、无情、残忍",
+   "fromDict": 1
+  },
+  {
+   "w": "ยางพารา",
+   "c": 7,
+   "df": 7,
+   "func": false,
+   "ex": 550,
+   "z": "橡皮",
+   "e": "rubber"
+  },
+  {
+   "w": "สัก",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 11,
+   "r": "sàk",
+   "e": "about, some, a little, someday",
+   "z": "关于、一些、一点、有一天",
+   "fromDict": 1
+  },
+  {
+   "w": "ตั้งใจ",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 30,
+   "r": "tâŋ cay",
+   "e": "pay attention, apply oneself; intend to, do deliberately",
+   "z": "集中注意力、专心致志；打算、故意做",
+   "fromDict": 1
+  },
+  {
+   "w": "หาย",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 33,
+   "r": "hǎay",
+   "e": "disappear, go missing, be lost, vanish; recover, get well, be cured, heal",
+   "z": "消失、迷失、消失；康复、痊愈、痊愈、痊愈",
+   "fromDict": 1
+  },
+  {
+   "w": "ทาง",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 84,
+   "r": "thaaŋ",
+   "e": "road, path, route, passage; direction, side, party; way, method, means, possibility",
+   "z": "道路、路径、路线、通路；方向、一方、一方；方式、方法、手段、可能性",
+   "fromDict": 1
+  },
+  {
+   "w": "จัดการ",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 100,
+   "r": "càt kaan",
+   "e": "handle, deal with, take care of, sort out",
+   "z": "处理、照顾、整理",
+   "fromDict": 1
+  },
+  {
+   "w": "ครอบครัว",
+   "c": 6,
+   "df": 4,
+   "func": false,
+   "ex": 113,
+   "r": "khrɔ̂ɔpkhrua",
+   "e": "family, household",
+   "z": "家庭、家庭",
+   "fromDict": 1
+  },
+  {
+   "w": "ฉะนั้น",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 119,
+   "z": "所以",
+   "e": "therefore"
+  },
+  {
+   "w": "แต่ละ",
+   "c": 6,
+   "df": 5,
+   "func": false,
+   "ex": 119,
+   "r": "tɛ̀ɛlá",
+   "e": "each",
+   "z": "每个",
+   "fromDict": 1
+  },
+  {
+   "w": "แรก",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 127,
+   "r": "rɛ̂ɛk",
+   "e": "first",
+   "z": "第一的",
+   "fromDict": 1
+  },
+  {
+   "w": "ผ่อน",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 141,
+   "r": "phɔ̀ɔn",
+   "e": "pay in installments, make loan payments",
+   "z": "分期付款、偿还贷款",
+   "fromDict": 1
+  },
+  {
+   "w": "ตู้",
+   "c": 6,
+   "df": 5,
+   "func": false,
+   "ex": 153,
+   "z": "橱柜",
+   "e": "cupboard"
+  },
+  {
+   "w": "สั่ง",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 166,
+   "r": "sàŋ",
+   "e": "order (food, goods, services), place an order",
+   "z": "订单（食品、商品、服务）、下订单",
+   "fromDict": 1
+  },
+  {
+   "w": "ประมาณ",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 227,
+   "r": "pramaan",
+   "e": "approximately, roughly like",
+   "z": "大约、大致像",
+   "fromDict": 1
+  },
+  {
+   "w": "เด็ก",
+   "c": 6,
+   "df": 4,
+   "func": false,
+   "ex": 228,
+   "r": "dèk",
+   "e": "child, young person, younger person",
+   "z": "儿童、年轻人、较年轻的人",
+   "fromDict": 1
+  },
+  {
+   "w": "เจ้า",
+   "c": 6,
+   "df": 5,
+   "func": false,
+   "ex": 249,
+   "z": "所有者",
+   "e": "owner"
+  },
+  {
+   "w": "ตาย",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 258,
+   "r": "taay",
+   "e": "die, pass away, wither and die (plants)",
+   "z": "死亡、去世、枯萎、死亡（植物）",
+   "fromDict": 1
+  },
+  {
+   "w": "ไม่รู้",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 303,
+   "z": "不知道",
+   "e": "do not know"
+  },
+  {
+   "w": "หน้าตา",
+   "c": 6,
+   "df": 4,
+   "func": false,
+   "ex": 336,
+   "z": "外貌",
+   "e": "Appearance"
+  },
+  {
+   "w": "หุ่น",
+   "c": 6,
+   "df": 4,
+   "func": false,
+   "ex": 336,
+   "z": "木偶",
+   "e": "puppet"
+  },
+  {
+   "w": "รีบ",
+   "c": 6,
+   "df": 5,
+   "func": false,
+   "ex": 342,
+   "r": "rîip",
+   "e": "hurry, rush",
+   "z": "快点",
+   "fromDict": 1
+  },
+  {
+   "w": "นิสัย",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 387,
+   "r": "nísǎy",
+   "e": "character, temperament; habit",
+   "z": "性格、气质；习惯",
+   "fromDict": 1
+  },
+  {
+   "w": "ขาว",
+   "c": 6,
+   "df": 5,
+   "func": false,
+   "ex": 518,
+   "r": "khǎaw",
+   "e": "white, fair-skinned; light-skinned",
+   "z": "白人、皮肤白皙；浅肤色的",
+   "fromDict": 1
+  },
+  {
+   "w": "ต้น",
+   "c": 6,
+   "df": 6,
+   "func": false,
+   "ex": 550,
+   "r": "tôn",
+   "e": "tree, plant, plant stalk, trunk, stem; [classifier for trees and plants], [classifier for plant clumps or individual plants]",
+   "z": "树、植物、植物茎、树干、茎； [树木和植物分类器]、[植物丛或单株植物分类器]",
+   "fromDict": 1
+  },
+  {
+   "w": "หวาน",
+   "c": 6,
+   "df": 5,
+   "func": false,
+   "ex": 571,
+   "r": "wǎan",
+   "e": "sweet, sweetly",
+   "z": "甜甜的",
+   "fromDict": 1
+  },
+  {
+   "w": "ขอบคุณ",
+   "c": 5,
+   "df": 4,
+   "func": false,
+   "ex": 8,
+   "r": "khɔ̀ɔpkhun",
+   "e": "thank you, thanks",
+   "z": "谢谢",
+   "fromDict": 1
+  },
+  {
+   "w": "เพิ่ม",
+   "c": 5,
+   "df": 4,
+   "func": false,
+   "ex": 71,
+   "r": "phə̂əm",
+   "e": "increase, add, enhance; more, extra",
+   "z": "增加、增强；更多、额外",
+   "fromDict": 1
+  },
+  {
+   "w": "คิดมาก",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 78,
+   "e": "think a lot",
+   "z": "想了很多"
+  },
+  {
+   "w": "สาม",
+   "c": 5,
+   "df": 4,
+   "func": false,
+   "ex": 86,
+   "r": "sǎam",
+   "e": "3",
+   "z": "3",
+   "fromDict": 1
+  },
+  {
+   "w": "ผ่าน",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 106,
+   "r": "phàan",
+   "e": "pass, pass by, pass through, cross",
+   "z": "经过、经过、经过、穿过",
+   "fromDict": 1
+  },
+  {
+   "w": "ควร",
+   "c": 5,
+   "df": 4,
+   "func": false,
+   "ex": 108,
+   "r": "khuan",
+   "e": "should, ought to, had better, be supposed to",
+   "z": "应该、应该、最好、应该",
+   "fromDict": 1
+  },
+  {
+   "w": "นับ",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 108,
+   "r": "náp",
+   "e": "count, include in the count",
+   "z": "计数、包含在计数中",
+   "fromDict": 1
+  },
+  {
+   "w": "ลงทุน",
+   "c": 5,
+   "df": 2,
+   "func": false,
+   "ex": 108,
+   "z": "投资",
+   "e": "invest"
+  },
+  {
+   "w": "ค่อน",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 108,
+   "z": "有些",
+   "e": "Somewhat"
+  },
+  {
+   "w": "จริงจัง",
+   "c": 5,
+   "df": 3,
+   "func": false,
+   "ex": 108,
+   "r": "ciŋ caŋ",
+   "e": "serious, earnest, sincere, not casual; seriously, earnestly, with real commitment, in earnest",
+   "z": "认真、认真、真诚、不随意；认真地、认真地、真正的承诺",
+   "fromDict": 1
+  },
+  {
+   "w": "สำเร็จ",
+   "c": 5,
+   "df": 4,
+   "func": false,
+   "ex": 108,
+   "z": "成功",
+   "e": "succeed"
+  },
+  {
+   "w": "ตั้งแต่",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 113,
+   "r": "tâŋ tɛ̀ɛ",
+   "e": "from [starting point of a range], since, since doing・since something happened",
+   "z": "从[范围的起点]、因为、自从做·自从某件事发生以来",
+   "fromDict": 1
+  },
+  {
+   "w": "ข้อ",
+   "c": 5,
+   "df": 4,
+   "func": false,
+   "ex": 114,
+   "r": "khɔ̂ɔ",
+   "e": "[classifier for questions, items, points, conditions]",
+   "z": "[问题、项目、分数、条件的分类器]",
+   "fromDict": 1
+  },
+  {
+   "w": "อยู่ดี",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 125,
+   "e": "Stay well",
+   "z": "保持健康"
+  },
+  {
+   "w": "หลับ",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 140,
+   "r": "làp",
+   "e": "sleep, be asleep, fall asleep",
+   "z": "睡觉、睡着",
+   "fromDict": 1
+  },
+  {
+   "w": "แปลก",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 157,
+   "r": "plɛ̀ɛk",
+   "e": "strange, unusual, unfamiliar",
+   "z": "奇怪的、不寻常的、不熟悉的",
+   "fromDict": 1
+  },
+  {
+   "w": "ที่สุด",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 177,
+   "r": "thîi sùt",
+   "e": "the most, to the greatest extent, as much as possible",
+   "z": "最大程度地、最大程度地、尽可能多地",
+   "fromDict": 1
+  },
+  {
+   "w": "สาว",
+   "c": 5,
+   "df": 4,
+   "func": false,
+   "ex": 238,
+   "r": "sǎaw",
+   "e": "young woman; young (of a female), youthful (of a female)",
+   "z": "年轻女子；年轻的（女性的）、年轻的（女性的）",
+   "fromDict": 1
+  },
+  {
+   "w": "สอน",
+   "c": 5,
+   "df": 3,
+   "func": false,
+   "ex": 275,
+   "r": "sɔ̌ɔn",
+   "e": "teach, instruct, train",
+   "z": "教导、教导、训练",
+   "fromDict": 1
+  },
+  {
+   "w": "แตก",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 288,
+   "r": "tɛ̀ɛk",
+   "e": "break, crack, split, burst, shatter",
+   "z": "破裂、破裂、裂开、爆裂、破碎",
+   "fromDict": 1
+  },
+  {
+   "w": "บัญชี",
+   "c": 5,
+   "df": 3,
+   "func": false,
+   "ex": 290,
+   "r": "banchii",
+   "e": "account, bank account, online account",
+   "z": "帐户、银行帐户、在线帐户",
+   "fromDict": 1
+  },
+  {
+   "w": "จัง",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 312,
+   "r": "caŋ",
+   "e": "so, really",
+   "z": "所以、真的",
+   "fromDict": 1
+  },
+  {
+   "w": "อ้วน",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 335,
+   "r": "ûan",
+   "e": "fat, overweight",
+   "z": "肥胖、超重",
+   "fromDict": 1
+  },
+  {
+   "w": "เสียง",
+   "c": 5,
+   "df": 4,
+   "func": false,
+   "ex": 359,
+   "r": "sǐaŋ",
+   "e": "sound, voice, volume",
+   "z": "声音、声音、音量",
+   "fromDict": 1
+  },
+  {
+   "w": "ทิ้ง",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 412,
+   "r": "thíŋ",
+   "e": "throw away, discard, dispose of; leave behind, leave (something somewhere), keep (something somewhere)",
+   "z": "扔掉、丢弃、丢弃；留下（某物）、保留（某物）",
+   "fromDict": 1
+  },
+  {
+   "w": "ว่าการ",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 418,
+   "e": "governor",
+   "z": "州长"
+  },
+  {
+   "w": "เขียน",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 539,
+   "r": "khǐan",
+   "e": "write, fill in (information), compose (a text)",
+   "z": "写、填写（信息）、撰写（文本）",
+   "fromDict": 1
+  },
+  {
+   "w": "สินค้า",
+   "c": 5,
+   "df": 4,
+   "func": false,
+   "ex": 563,
+   "r": "sǐnkháa",
+   "e": "goods, merchandise, product",
+   "z": "货物、商品、产品",
+   "fromDict": 1
+  },
+  {
+   "w": "บะหมี่",
+   "c": 5,
+   "df": 5,
+   "func": false,
+   "ex": 812,
+   "r": "bàmìi",
+   "e": "Chinese-style wheat noodles, egg-noodle dish",
+   "z": "中式小麦面、鸡蛋面",
+   "fromDict": 1
+  },
+  {
+   "w": "มอง",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 3,
+   "r": "mɔɔŋ",
+   "e": "look at, gaze at, look toward",
+   "z": "看、注视、看向",
+   "fromDict": 1
+  },
+  {
+   "w": "ภาพ",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 4,
+   "r": "phâap",
+   "e": "picture, image, photograph, footage",
+   "z": "图片、图像、照片、镜头",
+   "fromDict": 1
+  },
+  {
+   "w": "พยายาม",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 6,
+   "r": "phayaayaam",
+   "e": "try (to do something), make an effort",
+   "z": "尝试（做某事）、努力",
+   "fromDict": 1
+  },
+  {
+   "w": "พอแล้ว",
+   "c": 4,
+   "df": 3,
+   "func": false,
+   "ex": 11,
+   "z": "足够的",
+   "e": "enough"
+  },
+  {
+   "w": "ถือ",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 13,
+   "r": "thʉ̌ʉ",
+   "e": "hold, carry, bring along",
+   "z": "持有、携带、携带",
+   "fromDict": 1
+  },
+  {
+   "w": "เช้า",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 21,
+   "r": "cháaw",
+   "e": "morning; in the morning, early, ahead of time",
+   "z": "早晨;早上、早、提前",
+   "fromDict": 1
+  },
+  {
+   "w": "ปล่อย",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 89,
+   "r": "plɔ̀y",
+   "e": "let go of, release, set free; let someone do, allow to continue; leave alone, leave as is, neglect",
+   "z": "放开、释放、释放；让某人做、允许继续；不理睬、保持原样、忽视",
+   "fromDict": 1
+  },
+  {
+   "w": "หมายความ",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 91,
+   "z": "意思是",
+   "e": "mean"
+  },
+  {
+   "w": "เสี่ยง",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 100,
+   "r": "sìaŋ",
+   "e": "take a risk, risk (one’s life, money, etc.); risky, at risk (of)",
+   "z": "冒风险（生命、金钱等）；有风险的、有风险的（的）",
+   "fromDict": 1
+  },
+  {
+   "w": "คลินิก",
+   "c": 4,
+   "df": 2,
+   "func": false,
+   "ex": 108,
+   "r": "khlínik",
+   "e": "clinic",
+   "z": "诊所",
+   "fromDict": 1
+  },
+  {
+   "w": "ร่วม",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 108,
+   "r": "rûam",
+   "e": "join, participate in, take part in, share; together, jointly, collectively",
+   "z": "加入、参加、参加、分享；一起、共同",
+   "fromDict": 1
+  },
+  {
+   "w": "สุดท้าย",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 108,
+   "r": "sùt tháay",
+   "e": "last, final; in the end, eventually, lastly",
+   "z": "最后的、最后的；最后、最终、最后",
+   "fromDict": 1
+  },
+  {
+   "w": "เพียง",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 110,
+   "r": "phiaŋ",
+   "e": "only, just, merely",
+   "z": "仅仅、仅仅、仅仅是",
+   "fromDict": 1
+  },
+  {
+   "w": "เหลือ",
+   "c": 4,
+   "df": 3,
+   "func": false,
+   "ex": 110,
+   "r": "lʉ̌a",
+   "e": "remain, be left over",
+   "z": "留下来",
+   "fromDict": 1
+  },
+  {
+   "w": "ขาด",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 110,
+   "r": "khàat",
+   "e": "lack, be short of, be deficient in",
+   "z": "缺乏",
+   "fromDict": 1
+  },
+  {
+   "w": "เสียดาย",
+   "c": 4,
+   "df": 3,
+   "func": false,
+   "ex": 111,
+   "r": "sǐadaay",
+   "e": "regret, be sorry about (a loss or missed opportunity), hate to waste (something)",
+   "z": "后悔、对（损失或错过的机会）感到抱歉、讨厌浪费（某事）",
+   "fromDict": 1
+  },
+  {
+   "w": "รู้จัก",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 111,
+   "r": "rúucàk",
+   "e": "know (a person), be acquainted with, get to know",
+   "z": "认识（一个人）、熟悉、结识",
+   "fromDict": 1
+  },
+  {
+   "w": "นอกจาก",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 113,
+   "r": "nɔ̂ɔk càak",
+   "e": "except for, other than; besides, in addition to; not only ... but also",
+   "z": "除了、除了；此外、此外；不仅......而且",
+   "fromDict": 1
+  },
+  {
+   "w": "เลิก",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 117,
+   "r": "lə̂ək",
+   "e": "stop doing, quit (a habit or activity), discontinue, abolish",
+   "z": "停止做、放弃（习惯或活动）、停止、废除",
+   "fromDict": 1
+  },
+  {
+   "w": "ตัด",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 117,
+   "r": "tàt",
+   "e": "cut, cut off, trim, mow",
+   "z": "剪断、切断、修剪、割草",
+   "fromDict": 1
+  },
+  {
+   "w": "วาง",
+   "c": 4,
+   "df": 3,
+   "func": false,
+   "ex": 121,
+   "r": "waaŋ",
+   "e": "put down, place, lay down, leave (something somewhere)",
+   "z": "放下、放置、离开（某处的某物）",
+   "fromDict": 1
+  },
+  {
+   "w": "อร่อย",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 122,
+   "r": "arɔ̀ɔy",
+   "e": "delicious, tasty",
+   "z": "美味的",
+   "fromDict": 1
+  },
+  {
+   "w": "ลูก",
+   "c": 4,
+   "df": 3,
+   "func": false,
+   "ex": 156,
+   "r": "lûuk",
+   "e": "child, son, daughter, young animal",
+   "z": "孩子、儿子、女儿、小动物",
+   "fromDict": 1
+  },
+  {
+   "w": "ขี้",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 172,
+   "r": "khîi",
+   "e": "prone to ~, inclined to ~, the type who ~",
+   "z": "倾向于〜、那种〜",
+   "fromDict": 1
+  },
+  {
+   "w": "ภายใน",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 229,
+   "r": "phaay nay",
+   "e": "inside, within (a place or area); within (a period of time), by (a deadline)",
+   "z": "在（一个地方或区域）内、在（一个地方或区域）内；在（一段时间）内、在（最后期限）之前",
+   "fromDict": 1
+  },
+  {
+   "w": "โรง",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 239,
+   "z": "剧院",
+   "e": "theater"
+  },
+  {
+   "w": "นาย",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 249,
+   "r": "naay",
+   "e": "boss, employer, master, person in charge",
+   "z": "老板、雇主、主人、负责人",
+   "fromDict": 1
+  },
+  {
+   "w": "วิธี",
+   "c": 4,
+   "df": 2,
+   "func": false,
+   "ex": 275,
+   "r": "wíthii",
+   "e": "method, way, means, procedure",
+   "z": "方法、途径、手段、程序",
+   "fromDict": 1
+  },
+  {
+   "w": "ร่างกาย",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 280,
+   "r": "râaŋ kaay",
+   "e": "body, physical body, physique",
+   "z": "身体、体质",
+   "fromDict": 1
+  },
+  {
+   "w": "สวยๆ",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 292,
+   "z": "美丽的",
+   "e": "Beautiful"
+  },
+  {
+   "w": "จับ",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 377,
+   "r": "càp",
+   "e": "touch, grab, hold, grasp",
+   "z": "触摸、抓住、握住、抓住",
+   "fromDict": 1
+  },
+  {
+   "w": "ใกล้ๆ",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 436,
+   "z": "附近",
+   "e": "nearby"
+  },
+  {
+   "w": "พอใจ",
+   "c": 4,
+   "df": 3,
+   "func": false,
+   "ex": 444,
+   "r": "phɔɔ cay",
+   "e": "be satisfied, be pleased, be content, like; be happy with",
+   "z": "满足、高兴、喜欢；感到高兴",
+   "fromDict": 1
+  },
+  {
+   "w": "ล้อ",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 449,
+   "r": "lɔ́ɔ",
+   "e": "wheel, caster; tease, make fun of, mock",
+   "z": "轮子、脚轮；戏弄、取笑、嘲笑",
+   "fromDict": 1
+  },
+  {
+   "w": "กี้",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 475,
+   "z": "米奇",
+   "e": "Mikey"
+  },
+  {
+   "w": "ธุระ",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 486,
+   "r": "thúrá",
+   "e": "errand, personal business",
+   "z": "差事、个人事务",
+   "fromDict": 1
+  },
+  {
+   "w": "รีย์",
+   "c": 4,
+   "df": 2,
+   "func": false,
+   "ex": 535,
+   "z": "系列",
+   "e": "series"
+  },
+  {
+   "w": "เปลี่ยนแปลง",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 619,
+   "r": "plìan plɛɛŋ",
+   "e": "change, become different",
+   "z": "改变、变得不同",
+   "fromDict": 1
+  },
+  {
+   "w": "หมาย",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 650,
+   "r": "mǎay",
+   "e": "mean, refer to",
+   "z": "意思是、参考",
+   "fromDict": 1
+  },
+  {
+   "w": "เย็น",
+   "c": 4,
+   "df": 3,
+   "func": false,
+   "ex": 718,
+   "r": "yen",
+   "e": "cool, cold, chilled, cooled down; late afternoon, early evening, evening",
+   "z": "凉爽、寒冷、冷却；傍晚、傍晚",
+   "fromDict": 1
+  },
+  {
+   "w": "กระดูก",
+   "c": 4,
+   "df": 3,
+   "func": false,
+   "ex": 843,
+   "r": "kradùuk",
+   "e": "bone, skeletal remains",
+   "z": "骨头、骨骼遗骸",
+   "fromDict": 1
+  },
+  {
+   "w": "หัวเราะ",
+   "c": 4,
+   "df": 4,
+   "func": false,
+   "ex": 867,
+   "r": "hǔarɔ́",
+   "e": "laugh",
+   "z": "笑",
+   "fromDict": 1
+  },
+  {
+   "w": "หลอก",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 10,
+   "r": "lɔ̀ɔk",
+   "e": "trick, deceive, cheat, trick someone into doing something",
+   "z": "欺骗、欺骗某人做某事",
+   "fromDict": 1
+  },
+  {
+   "w": "พิเศษ",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 12,
+   "r": "phísèet",
+   "e": "special, exceptional, extra, large (food portion); especially, particularly, specially",
+   "z": "特别的、特殊的、额外的、大的（食物部分）；特别地、特别地",
+   "fromDict": 1
+  },
+  {
+   "w": "ยอมรับ",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 13,
+   "r": "yɔɔm ráp",
+   "e": "accept, acknowledge, agree to, accept (a proposal or condition)",
+   "z": "接受、承认、同意、接受（提议或条件）",
+   "fromDict": 1
+  },
+  {
+   "w": "ดูแล",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 14,
+   "r": "duulɛɛ",
+   "e": "take care of, look after, care for, attend to",
+   "z": "take care of 照顾、照顾、关心",
+   "fromDict": 1
+  },
+  {
+   "w": "ตั้ง",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 18,
+   "r": "tâŋ",
+   "e": "place, set, stand up, install, be located",
+   "z": "放置、设置、站立、安装、定位",
+   "fromDict": 1
+  },
+  {
+   "w": "ใครๆ",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 27,
+   "e": "Anyone",
+   "z": "任何人"
+  },
+  {
+   "w": "คำถาม",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 30,
+   "r": "kham thǎam",
+   "e": "question",
+   "z": "问题",
+   "fromDict": 1
+  },
+  {
+   "w": "จอง",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 63,
+   "r": "cɔɔŋ",
+   "e": "book, reserve, hold (a seat or place)",
+   "z": "预订、保留、保留（座位或地方）",
+   "fromDict": 1
+  },
+  {
+   "w": "โดน",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 70,
+   "r": "doon",
+   "e": "be subjected to, get hit with, suffer, be ...ed [spoken passive, often negative]",
+   "z": "受到、受到打击、遭受、被...ed [被动语态、通常是消极的]",
+   "fromDict": 1
+  },
+  {
+   "w": "ปัญหา",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 91,
+   "r": "panhǎa",
+   "e": "problem, difficulty, trouble, issue",
+   "z": "问题、困难、麻烦、问题",
+   "fromDict": 1
+  },
+  {
+   "w": "โดย",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 97,
+   "r": "dooy",
+   "e": "by, by means of, via",
+   "z": "通过",
+   "fromDict": 1
+  },
+  {
+   "w": "บริษัท",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 99,
+   "r": "bɔɔrisàt",
+   "e": "company, firm, corporation",
+   "z": "公司、公司、公司",
+   "fromDict": 1
+  },
+  {
+   "w": "ตัดสิน",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 100,
+   "z": "决定",
+   "e": "decide"
+  },
+  {
+   "w": "เลือก",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 100,
+   "r": "lʉ̂ak",
+   "e": "choose, select, elect",
+   "z": "选择、挑选",
+   "fromDict": 1
+  },
+  {
+   "w": "ขาดใจ",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 102,
+   "e": "die",
+   "z": "死"
+  },
+  {
+   "w": "สอง",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 103,
+   "r": "sɔ̌ɔŋ",
+   "e": "2",
+   "z": "2",
+   "fromDict": 1
+  },
+  {
+   "w": "เตรียม",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 103,
+   "r": "triam",
+   "e": "prepare, get ready",
+   "z": "准备、准备好",
+   "fromDict": 1
+  },
+  {
+   "w": "ทั้งหมด",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 103,
+   "r": "tháŋmòt",
+   "e": "all, the whole of",
+   "z": "全部",
+   "fromDict": 1
+  },
+  {
+   "w": "ก้อน",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 108,
+   "r": "kɔ̂ɔn",
+   "e": "lump, chunk, bodily lump; [classifier for lumps or chunks]",
+   "z": "肿块、大块、身体肿块； [块或块的分类器]",
+   "fromDict": 1
+  },
+  {
+   "w": "กำไร",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 108,
+   "r": "kamray",
+   "e": "profit, financial gain",
+   "z": "利润、经济收益",
+   "fromDict": 1
+  },
+  {
+   "w": "ไกล",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 108,
+   "r": "klay",
+   "e": "far, distant, a long way off (in time or progress)",
+   "z": "遥远的、遥远的（在时间或进展上）",
+   "fromDict": 1
+  },
+  {
+   "w": "ประสบ",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 108,
+   "z": "遭受",
+   "e": "suffer"
+  },
+  {
+   "w": "ห้าม",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 109,
+   "r": "hâam",
+   "e": "forbid, prohibit, ban",
+   "z": "禁止",
+   "fromDict": 1
+  },
+  {
+   "w": "ดอลลาร์",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 110,
+   "z": "美元",
+   "e": "dollar"
+  },
+  {
+   "w": "ที่พัก",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 110,
+   "z": "住宿",
+   "e": "accommodation"
+  },
+  {
+   "w": "ทั่วไป",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 110,
+   "z": "一般的",
+   "e": "general"
+  },
+  {
+   "w": "โอน",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 110,
+   "r": "oon",
+   "e": "transfer money, send money",
+   "z": "转账、汇款",
+   "fromDict": 1
+  },
+  {
+   "w": "คนใน",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 113,
+   "e": "insider in",
+   "z": "内幕人士"
+  },
+  {
+   "w": "แสดง",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 113,
+   "r": "sadɛɛŋ",
+   "e": "present, display; express, demonstrate",
+   "z": "呈现、展示；表达、展示",
+   "fromDict": 1
+  },
+  {
+   "w": "อ้าง",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 114,
+   "r": "âaŋ",
+   "e": "claim, give as a reason, use as an excuse",
+   "z": "声称、给出理由、用作借口",
+   "fromDict": 1
+  },
+  {
+   "w": "สัมพันธ์",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 116,
+   "z": "关系",
+   "e": "relationships"
+  },
+  {
+   "w": "ทวง",
+   "c": 3,
+   "df": 1,
+   "func": false,
+   "ex": 117,
+   "e": "Demand",
+   "z": "要求"
+  },
+  {
+   "w": "แทน",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 117,
+   "r": "thɛɛn",
+   "e": "instead of, in place of",
+   "z": "代替",
+   "fromDict": 1
+  },
+  {
+   "w": "ใจดี",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 118,
+   "r": "cay dii",
+   "e": "kind-hearted, kind, good-natured",
+   "z": "心地善良、善良",
+   "fromDict": 1
+  },
+  {
+   "w": "ร้อย",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 120,
+   "r": "rɔ́ɔy",
+   "e": "one hundred, 100",
+   "z": "一百、100",
+   "fromDict": 1
+  },
+  {
+   "w": "รวม",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 121,
+   "r": "ruam",
+   "e": "gather, collect, combine, put together; add up, total, sum; include, cover, include in the price",
+   "z": "收集、收集、组合、放在一起；加起来、合计、总和；包括、涵盖、包含在价格中",
+   "fromDict": 1
+  },
+  {
+   "w": "กังวล",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 121,
+   "r": "kaŋwon",
+   "e": "worry, feel anxious",
+   "z": "担心、感到焦虑",
+   "fromDict": 1
+  },
+  {
+   "w": "มัก",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 125,
+   "r": "mák",
+   "e": "often, frequently, usually, tend to, be prone to",
+   "z": "经常、经常、通常、倾向于、倾向于",
+   "fromDict": 1
+  },
+  {
+   "w": "สร้าง",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 125,
+   "r": "sâaŋ",
+   "e": "build, construct; create, establish, develop",
+   "z": "建造、建造；创造、建立、发展",
+   "fromDict": 1
+  },
+  {
+   "w": "คอย",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 125,
+   "r": "khɔɔy",
+   "e": "wait, wait for, await",
+   "z": "等待",
+   "fromDict": 1
+  },
+  {
+   "w": "แก้",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 125,
+   "r": "kɛ̂ɛ",
+   "e": "fix, correct, revise; solve, resolve",
+   "z": "修复、纠正、修改；解决、解决",
+   "fromDict": 1
+  },
+  {
+   "w": "สุข",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 150,
+   "z": "快乐的",
+   "e": "happy"
+  },
+  {
+   "w": "กลิ่น",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 156,
+   "r": "klìn",
+   "e": "smell, scent, odor",
+   "z": "气味、气味、气味",
+   "fromDict": 1
+  },
+  {
+   "w": "เผ็ด",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 156,
+   "r": "phèt",
+   "e": "spicy-hot",
+   "z": "辣的",
+   "fromDict": 1
+  },
+  {
+   "w": "นอกใจ",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 162,
+   "e": "commit adultery",
+   "z": "通奸"
+  },
+  {
+   "w": "ควบคุม",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 164,
+   "z": "控制",
+   "e": "control"
+  },
+  {
+   "w": "สไตล์",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 175,
+   "z": "风格",
+   "e": "style"
+  },
+  {
+   "w": "บ่อยๆ",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 177,
+   "r": "bɔ̀y bɔ̀y",
+   "e": "often, frequently, repeatedly",
+   "z": "经常、反复",
+   "fromDict": 1
+  },
+  {
+   "w": "ตลอด",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 223,
+   "r": "talɔ̀ɔt",
+   "e": "all the time, the whole time, continuously",
+   "z": "一直、持续不断",
+   "fromDict": 1
+  },
+  {
+   "w": "เดีย",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 228,
+   "z": "直径",
+   "e": "Dia"
+  },
+  {
+   "w": "ภรรยา",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 233,
+   "r": "phanrayaa",
+   "e": "wife",
+   "z": "妻子",
+   "fromDict": 1
+  },
+  {
+   "w": "หลาน",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 238,
+   "r": "lǎan",
+   "e": "grandchild; nephew, niece",
+   "z": "孙子；侄子、侄女",
+   "fromDict": 1
+  },
+  {
+   "w": "เลี้ยง",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 242,
+   "r": "líaŋ",
+   "e": "raise (a child), take care of (someone), provide for (a family or person); keep (an animal), raise (livestock), breed or farm (animals); treat (someone to food or drinks), pay for (a meal or drinks), host or entertain (guests)",
+   "z": "抚养（孩子）、照顾（某人）、供养（家庭或个人）；饲养（动物）、饲养（牲畜）、繁殖或农场（动物）；请客（某人吃东西或喝饮料）、支付费用（一顿饭或饮料）、招待或款待（客人）",
+   "fromDict": 1
+  },
+  {
+   "w": "สายตา",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 249,
+   "r": "sǎay taa",
+   "e": "eyesight, vision; gaze, look (expression in the eyes)",
+   "z": "视力、视力；凝视、看（眼神中的表情）",
+   "fromDict": 1
+  },
+  {
+   "w": "อาการ",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 257,
+   "r": "aakaan",
+   "e": "symptom, medical condition",
+   "z": "症状、医疗状况",
+   "fromDict": 1
+  },
+  {
+   "w": "มดลูก",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 276,
+   "z": "子宫",
+   "e": "womb"
+  },
+  {
+   "w": "หมอบ",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 280,
+   "z": "蹲",
+   "e": "squat"
+  },
+  {
+   "w": "ไหว",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 285,
+   "r": "wǎy",
+   "e": "be able to manage, be able to endure",
+   "z": "能驾驭、能承受",
+   "fromDict": 1
+  },
+  {
+   "w": "สวน",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 289,
+   "r": "sǔan",
+   "e": "garden, park, farm, orchard, plantation",
+   "z": "花园、公园、农场、果园、种植园",
+   "fromDict": 1
+  },
+  {
+   "w": "วีซ่า",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 296,
+   "r": "wiisâa",
+   "e": "visa",
+   "z": "签证",
+   "fromDict": 1
+  },
+  {
+   "w": "ไลฟ์",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 299,
+   "z": "居住",
+   "e": "Live"
+  },
+  {
+   "w": "ราย",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 299,
+   "z": "列表",
+   "e": "List"
+  },
+  {
+   "w": "ประเพณี",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 303,
+   "z": "传统",
+   "e": "tradition"
+  },
+  {
+   "w": "ปัง",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 310,
+   "z": "砰!",
+   "e": "Bang!"
+  },
+  {
+   "w": "หนุ่ม",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 314,
+   "r": "nùm",
+   "e": "young man; young (of a male), youthful (of a male)",
+   "z": "年轻人；年轻的（男性的）、年轻的（男性的）",
+   "fromDict": 1
+  },
+  {
+   "w": "ช่าง",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 315,
+   "r": "châŋ",
+   "e": "craftsperson, technician, repair worker; leave alone, let someone do as they please, not worry about, never mind",
+   "z": "工匠、技术员、修理工；独自离开、让别人为所欲为、不担心、不介意",
+   "fromDict": 1
+  },
+  {
+   "w": "นาที",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 323,
+   "r": "naathii",
+   "e": "minute, minutes",
+   "z": "分钟",
+   "fromDict": 1
+  },
+  {
+   "w": "ทุเรียน",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 324,
+   "r": "thúrian",
+   "e": "durian",
+   "z": "榴莲",
+   "fromDict": 1
+  },
+  {
+   "w": "อากาศ",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 328,
+   "r": "aakàat",
+   "e": "air, atmosphere; weather, climate",
+   "z": "空气、气氛；天气、气候",
+   "fromDict": 1
+  },
+  {
+   "w": "ชั่วโมง",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 334,
+   "z": "小时",
+   "e": "hour"
+  },
+  {
+   "w": "แก่",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 337,
+   "r": "kɛ̀ɛ",
+   "e": "old, aged, growing old",
+   "z": "老了、变老了",
+   "fromDict": 1
+  },
+  {
+   "w": "หาก",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 340,
+   "z": "如果",
+   "e": "if"
+  },
+  {
+   "w": "เดิม",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 388,
+   "r": "dəəm",
+   "e": "original, former, previous; the same as before, the usual",
+   "z": "原来的、以前的、以前的；和以前一样、平常的",
+   "fromDict": 1
+  },
+  {
+   "w": "หมอ",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 394,
+   "r": "mɔ̌ɔ",
+   "e": "doctor, physician",
+   "z": "医生、医师",
+   "fromDict": 1
+  },
+  {
+   "w": "สมอง",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 416,
+   "r": "samɔ̌ɔŋ",
+   "e": "brain",
+   "z": "脑",
+   "fromDict": 1
+  },
+  {
+   "w": "งบ่อยๆ",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 418,
+   "z": "经常",
+   "e": "often"
+  },
+  {
+   "w": "พนักงาน",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 464,
+   "r": "phanákŋaan",
+   "e": "employee, staff member, attendant・clerk",
+   "z": "雇员、工作人员、服务员・职员",
+   "fromDict": 1
+  },
+  {
+   "w": "คาเฟ่",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 465,
+   "r": "khaafêe",
+   "e": "café",
+   "z": "咖啡店",
+   "fromDict": 1
+  },
+  {
+   "w": "แผนที่",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 471,
+   "r": "phɛ̌ɛnthîi",
+   "e": "map",
+   "z": "地图",
+   "fromDict": 1
+  },
+  {
+   "w": "พระเจ้า",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 479,
+   "z": "上帝",
+   "e": "God"
+  },
+  {
+   "w": "มีหน้า",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 481,
+   "e": "have a face",
+   "z": "有脸"
+  },
+  {
+   "w": "ทีหลัง",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 485,
+   "z": "后",
+   "e": "after"
+  },
+  {
+   "w": "ทาน",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 486,
+   "r": "thaan",
+   "e": "eat, drink, take (medicine)",
+   "z": "吃、喝、吃（药）",
+   "fromDict": 1
+  },
+  {
+   "w": "เย็นๆ",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 495,
+   "z": "凉爽的。",
+   "e": "Cool."
+  },
+  {
+   "w": "รวย",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 508,
+   "r": "ruay",
+   "e": "rich, wealthy, well-off",
+   "z": "有钱的、富裕的",
+   "fromDict": 1
+  },
+  {
+   "w": "หัว",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 517,
+   "r": "hǔa",
+   "e": "head",
+   "z": "头",
+   "fromDict": 1
+  },
+  {
+   "w": "กางเกง",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 520,
+   "r": "kaaŋkeeŋ",
+   "e": "pants [US]; trousers [UK], shorts",
+   "z": "裤子[美国]；长裤[英国]、短裤",
+   "fromDict": 1
+  },
+  {
+   "w": "อารมณ์",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 542,
+   "r": "aarom",
+   "e": "emotion, mood, temper",
+   "z": "情绪、情绪、脾气",
+   "fromDict": 1
+  },
+  {
+   "w": "ใบหน้า",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 543,
+   "z": "脸",
+   "e": "face"
+  },
+  {
+   "w": "กาแฟ",
+   "c": 3,
+   "df": 2,
+   "func": false,
+   "ex": 572,
+   "r": "kaafɛɛ",
+   "e": "coffee",
+   "z": "咖啡",
+   "fromDict": 1
+  },
+  {
+   "w": "มันดี",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 579,
+   "z": "很好。",
+   "e": "It's good."
+  },
+  {
+   "w": "กระเป๋า",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 602,
+   "r": "krapǎw",
+   "e": "bag, purse, wallet, suitcase",
+   "z": "包、钱包、钱夹、手提箱",
+   "fromDict": 1
+  },
+  {
+   "w": "ของกิน",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 679,
+   "r": "khɔ̌ɔŋkin",
+   "e": "food, things to eat",
+   "z": "食物、吃的东西",
+   "fromDict": 1
+  },
+  {
+   "w": "เสริม",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 729,
+   "e": "supplement",
+   "z": "补充"
+  },
+  {
+   "w": "เท่านั้น",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 737,
+   "z": "仅有的",
+   "e": "only"
+  },
+  {
+   "w": "ทดลอง",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 799,
+   "r": "thótlɔɔŋ",
+   "e": "try out, use on a trial basis, pilot",
+   "z": "尝试、试用、试验",
+   "fromDict": 1
+  },
+  {
+   "w": "กับข้าว",
+   "c": 3,
+   "df": 3,
+   "func": false,
+   "ex": 821,
+   "r": "kàp khâaw",
+   "e": "dish served with rice, dishes for a meal",
+   "z": "下饭菜",
+   "fromDict": 1
+  }
+ ],
+ "grams": [
+  {
+   "g": "ทำให้ฉัน",
+   "c": 16,
+   "ex": 5,
+   "e": "make me",
+   "z": "让我"
+  },
+  {
+   "g": "ประเทศจีน",
+   "c": 13,
+   "ex": 296,
+   "z": "中国",
+   "e": "China"
+  },
+  {
+   "g": "หลังจาก",
+   "c": 12,
+   "ex": 108,
+   "z": "后",
+   "e": "after"
+  },
+  {
+   "g": "เพื่อนฉัน",
+   "c": 12,
+   "ex": 134,
+   "z": "我的朋友",
+   "e": "my friend"
+  },
+  {
+   "g": "ไม่สวย",
+   "c": 12,
+   "ex": 336,
+   "e": "not beautiful",
+   "z": "不漂亮"
+  },
+  {
+   "g": "กินข้าว",
+   "c": 11,
+   "ex": 32,
+   "z": "吃米饭",
+   "e": "eat rice"
+  },
+  {
+   "g": "ทำอะไร",
+   "c": 10,
+   "ex": 97,
+   "z": "做什么？",
+   "e": "Doing what?"
+  },
+  {
+   "g": "คนจีน",
+   "c": 10,
+   "ex": 123,
+   "e": "Chinese people",
+   "z": "中国人"
+  },
+  {
+   "g": "ข้างนอก",
+   "c": 10,
+   "ex": 237,
+   "z": "外部",
+   "e": "outside"
+  },
+  {
+   "g": "อยากกิน",
+   "c": 10,
+   "ex": 447,
+   "e": "want to eat",
+   "z": "想吃"
+  },
+  {
+   "g": "ผู้หญิง",
+   "c": 9,
+   "ex": 127,
+   "e": "woman",
+   "z": "女士"
+  },
+  {
+   "g": "ไม่มีเงิน",
+   "c": 9,
+   "ex": 242,
+   "e": "do not have money",
+   "z": "没有钱"
+  },
+  {
+   "g": "อาบน้ำ",
+   "c": 8,
+   "ex": 40,
+   "z": "淋浴",
+   "e": "shower"
+  },
+  {
+   "g": "พ่อแม่",
+   "c": 8,
+   "ex": 117,
+   "z": "父母",
+   "e": "parents"
+  },
+  {
+   "g": "คนอื่น",
+   "c": 8,
+   "ex": 118,
+   "z": "别人",
+   "e": "other people"
+  },
+  {
+   "g": "พวกเขา",
+   "c": 8,
+   "ex": 123,
+   "z": "他们",
+   "e": "they"
+  },
+  {
+   "g": "แม่ฉัน",
+   "c": 8,
+   "ex": 166,
+   "e": "my mother",
+   "z": "我的母亲"
+  },
+  {
+   "g": "ปีใหม่",
+   "c": 7,
+   "ex": 3,
+   "z": "新年",
+   "e": "new year"
+  },
+  {
+   "g": "เกี่ยวกับ",
+   "c": 7,
+   "ex": 91,
+   "z": "关于",
+   "e": "about"
+  },
+  {
+   "g": "คนเดียว",
+   "c": 7,
+   "ex": 91,
+   "z": "独自的",
+   "e": "alone"
+  },
+  {
+   "g": "กลับบ้าน",
+   "c": 7,
+   "ex": 177,
+   "z": "回家",
+   "e": "go home"
+  },
+  {
+   "g": "เรียนภาษา",
+   "c": 6,
+   "ex": 30,
+   "e": "study language",
+   "z": "学习语言"
+  },
+  {
+   "g": "ภาษาไทย",
+   "c": 6,
+   "ex": 30,
+   "z": "泰语",
+   "e": "Thai language"
+  },
+  {
+   "g": "ไม่จำเป็น",
+   "c": 6,
+   "ex": 108,
+   "z": "不必要",
+   "e": "unnecessary"
+  },
+  {
+   "g": "คุยกับ",
+   "c": 6,
+   "ex": 142,
+   "e": "Talk with",
+   "z": "与交谈"
+  },
+  {
+   "g": "ขับรถ",
+   "c": 6,
+   "ex": 177,
+   "z": "开车",
+   "e": "drive a car"
+  },
+  {
+   "g": "นอนกับ",
+   "c": 6,
+   "ex": 226,
+   "e": "sleep with",
+   "z": "和睡觉"
+  },
+  {
+   "g": "สะใภ้ฉัน",
+   "c": 6,
+   "ex": 257,
+   "e": "my daughter-in-law",
+   "z": "我的儿媳妇"
+  },
+  {
+   "g": "พี่สะใภ้ฉัน",
+   "c": 6,
+   "ex": 257,
+   "e": "my sister-in-law",
+   "z": "我的嫂子"
+  },
+  {
+   "g": "ประเทศลาว",
+   "c": 6,
+   "ex": 266,
+   "z": "老挝",
+   "e": "Laos"
+  },
+  {
+   "g": "ชาวม้ง",
+   "c": 6,
+   "ex": 303,
+   "e": "Hmong people",
+   "z": "苗族"
+  },
+  {
+   "g": "เท่าไหร่",
+   "c": 6,
+   "ex": 306,
+   "z": "多少",
+   "e": "how much"
+  },
+  {
+   "g": "กินเหล้า",
+   "c": 6,
+   "ex": 314,
+   "e": "drink alcohol",
+   "z": "喝酒"
+  },
+  {
+   "g": "ไม่ดี",
+   "c": 6,
+   "ex": 328,
+   "z": "不好",
+   "e": "not good"
+  },
+  {
+   "g": "ทำเล็บ",
+   "c": 6,
+   "ex": 562,
+   "e": "Manicure",
+   "z": "美甲"
+  },
+  {
+   "g": "เวลาคุณ",
+   "c": 5,
+   "ex": 4,
+   "e": "time you",
+   "z": "给你计时"
+  },
+  {
+   "g": "ความรัก",
+   "c": 5,
+   "ex": 9,
+   "z": "爱",
+   "e": "love"
+  },
+  {
+   "g": "ทุกวัน",
+   "c": 5,
+   "ex": 30,
+   "z": "每天",
+   "e": "every day"
+  },
+  {
+   "g": "ข้างหน้า",
+   "c": 5,
+   "ex": 86,
+   "z": "正面",
+   "e": "front"
+  },
+  {
+   "g": "ไม่เข้าใจ",
+   "c": 5,
+   "ex": 92,
+   "e": "do not understand",
+   "z": "不明白"
+  },
+  {
+   "g": "ค่อนข้าง",
+   "c": 5,
+   "ex": 108,
+   "z": "相当",
+   "e": "quite"
+  },
+  {
+   "g": "ความสำเร็จ",
+   "c": 5,
+   "ex": 108,
+   "z": "成功",
+   "e": "success"
+  },
+  {
+   "g": "ธุรกิจของคุณ",
+   "c": 5,
+   "ex": 108,
+   "e": "your business",
+   "z": "你的生意"
+  },
+  {
+   "g": "เงินที่ฉัน",
+   "c": 5,
+   "ex": 109,
+   "e": "money i",
+   "z": "钱我"
+  },
+  {
+   "g": "ยืมเงิน",
+   "c": 5,
+   "ex": 113,
+   "z": "借钱",
+   "e": "borrow money"
+  },
+  {
+   "g": "ไหนฉัน",
+   "c": 5,
+   "ex": 177,
+   "z": "我在哪里？",
+   "e": "Where am I?"
+  },
+  {
+   "g": "กลางคืน",
+   "c": 5,
+   "ex": 243,
+   "e": "nighttime",
+   "z": "夜间"
+  },
+  {
+   "g": "ในประเทศ",
+   "c": 5,
+   "ex": 266,
+   "z": "在国内",
+   "e": "in the country"
+  },
+  {
+   "g": "คนชาว",
+   "c": 5,
+   "ex": 303,
+   "e": "indigenous people",
+   "z": "土著人民"
+  },
+  {
+   "g": "คนชาวม้ง",
+   "c": 5,
+   "ex": 303,
+   "z": "苗族",
+   "e": "Hmong people"
+  },
+  {
+   "g": "หน้าฉัน",
+   "c": 5,
+   "ex": 338,
+   "e": "my face",
+   "z": "我的脸"
+  },
+  {
+   "g": "ดูหนัง",
+   "c": 5,
+   "ex": 416,
+   "e": "watch a film",
+   "z": "看电影"
+  },
+  {
+   "g": "มือฉัน",
+   "c": 5,
+   "ex": 428,
+   "z": "我的手",
+   "e": "my hand"
+  },
+  {
+   "g": "ก่อนฉัน",
+   "c": 5,
+   "ex": 495,
+   "z": "在我面前",
+   "e": "before me"
+  },
+  {
+   "g": "หากว่าคุณ",
+   "c": 5,
+   "ex": 508,
+   "e": "If you",
+   "z": "如果你"
+  },
+  {
+   "g": "สามารถเก็บ",
+   "c": 5,
+   "ex": 555,
+   "z": "可以保留",
+   "e": "can keep"
+  },
+  {
+   "g": "รถรอฉัน",
+   "c": 5,
+   "ex": 585,
+   "z": "汽车正在等我。",
+   "e": "The car is waiting for me."
+  },
+  {
+   "g": "ใหม่ม้ง",
+   "c": 4,
+   "ex": 3,
+   "e": "New Hmong",
+   "z": "新苗族"
+  },
+  {
+   "g": "ปีใหม่ม้ง",
+   "c": 4,
+   "ex": 3,
+   "e": "hmong new year",
+   "z": "苗族新年"
+  },
+  {
+   "g": "ที่รักฉัน",
+   "c": 4,
+   "ex": 11,
+   "e": "who loves me",
+   "z": "谁爱我"
+  },
+  {
+   "g": "ตั้งใจเรียน",
+   "c": 4,
+   "ex": 30,
+   "e": "diligent at studying",
+   "z": "勤奋学习"
+  },
+  {
+   "g": "ตั้งใจเรียนภาษา",
+   "c": 4,
+   "ex": 30,
+   "e": "intend to study language",
+   "z": "打算学习语言"
+  },
+  {
+   "g": "อย่าโกรธ",
+   "c": 4,
+   "ex": 79,
+   "e": "Don't be angry.",
+   "z": "别生气。"
+  },
+  {
+   "g": "ไม่มีใคร",
+   "c": 4,
+   "ex": 92,
+   "z": "没有人",
+   "e": "no one"
+  },
+  {
+   "g": "คืนเงิน",
+   "c": 4,
+   "ex": 108,
+   "z": "退款",
+   "e": "Refund"
+  },
+  {
+   "g": "ในชีวิต",
+   "c": 4,
+   "ex": 110,
+   "e": "in life",
+   "z": "在生活中"
+  },
+  {
+   "g": "ไม่สามารถ",
+   "c": 4,
+   "ex": 110,
+   "z": "不能",
+   "e": "cannot"
+  },
+  {
+   "g": "ไม่ยอม",
+   "c": 4,
+   "ex": 117,
+   "e": "I won't give in.",
+   "z": "我不会屈服。"
+  },
+  {
+   "g": "บ้านคุณ",
+   "c": 4,
+   "ex": 121,
+   "z": "你的房子",
+   "e": "Your house"
+  },
+  {
+   "g": "พักผ่อน",
+   "c": 4,
+   "ex": 141,
+   "z": "休息",
+   "e": "rest"
+  },
+  {
+   "g": "ทำให้คุณ",
+   "c": 4,
+   "ex": 154,
+   "z": "让你",
+   "e": "make you"
+  },
+  {
+   "g": "เงินฉัน",
+   "c": 4,
+   "ex": 155,
+   "z": "我的钱",
+   "e": "my money"
+  },
+  {
+   "g": "แต่งตัว",
+   "c": 4,
+   "ex": 174,
+   "z": "穿好衣服",
+   "e": "get dressed"
+  },
+  {
+   "g": "กินอะไร",
+   "c": 4,
+   "ex": 219,
+   "e": "eat what?",
+   "z": "吃什么？"
+  },
+  {
+   "g": "ปวดท้อง",
+   "c": 4,
+   "ex": 238,
+   "z": "腹痛",
+   "e": "stomach ache"
+  },
+  {
+   "g": "โรงพยาบาล",
+   "c": 4,
+   "ex": 239,
+   "z": "医院",
+   "e": "hospital"
+  },
+  {
+   "g": "งั้นคุณ",
+   "c": 4,
+   "ex": 245,
+   "z": "然后你",
+   "e": "Then you"
+  },
+  {
+   "g": "ประจำเดือน",
+   "c": 4,
+   "ex": 246,
+   "z": "时期",
+   "e": "period"
+  },
+  {
+   "g": "เจ้านาย",
+   "c": 4,
+   "ex": 249,
+   "z": "老板",
+   "e": "boss"
+  },
+  {
+   "g": "แตกต่าง",
+   "c": 4,
+   "ex": 288,
+   "z": "不同的",
+   "e": "different"
+  },
+  {
+   "g": "บ้านฉัน",
+   "c": 4,
+   "ex": 301,
+   "e": "My house",
+   "z": "我的房子"
+  },
+  {
+   "g": "เราไปอาบ",
+   "c": 4,
+   "ex": 345,
+   "e": "We go take a shower.",
+   "z": "我们去洗澡。"
+  },
+  {
+   "g": "เราไปอาบน้ำ",
+   "c": 4,
+   "ex": 345,
+   "e": "We go take a shower.",
+   "z": "我们去洗澡。"
+  },
+  {
+   "g": "เปิดร้าน",
+   "c": 4,
+   "ex": 380,
+   "e": "Open a store",
+   "z": "开店"
+  },
+  {
+   "g": "ภาษาจีน",
+   "c": 4,
+   "ex": 380,
+   "z": "中国人",
+   "e": "Chinese"
+  },
+  {
+   "g": "เล่นปี",
+   "c": 4,
+   "ex": 396,
+   "e": "play year",
+   "z": "玩年"
+  },
+  {
+   "g": "เล่นปีใหม่",
+   "c": 4,
+   "ex": 396,
+   "e": "New Year's play",
+   "z": "过年的戏"
+  },
+  {
+   "g": "งานของคุณ",
+   "c": 4,
+   "ex": 417,
+   "z": "你的工作",
+   "e": "your work"
+  },
+  {
+   "g": "กินอาหาร",
+   "c": 4,
+   "ex": 426,
+   "z": "吃食物",
+   "e": "eat food"
+  },
+  {
+   "g": "ไม่มีอะไร",
+   "c": 4,
+   "ex": 453,
+   "e": "do not have anything",
+   "z": "没有任何东西"
+  },
+  {
+   "g": "ชายฉัน",
+   "c": 4,
+   "ex": 453,
+   "e": "my man",
+   "z": "我的男人"
+  },
+  {
+   "g": "พี่ชายฉัน",
+   "c": 4,
+   "ex": 453,
+   "z": "我的兄弟",
+   "e": "my brother"
+  },
+  {
+   "g": "ไม่ใส่",
+   "c": 4,
+   "ex": 460,
+   "e": "Don't wear it.",
+   "z": "不要戴它。"
+  },
+  {
+   "g": "ออกไปข้าง",
+   "c": 4,
+   "ex": 467,
+   "e": "out to the side",
+   "z": "到一边"
+  },
+  {
+   "g": "ออกไปข้างนอก",
+   "c": 4,
+   "ex": 467,
+   "e": "go out",
+   "z": "出去"
+  },
+  {
+   "g": "ฉันมีเงิน",
+   "c": 4,
+   "ex": 511,
+   "e": "I have money",
+   "z": "我有钱"
+  },
+  {
+   "g": "เสื้อตัว",
+   "c": 4,
+   "ex": 530,
+   "z": "衬衫",
+   "e": "shirt"
+  },
+  {
+   "g": "ซีรีย์",
+   "c": 4,
+   "ex": 535,
+   "z": "系列",
+   "e": "Series"
+  },
+  {
+   "g": "นั่งใน",
+   "c": 4,
+   "ex": 543,
+   "e": "sit in",
+   "z": "坐在"
+  },
+  {
+   "g": "ฉันอยากกิน",
+   "c": 4,
+   "ex": 572,
+   "z": "我想吃",
+   "e": "I want to eat"
+  },
+  {
+   "g": "ประจำของฉัน",
+   "c": 4,
+   "ex": 576,
+   "e": "My routine",
+   "z": "我的日常"
+  },
+  {
+   "g": "เล็บมือ",
+   "c": 4,
+   "ex": 580,
+   "z": "指甲",
+   "e": "Fingernails"
+  },
+  {
+   "g": "คุยงาน",
+   "c": 4,
+   "ex": 682,
+   "e": "Talk about work",
+   "z": "谈论工作"
+  },
+  {
+   "g": "ตู้เย็น",
+   "c": 4,
+   "ex": 718,
+   "z": "冰箱",
+   "e": "fridge"
+  },
+  {
+   "g": "ผมให้ความ",
+   "c": 4,
+   "ex": 758,
+   "e": "I give my opinion",
+   "z": "我给出我的意见"
+  },
+  {
+   "g": "ชอบดู",
+   "c": 4,
+   "ex": 837,
+   "z": "喜欢看",
+   "e": "like to watch"
+  },
+  {
+   "g": "คุณไปเที่ยว",
+   "c": 3,
+   "ex": 3,
+   "e": "you go on a trip",
+   "z": "你去旅行"
+  },
+  {
+   "g": "พาคุณไปเที่ยว",
+   "c": 3,
+   "ex": 3,
+   "e": "take you on a trip",
+   "z": "带你去旅行"
+  },
+  {
+   "g": "ที่รักคุณ",
+   "c": 3,
+   "ex": 5,
+   "z": "谁爱你",
+   "e": "who loves you"
+  },
+  {
+   "g": "คนไหน",
+   "c": 3,
+   "ex": 6,
+   "z": "哪一个？",
+   "e": "Which one?"
+  },
+  {
+   "g": "ผู้ชายคนไหน",
+   "c": 3,
+   "ex": 6,
+   "e": "Which man?",
+   "z": "哪个男人？"
+  },
+  {
+   "g": "ไม่เคยมีใคร",
+   "c": 3,
+   "ex": 7,
+   "e": "No one has ever",
+   "z": "没有人曾经"
+  },
+  {
+   "g": "น่ารัก",
+   "c": 3,
+   "ex": 25,
+   "z": "可爱的",
+   "e": "cute"
+  },
+  {
+   "g": "เรียนภาษาไทย",
+   "c": 3,
+   "ex": 30,
+   "e": "learn thai language",
+   "z": "学习泰语"
+  },
+  {
+   "g": "ตั้งใจเรียนภาษาไทย",
+   "c": 3,
+   "ex": 30,
+   "e": "Intend to study Thai language",
+   "z": "打算学习泰语"
+  },
+  {
+   "g": "ช่วงนี้ฉัน",
+   "c": 3,
+   "ex": 41,
+   "e": "During this time I",
+   "z": "这段时间我"
+  },
+  {
+   "g": "รู้สึกเหนื่อย",
+   "c": 3,
+   "ex": 49,
+   "e": "feel tired",
+   "z": "感到疲倦"
+  },
+  {
+   "g": "ไม่รัก",
+   "c": 3,
+   "ex": 66,
+   "z": "我不爱你。",
+   "e": "I don't love you."
+  },
+  {
+   "g": "สามวัน",
+   "c": 3,
+   "ex": 86,
+   "e": "three days",
+   "z": "三天"
+  },
+  {
+   "g": "วันข้าง",
+   "c": 3,
+   "ex": 86,
+   "e": "next day",
+   "z": "第二天"
+  },
+  {
+   "g": "วันข้างหน้า",
+   "c": 3,
+   "ex": 86,
+   "e": "The next day",
+   "z": "第二天"
+  },
+  {
+   "g": "ตัดสินใจ",
+   "c": 3,
+   "ex": 100,
+   "z": "决定",
+   "e": "decide"
+  },
+  {
+   "g": "ความเสี่ยง",
+   "c": 3,
+   "ex": 100,
+   "z": "风险",
+   "e": "Risk"
+  },
+  {
+   "g": "ก่อนที่ฉัน",
+   "c": 3,
+   "ex": 100,
+   "z": "在我面前",
+   "e": "before me"
+  },
+  {
+   "g": "เงินก้อน",
+   "c": 3,
+   "ex": 108,
+   "e": "sum",
+   "z": "和"
+  },
+  {
+   "g": "ในธุรกิจ",
+   "c": 3,
+   "ex": 108,
+   "e": "in business",
+   "z": "在生意上"
+  },
+  {
+   "g": "ค่าใช้",
+   "c": 3,
+   "ex": 108,
+   "z": "开支",
+   "e": "Expenses"
+  },
+  {
+   "g": "ใช้จ่าย",
+   "c": 3,
+   "ex": 108,
+   "e": "spend",
+   "z": "花费"
+  },
+  {
+   "g": "ประสบความ",
+   "c": 3,
+   "ex": 108,
+   "e": "experience",
+   "z": "经验"
+  },
+  {
+   "g": "ค่าใช้จ่าย",
+   "c": 3,
+   "ex": 108,
+   "z": "开支",
+   "e": "expenses"
+  },
+  {
+   "g": "ประสบความสำเร็จ",
+   "c": 3,
+   "ex": 108,
+   "z": "成功的",
+   "e": "successful"
+  },
+  {
+   "g": "ชีวิตประจำ",
+   "c": 3,
+   "ex": 110,
+   "e": "Sedentary life",
+   "z": "久坐的生活"
+  },
+  {
+   "g": "ประจำวัน",
+   "c": 3,
+   "ex": 110,
+   "z": "日常的",
+   "e": "daily"
+  },
+  {
+   "g": "รับเงิน",
+   "c": 3,
+   "ex": 110,
+   "z": "得到钱",
+   "e": "get money"
+  },
+  {
+   "g": "เงินเดือน",
+   "c": 3,
+   "ex": 110,
+   "z": "薪水",
+   "e": "salary"
+  },
+  {
+   "g": "ชีวิตประจำวัน",
+   "c": 3,
+   "ex": 110,
+   "z": "日常生活",
+   "e": "daily life"
+  },
+  {
+   "g": "ฉันอยู่ใน",
+   "c": 3,
+   "ex": 110,
+   "e": "i am in",
+   "z": "我在"
+  },
+  {
+   "g": "คนหนึ่ง",
+   "c": 3,
+   "ex": 111,
+   "z": "一个人",
+   "e": "one person"
+  },
+  {
+   "g": "ข้ออ้าง",
+   "c": 3,
+   "ex": 114,
+   "e": "pretext",
+   "z": "借口"
+  },
+  {
+   "g": "ความสัมพันธ์",
+   "c": 3,
+   "ex": 116,
+   "z": "关系",
+   "e": "relationship"
+  },
+  {
+   "g": "คุณไม่จำเป็น",
+   "c": 3,
+   "ex": 116,
+   "e": "You don't need it.",
+   "z": "你不需要它。"
+  },
+  {
+   "g": "ทวงเงิน",
+   "c": 3,
+   "ex": 117,
+   "e": "Demand money",
+   "z": "索要钱"
+  },
+  {
+   "g": "ฉะนั้นคุณ",
+   "c": 3,
+   "ex": 119,
+   "e": "Therefore you",
+   "z": "因此你"
+  },
+  {
+   "g": "อะไรกับ",
+   "c": 3,
+   "ex": 123,
+   "e": "What's with",
+   "z": "有什么"
+  },
+  {
+   "g": "ความจริง",
+   "c": 3,
+   "ex": 125,
+   "z": "真相",
+   "e": "truth"
+  },
+  {
+   "g": "คนแรก",
+   "c": 3,
+   "ex": 127,
+   "e": "first person",
+   "z": "第一人称"
+  },
+  {
+   "g": "เครื่องบิน",
+   "c": 3,
+   "ex": 136,
+   "e": "airplane",
+   "z": "飞机"
+  },
+  {
+   "g": "ความสุข",
+   "c": 3,
+   "ex": 150,
+   "z": "幸福",
+   "e": "happiness"
+  },
+  {
+   "g": "เข้าไปใน",
+   "c": 3,
+   "ex": 156,
+   "e": "go into",
+   "z": "进入"
+  },
+  {
+   "g": "นอกใจฉัน",
+   "c": 3,
+   "ex": 162,
+   "e": "cheat on me",
+   "z": "欺骗我"
+  },
+  {
+   "g": "สามีของฉัน",
+   "c": 3,
+   "ex": 170,
+   "z": "我的丈夫",
+   "e": "my husband"
+  },
+  {
+   "g": "ใช้ชีวิต",
+   "c": 3,
+   "ex": 177,
+   "z": "过着生活",
+   "e": "live life"
+  },
+  {
+   "g": "ฉันจะขาย",
+   "c": 3,
+   "ex": 215,
+   "e": "I will sell",
+   "z": "我会卖"
+  },
+  {
+   "g": "คืนนี้ฉัน",
+   "c": 3,
+   "ex": 226,
+   "e": "Tonight I",
+   "z": "今晚我"
+  },
+  {
+   "g": "เด็กหญิง",
+   "c": 3,
+   "ex": 228,
+   "z": "女孩",
+   "e": "girl"
+  },
+  {
+   "g": "ตัวฉัน",
+   "c": 3,
+   "ex": 229,
+   "e": "myself",
+   "z": "我"
+  },
+  {
+   "g": "ประเทศเวียดนาม",
+   "c": 3,
+   "ex": 257,
+   "z": "越南",
+   "e": "Vietnam"
+  },
+  {
+   "g": "แม่ของคุณ",
+   "c": 3,
+   "ex": 272,
+   "z": "你的母亲",
+   "e": "your mother"
+  },
+  {
+   "g": "สอนวิธี",
+   "c": 3,
+   "ex": 275,
+   "e": "Teach you how",
+   "z": "教你如何"
+  },
+  {
+   "g": "ฉันจะสอน",
+   "c": 3,
+   "ex": 275,
+   "e": "I will teach",
+   "z": "我会教"
+  },
+  {
+   "g": "ฉันจะสอนวิธี",
+   "c": 3,
+   "ex": 275,
+   "e": "I will teach you how",
+   "z": "我会教你如何"
+  },
+  {
+   "g": "เกี่ยวกับมดลูก",
+   "c": 3,
+   "ex": 276,
+   "e": "uterine",
+   "z": "子宫"
+  },
+  {
+   "g": "หมอบอก",
+   "c": 3,
+   "ex": 280,
+   "e": "The doctor said",
+   "z": "医生说"
+  },
+  {
+   "g": "เยอะขนาด",
+   "c": 3,
+   "ex": 282,
+   "z": "很多。",
+   "e": "It's a lot."
+  },
+  {
+   "g": "ชอบกิน",
+   "c": 3,
+   "ex": 283,
+   "z": "喜欢吃",
+   "e": "like to eat"
+  },
+  {
+   "g": "ไม่ไหว",
+   "c": 3,
+   "ex": 285,
+   "e": "I can't take it.",
+   "z": "我受不了。"
+  },
+  {
+   "g": "คุณต้องซื้อ",
+   "c": 3,
+   "ex": 292,
+   "e": "You must buy",
+   "z": "你必须买"
+  },
+  {
+   "g": "โทรหา",
+   "c": 3,
+   "ex": 342,
+   "e": "call",
+   "z": "称呼"
+  },
+  {
+   "g": "เหนื่อยกับ",
+   "c": 3,
+   "ex": 373,
+   "z": "厌倦了",
+   "e": "Tired of"
+  },
+  {
+   "g": "งานของฉัน",
+   "c": 3,
+   "ex": 373,
+   "e": "my job",
+   "z": "我的工作"
+  },
+  {
+   "g": "ในวัน",
+   "c": 3,
+   "ex": 378,
+   "z": "当天",
+   "e": "in the day"
+  },
+  {
+   "g": "เรียนภาษาจีน",
+   "c": 3,
+   "ex": 380,
+   "e": "learn chinese",
+   "z": "学中文"
+  },
+  {
+   "g": "ฉันจะกิน",
+   "c": 3,
+   "ex": 395,
+   "z": "我会吃",
+   "e": "I will eat"
+  },
+  {
+   "g": "ฉันจะซื้อ",
+   "c": 3,
+   "ex": 397,
+   "z": "我会买",
+   "e": "I will buy"
+  },
+  {
+   "g": "ปกติฉัน",
+   "c": 3,
+   "ex": 398,
+   "e": "Normal me",
+   "z": "正常的我"
+  },
+  {
+   "g": "แต่ละปี",
+   "c": 3,
+   "ex": 398,
+   "z": "每年",
+   "e": "Each year"
+  },
+  {
+   "g": "เสื้อผ้าฉัน",
+   "c": 3,
+   "ex": 401,
+   "z": "我的衣服",
+   "e": "my clothes"
+  },
+  {
+   "g": "นับตั้งแต่",
+   "c": 3,
+   "ex": 401,
+   "z": "从那时起",
+   "e": "ever since"
+  },
+  {
+   "g": "เสื้อผ้าฉันนับ",
+   "c": 3,
+   "ex": 401,
+   "e": "My clothes count",
+   "z": "我的衣服算数"
+  },
+  {
+   "g": "ฉันนับตั้งแต่",
+   "c": 3,
+   "ex": 401,
+   "e": "I've been since",
+   "z": "我从那时起"
+  }
+ ],
+ "sents": [
+  {
+   "n": 2,
+   "t": "ฉันคงจะหึงคุณมากๆ",
+   "score": 1,
+   "z": "我一定很嫉妒你。"
+  },
+  {
+   "n": 3,
+   "t": "พาคุณไปเที่ยวปีใหม่ม้งสาวๆม้งคงจะมองดูเธอมากมาย",
+   "score": 0.91,
+   "z": "带你去苗族过年，苗族姑娘们可能会很尊敬你。"
+  },
+  {
+   "n": 4,
+   "t": "ฉันคิดภาพเวลาคุณใส่ชุดม้งคุณคงจะหล่อมาก",
+   "score": 0.85,
+   "z": "我想，当你穿上苗族服装时，你一定会很帅。"
+  },
+  {
+   "n": 5,
+   "t": "ที่รักคุณทำให้ฉันหลงรักคุณแล้ว",
+   "score": 1,
+   "z": "亲爱的，你让我爱上了你。"
+  },
+  {
+   "n": 6,
+   "t": "ฉันไม่เคยมีผู้ชายคนไหนที่ชอบฉันและพยายามทำทุกอย่างขนาดนี้เลย",
+   "score": 1,
+   "z": "我从来没有遇到过像我这样对每件事都如此不遗余力的人。"
+  },
+  {
+   "n": 7,
+   "t": "จริงๆนะไม่เคยมีใครผู้ชายคนไหนทำขนาดนี้เพื่อฉันเลย",
+   "score": 1,
+   "z": "老实说，从来没有人为我做过这样的事。"
+  },
+  {
+   "n": 8,
+   "t": "ฉันรู้สึกมีความสุขมากๆขอบคุณนะ",
+   "score": 0.83,
+   "z": "我感觉很幸福。谢谢。"
+  },
+  {
+   "n": 9,
+   "t": "นี่คือความรักจริงๆใช่ไหมอย่าโกหกฉันนะ",
+   "score": 1,
+   "z": "这真的是爱情吗？别对我撒谎。"
+  },
+  {
+   "n": 10,
+   "t": "ฉันถูกหลอกลวงมาหลายครั้งแล้วฉันไม่อยากถูกหลอกลวงอีก",
+   "score": 1,
+   "z": "我已经被骗过很多次了，不想再被骗了。"
+  },
+  {
+   "n": 11,
+   "t": "ฉันเจ็บปวดมามากพอแล้วฉันแค่ต้องการใครสักคนที่รักฉันจริงๆ",
+   "score": 1,
+   "z": "我受的伤已经够多了，我只需要有人真正爱我。"
+  },
+  {
+   "n": 12,
+   "t": "และฉันก็ชอบคุณเป็นพิเศษด้วย",
+   "score": 1,
+   "z": "而且我特别喜欢你。"
+  },
+  {
+   "n": 13,
+   "t": "ถ้าคุณคบหากับฉันแล้วฉันเชื่อถือศาสนาคริสเตียนมากๆคุณจะยอมรับได้ไหม",
+   "score": 0.73,
+   "z": "如果你和我谈恋爱并且我真的信仰基督教，你会接受吗？"
+  },
+  {
+   "n": 14,
+   "t": "ดูแลตัวเองดีๆแล้วก็คิดถึงนะ",
+   "score": 1,
+   "z": "照顾好自己，我想念你。"
+  },
+  {
+   "n": 18,
+   "t": "รู้งี้เป็นแฟนกันตั้งนานแล้",
+   "score": 1,
+   "z": "我知道我们已经是粉丝很长时间了。"
+  },
+  {
+   "n": 19,
+   "t": "รู้งี้เป็นแฟนกันตั้งนานแล้ว",
+   "score": 1,
+   "z": "我知道我们已经是粉丝很长时间了。"
+  },
+  {
+   "n": 21,
+   "t": "สวัสดีตอนเช้าที่รัก",
+   "score": 1,
+   "z": "早上好亲爱的"
+  },
+  {
+   "n": 22,
+   "t": "คุณตื่นหรือยัง",
+   "score": 1,
+   "z": "你醒了吗？"
+  },
+  {
+   "n": 23,
+   "t": "ฉันถามจริงๆ",
+   "score": 1,
+   "z": "我真的问"
+  },
+  {
+   "n": 24,
+   "t": "ตอบฉันสิ",
+   "score": 1,
+   "z": "回答我"
+  },
+  {
+   "n": 25,
+   "t": "ไอ้คนน่ารัก",
+   "score": 0.73,
+   "z": "可爱的家伙"
+  },
+  {
+   "n": 26,
+   "t": "แล้วแต่นะ",
+   "score": 1,
+   "z": "这取决于。"
+  },
+  {
+   "n": 27,
+   "t": "อยากจะทำตัวตามใครๆ",
+   "score": 1,
+   "z": "我想关注大家。"
+  },
+  {
+   "n": 29,
+   "t": "รักเธอที่เธอเป็นแบบนี้",
+   "score": 1,
+   "z": "我爱你就是这样。"
+  },
+  {
+   "n": 30,
+   "t": "ฉันตั้งใจเรียนภาษาไทยอย่างหนักทุกวันไม่ใช่เพื่อมาได้ยินคุณถามคำถามแบบนี้หรอก",
+   "score": 1,
+   "z": "我每天努力学习泰语，不是为了听到你问这样的问题。"
+  },
+  {
+   "n": 32,
+   "t": "คุณกินข้าวหรือยัง",
+   "score": 1,
+   "z": "你吃过米饭了吗？"
+  },
+  {
+   "n": 33,
+   "t": "คุณหายไปไหนมา",
+   "score": 1,
+   "z": "你去哪儿了？"
+  },
+  {
+   "n": 37,
+   "t": "ไม่เคยนะ",
+   "score": 1,
+   "z": "绝不。"
+  },
+  {
+   "n": 40,
+   "t": "โอเคคุณส่งมาเถอะฉันเหนื่อยมากฉันขอตัวไปอาบน้ำก่อน",
+   "score": 1,
+   "z": "好的，你发送了。我很累。我先去洗个澡。"
+  },
+  {
+   "n": 41,
+   "t": "ช่วงนี้ฉันต้องทำงานหนักหน่อย",
+   "score": 1,
+   "z": "这些天我得努力一点。"
+  },
+  {
+   "n": 48,
+   "t": "คุณทำงานเหนื่อยไหม",
+   "score": 1,
+   "z": "你的工作累吗？"
+  },
+  {
+   "n": 49,
+   "t": "การคิดถึงคุณทำให้ฉันรู้สึกเหนื่อยน้อยลง",
+   "score": 1,
+   "z": "想到你，我就感觉不那么累了。"
+  },
+  {
+   "n": 50,
+   "t": "การคิดถึงทำให้เรารู้สึกเหนื่อยน้อยลง",
+   "score": 1,
+   "z": "思考让我们感觉不那么累。"
+  },
+  {
+   "n": 54,
+   "t": "กระดาษ",
+   "score": 1,
+   "z": "纸"
+  },
+  {
+   "n": 55,
+   "t": "ใช่แล้วคิดถึงมากเลย",
+   "score": 1,
+   "z": "是的，我非常想念你。"
+  },
+  {
+   "n": 57,
+   "t": "หมาม้า",
+   "score": 1,
+   "z": "马狗"
+  },
+  {
+   "n": 62,
+   "t": "ฉันไม่ได้เข้ามาในนี้",
+   "score": 1,
+   "z": "我没有参与这个。"
+  },
+  {
+   "n": 63,
+   "t": "คุณจะมาที่นี่คุณจองโรงแรมหรือยัง",
+   "score": 1,
+   "z": "你会来这里，你订酒店了吗？"
+  },
+  {
+   "n": 64,
+   "t": "วาดรูป",
+   "score": 1,
+   "z": "画一幅画"
+  },
+  {
+   "n": 65,
+   "t": "เรือ",
+   "score": 1,
+   "z": "船"
+  },
+  {
+   "n": 66,
+   "t": "ถ้าฉันไม่รักคุณฉันก็จะไม่โกรธ",
+   "score": 1,
+   "z": "如果我不爱你，我就不会生气。"
+  },
+  {
+   "n": 67,
+   "t": "ฉันคิดถึงคุณและเป็นห่วงคุณเพราะฉันรักคุณ",
+   "score": 1,
+   "z": "我想念你，我关心你，因为我爱你。"
+  },
+  {
+   "n": 70,
+   "t": "ฉันเพิ่งโดน",
+   "score": 1,
+   "z": "我刚刚被击中"
+  },
+  {
+   "n": 71,
+   "t": "ถามเพิ่มทุน",
+   "score": 0.73,
+   "z": "询问增资事宜"
+  },
+  {
+   "n": 74,
+   "t": "เพิ่งตื่น",
+   "score": 1,
+   "z": "刚醒"
+  },
+  {
+   "n": 75,
+   "t": "เพิ่งถึง",
+   "score": 1,
+   "z": "刚到"
+  },
+  {
+   "n": 77,
+   "t": "เมื่อคืน",
+   "score": 1,
+   "z": "昨夜"
+  },
+  {
+   "n": 78,
+   "t": "อย่าคิดมากเลยงานเสร็จเมื่อไหร่ก็บินมาหากัน",
+   "score": 1,
+   "z": "别想太多，工作一完成你们就会飞去见对方。"
+  },
+  {
+   "n": 79,
+   "t": "อย่าโกรธเลยคนดีของฉัน",
+   "score": 1,
+   "z": "别生气，我的好朋友。"
+  },
+  {
+   "n": 80,
+   "t": "มาถึงลาวฉันจะให้รางวัลให้คุณนะ",
+   "score": 0.8,
+   "z": "来老挝，我给你奖励。"
+  },
+  {
+   "n": 81,
+   "t": "นะนะคนดีของฉันอย่าโกรธเลยนะ",
+   "score": 1,
+   "z": "我的好朋友，别生气。"
+  },
+  {
+   "n": 82,
+   "t": "แต่ตอนนี้เงินไม่พอซื้อเครื่องจักรซีทีสแกนฟัน",
+   "score": 0.91,
+   "z": "但现在没有足够的钱购买牙齿CT扫描机。"
+  },
+  {
+   "n": 83,
+   "t": "มันเป็นมือหนิงใช่ไหม",
+   "score": 0.8,
+   "z": "是不是有先见之明？"
+  },
+  {
+   "n": 84,
+   "t": "ผู้เชี่ยวชาญของฉันทางร้านบอกให้ซื้อเครื่องจักรที่ฉันส่งไปให้คุณ",
+   "score": 0.86,
+   "z": "我店里的专家告诉我买我发给你的机器。"
+  },
+  {
+   "n": 86,
+   "t": "สามวันข้างหน้าหนูจะได้เป็นลูกสาวตัวน้อยในอ้อมแขนของพ่อเมื่อพ่อได้พบกันในอีกสามวัน",
+   "score": 1,
+   "z": "三天后，三天后见到你的时候，我就是你爸爸怀里的小女儿了。"
+  },
+  {
+   "n": 87,
+   "t": "อีกสามวันข้างหน้าคุณจะได้อยู่ในอ้อมแขนของฉันคุณจะร้องไห้ได้มากเท่าที่ต้องการ",
+   "score": 1,
+   "z": "接下来三天你就在我怀里，想哭就哭。"
+  },
+  {
+   "n": 88,
+   "t": "คุณไม่ต้องสนใจฉันอีกแล้วขอโทษด้วยนะ",
+   "score": 1,
+   "z": "你不用再关注我了。对不起。"
+  },
+  {
+   "n": 89,
+   "t": "จากนี้ไปฉันจะกอดเธอไว้และจะไม่ปล่อยให้เธอร้องไห้",
+   "score": 1,
+   "z": "从今以后，我会抱着你，不让你哭。"
+  },
+  {
+   "n": 90,
+   "t": "ทุกอย่างฉันเป็นคนผิดเสมอ",
+   "score": 1,
+   "z": "一切总是我的错。"
+  },
+  {
+   "n": 91,
+   "t": "หมายความว่าต่อจากนี้ไปบอกฉันเกี่ยวกับปัญหาเหล่านี้อย่าแบกรับมันไว้คนเดียวฉันไม่ได้ตำหนิคุณนะ",
+   "score": 0.89,
+   "z": "意思是从现在开始，这些问题都告诉我，不要一个人承受，我不怪你。"
+  },
+  {
+   "n": 92,
+   "t": "ไม่มีใครเข้าใจฉันหรอกคุณก็ไม่เข้าใจฉันเหมือนกัน",
+   "score": 1,
+   "z": "没有人理解我，你也不理解我。"
+  },
+  {
+   "n": 93,
+   "t": "ไม่มีใครเข้าใจคุณได้ดีไปกว่าฉันแล้ว",
+   "score": 1,
+   "z": "没有人比我更了解你。"
+  },
+  {
+   "n": 94,
+   "t": "ชั่งมันเถอะ",
+   "score": 1,
+   "z": "让我们掂量一下。"
+  },
+  {
+   "n": 96,
+   "t": "ไม่ต้องการแล้ว",
+   "score": 1,
+   "z": "我不再想要了。"
+  },
+  {
+   "n": 97,
+   "t": "อย่าทำอะไรโดยไม่คิดหน้าคิดหลัง",
+   "score": 1,
+   "z": "不要不经过思考就做任何事情。"
+  },
+  {
+   "n": 98,
+   "t": "ถ้าต้องการเครื่องก็บินไปดูที่บริษั",
+   "score": 0.85,
+   "z": "如果你想要一架飞机，就飞去看看公司。"
+  },
+  {
+   "n": 99,
+   "t": "ถ้าต้องการเครื่องก็บินไปดูที่บริษัท",
+   "score": 1,
+   "z": "如果你想要飞机，就飞去看看公司吧。"
+  },
+  {
+   "n": 100,
+   "t": "ก่อนที่ฉันจะไปถึงอย่าเพิ่งตัดสินใจอะไรนะฉันจะอยู่เคียงข้างคุณและช่วยจัดการทุกเรื่องไปด้วยกันเงินที่เราประหยัดได้เราสามารถนำไปซื้ออุปกรณ์อื่นๆที่จำเป็นเพื่อทำให้ร้านของคุณดีขึ้นและยังช่วยลดความเสี่ยงได้อีกด้วยเชื่อฉันนะเรื่องนี้ฉันเป็นมืออาชีพฉันจะช่วยคุณเลือกสิ่งที่คุ้มค่าและเหมาะสมที่สุ",
+   "score": 0.94,
+   "z": "在我到达之前，先不要做出任何决定。我会在你身边，一起帮你处理好一切。我们节省下来的钱可以用来购买其他必要的设备，让您的商店变得更好，同时也降低风险。相信我，我是专业人士。我会帮您选择最划算、最合适的。"
+  },
+  {
+   "n": 101,
+   "t": "ฉันเหนื่อยฉันท้อฉันคิดถึงคุณมากแล้ว",
+   "score": 0.91,
+   "z": "我很累，我很沮丧，我很想念你。"
+  },
+  {
+   "n": 102,
+   "t": "คิดถึงคุณจะขาดใจแล้ว",
+   "score": 1,
+   "z": "我想你会死的。"
+  },
+  {
+   "n": 103,
+   "t": "อีกแค่สองวันฉันก็จะไปถึงแล้วถึงตอนนั้นคุณช่วยเตรียมรายการอุปกรณ์ทั้งหมดที่ต้องซื้อไว้ให้ฉันนะก่อนที่ฉันจะไปถึงอย่าเพิ่งซื้ออะไรเลยรอให้เราไปดูและตัดสินใจด้วยกันก่อนนะที่รัก",
+   "score": 0.96,
+   "z": "我将在两天内到达那里，在那之前，请在我到达之前为我准备一份我需要购买的所有设备的清单。亲爱的，先别买东西，等我们一起去看看再决定吧。"
+  },
+  {
+   "n": 104,
+   "t": "ถ้าฉันไม่พยายามแล้วฉันจะเดินเคียงข้างคุณได้ยังไงล่ะ",
+   "score": 1,
+   "z": "如果我不努力，我怎么能走在你身边？"
+  },
+  {
+   "n": 105,
+   "t": "ขอดูหน้าคนที่ฉันคิดถึงอยู่ทุกวันทุกคืนหน่อยนะ",
+   "score": 1,
+   "z": "请让我看到我日日夜夜思念的那个人的面容。"
+  },
+  {
+   "n": 106,
+   "t": "ฉันไม่ได้คิดมากหรอกนะฉันแค่เป็นห่วงว่าคุณจะได้รับผลกระทบหรือเปล่าส่วนฉันเองก็ผ่านอะไรมามากเหมือนกัน",
+   "score": 1,
+   "z": "我没想太多，只是担心你会不会受到影响。我也经历了很多。"
+  },
+  {
+   "n": 107,
+   "t": "ไม่เป็นไรนะเรายังมีเวลาอีกเยอะคืนนี้ตอนที่เราอยู่ด้วยกันและกอดกันเราค่อยๆคุยเรื่องพวกนี้กันก็ได้",
+   "score": 1,
+   "z": "没关系，今晚我们还有很多时间在一起互相拥抱，这些事情我们可以慢慢说。"
+  },
+  {
+   "n": 108,
+   "t": "อืมฉันคิดว่าเราไม่ควรนับเงินก้อนนี้เป็นเงินยืมนะให้ถือว่าฉันนำเงินมาลงทุนในธุรกิจของคุณแล้วเราค่อยตกลงกันว่าฉันจะถือหุ้นกี่เปอร์เซ็นต์หลังจากคลินิกเริ่มมีกำไรฉันก็จะรับส่วนแบ่งกำไรตามสัดส่วนหุ้นของฉันเงินส่วนนั้นฉันสามารถนำมาใช้เป็นค่าใช้จ่ายตอนที่ฉันอยู่ลาวหรือเก็บไว้ลงทุนต่อในธุรกิจอื่นๆที่คุณอยากทำในอนาคตได้ฉันคิดเรื่องนี้ไว้ค่อนข้างยาวไกลนะขณะเดียวกันฉันก็อยากมีส่วนร่วมในการบริหารคลินิกทันตกรรมของคุณอย่างจริงจังด้วยข้อดีของการทำแบบนี้คือถ้าสุดท้ายคลินิกทันตกรรมของคุณไม่ประสบความสำเร็จคุณก็ไม่จำเป็นต้องคืนเงินให้ฉันเพราะเราถือว่าเงินก้อนนี้เป็นเงินลงทุนและฉันเองก็ต้องยอมรับความเสี่ยงจากการลงทุนด้วย",
+   "score": 0.97,
+   "z": "嗯，我认为我们不应该将这笔钱视为贷款。考虑一下我将这笔钱投资于您的企业，然后我们将就我将拥有的股份百分比达成一致。当诊所开始盈利后，我将按照我的股份比例分享利润。这笔钱可以用来当我在老挝时的开支，也可以存下来投资你将来想做的其他生意。我对这个问题思考了很长时间。同时，我也愿意积极参与你们牙科诊所的管理。这样做的好处是，如果你的牙科诊所最终不成功，你不必把钱还给我，因为我们认为这笔钱是一种投资，我自己要接受投资风险。"
+  },
+  {
+   "n": 109,
+   "t": "ฉันไม่อยากให้คุณรู้สึกกดดันนะฉันอยากทำธุรกิจไปด้วยกันกับคุณเพราะธุรกิจของคุณก็เหมือนเป็นธุรกิจของฉันเหมือนกันฉันอยากช่วยแบ่งเบาความเสี่ยงของคุณอีกอย่างถ้าฉันลงทุนในธุรกิจของคุณบางทีผลตอบแทนที่ฉันได้รับอาจมากกว่าเงินที่ฉันจะได้คืนจากการให้คุณยืมเสียอีกถึงตอนนั้นคุณห้ามเปลี่ยนใจนะฮ่าๆ",
+   "score": 1,
+   "z": "我不想让你感到有压力。我想和你一起做生意，因为你的生意就像我的生意一样。我想帮助您减轻风险。另外，如果我投资你的生意，也许我得到的回报会比借给你的钱还多。在那之前，你不能改变主意。哈哈。"
+  },
+  {
+   "n": 110,
+   "t": "ตอนนี้เงินที่ฉันมีอยู่ในมือก็มีเพียงเท่านี้ และฉันเหลือเงินไว้อีก 1,000 ดอลลาร์สำหรับค่าอาหาร ค่าใช้จ่ายในชีวิตประจำวัน และค่าเช่าที่พักตอนที่ฉันอยู่ในเมือง ส่วนค่าใช้จ่ายทั่วไปฉันสามารถใช้บัตรเครดิตได้ ถ้าทางคุณยังขาดเงินอยู่ ฉันจะโอนเพิ่มให้คุณอีก และหลังจากที่ฉันได้รับเงินเดือนแล้ว ฉันก็จะช่วยสนับสนุนคุณเพิ่มอีกส่วนหนึ่ง แต่ฉันคงไม่สามารถให้เงินก้อนใหญ่แบบนี้ได้อีกในครั้งเดียว เพราะเงินที่ฉันให้คุณไปคือเงินเก็บทั้งหมดที่ฉันมีอยู่ตอนนี้ ฉันขอโทษจริง ๆ นะ ที่ตอนนี้ฉันไม่สามารถให้คุณได้มากกว่านี้",
+   "score": 0.98,
+   "z": "现在，我手里只有这些了。我还剩下 1,000 美元来买食物。我在城里时的日常开支和房租 对于一般开支，我可以使用信用卡。如果你还缺钱我再转给你。当我收到工资后，我会给你一些额外的支持。但我不可能再一次性给这么一大笔钱了。因为我给你的钱是我现在所有的积蓄，我真的很抱歉现在不能给你更多。"
+  },
+  {
+   "n": 111,
+   "t": "เสียดายที่เราได้รู้จักกันช้าไปหน่อยแต่ไม่เป็นไรนะเพราะต่อจากนี้คุณมีผู้ชายคนหนึ่งที่รักเป็นห่วงและพร้อมดูแลคุณแล้ว",
+   "score": 1,
+   "z": "可惜我们认识的有点晚了，不过没关系，因为从此以后你就有一个爱你、关心你、愿意照顾你的男人了。"
+  },
+  {
+   "n": 112,
+   "t": "อืม ไม่เป็นไรนะ ฉันได้เงินเดือนทุกวันที่ 10 ของเดือน แล้วฉันก็มีบัตรเครดิตด้วย คุณไม่ต้องเป็นห่วงฉันนะ เรามาช่วยกันทำให้ธุรกิจของคุณไปได้ดีเถอะ",
+   "score": 0.99,
+   "z": "嗯，没关系。我这个月10号就收到工资了。我有一张信用卡。你不用担心我。让我们帮助您开展业务。"
+  },
+  {
+   "n": 113,
+   "t": "ตั้งแต่วันนี้เป็นต้นไปคุณอย่าทำแบบนี้อีกนะฉันจะไม่ให้ใครยืมเงินอีกแล้วนอกจากคนในครอบครัวเพราะถ้าเขาเลือกที่จะมายืมเงินจากคุณแทนที่จะไปกู้เงินจากธนาคารนั่นก็แสดงว่าเขาไม่ได้ให้ความเคารพคุณมากพอ",
+   "score": 0.97,
+   "z": "从今天开始，不要再这样做了。除了家人之外我不会借钱给任何人，因为如果他选择向你借钱而不是向银行借钱，就说明他不够尊重你。"
+  },
+  {
+   "n": 114,
+   "t": "ฉันคิดว่านั่นเป็นแค่ข้ออ้างนะถ้าเขาตั้งใจจะคืนเงินจริงๆเขาคงคืนไปนานแล้วแต่ถ้าเขาไม่คิดจะคืนเขาก็สามารถหาข้ออ้างได้เป็นหมื่นอย่าง",
+   "score": 1,
+   "z": "我认为这只是一个借口。如果他真想还钱的话，他早就还了。但如果他不打算退货，他可以找出成千上万个借口。"
+  },
+  {
+   "n": 116,
+   "t": "เพื่อนหลายคนจริงๆแล้วอาจไม่ได้สนิทหรือมีความสัมพันธ์ที่ดีกับคุณอย่างที่คุณคิดการที่เขามีเงินไม่ได้หมายความว่าเขาจะอยากคืนเงินให้คุณนะเพราะเขาอาจคิดว่าเงินที่ยืมจากคุณไม่จำเป็นต้องคืนก็ได้",
+   "score": 1,
+   "z": "您的许多朋友实际上可能并不像您想象的那样与您亲密或关系良好。仅仅因为他们有钱并不意味着他们会想还钱给你。他们可能认为向您借的钱不需要偿还。"
+  },
+  {
+   "n": 117,
+   "t": "ฉันคิดว่าคุณควรทวงเงินเขาไปตรงๆเลยนะต่อให้สุดท้ายต้องเลิกเป็นเพื่อนกันก็ไม่เป็นไรถ้าคุณยอมตัดความเกรงใจและไปทวงเงินเขาถึงขนาดนี้แล้วแต่เขายังไม่ยอมคืนคุณก็ถือเสียว่าไม่เคยมีเพื่อนคนนี้อยู่ในชีวิตเลยก็ได้หรือคุณอาจขอให้พ่อแม่หรือพี่ชายของคุณช่วยไปทวงเงินแทนเพราะจากสิ่งที่เขาทำเขาไม่ได้เห็นคุณเป็นเพื่อนจริงๆเลย",
+   "score": 1,
+   "z": "我觉得你应该直接要钱。即使我们最终不得不不再做朋友，也没关系。如果你放下感情，向他要钱到这种程度，他还不肯还，那你就可以认为你这辈子根本就没有这个朋友了。或者你可以让你的父母或哥哥帮你要钱，因为从他们所做的来看，他们并不真正把你当作朋友。"
+  },
+  {
+   "n": 118,
+   "t": "คุณใจดีและยอมคนง่ายเกินไปสุดท้ายคนอื่นจะไม่เห็นคุณค่าหรือขอบคุณคุณแต่กลับจะยิ่งไม่ให้ความเคารพคุณ",
+   "score": 1,
+   "z": "如果你太善良、太随和，人们就不会欣赏或欣赏你，而且很可能会不尊重你。"
+  },
+  {
+   "n": 119,
+   "t": "เงินที่ฉันให้คุณไปฉันเตรียมใจไว้แล้วว่าถ้าโครงการนี้ไม่ประสบความสำเร็จฉันอาจไม่ได้รับเงินคืนแม้แต่บาทเดียวเพราะฉะนั้นคุณไม่ต้องรู้สึกกดดันอะไรเลยนะถ้าเงินยังไม่พอฉันจะรอรับเงินเดือนในแต่ละเดือนแล้วค่อยโอนให้คุณเพิ่มอีกส่วนหนึ่งแต่ฉันคงไม่สามารถให้คุณได้มากนักจริงๆ",
+   "score": 0.95,
+   "z": "我给你的钱，我已经做好了准备，如果这个项目不成功，我可能一泰铢都拿不回来，所以你不用感到任何压力。如果钱不够的话，我会等每个月收到你的工资，然后再转一部分给你，但我实在给不了你太多。"
+  },
+  {
+   "n": 120,
+   "t": "ต่อให้คุณพูดขอบคุณฉันเป็นร้อยครั้งก็ยังไม่เท่ากับการให้ฉันได้ร่วมมือกับคุณช่วยกันบริหารและทำให้ธุรกิจของคุณประสบความสำเร็จหรอกถ้าเมื่อก่อนไม่เคยมีใครปฏิบัติกับคุณแบบนี้ตั้งแต่วันนี้เป็นต้นไปคุณก็มีแล้วนะและผู้ชายคนนั้นก็หล่อมากด้วยฮ่าๆ",
+   "score": 0.97,
+   "z": "即使你对我说了一百遍谢谢，也不等于让我配合你帮助管理，让你的生意成功。如果以前没人这样对你，从今天开始你就是这样了，而且那个男人很帅，哈哈。"
+  },
+  {
+   "n": 121,
+   "t": "ตอนนี้ที่บ้านคุณไม่มีใครอยู่ใช่ไหมเดี๋ยวพอเรากินข้าวเสร็จแล้วเราเอาของบางอย่างรวมถึงดอกไม้นั้นไปจัดวางไว้ที่บ้านคุณให้เรียบร้อยนะแล้วเงินส่วนที่ฝากธนาคารได้เราเอาไปฝากไว้ก่อนดีกว่าจะได้ปลอดภัยและไม่ต้องกังวล",
+   "score": 1,
+   "z": "现在你家没人吧？等等，等我们吃完饭后，我们会把一些东西，包括鲜花，整齐地放在你家里。而能存到银行的钱，我们会先存起来，这样就安全了，你不用担心。"
+  },
+  {
+   "n": 122,
+   "t": "ผมอยากลองกินร้านเล็ก ๆ ที่คนท้องถิ่นกินกันมากกว่า ผมว่าร้านแบบนั้นน่าจะอร่อยกว่า แล้วก็ไม่จำเป็นต้องไปร้านหรู ๆ ก็ได้",
+   "score": 0.94,
+   "z": "我宁愿尝试当地人吃饭的小餐馆。我想这样的餐厅会更美味。而且没有必要去高档商店。"
+  },
+  {
+   "n": 123,
+   "t": "ความคิดที่ติดอยู่ในใจของคนมันเปลี่ยนยากผมเลยไม่ได้อธิบายอะไรกับพวกเขาแค่ผมเชื่อใจคุณก็พอแล้วเหมือนกับที่คนลาวบางคนก็อาจมีอคติต่อคนจีนเหมือนกันใช่ไหมก็เป็นเหตุผลเดียวกันนั่นแหละ",
+   "score": 0.94,
+   "z": "人心中的思想很难改变，所以我没有向他们解释什么。只要相信你就足够了。就像有些老挝人可能对中国人也有偏见吧？也是同样的原因。"
+  },
+  {
+   "n": 124,
+   "t": "คนที่ยังไม่คืนเงินคุณ คุณก็บอกพวกเขาตรง ๆ ได้เลย ถ้าพวกเขายังไม่ยอมคืน แล้วเอาแต่หาข้ออ้าง ผมว่าคนแบบนี้ไม่ใช่เพื่อนหรอก ไม่จำเป็นต้องติดต่อกันอีกแล้ว ต่อไปก็อย่าให้ใครยืมเงินอีกนะ ยกเว้นคนในครอบครัวของคุณ อย่างคุณพ่อ คุณแม่ พี่น้อง นอกนั้นอย่าให้ยืมเลย",
+   "score": 1,
+   "z": "尚未退还您钱款的人 如果他们仍然不退还您可以立即告诉他们。继续寻找借口，我不认为这样的人是朋友。彼此之间已经没有必要再联系了。以后不要再借钱给任何人了。除您家里的人如父亲、母亲、兄弟姐妹外，否则请勿借贷。"
+  },
+  {
+   "n": 125,
+   "t": "เพราะก่อนหน้านี้ฉันเคยเจอคนที่เกิดมาในครอบครัวร่ำรวยหลายคนพวกเขามักคิดว่าอยากสร้างความสำเร็จด้วยตัวเองโดยไม่พึ่งทรัพยากรอำนาจหรือเงินของพ่อแม่แต่สุดท้ายแล้วความสำเร็จที่พวกเขาได้รับรวมถึงคนที่คอยช่วยแก้ปัญหาให้ในเวลาที่พวกเขาเจออุปสรรคก็มักจะเป็นพ่อแม่ของพวกเขาอยู่ดีเพราะฉะนั้นคุณไม่จำเป็นต้องรู้สึกผิดหรือปฏิเสธความช่วยเหลือจากครอบครัวนะกล้ายอมรับความจริงข้อนี้เถอะการได้รับความช่วยเหลือจากครอบครัวไม่ได้หมายความว่าคุณไม่มีความสามารถ",
+   "score": 0.91,
+   "z": "因为以前我见过很多出生在富裕家庭的人。他们常常认为自己想靠自己创造成功，而不是依赖父母的资源、权力或金钱。但最终，他们获得的成功以及遇到困难时帮助他们解决问题的人往往是他们的父母。因此，您不必感到内疚或拒绝家人的帮助。敢于接受这个事实。得到家人的帮助并不意味着你没有能力。"
+  },
+  {
+   "n": 126,
+   "t": "คุณไม่ทำงานหรอ",
+   "score": 1,
+   "z": "你不工作吗？"
+  },
+  {
+   "n": 127,
+   "t": "ฉันหมายความว่าคุณเป็นผู้หญิงคนแรกที่คบกับฉันแล้วไม่ว่าจะทำอะไรคุณก็มักจะเป็นฝ่ายวางแผนและจัดการทุกอย่างไว้ล่วงหน้าด้วยตัวเอง",
+   "score": 0.94,
+   "z": "我的意思是，你是我约会的第一个女人，无论你做什么，你总是自己提前计划和组织一切。"
+  },
+  {
+   "n": 128,
+   "t": "แหวนแบบนี้ใส่ค่อนข้างเจ็บมือนะ",
+   "score": 1,
+   "z": "这种戒指戴起来相当痛苦。"
+  },
+  {
+   "n": 129,
+   "t": "แหวนแต่งงานคุณไม่ต้องซื้อแบบนี้นะ",
+   "score": 1,
+   "z": "您不必购买这样的结婚戒指。"
+  },
+  {
+   "n": 130,
+   "t": "แหวนแบบนี้ใส่ไปเที่ยวได้แต่ถ้าจะใส่ในชีวิตประจำวันมันทำงานไม่ได้มันเจ็บมือ",
+   "score": 1,
+   "z": "这样的戒指可以在旅行时佩戴，但如果在日常生活中佩戴，那就不行了，而且还会伤手。"
+  },
+  {
+   "n": 132,
+   "t": "ถุงยาง",
+   "score": 1,
+   "z": "避孕套"
+  },
+  {
+   "n": 134,
+   "t": "เพื่อนฉันแค่เป็นคนบ้าผู้ชายคุณไม่จำเป็นต้องทำขนาดนั้นก็ได้",
+   "score": 1,
+   "z": "我的朋友只是个疯子，你没必要这么做。"
+  },
+  {
+   "n": 135,
+   "t": "ฉันกินเข้า",
+   "score": 1,
+   "z": "我吃了它"
+  },
+  {
+   "n": 136,
+   "t": "คุณจะขึ้นเครื่องบินหรือยัง",
+   "score": 1,
+   "z": "你还要上飞机吗？"
+  },
+  {
+   "n": 137,
+   "t": "โซกดีนะที่รัก",
+   "score": 0.77,
+   "z": "太好了，亲爱的。"
+  },
+  {
+   "n": 139,
+   "t": "คุณเหนื่อยมากไหม",
+   "score": 1,
+   "z": "你很累吗？"
+  },
+  {
+   "n": 140,
+   "t": "คุณเชื่อฉันสิถ้านอนอยู่ข้างข้างไม่ได้หลับแน่นอน",
+   "score": 1,
+   "z": "相信我，如果你侧躺着，你肯定睡不着。"
+  },
+  {
+   "n": 141,
+   "t": "เข้าสู่ระบบกันทำงานอีกต่อไปวันพักผ่อนมันเชื่องน้อยนิด",
+   "score": 0.89,
+   "z": "登录工作时间更长，休息时间稍微不那么平静。"
+  },
+  {
+   "n": 142,
+   "t": "ฉันตั้งใจเรียนภาษาไทยจริงๆนะเพราะฉันอยากคุยกับคุณได้มากขึ้นและเข้าใจคุณมากขึ้น",
+   "score": 1,
+   "z": "我真的很想学习泰语，因为我想能够和你更多地交谈，更好地理解你。"
+  },
+  {
+   "n": 146,
+   "t": "ต้องได้รับของขวัญแล้ว",
+   "score": 1,
+   "z": "一定收到礼物了"
+  },
+  {
+   "n": 149,
+   "t": "ฉันเพิ่งไปฉีดยามาเมื่อเช้านี้ฉันถูกแมวกัด",
+   "score": 1,
+   "z": "我今天早上刚打针，被猫咬了。"
+  },
+  {
+   "n": 150,
+   "t": "คุณบอกฉันเรื่องพวกนี้ฉันกลับรู้สึกมีความสุขนะเพราะฉันจะได้ซื้อของที่คุณชอบจริงๆดีกว่าฉันเดาเองแล้วซื้อของที่คุณไม่ชอบแบบนั้นทั้งเสียดายเงินและเสียดายของฉันอยากให้ทุกอย่างที่ซื้อให้คุณเป็นสิ่งที่คุณชอบจริงๆ",
+   "score": 1,
+   "z": "你告诉我这些事情，我感到很高兴，因为我可以买你真正喜欢的东西，而不是事后批评自己并买你不喜欢的东西。这既是浪费钱，也是浪费钱。我希望我给你买的所有东西都是你真正喜欢的。"
+  },
+  {
+   "n": 151,
+   "t": "หล่อมากๆเลย",
+   "score": 1,
+   "z": "很帅"
+  },
+  {
+   "n": 152,
+   "t": "เหมือนพระเอกเกาหลี",
+   "score": 0.67,
+   "z": "像韩国英雄一样"
+  },
+  {
+   "n": 153,
+   "t": "ช่วยหาวิดีโอประกอบตู้นี้ให้หน่อย",
+   "score": 1,
+   "z": "请帮我找到组装这个柜子的视频。"
+  },
+  {
+   "n": 154,
+   "t": "และทำให้คุณมีความสุขทุกวันนะ",
+   "score": 1,
+   "z": "并让你开心每一天"
+  },
+  {
+   "n": 155,
+   "t": "คุณต้องประหยัดเงินด้วยนะเพราะฉันจะทำห้องศัลยกรรมอีกห้องนึงฉันกลัวเงินฉันไม่พอจะได้ยืมเงินเธออีก",
+   "score": 1,
+   "z": "你还得省钱，因为我还要再建一个手术室。恐怕我没有足够的钱，所以我可以再向你借钱。"
+  },
+  {
+   "n": 156,
+   "t": "ลูกแมวของฉันได้กลิ่นเผ็ดหนึ่งลูกนี้เข้าไปในท้องแล้ว",
+   "score": 1,
+   "z": "我的小猫的胃里闻到了这种辛辣的气味。"
+  },
+  {
+   "n": 157,
+   "t": "อาจจะมีสีที่ดูเซ็กซี่มาก ๆ หรือสีแปลก ๆ ที่ไม่เคยเห็นมาก่อนก็ได้นะ",
+   "score": 0.88,
+   "z": "可能有一种非常性感的颜色，或者一种我以前从未见过的奇怪的颜色。"
+  },
+  {
+   "n": 158,
+   "t": "ฉันบอกแม่ให้ตัดชุดนี้ให้เธอกับฉันแม่ตกใจมากค่ะรารารา",
+   "score": 1,
+   "z": "我告诉妈妈为我和她做这件衣服。她很震惊。拉拉拉。"
+  },
+  {
+   "n": 159,
+   "t": "ไม่หรอกฉันว่าคุณแค่คิดถึงฉันมากกว่า",
+   "score": 1,
+   "z": "不，我想你只是更想念我。"
+  },
+  {
+   "n": 161,
+   "t": "ทำไมคุณเป็นคนดีขนาดนี้ฉันรู้สึกว่าตัวเองโชคดีมากเลย",
+   "score": 1,
+   "z": "为什么你是一个这么好的人？我觉得自己很幸运。"
+  },
+  {
+   "n": 162,
+   "t": "นอกใจฉันได้",
+   "score": 1,
+   "z": "你可以欺骗我。"
+  },
+  {
+   "n": 164,
+   "t": "ยาที่ไม่ใช่ยาควบคุมหรือไม่มีข้อจำกัดมาก อาจให้คนช่วยนำมาได้ แต่ก่อนนำยาใด ๆ",
+   "score": 0.9,
+   "z": "不受管制或高度限制的药物 您可能需要有人帮助您携带。但在服用任何药物之前"
+  },
+  {
+   "n": 165,
+   "t": "ฉันก็ดีใจกับคุณมากเหมือนกันไว้ฉันไปถึงเมื่อไหร่เราไปฉลองด้วยกันนะ",
+   "score": 1,
+   "z": "我也为你感到高兴。当我到达那里时，我们会一起庆祝。"
+  },
+  {
+   "n": 166,
+   "t": "ฉันรอคุณเล่นเฉยเฉยฉันทำสีดำแม่ฉันสั่งให้ทำสีดำ",
+   "score": 1,
+   "z": "我在等你淡然玩耍。我把它变成黑色了。我妈妈命令我把它变成黑色。"
+  },
+  {
+   "n": 169,
+   "t": "ฉันรักคุณเหมือนกัน",
+   "score": 1,
+   "z": "我也爱你"
+  },
+  {
+   "n": 170,
+   "t": "รอฉันถามสามีของฉันก่อนนะว่าหมายเลขโทรศัพท์ของฉันคืออะไร",
+   "score": 1,
+   "z": "等等，我问问我丈夫我的电话号码是多少。"
+  },
+  {
+   "n": 172,
+   "t": "สามีของฉันขี้หึงมากเลยฉันคงจะให้หมายเลขโทรศัพท์ของฉันให้ใครไม่ได้หรอก",
+   "score": 1,
+   "z": "我丈夫很嫉妒我可能不能把我的电话号码给任何人。"
+  },
+  {
+   "n": 173,
+   "t": "คุณเก่งมาก",
+   "score": 1,
+   "z": "你很聪明"
+  },
+  {
+   "n": 174,
+   "t": "ฉันชอบให้คุณแต่งตัวแบบนี้ได้ไหม",
+   "score": 1,
+   "z": "我很想让你穿成这样。"
+  },
+  {
+   "n": 175,
+   "t": "สไตล์ที่ฉันชอบคือสไตล์วินเทจ",
+   "score": 0.89,
+   "z": "我最喜欢的风格是复古。"
+  },
+  {
+   "n": 176,
+   "t": "ฉันเริ่มเหนื่อยแล้วที่รัก",
+   "score": 1,
+   "z": "我开始累了，亲爱的。"
+  },
+  {
+   "n": 177,
+   "t": "ลองคิดในมุมของฉันดูนะถ้าคนรักของคุณไม่ได้อยู่ข้างๆคุณแล้วออกไปดื่มที่บาร์บ่อยๆดื่มจนเมากลับบ้านตอนดึกมากและที่ทำให้เป็นห่วงที่สุดคือยังขับรถกลับเองทั้งที่เมาอยู่คุณคิดว่าคุณจะรู้สึกยังไง?ฉันอยู่ไกลจากคุณเวลาคุณเป็นแบบนี้ฉันทำอะไรไม่ได้เลยนอกจากรอว่าคุณจะกลับถึงบ้านอย่างปลอดภัยไหมคุณลองคิดดูว่าทุกครั้งที่เป็นแบบนี้ฉันต้องกังวลแค่ไหนฉันไม่ได้พูดเรื่องนี้เพราะอยากควบคุมคุณและก็ไม่ได้ห้ามคุณออกไปเจอเพื่อนหรือใช้ชีวิตของตัวเองสิ่งที่ฉันต้องการคือความรู้สึกปลอดภัยในความสัมพันธ์ของเราอย่างน้อยฉันอยากรู้ว่าคนที่ฉันรักจะไม่เอาชีวิตตัวเองไปเสี่ยงเพราะการดื่มเหล้าถ้าเรื่องแบบนี้เกิดขึ้นซ้ำๆต่อไปคุณคิดว่าฉันจะรู้สึกยังไงแล้วความสัมพันธ์ของเราจะอยู่แบบนี้ไปได้นานแค่ไหน?ฉันไม่ได้ต้องการคำขอโทษอย่างเดียวฉันอยากรู้ว่าหลังจากนี้คุณคิดว่าจะจัดการเรื่องการดื่มและการขับรถยังไงเพราะฉันไม่อยากต้องกลัวทุกครั้งที่คุณออกไปดื่ม",
+   "score": 1,
+   "z": "从我的角度想一想：如果你的爱人不在你身边，经常去酒吧喝酒，喝得酩酊大醉，深夜才回家，而我最担心的是你还醉酒开车回来，你觉得你会作何感想？当你这样的时候我就离你很远了。除了等你平安归来，我什么也做不了。想想每次发生这样的事情我都会多么担心。我这么说并不是因为我想控制你，我也不是阻止你出去见朋友。我想要过自己的生活。我想要的只是在我们的关系中感到安全。至少我想知道我爱的人不会因为喝酒而拿自己的生命冒险。如果这样的事情一再发生，你觉得我会有什么感觉，我们的关系还能这样持续多久？我想要的不仅仅是道歉。我想知道从现在起你打算如何处理酒后驾车的问题，因为我不想让你每次出去喝酒都感到害怕。"
+  },
+  {
+   "n": 194,
+   "t": "โตน",
+   "score": 1,
+   "z": "语气"
+  },
+  {
+   "n": 199,
+   "t": "ไม่อยากตบผม",
+   "score": 1,
+   "z": "不想打我"
+  },
+  {
+   "n": 201,
+   "t": "ไม่อยากโตผม",
+   "score": 1,
+   "z": "我不想长大。"
+  },
+  {
+   "n": 202,
+   "t": "ในยาตรงผม",
+   "score": 1,
+   "z": "在头发医学中"
+  },
+  {
+   "n": 203,
+   "t": "ไม่อยากโดนของ",
+   "score": 1,
+   "z": "我不想被抓住。"
+  },
+  {
+   "n": 204,
+   "t": "ไม่อยากโดนผม",
+   "score": 1,
+   "z": "不想碰我。"
+  },
+  {
+   "n": 205,
+   "t": "ไม่อยากตวผม",
+   "score": 0.82,
+   "z": "我不想碰我。"
+  },
+  {
+   "n": 206,
+   "t": "ไม่อยากตัวผม",
+   "score": 1,
+   "z": "不想要我"
+  },
+  {
+   "n": 207,
+   "t": "ไม่อยากโต",
+   "score": 1,
+   "z": "我不想长大。"
+  },
+  {
+   "n": 209,
+   "t": "ไม่อยากตอบผม",
+   "score": 1,
+   "z": "不想回答我"
+  },
+  {
+   "n": 211,
+   "t": "ฉันข้าวสวยว่ะ",
+   "score": 0.77,
+   "z": "我有蒸米饭。"
+  },
+  {
+   "n": 212,
+   "t": "เข้าสิวะ",
+   "score": 0.75,
+   "z": "快点。"
+  },
+  {
+   "n": 214,
+   "t": "ฟังไม่เข้าใจ",
+   "score": 1,
+   "z": "无法理解"
+  },
+  {
+   "n": 215,
+   "t": "ที่รักฉันคิดว่าฉันจะขายที่ดีนเพื่อนำเงินมาทำธุรกิจ",
+   "score": 1,
+   "z": "亲爱的，我想我要卖掉迪恩的土地来为生意赚点钱。"
+  },
+  {
+   "n": 216,
+   "t": "ฉันขายที่หนึ่ง",
+   "score": 1,
+   "z": "我卖了一个"
+  },
+  {
+   "n": 217,
+   "t": "ตอนที่ฉันไม่ได้อยู่ข้างๆคุณอย่าเพิ่งตัดสินใจเรื่องสำคัญคนเดียวนะ",
+   "score": 1,
+   "z": "当我不在你身边时，不要独自做出重要的决定。"
+  },
+  {
+   "n": 219,
+   "t": "ฉันกินข้าวแล้วกินอะไรเผ็ดเผ็ด",
+   "score": 1,
+   "z": "我吃了米饭，还吃了一些辣的东西。"
+  },
+  {
+   "n": 220,
+   "t": "คุณทำจริงๆหรอ",
+   "score": 1,
+   "z": "你真的做到了吗？"
+  },
+  {
+   "n": 222,
+   "t": "ฉันทำอาหารไม่ค่อยเป็นนะและฉันเป็นคนขี้เกลียดมาก",
+   "score": 1,
+   "z": "我不太擅长做饭，而且我是一个很讨厌的人。"
+  },
+  {
+   "n": 223,
+   "t": "ถ้าอย่างนั้นคุณจะต้องดูแลฉันไปตลอดชีวิต",
+   "score": 1,
+   "z": "那你就得照顾我一辈子了。"
+  },
+  {
+   "n": 224,
+   "t": "แต่งตัวแบบนี้ไหมอะ",
+   "score": 1,
+   "z": "你穿成这样吗？"
+  },
+  {
+   "n": 226,
+   "t": "คืนนี้ฉันจะไปนอนกับเพื่อนสนิทของฉัน",
+   "score": 1,
+   "z": "今晚我要和我最好的朋友一起睡觉。"
+  },
+  {
+   "n": 227,
+   "t": "ฉันจะบอกราตรีสวัสดิ์คุณประมาณตีหนึ่งนะ",
+   "score": 0.68,
+   "z": "凌晨 1:00 左右我会跟你说晚安"
+  },
+  {
+   "n": 228,
+   "t": "เราค่อยคุยเรื่องโซเชียลมีเดียกันตอนที่ฉันมาถึงนะเด็กหญิงตัวน้อยที่รักอินเทอร์เน็ต",
+   "score": 0.85,
+   "z": "当我到达这里时，我们会讨论社交媒体，热爱互联网的小女孩。"
+  },
+  {
+   "n": 229,
+   "t": "คุณยินดีที่จะถูกฉันครอบงำอย่างสมบูรณ์และถูกขังอยู่ภายในตัวฉันหรือไม่?",
+   "score": 0.87,
+   "z": "你愿意完全被我主宰，锁在我里面吗？"
+  },
+  {
+   "n": 230,
+   "t": "ไม่มีใครทำให้ฉันรู้สึกดีเท่าเธอแล้ว",
+   "score": 1,
+   "z": "没有人让我感觉像你一样好。"
+  },
+  {
+   "n": 233,
+   "t": "ผมอยากเป็นพยาบาลครับภรรยา",
+   "score": 1,
+   "z": "我想成为一名护士，妻子。"
+  },
+  {
+   "n": 234,
+   "t": "ฉันอยากเป็นพยาบาล",
+   "score": 1,
+   "z": "我想成为一名护士"
+  },
+  {
+   "n": 235,
+   "t": "ฉันต้องการพบคุณตอนนี้",
+   "score": 1,
+   "z": "我现在想见你"
+  },
+  {
+   "n": 236,
+   "t": "ฉันอยากเห็นคุณตอนนี้เลย",
+   "score": 1,
+   "z": "我现在想见你"
+  },
+  {
+   "n": 237,
+   "t": "เห็นได้ชัดว่าคุณกำลังเล่นอยู่ข้างนอก",
+   "score": 1,
+   "z": "明明你是在外面玩啊。"
+  },
+  {
+   "n": 238,
+   "t": "รอฉันก่อนนะฉันต้องไปซื้อยาแก้ปวดท้องให้หลานสาวฉันก่อน",
+   "score": 1,
+   "z": "等我。我得先去买药治我侄女的胃痛。"
+  },
+  {
+   "n": 239,
+   "t": "ฉันกำลังพาหลานฉันไปโรงพยาบาล",
+   "score": 0.89,
+   "z": "我要带孙子去医院"
+  },
+  {
+   "n": 240,
+   "t": "ฉันมีอะไรจะบอกคุณ",
+   "score": 1,
+   "z": "我有话要告诉你。"
+  },
+  {
+   "n": 241,
+   "t": "ฉันได้ไปเอโกคันมาแล้ว",
+   "score": 0.81,
+   "z": "我去过Ekokan。"
+  },
+  {
+   "n": 242,
+   "t": "ไม่แน่นอนตอนนี้ยังไม่มีเงินเลี้ยงดูลูก",
+   "score": 1,
+   "z": "当然不是，现在没钱养孩子。"
+  },
+  {
+   "n": 243,
+   "t": "ภรรยาของฉันดื่มแอลกอฮอล์ไม่ได้ออกไปเที่ยวกลางคืนไม่ได้และใส่เสื้อผ้าเซ็กซี่ต่อหน้าใครไม่ได้นอกจากสามีของเธอ",
+   "score": 0.85,
+   "z": "我的妻子不能喝酒，不能晚上出去，不能在丈夫以外的任何人面前穿性感的衣服。"
+  },
+  {
+   "n": 244,
+   "t": "ฉันขอโทษที่ทำให้คุณผิดหวัง",
+   "score": 1,
+   "z": "很抱歉让您失望了。"
+  },
+  {
+   "n": 245,
+   "t": "งั้นคุณก็คงต้องน้อยใจจริงๆสินะ",
+   "score": 0.87,
+   "z": "那么你一定会非常失望。"
+  },
+  {
+   "n": 246,
+   "t": "พรุ่งนี้ถึงกำหนดเป็นประจำเดือนแต่ก็น่าจะมีประจำเดือนภายในคืนนี้",
+   "score": 1,
+   "z": "我的月经预产期是明天，但今晚应该就到了。"
+  },
+  {
+   "n": 248,
+   "t": "ฉันอยากได้อะฉันอยากได้มากเลยฉันอยากซื้อแต่ฉันอายเด็กเด็กรารารา",
+   "score": 1,
+   "z": "我要它。我非常想要它。我想买，但我很害羞。"
+  },
+  {
+   "n": 249,
+   "t": "เมื่อคุณบริหารธุรกิจคุณคือเจ้านายที่มั่นคงและน่าเชื่อถือแต่ในสายตาของฉันคุณจะเป็นแค่เด็กหญิงตัวเล็กๆคนหนึ่งเด็กหญิงที่รักฉันเพียงคนเดียว",
+   "score": 0.87,
+   "z": "当你经营企业时，你是一个稳定可靠的老板，但在我眼里你只是一个小女孩，一个只爱我的女孩。"
+  },
+  {
+   "n": 251,
+   "t": "มีเรื่องอยากบอกคุณแต่รอให้เราเจอกันก่อน",
+   "score": 1,
+   "z": "我有件事想告诉你，但我在等我们先见面。"
+  },
+  {
+   "n": 252,
+   "t": "ทุกอย่างก็เหมือนอยู่ในขบวนการแก้ไข",
+   "score": 0.79,
+   "z": "一切都像在编辑过程中一样。"
+  },
+  {
+   "n": 253,
+   "t": "สำหรับเรื่องนี้แล้วคุณช่วยอะไรไม่ได้หรอกไม่เป็นไรฉันก็ช่วยอะไรไม่ได้เหมือนกัน",
+   "score": 1,
+   "z": "对于这件事你无能为力。没关系，我也帮不了你。"
+  },
+  {
+   "n": 254,
+   "t": "เจอกันแล้วฉันจะให้คุณหยิกนะ",
+   "score": 0.85,
+   "z": "待会儿见，我给你捏一下。"
+  },
+  {
+   "n": 255,
+   "t": "ฉันจะบินไปเวียดนามนะ",
+   "score": 1,
+   "z": "我将飞往越南。"
+  },
+  {
+   "n": 256,
+   "t": "พี่สะใภ้ของฉันไม่สบายจะพาพี่สะใภ้ไปโรงพยาบาลที่เวียดนาม",
+   "score": 1,
+   "z": "我嫂子生病了，要带她去越南的医院。"
+  },
+  {
+   "n": 257,
+   "t": "พี่ชายและพี่สะใภ้ฉันอยากไปตรวจที่ประเทศเวียดนามก่อนให้รู้อาการแน่ชัด",
+   "score": 0.91,
+   "z": "我的哥哥和嫂子想去越南测试一下以确定。"
+  },
+  {
+   "n": 258,
+   "t": "อย่าไปนวดตัวนะถ้าฉันรู้คุณตายแน่ๆ",
+   "score": 1,
+   "z": "如果我知道你会死，就别去按摩了。"
+  },
+  {
+   "n": 259,
+   "t": "นั่นเป็นเพราะคุณเป็นห่วงฉันฉันเข้าใจ",
+   "score": 1,
+   "z": "那是因为你关心我，我明白。"
+  },
+  {
+   "n": 260,
+   "t": "อย่ารำคาญฉันนะ",
+   "score": 1,
+   "z": "别打扰我。"
+  },
+  {
+   "n": 261,
+   "t": "คุณเดา",
+   "score": 1,
+   "z": "你猜对了"
+  },
+  {
+   "n": 262,
+   "t": "ฉันก็ต้องถามคุณก่อนไงว่าคุณนอนหรือยังคุณก็แค่ตอบฉันว่ายังหรือว่านอนแล้วหรือว่ายังไงบ้างฉันจะได้รู้ว่าฉันจะถามอะไรอีกไง",
+   "score": 1,
+   "z": "我得先问你睡没睡。不管你睡没睡，你只要回答我就可以了。然后我就会知道我还要问什么。"
+  },
+  {
+   "n": 263,
+   "t": "คุณจะให้ฉันทำยังไงล่ะทักไปเลยแล้วแบบโอ้โหคุณอย่าพึ่งนอนนะคะรอฉันก่อนอย่างงี้หรอ",
+   "score": 0.89,
+   "z": "你想让我做什么？打个招呼然后说，哦，你不就这样睡着等我吗？"
+  },
+  {
+   "n": 264,
+   "t": "คุณเป็นอะไรเนี่ยถามอะไรไปก็ผิดไปหมด",
+   "score": 0.8,
+   "z": "你这人怎么回事？你问的一切都是错的。"
+  },
+  {
+   "n": 265,
+   "t": "ฉันรู้ว่าคุณก็ทำงานฉันรู้ว่าคุณก็เหนื่อยแต่เวลาคุยกันช่วยทำให้อะไรมันง่ายมากขึ้นได้ไหม",
+   "score": 1,
+   "z": "我知道你工作，也知道你很累，但是当我们交谈时，你能帮助让事情变得更轻松吗？"
+  },
+  {
+   "n": 266,
+   "t": "ฉันเพิ่งรู้นะที่นั่งรอเครื่องบินในประเทศลาวไม่มีที่ชาร์จโทรศัพท์",
+   "score": 0.92,
+   "z": "我刚刚发现老挝的航班座位上没有手机充电器。"
+  },
+  {
+   "n": 267,
+   "t": "แบตโทรศัพท์ฉันจะหมดแล้วฉันกังวล",
+   "score": 0.93,
+   "z": "我的手机电池即将耗尽，我很担心。"
+  },
+  {
+   "n": 268,
+   "t": "ฉันจะปิดโทรศัพท์แล้วฉันจะเอาอะไรดูล่ะ",
+   "score": 1,
+   "z": "我要关掉手机，那我要看什么呢？"
+  },
+  {
+   "n": 269,
+   "t": "ฉันก็เปลี่ยนตามกำหนดได้เลย",
+   "score": 1,
+   "z": "我可以按计划更改。"
+  },
+  {
+   "n": 270,
+   "t": "แล้วค่อยแจ้งผลให้ทราบนะ",
+   "score": 1,
+   "z": "然后让我知道结果。"
+  },
+  {
+   "n": 271,
+   "t": "แล้วค่อยแจ้งผลให้ทราบ",
+   "score": 1,
+   "z": "然后让我知道结果。"
+  },
+  {
+   "n": 272,
+   "t": "ฉันคิดว่าแม่ของคุณน่าจะชอบฉันนะ",
+   "score": 1,
+   "z": "我想你妈妈可能喜欢我。"
+  },
+  {
+   "n": 273,
+   "t": "ไม่ต้องซื้ออีกต่อไปฉันซื้อเองแล้ว",
+   "score": 1,
+   "z": "不用再买了，我自己买的。"
+  },
+  {
+   "n": 275,
+   "t": "ฉันจะสอนวิธีทำฉันจะสอนวิธีทำฉันจะสอนวิธีทำ",
+   "score": 1,
+   "z": "我会教你如何做，我会教你如何做，我会教你如何做"
+  },
+  {
+   "n": 276,
+   "t": "ไม่เป็นไรพี่สะใภ้ฉันแค่อยากตรวจเกี่ยวกับมดลูก",
+   "score": 1,
+   "z": "没事，嫂子，我只是想检查一下我的子宫。"
+  },
+  {
+   "n": 277,
+   "t": "ใช่พี่สะใภ้ฉันแค่อยากตรวจเกี่ยวกับมดลูก",
+   "score": 1,
+   "z": "是的，嫂子，我只是想检查一下子宫。"
+  },
+  {
+   "n": 278,
+   "t": "เพราะตอนนี้ฉันมีหลานชายสี่คนเป็นผู้ชายอยู่ที่บ้านแล้ว",
+   "score": 1,
+   "z": "因为现在我家里有四个孙子，男孩。"
+  },
+  {
+   "n": 279,
+   "t": "ใช่พี่สะใภ้ฉันปวดท้องเกี่ยวกับมดลูกไม่ค่อยดี",
+   "score": 1,
+   "z": "是啊，嫂子，我子宫腹痛不太好。"
+  },
+  {
+   "n": 280,
+   "t": "เพียงแต่หมอบอกว่าช่วงนี้ร่างกายพี่สะใภ้ฉันยังอ่อนแออยู่ยังมีลูกไม่ได้",
+   "score": 1,
+   "z": "只有医生说，这段时间嫂子身体还很虚弱，不能生孩子。"
+  },
+  {
+   "n": 281,
+   "t": "มี 4 คนแล้วอีกครั้งหนึ่งอีกครั้งหนึ่งที่อยากได้สิทธิพิเศษนี้",
+   "score": 0.91,
+   "z": "再次有 4 人想要获得此特权。"
+  },
+  {
+   "n": 282,
+   "t": "ไม่ใช่ว่าคุณแอบไปทำอะไรกับผู้หญิงคนอื่นน่ะคุณถึงออกเหงื่อเยอะขนาดนั้น",
+   "score": 1,
+   "z": "你出这么多汗并不是因为你偷偷地和其他女人做事。"
+  },
+  {
+   "n": 283,
+   "t": "ใช่แล้วไม่ชอบกินเหมือนกัน",
+   "score": 1,
+   "z": "是的，我也不喜欢吃。"
+  },
+  {
+   "n": 284,
+   "t": "แต่พรุ่งนี้จะต้องกลับมาอีกครั้งจอนเพราะต้องดูเรื่องราวของหลาน",
+   "score": 0.95,
+   "z": "但明天我必须再次回来，乔恩，因为我必须看到我孙子的故事。"
+  },
+  {
+   "n": 285,
+   "t": "จะต้องทนไม่ไหวอีกต่อไปแล้ว กิ้งๆ นั้นจะขอจากพี่ชาย",
+   "score": 0.9,
+   "z": "小家伙实在忍无可忍，就去向哥哥询问。"
+  },
+  {
+   "n": 286,
+   "t": "คุณจะกลับไปจีนทันวันที่คุณวินมาประเทศลาวไหม",
+   "score": 1,
+   "z": "温先生来老挝的那天您会回中国吗？"
+  },
+  {
+   "n": 287,
+   "t": "คุณนอนหรือยา",
+   "score": 1,
+   "z": "你睡觉或吃药吗？"
+  },
+  {
+   "n": 288,
+   "t": "ฉันเพิ่งรู้ตัวว่าคนที่ฉันคิดว่าจะให้ยืมเงินนั้นแตกต่างจากที่ฉันจินตนาการไว้",
+   "score": 0.88,
+   "z": "我最近意识到我认为要借钱的人与我想象的不同。"
+  },
+  {
+   "n": 289,
+   "t": "ไปยิงปืนแล้วเล็งที่บ้านสวนไปสาวสาว",
+   "score": 0.79,
+   "z": "去开枪，瞄准花园别墅里的一个年轻女子。"
+  },
+  {
+   "n": 290,
+   "t": "คุณได้เริ่มใช้\"บัญชีวิดีโอ\"ของจีนหรือแพลตฟอร์มโซเชียลมีเดียที่คล้ายกันแล้ว",
+   "score": 0.88,
+   "z": "您已开始使用中文“视频帐户”或类似的社交媒体平台。"
+  },
+  {
+   "n": 291,
+   "t": "ฉันแค่พูดเล่นน่ะพูดประโยคเดียวในสามภาษาน่ะ",
+   "score": 1,
+   "z": "我只是开玩笑，用三种语言说一句话。"
+  },
+  {
+   "n": 292,
+   "t": "คุณต้องซื้ออันที่มันสวยๆแบบนี้นะ",
+   "score": 1,
+   "z": "你必须买一些像这样漂亮的东西。"
+  },
+  {
+   "n": 294,
+   "t": "โอเคฉันรู้ว่าคุณเป็นคนรักที่ดีแต่ฉันก็ยังต้องตรวจร่างกายของคุณอย่างละเอียดทั้งภายในและภายนอกอยู่ดี",
+   "score": 0.94,
+   "z": "好吧，我知道你是一个很棒的情人，但我还是需要仔细看看你的身体里里外外。"
+  },
+  {
+   "n": 295,
+   "t": "และร่างกายฉันก็ผอมมากเพราะฉันได้หยุดประจำเดือน",
+   "score": 1,
+   "z": "而且我的身体很瘦，因为我停止了月经。"
+  },
+  {
+   "n": 296,
+   "t": "ก็ได้การขอวีซ่าไปประเทศจีนนั้นเป็นเรื่องยาก",
+   "score": 1,
+   "z": "嗯，获得去中国的签证很困难。"
+  },
+  {
+   "n": 297,
+   "t": "ไม่เป็นไรการขอวีซ่าไปประเทศจีนก็ไม่ได้ยากขนาดนั้น",
+   "score": 1,
+   "z": "没关系，获得去中国的签证并不是那么困难。"
+  },
+  {
+   "n": 298,
+   "t": "ส่วนใหญ่ในขณะนี้คือคลินิกส่วนใหญ่ให้โดยตรง",
+   "score": 0.86,
+   "z": "现在大多数是大多数诊所直接提供。"
+  },
+  {
+   "n": 299,
+   "t": "แต่เพื่อนฉันเพิ่มว่าเปิดไลฟ์สดเต้นเคซีเหมือนจะหารายไดได้จากไลฟ์สดเข้าใจไหม",
+   "score": 0.97,
+   "z": "但我的朋友补充说，我开了一个KC跳舞的直播，好像我可以通过直播赚钱，你明白吗？"
+  },
+  {
+   "n": 300,
+   "t": "ฉันอยู่บ้านหน้าสาวของฉัน",
+   "score": 1,
+   "z": "我在我女儿面前回家了。"
+  },
+  {
+   "n": 301,
+   "t": "ไปบ้านฉันหรือรอให้เราไปที่ร้าน",
+   "score": 1,
+   "z": "去我家或者等我们去商店。"
+  },
+  {
+   "n": 302,
+   "t": "บ้านพักไง",
+   "score": 1,
+   "z": "房子怎么样？"
+  },
+  {
+   "n": 303,
+   "t": "คุณไม่รู้เหรอว่าประเพณีของคนชาวม้งถ้ายังไม่แต่งงานก็คือผู้ชายกับผู้หญิงนอนใบ้านด้วยกันไม่ได้",
+   "score": 0.95,
+   "z": "难道你不知道苗族的风俗如果不结婚的话是男女不能在屋子里睡在一起吗？"
+  },
+  {
+   "n": 305,
+   "t": "ไปนอนที่บ้านฉันแบบไม่มีทางเลือกกันได้ไหม",
+   "score": 1,
+   "z": "你能别无选择地睡在我家吗？"
+  },
+  {
+   "n": 306,
+   "t": "ต่างตรงที่เรายังไม่ได้ใส่แหวนแต่งงานเท่าไหร่",
+   "score": 1,
+   "z": "不同的是我们还没有戴结婚戒指。"
+  },
+  {
+   "n": 307,
+   "t": "สิ่งที่คุณเห็นอะไร",
+   "score": 1,
+   "z": "你看到了什么？"
+  },
+  {
+   "n": 308,
+   "t": "ทำไหมฉันทำอะไรคุณก็รู้หมด",
+   "score": 1,
+   "z": "无论我做什么，你都知道。"
+  },
+  {
+   "n": 310,
+   "t": "คุณไม่รู้ชื่อภาษาไทยของฉันชื่อปังปัง",
+   "score": 1,
+   "z": "你不知道我的泰语名字是Pang Pang。"
+  },
+  {
+   "n": 311,
+   "t": "คุณเอาเงิน 1 ใบ 100 มาให้ฉันด้วยน",
+   "score": 0.89,
+   "z": "你给我带来了一张 100 元的钞票。"
+  },
+  {
+   "n": 312,
+   "t": "ทำไมคุณเข้าใจง่ายจัง",
+   "score": 1,
+   "z": "为什么你这么容易理解？"
+  },
+  {
+   "n": 313,
+   "t": "คุณเหนื่อยบ้างมั้ย",
+   "score": 1,
+   "z": "你累了吗？"
+  },
+  {
+   "n": 314,
+   "t": "ตอนแรกเพื่อนฉันบอกว่าเลิกกับหนุ่มจีนแล้วอกหกพอกินเหล้าไป 4 แก้วโทรไปขอโทษและขอคืนดีกับหนุ่มจีน",
+   "score": 0.95,
+   "z": "起初，我的朋友说她和一个中国男人分手了，然后喝了四杯酒后，她打电话道歉并与中国男人和解。"
+  },
+  {
+   "n": 315,
+   "t": "ผู้ชายจีนนี่ช่างดีจริงๆทำให้สาวลาวต้องโทรไปขอโทษ",
+   "score": 1,
+   "z": "这个中国小伙子真好，害得老挝姑娘打电话道歉。"
+  },
+  {
+   "n": 316,
+   "t": "ถ้าฉันขี้งอนคุณจะง้อฉันไหม",
+   "score": 1,
+   "z": "如果我脾气暴躁，你会跟我和解吗？"
+  },
+  {
+   "n": 317,
+   "t": "ทำไมเมื่อกี๊ไม่ง้อฉันล่ะ",
+   "score": 0.88,
+   "z": "你为什么不跟我和解？"
+  },
+  {
+   "n": 319,
+   "t": "ฉันยังโกรธคุณอยู่เรื่องที่คุณแอบไปเล่นทินเนอร์",
+   "score": 0.83,
+   "z": "我还在生你偷偷去瘦人的事。"
+  },
+  {
+   "n": 320,
+   "t": "ฉันเปลี่ยนนานแล้ว",
+   "score": 1,
+   "z": "我很久以前就变了"
+  },
+  {
+   "n": 321,
+   "t": "เพื่อนฉันได้กักเก็บไว้หมดแล้ว",
+   "score": 0.9,
+   "z": "我的朋友已经全部保存了。"
+  },
+  {
+   "n": 322,
+   "t": "เจ้าหน้าที่ขับรถไปรับ",
+   "score": 1,
+   "z": "警察开车来接他。"
+  },
+  {
+   "n": 323,
+   "t": "ประมาณ 30 นาที",
+   "score": 0.83,
+   "z": "约30分钟"
+  },
+  {
+   "n": 324,
+   "t": "วันนี้คนจะต้องได้นั่งรถที่มีกลิ่นทุเรียนทั้งวันแล้วแหละ",
+   "score": 1,
+   "z": "如今，人们不得不整天开着充满榴莲味的汽车。"
+  },
+  {
+   "n": 325,
+   "t": "แล้วคุณจะทำยังไง",
+   "score": 1,
+   "z": "那么你会怎么做？"
+  },
+  {
+   "n": 326,
+   "t": "เจ้านายถามคนในออฟฟิศเขาก็รู้แล้วว่าคุณไม่ไปทำงาน",
+   "score": 1,
+   "z": "老板问了办公室里的人，他已经知道你不去上班了。"
+  },
+  {
+   "n": 327,
+   "t": "แล้วเจ้านายได้สั่งให้คนไปทำงานที่ไหนบ้างไหม",
+   "score": 1,
+   "z": "老板有没有命令人们去任何地方工作？"
+  },
+  {
+   "n": 328,
+   "t": "เครื่องปรับอากาศเครื่องนี้ไม่ดีเท่าเครื่องที่อยู่ชั้นบน",
+   "score": 1,
+   "z": "这台空调不如楼上的。"
+  },
+  {
+   "n": 329,
+   "t": "แต่ว่ามันก็เปิดได้ปกติใช่ไหม",
+   "score": 1,
+   "z": "不过是可以正常打开的吧？"
+  },
+  {
+   "n": 330,
+   "t": "คุณอย่าตกงานเลยเราจะไม่มีเงินใช้นะ",
+   "score": 1,
+   "z": "你不会失去工作。我们不会有任何钱可以花。"
+  },
+  {
+   "n": 331,
+   "t": "คุณต้องตั้งใจทำงานนะไม่งั้นเราจะไม่มีเงินใช้จริงๆ",
+   "score": 1,
+   "z": "你必须努力工作，否则我们就真的没有钱了。"
+  },
+  {
+   "n": 332,
+   "t": "เดี๋ยวรออยู่ของแซน",
+   "score": 0.83,
+   "z": "我去桑家等。"
+  },
+  {
+   "n": 333,
+   "t": "นี่มันเป็นของอร่อย",
+   "score": 1,
+   "z": "这很好吃。"
+  },
+  {
+   "n": 334,
+   "t": "เมื่อก่อนตอนฉันยังเรียนต้องไปเข้ายามเข้าเวรกลางคืนบ่อยๆไม่ค่อยได้พักผ่อน 1 วันฉันได้นอนหลับแค่ 2 ชั่วโมงเองฉันก็เลยผอมมาก",
+   "score": 0.91,
+   "z": "以前我还在读书的时候，经常要上夜班，休息时间也很少。我每天只睡2个小时，所以我很瘦。"
+  },
+  {
+   "n": 335,
+   "t": "เมื่อก่อนตอนเรียนพยาบาลคือต้องไปฝึกงานหนักมากนะและตอนนั้นผมฉันก็ยาวมากทำให้ฉันอ้วนไม่ได้เลยฉันผอมจริงๆ",
+   "score": 0.94,
+   "z": "以前我学护理的时候，实习的工作量很重，而且那时候我的头发很长，这让我一点也不胖，真的很瘦。"
+  },
+  {
+   "n": 336,
+   "t": "เวลาอ้วนขึ้นหน้าตาจะสวยขึ้นแต่หุ่นจะไม่สวยเวลาผอมหุ่นจะ",
+   "score": 1,
+   "z": "当你胖的时候，你的脸会更漂亮，但你的身材却不会美丽。当你瘦的时候，你的身体也会瘦。"
+  },
+  {
+   "n": 337,
+   "t": "เวลาอ้วนขึ้นหน้าตาจะสวยขึ้นแต่ว่าหุ่นจะไม่สวยเวลาผอมหุ่นจะสวยแต่หน้าตาจะไม่สวยเลยหน้าตาดูแก่มาก",
+   "score": 1,
+   "z": "当你胖的时候，你的脸会更漂亮，但你的身材却不会美丽。当你瘦了，你的身体会很漂亮，但你的脸不会很漂亮。你的脸会显得很老。"
+  },
+  {
+   "n": 338,
+   "t": "ตอนฉันผอมเพื่อนๆที่เจอหน้าฉันใครๆก็บอกว่าหน้าฉันดูแก่มากฉันดูไม่สวยเลย",
+   "score": 1,
+   "z": "当我瘦的时候，朋友看到我的脸都说我的脸看起来很老，看起来没有吸引力。"
+  },
+  {
+   "n": 339,
+   "t": "ตอนนี้เพื่อนๆบอกว่าหน้าฉันดูเด็กลงแต่ว่าหุ่นชนอ้วนมาก",
+   "score": 1,
+   "z": "现在我的朋友说我的脸看起来年轻了，但我的身体却很胖。"
+  },
+  {
+   "n": 340,
+   "t": "อย่าให้เจ้านายของคุณรู้นะถ้าหากเจ้าไหนของคุณรู้คุณตายแน่นอน",
+   "score": 1,
+   "z": "别让你的老板知道。如果你的老板知道了，你就死定了。"
+  },
+  {
+   "n": 341,
+   "t": "ฉันจะพาคุณไปบ้านฉันบ้านที่ฉันอยู่ตอนเด็กๆนะ",
+   "score": 0.88,
+   "z": "我带你去我家，我小时候住过的地方。"
+  },
+  {
+   "n": 342,
+   "t": "ก่อนที่จะทำงานตามปกติสำหรับมีคนมารังแกก็รีบโทรหาฉันเลย",
+   "score": 0.91,
+   "z": "在正常工作之前，如果有人骚扰你，赶紧给我打电话。"
+  },
+  {
+   "n": 344,
+   "t": "เลิกแล้วจริงๆนะ",
+   "score": 1,
+   "z": "我真的放弃了。"
+  },
+  {
+   "n": 345,
+   "t": "ผ่องทิพย์ถึงคุณมาเลยเราไปอาบน้ำ",
+   "score": 0.87,
+   "z": "冯提普，谢谢你。走吧，我们去洗澡吧。"
+  },
+  {
+   "n": 346,
+   "t": "ผมคิดถึงคนอะไรเราไปอาบน้ำ",
+   "score": 1,
+   "z": "我想念谁？我们要去洗澡。"
+  },
+  {
+   "n": 347,
+   "t": "พรทิพย์ของคนเมื่อไหร่เราไปอาบน้ำ",
+   "score": 0.94,
+   "z": "当我们去洗澡时人们的神圣祝福"
+  },
+  {
+   "n": 348,
+   "t": "ของที่ทนขึ้นมาเลย",
+   "score": 1,
+   "z": "我所忍受的事情。"
+  },
+  {
+   "n": 349,
+   "t": "ผมคิดถึงคุณมากเลยเราไปอาบน้ำ",
+   "score": 1,
+   "z": "我很想你，所以我们去洗澡了。"
+  },
+  {
+   "n": 350,
+   "t": "ตอนนี้ผมนอนคนเดียว",
+   "score": 1,
+   "z": "现在我一个人睡"
+  },
+  {
+   "n": 351,
+   "t": "ตอนนี้ผมร้อนคนเหงา",
+   "score": 1,
+   "z": "现在我又热又孤独。"
+  },
+  {
+   "n": 352,
+   "t": "ตอนผมน้อยคนเดียว",
+   "score": 1,
+   "z": "当我还小且孤独的时候"
+  },
+  {
+   "n": 353,
+   "t": "ตอนนี้ 200",
+   "score": 0.67,
+   "z": "现在200"
+  },
+  {
+   "n": 354,
+   "t": "ตอนนี้ของน้อย",
+   "score": 1,
+   "z": "现在有一点了。"
+  },
+  {
+   "n": 355,
+   "t": "ตอนนี้ผมน้อยคนเดียว",
+   "score": 1,
+   "z": "现在我有点孤独了。"
+  },
+  {
+   "n": 358,
+   "t": "ฉันจะออกไปฉิดหน้าให้ลูกค้าหน่อยนะ",
+   "score": 0.91,
+   "z": "我要出去到顾客面前。"
+  },
+  {
+   "n": 359,
+   "t": "ฉันต้องบังคับตัวเองให้ใช้เสียงแทนการพิมพ์ให้มากขึ้น",
+   "score": 1,
+   "z": "我不得不强迫自己使用语音而不是更多地打字。"
+  },
+  {
+   "n": 360,
+   "t": "ไม่ค่อยอยากเจอกันบ่อยบ่อยอ่ะกลัวคุณจะเบื่อ",
+   "score": 0.83,
+   "z": "我真的不想经常见面。我担心你会觉得无聊。"
+  },
+  {
+   "n": 361,
+   "t": "แล้วถ้าต่อไปนี้เราไม่ได้อยู่ใกล้กันล่ะ",
+   "score": 1,
+   "z": "如果从现在开始我们不再亲近怎么办？"
+  },
+  {
+   "n": 363,
+   "t": "ฝนตก",
+   "score": 1,
+   "z": "雨"
+  },
+  {
+   "n": 369,
+   "t": "เป็นแฮกเกอร์จริงๆฉันจะขายคุไป",
+   "score": 0.72,
+   "z": "真是黑客，我就卖给你。"
+  },
+  {
+   "n": 370,
+   "t": "ลืมไปเลย",
+   "score": 1,
+   "z": "忘了它。"
+  },
+  {
+   "n": 371,
+   "t": "คุณเก่งจริงๆ",
+   "score": 1,
+   "z": "你真的很好。"
+  },
+  {
+   "n": 372,
+   "t": "ฉันต้องรดน้ำหนักแล้วแหละ",
+   "score": 0.79,
+   "z": "我必须增加体重。"
+  },
+  {
+   "n": 373,
+   "t": "วันนี้คุณเหนื่อยกับงานของฉันฉันก็เหนื่อยกับงานของฉันเหมือนกันฉันแค่ต้องการเวลาสักแอ๊บนึงฉันเลื่อนดู",
+   "score": 0.93,
+   "z": "你今天厌倦了我的工作。我也厌倦了我的工作。我只是需要一些时间。我正在滚动。"
+  },
+  {
+   "n": 374,
+   "t": "เราก็อยู่ด้วยกันมาตั้งสามสี่วันแล้วไง",
+   "score": 1,
+   "z": "我们已经在一起三四天了。"
+  },
+  {
+   "n": 375,
+   "t": "ฉันแค่รู้สึกว่าเราเข้ากันยากกันไป",
+   "score": 1,
+   "z": "我只是觉得我们相处得很困难。"
+  },
+  {
+   "n": 376,
+   "t": "ฉันคิดว่าเราต่างคนต่างอยู่อยู่ดีแล้ว",
+   "score": 1,
+   "z": "我想无论如何我们都是不同的人。"
+  },
+  {
+   "n": 377,
+   "t": "เซียมซีใบที่ดีที่สุดเราจะจับได้ในช่วงมานี้เลย",
+   "score": 0.84,
+   "z": "我们最近抓到的最好的西姆西。"
+  },
+  {
+   "n": 378,
+   "t": "เพราะในวันที่ฉันนั้นไม่มีเธออยู่ไม่ไหวจริงๆ",
+   "score": 1,
+   "z": "因为那天我真的不能没有你"
+  },
+  {
+   "n": 379,
+   "t": "ไม่ดีใจเพราะฉันยังหาที่อยู่ให้คุณไม่ได้",
+   "score": 1,
+   "z": "我不高兴，因为我还是找不到你的住处。"
+  },
+  {
+   "n": 380,
+   "t": "ฉันว่างถึงไปบ่อยเปิดร้านและทำงานเริ่มเรียนภาษาจีนเป็นเวลานานแล้ว",
+   "score": 1,
+   "z": "我有空闲时间就经常去，开店打工，并开始长期学习中文。"
+  },
+  {
+   "n": 382,
+   "t": "คุณอยากได้อะไรเหรอ",
+   "score": 1,
+   "z": "你想要什么？"
+  },
+  {
+   "n": 383,
+   "t": "ถ้าคุณรู้สึกว่าผมรักคุณง่ายเกินไปแล้วคุณอยากให้ผมรักคุณน้อยลงเหรอ",
+   "score": 1,
+   "z": "如果你觉得我太容易爱你了，你想让我少爱你一点吗？"
+  },
+  {
+   "n": 384,
+   "t": "เข้าใจและเรียนรู้",
+   "score": 1,
+   "z": "理解和学习"
+  },
+  {
+   "n": 385,
+   "t": "ลดน้ำหนักฉันต้องแล้ว",
+   "score": 1,
+   "z": "我必须减肥。"
+  },
+  {
+   "n": 386,
+   "t": "ฉันต้องลดน้ำหนักแล้ว",
+   "score": 1,
+   "z": "我必须减肥。"
+  },
+  {
+   "n": 387,
+   "t": "นิสัยของผมต่อไปคุณจะค่อยๆเข้าใจเองบางเรื่องผมอาจจะตามสบายไม่ได้จริงจังมากแต่ถ้าเป็นเรื่องสำคัญผมจะจริงจังมากเพราะคุณคือคนของผมเรื่องที่เกี่ยวกับความปลอดภัยสุขภาพและอนาคตของ",
+   "score": 1,
+   "z": "你会慢慢了解我的习惯。有些事情我可能不会认真对待。但如果是重要的事情，我会非常认真地对待，因为你是我的人。与安全、健康和未来有关的事项"
+  },
+  {
+   "n": 388,
+   "t": "แต่คุณต้องควบคุมอาหารแบบนี้ก่อนนะร่างกายคุณถึงจะฟื้นตัวได้เร็วขึ้นคุณก็คงไม่อยากนอนโรงพยาบาลนานๆหรือให้อาการแย่ลงกว่าเดิมใช่ไหม",
+   "score": 0.92,
+   "z": "但是你首先要这样控制饮食，这样你的身体才能恢复得更快。您不想长时间住院或让症状恶化，对吗？"
+  },
+  {
+   "n": 389,
+   "t": "รอตรวจผลช่วงเช้า",
+   "score": 1,
+   "z": "早上等待查看结果"
+  },
+  {
+   "n": 390,
+   "t": "ฉันจะล้างตัวคุณด้วยผ้าเช็ดทำความสะอาดแบบเปียก",
+   "score": 0.87,
+   "z": "我会用湿纸巾给你擦洗。"
+  },
+  {
+   "n": 391,
+   "t": "เขาอยู่แผนกไหนครับ",
+   "score": 1,
+   "z": "他在哪个部门？"
+  },
+  {
+   "n": 392,
+   "t": "เดี๋ยวฉันเข้าไปถามให้",
+   "score": 1,
+   "z": "我进去问问你。"
+  },
+  {
+   "n": 393,
+   "t": "เขาชื่ออะไร",
+   "score": 1,
+   "z": "他叫什么名字？"
+  },
+  {
+   "n": 394,
+   "t": "ฉันต้องรอผลตรวจเลือดอีกทีพรุ่งนี้ถ้าหากว่าต้องใช้ยาตัวไหนอีกหมอก็จะให้ใส่พรุ่งนี้",
+   "score": 1,
+   "z": "明天还要等验血结果。如果我需要再吃药，医生明天会给我加药。"
+  },
+  {
+   "n": 395,
+   "t": "ฉันจะกินหมี่ยำยำ",
+   "score": 0.75,
+   "z": "我会吃mee yum yum"
+  },
+  {
+   "n": 396,
+   "t": "มันเป็นเสื้อผ้าที่เราใส่ไปเล่นปีใหม่และสามารถใส่ไปถ่ายรูปก็ได้",
+   "score": 1,
+   "z": "这是我们过年穿的衣服，也可以穿去拍照。"
+  },
+  {
+   "n": 397,
+   "t": "ปีนี้จะมีกัน 3 ชุดนะชุด 1 คือแม่ฉันจะทำให้อีก 2 ชุดฉันจะซื้อให้",
+   "score": 1,
+   "z": "今年将有3套。第一套是我妈妈做的，另外两套是给你买的。"
+  },
+  {
+   "n": 398,
+   "t": "ปกติฉันคนเดียวแต่ละปีแม่ฉันจะทำให้ฉัน 7 ชุดนะ",
+   "score": 1,
+   "z": "通常情况下，只有我一个人。每年我妈妈都会给我做七套。"
+  },
+  {
+   "n": 399,
+   "t": "เพราะว่าปีใหม่ของคนม้งแต่ละปีจะตกอยู่ที่ 7 หรือ 10 วัน",
+   "score": 0.96,
+   "z": "因为每年苗族新年有7天或10天。"
+  },
+  {
+   "n": 400,
+   "t": "แบบเสื้อผ้าใหม่มันจะมีออกมาแต่ละปีและแต่ละวันเราก็จะใส่ไม่ซ้ำกัน",
+   "score": 1,
+   "z": "每年都会有新的服装款式问世，而我们每天的穿搭都不同。"
+  },
+  {
+   "n": 401,
+   "t": "เสื้อผ้าฉันนับตั้งแต่ที่ฉันโตมาและเล่นปีใหม่ม้งได้แม่ฉันทำให้ฉันจะถึงพันกว่าชุดแล้ว",
+   "score": 1,
+   "z": "自从我玩苗族新年以来，我妈妈已经给我做了一千多套衣服。"
+  },
+  {
+   "n": 402,
+   "t": "เสื้อผ้าฉันนับตั้งแต่ที่ฉันโตมาและเล่นปีใหม่ม้งได้แม่ฉันทำให้ฉันจะถึงพกว่าชุดแล้ว",
+   "score": 1,
+   "z": "我从小玩苗族新年的衣服，都是妈妈让我穿的。"
+  },
+  {
+   "n": 403,
+   "t": "เสื้อผ้าฉันนับตั้งแต่ที่ฉันโตมาและเล่นปีใหม่ม้งได้แม่ฉันทำให้ฉันจะถึง1000กว่าชุดแล้ว",
+   "score": 0.87,
+   "z": "自从我玩苗族新年长大以来，我妈妈给我送了1000多套衣服。"
+  },
+  {
+   "n": 404,
+   "t": "มันเยอะมากๆเพราะว่าปี 1 อย่างน้อยไม่มีก็มี 5 ชุด",
+   "score": 1,
+   "z": "数量很多，因为第一年至少有 5 套。"
+  },
+  {
+   "n": 405,
+   "t": "แล้วแต่ละชุดลายดอกไม้และแบบไม่เหมือนกันด้วยต้องแตกต่างกันไปเพราะว่าเราจะใส่ไม่ซ้ำกัน",
+   "score": 1,
+   "z": "而且每件带有花卉图案和款式的连衣裙都必须有所不同，因为我们会穿得不同。"
+  },
+  {
+   "n": 406,
+   "t": "ปีต่อไปฉันจะทำชุดคู่ให้เรานะทำด้วยมือ",
+   "score": 1,
+   "z": "明年我将为我们做一套手工制作的衣服。"
+  },
+  {
+   "n": 407,
+   "t": "ปีนี้มันใกล้จะถึงปีใหม่แล้วและฉันก็ไม่มีเวลาฉันซื้อให้คุณก่อนนะปีต่อไปฉันจะใช้มือของฉันทำเองเลย",
+   "score": 1,
+   "z": "今年快过年了，我没有时间。我先给你买。明年我会用我的双手自己做。"
+  },
+  {
+   "n": 408,
+   "t": "ไม่ใช่เสื้อผ้าที่พวกเขาใส่เป็นเสื้อผ้าของผู้ชายแต่ว่าไลฟ์สไตล์กันใส่มันจะแตกต่างกันไป",
+   "score": 1,
+   "z": "他们穿的衣服不是男装，但生活方式却不同。"
+  },
+  {
+   "n": 409,
+   "t": "คนชาวม้งที่ประเทศจีนประเทศลาวประเทศไทยและประเทศเวียดนามต่อให้เป็นคนชาวม้งเหมือนกันแต่ว่าจะใส่เสื้อผ้าค่อนข้างต่างกันนะ",
+   "score": 0.92,
+   "z": "中国、老挝、泰国、越南的苗族也都是苗族，但他们的穿着却截然不同。"
+  },
+  {
+   "n": 410,
+   "t": "ฉันอาบน้ำแล้วฉันเพิ่งอาบน้ำสระผมไปเมื่อวานฉันเป็นคนไข้ที่สะอาดมากไม่ต้องห่วง",
+   "score": 0.96,
+   "z": "我正在洗澡。我昨天刚洗完澡、洗了头发。我是一个非常干净的病人。不用担心。"
+  },
+  {
+   "n": 411,
+   "t": "รอฉันแต่งหน้าก่อนรูปนี้ฉันไม่สวยเลย",
+   "score": 1,
+   "z": "等我化好妆再拍这张照片。我一点也不漂亮。"
+  },
+  {
+   "n": 412,
+   "t": "ฉันไม่ได้แต่งหน้าเลยรูปนี้ฉันไม่สวยทิ้งซะ",
+   "score": 1,
+   "z": "我没有化妆。这张照片里的我并不漂亮。"
+  },
+  {
+   "n": 413,
+   "t": "หน้าตาคุณดีมากโดยที่ไม่ใช่แต่งรูปคุณก็รออยู่ดี",
+   "score": 0.87,
+   "z": "你的脸太好了，没有修过的照片，所以我在等。"
+  },
+  {
+   "n": 414,
+   "t": "ถ้ามันไม่ลงถังขยะคนจะดีใจหรอ",
+   "score": 1,
+   "z": "如果不进垃圾桶，人们会幸福吗？"
+  },
+  {
+   "n": 415,
+   "t": "ถ้าฉันเก็บมันไว้คุณจะไม่คิดอะไรมากใช่ไหม",
+   "score": 1,
+   "z": "如果我保留它，你就不会太介意，对吗？"
+  },
+  {
+   "n": 416,
+   "t": "คุณต้องหัดดูหนังผ่อนคลายสมองบ้างนะคุณดูเครียดเกินไปแล้ว",
+   "score": 0.93,
+   "z": "你需要学会看电影来放松你的大脑。看来你压力太大了。"
+  },
+  {
+   "n": 417,
+   "t": "งานของคุณเป็นยังไงบ้าง",
+   "score": 1,
+   "z": "你的工作怎么样？"
+  },
+  {
+   "n": 418,
+   "t": "ฉันแค่กลัวว่าการที่คุณมาอยู่ที่นี่และเดินทางบ่อยๆที่นี่ไม่ค่อยมีให้คนทำงานกลัวเป็นงานของจะกระทบต่องานของคุณ",
+   "score": 1,
+   "z": "我只是担心你来这里出差频繁，在这里工作的人不多，怕影响你的工作。"
+  },
+  {
+   "n": 419,
+   "t": "ฉันแค่กลัวว่าการที่คุณมาอยู่ที่นี่และเดินทางบ่อยๆที่นี่ไม่ค่อยมีให้คนทำงานกลัวเป็นงานขอกระทบต่องานของคุณ",
+   "score": 0.97,
+   "z": "只是怕你来来往往，出差频繁，在这里工作的人不多，怕影响你的工作。"
+  },
+  {
+   "n": 420,
+   "t": "ฉันแค่กลัวว่าการที่คุณมาอยู่ที่นี่และเดินทางบ่อยๆที่นี่ไม่ค่อยมีให้คนทำงานกลัวจะมีผลกระทบต่องานของคุณ",
+   "score": 1,
+   "z": "我只是担心因为你经常来这里出差，所以来这里工作的人不多。恐怕会影响你的工作。"
+  },
+  {
+   "n": 421,
+   "t": "เรื่องนี้มาถึงแล้ว 300 ครั้ง",
+   "score": 0.88,
+   "z": "这个故事已经被提起300次了。"
+  },
+  {
+   "n": 422,
+   "t": "ไปซื้อผลไม้ข้างล่าง",
+   "score": 1,
+   "z": "去楼下买点水果吧。"
+  },
+  {
+   "n": 424,
+   "t": "รุ่นนี้ชอบผู้ชายคนจีนมากกว่าเพราะฉะนั้นหนูนิดต้องตั้งใจเรียนภาษาจีน",
+   "score": 1,
+   "z": "这一代人更喜欢中国男人，所以Noonid必须认真学习中文。"
+  },
+  {
+   "n": 425,
+   "t": "ฉันชอบเขามากกว่าฉันต้องพยายามมากกว่า",
+   "score": 1,
+   "z": "我更喜欢他了，我要更加努力。"
+  },
+  {
+   "n": 426,
+   "t": "ต้องได้ออกไปกินอาหารข้างนอกนะโมงนี้เขาไม่ให้กินอาหารในห้องแล้วมันจะมีกลิ่น",
+   "score": 1,
+   "z": "这个时间我得出去吃饭。他们不让我在房间里吃东西，房间里会有味道。"
+  },
+  {
+   "n": 427,
+   "t": "โอ๊ยน้อ",
+   "score": 0.57,
+   "z": "哦，不。"
+  },
+  {
+   "n": 428,
+   "t": "ฉันบอกว่าฉันปวดมากทำไมคุณไม่มาจับมือฉันล่ะ",
+   "score": 1,
+   "z": "我说我很痛苦，你为什么不过来握住我的手？"
+  },
+  {
+   "n": 429,
+   "t": "เอาอันนี้ออกให้หน่อย",
+   "score": 1,
+   "z": "请把这个拿出来。"
+  },
+  {
+   "n": 430,
+   "t": "เปราะบางมากใช่ไหมเดี๋ยวฉันจะทุบให้มันแตกเลย",
+   "score": 0.81,
+   "z": "它非常脆弱，对吧？我会粉碎它。"
+  },
+  {
+   "n": 431,
+   "t": "แล้วฉันจะได้กลับบ้านแล้ว",
+   "score": 1,
+   "z": "然后我就可以回家了。"
+  },
+  {
+   "n": 432,
+   "t": "รออีกสักพักนึง",
+   "score": 1,
+   "z": "再等一下。"
+  },
+  {
+   "n": 433,
+   "t": "ฉันบอกว่าคุณหล่อและหน้าตาดีมาก",
+   "score": 1,
+   "z": "我说你很帅，很好看。"
+  },
+  {
+   "n": 434,
+   "t": "เพื่อนของฉันชอบเพื่อนของฉันก็เลยใส่",
+   "score": 1,
+   "z": "我的朋友喜欢它，所以我的朋友就戴了它。"
+  },
+  {
+   "n": 435,
+   "t": "เห็นบอกเพื่อนฉันว่าซักแล้วเอามาส่งฉันด้วยเพื่อนฉันบอกว่าไม่ยอมเพราะว่าเพื่อนฉันชอบไปแล้ว",
+   "score": 1,
+   "z": "我让我的朋友把它洗了然后也寄给我。我的朋友说她不会接受，因为我的朋友已经喜欢了。"
+  },
+  {
+   "n": 436,
+   "t": "เราจะไปพักที่ใกล้ๆร้านกันจะได้ออกไปดูร้านอย่างสะดวก",
+   "score": 1,
+   "z": "我们将住在商店附近，这样我们就可以轻松出去参观商店。"
+  },
+  {
+   "n": 437,
+   "t": "ต้องดูก่อนเพราะว่าเขาต้องส่งงานฉันประมาณวันที่ 13",
+   "score": 0.96,
+   "z": "我必须先看一下，因为他要在13号左右提交我的作业。"
+  },
+  {
+   "n": 438,
+   "t": "พรุ่งนี้ฉันก็จะเริ่มไปเก็บห้องที่ทำงานแล้วก็จะเริ่มย้ายเข้าไปอยู่แล้ว",
+   "score": 1,
+   "z": "明天我将开始收拾我的办公室，然后开始搬进去。"
+  },
+  {
+   "n": 439,
+   "t": "พักที่นี่ก่อน 1 คืนไหมเพราะว่าพรุ่งนี้จะจ่ายเข้าไปอยู่ที่ทำงานแล้ว",
+   "score": 1,
+   "z": "您是否想在这里住一晚，因为明天您将支付住宿费？"
+  },
+  {
+   "n": 440,
+   "t": "ราคาแค่ 250,000 บาทเอง",
+   "score": 0.65,
+   "z": "价格仅为25万泰铢。"
+  },
+  {
+   "n": 441,
+   "t": "ฉันอยากมีเพื่อนเป็นผู้หญิงคนจีนฉันจะได้ถามว่าการเป็นแฟนของคนจีนนั้นต้องใส่ใจขนาดไหน",
+   "score": 1,
+   "z": "我想有一个中国女孩的朋友，所以我可以问一下，做一个中国女朋友需要多注意。"
+  },
+  {
+   "n": 443,
+   "t": "ฉันจะพาคุณไปเที่ยวบาร์ไง",
+   "score": 1,
+   "z": "我带你去酒吧。"
+  },
+  {
+   "n": 444,
+   "t": "คุณใจร้ายกับฉันเกินไปแล้วฉันแค่จะพาคุณไปเที่ยวคุณก็ไม่พอใจอีก",
+   "score": 1,
+   "z": "你对我太刻薄了，我只想把你赶出去，你就不会再幸福了。"
+  },
+  {
+   "n": 445,
+   "t": "ถ้าคุณไปร้านเหล้าไง",
+   "score": 1,
+   "z": "如果你去酒类商店怎么办？"
+  },
+  {
+   "n": 446,
+   "t": "พาคุณไปร้านเหล้าไงไปกินเหล้า",
+   "score": 1,
+   "z": "带你去酒品店喝酒。"
+  },
+  {
+   "n": 447,
+   "t": "คุณไม่อยากกินเหล้าหรอ",
+   "score": 1,
+   "z": "你不想喝吗？"
+  },
+  {
+   "n": 448,
+   "t": "ฉันแค่จะพาคุณไปเดินเล่น",
+   "score": 1,
+   "z": "我只是想带你去散步。"
+  },
+  {
+   "n": 449,
+   "t": "ฉันแค่ล้อเล่นคุณไงฉันจะพาคุณมาเดินเล่น",
+   "score": 1,
+   "z": "我只是在逗你。我带你去散步。"
+  },
+  {
+   "n": 450,
+   "t": "ถ้าไม่มีโทรศัพท์ฉันก็โทรหาคุณไม่ได้ไงฉันขาดคุณไม่ได้จริงๆ",
+   "score": 1,
+   "z": "如果我没有电话，我就无法给你打电话。没有你我真的活不下去。"
+  },
+  {
+   "n": 451,
+   "t": "ฉันอยากไปกินปรางอาหารปลาของคนจีนตอนนั้นฉันพาคุณไป",
+   "score": 0.92,
+   "z": "我想去吃中国鱼食。那时，我就带你去了。"
+  },
+  {
+   "n": 452,
+   "t": "แบบไหนล่ะไม่เข้าใจ",
+   "score": 1,
+   "z": "哪类你不明白？"
+  },
+  {
+   "n": 453,
+   "t": "ไม่มีอะไรพี่ชายฉันโทรมา",
+   "score": 1,
+   "z": "没什么，我哥哥打来电话。"
+  },
+  {
+   "n": 454,
+   "t": "ฉันถามเขาไปว่าเรื่องเงินที่ฉันอยากจะยืมพี่ชายฉันได้คุยกับพี่สะใภ้หรือเปล่า",
+   "score": 1,
+   "z": "我问他有没有跟我嫂子商量过要跟哥哥借的钱。"
+  },
+  {
+   "n": 455,
+   "t": "พี่ชายฉันบอกว่าพี่สะใภ้ฉันบอกว่าช่วงนี้เขาทั้งสองคนไม่มีเงินแล้ว",
+   "score": 1,
+   "z": "哥哥说，嫂子说这几天他们俩都没有钱了。"
+  },
+  {
+   "n": 456,
+   "t": "คนหิวหรือยังล่ะ",
+   "score": 1,
+   "z": "人们还饿吗？"
+  },
+  {
+   "n": 457,
+   "t": "ฉันแค่รู้สึกเสียใจนิดหน่อยขนาดคุณไม่ใช่พี่ชายฉันคุณยังหาทุกทางช่วยฉันเลย",
+   "score": 1,
+   "z": "我只是觉得有点遗憾，虽然你不是我的兄弟，但你仍然不遗余力地帮助我。"
+  },
+  {
+   "n": 458,
+   "t": "ฉันแค่ชอบเสื้อแบบนี้ทำไมคุณไม่ให้ฉันใส่หน้า",
+   "score": 1,
+   "z": "我就是喜欢这种衬衫，你为什么不让我把它戴在脸上呢？"
+  },
+  {
+   "n": 459,
+   "t": "ไม่เป็นไรถ้าคุณไม่ชอบคุณก็ซื้อมาให้ฉันเถอะฉันจะใส่ในวันที่คุณไม่อยู่",
+   "score": 1,
+   "z": "如果你不喜欢也没关系，买给我吧，你不在的时候我就穿它。"
+  },
+  {
+   "n": 460,
+   "t": "ก็คุณไม่ชอบไงเวลาคุณอยู่ฉันก็ไม่ใส่",
+   "score": 1,
+   "z": "如果你不喜欢，你来的时候我就不穿了。"
+  },
+  {
+   "n": 461,
+   "t": "คุณไม่ชอบไงเวลาคุณอยู่ฉันก็ไม่ใส่แต่เวลาคุณไม่อยู่ฉันก็ใส่ได้สิ",
+   "score": 1,
+   "z": "如果你不喜欢，你在的时候我不穿，但你不在的时候我可以穿。"
+  },
+  {
+   "n": 462,
+   "t": "ใครบอกให้คุณกินข้าวเยอะขนาดนั้นล่ะ",
+   "score": 1,
+   "z": "谁叫你吃那么多的？"
+  },
+  {
+   "n": 463,
+   "t": "คุณก็กินข้าวเยอะเกินไปแล้ว",
+   "score": 1,
+   "z": "你吃太多了。"
+  },
+  {
+   "n": 464,
+   "t": "ฉันโทรหาพนักงานอยู่ที่ร้านว่าฉันกำลังจะเข้าไปดูร้านให้เขาลงมาเปิดประตูให้ฉันด้วย",
+   "score": 1,
+   "z": "我打电话给店里的工作人员，说我要去店里看看，让他下来给我开门。"
+  },
+  {
+   "n": 465,
+   "t": "ใส่ไปเที่ยวใส่ไปคาเฟ่ใส่ออกไปเที่ยวข้างนอกคนอื่นก็ใส่ไม่เห็นจะเป็นอะไรเลย",
+   "score": 1,
+   "z": "穿它去旅行，穿它去咖啡馆，穿它出去，其他人穿它根本没有关系。"
+  },
+  {
+   "n": 466,
+   "t": "คุณน่ะชอบคิดมากคนอื่นก็ใส่ใครๆก็ใส่ทั่วไปไม่เห็นจะเป็นอะไรเลย",
+   "score": 1,
+   "z": "你喜欢想太多。其他人穿它，其他人也穿它。完全没关系。"
+  },
+  {
+   "n": 467,
+   "t": "ฉันอยู่เวียดนามฉันรู้สึกว่าใส่เครื่องแบบนี้ออกไปข้างนอกมันเป็นเรื่องปกติ",
+   "score": 1,
+   "z": "我在越南。我觉得在外面穿这套制服很正常。"
+  },
+  {
+   "n": 468,
+   "t": "ฉันไม่ใส่แล้วฉันจะไม่ใส่อะไรทั้งนั้นเลยฉันใส่แบบนี้ได้หรือยังพอใจหรือยัง",
+   "score": 1,
+   "z": "我不戴。我根本不会穿任何东西。我这样穿可以吗，满意吗？"
+  },
+  {
+   "n": 469,
+   "t": "รอถึงร้านเปิดร้านแล้วค่อยซื้อนะ",
+   "score": 1,
+   "z": "等商店开门了再买。"
+  },
+  {
+   "n": 471,
+   "t": "ฉันส่งแผนที่ให้คุณแล้วนะ",
+   "score": 1,
+   "z": "我给你发了一张地图。"
+  },
+  {
+   "n": 472,
+   "t": "คุณกลับไปดูข้อความที่เราคุยกันในฉันจำได้ฉันส่งให้คุณแล้ว",
+   "score": 1,
+   "z": "你回去看看我发给你的记忆里我们聊过的信息。"
+  },
+  {
+   "n": 473,
+   "t": "งั้นคุณก็บันทึกไว้สิตอนนี้ก็ไม่ได้ว่างเปล่าแล้ว",
+   "score": 1,
+   "z": "然后你保存它，现在它不为空了。"
+  },
+  {
+   "n": 474,
+   "t": "ฉันกำลังนำคำว่าฉันมีมาใช้กับสิ่งของต่างๆฉันไม่ได้ตอบคำถามของคุณ",
+   "score": 0.81,
+   "z": "我正在将我所拥有的词应用于事物，我不是在回答你的问题。"
+  },
+  {
+   "n": 475,
+   "t": "ไม่เป็นไรเมื่อกี้นี้แม่ฉันโทรมาว่ายายฉันไม่ค่อยสบาย",
+   "score": 1,
+   "z": "没事，刚才我妈打电话来，说我奶奶身体不太好。"
+  },
+  {
+   "n": 476,
+   "t": "แล้วหมอบอกว่าย้ายฉันจะอยู่ได้อีกไม่นาน",
+   "score": 1,
+   "z": "然后医生说如果我搬家的话我活不了多久了。"
+  },
+  {
+   "n": 477,
+   "t": "ฉันแค่รู้สึกว่าฉันอยากกลับบ้านแต่งงานของฉันยังไม่เสร็จเลย",
+   "score": 1,
+   "z": "我只是觉得我想回家，我的婚姻还没有结束。"
+  },
+  {
+   "n": 478,
+   "t": "ฉันอยากกลับไปเยี่ยมยายแต่งานของฉันยังไม่เสร็จเลย",
+   "score": 0.88,
+   "z": "我想回去看望奶奶，但是我的工作还没有完成。"
+  },
+  {
+   "n": 479,
+   "t": "ฉันแค่รู้สึกว่าเหมือนพระเจ้าใจร้ายกับฉันเกินไป",
+   "score": 1,
+   "z": "我只是觉得老天爷对我太残忍了。"
+  },
+  {
+   "n": 480,
+   "t": "ฉันแค่รู้สึกเหนื่อยฉันก็รู้สึกเหมือนพระเจ้าใจร้ายกับฉันมาก",
+   "score": 1,
+   "z": "我只是觉得累，我觉得老天对我很残酷。"
+  },
+  {
+   "n": 481,
+   "t": "เราไปไม่ได้เรามีหน้าที่อยู่ตรงนี้",
+   "score": 1,
+   "z": "我们不能走，我们在这里有任务。"
+  },
+  {
+   "n": 482,
+   "t": "ไม่เป็นไรฉันแค่เหนื่อยฉันแค่เหนื่อยมากๆ",
+   "score": 1,
+   "z": "没关系，我只是累了，我只是真的累了。"
+  },
+  {
+   "n": 483,
+   "t": "ฉันแค่รู้สึกว่าฉันต้องเข้มแข็งขนาดไหนฉันถึงจะผ่านทุกอย่างนี้ไปได้",
+   "score": 1,
+   "z": "我只是觉得我必须多么坚强才能度过这一切。"
+  },
+  {
+   "n": 484,
+   "t": "ไม่เป็นไรแล้วเมื่อกี้ฉันแค่รู้สึกว่าฉันเหนื่อยเกินไปแต่ตอนนี้ฉันไม่เป็นไรแล้วฉันจัดการกับความรู้สึกของตัวเองได้",
+   "score": 1,
+   "z": "没关系。刚才我只觉得自己太累了。但现在我没事了。我可以处理我的感受。"
+  },
+  {
+   "n": 485,
+   "t": "เอาไว้ค่อยคุยกันทีหลังเถอะ",
+   "score": 1,
+   "z": "我们稍后再说吧。"
+  },
+  {
+   "n": 486,
+   "t": "จะไปรับเพื่อนฉันแล้วก็ไปทานข้าวแล้วก็ไปธุระต่อ",
+   "score": 1,
+   "z": "我要去接我的朋友，然后去吃饭，然后去做我的事。"
+  },
+  {
+   "n": 487,
+   "t": "วันนี้ฉันมีธุระหลายอย่างที่ต้องทำเลย",
+   "score": 1,
+   "z": "今天我有很多事情要做。"
+  },
+  {
+   "n": 488,
+   "t": "เสื้อนี้หาซื้อที่ไหนไม่ได้อีกแล้ว",
+   "score": 1,
+   "z": "你在其他地方买不到这件衬衫。"
+  },
+  {
+   "n": 489,
+   "t": "เพราะมันต้องเติมผ่านอินเตอร์เน็ตเราบัญชีนั้นเป็นบัญชีเราไม่ใช่บัญชีของคนจีนเพราะฉะนั้นคนถึงเติมไม่ได้",
+   "score": 0.88,
+   "z": "因为要通过网络充值，账户是我们的账户，不是中国人的账户，所以人家无法充值。"
+  },
+  {
+   "n": 491,
+   "t": "พยัญชนะไทยตัวที่ ๓๐ เป็นพวกอักษรต่ำ ใช้เป็นตัวสะกดในแม่กบในคำที่มาจากบาลี และสันสกฤต.",
+   "score": 0.6,
+   "z": "第 30 个泰语辅音是一个小字母。用作巴利语和梵语单词中“mae kob”的拼写。"
+  },
+  {
+   "n": 492,
+   "t": "ปังคือชื่อ",
+   "score": 1,
+   "z": "邦是这个名字"
+  },
+  {
+   "n": 493,
+   "t": "อ๋อละเมื่อกี้",
+   "score": 1,
+   "z": "哦，刚才。"
+  },
+  {
+   "n": 494,
+   "t": "คุณต้องตั้งใจเรียนภาษาไทยแล้วแหละ",
+   "score": 1,
+   "z": "您必须致力于学习泰语。"
+  },
+  {
+   "n": 495,
+   "t": "การทำวีซ่าให้คนต้องใช้เงิน 1,000 ถึง 1,500 ดอลลาร์เพราะฉะนั้นคุณใจเย็นๆก่อนฉันยังไม่มีเงินรอก่อนแล้วจะทำให้คนที่หลัง",
+   "score": 0.85,
+   "z": "为某人获得签证的费用为 1,000 至 1,500 美元，因此请放心。我还没有钱。等一下，我会把它交给后面的人。"
+  },
+  {
+   "n": 496,
+   "t": "คุณสามีขาคุณจะไปถอนเงินให้ฉันไหม",
+   "score": 1,
+   "z": "老公，你要帮我取钱吗？"
+  },
+  {
+   "n": 498,
+   "t": "ฉันแค่ล้อคนเล่นน่ะถ้าหากว่าไม่ไปกดเงินก็ไม่เป็นไรเราก็กลับบ้านกัน",
+   "score": 1,
+   "z": "我只是在捉弄人而已。如果你不去取钱也没关系。我们会回家。"
+  },
+  {
+   "n": 499,
+   "t": "ฉันก็ไม่ได้บอกให้คุณจ่ายนี่เดี๋ยวฉันจ่ายเองก็ได้โอเคกลับบ้านเลยไม่ต้องถอนเงินแล้ว",
+   "score": 1,
+   "z": "我没有告诉你要付这个钱。我自己付钱。还好，回家就不用取钱了。"
+  },
+  {
+   "n": 500,
+   "t": "งั้นคุณก็ไม่ต้องจ่ายสิ",
+   "score": 1,
+   "z": "那么你就不用付钱了。"
+  },
+  {
+   "n": 501,
+   "t": "เดี๋ยวฉันเดี๋ยวฉันให้เพื่อนของฉันจ่ายก่อนก็ได้ไม่เป็นไร",
+   "score": 1,
+   "z": "我就让我朋友先付钱吧。没关系。"
+  },
+  {
+   "n": 502,
+   "t": "มาตอนกลางคืนมันน่าจะสวยกว่านะเพราะตอนกลางคืนเขาก็จะเปิดน้ำด้วย",
+   "score": 1,
+   "z": "晚上来的话应该会更漂亮因为晚上他们也会放水。"
+  },
+  {
+   "n": 503,
+   "t": "ฉันไปนอนกับคนแรกกับดอกเบี้ยได้ไหม",
+   "score": 0.76,
+   "z": "我可以和第一个感兴趣的人睡觉吗？"
+  },
+  {
+   "n": 504,
+   "t": "คุณมีแรงจริงๆใช่ไหมที่จะนอนกับฉัน 100,000 คืน",
+   "score": 0.84,
+   "z": "你真的有实力陪我睡十万夜吗？"
+  },
+  {
+   "n": 505,
+   "t": "เมื่อวันก่อนฉันให้เพื่อนฉันไปซื้อสายไฟให้พนักงานทำงานที่ร้าน",
+   "score": 1,
+   "z": "有一天，我让朋友给店里的员工买了一些电线。"
+  },
+  {
+   "n": 506,
+   "t": "ฉันเชื่อว่าฉันต้องหาเงินได้อีกครั้งนึง",
+   "score": 0.84,
+   "z": "我相信我需要再次赚钱。"
+  },
+  {
+   "n": 507,
+   "t": "พระเจ้าให้คุณมาเจอฉันในเวลาที่ฉันยากจนมากๆเพื่อจะลงแต่คุณว่าคุณยังจะอยู่กับฉันไปอีกนานไหม",
+   "score": 1,
+   "z": "当我穷困潦倒的时候，上帝把你带到了我身边。但你觉得你会和我在一起很久吗？"
+  },
+  {
+   "n": 508,
+   "t": "เพราะไม่แน่ถ้าหากว่าคุณเจอฉันเวลาที่ฉันรวยมากๆคุณอาจจะแค่อยากได้เงินฉันก็เป็นไปได้",
+   "score": 1,
+   "z": "因为如果你在我非常富有的时候遇见我，你可能只是想要我的钱。这是有可能的。"
+  },
+  {
+   "n": 509,
+   "t": "เขาบอกว่าถ้าอยากดูว่าใครเป็นคนที่รักเราจริงๆจงดูเวลาที่เรายากจนว่าคนๆนั้นจะอยู่กับเราอีกนานไหม",
+   "score": 0.95,
+   "z": "他说，要想知道谁是真正爱你的人，就看你穷的时候，看那个人会不会和你长久相伴。"
+  },
+  {
+   "n": 511,
+   "t": "มันไม่ใช่แต่มันเป็นความจริงจริงๆถ้าหากว่าคุณมาเจอฉันเวลาฉันไม่มีเงินแล้วคุณก็ยังอยู่กับฉันอยู่แน่นอนอยู่แล้วว่าเวลาฉันมีเงินคุณก็จะเป็นที่หนึ่ง",
+   "score": 1,
+   "z": "事实并非如此，但这确实是事实。如果我没钱的时候你来看我，而你还在我身边，那么我有钱的时候你肯定是第一。"
+  },
+  {
+   "n": 512,
+   "t": "แต่ถ้าหากว่าคนเจอฉันเวลาที่ฉันมีเงินมากๆอยู่แล้วฉันคุณอาจจะไม่ได้อยู่ในสายตาฉันก็เป็นไปได้นะ",
+   "score": 1,
+   "z": "但如果当我已经有很多钱的时候人们见到我，我的视线中可能就不会出现你了。"
+  },
+  {
+   "n": 513,
+   "t": "ฉันอยากให้คุณสร้างตารางแบบนี้แต่ว่ามีสีน้ำเงินเข้มและสีทองให้มันเข้ากับโลโก้ของฉัน",
+   "score": 0.88,
+   "z": "我希望您创建一张像这样的桌子，但采用深蓝色和金色以匹配我的徽标。"
+  },
+  {
+   "n": 514,
+   "t": "น่าตีเสื้อขายาวมีโอกาส",
+   "score": 1,
+   "z": "值得一击的是长袖衬衫。有机会。"
+  },
+  {
+   "n": 515,
+   "t": "ฉันบอกว่าคุณหายโกรธหรือยัง",
+   "score": 1,
+   "z": "我说，你的怒火平息了吗？"
+  },
+  {
+   "n": 516,
+   "t": "อย่าโกรธเลยนะขอเพียงว่าถอดเสื้อผ้าคุณก็หายโกรธแล้ว",
+   "score": 1,
+   "z": "不要生气，只要把衣服脱掉，你的怒气就会消失。"
+  },
+  {
+   "n": 517,
+   "t": "โอเธียเตอร์หัวผู้ยิ่งได้ปลาแจ่วนี่มีแต่ความสวยๆหัวฟ้าเฉยๆ",
+   "score": 0.77,
+   "z": "Otheater，即获得最多鱼的人，只有美丽的蓝发人。"
+  },
+  {
+   "n": 518,
+   "t": "คนเห็นผู้หญิงใส่ชุดสีขาวสวยๆเมื่อตะกี้เดินเข้าไปในร้านไหม",
+   "score": 1,
+   "z": "你刚才走进店里的时候有没有看到一个穿着漂亮白色裙子的女人？"
+  },
+  {
+   "n": 519,
+   "t": "เขาเดินเข้ามาถามฉันว่าฉันท่าอะไรลงไปที่ขาทำไมขาของฉันขาวจังเลย",
+   "score": 1,
+   "z": "他走过来问我对我的腿做了什么，为什么它们这么白。"
+  },
+  {
+   "n": 520,
+   "t": "ฉันตอบไปว่าฉันไม่ค่อยใส่กางเกงขาสั้นก็เลยทำให้ขาขาวกว่า",
+   "score": 1,
+   "z": "我回答说我很少穿短裤，所以腿比较白。"
+  },
+  {
+   "n": 521,
+   "t": "ฉันรู้สึกว่ากางเกงตัวนี้ค่อนข้างสั้น",
+   "score": 1,
+   "z": "我感觉这条裤子有点短。"
+  },
+  {
+   "n": 522,
+   "t": "เมื่อตะกี้ฉันอยู่ในห้องนอนก็รู้สึกว่าไม่ค่อยสั้นเท่าไหร่แต่พอฉันเดินออกมาข้างนอกรู้สึกว่ามันสั้นมาก",
+   "score": 1,
+   "z": "刚才在卧室里，感觉没那么短，但是走到外面就感觉很短。"
+  },
+  {
+   "n": 523,
+   "t": "เพื่อนคุณมาเปิดบริษัทที่เราหรอ",
+   "score": 1,
+   "z": "你的朋友来和我们一起开公司吗？"
+  },
+  {
+   "n": 524,
+   "t": "เพราะฉันอาบน้ำแต่งตัวแล้วจ๊ะคุณพาคุณไปถ่ายที่ประตูชัยนะ",
+   "score": 0.95,
+   "z": "因为我已经洗澡穿好衣服了，所以我就带你们去胜利门拍照。"
+  },
+  {
+   "n": 525,
+   "t": "ทำไมคุณถึงมีอันนี้",
+   "score": 1,
+   "z": "为什么你有这个？"
+  },
+  {
+   "n": 526,
+   "t": "คุณไปนอนกับใครมา",
+   "score": 1,
+   "z": "你和谁睡过？"
+  },
+  {
+   "n": 527,
+   "t": "ทำไมหลายๆครั้งก่อนที่คุณมามันไม่มีล่ะ",
+   "score": 1,
+   "z": "来之前怎么没来过很多次呢？"
+  },
+  {
+   "n": 528,
+   "t": "เข้าใจไหมไม่เข้าใจ",
+   "score": 1,
+   "z": "你明白吗？我不明白。"
+  },
+  {
+   "n": 529,
+   "t": "แล้วคุณจะเก็บมันไว้แล้วเอามาทำไมล่ะ",
+   "score": 1,
+   "z": "那么你为什么要保留它并带来它呢？"
+  },
+  {
+   "n": 530,
+   "t": "เสื้อตัวนี้เป็นของฉันแต่รุ่นนี้ก็มีตัว",
+   "score": 1,
+   "z": "这件衬衫是我的，但这个模特也有一件。"
+  },
+  {
+   "n": 531,
+   "t": "เสื้อตัวนี้เป็นของฉันฉันกับนุนีซื้อเสื้อเหมือนกัน",
+   "score": 0.92,
+   "z": "这件衬衫是我的。我和努尼买了同样的衬衫。"
+  },
+  {
+   "n": 532,
+   "t": "ฉันซื้อเสื้อตัวนึงให้คน 4 แสน",
+   "score": 1,
+   "z": "我为40万人买了一件衬衫。"
+  },
+  {
+   "n": 533,
+   "t": "เสื้อตัวนั้นน่าจะประมาณ 120 หยวน",
+   "score": 0.77,
+   "z": "那件衬衫应该是120元左右。"
+  },
+  {
+   "n": 534,
+   "t": "ฉันไม่ได้ลืมเพราะฉันรู้ว่าฉันมีแฟนแล้วฉันเตรียมตัวอยู่เสมอ",
+   "score": 1,
+   "z": "我没有忘记，因为我知道我有男朋友，而且我一直做好准备。"
+  },
+  {
+   "n": 535,
+   "t": "สมองของฉันคิดง่ายๆฉันไม่เคยมีมาตรฐานเลยว่าฉันต้องดูซีรีย์อะไรซีรีย์อะไรโผล่ขึ้นมาแล้วมันน่าดูมันดูแล้วมันตลกดีฉันก็ดูไปหมด",
+   "score": 0.87,
+   "z": "我的大脑很容易思考。对于我需要观看什么系列节目，我从来没有标准。任何出现的系列都值得一看。很有趣。我看着他们所有人。"
+  },
+  {
+   "n": 537,
+   "t": "ซื้อแบบนี้เลยนะอย่าซื้อแบบอื่นนะซื้อขนาดยาวและสีทุกอย่างแบบนี้เลยอีก 5 กล่องฉันชอบมาก",
+   "score": 1,
+   "z": "买这个，不要买其他类型，再买 5 盒长度和每个颜色都是这样的。我真的很喜欢它。"
+  },
+  {
+   "n": 538,
+   "t": "ตอนนี้ยังไม่มีอะไรให้คุณขายรอก่อนมีอะไรแล้วฉันจะบอก",
+   "score": 1,
+   "z": "现在你没有什么可以卖的。等有什么事情我就告诉你。"
+  },
+  {
+   "n": 539,
+   "t": "ภาษาเวียดนามเขียนง่ายกว่าภาษาไทยแต่ถ้าว่าให้ออกเสียงพูดภาษาไทยจะออกเสียงพูดง่ายกว่า",
+   "score": 1,
+   "z": "越南语比泰语更容易书写，但如果您说泰语，发音和说话会更容易。"
+  },
+  {
+   "n": 540,
+   "t": "ฉันมารับของ",
+   "score": 1,
+   "z": "我是来取东西的。"
+  },
+  {
+   "n": 541,
+   "t": "มันเป็นเสียงนะคะที่สั่งตัดมาเพื่อจะปูที่นอนที่จะฉีดหน้าให้ลูกค้า",
+   "score": 1,
+   "z": "这是一种专门为覆盖床垫而设计的声音，该声音将喷在顾客的脸上。"
+  },
+  {
+   "n": 542,
+   "t": "ทำไมขึ้นรถมาแล้วคุณก็อารมณ์ดีจังเลย",
+   "score": 1,
+   "z": "为什么一上车心情就这么好？"
+  },
+  {
+   "n": 543,
+   "t": "ใบหน้าของคุณตอนที่ขึ้นรถมามันแตกต่างจากตอนที่นั่งในร้านอาหารมากเลยนะ",
+   "score": 1,
+   "z": "当你坐进车里时，你的表情与坐在餐厅里时的表情有很大不同。"
+  },
+  {
+   "n": 544,
+   "t": "ฉันบอกว่าคุณน่ารักหรือคนหล่อมากฉันรักคุณมาก",
+   "score": 1,
+   "z": "我说你是一个很可爱或者很帅的男人，我很爱你。"
+  },
+  {
+   "n": 545,
+   "t": "ฉันบอกว่าพอกลับถึงห้องแล้วก็ไปนอนเลย",
+   "score": 0.92,
+   "z": "我说我一回到房间就睡觉了。"
+  },
+  {
+   "n": 546,
+   "t": "ในสมองฉันกำลังคิดเรื่องงานอยู่ฉันคิดว่าไปถึงที่ห้องฉันจะต้องจัดการรายละเอียดงานนิดหน่อย",
+   "score": 0.93,
+   "z": "我脑子里想着工作。我想当我到达我的房间时我必须注意一些细节。"
+  },
+  {
+   "n": 547,
+   "t": "คนน่ารักและคุณชอบงอนฉันขนาดนี้ฉันจะเบื่อคุณได้ยังไงล่ะถ้าหากฉันเบื่อคุณไปแล้วฉันจะหาคนที่โกรธฉันตลอดเวลาเหมือนคุณได้จากที่ไหนอีก",
+   "score": 1,
+   "z": "你真是个可爱的人，而且你也喜欢这样的我。我怎么会对你感到厌倦呢？如果我对你感到厌烦，我还能去哪里找到一个像你一样整天对我生气的人呢？"
+  },
+  {
+   "n": 548,
+   "t": "เป็นเพราะคุณนอนกับฉันมากเกินไปแล้ว",
+   "score": 1,
+   "z": "那是因为你睡了我太多了。"
+  },
+  {
+   "n": 549,
+   "t": "ฉันเคยหาเงินมาได้มากที่สุดแค่ 1 ล้านดอลลาร์เอง",
+   "score": 0.7,
+   "z": "我筹集到的最高金额刚刚超过 100 万美元。"
+  },
+  {
+   "n": 550,
+   "t": "คุณรู้จักต้นยางพาราไหม",
+   "score": 1,
+   "z": "你了解橡胶树吗？"
+  },
+  {
+   "n": 551,
+   "t": "ฉันมีสวนยางพาราด้วย",
+   "score": 1,
+   "z": "我还有一个橡胶园。"
+  },
+  {
+   "n": 552,
+   "t": "ปกติต้นยางพาราต้องปลูกถึง 8 ปีถึงจะเก็บเกี่ยวได้",
+   "score": 1,
+   "z": "通常，橡胶树必须种植8年才能收获。"
+  },
+  {
+   "n": 553,
+   "t": "ต้นยางพาราของฉันตอนนี้มีอายุแค่ 2 ปีเอง",
+   "score": 0.83,
+   "z": "我的橡胶树现在只有2岁了。"
+  },
+  {
+   "n": 554,
+   "t": "สวนยางพาราของฉันมีจำนวน 8,000 ต้น",
+   "score": 0.84,
+   "z": "我的橡胶园有 8,000 棵树。"
+  },
+  {
+   "n": 555,
+   "t": "1 ต้นสามารถเก็บเกี่ยวได้ 1 5 กิโลกรัม",
+   "score": 0.73,
+   "z": "1棵树可收获1.5公斤。"
+  },
+  {
+   "n": 556,
+   "t": "1 ต้นสามารถเก็บเกี่ยวได้ 1 ถึง 8 กิโลกรัมต่อ 1 วัน",
+   "score": 0.79,
+   "z": "一株植物每天可收获1至8公斤。"
+  },
+  {
+   "n": 557,
+   "t": "ราคาซื้อขายเราจะไม่แน่นอนแหละเราก็จะไม่รู้ว่ามันจะเท่าไหร่มันก็แล้วแต่ช่วง",
+   "score": 1,
+   "z": "我们的交易价格不确定，也不知道会是多少。这取决于时期。"
+  },
+  {
+   "n": 558,
+   "t": "คุณสามารถดูราคายางพาราได้นะ",
+   "score": 0.78,
+   "z": "你可以看到橡胶的价格。"
+  },
+  {
+   "n": 559,
+   "t": "คุณสามารถหาข้อมูลดูเกี่ยวกับราคาซื้อขายยางพาราเพราะช่วงนี้ฉันก็ไม่แน่ใจเหมือนกันฉันไม่ได้ดู",
+   "score": 1,
+   "z": "你可以找到有关橡胶买卖价格的信息，因为最近我也不确定。我没看过。"
+  },
+  {
+   "n": 560,
+   "t": "ฉันมีส่วนเลี้ยงวัวด้วย",
+   "score": 1,
+   "z": "我也有牛。"
+  },
+  {
+   "n": 561,
+   "t": "เราจะออกไปหาอะไรกินแล้วก็ไปตรวจหูของฉัน",
+   "score": 1,
+   "z": "我们会出去吃点东西，然后去检查我的耳朵。"
+  },
+  {
+   "n": 562,
+   "t": "หลังจากนั้นฉันอยากไปทำเล็บใหม่",
+   "score": 1,
+   "z": "之后，我想再去做一次指甲。"
+  },
+  {
+   "n": 563,
+   "t": "วันนี้ถ้าหากว่าเรามีเงินเราก็จะไปเอาสินค้าเอาของแล้วก็จะไปเช็คดูของ",
+   "score": 1,
+   "z": "今天我们有钱了，就去拿货，然后去检查一下。"
+  },
+  {
+   "n": 564,
+   "t": "แต่เนื่องจากว่าเงินยังมาไม่ถึงฉันก็เลยนัดเขาเป็นพรุ่งนี้",
+   "score": 0.79,
+   "z": "但由于钱还没有到，我就约了明天去见他。"
+  },
+  {
+   "n": 565,
+   "t": "ฉันบอกให้เขาจัดส่งมาแล้ว",
+   "score": 1,
+   "z": "我告诉他寄过来。"
+  },
+  {
+   "n": 566,
+   "t": "คุณดูซิว่าผิวหนังของฉันดำลงเยอะมากเลย",
+   "score": 0.95,
+   "z": "你可以看到我的皮肤变黑了很多。"
+  },
+  {
+   "n": 567,
+   "t": "เมื่อก่อนฉันขาวกว่านี้นะ",
+   "score": 1,
+   "z": "我以前比较白。"
+  },
+  {
+   "n": 568,
+   "t": "ช่วงนี้ฉันขับรถเยอะเกินไปฉันก็เลยดำลง",
+   "score": 1,
+   "z": "我最近开车太多了，所以我潜水了。"
+  },
+  {
+   "n": 569,
+   "t": "เราจะนั่งคาเฟ่ 1 ชั่วโมงแล้วหลังจากนั้นก็จะไปทำเล็บให้ฉัน",
+   "score": 0.87,
+   "z": "我们会在咖啡馆坐一个小时，然后去修指甲。"
+  },
+  {
+   "n": 570,
+   "t": "ฉันไม่ได้ไปตรวจฉันซื้อมาฉีดเองเลย",
+   "score": 1,
+   "z": "我没有去测试，我自己买了注射。"
+  },
+  {
+   "n": 571,
+   "t": "ฉันรู้แล้วฉันจะไม่กินของหวานแล้วได้แล้วใช่ไหม",
+   "score": 1,
+   "z": "我知道我现在不能吃甜点了，对吧？"
+  },
+  {
+   "n": 572,
+   "t": "ฉันรู้แล้วฉันจะกินกาแฟดำทุกวันเลยและทุกครั้งฉันอยากกินน้ำหวานฉันก็จะแทนมันด้วยกาแฟดำได้หรือยัง",
+   "score": 1,
+   "z": "我知道我每天都会喝黑咖啡，每次我想喝糖浆时，我可以用黑咖啡代替吗？"
+  },
+  {
+   "n": 573,
+   "t": "ฉันเห็นนางถ่ายลงแล้วสวยมากและราคาก็ถูกมากด้วย",
+   "score": 0.93,
+   "z": "我看到了拍的照片，非常漂亮，而且价格也很便宜。"
+  },
+  {
+   "n": 575,
+   "t": "ราคาถูกมากๆเลยแต่ฉันไม่คิดว่ามันจะไม่สวยขนาดนี้ไง",
+   "score": 0.9,
+   "z": "它很便宜，但我没想到它会这么漂亮。"
+  },
+  {
+   "n": 576,
+   "t": "ปกติฉันจะมีร้านทำเล็บประจำของฉันแต่ถ้าว่าฉันจะทำแบบนี้มันจะค่อนข้างแพงนะฉันก็เลยดูแล้วเห็นว่าร้านนี้มันทำราคาถูกมาก",
+   "score": 1,
+   "z": "通常我有自己的美甲沙龙，但如果我这样做的话会很贵，所以我看了看，发现这家沙龙非常便宜。"
+  },
+  {
+   "n": 577,
+   "t": "ถ้าเป็นร้านประจำของฉันเล็บที่ฉันทำวันนี้มันต้องราคานี้",
+   "score": 1,
+   "z": "如果是我常去的店，我今天做的美甲就得这个价格了。"
+  },
+  {
+   "n": 578,
+   "t": "แต่รับประกันเลยว่าถ้าฉันไปทำร้านประจำของฉันมันจะสวยกว่านี้มากๆ",
+   "score": 0.9,
+   "z": "但我保证如果我去我常去的店做，会漂亮很多。"
+  },
+  {
+   "n": 579,
+   "t": "มันก็สมกับราคามันดีนะราคามันถูกแต่ว่ามันไม่สวยไง",
+   "score": 1,
+   "z": "这是值得的。价格虽便宜，但不美观。"
+  },
+  {
+   "n": 580,
+   "t": "ฉันต้องไปแก้ไขเล็บมือฉันไม่อย่างนั้นคืนนี้ฉันจะนอนไม่หลับ",
+   "score": 1,
+   "z": "我得去修指甲，不然今晚我就睡不着了。"
+  },
+  {
+   "n": 581,
+   "t": "คุณจะฆ่าฉันทิ้งก็ได้แต่ถ้าเล็บมือฉันไม่สวยฉันยอมตายดีกว่า",
+   "score": 1,
+   "z": "你可以杀了我，但如果我的指甲不漂亮，我宁愿死。"
+  },
+  {
+   "n": 582,
+   "t": "ฉันอยากฆ่าคนทำเล็บมือฉันนั้นทิ้งไปเพราะมันทำได้ไม่สวยเลย",
+   "score": 1,
+   "z": "我想杀了给我做美甲的人，因为它太没有吸引力了。"
+  },
+  {
+   "n": 583,
+   "t": "ฉันไม่เชื่ออีกแล้วมันทำได้ไม่สวยจริงๆเลย",
+   "score": 1,
+   "z": "我不再相信了。确实做得不漂亮。"
+  },
+  {
+   "n": 584,
+   "t": "ที่ร้านประจำของฉัน",
+   "score": 1,
+   "z": "在我常去的店里"
+  },
+  {
+   "n": 585,
+   "t": "ไปถึงร้านทำเลแล้วคุณคงจะต้องได้นั่งในรถรอฉันนะเพราะร้านทำเล็บที่ฉันจะไปทางนั้นไม่มีที่นั่งให้คุณ",
+   "score": 0.96,
+   "z": "当你到达美甲沙龙时，你可能必须坐在车里等我，因为我要去的美甲沙龙没有座位给你。"
+  },
+  {
+   "n": 586,
+   "t": "คุณไปนั่งในรถรอฉัน",
+   "score": 1,
+   "z": "你去坐在车上等我吧。"
+  },
+  {
+   "n": 587,
+   "t": "ฉันรู้แล้วแต่มันไม่มีที่นั่งให้คุณไงคุณก็ต้องนั่งในรถรอฉันแค่ 1 ชั่วโมงเอง",
+   "score": 0.9,
+   "z": "我知道，但是没有座位，所以你只能坐在车里等我1个小时。"
+  },
+  {
+   "n": 588,
+   "t": "ไม่ใช่ว่าฉันไม่อยากให้พนักงานรู้ว่าฉันมีสามีแต่การแสดงความรักออกแบบนั้นคนอื่นมันจะเขินอายและจะดูแปลกประหลาดมาก",
+   "score": 0.94,
+   "z": "我并不是不想让员工知道我有丈夫，只是这样表达爱会让别人尴尬，也会显得很奇怪。"
+  },
+  {
+   "n": 589,
+   "t": "ที่ประเทศลาวนี้มันไม่ได้เปิดโลกกว้างไกลเหมือนประเทศจีนนะ",
+   "score": 1,
+   "z": "在老挝，它不像中国那么广泛地开放世界。"
+  },
+  {
+   "n": 590,
+   "t": "คุณแค่ไม่เห็นอยู่เฉยๆแต่การออกไปข้างนอกแล้วเห็นใครแต่งตัวแบบนั้นมันเป็นเรื่องปกติมากแต่ถ้าหากว่าออกไปแล้วเห็นใครยืนจูบกันอย่างนี้แหละแปลก",
+   "score": 0.98,
+   "z": "你只是没有注意到，但出去看到有人穿成这样是很正常的。但如果你出去看到有人这样站着接吻，那就奇怪了。"
+  },
+  {
+   "n": 591,
+   "t": "ทำไมต้องถามคำถามนี้ซ้ำๆ",
+   "score": 1,
+   "z": "为什么我们要反复问这个问题？"
+  },
+  {
+   "n": 592,
+   "t": "ถ้าฉันเบื่อคุณจริงๆคุณไม่ได้เห็นหน้าฉันอีกต่อไปแล้ว",
+   "score": 1,
+   "z": "如果我真的对你感到厌倦，你就不会再看到我的脸了。"
+  },
+  {
+   "n": 593,
+   "t": "ถ้าฉันเบื่อคนจริงๆฉันก็จะหายออกไปจากชีวิตคุณเลยและไม่ให้คุณเห็นฉันอีกเพราะว่าฉันเบื่อคุณแล้วฉันก็ไม่อยากเห็นคนอื่น",
+   "score": 1,
+   "z": "如果我真的对这个人感到厌倦，我就会从你的生活中消失，再也不会让你见到我，因为我对你感到厌倦，我不想见到其他人。"
+  },
+  {
+   "n": 594,
+   "t": "เพราะฉะนั้นตอนนี้คุณยังเห็นฉันอยู่แสดงว่าฉันยังไม่ได้เบื่อคุณ",
+   "score": 1,
+   "z": "所以现在你仍然见到我，这意味着我还没有对你感到厌倦。"
+  },
+  {
+   "n": 595,
+   "t": "รออยู่ตรงนี้นะฉันจะลองไปซื้อ",
+   "score": 1,
+   "z": "在这里等一下，我去买一下。"
+  },
+  {
+   "n": 596,
+   "t": "ฉันมีเพื่อนขายเสื้อผ้าที่เวียดนาม",
+   "score": 1,
+   "z": "我有一个朋友在越南卖衣服。"
+  },
+  {
+   "n": 597,
+   "t": "ฉันมีเพื่อนเปิดร้านขายเสื้อผ้าทีเวียดนามและฉันก็แค่เอาต่อจากเพื่อนฉันที่เวียดนามมาขายให้เพื่อนที่ลาว",
+   "score": 1,
+   "z": "我有一个朋友在越南开了一家服装店，我只是从越南的朋友那里拿了它，然后卖给了我在老挝的朋友。"
+  },
+  {
+   "n": 598,
+   "t": "รอให้ฉันมีเงินก่อนนะถ้าฉันมีเงินเยอะๆฉันจะเปิดเป็นร้านของตัวเองที่ประเทศลาวเลยแล้วก็จะบอกคุณเอาเสื้อผ้าที่ประเทศจีนมามันน่าจะได้ราคาถูกกว่า",
+   "score": 0.96,
+   "z": "等我有钱了再说。如果我有很多钱，我会在老挝开自己的店，然后我会告诉你从中国带衣服，应该会更便宜。"
+  },
+  {
+   "n": 599,
+   "t": "แต่ยังไม่ใช่ตอนนี้เพราะตอนนี้ฉันยังไม่มีเงินที่จะเปิดร้านขายเสื้อผ้า",
+   "score": 1,
+   "z": "但现在不行，因为现在我没有钱开服装店。"
+  },
+  {
+   "n": 600,
+   "t": "น่าเสียดายจังคุณต้องไปทำงาน",
+   "score": 1,
+   "z": "很遗憾你必须去上班。"
+  },
+  {
+   "n": 601,
+   "t": "หลังจากที่คุณกลับมาจากสิงคโปร์คุณจะมาหาฉันไหม",
+   "score": 1,
+   "z": "你从新加坡回来后会来找我吗？"
+  },
+  {
+   "n": 602,
+   "t": "ฉันว่าจะใส่รองเท้าสีขาวและกระเป๋าสีขาวกับชุดที่ฉันตัดในวันเปิดงานแต่คุณไม่มาฉันก็เลยไม่มีจะใส่ด้วยฉันต้องไปซื้ออันใหม่ที่นี่แล้วแหละ",
+   "score": 1,
+   "z": "我本来打算穿白色的鞋子和白色的包包，里面装着我为开业当天做的衣服，但你没有来，所以我没有衣服穿。我得去这里买新的了。"
+  },
+  {
+   "n": 603,
+   "t": "คุณรู้แล้วหรอว่าจะส่งที่ไหนและไปรษณีย์ด่วนนั้นในประเทศเรามีไหม",
+   "score": 1,
+   "z": "您知道寄到哪里以及我们国家是否有特快专递吗？"
+  },
+  {
+   "n": 604,
+   "t": "ปกติส่งของที่ประเทศจีนมาต้องใช้เวลา 3 หา",
+   "score": 1,
+   "z": "一般情况下，寄东西到中国需要3天的时间。"
+  },
+  {
+   "n": 605,
+   "t": "ไม่เป็นไรคุณมาแล้วค่อยเอามาให้ฉันทีหลังก็ได้",
+   "score": 1,
+   "z": "没关系，你稍后过来拿给我就可以了。"
+  },
+  {
+   "n": 606,
+   "t": "ฉันไม่แน่ใจเหมือนกันบางทีก็อาจจะใช้เวลา 5 ถึง 10 วัน",
+   "score": 0.96,
+   "z": "我不确定，也许需要5到10天。"
+  },
+  {
+   "n": 607,
+   "t": "วันนี้ลืมไม่ได้ซักผ้าคุณไม่มีเสื้อผ้าใส่แล้วใช่ไหม",
+   "score": 1,
+   "z": "我今天忘记洗衣服了。你没有更多的衣服穿了吗？"
+  },
+  {
+   "n": 608,
+   "t": "อย่ายุ่งเกินจนไม่มีเวลานอนกับฉันล่ะ",
+   "score": 1,
+   "z": "别太忙了，没时间陪我睡觉。"
+  },
+  {
+   "n": 611,
+   "t": "ฉันถามว่าตอนที่เราเจอกันครั้งแรกคุณคิดไหม",
+   "score": 1,
+   "z": "我问，我们第一次见面的时候，你觉得"
+  },
+  {
+   "n": 613,
+   "t": "ฉันคิดว่าเรามาเจอกันในตอนที่เราเติบโตพอและรักกันมากๆมันจะดีกว่ารักแรกนะ",
+   "score": 1,
+   "z": "我想当我们足够成熟并且彼此相爱时遇见彼此会比我们的初恋更好。"
+  },
+  {
+   "n": 614,
+   "t": "ทุกๆครั้งที่แฟนเก่าของฉันนอกใจฉันฉันก็ไม่เคยโทษเขาเลย 100",
+   "score": 0.88,
+   "z": "每当我的前任欺骗我时，我都不会责怪他100。"
+  },
+  {
+   "n": 615,
+   "t": "เพราะฉันรู้ว่าบางครั้งก็เป็นเพราะตัวฉันเองที่ไม่ดีและอาจจะทำให้เขาเบื่อ",
+   "score": 1,
+   "z": "因为我知道有时候是因为我不好，可能会让他厌烦。"
+  },
+  {
+   "n": 616,
+   "t": "ฉันรู้สึกว่าตอนนี้ฉันเติบโตเป็นผู้ใหญ่และนิสัยของฉันมันดีมาในระดับนึงแล้วถ้าหากว่าคุณเจอฉันเมื่อก่อนคุณจะน่าเบื่อมากๆเลย",
+   "score": 1,
+   "z": "我感觉我现在已经长大了，性格也有了一定的好。如果你以前认识我，你会很无聊。"
+  },
+  {
+   "n": 617,
+   "t": "นิสัยของฉันเมื่อก่อนไม่ดีเลยนะจริงๆ",
+   "score": 1,
+   "z": "我以前的行为确实不太好。"
+  },
+  {
+   "n": 618,
+   "t": "เมื่อก่อนฉันไม่เคยใส่ใจแฟนเลยแม้ว่าแฟนจะไปไหนหรือว่าทำอะไรฉันไม่เคยถามเลยถ้าหากว่าแฟนไม่โทรมาหาฉันก่อนฉันจะไม่มีวันโทรและทักไปหาเขาก่อน",
+   "score": 0.96,
+   "z": "以前，我从来不关心我的男朋友，无论他去哪里，做什么。我从来没有问过。如果不是我男朋友先给我打电话，我绝对不会先打电话给他打招呼。"
+  },
+  {
+   "n": 619,
+   "t": "และฉันคิดง่ายๆว่าถ้าหากว่าเขาทนไม่ได้กับนิสัยฉันฉันไม่เคยคิดที่จะเปลี่ยนแปลงเพื่อใครถ้าหากว่าทนไม่ได้ก็แค่เลิกกัน",
+   "score": 1,
+   "z": "我只是想，如果他不能忍受我的行为，我永远不会想到为任何人改变它。如果实在受不了，就分手吧。"
+  },
+  {
+   "n": 620,
+   "t": "ฉันรู้ว่านั่นเป็นนิสัยที่ไม่ดีมากๆและฉันเปลี่ยนแปลงมาเยอะมากๆแล้ว",
+   "score": 1,
+   "z": "我知道这是一个非常坏的习惯，但我已经改变了很多。"
+  },
+  {
+   "n": 621,
+   "t": "ในชีวิตของฉันจะมีผู้ชายคนแรกที่รักฉันมากๆแต่ว่าฉันไม่เห็นคุณค่า",
+   "score": 1,
+   "z": "我生命中会有第一个很爱我的男人，但我不珍惜。"
+  },
+  {
+   "n": 622,
+   "t": "แล้วก็มาถึงคนที่ 2 ที่ฉันรักเขามากๆฉันยอมเปลี่ยนแปลงตัวเองทุกอย่างเพื่อเขาแต่เขาก็นอกใจฉัน",
+   "score": 1,
+   "z": "还有第二个人，我真的很爱他，我愿意为他改变一切，但他欺骗了我。"
+  },
+  {
+   "n": 623,
+   "t": "แล้วก็มาถึงคนที่ 3 เป็นสามีของฉันที่ฉันไม่ได้รักเขาแล้วเขาก็ไม่ได้รักฉันเลย",
+   "score": 1,
+   "z": "还有第三个人，我的丈夫，我不爱他，他也根本不爱我。"
+  },
+  {
+   "n": 624,
+   "t": "แล้วปัจจุบันนี้ฉันก็มีคุณฉันรักคุณมากเลยฉันรู้ว่าคุณก็รักฉันมากๆเหมือนกัน",
+   "score": 0.89,
+   "z": "现在我有了你。我非常爱你。我知道你也很爱我。"
+  },
+  {
+   "n": 625,
+   "t": "เพราะฉันผ่านมาหลายอย่างขนาดนี้ฉันถึงบอกกับคุณว่าความรักที่ฉันมอบให้คุณนั้นเป็นความจริง",
+   "score": 0.97,
+   "z": "因为我经历了这么多，所以我告诉你，我对你的爱是真的。"
+  },
+  {
+   "n": 626,
+   "t": "แต่ถ้าสักวันหนึ่งที่คุณไม่รักฉันแล้วฉันก็พร้อมจะปล่อยคุณไป",
+   "score": 1,
+   "z": "但如果有一天你不爱我了，我就准备放你走。"
+  },
+  {
+   "n": 627,
+   "t": "ถ้าคุณถามว่าฉันเป็นผู้หญิงใจดีไหมฉันก็ไม่ใช่คนใจดีและฉันก็ไม่ใช่คุณใจร้ายเพราะฉันเรียนรู้และฉันรู้ความรักมาในทุกรูปแบบแล้ว",
+   "score": 1,
+   "z": "如果你问我是不是一个善良的女人，那么我不是一个善良的人，也不是一个卑鄙的人，因为我已经学会了并且知道爱的各种形式。"
+  },
+  {
+   "n": 628,
+   "t": "เหมือนที่คุณว่าไงว่าถ้าคุณรักฉันหรือไม่รักฉันแค่ดูฉันก็รู้",
+   "score": 1,
+   "z": "就像你说的，你爱不爱我，只要看着我，我就知道。"
+  },
+  {
+   "n": 629,
+   "t": "บางครั้งคุณอาจจะดูเหมือนฉันเป็นคนใจร้ายนะเหมือนไม่สนใจคุณเลยแต่ความสนใจที่ฉันมีต่อคุณผู้ชายหลายๆคนไม่เคยได้จากฉัน",
+   "score": 1,
+   "z": "有时候你可能会显得对我很刻薄，就像我根本不在乎你一样，但我对很多男人的兴趣却从未影响到我。"
+  },
+  {
+   "n": 630,
+   "t": "อย่างเช่นภายใน 5 นาทีฉันอาจจะดีใจและโกรธคุณไม่เคยมีผู้ชายคนไหนเจอมาก่อน",
+   "score": 1,
+   "z": "例如，5分钟之内我可能会对你感到高兴和生气，以前没有人见过我。"
+  },
+  {
+   "n": 631,
+   "t": "นั่นห ยาวฉวีหรอหัวเข่า",
+   "score": 0.85,
+   "z": "这是膝盖长毛吗？"
+  },
+  {
+   "n": 632,
+   "t": "คุณจะได้ครั้งก่อนที่คุณมาหาฉันแล้วคุณตัดผมไหม",
+   "score": 1,
+   "z": "你还记得上次来看我剪头发是什么时候吗？"
+  },
+  {
+   "n": 633,
+   "t": "มันมีแค่ร้านเปิดตอนกลางคืนกลางวันไม่มีร้านเปิด",
+   "score": 1,
+   "z": "只有晚上营业的商店，白天没有营业的商店。"
+  },
+  {
+   "n": 634,
+   "t": "ทำไมคุณอยากโกรธฉันตลอดเวลาเลยอ่ะฉันกินคุณก็โกรธฉันไม่กินคุณก็โกรธ",
+   "score": 1,
+   "z": "为什么你总是想生我的气？如果我吃东西，你就会生气。我不吃饭你就会生气。"
+  },
+  {
+   "n": 635,
+   "t": "ไม่ได้อะไรเลยก็แค่นอนหลับไปแล้วก็แล้วไปแล้วคุณจะตื่นมาโกรธฉันอีกทำไมเนี่ยแล้วก็มาทำเสียใจใส่ฉันอีกเหมือนฉันเป็นคนใจร้ายอย่างนั้นแหละ",
+   "score": 1,
+   "z": "什么也没做，只是睡着了就走了。为什么你醒来后会再次生我的气，然后又为我感到难过，好像我是个卑鄙的人？"
+  },
+  {
+   "n": 636,
+   "t": "ฉันแค่จะเป็นประจำเดือนแล้วอยากกินอะไรจุกจิกน่ะไม่มีอะไรหรอกนอนเถอะช่างมันเถอะ",
+   "score": 0.95,
+   "z": "我快要来月经了，想吃点东西。没什么。只要睡觉就可以了。"
+  },
+  {
+   "n": 637,
+   "t": "รีบเข้านอนกันเถอะอย่าพูดมากเลยอยู่ดึกๆอย่างนี้ฉันหิวและฉันก็อยากกินของจุกจิกแล้วฉันก็จะโมโหเดี๋ยวเราจะทะเลาะกันอีกฉันเหนื่อยมากแล้วนอนพักผ่อนได้แล้ว",
+   "score": 0.93,
+   "z": "我们快点去睡觉吧。别说太多。就这样熬夜。我饿了，想吃点好吃的。那我就会生气。我们会再争论一次。我很累。我需要休息一下。"
+  },
+  {
+   "n": 638,
+   "t": "อะไรฉันบอกว่านอนพักผ่อนได้แล้วฉันเหนื่อยมากๆเลย",
+   "score": 1,
+   "z": "我说什么了？我需要休息一下。我真的很累了。"
+  },
+  {
+   "n": 639,
+   "t": "เหนื่อยมากแล้วพอเถอะ",
+   "score": 1,
+   "z": "我很累了，这就够了。"
+  },
+  {
+   "n": 640,
+   "t": "รีบไปล้างตัวแล้วออกมาเราจะออกไปแล้ว",
+   "score": 1,
+   "z": "赶紧洗漱一下出来吧。我们要走了。"
+  },
+  {
+   "n": 641,
+   "t": "คุณบอกว่าคุณรู้จักทุกเรื่องไงเรื่องแค่นี้ก็ทำไม่ได้",
+   "score": 1,
+   "z": "你说你什么都知道，但你就是做不到。"
+  },
+  {
+   "n": 642,
+   "t": "วันนี้ต้องทำงานเยอะเลย",
+   "score": 1,
+   "z": "今天我必须做很多工作。"
+  },
+  {
+   "n": 643,
+   "t": "คุณต้องซื้อบ้านซื้อรถรอฉันนะ",
+   "score": 1,
+   "z": "你得买房买车等我。"
+  },
+  {
+   "n": 644,
+   "t": "คุณต้องมีบ้านและมีรถในประเทศจีนนะไม่อย่างนั้นฉันจะไปอยู่ที่นั่นฉันจะอยู่ที่ไหนล่ะ",
+   "score": 1,
+   "z": "在中国你得有房有车，否则我住在那里会在哪里？"
+  },
+  {
+   "n": 645,
+   "t": "งั้นถ้าหากว่าเราจะเดินทางเราจะทำยังไง",
+   "score": 1,
+   "z": "那么如果我们要去旅行，我们会做什么呢？"
+  },
+  {
+   "n": 646,
+   "t": "ฉันต้องไปเอาของนิดหน่อยแล้วค่อยกลับมารับเขาอีกที",
+   "score": 1,
+   "z": "我得去拿点东西然后回来接他。"
+  },
+  {
+   "n": 647,
+   "t": "ฉันแค่จะไปเอาของ",
+   "score": 1,
+   "z": "我只是要去拿东西。"
+  },
+  {
+   "n": 648,
+   "t": "ของที่สั่งไว้นานมากๆแล้ว",
+   "score": 1,
+   "z": "很久以前订购的物品。"
+  },
+  {
+   "n": 649,
+   "t": "คุณต้องซื้อบ้านนะแล้วหลังจากที่ทำงานที่นี่ 5 ปีแล้วฉันจะไปอยู่กับคุณในประเทศจีน",
+   "score": 1,
+   "z": "你必须买房子，在这里工作五年后我会和你一起住在中国。"
+  },
+  {
+   "n": 650,
+   "t": "คุณหมายถึงหลังจากแต่งงานแล้วเราก็ไปอยู่ประเทศจีนเลยหรอ",
+   "score": 1,
+   "z": "你是说我们结婚后就去中国生活了？"
+  },
+  {
+   "n": 651,
+   "t": "เมื่อกี้นี้คุณบอกว่ายังไงล่ะคุณบอกว่าหลังจากแต่งงานแล้วฉันต้องไปอยู่ประเทศจีนไม่ใช่หรอ",
+   "score": 1,
+   "z": "你刚才说什么？你不是说结婚后我必须去中国吗？"
+  },
+  {
+   "n": 652,
+   "t": "เข้าใจยากมากเลยอ่ะช่างมันเถอะปล่อยให้มันผ่านไปเถอะอย่าเพิ่งพูดถึงเรื่องนี้เลย",
+   "score": 1,
+   "z": "这很难理解。我们就让它过去吧，不要谈论它。"
+  },
+  {
+   "n": 653,
+   "t": "ฉันถามคุณว่าหลังจากแต่งงานแล้วคุณอยู่อยากอยู่ประเทศลาวหรือว่าอยากอยู่ประเทศจีน",
+   "score": 1,
+   "z": "我问你，结婚后你想住在老挝还是想住在中国？"
+  },
+  {
+   "n": 654,
+   "t": "แล้วฉันก็บอกกับคุณว่าถ้าหากว่าอยากอยู่ในประเทศจีนอย่างน้อยคุณก็ต้องมีบ้านเป็นของตัวเอง",
+   "score": 1,
+   "z": "然后我告诉你，如果你想在中国生活，你至少要有自己的房子。"
+  },
+  {
+   "n": 655,
+   "t": "คุณไม่ได้บอกฉันว่าคุณมีบ้านคุณบอกว่าคุณอยู่ที่ทำงาน",
+   "score": 1,
+   "z": "你没有告诉我你有房子，你说你在工作。"
+  },
+  {
+   "n": 656,
+   "t": "แล้วบ้านของคุณอยู่ที่ไหนล่ะ",
+   "score": 1,
+   "z": "你的家在哪里？"
+  },
+  {
+   "n": 657,
+   "t": "แล้วบริษัทตอนนี้คุณทำงานไม่ใช่อยู่ที่กวางโจวหรอ",
+   "score": 0.87,
+   "z": "而且你现在工作的公司不在广州？"
+  },
+  {
+   "n": 658,
+   "t": "พ่อแม่ของคุณก็อยู่ที่อู่ฮั่นกับคุณไหม",
+   "score": 0.81,
+   "z": "你的父母也在武汉和你一起吗？"
+  },
+  {
+   "n": 659,
+   "t": "เป็นบ้านของคนซื้อเองใช่ไหมไม่ใช่ของพ่อแม่เอาให้ใช่ไหม",
+   "score": 1,
+   "z": "房子是买的人的吧？这不是父母的家吧？"
+  },
+  {
+   "n": 660,
+   "t": "เดี๋ยวฉันจะช่วยคุณจ่ายนะแล้วช่วยโอนชื่อบ้านเป็นชื่อของฉันด้วย",
+   "score": 1,
+   "z": "我帮你付款，把房名过到我名下。"
+  },
+  {
+   "n": 661,
+   "t": "คุณยังจะผ่อนบ้านอีกกี่ปีถึงจะเสร็จ",
+   "score": 1,
+   "z": "房子竣工之前你需要多少年还清贷款？"
+  },
+  {
+   "n": 662,
+   "t": "ค่าบ้านยังเหลือเท่าไหร่",
+   "score": 1,
+   "z": "房子的剩余价值是多少？"
+  },
+  {
+   "n": 663,
+   "t": "ที่ทำงานของฉันควรช่วยสร้างภาพแบบนี้ให้ฉันได้ไหมแต่ฉันอยากจะเขียนข้อมูลตัวนี้ใหม่",
+   "score": 1,
+   "z": "我的办公室应该能够帮助我创建这样的图像吗？但我想重写这个信息。"
+  },
+  {
+   "n": 664,
+   "t": "ฉันต้องการทุกภาพให้เป็นแบบนี้เสร็จฉันจะเขียนใจความหมายคุณทำให้ฉันได้ไหม",
+   "score": 0.92,
+   "z": "我希望每张照片都是这样的。等我写完了，我会把它的意思写下来。你能为我做吗？"
+  },
+  {
+   "n": 665,
+   "t": "ทำสิมองหน้าทำไมล่ะ",
+   "score": 1,
+   "z": "你为什么看我的脸？"
+  },
+  {
+   "n": 666,
+   "t": "นับสิรีบทำให้ฉันเลยฉันรีบ",
+   "score": 1,
+   "z": "数数吧，赶紧给我做吧，我很着急。"
+  },
+  {
+   "n": 667,
+   "t": "ฉันขอโทษฉันรักคุณมากเลยที่รักคุณที่ทำให้ฉันได้ไหม",
+   "score": 1,
+   "z": "对不起，我是如此爱你，我爱你创造了我。"
+  },
+  {
+   "n": 668,
+   "t": "ความรักไม่ได้เข้าใจยากถ้าดีก็ถ้าแย่ก็",
+   "score": 1,
+   "z": "爱情并不难理解。如果它是好的，那就是坏的。"
+  },
+  {
+   "n": 669,
+   "t": "คุณไม่ได้ไปทำงานที่สิงคโปร์แล้วหรอ",
+   "score": 1,
+   "z": "你不是在新加坡工作吗？"
+  },
+  {
+   "n": 670,
+   "t": "ใจเย็นๆกันที่เราจะอยู่ด้วยกันเราต้องการเงินมาเลี้ยงดูชีวิตนะ",
+   "score": 1,
+   "z": "冷静点，我们要在一起，我们需要钱来维持我们的生活。"
+  },
+  {
+   "n": 671,
+   "t": "ตอนนี้อย่าเพิ่งออกงานสิตอนนี้เรายังไม่มีเงินเลยนะ",
+   "score": 1,
+   "z": "还没下班呢。我们现在没有钱。"
+  },
+  {
+   "n": 672,
+   "t": "รอให้ฉันรวยก่อนสิอย่าเพิ่งออกงานตอนนี้ตอนนี้ฉันยังไม่ได้รวย",
+   "score": 1,
+   "z": "等我先发财了。现在先别下班。我还没有富有。"
+  },
+  {
+   "n": 673,
+   "t": "เราไปกินอาหารชิ้นเผ็ดๆกันไหม",
+   "score": 0.82,
+   "z": "我们去吃点辣的吧？"
+  },
+  {
+   "n": 674,
+   "t": "ฉันไม่รู้ร้านอื่นแล้วนอกจากร้านนั้น",
+   "score": 1,
+   "z": "除了那家我不知道还有什么店。"
+  },
+  {
+   "n": 675,
+   "t": "ร้านอื่นมันไม่อร่อยไง",
+   "score": 1,
+   "z": "其他餐厅不好吃。"
+  },
+  {
+   "n": 676,
+   "t": "คุณอยากไปร้านนั้นใช่ไหม",
+   "score": 1,
+   "z": "你想去那家商店吗？"
+  },
+  {
+   "n": 677,
+   "t": "ฉันเป็นคนที่เวลาชอบกินอะไรแล้วฉันจะกินบ่อยๆกินจนเบื่อแล้วก็จะทิ้งค่อยไปหาสิ่งใหม่กิน",
+   "score": 1,
+   "z": "我是一个喜欢吃东西的人，就经常吃，吃腻了，然后就放弃，另找新的东西吃。"
+  },
+  {
+   "n": 678,
+   "t": "ฉันจะต้องกินไปกินร้านนั้นให้ได้และก็จะกินจนถึงเวลาที่เบื่อแล้วก็จะเปลี่ยนไปสถานที่ใหม่",
+   "score": 0.95,
+   "z": "我必须在那家餐厅吃饭，我会一直吃到厌倦，然后搬到一个新地方。"
+  },
+  {
+   "n": 679,
+   "t": "ฉันหมายถึงของกิน",
+   "score": 1,
+   "z": "我是说食物"
+  },
+  {
+   "n": 680,
+   "t": "ฉันอยากกินทุเรียนมากเลยคืนนี้ให้ฉันกินทุเรียนได้ไหม",
+   "score": 1,
+   "z": "我很想吃榴莲，那么今晚可以吃榴莲吗？"
+  },
+  {
+   "n": 681,
+   "t": "ฉันล้อเล่นกับเพื่อนฉัน",
+   "score": 1,
+   "z": "我正在和我的朋友开玩笑。"
+  },
+  {
+   "n": 682,
+   "t": "ฉันต้องไปนั่งคาเฟ่และคุยงานอีกกับเพื่อนร่วมหุ้นอีก 2 คน",
+   "score": 1,
+   "z": "我必须去咖啡馆坐下来和另外两个同事聊天。"
+  },
+  {
+   "n": 683,
+   "t": "ที่นี่เป็นบ้านของคุณทุกอย่างที่นี่เป็นของคุณคุณอยากจะมาตอนไหนก็ได้",
+   "score": 1,
+   "z": "这是你的家，这里的一切都是你的，你可以随时来。"
+  },
+  {
+   "n": 684,
+   "t": "ถ่ายรูปจับมือฉันแล้วเอาลงของคุณสิ",
+   "score": 1,
+   "z": "拍一张照片，握住我的手，然后放在你的手上。"
+  },
+  {
+   "n": 685,
+   "t": "คุณไม่เห็นหรอว่าฉันทำเล็บมือมาใหม่ๆ",
+   "score": 0.86,
+   "z": "你没看到我刚做完美甲吗？"
+  },
+  {
+   "n": 686,
+   "t": "มีธุระหลายอย่างที่ต้องเครียดมากเลย",
+   "score": 1,
+   "z": "事情很多，压力一定很大。"
+  },
+  {
+   "n": 687,
+   "t": "ตอนนี้ฉันต้องได้ขายหุ้นส่วนออกแล้วแหละเพราะว่าเงินฉันไม่พอจริงๆ",
+   "score": 1,
+   "z": "现在我必须卖掉我的合伙企业，因为我真的没有足够的钱。"
+  },
+  {
+   "n": 688,
+   "t": "หุ้นส่วนของร้านฉันต้องได้ขายหุ้นส่วนของร้านบางจำนวนออกไปเพราะว่าเงินฉันไม่พอ",
+   "score": 1,
+   "z": "因为我没有足够的钱，我的合伙人不得不卖掉他合伙人的一些股份。"
+  },
+  {
+   "n": 689,
+   "t": "ฉันก็พยายามเปลี่ยนไปเถอะทีละขั้นตอนเหมือนที่คุณสอนแล้วไง",
+   "score": 1,
+   "z": "我正在努力像你教我的那样一步一步改变。"
+  },
+  {
+   "n": 690,
+   "t": "ฉันทำเหมือนที่คุณสอนแล้วแต่เหมือนว่าจะไม่เข้าใจและแก้ภาพรวมแบบนี้ไม่ได้",
+   "score": 1,
+   "z": "我按照你教我的做了，但似乎我无法像这样理解和解决大局。"
+  },
+  {
+   "n": 691,
+   "t": "ไม่สามารถเขียนตัวหนังสือนั้นได้",
+   "score": 1,
+   "z": "无法写那封信"
+  },
+  {
+   "n": 692,
+   "t": "ฉันต้องการจะเขียนข้อความนั้นมาเอง",
+   "score": 1,
+   "z": "我想自己写那封信。"
+  },
+  {
+   "n": 693,
+   "t": "และฉันก็ต้องการวางไว้ที่จุดที่ฉันต้องการวางด้วย",
+   "score": 1,
+   "z": "我想把它放在我想放的地方。"
+  },
+  {
+   "n": 694,
+   "t": "สิ่งที่ฉันอยากจะทำตอนนี้คือฉันจะต้องทำยังไงสีของตัวหนังสือมันถึงจะสวย",
+   "score": 1,
+   "z": "我现在想做的是如何让字母的颜色变得漂亮？"
+  },
+  {
+   "n": 696,
+   "t": "ฉันบอกว่าคุณทำของคุณไปสิ",
+   "score": 1,
+   "z": "我说你做你的事吧。"
+  },
+  {
+   "n": 697,
+   "t": "ใครทิ้งคุณไป",
+   "score": 1,
+   "z": "谁离开了你？"
+  },
+  {
+   "n": 698,
+   "t": "นั่นมันก็แค่สมมุติ",
+   "score": 1,
+   "z": "这只是一个假设。"
+  },
+  {
+   "n": 699,
+   "t": "คุณก็รู้ว่าฉันเป็นคนชอบกาแฟ",
+   "score": 1,
+   "z": "你知道我是一个咖啡爱好者。"
+  },
+  {
+   "n": 700,
+   "t": "คุณก็รู้ว่าฉันเป็นคนชอบขี้ระแวง",
+   "score": 0.84,
+   "z": "你知道我是一个怀疑论者。"
+  },
+  {
+   "n": 702,
+   "t": "คุณรู้จักข่าวอันนี้ไหม",
+   "score": 1,
+   "z": "你知道这个消息吗？"
+  },
+  {
+   "n": 703,
+   "t": "ฉันไม่อยากจะเชื่อเลยว่าผู้ชายคนหนึ่งจะหลอกได้หนุ่มๆเยอะขนาดนี้",
+   "score": 0.9,
+   "z": "我不敢相信一个人可以欺骗这么多人。"
+  },
+  {
+   "n": 704,
+   "t": "เขาสามารถได้พบกับชายหนุ่ม 1,700 คน",
+   "score": 0.84,
+   "z": "他结识了 1,700 名年轻人。"
+  },
+  {
+   "n": 705,
+   "t": "ฉันต้องเข้าไปดูก่อนว่ามีใบหน้าคุณอยู่ในนั้นไหม",
+   "score": 1,
+   "z": "我需要进去看看你的脸是否在里面。"
+  },
+  {
+   "n": 706,
+   "t": "คุณต้องตรวจสอบดูดีๆนะเผื่อว่าอาจจะมีรายชื่อหรือว่าใบหน้าฉันอยู่ในนั้นก็ได้",
+   "score": 0.93,
+   "z": "你需要仔细检查一下，看看里面是否有名字或者我的脸。"
+  },
+  {
+   "n": 707,
+   "t": "ให้อยู่ใกล้ๆกับเพื่อนผู้ชายและก็ไปกินข้าวไปคุยงานกับเพื่อนผู้ชายมากๆ",
+   "score": 0.93,
+   "z": "与男性朋友保持亲密关系，多和男性朋友一起吃饭、聊天。"
+  },
+  {
+   "n": 708,
+   "t": "ฉันแค่ล้อเล่นน่าฉันจำได้แล้ว",
+   "score": 1,
+   "z": "我只是开玩笑，我现在想起来了。"
+  },
+  {
+   "n": 709,
+   "t": "ทำไมต้องมองฉันด้วยสายตาน่ากลัวขนาดนั้น",
+   "score": 1,
+   "z": "为什么要用这么可怕的眼神看着我？"
+  },
+  {
+   "n": 710,
+   "t": "จริงๆหรอฉันฉันอยากจะรู้แล้วน่ะสิ",
+   "score": 0.88,
+   "z": "真的吗？我想知道。"
+  },
+  {
+   "n": 711,
+   "t": "ฉันอ้วนนะอย่าลืมซื้อกระเป๋าใส่ศพใหญ่ๆล่ะจะได้ใส่พอดีตัวฉัน",
+   "score": 0.91,
+   "z": "我很胖。别忘了买一个大的裹尸袋，这样它才能适合我。"
+  },
+  {
+   "n": 712,
+   "t": "อย่าลืมหารศพฉันให้สวยๆด้วยล่ะ",
+   "score": 1,
+   "z": "别忘了让我的尸体变得美丽。"
+  },
+  {
+   "n": 713,
+   "t": "ไม่หล่อเล่นแล้วฉันขนลุกแล้วเข้าไปในห้องกันเถอะ",
+   "score": 0.89,
+   "z": "如果你不帅，我会起鸡皮疙瘩。我们进房间吧。"
+  },
+  {
+   "n": 714,
+   "t": "คุณสามารถเก็บไว้ในอากาศธรรมดาได้ 2 วันนะมันคือของกิน",
+   "score": 1,
+   "z": "在正常空气中可以保存2天，就可以食用了。"
+  },
+  {
+   "n": 715,
+   "t": "มันสามารถเก็บไว้ในอากาศธรรมดา 2 3 วันไง",
+   "score": 1,
+   "z": "在正常空气中可保存2-3天。"
+  },
+  {
+   "n": 716,
+   "t": "อันนี้คุณสามารถเก็บไว้ได้ 1 อาทิตย์",
+   "score": 1,
+   "z": "您可以将其保存 1 周。"
+  },
+  {
+   "n": 717,
+   "t": "ส่วนอันนี้ไปถึงพรุ่งนี้คุณต้องกินนะ",
+   "score": 1,
+   "z": "至于明天这个，你得吃。"
+  },
+  {
+   "n": 718,
+   "t": "คุณไปถึงคุณก็เอาไปแช่ตู้เย็นที่ถ้าหากว่าคุณยังไม่กิน",
+   "score": 1,
+   "z": "到了那里，如果还没吃的话，就放进冰箱里。"
+  },
+  {
+   "n": 719,
+   "t": "ทุกอย่างนี้คุณเอาไปถึงแล้วคุณก็เอาไปแช่ตู้เย็นวันไหนคุณจะออกไปหาเพื่อนคุณก็ค่อยเอาออกจากตู้เย็น",
+   "score": 1,
+   "z": "你把所有东西都带走，然后把它放进冰箱里。当你出去见朋友时，你会从冰箱里拿出它。"
+  },
+  {
+   "n": 720,
+   "t": "ฉันบอกว่าไม่คุยเรื่องนี้อีกแล้วไงเอาไว้ดูกันก่อน",
+   "score": 1,
+   "z": "我告诉过你不要再谈论这个了，让我们看看。"
+  },
+  {
+   "n": 721,
+   "t": "ถ้าฉันต้องการเงินสำหรับรักษาพยาบาลในภายหลังคุณจะไม่ขายทองของคุณใช่ไหม?",
+   "score": 0.96,
+   "z": "如果我以后需要钱看病，你不会卖掉你的黄金吧？"
+  },
+  {
+   "n": 722,
+   "t": "ถ้าหากว่าคุณต้องเข้ากันรักษาในโรงพยาบาลฉันก็ต้องขายสิเพราะไม่มีอะไรสำคัญไปกว่าชีวิตแล้ว",
+   "score": 1,
+   "z": "如果你需要住院，我就必须卖掉它，因为没有什么比生命更重要的了。"
+  },
+  {
+   "n": 723,
+   "t": "อย่าห่วงเลยถ้าถึงตอนนั้นไม่มีเงินจริงๆมันก็จะมีวิธีอื่น",
+   "score": 1,
+   "z": "别担心，如果到时候你真的没有钱，还有别的办法。"
+  },
+  {
+   "n": 724,
+   "t": "เส้นแดงออกน้ำ 4 ครั้งแล้ว",
+   "score": 1,
+   "z": "红线已经4次露出水面了。"
+  },
+  {
+   "n": 725,
+   "t": "ถ้าคุณยังอยู่ที่นี่ต่อไปฉันคงผอมแน่ๆเพราะฉันได้เผาผลาญไขมันเยอะมาก",
+   "score": 0.91,
+   "z": "如果你继续在这里，我肯定会瘦，因为我已经燃烧了很多脂肪。"
+  },
+  {
+   "n": 726,
+   "t": "กำไรที่สุดเลยไม่เคยมีใครทำให้ฉันมีความสุขแบบนี้มาก่อนเลย",
+   "score": 1,
+   "z": "最赚钱的是，从来没有人像这样让我开心过。"
+  },
+  {
+   "n": 727,
+   "t": "ฉันไม่เชื่อคุณเด็ดขาด",
+   "score": 1,
+   "z": "我绝对不相信你。"
+  },
+  {
+   "n": 728,
+   "t": "คุณต้องเก็บแรงเพื่อจะไปทำงานต่อด้วยนะ",
+   "score": 1,
+   "z": "你必须储存能量才能继续工作。"
+  },
+  {
+   "n": 729,
+   "t": "เขาไม่เห็นเขาจะนั่งอยู่ในรถฉันบอกคุณว่าเขาไปเสริมจมูกมาฉันแค่ชี้บอกคุณ",
+   "score": 1,
+   "z": "他没有看到他坐在车里。我告诉过你他做了鼻子整形手术。我刚刚向你指出了。"
+  },
+  {
+   "n": 730,
+   "t": "คุณใจร้ายมากคุณรู้ไหม 2 วันนี้ฉันไม่ได้กินของหวานแล้ว",
+   "score": 1,
+   "z": "你太残忍了你知道吗？我已经两天没吃甜点了。"
+  },
+  {
+   "n": 731,
+   "t": "คุณรู้ไหมฉันคิดถึงของหวานตอนไหนฉันรู้สึกเหมือนฉันจะขาดใจตายแล้วฉันรู้สึกว่าฉันขาดของหวานนานเกินไปแล้ว",
+   "score": 1,
+   "z": "你知道当我想念甜点时我感觉我快要死了吗？我感觉我已经太久没有吃甜点了。"
+  },
+  {
+   "n": 732,
+   "t": "คุณทำให้ฉันรู้สึกดีและสบายใจทุกอย่างแต่คุณไม่ใช่ของหวานนะ",
+   "score": 0.89,
+   "z": "你让我感觉良好、舒适，但你不是甜点。"
+  },
+  {
+   "n": 733,
+   "t": "ปกติฉันกินอาหารช้าๆอยู่แล้วคุณน่ะกินเร็วมาก",
+   "score": 0.91,
+   "z": "我通常吃得很慢，但你吃得很快。"
+  },
+  {
+   "n": 734,
+   "t": "ไปถึงประเทศจีนทุกคนกินข้าวเร็วๆเหมือนคุณเลยไหม",
+   "score": 0.89,
+   "z": "你到了中国，是不是每个人都像你一样吃得很快？"
+  },
+  {
+   "n": 735,
+   "t": "ที่บ้านคุณพ่อกับแม่ก็กินข้าวแล้วแบบนี้หรือเปล่า",
+   "score": 1,
+   "z": "你在爸爸妈妈家吃过这样的饭吗？"
+  },
+  {
+   "n": 736,
+   "t": "ฉันแปลกใจมากทำไมคนจีนมีอาหารเยอะมากเลยอ่ะแบบเอามาเยอะมากๆเลย",
+   "score": 1,
+   "z": "我很惊讶中国人有这么多食物。他们带来了这么多食物。"
+  },
+  {
+   "n": 737,
+   "t": "ที่คุณเห็นว่าอาหารพวกนี้มีราคาแพงเพราะว่าอาหารพวกนี้มีขายให้เฉพาะคนจีนเท่านั้นมันถึงแพง",
+   "score": 1,
+   "z": "正如你所看到的，这些食物之所以昂贵，是因为它们只卖给中国人，所以才这么贵。"
+  },
+  {
+   "n": 738,
+   "t": "ถ้าสมมุติว่าคุณใช้ชีวิตประจำวันเหมือนคนเราจริงๆแล้วคุณก็ซื้ออาหารตามท้องตลาดมากินมันก็ไม่ได้แพงขนาดนี้",
+   "score": 1,
+   "z": "如果你假设你的日常生活像我们一样，并且你实际上从市场上购买食物来吃，那么它并没有那么贵。"
+  },
+  {
+   "n": 739,
+   "t": "ร้านอาหารหลายแห่งที่ฉันพาคุณไปนั้นมีเฉพาะให้นักท่องเที่ยวเท่านั้น",
+   "score": 1,
+   "z": "我带你去的很多餐馆只对游客开放。"
+  },
+  {
+   "n": 740,
+   "t": "เอาไว้วันหลังคุณมาฉันจะพาคุณไปร้านอาหารที่เอาพลเมืองชาวลาวกินปกตินะอาหารถูกมาก",
+   "score": 0.91,
+   "z": "你来的第二天，我带你去一家老挝人正常吃饭的餐馆。食物很便宜。"
+  },
+  {
+   "n": 741,
+   "t": "บ้านแบบนี้จะมีคนจีนมาเช่าและมาซื้ออยู่เพื่อขายสินสินค้าและใช้ภาษาจีน",
+   "score": 0.96,
+   "z": "像这样的房子会有中国人租用和购买它们来销售产品并使用中文。"
+  },
+  {
+   "n": 742,
+   "t": "เธอยกเลิกเที่ยวบินแล้วอยู่ต่ออีก2 3 วันเลยนะ",
+   "score": 0.9,
+   "z": "她取消了航班并又停留了2-3天。"
+  },
+  {
+   "n": 743,
+   "t": "แค่ผู้หญิงคนเดียวก็ทําให้เธออยู่ต่อได้เลยนะ,ใช่ไหมล่ะ",
+   "score": 0.88,
+   "z": "只要一个女人就能让你留下来，对吗？"
+  },
+  {
+   "n": 744,
+   "t": "ฉันกลัวกระเป๋าของคุณจะหนักเกินไปเขาจะไม่ให้คุณขึ้นเครื่องบินนะ",
+   "score": 1,
+   "z": "恐怕你的包太重了，他们不让你上飞机。"
+  },
+  {
+   "n": 745,
+   "t": "คุณรู้ใจฉันจริงๆ",
+   "score": 1,
+   "z": "你真的懂我的心。"
+  },
+  {
+   "n": 746,
+   "t": "ฉันคิดว่าฉันจริงๆ",
+   "score": 1,
+   "z": "我真的认为我"
+  },
+  {
+   "n": 747,
+   "t": "ฉันเริ่มไม่ถ่ายให้คุณดูแต่ทุกอย่างกำลังตกแต่งได้ดีแล้ว",
+   "score": 0.78,
+   "z": "我开始为你拍照，但一切都很顺利。"
+  },
+  {
+   "n": 748,
+   "t": "ฝันดีดีจรา",
+   "score": 0.7,
+   "z": "甜蜜的梦。"
+  },
+  {
+   "n": 749,
+   "t": "ฝันดีนะที่รัก",
+   "score": 1,
+   "z": "亲爱的，好梦"
+  },
+  {
+   "n": 752,
+   "t": "เธอพร้อมจะจัดการกับฉันอีกครั้ง",
+   "score": 1,
+   "z": "她已经准备好再次对付我了。"
+  },
+  {
+   "n": 753,
+   "t": "เธอพร้อมจะเป็นแฟนฉันรึยัง",
+   "score": 0.92,
+   "z": "你准备好做我女朋友了吗？"
+  },
+  {
+   "n": 754,
+   "t": "ตอนนี้ดูเหมือนร้านเสริมความงามมากขึ้นเรื่อย ๆ แล้วนะ ถ้าเดือนที่แล้วมีความคืบหน้าแบบนี้ก็คงดีมากเลย",
+   "score": 0.87,
+   "z": "现在看起来越来越像美容院了。如果上个月能有这样的进展就太好了。"
+  },
+  {
+   "n": 755,
+   "t": "ผมชอบกินนะครับ",
+   "score": 1,
+   "z": "我喜欢吃。"
+  },
+  {
+   "n": 757,
+   "t": "ไม่รู้เหมือนกัน",
+   "score": 1,
+   "z": "不知道"
+  },
+  {
+   "n": 758,
+   "t": "ก่อนจะได้เจอคุณ จริง ๆ แล้วผมเป็นคนที่ไม่ค่อยแคร์อะไรเลย ผมไม่เคยสังเกตใครอย่างจริงจังขนาดนี้ ไม่เคยมองเห็นการเปลี่ยนแปลงเล็ก ๆ ของใครมาก่อน แต่ผมให้ความจริงจังของผมกับคุณ ผมก็ไม่เคยทำอะไรโดยไม่คิดถึงผลตอบแทนมาก่อน แต่ผมให้ความไม่เห็นแก่ตัวของผมกับคุณ ผมไม่เคยสนใจคนอื่น เพราะคนอื่นไม่ได้เกี่ยวอะไรกับผมเลย แต่ผมให้ความเอาใจใส่ของผมกับคุณ ผมเป็นคนอารมณ์ไม่ดี นิสัยร้อน แต่ผมให้ความอ่อนโยนและความอดทนของผมกับคุณ",
+   "score": 0.98,
+   "z": "在遇见你之前，我其实是一个根本不在乎的人。我从来没有这么认真地观察过一个人。我以前从未见过任何人的微小变化，但我给你我的认真。我以前从来没有做过任何不考虑回报的事情。但我给你我的无私 我从来不对其他人感兴趣。因为其他人与我无关。但我给你我的关注，我是一个脾气暴躁、脾气暴躁的人，但我给你我的温柔和耐心。"
+  },
+  {
+   "n": 759,
+   "t": "คุณทำกิจกรรมเสียใส่ผมน้อยลงกว่าเดิม",
+   "score": 1,
+   "z": "您所做的损害头发的活动比以前少了。"
+  },
+  {
+   "n": 760,
+   "t": "คุณก็ไม่ได้อารมณ์เสียใส่ผมน้อยลงเลยนะ",
+   "score": 1,
+   "z": "你对我的不满并没有减少。"
+  },
+  {
+   "n": 763,
+   "t": "เมีย",
+   "score": 1,
+   "z": "妻子"
+  },
+  {
+   "n": 765,
+   "t": "ฉันคุยกับพ่อฉันอยู่",
+   "score": 1,
+   "z": "我正在和我父亲说话。"
+  },
+  {
+   "n": 766,
+   "t": "คุณรอฉันคุยกับพ่อแม่ฉันก่อน",
+   "score": 1,
+   "z": "你等我先和我父母说吧。"
+  },
+  {
+   "n": 767,
+   "t": "ยายฉันจะตายแล้ว",
+   "score": 1,
+   "z": "我的奶奶快要死了。"
+  },
+  {
+   "n": 768,
+   "t": "ให้ฉันคุยกับยายก่อไม่ได้หรอ",
+   "score": 0.89,
+   "z": "不能让我跟奶奶说话吗？"
+  },
+  {
+   "n": 769,
+   "t": "ทำไมคุณเป็นคนแบบนี้",
+   "score": 1,
+   "z": "你为什么这样？"
+  },
+  {
+   "n": 770,
+   "t": "ขับรถอยู่ยังไงแต่ยายจะไม่สบายอาการหนักมากพ่อแม่แม่กลางพายายไปโรงพยาบาล",
+   "score": 1,
+   "z": "不管你怎么开车，奶奶病得很重。奶奶的父母带奶奶去医院。"
+  },
+  {
+   "n": 771,
+   "t": "ฉันแค่อยากคุยโทรศัพท์กับครอบครัวฉันทำไมคุณต้องเป็นคนแบบนี้",
+   "score": 1,
+   "z": "我只想和家人通电话。为什么你一定要这样？"
+  },
+  {
+   "n": 772,
+   "t": "ฉันแค่อยากใช้เวลานิดหน่อยเพื่อคุยโทรศัพท์กับยายฉัน",
+   "score": 1,
+   "z": "我只是想花点时间和我奶奶通电话。"
+  },
+  {
+   "n": 774,
+   "t": "ส้อม",
+   "score": 1,
+   "z": "叉"
+  },
+  {
+   "n": 777,
+   "t": "ขอแค่ผมไม่ตกงานต่อให้เงินทั้งหมดเสียไปหมดก็แค่เหมือนผมทำงานฟรีไปหนึ่งปีเท่านั้นเพื่อคุณเรื่องแค่นี้ไม่ใช่เรื่องใหญ่อะไรเลย",
+   "score": 1,
+   "z": "只要我不丢掉工作，就算丢掉所有的钱，也就像我免费工作了一年一样。对你来说，这根本不是什么大事。"
+  },
+  {
+   "n": 778,
+   "t": "เพื่อนฉันจะขาดใจตายแล้วดีใจมาก",
+   "score": 1,
+   "z": "我的朋友会死并且会非常幸福。"
+  },
+  {
+   "n": 779,
+   "t": "ฉันยังไม่ได้เม้าฉันกำลังจะกลับบ้าน",
+   "score": 0.88,
+   "z": "我还没醉，我要回家了。"
+  },
+  {
+   "n": 780,
+   "t": "ทีรัก",
+   "score": 1,
+   "z": "亲爱的"
+  },
+  {
+   "n": 781,
+   "t": "เมื่อสักครู่ผู้แปลทำผิดพลาด",
+   "score": 1,
+   "z": "刚才译者犯了一个错误。"
+  },
+  {
+   "n": 787,
+   "t": "ฉันเพิ่งคุยเรื่องงานเสร็จและก็หาอะไรทานอย่างรวดเร็ว",
+   "score": 0.86,
+   "z": "刚刚聊完工作，赶紧抓起东西吃。"
+  },
+  {
+   "n": 788,
+   "t": "ฉันดูหนังนะ",
+   "score": 1,
+   "z": "我正在看电影。"
+  },
+  {
+   "n": 789,
+   "t": "ครั้งนี้คุณมาถึงตอน 1 2 ทุ่มใช่ไหม",
+   "score": 1,
+   "z": "您于下午 1:00 抵达。这次，对吗？"
+  },
+  {
+   "n": 790,
+   "t": "อย่าโกรธพี่พี่คนโกรธเพราะว่าคุณคิดมากไงฉันเหมือนเดิมฉันไม่ได้ทำอะไรสักหน่อย",
+   "score": 1,
+   "z": "别生我的气。我生气是因为你想太多。我和以前一样。我什么也没做。"
+  },
+  {
+   "n": 791,
+   "t": "ถ้าคุณไม่ยอมรับความผิดพลาดของตัวเองคุณก็จะยังทำให้ฉันโกรธอยู่ดี",
+   "score": 1,
+   "z": "如果你不承认自己的错误，你还是会惹我生气。"
+  },
+  {
+   "n": 792,
+   "t": "ฉันผิดไปแล้วฉันขอโทษ",
+   "score": 1,
+   "z": "我错了，对不起。"
+  },
+  {
+   "n": 793,
+   "t": "อะไรบ้างล่ะทำให้คุณหายโกรธ",
+   "score": 1,
+   "z": "是什么让你生气？"
+  },
+  {
+   "n": 794,
+   "t": "กางเกงขายาวของคุณล่ะ",
+   "score": 1,
+   "z": "你的裤子呢？"
+  },
+  {
+   "n": 795,
+   "t": "ไม่มีขายาวหรอ",
+   "score": 1,
+   "z": "你腿不长吗？"
+  },
+  {
+   "n": 796,
+   "t": "แล้วฉันจะพาคนไปซื้อเสื้อผ้านะ 2 ชุดแล้วฉันจะเก็บเอาไว้ที่นี่",
+   "score": 1,
+   "z": "那我就带人去买两套衣服，我就放在这里。"
+  },
+  {
+   "n": 797,
+   "t": "ทีหลังคุณมาคุณก็ไม่ต้องเอาเสื้อผ้ามาอีกเลยมาแต่ตัว",
+   "score": 1,
+   "z": "以后你来了，就不用再带什么衣服了，只要带你的身体就可以了。"
+  },
+  {
+   "n": 798,
+   "t": "ฉันมีของขวัญให้คุณอยู่แล้วอยู่ที่รถ",
+   "score": 1,
+   "z": "我已经在车里给你准备了一份礼物。"
+  },
+  {
+   "n": 799,
+   "t": "อันนี้เป็นแค่แหวนทดลองที่เขาส่งมาให้เราดูนะแหวนตัวจริงยังไม่มา",
+   "score": 1,
+   "z": "这只是他寄给我们看的一个测试戒指。真正的戒指还没到。"
+  },
+  {
+   "n": 800,
+   "t": "ฉันสั่งให้เขาออกแบบและตัวนี้เป็นตัวทดลองที่เขาส่งมาแต่ฉันรู้สึกว่ามันยังไม่สวยก็เลยบอกให้เขาปรับเปลี่ยนอีกนิดหน่อยน่าจะอีกเสียบไปวางข้างหน้าแหวนถึงจะมาถึง",
+   "score": 1,
+   "z": "我让他设计，这个是他送来的测试模型，但我觉得还不太漂亮，所以我让他稍微修改一下。它可能应该在环到达之前插入到环的前面。"
+  },
+  {
+   "n": 801,
+   "t": "สินค้าชิ้นนี้เราจะไม่ส่งกลับไปแล้วแต่มันเป็นสินค้าตัวทดลอง",
+   "score": 1,
+   "z": "我们不会将此产品退回，因为它是试用产品。"
+  },
+  {
+   "n": 802,
+   "t": "สินค้าของจริงจะอีกประมาณ 7 วันข้างหน้านี้เขาถึงจะส่งมาให้เรา",
+   "score": 1,
+   "z": "真正的产品大约需要 7 天才能发送给我们。"
+  },
+  {
+   "n": 803,
+   "t": "รอให้ฉันร้านฉันเรียบร้อยก่อนสิ",
+   "score": 1,
+   "z": "请等我先开店。"
+  },
+  {
+   "n": 804,
+   "t": "วันที่ 11",
+   "score": 0.75,
+   "z": "第 11 天"
+  },
+  {
+   "n": 805,
+   "t": "ฉันไม่รู้สิว่าทำไมฉันใจเย็นกับทุกคนได้ยกเว้นแฟนตัวเอง",
+   "score": 1,
+   "z": "我不知道为什么我对除了我男朋友以外的所有人都那么平静。"
+  },
+  {
+   "n": 806,
+   "t": "ฉันต้องรออีก 3 วันใช่ไหมกว่าเงินจะเข้าบัญชีฉัน",
+   "score": 1,
+   "z": "我是否还需要等待 3 天才能将款项存入我的帐户？"
+  },
+  {
+   "n": 807,
+   "t": "คุณดูในแล้วจองที่พักสิ",
+   "score": 1,
+   "z": "你看看里面并预订住宿。"
+  },
+  {
+   "n": 808,
+   "t": "จองที่พักที่ราคาถูกแล้วก็มีให้คุณทำงานด้วยนะ",
+   "score": 1,
+   "z": "预订便宜且适合您的住宿。"
+  },
+  {
+   "n": 809,
+   "t": "ใกล้ๆแถวนี้ก็ได้นะ",
+   "score": 1,
+   "z": "距离这个区域很近。"
+  },
+  {
+   "n": 810,
+   "t": "ที่ไหนก็ได้เพราะว่าคุณจะไม่ออกไปข้างนอกจะอยู่แค่นั้น",
+   "score": 1,
+   "z": "去哪儿都行，因为你不出去，就呆在那里。"
+  },
+  {
+   "n": 811,
+   "t": "ฉันก็จะไม่ออกไปไหนฉันก็จะอยู่กับคุณ",
+   "score": 1,
+   "z": "我哪儿也不去，我会陪着你。"
+  },
+  {
+   "n": 812,
+   "t": "พรุ่งนี้ตอนเช้าตื่นมาฉันจะทำบะหมี่ให้คุณกิน",
+   "score": 1,
+   "z": "明天早上你起床的时候，我去煮面给你吃。"
+  },
+  {
+   "n": 813,
+   "t": "มิ้นท์เที่ยวหายช่วยโหวตตัวแทน 2 ช่องตรวจสอบ",
+   "score": 0.6,
+   "z": "薄荷会移动并消失。请帮助投票选出2个检查渠道的代表。"
+  },
+  {
+   "n": 814,
+   "t": "ขนาดแค่กาวยังแดงขนาดนี้ถ้าหากว่าถูกตีหรือว่าถูกตกมันจะไม่บวมช้ำเลยหรอ",
+   "score": 0.84,
+   "z": "就算胶水这么红，万一被撞击、掉落，岂不是会肿起来、碰伤吗？"
+  },
+  {
+   "n": 816,
+   "t": "คนที่ฉันเพิ่งคุยด้วยนั้นเป็นเพื่อนร่วมหุ้นกับฉันเป็นเพื่อนผู้ชายไม่ใช่ผู้หญิง",
+   "score": 1,
+   "z": "刚才跟我说话的人是我共同的朋友，是男性朋友，不是女性朋友。"
+  },
+  {
+   "n": 817,
+   "t": "มันดีมากเลยอ่ะคุณไปเรียนแบบนี้มาจากที่ไหน",
+   "score": 1,
+   "z": "非常好。你从哪里学到这样的东西？"
+  },
+  {
+   "n": 818,
+   "t": "ฉันบอกว่าจะออกไปข้างนอกคุณก็ไม่ยอมคุณบอกว่าคุณจะไปข้างนอกฉันก็ปล่อยให้คุณไปข้างนอกคุณก็มาโกรธฉันอีกคุณต้องการอะไรล่ะ",
+   "score": 1,
+   "z": "我说我要出去，你不肯出去。你说你要出去，我就让你出去。然后你又对我生气了。你想要什么？"
+  },
+  {
+   "n": 819,
+   "t": "คุณจะทำเมนูอะไรอ่ะ",
+   "score": 1,
+   "z": "你会做什么菜单？"
+  },
+  {
+   "n": 820,
+   "t": "ฉันไม่อยากกินข้าวฉันอยากกินเส้นบะหมี่มากกว่า",
+   "score": 1,
+   "z": "我不想吃饭，我宁愿吃面条。"
+  },
+  {
+   "n": 821,
+   "t": "คนทำกับข้าวอร่อยมากแต่ฉันคิดว่าคุณไม่ต้องทำแล้วให้ฉันทำดีกว่า",
+   "score": 1,
+   "z": "厨师做的很好吃，不过我想你不用做，让我来做吧。"
+  },
+  {
+   "n": 822,
+   "t": "ฉันจะทำกับข้าวแบบคนชาวม้งให้คุณทัน",
+   "score": 1,
+   "z": "我会及时给你做一顿苗族饭菜。"
+  },
+  {
+   "n": 823,
+   "t": "สนใจทำกับข้าวแบบชาวลาวแล้วก็ชาวม้งให้คุณทาน",
+   "score": 1,
+   "z": "有兴趣烹饪像老挝和苗族一样的食物给你吃吗？"
+  },
+  {
+   "n": 824,
+   "t": "พอแล้วพอแล้วสำหรับอาหารคนชาวม้งใช้ทุกอย่างง่ายมาก",
+   "score": 1,
+   "z": "食物适可而止，苗族人用什么都很顺手。"
+  },
+  {
+   "n": 825,
+   "t": "ฉันจะลองทำให้คุณกินดูนะ",
+   "score": 1,
+   "z": "我会尝试让你吃掉它。"
+  },
+  {
+   "n": 826,
+   "t": "อย่าทำให้มันเสียรสชาติของฉันสิ",
+   "score": 0.8,
+   "z": "别破坏我的品味。"
+  },
+  {
+   "n": 827,
+   "t": "คงจะเป็นเพราะอาหารที่ฉันทำ",
+   "score": 1,
+   "z": "一定是因为我做的饭菜的原因。"
+  },
+  {
+   "n": 828,
+   "t": "คงเป็นเพราะฉันทำอาหารไม่ดีคุณเลยปวดท้องงั้นต่อจากนี้ไปคุณทำเลยนะทำตามสบายเลยคุณจะได้ไม่ปวดท้อง",
+   "score": 1,
+   "z": "大概是我没做好饭，你肚子疼吧。所以从现在开始，做你觉得舒服的事情，这样你就不会肚子疼了。"
+  },
+  {
+   "n": 829,
+   "t": "ปวดมากหรือเปล่าต้องการไปหาหมอหรือเปล่าฉันพาคุณไปหาหมอนะ",
+   "score": 1,
+   "z": "你有很多痛苦吗？你想看医生吗？我带你去看医生。"
+  },
+  {
+   "n": 830,
+   "t": "เพื่อนของคุณคงแปลกใจมากเพราะว่าวันนี้คุณถามเขาเกี่ยวกับเรื่องจะซื้อสมาชิกดูหนัง",
+   "score": 1,
+   "z": "你的朋友一定很惊讶，因为今天你向他询问购买电影会员资格的事。"
+  },
+  {
+   "n": 832,
+   "t": "คุณไปเอากล้วยที่ตู้เย็นและน้ำเย็นๆมาให้ฉันดื่มหน่อยสิ",
+   "score": 1,
+   "z": "你能去冰箱里拿一些香蕉和一些冷水给我喝吗？"
+  },
+  {
+   "n": 833,
+   "t": "คุณหิวไหมฉันจะต้มบะหมี่กิน",
+   "score": 1,
+   "z": "你饿了吗？我去煮一些面条。"
+  },
+  {
+   "n": 834,
+   "t": "กินแบบนั้นมันจะทำให้ท้องอืดและท้องเสียนะ",
+   "score": 0.93,
+   "z": "这样吃会引起腹胀和腹泻。"
+  },
+  {
+   "n": 835,
+   "t": "ฉันหิวและคิดว่าจะต้องบะหมี่กินคุณต้องกินกับฉัน",
+   "score": 1,
+   "z": "我饿了，我想我需要吃面条。你必须和我一起吃饭。"
+  },
+  {
+   "n": 836,
+   "t": "ฉันไม่ได้ชื่นชมหรือชอบใครเป็นพิเศษเพราะฉันรู้สึกว่าใครก็หล่อและสวยเหมือนกันไปหมดเลย",
+   "score": 0.93,
+   "z": "我没有特别崇拜或者喜欢谁，因为我觉得每个人都又帅又漂亮。"
+  },
+  {
+   "n": 837,
+   "t": "แต่ฉันชอบดูหนังชอบดูซีรีย์มากพี่ชอบดูไม่ใช่ว่าชอบคนดังแต่ฉันชอบดูเพราะว่าซีรีย์นั้นสื่อสารเนื้อหาที่ดีมากๆ",
+   "score": 1,
+   "z": "但我真的很喜欢看电影和连续剧。我喜欢看，不是我喜欢名人，而是我喜欢看，因为该剧很好地传达了内容。"
+  },
+  {
+   "n": 838,
+   "t": "ไม่พอใจหรอถ้าคนไม่พอใจก็เอาทุกอย่างกลับไปสิ",
+   "score": 1,
+   "z": "你不满意吗？如果人们不满意，就收回一切。"
+  },
+  {
+   "n": 839,
+   "t": "คุณอยากให้ฉันโกรธใช่ไหมเนี่ย",
+   "score": 1,
+   "z": "你想让我生气，对吗？"
+  },
+  {
+   "n": 840,
+   "t": "ช่วยไม่ได้ทุกอย่างที่เป็นของคุณก็เป็นของฉันเหมือนกัน",
+   "score": 1,
+   "z": "没办法，你的一切也是我的。"
+  },
+  {
+   "n": 843,
+   "t": "มันใหญ่เกินไปแล้วมันทำให้ฉันปวดกระดูกสำรองหมอบอกว่าถ้าหากฉันไม่ผ่าตัดฉันอาจจะกระดูกเสื่อม",
+   "score": 0.94,
+   "z": "它太大了，让我很痛苦。医生说如果我不做手术，我可能会得骨关节炎。"
+  },
+  {
+   "n": 844,
+   "t": "ตอนนั้นปวดจริงๆฉันปวดกระดูกสันหลังแล้วก็ปวดลงขาตอนนั้นฉันเดินไม่ได้เลย",
+   "score": 1,
+   "z": "那个时候，真的很痛苦。我的脊椎和腿都痛。那时我还不能走路。"
+  },
+  {
+   "n": 846,
+   "t": "หลังจากที่ผ่าตัดแล้วฉันใช้ชีวิตง่ายขึ้นเลยล่ะไม่ปวดกระดูกสันหลังยั่ว",
+   "score": 0.94,
+   "z": "手术后，我的生活轻松多了，脊椎也不再疼痛了。"
+  },
+  {
+   "n": 847,
+   "t": "ฉันจำไม่ได้แล้วน่าจะปี 2010 เท่าไหร่เนี่ยฉันจำไม่ได้แล้วนานมากแล้ว",
+   "score": 0.94,
+   "z": "我不记得了。应该是2010年吧，我记不清了。已经很久了。"
+  },
+  {
+   "n": 848,
+   "t": "น่าจะประมาณ 15 หรือ 16 เนี่ย",
+   "score": 0.83,
+   "z": "大概15、16岁左右。"
+  },
+  {
+   "n": 851,
+   "t": "เพราะอย่างนั้นฉันควรขอบคุณแม่และยายของฉันฉันควรขอบคุณกรรมพันธุ์ของฉันที่ฉันมีหน้าอกใหญ่ใช่ไหม",
+   "score": 1,
+   "z": "所以我应该感谢我的妈妈和奶奶，我应该感谢我的基因让我拥有大胸，对吗？"
+  },
+  {
+   "n": 852,
+   "t": "ฉันก็เห็นผู้หญิงมีหน้าอกเยอะแยะทั่วไป",
+   "score": 0.92,
+   "z": "我也看到有很多胸部的女性。"
+  },
+  {
+   "n": 855,
+   "t": "ฉันคิดว่าชีวิตนี้ฉันคงขาดเธอไม่ได้แล้วแหละ",
+   "score": 0.88,
+   "z": "我想我这辈子不能没有你了。"
+  },
+  {
+   "n": 856,
+   "t": "ทำไมคุณทำเก่งจังเลยคนไปเรียนมาจากที่ไหน",
+   "score": 1,
+   "z": "为什么你这么擅长？人们从哪里学到的？"
+  },
+  {
+   "n": 857,
+   "t": "ฉันรู้สึกว่าฉันติดใจมึงและปากของคุณมากๆเลยแหละ",
+   "score": 1,
+   "z": "我觉得我真的对你和你的嘴上瘾了。"
+  },
+  {
+   "n": 858,
+   "t": "อีก 10 ปีข้างหน้าฉันก็คงจะเหนื่อยและก็จะทำอะไรไม่ไหวแล้ว",
+   "score": 0.96,
+   "z": "10年后我可能会很累，什么也做不了。"
+  },
+  {
+   "n": 861,
+   "t": "ฉันอยากดำๆ",
+   "score": 0.7,
+   "z": "我想要黑色"
+  },
+  {
+   "n": 862,
+   "t": "ฉันอยากนำส่งประเพณีมาจากประเทศเวียดนามมาขายให้คนจีน",
+   "score": 1,
+   "z": "我想把越南的传统卖给中国人。"
+  },
+  {
+   "n": 863,
+   "t": "ฉันอยากไปเปิดเป็นช่องสู่ประเพณีฉันจะเป็นหัวหน้านะ",
+   "score": 1,
+   "z": "我想打开一条通向传统的通道。我将成为领导者。"
+  },
+  {
+   "n": 864,
+   "t": "อย่าจับมากเกินไปสิมันจะทำให้ฉันเจ็บนะ",
+   "score": 1,
+   "z": "别碰太多，会伤害我的。"
+  },
+  {
+   "n": 865,
+   "t": "ฉันว่าการเรียนภาษาจีนโบราณก็ดีเหมือนกันนะฉันจะได้พูดคุยกับพ่อแม่ของคุณได้รู้เรื่อง",
+   "score": 1,
+   "z": "我觉得学习古汉语也不错，我可以和你父母谈谈。"
+  },
+  {
+   "n": 867,
+   "t": "คุณหัวเราะอะไรของฉันหรอ",
+   "score": 1,
+   "z": "你笑我什么？"
+  },
+  {
+   "n": 868,
+   "t": "คุณหัวเราะอะไรของฉันเหรอ",
+   "score": 1,
+   "z": "你笑我什么？"
+  },
+  {
+   "n": 869,
+   "t": "คุณจะเดินไปหรอ",
+   "score": 1,
+   "z": "你要走路吗？"
+  },
+  {
+   "n": 870,
+   "t": "ฉันอยากกินเหล้ารู้สึกว่าหลายวันมากๆแล้วไม่ได้กินเหล้า",
+   "score": 1,
+   "z": "我想喝酒。感觉好像很多天没有喝酒了。"
+  },
+  {
+   "n": 871,
+   "t": "ก็เพราะว่าคุณห้ามฉันดื่มเหล้าไงนานมากๆเลยฉันไม่ได้ดื่มนะเนี่ยฉันก็เลยอยากกินเหล้าเนี่ย",
+   "score": 0.97,
+   "z": "因为你这么久不让我喝酒，我不喝酒，所以我想喝酒。"
+  },
+  {
+   "n": 872,
+   "t": "เหล้าก็เหมือนของกินชนิดนึงนานๆไม่ได้กินก็อยากจะกิน",
+   "score": 1,
+   "z": "酒精就像一种食物。如果你很久不吃它了，你就想吃它。"
+  },
+  {
+   "n": 873,
+   "t": "แล้วไปซื้อเหล้ามากินกันสองคนไหมอ่ะ",
+   "score": 1,
+   "z": "然后去买酒给你们两个喝？"
+  },
+  {
+   "n": 874,
+   "t": "เหนื่อยกับคุณไงดื่ม 2 คนเนี่ย",
+   "score": 1,
+   "z": "我厌倦了你和两个人一起喝酒。"
+  },
+  {
+   "n": 875,
+   "t": "ฉันถามว่าคุณหัวเราะอะไร",
+   "score": 1,
+   "z": "我问你笑什么？"
+  },
+  {
+   "n": 876,
+   "t": "แต่ว่าคุณคิดอีโมจิหัวเราะ",
+   "score": 0.84,
+   "z": "但你想到了一个大笑的表情符号。"
+  },
+  {
+   "n": 877,
+   "t": "พวกคุณอย่าเพิ่งคุยเรื่องนี้ได้ไหมรอให้ฉันคุยงานก่อน",
+   "score": 1,
+   "z": "你们能不能别再谈这个了？等我先说工作的事情。"
+  },
+  {
+   "n": 878,
+   "t": "ไปที่ตู้กดเงินหรือเปล่า",
+   "score": 1,
+   "z": "你去ATM机了吗？"
+  },
+  {
+   "n": 879,
+   "t": "คุณอยู่ในรถรอฉันนะแป๊บนึง",
+   "score": 1,
+   "z": "你在车里等我一会儿。"
+  },
+  {
+   "n": 881,
+   "t": "ฉันคิดว่าเสียงร้องของฉันเป็นคำตอบที่ดีที่สุดแล้ว",
+   "score": 1,
+   "z": "我想我的哭泣就是最好的答案。"
+  },
+  {
+   "n": 884,
+   "t": "ที่รักถ้าฉันอยากจะไปเสริมจมูกคุณคิดว่ายังไง",
+   "score": 1,
+   "z": "亲爱的，如果我想做鼻子整形手术，你觉得怎么样？"
+  },
+  {
+   "n": 885,
+   "t": "ฉันรู้สึกว่าหนังตาฉันเริ่มเยอะแล้วฉันต้องไปผ่าตัดหนังตาอีกครั้งแล้ว",
+   "score": 1,
+   "z": "我感觉我的眼皮开始变厚了，我需要再次做眼皮手术。"
+  },
+  {
+   "n": 887,
+   "t": "ฉันเคยซื้อโทรศัพท์พับได้ของ มาใช้ได้ 2 วันแล้วมันก็พังฉันจะไม่ซื้อมันอีกแล้ว",
+   "score": 0.92,
+   "z": "我买了一个折叠手机，用了两天就坏了。我不会再买了。"
+  },
+  {
+   "n": 888,
+   "t": "ไม่เป็นไรเดี๋ยวฉันจะซื้อโทรศัพท์พับได้ยี่ห้อที่คุณชอบให้คุณแล้วกันแต่ว่าคุณอย่าลืมซื้อ 18 ให้ฉัน",
+   "score": 0.91,
+   "z": "没关系，我给你买你喜欢的牌子的折叠手机，不过别忘了给我买18的。"
+  },
+  {
+   "n": 889,
+   "t": "เอาพัดลมตัวเล็กๆของคุณให้ฉันยืมหน่อยสิ",
+   "score": 1,
+   "z": "请借我你的小扇子。"
+  },
+  {
+   "n": 890,
+   "t": "ฉันคิดว่าต่อไปนี้ในโลกนี้ทุกคนคงจะซื้อหุ่นยนต์มาเป็นสามีและภรรยากันหมด",
+   "score": 0.94,
+   "z": "我想从现在起这个世界上每个人都会买一个机器人作为他们的丈夫和妻子。"
+  },
+  {
+   "n": 891,
+   "t": "คุณรู้ได้ยังไงล่ะคุณเคยไปลองแล้วหรอ",
+   "score": 1,
+   "z": "你怎么知道？你尝试过吗？"
+  },
+  {
+   "n": 892,
+   "t": "อาจจะเป็นชื่อร้านก็ได้",
+   "score": 1,
+   "z": "这可能是商店的名称。"
+  },
+  {
+   "n": 893,
+   "t": "คุณอยากไปลองนวดดูบ้างไหมอ่ะ",
+   "score": 1,
+   "z": "您想尝试一下按摩吗？"
+  },
+  {
+   "n": 895,
+   "t": "ฉันกำลังไปซื้อไก่ทอดและรถมันติดมากๆเลย",
+   "score": 0.82,
+   "z": "本来要去买炸鸡，结果堵车了。"
+  },
+  {
+   "n": 896,
+   "t": "คุณคงต้องรอฉันอีกนานหน่อยนะ",
+   "score": 1,
+   "z": "你得再等我一会儿。"
+  },
+  {
+   "n": 897,
+   "t": "คุณอยากกินอะไรบ้างไหมเดี๋ยวฉันจะซื้อไปเลย",
+   "score": 1,
+   "z": "你想吃点什么吗？我会买它。"
+  },
+  {
+   "n": 898,
+   "t": "รถติดและหิวมากด้วย",
+   "score": 1,
+   "z": "交通堵塞而且我很饿。"
+  },
+  {
+   "n": 899,
+   "t": "ฉันหิวเกินไปแล้วขอกินแฮมเสิร์ฟของคุณแล้วนะ",
+   "score": 0.79,
+   "z": "我太饿了，吃不了你的火腿。"
+  },
+  {
+   "n": 900,
+   "t": "คุณอีกต่อไปหรือยัง",
+   "score": 1,
+   "z": "你现在还在吗？"
+  },
+  {
+   "n": 901,
+   "t": "ส่งแผนที่มาให้ฉันดูสิ",
+   "score": 1,
+   "z": "给我发一张地图，我可以看一下。"
+  },
+  {
+   "n": 902,
+   "t": "ไปที่ไหนก็คอยส่งแผนที่ให้ฉันด้วยเดี๋ยวคุณจะถูกลักพาตัว",
+   "score": 0.91,
+   "z": "无论你去哪里，都要给我地图，否则你就会被绑架。"
+  },
+  {
+   "n": 903,
+   "t": "อยู่ไหน",
+   "score": 1,
+   "z": "哪里是"
+  },
+  {
+   "n": 904,
+   "t": "คืนนี้ฉันจะกลับไปดึกนิดหน่อยนะ",
+   "score": 1,
+   "z": "今晚我要晚一点回去。"
+  },
+  {
+   "n": 905,
+   "t": "กินข้าวแล้วก็กลับไปพักที่ห้อง",
+   "score": 1,
+   "z": "吃完饭就回房间了。"
+  },
+  {
+   "n": 906,
+   "t": "กลับบ้านหรือยัง",
+   "score": 1,
+   "z": "你回家了吗？"
+  },
+  {
+   "n": 908,
+   "t": "กำลังจะออกไปกินข้าวที่บ้านเพื่อนอีกคนนึงเพื่อคุยธุระ",
+   "score": 1,
+   "z": "我正要去另一个朋友家吃饭谈生意。"
+  },
+  {
+   "n": 909,
+   "t": "ที่รักคุณทำอะไรอยู่",
+   "score": 1,
+   "z": "亲爱的你在做什么？"
+  },
+  {
+   "n": 910,
+   "t": "ฉันกำลังกลับไปหาคุณฉันกำลังจะถึงบ้านแล้ว",
+   "score": 1,
+   "z": "我会回到你身边，我会回家。"
+  },
+  {
+   "n": 911,
+   "t": "นี่เรามีเวลาอยู่ด้วยกันแค่คืนนี้คืนเดียวหรอเนี่ย",
+   "score": 1,
+   "z": "所以我们只有这一晚在一起的时间？"
+  },
+  {
+   "n": 912,
+   "t": "งั้นคุณก็สั่งเอาเถอะที่นี่ไม่มี",
+   "score": 1,
+   "z": "那你就下单吧，这里没有。"
+  },
+  {
+   "n": 913,
+   "t": "อ๋อคุณหมายถึงกล้องถ่ายที่เอาให้ฉันนั้นหรอ",
+   "score": 1,
+   "z": "哦，你是说你给我的相机？"
+  },
+  {
+   "n": 914,
+   "t": "ไม่เป็นไรไม่ต้องขายหรอก",
+   "score": 1,
+   "z": "没关系，你不用卖掉它。"
+  },
+  {
+   "n": 915,
+   "t": "ฉันคิดว่าฉันจะขายอย่างอื่นแล้วไม่ได้ขายกล้อง",
+   "score": 1,
+   "z": "我想我会卖点别的东西而不是卖相机。"
+  },
+  {
+   "n": 916,
+   "t": "คุณอยู่ที่นี่รอฉันนะฉันจะไปเอากล้องถ่ายก่อน",
+   "score": 1,
+   "z": "你留在这儿等我。我先去拿相机。"
+  },
+  {
+   "n": 917,
+   "t": "ฉันจะไปเอาแล้วรีบกลับมาเราจะต้องไปกินบะหมี่ใกล้ๆแถวนี้ก่อนที่ฉันจะพาคุณไปสนามบิน",
+   "score": 1,
+   "z": "我去拿一下然后赶紧回来。在我送你去机场之前我们得去附近吃面条。"
+  },
+  {
+   "n": 918,
+   "t": "คุณก็นั่งเล่นโทรศัพท์รอฉันสิแค่ 15 นาทีเอง",
+   "score": 0.95,
+   "z": "你就坐在电话旁等了我15分钟。"
+  },
+  {
+   "n": 919,
+   "t": "เขามีแต่ฉันยืมเขามากเกินไปฉันก็เกรงใจไง",
+   "score": 1,
+   "z": "他只是让我向他借了太多，所以我才体贴。"
+  },
+  {
+   "n": 920,
+   "t": "เดี๋ยวพรุ่งนี้ฉันจะลองค้นรถดูอีกทีนึง",
+   "score": 0.92,
+   "z": "明天我会再次尝试搜车。"
+  },
+  {
+   "n": 921,
+   "t": "ฉันขับรถอยู่ฉันกลับไปถึงบ้านฉันจะถ่ายส่งให้คุณนะ",
+   "score": 1,
+   "z": "我正在开车。当我回到家时，我会拍张照片并发送给你。"
+  },
+  {
+   "n": 922,
+   "t": "ฉันคุยงานเสร็จก็นอนดูหนัง",
+   "score": 1,
+   "z": "说完就上床睡觉看电影了。"
+  },
+  {
+   "n": 923,
+   "t": "ไม่โกรธนะ",
+   "score": 1,
+   "z": "我不生气。"
+  },
+  {
+   "n": 924,
+   "t": "หลังจากที่มีเงินก็ซื้อใหม่ดีไหม",
+   "score": 1,
+   "z": "有了钱之后，是不是该买新的呢？"
+  },
+  {
+   "n": 926,
+   "t": "ต้องกดได้แล้วหรือยัง",
+   "score": 1,
+   "z": "我还需要按吗？"
+  },
+  {
+   "n": 927,
+   "t": "ฉันไปกดได้หรือยัง",
+   "score": 1,
+   "z": "我可以去按一下吗？"
+  },
+  {
+   "n": 928,
+   "t": "ฉันจะกดได้เงินกินเท่าไหร่ค่ะ",
+   "score": 1,
+   "z": "我要多少钱才能吃饭？"
+  },
+  {
+   "n": 929,
+   "t": "เขาเป็นคนร้อยหน้า",
+   "score": 1,
+   "z": "他是一个百面人。"
+  },
+  {
+   "n": 930,
+   "t": "เขาเป็นคอยร้อยหน้า",
+   "score": 1,
+   "z": "他是一个百面人。"
+  },
+  {
+   "n": 931,
+   "t": "เขาเป็นคนน้อยมาก",
+   "score": 1,
+   "z": "他很小。"
+  },
+  {
+   "n": 934,
+   "t": "ฉันแค่คิดมากนอนไม่หลับ",
+   "score": 1,
+   "z": "我只是想太多，睡不着。"
+  },
+  {
+   "n": 935,
+   "t": "เอาไว้คุณมาหาฉันแล้วค่อยคุยเรื่องนี้",
+   "score": 1,
+   "z": "你来找我，然后我们讨论这个。"
+  },
+  {
+   "n": 937,
+   "t": "อย่าเศร้าเลย'ฉันอยู่ตรงนี้",
+   "score": 0.73,
+   "z": "别难过，我就在这里。"
+  },
+  {
+   "n": 938,
+   "t": "ที่รักใช้งานได้แล้ว",
+   "score": 1,
+   "z": "亲爱的，现在可以用了。"
+  },
+  {
+   "n": 939,
+   "t": "ใช้งานได้จริงแล้ว",
+   "score": 1,
+   "z": "其实是可以用的。"
+  },
+  {
+   "n": 941,
+   "t": "ใช่มาทำงานสิ",
+   "score": 1,
+   "z": "是的，来上班吧。"
+  },
+  {
+   "n": 942,
+   "t": "ปัญหามาทำงานสิ",
+   "score": 1,
+   "z": "工作中就会出现问题。"
+  },
+  {
+   "n": 943,
+   "t": "ทำฉันตกใจหมดเลย",
+   "score": 1,
+   "z": "这让我彻底震惊了。"
+  }
+ ],
+ "funcWords": [
+  {
+   "w": "ฉัน",
+   "c": 829,
+   "df": 463,
+   "func": true,
+   "ex": 2
+  },
+  {
+   "w": "คุณ",
+   "c": 497,
+   "df": 323,
+   "func": true,
+   "ex": 2
+  },
+  {
+   "w": "จะ",
+   "c": 306,
+   "df": 235,
+   "func": true,
+   "ex": 13
+  },
+  {
+   "w": "ไม่",
+   "c": 299,
+   "df": 227,
+   "func": true,
+   "ex": 6
+  },
+  {
+   "w": "ไป",
+   "c": 251,
+   "df": 207,
+   "func": true,
+   "ex": 3
+  },
+  {
+   "w": "แล้ว",
+   "c": 237,
+   "df": 205,
+   "func": true,
+   "ex": 5
+  },
+  {
+   "w": "ที่",
+   "c": 227,
+   "df": 175,
+   "func": true,
+   "ex": 6
+  },
+  {
+   "w": "ได้",
+   "c": 203,
+   "df": 168,
+   "func": true,
+   "ex": 13
+  },
+  {
+   "w": "ก็",
+   "c": 198,
+   "df": 155,
+   "func": true,
+   "ex": 12
+  },
+  {
+   "w": "นี้",
+   "c": 192,
+   "df": 159,
+   "func": true,
+   "ex": 6
+  },
+  {
+   "w": "ว่า",
+   "c": 177,
+   "df": 144,
+   "func": true,
+   "ex": 91
+  },
+  {
+   "w": "ของ",
+   "c": 153,
+   "df": 118,
+   "func": true,
+   "ex": 79
+  },
+  {
+   "w": "ให้",
+   "c": 144,
+   "df": 118,
+   "func": true,
+   "ex": 80
+  },
+  {
+   "w": "นะ",
+   "c": 137,
+   "df": 129,
+   "func": true,
+   "ex": 7
+  },
+  {
+   "w": "คน",
+   "c": 129,
+   "df": 110,
+   "func": true,
+   "ex": 6
+  },
+  {
+   "w": "มา",
+   "c": 122,
+   "df": 111,
+   "func": true,
+   "ex": 10
+  },
+  {
+   "w": "เลย",
+   "c": 120,
+   "df": 108,
+   "func": true,
+   "ex": 6
+  },
+  {
+   "w": "เป็น",
+   "c": 116,
+   "df": 99,
+   "func": true,
+   "ex": 12
+  },
+  {
+   "w": "ต้อง",
+   "c": 99,
+   "df": 92,
+   "func": true,
+   "ex": 41
+  },
+  {
+   "w": "อยู่",
+   "c": 98,
+   "df": 84,
+   "func": true,
+   "ex": 87
+  },
+  {
+   "w": "และ",
+   "c": 93,
+   "df": 84,
+   "func": true,
+   "ex": 6
+  },
+  {
+   "w": "มี",
+   "c": 87,
+   "df": 77,
+   "func": true,
+   "ex": 6
+  },
+  {
+   "w": "มาก",
+   "c": 84,
+   "df": 76,
+   "func": true,
+   "ex": 4
+  },
+  {
+   "w": "อยาก",
+   "c": 80,
+   "df": 70,
+   "func": true,
+   "ex": 10
+  },
+  {
+   "w": "กัน",
+   "c": 78,
+   "df": 66,
+   "func": true,
+   "ex": 18
+  },
+  {
+   "w": "มัน",
+   "c": 76,
+   "df": 65,
+   "func": true,
+   "ex": 83
+  },
+  {
+   "w": "แต่",
+   "c": 75,
+   "df": 69,
+   "func": true,
+   "ex": 26
+  },
+  {
+   "w": "เรา",
+   "c": 73,
+   "df": 56,
+   "func": true,
+   "ex": 50
+  },
+  {
+   "w": "กับ",
+   "c": 72,
+   "df": 62,
+   "func": true,
+   "ex": 13
+  },
+  {
+   "w": "ยัง",
+   "c": 72,
+   "df": 62,
+   "func": true,
+   "ex": 22
+  },
+  {
+   "w": "ถ้า",
+   "c": 71,
+   "df": 66,
+   "func": true,
+   "ex": 13
+  },
+  {
+   "w": "ทำ",
+   "c": 68,
+   "df": 55,
+   "func": true,
+   "ex": 6
+  },
+  {
+   "w": "กิน",
+   "c": 66,
+   "df": 50,
+   "func": true,
+   "ex": 32
+  },
+  {
+   "w": "อีก",
+   "c": 64,
+   "df": 52,
+   "func": true,
+   "ex": 10
+  },
+  {
+   "w": "ใน",
+   "c": 64,
+   "df": 54,
+   "func": true,
+   "ex": 62
+  },
+  {
+   "w": "เพราะ",
+   "c": 64,
+   "df": 59,
+   "func": true,
+   "ex": 67
+  },
+  {
+   "w": "ตอน",
+   "c": 63,
+   "df": 53,
+   "func": true,
+   "ex": 21
+  },
+  {
+   "w": "เขา",
+   "c": 62,
+   "df": 40,
+   "func": true,
+   "ex": 113
+  },
+  {
+   "w": "ไหม",
+   "c": 60,
+   "df": 59,
+   "func": true,
+   "ex": 9
+  },
+  {
+   "w": "อะไร",
+   "c": 56,
+   "df": 50,
+   "func": true,
+   "ex": 97
+  },
+  {
+   "w": "ดู",
+   "c": 55,
+   "df": 44,
+   "func": true,
+   "ex": 3
+  },
+  {
+   "w": "ถึง",
+   "c": 55,
+   "df": 51,
+   "func": true,
+   "ex": 75
+  },
+  {
+   "w": "นั้น",
+   "c": 53,
+   "df": 52,
+   "func": true,
+   "ex": 103
+  },
+  {
+   "w": "แบบ",
+   "c": 50,
+   "df": 45,
+   "func": true,
+   "ex": 29
+  },
+  {
+   "w": "วัน",
+   "c": 50,
+   "df": 48,
+   "func": true,
+   "ex": 30
+  },
+  {
+   "w": "ซื้อ",
+   "c": 49,
+   "df": 40,
+   "func": true,
+   "ex": 82
+  },
+  {
+   "w": "หรือ",
+   "c": 46,
+   "df": 40,
+   "func": true,
+   "ex": 22
+  },
+  {
+   "w": "ผม",
+   "c": 46,
+   "df": 26,
+   "func": true,
+   "ex": 122
+  },
+  {
+   "w": "อย่าง",
+   "c": 44,
+   "df": 42,
+   "func": true,
+   "ex": 6
+  },
+  {
+   "w": "เหมือน",
+   "c": 42,
+   "df": 38,
+   "func": true,
+   "ex": 92
+  },
+  {
+   "w": "บอก",
+   "c": 41,
+   "df": 35,
+   "func": true,
+   "ex": 84
+  },
+  {
+   "w": "ด้วย",
+   "c": 40,
+   "df": 38,
+   "func": true,
+   "ex": 12
+  },
+  {
+   "w": "คิด",
+   "c": 39,
+   "df": 29,
+   "func": true,
+   "ex": 4
+  },
+  {
+   "w": "ดี",
+   "c": 39,
+   "df": 37,
+   "func": true,
+   "ex": 79
+  },
+  {
+   "w": "จาก",
+   "c": 39,
+   "df": 34,
+   "func": true,
+   "ex": 89
+  },
+  {
+   "w": "ไง",
+   "c": 39,
+   "df": 35,
+   "func": true,
+   "ex": 104
+  },
+  {
+   "w": "รอ",
+   "c": 38,
+   "df": 38,
+   "func": true,
+   "ex": 103
+  },
+  {
+   "w": "เอา",
+   "c": 36,
+   "df": 31,
+   "func": true,
+   "ex": 121
+  },
+  {
+   "w": "จริงๆ",
+   "c": 35,
+   "df": 34,
+   "func": true,
+   "ex": 7
+  },
+  {
+   "w": "รู้สึก",
+   "c": 35,
+   "df": 29,
+   "func": true,
+   "ex": 8
+  }
+ ]
+}

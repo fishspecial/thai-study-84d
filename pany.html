@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>她的泰语 · Pany 常用词与例句</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f7f6f3; --line:#e3e1dc; --line2:#cfccc5;
+  --tx:#2c2c2a; --tx2:#5f5e5a; --tx3:#888780;
+  --blue50:#e6f1fb; --blue200:#b5d4f4; --blue600:#185fa5; --blue800:#0c447c;
+  --teal50:#e1f5ee; --teal600:#0f6e56;
+  --amber50:#faeeda; --amber200:#fac775; --amber600:#854f0b;
+  --green50:#eaf3de; --green600:#3b6d11;
+  --red50:#fcebeb; --red600:#a32d2d;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);
+  font-family:system-ui,-apple-system,"Segoe UI","Leelawadee UI","Noto Sans Thai","Microsoft YaHei",sans-serif;
+  font-size:14px;line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:20px 20px 90px}
+h1{font-size:21px;font-weight:500;margin:0 0 4px}
+h2{font-size:16px;font-weight:500;margin:22px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+p{margin:8px 0}
+.sub{color:var(--tx2);font-size:13px}
+a{color:var(--blue600);text-decoration:none}
+a:hover{text-decoration:underline}
+
+nav{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:13px;
+  padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+nav .navlink{border:1px solid var(--line2);border-radius:8px;padding:4px 10px;color:var(--tx2);background:var(--bg)}
+nav .navlink:hover{background:var(--surface);text-decoration:none}
+
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px}
+.tab{font:inherit;font-size:14px;padding:7px 14px;border-radius:9px;border:1px solid var(--line2);
+  background:transparent;color:var(--tx2);cursor:pointer}
+.tab:hover{background:var(--surface)}
+.tab.on{background:var(--blue600);border-color:var(--blue600);color:#fff}
+.pane{display:none}
+.pane.on{display:block}
+
+.hero{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}
+.kpi{background:var(--bg);border-radius:8px;padding:9px 11px}
+.kpi .l{font-size:12px;color:var(--tx2)}
+.kpi .v{font-size:19px;font-weight:500;margin-top:2px}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:10px 0 4px}
+.bar>i{display:block;height:100%;background:var(--green600);width:0;transition:width .25s}
+
+.ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
+button.btn{font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--line2);background:transparent;color:var(--tx);cursor:pointer}
+button.btn:hover{background:var(--surface)}
+button.btn.on{background:var(--blue50);border-color:var(--blue600);color:var(--blue800)}
+input[type=text],select{font:inherit;font-size:13px;padding:6px 9px;border:1px solid var(--line2);border-radius:8px;background:var(--bg);color:var(--tx)}
+input[type=range]{vertical-align:middle}
+
+.list{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:8px}
+.w{display:flex;gap:12px;align-items:flex-start;padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer}
+.w:last-child{border-bottom:none}
+.w:hover{background:var(--surface)}
+.w.playing{background:var(--blue50)}
+.w.learned{opacity:.5}
+.w .play{flex:0 0 18px;color:var(--blue600);font-size:12px;margin-top:4px}
+.w .rk{flex:0 0 26px;color:var(--tx3);font-size:12px;margin-top:4px;text-align:right}
+.w .main{flex:1;min-width:0}
+.w .th{font-family:"Leelawadee UI","Noto Sans Thai",sans-serif;font-size:18px;line-height:1.5}
+.w .s .th{font-size:16px}
+.w .rom{font-size:12px;color:var(--tx2)}
+.w .zh{font-size:13px;margin-top:1px}
+.w .en{font-size:12px;color:var(--tx2);margin-top:1px}
+.w .note{font-size:12px;color:var(--amber600);margin-top:2px}
+.w .side{flex:0 0 auto;display:flex;gap:6px;align-items:center}
+.mini{font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid var(--line2);background:transparent;cursor:pointer;color:var(--tx2)}
+.mini:hover{background:var(--surface)}
+.mini.on{background:var(--green50);border-color:var(--green600);color:var(--green600)}
+.cnt{font-size:11px;padding:1px 7px;border-radius:99px;background:var(--amber50);color:var(--amber600);border:1px solid var(--amber200);white-space:nowrap}
+.cnt.lo{background:var(--surface);color:var(--tx2);border-color:var(--line2)}
+
+.note2{background:var(--amber50);border:1px solid var(--amber200);border-radius:8px;padding:12px 14px;font-size:13px;margin:12px 0}
+.note2 b{font-weight:500}
+.tip{background:var(--blue50);border:1px solid var(--blue200);border-radius:8px;padding:12px 14px;font-size:13px;margin:12px 0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:var(--blue800);color:#fff;
+  font-size:13px;padding:8px 14px;border-radius:8px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:99;max-width:92vw}
+.toast.show{opacity:1}
+.hide{display:none!important}
+@media print{.ctl,button,input,select,.tabs{display:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <a class="navlink" href="./index.html">← 84 天计划</a>
+  <a class="navlink" href="./wordbook.html">单词本 · 2187 词</a>
+  <span class="sub">当前：她的泰语（Pany 语料）</span>
+
+</nav>
+
+<h1>她的泰语 · 常用词与例句</h1>
+<p class="sub">语料来源：她真实发过的聊天记录（Google 翻译导出 943 条 → 清洗去重后 <b id="nSent">0</b> 条）·
+  按「她实际用了多少次」排序，不是字典频率 · 点任意行发音</p>
+
+<div class="hero">
+  <div class="kpis">
+    <div class="kpi"><div class="l">高频实词</div><div class="v" id="kW">0</div></div>
+    <div class="kpi"><div class="l">语气词·虚词</div><div class="v" id="kF">0</div></div>
+    <div class="kpi"><div class="l">高频短句</div><div class="v" id="kG">0</div></div>
+    <div class="kpi"><div class="l">例句</div><div class="v" id="kS">0</div></div>
+    <div class="kpi"><div class="l">已掌握</div><div class="v" id="kL">0</div></div>
+    <div class="kpi"><div class="l">掌握率</div><div class="v" id="kP">0%</div></div>
+  </div>
+  <div class="bar"><i id="barMain"></i></div>
+  <p class="sub" id="pos"></p>
+</div>
+
+<div class="tabs">
+  <button class="tab on" data-p="w">她的常用词</button>
+  <button class="tab" data-p="f">语气词 · 虚词</button>
+  <button class="tab" data-p="g">高频短句</button>
+  <button class="tab" data-p="s">例句库</button>
+  <button class="tab" data-p="h">说明</button>
+</div>
+
+<!-- 常用词 -->
+<div class="pane on" id="p-w">
+  <div class="ctl">
+    <input type="text" id="qw" placeholder="搜索泰文 / 转写 / 中文 / 英文" style="min-width:220px">
+    <select id="minW">
+      <option value="3">出现 ≥3 次</option>
+      <option value="5">出现 ≥5 次</option>
+      <option value="10">出现 ≥10 次</option>
+      <option value="1">全部</option>
+    </select>
+    <button class="btn on" id="wZh">中文</button>
+    <button class="btn on" id="wEn">英文</button>
+    <button class="btn on" id="wRom">转写</button>
+    <button class="btn" id="wHide">隐藏已掌握</button>
+    <span class="sub">语速</span>
+    <input type="range" id="rate" min="0.6" max="1.2" step="0.05" value="0.9">
+    <button class="btn" id="wExport">导出</button>
+    <button class="btn" id="wReset">清除标记</button>
+  </div>
+  <p class="sub">数字 = 她在 800 条消息里用了几次。排在最前的就是她最常挂在嘴边的词。</p>
+  <div class="list" id="lw"></div>
+  <p class="sub" id="mw"></p>
+</div>
+
+<!-- 虚词 -->
+<div class="pane" id="p-f">
+  <div class="ctl">
+    <input type="text" id="qf" placeholder="搜索" style="min-width:220px">
+    <span class="sub">语速</span>
+    <input type="range" id="rate2" min="0.6" max="1.2" step="0.05" value="0.9">
+  </div>
+  <div class="tip">这一栏是<b>手写释义</b>，不是机器翻译 —— 语气词机翻必翻错。
+    她的句子之所以读起来「明明每个词都认识却不懂情绪」，八成卡在这栏里。建议先把前 30 个读顺。</div>
+  <div class="list" id="lf"></div>
+</div>
+
+<!-- 短句 -->
+<div class="pane" id="p-g">
+  <div class="ctl">
+    <input type="text" id="qg" placeholder="搜索" style="min-width:220px">
+    <select id="minG">
+      <option value="3">出现 ≥3 次</option>
+      <option value="5">出现 ≥5 次</option>
+      <option value="1">全部</option>
+    </select>
+    <button class="btn on" id="gZh">中文</button>
+    <button class="btn on" id="gEn">英文</button>
+    <span class="sub">语速</span>
+    <input type="range" id="rate3" min="0.6" max="1.2" step="0.05" value="0.9">
+    <button class="btn" id="gExport">导出</button>
+  </div>
+  <p class="sub">从她的句子里切出来的<b>高频搭配</b>。这些是「她的固定说法」，比语法书里的例句更值得背。</p>
+  <div class="list" id="lg"></div>
+  <p class="sub" id="mg"></p>
+</div>
+
+<!-- 例句 -->
+<div class="pane" id="p-s">
+  <div class="ctl">
+    <input type="text" id="qs" placeholder="搜索泰文 / 中文" style="min-width:220px">
+    <select id="lenS">
+      <option value="short">短句优先（≤40 字）</option>
+      <option value="all">按原顺序</option>
+    </select>
+    <button class="btn" id="sHide">隐藏已读</button>
+    <span class="sub">语速</span>
+    <input type="range" id="rate4" min="0.6" max="1.2" step="0.05" value="0.9">
+    <button class="btn" id="sExport">导出</button>
+  </div>
+  <p class="sub">她原样发过的完整句子（已剔除乱码、错别字、重复句与敏感内容）。中文为机器翻译，长句可能有偏差。</p>
+  <div class="list" id="ls"></div>
+  <p class="sub" id="ms"></p>
+</div>
+
+<!-- 说明 -->
+<div class="pane" id="p-h">
+  <h2>这份语料是怎么来的</h2>
+  <div class="note2">
+    原始 943 条 → <b>清洗后 800 条</b>。删掉的 143 条包括：
+    <br>· <b>乱码 / 打字中途的半成品</b>（如「ขั่ว ฃั่ว จั่ว」「ไม่อยากต บผม」这类）—— 用分词覆盖率自动判定
+    <br>· <b>重复句与半截句</b>（同一句发了两遍、或只打了一半就发出的）
+    <br>· <b>过短碎片</b>（少于 3 个泰文字符）
+    <br>· <b>成人 / 敏感内容</b>（23 条）—— 不适合做成学习卡片，已整段剔除
+    <br>· 中文说明行（如「图中的泰语文字为：」）已去掉，只保留泰文部分
+  </div>
+
+  <h2>排序依据</h2>
+  <p>不是字典频率，是<b>她本人的用词习惯</b>。比如 <span class="cnt">เงิน ×74</span>（钱）排第一 ——
+    因为那段时间她在筹钱开店；<span class="cnt">แค่ ×62</span>（只是）排第二 —— 因为她解释自己时几乎必用。
+    这种「只有她会这么用」的词，课本永远不会告诉你。</p>
+
+  <h2>怎么用</h2>
+  <p>1. 先看<b>语气词 · 虚词</b>一栏，把前 30 个读顺。这是读懂她情绪的钥匙。<br>
+     2. 再看<b>常用词</b>前 50 个，做到看到就反应得过来。<br>
+     3. <b>高频短句</b>拿来背，是她的固定说法。<br>
+     4. <b>例句库</b>当阅读训练：先看泰文猜意思，再点开中文对照。能猜对 70% 就说明拼读过关了。</p>
+
+  <h2>发音</h2>
+  <p>优先播放内置 MP3（离线可用，词 / 短句 / 短例句都有）；没有文件时自动降级到在线接口（Google → 有道）。
+    超长例句不预生成音频，走在线。手机上推荐用 Edge。</p>
+
+  <h2>已知不足</h2>
+  <p>· 中文释义除虚词外都是机器翻译，虚词以手写释义为准。<br>
+    · 分词由浏览器内置分词器完成，偶有切错（已人工剔除约 10 个明显碎片）。<br>
+    · 部分词没有罗马转写（词典里没有且未手工补），这是正常的 —— 学到后面应该直接看泰文。</p>
+</div>
+
+<div class="toast" id="toast"></div>
+</div>
+
+<script src="./pany-data.js"></script>
+<script>
+var P = window.PANY || {words:[],func:[],grams:[],sents:[]};
+var WORDS = P.words.filter(function(w){ return !w.h; });
+var FUNC  = P.func;
+var GRAMS = P.grams;
+var SENTS = P.sents;
+
+var KEY = "thai-pany-v1";
+var learned = {};
+try { var raw = localStorage.getItem(KEY); if (raw) learned = JSON.parse(raw) || {}; } catch (e) {}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(learned)); } catch(e){} }
+
+var toastTimer = null;
+function toast(m){
+  var t = document.getElementById("toast");
+  t.textContent = m; t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2200);
+}
+function esc(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+/* ---------- 发音 ---------- */
+function playChain(files, text, el){
+  var idx = 0, rate = 0.9;
+  var r = document.getElementById("rate");
+  if (r) rate = Number(r.value);
+  function next(){
+    if (idx >= files.length){ toast("发音失败，检查网络"); if(el) el.classList.remove("playing"); return; }
+    var u = files[idx++];
+    var a = new Audio();
+    a.playbackRate = rate;
+    a.onended = function(){ if(el) el.classList.remove("playing"); };
+    a.onerror = function(){ next(); };
+    a.src = u;
+    var p = a.play();
+    if (p && p.catch) p.catch(function(){ a.onerror(); });
+  }
+  if (el){
+    var prev = document.querySelector(".w.playing");
+    if (prev) prev.classList.remove("playing");
+    el.classList.add("playing");
+  }
+  next();
+}
+function speak(file, text, el){
+  playChain(["audio-pany/" + file + ".mp3",
+    "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=th&q=" + encodeURIComponent(text),
+    "https://dict.youdao.com/dictvoice?audio=" + encodeURIComponent(text) + "&le=th"], text, el);
+}
+
+/* ---------- 常用词 ---------- */
+var minW = 3, qW = "", showW = 80;
+var sZh = true, sEn = true, sRom = true, hideWL = false;
+function filtW(){
+  var q = qW.toLowerCase();
+  return WORDS.filter(function(w){
+    if (w.c < minW) return false;
+    if (hideWL && learned["w" + w.i]) return false;
+    if (!q) return true;
+    return (w.t + " " + w.r + " " + w.z + " " + w.e).toLowerCase().indexOf(q) >= 0;
+  });
+}
+function renderW(){
+  var arr = filtW(), slice = arr.slice(0, showW), h = "";
+  for (var i = 0; i < slice.length; i++){
+    var w = slice[i], got = !!learned["w" + w.i];
+    h += '<div class="w' + (got ? " learned" : "") + '" data-f="w' + w.i + '" data-t="' + esc(w.t).replace(/"/g,"&quot;") + '">'
+      + '<span class="play">&#9654;</span><span class="rk">' + (i + 1) + '</span>'
+      + '<div class="main"><div class="th">' + esc(w.t) + '</div>'
+      + (sRom && w.r ? '<div class="rom">' + esc(w.r) + '</div>' : "")
+      + (sZh && w.z ? '<div class="zh">' + esc(w.z) + '</div>' : "")
+      + (sEn && w.e ? '<div class="en">' + esc(w.e) + '</div>' : "")
+      + '</div><div class="side"><span class="cnt' + (w.c < 6 ? " lo" : "") + '">×' + w.c + '</span>'
+      + '<button class="mini' + (got ? " on" : "") + '" data-learn="w' + w.i + '">' + (got ? "已掌握" : "掌握") + '</button></div></div>';
+  }
+  document.getElementById("lw").innerHTML = h || '<div class="w"><div class="main"><div class="zh">没有匹配结果</div></div></div>';
+  document.getElementById("mw").textContent = arr.length > showW ? "已显示 " + showW + " / " + arr.length + " 条，向下滚动加载" : "共 " + arr.length + " 条";
+  stats();
+}
+function stats(){
+  var got = 0, tot = WORDS.length + SENTS.length;
+  for (var i = 0; i < WORDS.length; i++) if (learned["w" + WORDS[i].i]) got++;
+  for (var j = 0; j < SENTS.length; j++) if (learned["s" + SENTS[j].n]) got++;
+  document.getElementById("kW").textContent = WORDS.length;
+  document.getElementById("kF").textContent = FUNC.length;
+  document.getElementById("kG").textContent = GRAMS.length;
+  document.getElementById("kS").textContent = SENTS.length;
+  document.getElementById("kL").textContent = got;
+  var pct = tot ? Math.round(got / tot * 100) : 0;
+  document.getElementById("kP").textContent = pct + "%";
+  document.getElementById("barMain").style.width = pct + "%";
+  document.getElementById("pos").textContent = "已掌握 " + got + " / " + tot + " 条（常用词 + 例句）";
+  document.getElementById("nSent").textContent = SENTS.length;
+}
+
+/* ---------- 虚词 ---------- */
+var qF = "";
+function renderF(){
+  var q = qF.toLowerCase(), h = "";
+  FUNC.forEach(function(f){
+    if (q && (f.t + " " + f.r + " " + f.z + " " + f.e).toLowerCase().indexOf(q) < 0) return;
+    h += '<div class="w" data-f="f' + f.i + '" data-t="' + esc(f.t).replace(/"/g,"&quot;") + '">'
+      + '<span class="play">&#9654;</span>'
+      + '<div class="main"><div class="th">' + esc(f.t) + (f.r ? ' <span class="rom" style="font-size:12px">' + esc(f.r) + '</span>' : '') + '</div>'
+      + '<div class="zh">' + esc(f.z) + '</div>'
+      + '<div class="en">' + esc(f.e) + '</div>'
+      + (f.note ? '<div class="note">' + esc(f.note) + '</div>' : '')
+      + '</div><div class="side">' + (f.c ? '<span class="cnt">×' + f.c + '</span>' : '') + '</div></div>';
+  });
+  document.getElementById("lf").innerHTML = h || '<div class="w"><div class="main"><div class="zh">没有匹配结果</div></div></div>';
+}
+
+/* ---------- 短句 ---------- */
+var minG = 3, qG = "", showG = 80;
+var gZh = true, gEn = true;
+function filtG(){
+  var q = qG.toLowerCase();
+  return GRAMS.filter(function(g){
+    if (g.c < minG) return false;
+    if (!q) return true;
+    return (g.t + " " + g.z + " " + g.e).toLowerCase().indexOf(q) >= 0;
+  });
+}
+function renderG(){
+  var arr = filtG(), slice = arr.slice(0, showG), h = "";
+  for (var i = 0; i < slice.length; i++){
+    var g = slice[i];
+    h += '<div class="w" data-f="g' + g.i + '" data-t="' + esc(g.t).replace(/"/g,"&quot;") + '">'
+      + '<span class="play">&#9654;</span><span class="rk">' + (i + 1) + '</span>'
+      + '<div class="main"><div class="th">' + esc(g.t) + '</div>'
+      + (gZh && g.z ? '<div class="zh">' + esc(g.z) + '</div>' : "")
+      + (gEn && g.e ? '<div class="en">' + esc(g.e) + '</div>' : "")
+      + '</div><div class="side"><span class="cnt' + (g.c < 5 ? " lo" : "") + '">×' + g.c + '</span></div></div>';
+  }
+  document.getElementById("lg").innerHTML = h || '<div class="w"><div class="main"><div class="zh">没有匹配结果</div></div></div>';
+  document.getElementById("mg").textContent = arr.length > showG ? "已显示 " + showG + " / " + arr.length + " 条，向下滚动加载" : "共 " + arr.length + " 条";
+}
+
+/* ---------- 例句 ---------- */
+var qS = "", showS = 60, orderS = "short", hideSL = false;
+function filtS(){
+  var q = qS.toLowerCase();
+  var arr = SENTS.filter(function(s){
+    if (hideSL && learned["s" + s.n]) return false;
+    if (!q) return true;
+    return (s.t + " " + s.z).toLowerCase().indexOf(q) >= 0;
+  });
+  if (orderS === "short") arr = arr.slice().sort(function(a, b){ return a.t.length - b.t.length; });
+  return arr;
+}
+function renderS(){
+  var arr = filtS(), slice = arr.slice(0, showS), h = "";
+  for (var i = 0; i < slice.length; i++){
+    var s = slice[i], got = !!learned["s" + s.n];
+    h += '<div class="w s' + (got ? " learned" : "") + '" data-f="s' + s.n + '" data-t="' + esc(s.t).replace(/"/g,"&quot;") + '">'
+      + '<span class="play">&#9654;</span>'
+      + '<div class="main"><div class="th">' + esc(s.t) + '</div>'
+      + '<div class="zh">' + esc(s.z) + '</div>'
+      + '</div><div class="side">'
+      + '<button class="mini' + (got ? " on" : "") + '" data-learn="s' + s.n + '">' + (got ? "已读" : "读过") + '</button></div></div>';
+  }
+  document.getElementById("ls").innerHTML = h || '<div class="w"><div class="main"><div class="zh">没有匹配结果</div></div></div>';
+  document.getElementById("ms").textContent = arr.length > showS ? "已显示 " + showS + " / " + arr.length + " 条，向下滚动加载" : "共 " + arr.length + " 条";
+}
+
+/* ---------- 交互 ---------- */
+function bindList(id){
+  document.getElementById(id).addEventListener("click", function(e){
+    var lb = e.target.closest ? e.target.closest("[data-learn]") : null;
+    if (lb){
+      e.stopPropagation();
+      var k = lb.getAttribute("data-learn");
+      if (learned[k]) delete learned[k]; else learned[k] = 1;
+      save(); renderW(); renderS();
+      return;
+    }
+    var row = e.target.closest ? e.target.closest(".w") : null;
+    if (row) speak(row.getAttribute("data-f"), row.getAttribute("data-t"), row);
+  });
+}
+bindList("lw"); bindList("lf"); bindList("lg"); bindList("ls");
+
+document.querySelectorAll(".tab").forEach(function(b){
+  b.addEventListener("click", function(){
+    document.querySelectorAll(".tab").forEach(function(x){ x.classList.remove("on"); });
+    this.classList.add("on");
+    document.querySelectorAll(".pane").forEach(function(x){ x.classList.remove("on"); });
+    document.getElementById("p-" + this.getAttribute("data-p")).classList.add("on");
+    window.scrollTo(0, 0);
+  });
+});
+
+document.getElementById("qw").addEventListener("input", function(e){ qW = e.target.value.trim(); showW = 80; renderW(); });
+document.getElementById("minW").addEventListener("change", function(e){ minW = +e.target.value; showW = 80; renderW(); });
+document.getElementById("qf").addEventListener("input", function(e){ qF = e.target.value.trim(); renderF(); });
+document.getElementById("qg").addEventListener("input", function(e){ qG = e.target.value.trim(); showG = 80; renderG(); });
+document.getElementById("minG").addEventListener("change", function(e){ minG = +e.target.value; showG = 80; renderG(); });
+document.getElementById("qs").addEventListener("input", function(e){ qS = e.target.value.trim(); showS = 60; renderS(); });
+document.getElementById("lenS").addEventListener("change", function(e){ orderS = e.target.value; showS = 60; renderS(); });
+
+function bindToggle(id, fn){
+  document.getElementById(id).addEventListener("click", function(){ fn(); this.classList.toggle("on"); });
+}
+bindToggle("wZh",  function(){ sZh = !sZh; renderW(); });
+bindToggle("wEn",  function(){ sEn = !sEn; renderW(); });
+bindToggle("wRom", function(){ sRom = !sRom; renderW(); });
+bindToggle("wHide",function(){ hideWL = !hideWL; renderW(); });
+bindToggle("gZh",  function(){ gZh = !gZh; renderG(); });
+bindToggle("gEn",  function(){ gEn = !gEn; renderG(); });
+bindToggle("sHide",function(){ hideSL = !hideSL; renderS(); });
+
+document.getElementById("wReset").addEventListener("click", function(){
+  if (!confirm("清除这份语料里的所有「已掌握 / 已读」标记？")) return;
+  learned = {}; save(); renderW(); renderS();
+});
+function exportMD(name, lines){
+  var blob = new Blob([lines.join("\n")], {type:"text/markdown;charset=utf-8"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+document.getElementById("wExport").addEventListener("click", function(){
+  var arr = filtW(), L = ["# 她的常用词（Pany 语料）", "", "导出时间：" + new Date().toLocaleString(), "条数：" + arr.length, ""];
+  arr.forEach(function(w){ L.push("- " + w.t + "　" + (w.r ? w.r + "　" : "") + w.z + (w.e ? " / " + w.e : "") + "　×" + w.c + (learned["w" + w.i] ? "　[已掌握]" : "")); });
+  exportMD("她的常用词.md", L);
+});
+document.getElementById("gExport").addEventListener("click", function(){
+  var arr = filtG(), L = ["# 她的常用短句", "", "导出时间：" + new Date().toLocaleString(), "条数：" + arr.length, ""];
+  arr.forEach(function(g){ L.push("- " + g.t + "　" + g.z + (g.e ? " / " + g.e : "") + "　×" + g.c); });
+  exportMD("她的常用短句.md", L);
+});
+document.getElementById("sExport").addEventListener("click", function(){
+  var arr = filtS(), L = ["# 她的例句库", "", "导出时间：" + new Date().toLocaleString(), "条数：" + arr.length, ""];
+  arr.forEach(function(s){ L.push("- " + s.t + "\n  - " + s.z + (learned["s" + s.n] ? "　[已读]" : "")); });
+  exportMD("她的例句库.md", L);
+});
+
+window.addEventListener("scroll", function(){
+  var p = document.querySelector(".tab.on");
+  if (!p) return;
+  var k = p.getAttribute("data-p");
+  if (window.innerHeight + window.scrollY > document.body.offsetHeight - 400){
+    if (k === "w" && showW < filtW().length){ showW += 80; renderW(); }
+    if (k === "g" && showG < filtG().length){ showG += 80; renderG(); }
+    if (k === "s" && showS < filtS().length){ showS += 60; renderS(); }
+  }
+});
+
+renderW(); renderF(); renderG(); renderS();
+</script>
+</body>
+</html>
