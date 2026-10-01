@@ -229,7 +229,8 @@ code{background:var(--surface);padding:1px 5px;border-radius:4px;font-size:12px}
   <div class="ctl" style="margin:0">
     <label class="sub">发音方式</label>
     <select id="engineSel">
-      <option value="auto">自动（优先本机，无则在线）</option>
+      <option value="auto">自动（内置音频 → 本机 → 在线）</option>
+      <option value="file">内置音频（离线，推荐）</option>
       <option value="local">本机语音</option>
       <option value="online">在线语音（需联网）</option>
     </select>
@@ -254,6 +255,7 @@ code{background:var(--surface);padding:1px 5px;border-radius:4px;font-size:12px}
     <button class="btn" id="btnTtsTest">测试在线语音</button>
   </div>
   <p class="sub" id="ttsResult" style="margin:0 0 6px"></p>
+  <p class="sub" id="lastSay" style="margin:0 0 6px"></p>
   <p class="sub" id="engineMsg" style="margin-bottom:0"></p>
 </div>
 
@@ -581,29 +583,86 @@ function providerOrder(){
   if(okFirst.length) return [okFirst[0], PROVIDERS.filter(function(x){ return x !== okFirst[0]; })[0]];
   return [PROVIDERS[0], PROVIDERS[1]];
 }
-function speakOnline(text, el, idx){
-  idx = idx || 0;
+function markSay(label, okFlag){
+  var el = document.getElementById("lastSay");
+  if(!el) return;
+  el.textContent = "上次发音：" + label + (okFlag ? " ✓" : " ✗");
+  el.style.color = okFlag ? "var(--green600)" : "var(--red600)";
+}
+function playUrl(u, el, onFail, label){
+  var settled = false, started = false, timer = null;
+  var a = new Audio();
+  a.preload = "auto";
+  a.playbackRate = Number(document.getElementById("rate").value);
+  if(lastEl) lastEl.classList.remove("playing");
+  if(el){ el.classList.add("playing"); lastEl = el; }
+  a.onplaying = function(){ started = true; clearTimeout(timer); markSay(label, true); };
+  a.onended = function(){ if(el) el.classList.remove("playing"); };
+  a.onerror = function(){
+    if(settled) return;
+    settled = true; clearTimeout(timer);
+    if(!started){ markSay(label, false); onFail(); }
+    else if(el) el.classList.remove("playing");
+  };
+  timer = setTimeout(function(){
+    if(!started && !settled){ settled = true; markSay(label, false); onFail(); }
+  }, 8000);
+  onlineAudio = a;
+  a.src = u;
+  var pr = a.play();
+  if(pr && pr.catch) pr.catch(function(){ if(a.onerror) a.onerror(); });
+}
+function playFile(i, el, onFail){
+  if(i === null || i === undefined || i < 0){ onFail(); return; }
+  playUrl("audio/p" + i + ".mp3", el, onFail, "内置音频（离线）");
+}
+function playLocal(text, el, onFail){
+  if(!window.speechSynthesis || thVoices().length === 0 || !curVoice){ onFail(); return; }
+  var started = false;
+  try{ speechSynthesis.cancel(); }catch(e){}
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = "th-TH";
+  u.rate = Number(document.getElementById("rate").value);
+  if(curVoice) u.voice = curVoice;
+  if(lastEl) lastEl.classList.remove("playing");
+  if(el){ el.classList.add("playing"); lastEl = el; }
+  u.onstart = function(){ started = true; markSay("本机语音", true); };
+  u.onend = function(){ if(el) el.classList.remove("playing"); };
+  u.onerror = function(){
+    if(!started){ markSay("本机语音", false); onFail(); }
+    else if(el) el.classList.remove("playing");
+  };
+  speechSynthesis.speak(u);
+}
+function playOnline(text, el, onFail){
   var order = providerOrder();
-  if(idx >= order.length){
-    if(el) el.classList.remove("playing");
-    toast("在线语音全部失败：网络可能不通，请用右侧 S 按钮走 Speecher");
-    return;
+  function step(k){
+    if(k >= order.length){ onFail(); return; }
+    var prov = order[k];
+    playUrl(prov.url(text), el, function(){ prov.ok = false; step(k + 1); }, prov.label);
   }
-  var prov = order[idx];
-  try{
-    if(onlineAudio){ onlineAudio.pause(); onlineAudio = null; }
-    var a = new Audio();
-    a.preload = "auto";
-    a.playbackRate = Number(document.getElementById("rate").value);
-    if(lastEl) lastEl.classList.remove("playing");
-    if(el){ el.classList.add("playing"); lastEl = el; }
-    a.onended = function(){ if(el) el.classList.remove("playing"); prov.ok = true; };
-    a.onerror = function(){ speakOnline(text, el, idx + 1); };
-    onlineAudio = a;
-    a.src = prov.url(text);
-    var pr = a.play();
-    if(pr && pr.catch) pr.catch(function(){ if(a.onerror) a.onerror(); });
-  }catch(e){ speakOnline(text, el, idx + 1); }
+  step(0);
+}
+function speak(text, el, i){
+  var mode = document.getElementById("engineSel").value;
+  var chain;
+  if(mode === "file") chain = ["file", "online"];
+  else if(mode === "local") chain = ["local", "online"];
+  else if(mode === "online") chain = ["online"];
+  else chain = ["file", "local", "online"];
+  function step(k){
+    if(k >= chain.length){
+      if(el) el.classList.remove("playing");
+      markSay("全部方式", false);
+      toast("都失败了：请点「测试在线语音」，或用右侧 S 按钮走 Speecher");
+      return;
+    }
+    var kind = chain[k], next = function(){ step(k + 1); };
+    if(kind === "file") playFile(i, el, next);
+    else if(kind === "local") playLocal(text, el, next);
+    else playOnline(text, el, next);
+  }
+  step(0);
 }
 function testProvider(prov, cb){
   var a = new Audio();
@@ -656,8 +715,8 @@ function initVoices(){
     o.textContent = "（本机无泰语语音）";
     sel.appendChild(o);
     wrap.style.display = "none";
-    es.value = "online";
-    msg.innerHTML = "本机没有泰语语音，<strong>已自动切到「在线语音」</strong>（Google 朗读，需联网）。想用本机语音，按下方说明在手机里装泰语语音包后点「重新检测」。";
+    es.value = "auto";
+    msg.innerHTML = "本机没有泰语语音，这没关系——<strong>会优先用「内置音频」</strong>（页面自带的 76 个录音文件，离线可用、不走网络）。想用本机语音，按下方说明在手机里装泰语语音包后点「重新检测」。";
     box.className = "note";
     return;
   }
@@ -670,23 +729,8 @@ function initVoices(){
   });
   curVoice = th[0];
   sel.value = th[0].name;
-  msg.innerHTML = "检测到 <strong>" + th.length + "</strong> 个本机泰语语音。发音方式可在左侧切换；选「在线语音」则不依赖本机。";
+  msg.innerHTML = "检测到 <strong>" + th.length + "</strong> 个本机泰语语音。发音方式可切换：默认「自动」= 先用内置音频（离线最稳），没有再依次试本机、在线。";
   box.className = "okbox";
-}
-function speak(text, el){
-  var mode = document.getElementById("engineSel").value;
-  var noLocal = !window.speechSynthesis || thVoices().length === 0 || !curVoice;
-  if(mode === "online" || (mode === "auto" && noLocal)){ speakOnline(text, el); return; }
-  if(noLocal){ toast("本机没有泰语语音，请用右侧 S 按钮走 Speecher"); return; }
-  try{ speechSynthesis.cancel(); }catch(e){}
-  var u = new SpeechSynthesisUtterance(text);
-  u.lang = "th-TH";
-  u.rate = Number(document.getElementById("rate").value);
-  if(curVoice) u.voice = curVoice;
-  if(lastEl) lastEl.classList.remove("playing");
-  if(el){ el.classList.add("playing"); lastEl = el; }
-  u.onend = function(){ if(el) el.classList.remove("playing"); };
-  speechSynthesis.speak(u);
 }
 function toSpeecher(text){
   if(navigator.clipboard && navigator.clipboard.writeText){
@@ -718,11 +762,15 @@ document.getElementById("engineSel").addEventListener("change", function(e){
 document.getElementById("rate").addEventListener("input", function(e){
   document.getElementById("rateVal").textContent = Number(e.target.value).toFixed(2) + "×";
 });
-document.getElementById("btnTest").addEventListener("click", function(){ speak("สวัสดีครับ ผมชื่อ..."); });
+document.getElementById("btnTest").addEventListener("click", function(){
+  var idx = -1;
+  FLAT.forEach(function(it){ if(it[0].indexOf("ผมชื่อ") >= 0) idx = it._i; });
+  speak("สวัสดีครับ ผมชื่อ...", null, idx);
+});
 document.getElementById("btnRecheck").addEventListener("click", function(){
   if(window.speechSynthesis) try{ speechSynthesis.getVoices(); }catch(e){}
   initVoices();
-  toast(document.getElementById("engineSel").value === "online" ? "仍无本机语音，正使用在线语音" : "已重新检测");
+  toast(thVoices().length === 0 ? "本机仍无泰语语音，将使用内置音频" : "已重新检测到 " + thVoices().length + " 个语音");
 });
 document.getElementById("btnStop").addEventListener("click", function(){
   if(window.speechSynthesis) try{ speechSynthesis.cancel(); }catch(e){}
@@ -731,6 +779,8 @@ document.getElementById("btnStop").addEventListener("click", function(){
 });
 
 /* ========== 短语渲染 ========== */
+var FLAT = [];
+(function(){ DATA.forEach(function(g){ g.items.forEach(function(it){ it._i = FLAT.length; FLAT.push(it); }); }); })();
 var showRom = true, showZh = true, query = "";
 function renderPhrases(){
   var html = "", n = 0;
@@ -743,7 +793,7 @@ function renderPhrases(){
     html += "<h2>" + grp.g + "</h2>";
     items.forEach(function(it){
       n++;
-      html += '<div class="item" data-t="' + it[0].replace(/"/g, "&quot;") + '">'
+      html += '<div class="item" data-i="' + it._i + '" data-t="' + it[0].replace(/"/g, "&quot;") + '">'
            +  '<span class="play">&#9654;</span>'
            +  '<div class="main"><div class="th">' + it[0] + '</div>'
            +  (showRom ? '<div class="rom">' + it[1] + '</div>' : "")
@@ -759,7 +809,7 @@ document.getElementById("plist").addEventListener("click", function(e){
   var s = e.target.closest ? e.target.closest("[data-s]") : null;
   if(s){ e.stopPropagation(); toSpeecher(s.getAttribute("data-s")); return; }
   var it = e.target.closest ? e.target.closest(".item") : null;
-  if(it) speak(it.getAttribute("data-t"), it);
+  if(it) speak(it.getAttribute("data-t"), it, parseInt(it.getAttribute("data-i"), 10));
 });
 document.getElementById("q").addEventListener("input", function(e){ query = e.target.value.trim(); renderPhrases(); });
 function bindToggle(id, key){
@@ -773,7 +823,10 @@ bindToggle("tRom", "rom");
 bindToggle("tZh", "zh");
 document.getElementById("v-rules").addEventListener("click", function(e){
   var c = e.target.closest ? e.target.closest(".chip") : null;
-  if(c) speak(c.textContent, c);
+  if(!c) return;
+  var idx = -1;
+  FLAT.forEach(function(it){ if(it[0] === c.textContent) idx = it._i; });
+  speak(c.textContent, c, idx);
 });
 
 /* ========== 计划与打卡 ========== */
