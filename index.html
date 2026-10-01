@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>泰语 84 天 · 计划 + 打卡 + 点读</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f7f6f3; --line:#e3e1dc; --line2:#cfccc5;
+  --tx:#2c2c2a; --tx2:#5f5e5a; --tx3:#888780;
+  --blue50:#e6f1fb; --blue200:#b5d4f4; --blue600:#185fa5; --blue800:#0c447c;
+  --teal50:#e1f5ee; --teal600:#0f6e56;
+  --amber50:#faeeda; --amber200:#fac775; --amber600:#854f0b;
+  --green50:#eaf3de; --green600:#3b6d11;
+  --red50:#fcebeb; --red600:#a32d2d;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);
+  font-family:system-ui,-apple-system,"Segoe UI","Leelawadee UI","Noto Sans Thai","Microsoft YaHei",sans-serif;
+  font-size:14px;line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:24px 20px 90px}
+h1{font-size:21px;font-weight:500;margin:0 0 4px}
+h2{font-size:17px;font-weight:500;margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:15px;font-weight:500;margin:20px 0 8px}
+p{margin:8px 0}
+.sub{color:var(--tx2);font-size:13px}
+a{color:var(--blue600)}
+
+nav{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:6px;flex-wrap:wrap}
+nav button{border:none;border-bottom:2px solid transparent;border-radius:0;padding:10px 14px;
+  font-size:14px;color:var(--tx2);background:transparent;cursor:pointer}
+nav button:hover{background:transparent;color:var(--tx)}
+nav button.act{color:var(--blue800);border-bottom-color:var(--blue600);font-weight:500}
+section{display:none}
+section.act{display:block}
+
+.hero{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:12px;margin-top:14px}
+.kpi{background:var(--bg);border-radius:8px;padding:12px 14px}
+.kpi .l{font-size:12px;color:var(--tx2)}
+.kpi .v{font-size:22px;font-weight:500;margin-top:2px}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:14px 0 6px}
+.bar>i{display:block;height:100%;background:var(--blue600);width:0;transition:width .25s}
+
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left}
+th{color:var(--tx2);font-weight:500}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+
+.card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0;background:var(--bg)}
+.row{display:flex;gap:14px;align-items:flex-start;padding:7px 0}
+.row+.row{border-top:1px dashed var(--line)}
+.cb{width:17px;height:17px;flex:0 0 17px;margin-top:3px;accent-color:var(--blue600);cursor:pointer}
+.row label{cursor:pointer;flex:1}
+.row.done label{text-decoration:line-through;color:var(--tx3)}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;background:var(--surface);color:var(--tx2);border:1px solid var(--line)}
+.tag.p1{background:var(--blue50);color:var(--blue800);border-color:var(--blue200)}
+.tag.p2{background:var(--teal50);color:var(--teal600);border-color:var(--teal50)}
+.tag.p3{background:var(--amber50);color:var(--amber600);border-color:var(--amber200)}
+.tag.p4{background:var(--green50);color:var(--green600);border-color:var(--green50)}
+.tag.min{font-variant-numeric:tabular-nums;margin-left:6px}
+.done-flag{font-size:12px;color:var(--green600);white-space:nowrap}
+.undone-flag{font-size:12px;color:var(--tx3);white-space:nowrap}
+
+.weekhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:26px 0 4px}
+.weekhead .w{font-size:15px;font-weight:500}
+.dayhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
+.dayhead .d{font-size:14px;font-weight:500}
+.today{background:var(--amber50)!important;border-color:var(--amber200)!important}
+
+.ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
+button.btn{font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--line2);background:transparent;color:var(--tx);cursor:pointer}
+button.btn:hover{background:var(--surface)}
+button.btn.on{background:var(--blue50);border-color:var(--blue600);color:var(--blue800)}
+input[type=date],input[type=text],select{font:inherit;font-size:13px;padding:5px 8px;border:1px solid var(--line2);border-radius:8px;background:var(--bg);color:var(--tx)}
+input[type=range]{vertical-align:middle}
+ol,ul{margin:8px 0;padding-left:22px}
+li{margin:4px 0}
+.note{background:var(--amber50);border:1px solid var(--amber200);border-radius:8px;padding:12px 14px;font-size:13px}
+.note.red{background:var(--red50);border-color:var(--red600)}
+.okbox{background:var(--teal50);border:1px solid var(--teal50);border-radius:8px;padding:12px 14px;font-size:13px}
+.cut{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--tx2)}
+.hide{display:none!important}
+code{background:var(--surface);padding:1px 5px;border-radius:4px;font-size:12px}
+
+.item{display:flex;gap:12px;align-items:flex-start;padding:9px 10px;border-radius:8px;cursor:pointer;border:1px solid transparent}
+.item:hover{background:var(--surface)}
+.item.playing{background:var(--blue50);border-color:var(--blue200)}
+.item .play{flex:0 0 22px;color:var(--blue600);font-size:12px;margin-top:2px}
+.item .main{flex:1;min-width:0}
+.item .th{font-family:"Leelawadee UI","Noto Sans Thai",sans-serif;font-size:17px;line-height:1.5}
+.item .rom{font-size:12px;color:var(--tx2);margin-top:1px}
+.item .zh{font-size:13px;color:var(--tx2);margin-top:2px}
+.item .nt{font-size:12px;color:var(--amber600);margin-top:3px}
+.mini{font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid var(--line2);background:transparent;cursor:pointer;color:var(--tx2)}
+.mini:hover{background:var(--surface)}
+.chip{cursor:pointer;font-family:"Leelawadee UI","Noto Sans Thai",sans-serif;font-size:16px}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;background:var(--blue800);color:#fff;
+  font-size:13px;padding:8px 14px;border-radius:8px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:99;max-width:90vw}
+.toast.show{opacity:1}
+@media print{
+  nav,button,input,select,.ctl{display:none!important}
+  .card{break-inside:avoid}
+  body{font-size:11px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>泰语 84 天 · 计划 + 打卡 + 点读</h1>
+<p class="sub">每天 2 小时 · 高频优先 · 目标：跟她沟通，其次是在泰国生活</p>
+
+<nav>
+  <button class="act" data-v="plan">计划与打卡</button>
+  <button data-v="speak">短语本 · 点读</button>
+  <button data-v="rules">规则速查</button>
+</nav>
+
+<!-- ============ 视图 1：计划与打卡 ============ -->
+<section id="v-plan" class="act">
+
+<div class="hero">
+  <p style="margin-top:0"><strong>核心判断：</strong>她发来的消息是泰文。拼读引擎的意义不只是认路牌——<strong>是为了你能读懂她每一条 LINE</strong>。前 21 天拿下它，之后她发的每句话都会自动变成教材。</p>
+  <p><strong>排序：按「你实际会说 / 会读到多少遍」从高到低</strong></p>
+  <ol style="font-size:13px;color:var(--tx2)">
+    <li>拼读引擎（21 天）—— 读懂她的消息，一切的前提</li>
+    <li>语气词与代词（นะ เหรอ เนาะ / ผม เรา เธอ เค้า）—— 每句话都带，第 3 周就上</li>
+    <li>情绪与感受（คิดถึง เหนื่อย งอน หึง）—— 每天聊天都在说</li>
+    <li>日常闲聊句型 + 疑问词 + 否定 + แล้ว / กำลัง / จะ</li>
+    <li>时间与约会 → 亲昵与情话 → 吵架与和好</li>
+    <li>生活：吃 → 住行钱 → 见家长</li>
+  </ol>
+  <div class="kpis">
+    <div class="kpi"><div class="l">总天数</div><div class="v">84</div></div>
+    <div class="kpi"><div class="l">每日时长</div><div class="v">120<span style="font-size:13px"> 分</span></div></div>
+    <div class="kpi"><div class="l">已完成天数</div><div class="v" id="kDone">0</div></div>
+    <div class="kpi"><div class="l">连续打卡</div><div class="v" id="kStreak">0</div></div>
+    <div class="kpi"><div class="l">任务完成率</div><div class="v" id="kPct">0%</div></div>
+  </div>
+  <div class="bar"><i id="barMain"></i></div>
+  <p class="sub" id="pos"></p>
+</div>
+
+<div class="note red">
+  <strong>Day 1 先摸底（30 分钟）：</strong>打开她最近发你的 20 条消息，试着逐条读出来。读不出、或声调全靠猜，说明你现在的词汇是音译硬记的——第 1–2 周会直接改变这一点。结果记在 Day 1 的自检项里。
+</div>
+
+<h2>每日时间分配骨架</h2>
+<table>
+  <thead><tr><th>星期</th><th>日类型</th><th class="n">复习</th><th class="n">新学</th><th class="n">练习</th><th class="n">自检</th><th class="n">合计</th></tr></thead>
+  <tbody>
+    <tr><td>周一</td><td>新学日</td><td class="n">25</td><td class="n">45</td><td class="n">40</td><td class="n">10</td><td class="n">120</td></tr>
+    <tr><td>周二</td><td>词汇日</td><td class="n">25</td><td class="n">40</td><td class="n">45</td><td class="n">10</td><td class="n">120</td></tr>
+    <tr><td>周三</td><td>听力日</td><td class="n">25</td><td class="n">35</td><td class="n">50</td><td class="n">10</td><td class="n">120</td></tr>
+    <tr><td>周四</td><td>语法日</td><td class="n">25</td><td class="n">40</td><td class="n">45</td><td class="n">10</td><td class="n">120</td></tr>
+    <tr><td>周五</td><td>口语输出日</td><td class="n">20</td><td class="n">30</td><td class="n">60</td><td class="n">10</td><td class="n">120</td></tr>
+    <tr><td>周六</td><td>实战日</td><td class="n">20</td><td class="n">实战 50</td><td class="n">闪卡 40</td><td class="n">10</td><td class="n">120</td></tr>
+    <tr><td>周日</td><td>复盘日</td><td class="n">周测 50</td><td class="n">补漏 40</td><td class="n">预览 20</td><td class="n">10</td><td class="n">120</td></tr>
+  </tbody>
+</table>
+<p class="sub">每周 6 天学新内容，第 7 天固定复盘（仍是 2 小时不休息）。听说占比约 50%。复习用间隔重复：当日 → 次日 → 第 4 日 → 第 8 日 → 第 15 日。</p>
+
+<h2>四个阶段目标与自检</h2>
+<div class="card">
+  <h3 style="margin-top:0"><span class="tag p1">阶段一</span> 读懂她的消息 · Day 1–21</h3>
+  <p><strong>自检：</strong>30 个陌生音节标调 ≥27；她最近发你的 20 条消息全部读出并标调，准确率 ≥85%；数字听写 20 题 ≥18。</p>
+</div>
+<div class="card">
+  <h3 style="margin-top:0"><span class="tag p2">阶段二</span> 每天聊起来 · Day 22–42</h3>
+  <p><strong>自检：</strong>不看稿完成 10 轮日常对话；能说出 15 种情绪与状态；能用泰语完整约定一次见面（时间 + 地点 + 接送）。</p>
+</div>
+<div class="card">
+  <h3 style="margin-top:0"><span class="tag p3">阶段三</span> 亲密与生活落地 · Day 43–63</h3>
+  <p><strong>自检：</strong>给她写 10 句泰语消息（早安 / 关心 / 想念 / 夸奖 / 晚安），她读起来自然 ≥9 句；能完成一次 20 句的和好对话；能独立点一桌菜。</p>
+</div>
+<div class="card">
+  <h3 style="margin-top:0"><span class="tag p4">阶段四</span> 独立生活与真实语速 · Day 64–84</h3>
+  <p><strong>自检：</strong>她的语音消息逐句听写 ≥70%；见家长 15 句寒暄称谓不出错；能报住址、报修、办银行卡。</p>
+</div>
+
+<div class="cut">
+  <strong>不学清单（主动砍掉，别花时间）：</strong>
+  <ul style="margin-bottom:0">
+    <li>关系从句 ที่、被动 ถูก、使役 ให้、多动词连动结构 —— 说短句绕开即可</li>
+    <li>低频字母 ฎ ฏ ฃ ฅ ฌ ฑ ฒ ฬ 的书写 —— 见到能认就行</li>
+    <li>古文符号 ฯ ฯลฯ、王室语、佛教术语、新闻书面体、商务职场泰语</li>
+    <li>方言（伊森话、北部话）—— 只学中部标准泰语</li>
+    <li>签证移民深度词汇 —— 认得 ตม. / 90 วัน / TM30 三个词即可</li>
+  </ul>
+</div>
+
+<h2>84 天打卡清单</h2>
+<div class="ctl">
+  <label class="sub">开始日期</label>
+  <input type="date" id="startDate">
+  <button class="btn" id="btnToday">跳到今天</button>
+  <button class="btn" id="btnAll">显示全部</button>
+  <button class="btn" id="btnTodo">只看未完成</button>
+  <button class="btn" id="btnExport">导出进度</button>
+  <button class="btn" id="btnPrint">打印</button>
+  <button class="btn" id="btnReset">重置</button>
+</div>
+<p class="sub">勾选状态自动保存在本机浏览器。每天四项全勾 = 该日打卡成功。</p>
+<div id="list"></div>
+
+<h2>第 84 天综合达标线</h2>
+<table>
+  <thead><tr><th>能力</th><th>达标标准</th></tr></thead>
+  <tbody>
+    <tr><td>读她的消息</td><td>她发来的泰文能读出并理解，声调准确率 ≥90%</td></tr>
+    <tr><td>日常沟通</td><td>能独立进行 10 分钟日常对话，含关心、开玩笑、解释</td></tr>
+    <tr><td>情绪表达</td><td>能准确说出 15 种情绪与身体状态</td></tr>
+    <tr><td>和好</td><td>能用泰语道歉、解释误会、哄人，不只会说 ไม่เข้าใจ</td></tr>
+    <tr><td>亲密表达</td><td>昵称、夸奖、想念的说法自然，不生硬</td></tr>
+    <tr><td>生活 · 吃</td><td>点餐、买菜、砍价、说忌口全程泰语</td></tr>
+    <tr><td>生活 · 住行</td><td>能报住址（含 ซอย）、问路、打车、报修水电网络</td></tr>
+    <tr><td>见家长</td><td>称谓与寒暄不出错，能完成 15 句见面流程</td></tr>
+    <tr><td>听力</td><td>她和她朋友的正常语速对话听懂主旨；她的语音消息听写 ≥70%</td></tr>
+  </tbody>
+</table>
+<p class="sub">任一项未达标：不要结课，把第 12 周重复一轮，只攻未达标项。</p>
+</section>
+
+<!-- ============ 视图 2：短语本 ============ -->
+<section id="v-speak">
+<div class="okbox" id="engineBox">
+  <div class="ctl" style="margin:0">
+    <label class="sub">泰语语音</label>
+    <select id="voiceSel" style="min-width:260px"></select>
+    <label class="sub">语速</label>
+    <input type="range" id="rate" min="0.5" max="1.2" step="0.05" value="0.85">
+    <span class="sub" id="rateVal">0.85×</span>
+    <button class="btn" id="btnTest">试听</button>
+    <button class="btn" id="btnStop">停止</button>
+  </div>
+  <p class="sub" id="engineMsg" style="margin-bottom:0"></p>
+</div>
+
+<div class="note">
+  <p style="margin-top:0"><strong>点任意一行立即朗读。</strong>用的是浏览器内置语音，<strong>建议用 Microsoft Edge 打开本页</strong>——Edge 有泰语 Natural 在线语音，音质最好。</p>
+  <p style="margin-bottom:0">每行右侧 <code>S</code> = 复制这句泰文并打开 speecher.org，到那边按 <code>Ctrl+V</code> 粘贴再播放（要下 MP3 时用）。speecher.org 不支持 URL 传参，所以无法点一下自动朗读，只能这样绕。</p>
+</div>
+
+<div class="ctl">
+  <input type="text" id="q" placeholder="搜索泰文 / 转写 / 中文" style="min-width:240px">
+  <button class="btn on" id="tRom">显示转写</button>
+  <button class="btn on" id="tZh">显示中文</button>
+  <span class="sub" id="cnt"></span>
+</div>
+<div id="plist"></div>
+
+<h2>男生必知的几条规则</h2>
+<table>
+  <thead><tr><th>项目</th><th>用法</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td>自称</td><td>ผม（通用）/ เรา（亲密）</td><td>跟她聊天两个都能用，เรา 更亲。ฉัน 偏女性，男生一般不用</td></tr>
+    <tr><td>称她</td><td>เธอ / เค้า / ที่รัก</td><td>เค้า 本是「他/她」，情侣间常用来指对方；别用 คุณ，会显得像陌生人</td></tr>
+    <tr><td>句末</td><td>ครับ</td><td>你是男生，句末一律 ครับ，不用 ค่ะ</td></tr>
+    <tr><td>软化</td><td>นะ</td><td>句末加 นะ 立刻变温柔：ไปนอนนะ（去睡吧～）</td></tr>
+    <tr><td>闹别扭</td><td>งอน</td><td>撒娇式的不高兴，中文没对应词。她说 งอนแล้ว 时别讲道理，先哄</td></tr>
+    <tr><td>吃醋</td><td>หึง</td><td>หึงเหรอ = 你吃醋啦？</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ============ 视图 3：规则速查 ============ -->
+<section id="v-rules">
+<h2>五个声调</h2>
+<p class="sub">点任意泰文即可发音。</p>
+<table>
+  <thead><tr><th>调</th><th>泰文名</th><th>名称</th><th>走势</th><th>例词（可点）</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>เสียงสามัญ</td><td>中平</td><td>平</td><td><span class="chip">มา</span> maa 来</td></tr>
+    <tr><td>2</td><td>เสียงเอก</td><td>低降</td><td>略降</td><td><span class="chip">ข่าว</span> khàao 新闻</td></tr>
+    <tr><td>3</td><td>เสียงโท</td><td>高降</td><td>高起急落</td><td><span class="chip">ข้าว</span> khâao 米饭</td></tr>
+    <tr><td>4</td><td>เสียงตรี</td><td>高平</td><td>高而平</td><td><span class="chip">ม้า</span> máa 马</td></tr>
+    <tr><td>5</td><td>เสียงจัตวา</td><td>升调</td><td>低起上扬</td><td><span class="chip">หมา</span> mǎa 狗</td></tr>
+  </tbody>
+</table>
+
+<h2>声调判定表 · 活音节</h2>
+<p class="sub">长元音结尾，或以 ม น ง ย ว 结尾。</p>
+<table>
+  <thead><tr><th>辅音类</th><th>无调号</th><th>่ ไม้เอก</th><th>้ ไม้โท</th><th>๊ ไม้ตรี</th><th>๋ ไม้จัตวา</th></tr></thead>
+  <tbody>
+    <tr><td>中（9）ก จ ด ฎ ต ฏ บ ป อ</td><td>中平 1</td><td>低降 2</td><td>高降 3</td><td>高平 4</td><td>升 5</td></tr>
+    <tr><td>高（11）ข ฃ ฉ ฐ ถ ผ ฝ ศ ษ ส ห</td><td>升 5</td><td>低降 2</td><td>高降 3</td><td>—</td><td>—</td></tr>
+    <tr><td>低（24）ค ฆ ช ฌ ซ ท ธ ฑ ฒ พ ภ ฟ ฮ ง ญ ณ น ม ย ร ล ว ฬ</td><td>中平 1</td><td>高降 3</td><td>高平 4</td><td>—</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<h2>声调判定表 · 死音节</h2>
+<p class="sub">短元音收尾，或以 ก ด บ 等塞音结尾。通常不带调号。</p>
+<table>
+  <thead><tr><th>辅音类</th><th>短元音</th><th>长元音</th><th>例</th></tr></thead>
+  <tbody>
+    <tr><td>中 / 高辅音</td><td>低降 2</td><td>低降 2</td><td>กะ gà、ฉาก chàak</td></tr>
+    <tr><td>低辅音</td><td>高平 4</td><td>高降 3</td><td>รัก rák 爱、มาก mâak 很</td></tr>
+  </tbody>
+</table>
+
+<h2>三步判定法</h2>
+<ol>
+  <li><strong>定辅音类</strong>：中 9 · 高 11 · 低 24</li>
+  <li><strong>看调号</strong>：่ ้ ๊ ๋ 或无</li>
+  <li><strong>查表</strong>：辅音类 × 调号 × 活/死音节</li>
+</ol>
+
+<h2>两个必须死记的例外</h2>
+<ul>
+  <li><strong>ห นำ</strong>：低辅音 ง ญ น ม ย ร ล ว 前加 ห → 按高辅音读（<span class="chip">หมา</span> 狗、<span class="chip">ใหม่</span> 新）</li>
+  <li><strong>อ นำ</strong>：只有 <span class="chip">อยู่</span> <span class="chip">อยาก</span> <span class="chip">อย่าง</span> <span class="chip">อย่า</span> 四词 → 按中辅音读</li>
+</ul>
+
+<h2>最容易错的两点</h2>
+<ul>
+  <li>中辅音活音节<strong>无调号是中平</strong>，不是低降（กา = gaa 中平）</li>
+  <li>低辅音 + ่ = <strong>高降</strong>而不是低降（ค่า = khâa 价值）——同一个 ่，配中/高辅音是低降，配低辅音是高降</li>
+</ul>
+
+<div class="note">
+  <strong>关于发音：</strong>推荐 Learn Thai with Mod（YouTube）、Comprehensible Thai、泰剧情侣日常片段。真实语速阶段直接用<strong>她的语音消息</strong>——那是全世界对你最有用的听力材料。
+</div>
+</section>
+
+<div class="toast" id="toast"></div>
+</div>
+
+<script>
+/* ========== 数据：12 周 ========== */
+var WEEKS = [
+ {w:1,ph:1,t:"拼读引擎 I · 中辅音与高频元音",
+  n:"中辅音 7 个 ก จ ด ต บ ป อ + 元音 เ- -า -ี -ู -ุ -ิ；拿她的名字和你们聊天里的常用词当拼读标本",
+  v:"把你已会的词和她常说的词（คิดถึง รัก น่ารัก อร่อย）全部重新拼读一遍",
+  l:"听辨 ก / ข / ค 三组送气与清浊差异，重新校准耳朵",
+  g:"建立认知：泰语无时态、无复数、无冠词；五个声调属于词本身，错了就是另一个词",
+  s:"摸底：打开她最近发你的 20 条消息，逐条试着读出来，记录读错的词",
+  c:"30 个中辅音音节见字读音 ≥27 正确"},
+ {w:2,ph:1,t:"拼读引擎 II · 声调规则",
+  n:"活音节表：中辅音 无调号=中平 / ่=低降 / ้=高降 / ๊=高平 / ๋=升；死音节：中高辅音=低降，低辅音短元音=高平、长元音=高降",
+  v:"最小对立对：มา ม้า หมา（来 / 马 / 狗）；กา ก่า ก้า；คะ ค่า วัด วาด",
+  l:"听辨中平 / 低降 / 高降 / 升调：ข่าว ข้าว、คะ ค่า 各 20 组",
+  g:"头号易错点：低辅音 + ่ = 高降（ค่า khâa），不是低降",
+  s:"把她最近发你的 10 条消息逐字标出声调",
+  c:"30 个混合音节标调 ≥26 正确"},
+ {w:3,ph:1,t:"拼读引擎 III + 语气词与代词（提前）",
+  n:"高辅音 11 个 + ห นำ；低辅音成对 14 个；数字 0–1000；语气词 นะ เหรอ เนาะ จ๊ะ เดี๋ยว แล้ว เลย",
+  v:"代词体系：ผม เรา ฉัน / เธอ เค้า ที่รัก แฟน หวานใจ（每句话都要用，所以提前）",
+  l:"听她说话的句尾，专门抓 นะ / เหรอ / เนาะ 三种语气差别",
+  g:"你是男生，句末一律 ครับ；นะ 把命令变请求；称呼用 เธอ / เค้า / ที่รัก，别用 คุณ",
+  s:"用 ผม + ครับ + นะ 造 20 句，全部录入短语本点读",
+  c:"数字听写 20 题 ≥18；能读出她发来的任意一条消息"},
+ {w:4,ph:2,t:"情绪与感受（沟通核心）",
+  n:"คิดถึง ชอบ รัก เหนื่อย หิว ง่วง โกรธ งอน หึง ดีใจ เสียใจ เบื่อ กังวล สบายดี",
+  v:"程度词 มาก นิดหน่อย ที่สุด เกินไป + 状态 ดี ไม่ดี ไม่สบาย ปวดหัว",
+  l:"看泰剧情侣对话片段，专门抓情绪词 30 分钟",
+  g:"形容词直接作谓语，不加系动词：เหนื่อย 就是「累」，不说 ผมเป็นเหนื่อย",
+  s:"用 15 个情绪词各造 1 句，讲一遍你今天的状态",
+  c:"能说出 15 种情绪状态；造句 20 句错误 ≤3"},
+ {w:5,ph:2,t:"日常闲聊句型",
+  n:"疑问词 อะไร ไหน ใคร ทำไม ยังไง กี่ เท่าไหร่ + ไหม / หรือ 疑问句 + ไม่ / ยังไม่ 否定",
+  v:"高频动词 กิน ไป มา ทำ ได้ เอา อยู่ นอน ตื่น ทำงาน ดู ฟัง พูด",
+  l:"听日常对话开场：ทำอะไรอยู่ / กินข้าวยัง / ไปไหนมา / วันนี้เป็นยังไงบ้าง",
+  g:"体貌三件套：แล้ว（完成）/ กำลัง…อยู่（正在）/ จะ（将要）；主语可省略",
+  s:"写一段 10 轮的日常聊天（你一句她一句），录下来读两遍",
+  c:"10 轮对话不看稿完成；疑问句 20 题 ≥17"},
+ {w:6,ph:2,t:"时间与约会",
+  n:"时间词 วันนี้ พรุ่งนี้ เมื่อวาน ตอนนี้ เดี๋ยว แล้ว ทุกวัน สัปดาห์หน้า + กี่โมง",
+  v:"约会动词 นัด เจอ รับ รอ ไป กลับ + 地点 ที่ไหน ที่นี่ ที่นั่น",
+  l:"听约定时间的对话：เจอกันกี่โมง / เดี๋ยวไปรับ / ถึงไหนแล้ว",
+  g:"量词基础 ตัว คน อัน ใบ แก้ว จาน ถุง ครั้ง（买东西躲不开）",
+  s:"完整约一次会：问时间 → 定地点 → 说去接她 → 确认，全程泰语",
+  c:"能完整约定一次见面；量词 20 题 ≥16"},
+ {w:7,ph:3,t:"亲昵与情话",
+  n:"昵称体系 หมู เต่า ปลา น้องเหมียว（泰国情侣爱用动物当昵称）+ ที่รัก หวานใจ แฟน",
+  v:"夸奖词 น่ารัก สวย เก่ง ดี น่าเอ็นดู อร่อย + 程度 มากมาก ที่สุด",
+  l:"听情侣 vlog / 泰剧撒娇片段 30 分钟，注意语气和句尾",
+  g:"亲昵句式：ขอกอด งอนแล้ว คิดถึงนะ ฝันดีนะ รักนะ",
+  s:"给她写 10 句泰语消息：早安、关心、想念、夸奖、晚安各 2 句",
+  c:"10 句消息里她读起来自然 ≥9 句（可以请她验证）"},
+ {w:8,ph:3,t:"吵架与和好（关系里的真高频）",
+  n:"ขอโทษ ผิดเอง ขอโทษนะ คุยกันดีๆ ไม่โกรธแล้วนะ ใจเย็นๆ ฟังหน่อย",
+  v:"误会与解释：ไม่ได้ตั้งใจ เข้าใจผิด อธิบายให้ฟังหน่อย เรื่องมันไม่ได้เป็นแบบนั้น",
+  l:"听争执与和解场景对话 30 分钟",
+  g:"请求与拒绝：ช่วย…หน่อยได้ไหม / ขอ…หน่อย / ไม่สะดวก ไว้คราวหลัง",
+  s:"模拟一次完整和好：道歉 → 解释 → 哄 → 约定，每个环节 5 句",
+  c:"能完成一次 20 句的和好对话，且不加重矛盾"},
+ {w:9,ph:3,t:"生活 · 吃",
+  n:"食物高频词 + 点餐套语：ข้าว ผัด ต้ม แกง เนื้อ หมู ไก่ ปลา ผัก เผ็ด หวาน เปรี้ยว เค็ม อร่อย",
+  v:"忌口与偏好：ไม่เผ็ด ไม่ใส่ผักชี แพ้อาหารทะเล เอาผัดไทยหนึ่งจาน",
+  l:"看点餐与菜市场视频 30 分钟",
+  g:"点餐句式 ขอ…หน่อย / เอา…ที่ / ไม่เอา…（量词实战）",
+  s:"口头点一桌菜（5 菜 2 饮 + 忌口）+ 夸她做的饭 5 种不重复的说法",
+  c:"能独立完成点餐；能夸菜好吃且不重复"},
+ {w:10,ph:4,t:"生活 · 住 · 行 · 钱",
+  n:"ซอย 巷子地址系统 + ค่าเช่า มัดจำ สัญญาเช่า ไฟฟ้า น้ำประปา อินเทอร์เน็ต ซ่อม",
+  v:"交通 แท็กซี่ วินมอเตอร์ไซค์ BTS MRT ไป…ยังไง เลี้ยวซ้าย เลี้ยวขวา ตรงไป ใกล้ ไกล + ธนาคาร พร้อมเพย์",
+  l:"听 Grab 司机对话 + 银行柜台常用问句 30 分钟",
+  g:"报修 …ไม่ทำงาน / ช่วย…หน่อยได้ไหม；办事 ขอทำ…หน่อย / ต้องใช้เอกสารอะไรบ้าง",
+  s:"说出自己的住址（含 ซอย）+ 模拟报修 + 模拟银行开户，各 10 句",
+  c:"能报住址、报修、办银行卡的问答"},
+ {w:11,ph:4,t:"见家长与社交",
+  n:"称谓系统 พี่ น้อง ลุง ป้า อา ครู（对长辈）+ พ่อ แม่ พี่สาว น้องชาย",
+  v:"寒暄 สบายดีไหม กินข้าวยัง ฝากตัวด้วย ยินดีที่ได้รู้จัก + 礼貌拒绝 ไม่สะดวก ขอบคุณที่ชวน",
+  l:"听家庭聚会与寒暄片段 30 分钟",
+  g:"敬语层级：对长辈句末加 ครับ，用 พี่ / น้อง 称呼，别直呼其名",
+  s:"演练见家长全流程：问候 → 自我介绍 → 寒暄 → 告辞，共 15 句",
+  c:"称谓不出错；能完成 15 句见家长寒暄"},
+ {w:12,ph:4,t:"真实语速与输出冲刺",
+  n:"弱项专项：按前 11 周错题统计定向补漏，不再学新规则",
+  v:"她的语音消息 + 她和朋友说话的录音，逐句听写",
+  l:"每天 60 分钟真实材料：她的语音、情侣 vlog、泰剧、街头广播",
+  g:"听不懂时的自救句：พูดช้าๆ ได้ไหม / ช่วยพูดใหม่ได้ไหม / เขียนให้หน่อยได้ไหม",
+  s:"3 分钟自我介绍 + 10 场景模拟 + 看图说话 10 段 + 给她录一段 2 分钟泰语",
+  c:"达成第 84 天综合达标线"}
+];
+var PTXT = {1:"阶段一 · 读懂她的消息",2:"阶段二 · 每天聊起来",3:"阶段三 · 亲密与生活落地",4:"阶段四 · 独立生活与真实语速"};
+var DOW = ["周一","周二","周三","周四","周五","周六","周日"];
+
+function slots(w, dow){
+  var ck = w.c;
+  if(dow===1) return [["复习",25,"闪卡复习 + 昨日新学默写"],["新学",45,w.n],["练习",40,"把今日新学录入短语本，点读 20 遍"],["自检",10,ck]];
+  if(dow===2) return [["复习",25,"间隔重复闪卡回滚（昨日 + 3 日前 + 7 日前）"],["新学",40,w.v],["练习",45,"听写 20 词 + 造句 15 句"],["自检",10,ck]];
+  if(dow===3) return [["复习",25,"昨日词汇与句型快闪"],["新学",35,w.l],["练习",50,"精听 20 分 + 跟读 20 分 + 听写 10 分"],["自检",10,ck]];
+  if(dow===4) return [["复习",25,"语法点闪卡回滚"],["新学",40,w.g],["练习",45,"造句 10 句 + 自改 + 改错 5 题"],["自检",10,ck]];
+  if(dow===5) return [["复习",20,"本周新学内容快速过一遍"],["新学",30,w.s],["练习",60,"纯口语输出：自言自语或录音，全程不查资料"],["自检",10,ck]];
+  if(dow===6) return [["复习",20,"本周全部内容闪卡 + 朗读"],["实战",50,"真实任务演练：给她发一段语音 / 点餐 / 报修 / 问路 / 和好，开口说"],["闪卡",40,"标记仍未掌握的词，加大出现频率"],["自检",10,"写下本周 3 个最大卡点"]];
+  return [["周测",50,"闭卷自测：拼读 / 词汇 / 听说各一组"],["补漏",40,"错题归类：拼读类 · 词汇类 · 句型类，只攻最弱一环"],["预习",20,"看下一周主题，预习 10 个关键词"],["自检",10,"给本周打分 1–5 并记录"]];
+}
+
+/* ========== 数据：短语 ========== */
+var DATA = [
+{g:"A · 日常问候与关心", items:[
+ ["สวัสดีครับ","sà-wàt-dii khráp","你好（男生说）","你是男生，句末必须用 ครับ，不是 ค่ะ"],
+ ["ทำอะไรอยู่","tham à-rai yùu","在做什么？","白天晚上都能用的开场"],
+ ["กินข้าวยัง","gin khâao yang","吃饭了吗？","泰国人最常用的关心方式"],
+ ["หิวไหม","hǐu mǎi","饿吗？",""],
+ ["เหนื่อยไหม","nùueai mǎi","累吗？",""],
+ ["วันนี้เป็นยังไงบ้าง","wan-níi pen yang-ngai bâang","今天过得怎么样？",""],
+ ["ดูแลตัวเองดีๆ นะ","duu-lae dtuua-eeng dii-dii ná","照顾好自己哦","นะ 让整句变温柔"],
+ ["ไปนอนนะ ดึกแล้ว","bpai nawn ná, dùek láeo","去睡吧，很晚了",""],
+ ["ฝันดีนะ","fǎn dii ná","好梦","睡前必说"],
+ ["พักผ่อนเยอะๆ นะ","phák-phàwn yér-yér ná","多休息哦",""]
+]},
+{g:"B · 亲昵称呼与情话", items:[
+ ["ที่รัก","thîi-rák","亲爱的","字面意思是「所爱的人」，情侣间最普遍"],
+ ["หวานใจ","wǎan-jai","甜心",""],
+ ["แฟน","faen","男朋友 / 女朋友","中性词，男女朋友都叫 แฟน"],
+ ["คิดถึง","khít-thǔeng","想（念）",""],
+ ["คิดถึงเธอมาก","khít-thǔeng thoe mâak","好想你",""],
+ ["รักนะ","rák ná","爱你哦",""],
+ ["รักที่สุด","rák thîi-sùt","最爱你",""],
+ ["น่ารัก","nâa-rák","可爱","万能夸奖词，对她、对她家的猫都能用"],
+ ["สวยมาก","sǔuai mâak","很漂亮",""],
+ ["หมู","mǔu","小猪（昵称）","泰国情侣超爱用动物当昵称，叫她 หมู 比叫名字亲"],
+ ["เต่า","dtào","乌龟（昵称）","同上，类似的还有 ปลา（鱼）、น้องเหมียว（小猫）"],
+ ["เหนื่อยไหม ที่รัก","nùueai mǎi, thîi-rák","累吗，亲爱的",""]
+]},
+{g:"C · 情绪 · 闹别扭与和好", items:[
+ ["งอนแล้ว","ngawn láeo","（我）闹别扭了","泰国恋爱核心词，撒娇式不高兴"],
+ ["งอนทำไม","ngawn tham-mai","为什么闹别扭？",""],
+ ["หึง","hǔeng","吃醋",""],
+ ["หึงเหรอ","hǔeng rěe","吃醋啦？","带点逗她的语气"],
+ ["โกรธแล้วเหรอ","gròht láeo rěe","生气了？",""],
+ ["ไม่โกรธแล้วนะ","mâi gròht láeo ná","别生气了嘛",""],
+ ["ขอโทษนะ","khǒo-thòht ná","对不起",""],
+ ["ขอโทษนะ ที่รัก","khǒo-thòht ná, thîi-rák","对不起，亲爱的",""],
+ ["ผิดเอง","phìt eeng","是我的错","认错要干脆，泰语一句就够"],
+ ["คุยกันดีๆ นะ","khui gan dii-dii ná","我们好好谈谈",""],
+ ["ขอกอด","khǒo gòht","要抱抱",""],
+ ["กอดหน่อย","gòht nàwy","抱一下",""],
+ ["ไม่เป็นไร","mâi pen-rai","没关系",""],
+ ["เข้าใจแล้ว","khâo-jai láeo","我明白了",""]
+]},
+{g:"D · 约会与出行", items:[
+ ["พรุ่งนี้เจอกันกี่โมง","phrûng-níi joe gan gìi moong","明天几点见？",""],
+ ["เดี๋ยวไปรับ","dǐao bpai ráp","待会儿去接你",""],
+ ["ถึงไหนแล้ว","thǔeng nǎi láeo","到哪儿了？",""],
+ ["รอหน่อยนะ","raw nàwy ná","等我一下哦",""],
+ ["อยู่ไหน","yùu nǎi","你在哪儿？",""],
+ ["วันนี้ว่างไหม","wan-níi wâang mǎi","今天有空吗？",""],
+ ["ไปกินข้าวกันไหม","bpai gin khâao gan mǎi","一起去吃饭吗？",""],
+ ["อยากกินอะไร","yàak gin à-rai","想吃什么？",""],
+ ["เลือกเอง","lûueak eeng","你选吧",""],
+ ["ตามเธอเลย","dtaam thoe loei","听你的","字面意思是「就跟着你」，很受用的说法"]
+]},
+{g:"E · 通话与消息（信号差时救命）", items:[
+ ["ไม่ได้ยิน","mâi dâi yin","听不见",""],
+ ["สัญญาณไม่ดี","sǎn-yaan mâi dii","信号不好",""],
+ ["พูดอีกทีได้ไหม","phûut ìik thii dâi mǎi","能再说一遍吗？",""],
+ ["พูดช้าๆ หน่อย","phûut cháa-cháa nàwy","说慢一点","比说 ไม่เข้าใจ 有用得多"],
+ ["ส่งรูปให้ดูหน่อย","sòng rûup hâi duu nàwy","发张照片给我看看",""],
+ ["เดี๋ยวโทรกลับ","dǐao thoh glàp","待会儿回电话给你",""],
+ ["ไลน์มาหน่อย","line maa nàwy","发 Line 给我","泰国人几乎不用微信，用 LINE"],
+ ["ขอโทษนะ สายไปหน่อย","khǒo-thòht ná, sǎi bpai nàwy","抱歉，我来晚了",""]
+]},
+{g:"F · 生活刚需", items:[
+ ["อันนี้เท่าไหร่","an-níi thâo-rài","这个多少钱？",""],
+ ["ลดได้ไหม","lót dâi mǎi","能便宜点吗？","夜市可用，商场别用"],
+ ["อร่อยมาก","à-ràwy mâak","太好吃了","夸她做的饭或一起吃的店，高频"],
+ ["ไม่เผ็ด","mâi phèt","不要辣","生存关键句"],
+ ["ห้องน้ำอยู่ไหน","hâwng-náam yùu nǎi","洗手间在哪儿？",""],
+ ["ช่วยด้วย","chûuai dûuai","帮忙！",""],
+ ["ไม่เข้าใจ","mâi khâo-jai","听不懂",""],
+ ["เขียนให้หน่อยได้ไหม","khǐan hâi nàwy dâi mǎi","能写下来吗？","对方写下来你就能读——前提是拼读过关"]
+]},
+{g:"G · 见家长与家人称谓", items:[
+ ["สวัสดีครับ ผมชื่อ...","sà-wàt-dii khráp, phǒm chûue ...","你好，我叫……","省略号换成你的名字"],
+ ["ยินดีที่ได้รู้จักครับ","yin-dii thîi dâi rúu-jàk khráp","很高兴认识您","见长辈必带 ครับ"],
+ ["ฝากตัวด้วยครับ","fàak dtuua dûuai khráp","请多关照","初次见长辈的标准结束语"],
+ ["พ่อ","phâw","爸爸",""],
+ ["แม่","mâe","妈妈",""],
+ ["พี่สาว","phîi-sǎao","姐姐",""],
+ ["น้องชาย","náwng-chaai","弟弟","泰国家庭里 พี่ / น้อง 是核心称谓，跟家里人一律这么叫"]
+]},
+{g:"H · 语气词（决定你听起来像不像在谈恋爱）", items:[
+ ["นะ","ná","句末软化","最重要的一个词。加了它，命令变请求"],
+ ["จ๊ะ / จ้ะ","já","亲昵语助","女生用得多，男生用会显得撒娇"],
+ ["เนาะ","nàw","寻求认同","类似「……对吧？」"],
+ ["เหรอ","rěe","是吗？/ 真的吗？","表惊讶或追问"],
+ ["เดี๋ยว","dǐao","待会儿",""],
+ ["แล้ว","láeo","了（完成）",""],
+ ["กำลัง","gam-lang","正在","กำลัง + 动词 = 正在做……"]
+]}
+];
+
+/* ========== 语音引擎 ========== */
+var curVoice = null, lastEl = null;
+function thVoices(){
+  if(!window.speechSynthesis) return [];
+  return speechSynthesis.getVoices().filter(function(v){ return /^th/i.test(v.lang || ""); });
+}
+function initVoices(){
+  var sel = document.getElementById("voiceSel");
+  var msg = document.getElementById("engineMsg");
+  var box = document.getElementById("engineBox");
+  var th = thVoices();
+  sel.innerHTML = "";
+  if(!window.speechSynthesis){
+    msg.textContent = "当前浏览器不支持语音合成，请改用每行右侧的 S 按钮（Speecher）。";
+    box.className = "note";
+    return;
+  }
+  if(th.length === 0){
+    var o = document.createElement("option");
+    o.textContent = "（未检测到泰语语音）";
+    sel.appendChild(o);
+    msg.innerHTML = "本机没有泰语语音，点行不会出声。<strong>请用 Microsoft Edge 打开本页</strong>（自带泰语 Natural 在线语音），或在 Windows 设置 → 语言里添加泰语语音包。临时可用 S 按钮走 Speecher。";
+    box.className = "note";
+    return;
+  }
+  th.forEach(function(v){
+    var o = document.createElement("option");
+    o.value = v.name;
+    o.textContent = v.name + (v.localService ? "" : "（在线）");
+    sel.appendChild(o);
+  });
+  curVoice = th[0];
+  sel.value = th[0].name;
+  msg.innerHTML = "检测到 <strong>" + th.length + "</strong> 个泰语语音。建议选带 Online / Natural 的，音质最好。语速 0.85× 适合听清声调。";
+  box.className = "okbox";
+}
+function speak(text, el){
+  if(!window.speechSynthesis){ toast("浏览器不支持语音，请用右侧 S 按钮走 Speecher"); return; }
+  speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = "th-TH";
+  u.rate = Number(document.getElementById("rate").value);
+  if(curVoice) u.voice = curVoice;
+  if(lastEl) lastEl.classList.remove("playing");
+  if(el){ el.classList.add("playing"); lastEl = el; }
+  u.onend = function(){ if(el) el.classList.remove("playing"); };
+  speechSynthesis.speak(u);
+}
+function toSpeecher(text){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){}, function(){});
+  }
+  toast("已复制：「" + text + "」→ 在 Speecher 按 Ctrl+V 粘贴后播放");
+  window.open("https://speecher.org/zh/thai#app", "_blank");
+}
+var toastTimer = null;
+function toast(msg){
+  var t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2600);
+}
+if(window.speechSynthesis){ speechSynthesis.onvoiceschanged = initVoices; }
+document.getElementById("voiceSel").addEventListener("change", function(e){
+  var n = e.target.value;
+  curVoice = thVoices().filter(function(v){ return v.name === n; })[0] || null;
+});
+document.getElementById("rate").addEventListener("input", function(e){
+  document.getElementById("rateVal").textContent = Number(e.target.value).toFixed(2) + "×";
+});
+document.getElementById("btnTest").addEventListener("click", function(){ speak("สวัสดีครับ ผมชื่อ..."); });
+document.getElementById("btnStop").addEventListener("click", function(){ if(window.speechSynthesis) speechSynthesis.cancel(); });
+
+/* ========== 短语渲染 ========== */
+var showRom = true, showZh = true, query = "";
+function renderPhrases(){
+  var html = "", n = 0;
+  DATA.forEach(function(grp){
+    var items = grp.items.filter(function(it){
+      if(!query) return true;
+      return (it[0] + " " + it[1] + " " + it[2]).toLowerCase().indexOf(query.toLowerCase()) >= 0;
+    });
+    if(!items.length) return;
+    html += "<h2>" + grp.g + "</h2>";
+    items.forEach(function(it){
+      n++;
+      html += '<div class="item" data-t="' + it[0].replace(/"/g, "&quot;") + '">'
+           +  '<span class="play">&#9654;</span>'
+           +  '<div class="main"><div class="th">' + it[0] + '</div>'
+           +  (showRom ? '<div class="rom">' + it[1] + '</div>' : "")
+           +  (showZh ? '<div class="zh">' + it[2] + '</div>' : "")
+           +  (it[3] ? '<div class="nt">' + it[3] + '</div>' : "")
+           +  '</div><div><button class="mini" data-s="' + it[0].replace(/"/g, "&quot;") + '">S</button></div></div>';
+    });
+  });
+  document.getElementById("plist").innerHTML = html || '<p class="sub">没有匹配结果</p>';
+  document.getElementById("cnt").textContent = "共 " + n + " 条";
+}
+document.getElementById("plist").addEventListener("click", function(e){
+  var s = e.target.closest ? e.target.closest("[data-s]") : null;
+  if(s){ e.stopPropagation(); toSpeecher(s.getAttribute("data-s")); return; }
+  var it = e.target.closest ? e.target.closest(".item") : null;
+  if(it) speak(it.getAttribute("data-t"), it);
+});
+document.getElementById("q").addEventListener("input", function(e){ query = e.target.value.trim(); renderPhrases(); });
+function bindToggle(id, key){
+  document.getElementById(id).addEventListener("click", function(){
+    if(key === "rom") showRom = !showRom; else showZh = !showZh;
+    this.classList.toggle("on", key === "rom" ? showRom : showZh);
+    renderPhrases();
+  });
+}
+bindToggle("tRom", "rom");
+bindToggle("tZh", "zh");
+document.getElementById("v-rules").addEventListener("click", function(e){
+  var c = e.target.closest ? e.target.closest(".chip") : null;
+  if(c) speak(c.textContent, c);
+});
+
+/* ========== 计划与打卡 ========== */
+var KEY = "thai84d-v1";
+var state = {checks:{}, start:""};
+try{
+  var raw = localStorage.getItem(KEY);
+  if(raw){ var p = JSON.parse(raw); if(p && p.checks) state = p; }
+}catch(e){}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function buildPlan(){
+  var html = "";
+  for(var i=0;i<WEEKS.length;i++){
+    var w = WEEKS[i];
+    html += '<div class="weekhead"><span class="w">第 '+w.w+' 周 · '+esc(w.t)+'</span>'
+         +  '<span class="tag p'+w.ph+'">'+esc(PTXT[w.ph])+'</span>'
+         +  '<span class="sub">Day '+((i*7)+1)+'&ndash;'+((i*7)+7)+'</span></div>';
+    for(var d=1;d<=7;d++){
+      var day = i*7+d, sl = slots(w,d);
+      html += '<div class="card" data-day="'+day+'" id="day'+day+'">'
+           +  '<div class="dayhead"><span class="d">Day '+day+'</span><span class="tag">'+DOW[d-1]+'</span>'
+           +  '<span class="tag min">'+sl[0][1]+'+'+sl[1][1]+'+'+sl[2][1]+'+'+sl[3][1]+' = 120 分</span>'
+           +  '<span class="flag" id="f'+day+'"></span></div>';
+      for(var j=0;j<4;j++){
+        var k = day+"-"+j;
+        html += '<div class="row'+(state.checks[k]?" done":"")+'">'
+             +  '<input type="checkbox" class="cb" data-k="'+k+'"'+(state.checks[k]?" checked":"")+'>'
+             +  '<label data-k="'+k+'"><span class="tag min">'+sl[j][1]+' 分</span> '
+             +  '<strong>'+sl[j][0]+'</strong> — '+esc(sl[j][2])+'</label></div>';
+      }
+      html += '</div>';
+    }
+  }
+  document.getElementById("list").innerHTML = html;
+}
+function dayDone(d){
+  for(var j=0;j<4;j++){ if(!state.checks[d+"-"+j]) return false; }
+  return true;
+}
+function todayIndex(){
+  if(!state.start) return 0;
+  var s = new Date(state.start + "T00:00:00");
+  var now = new Date(); now.setHours(0,0,0,0);
+  var diff = Math.floor((now - s)/86400000) + 1;
+  return (diff < 1 || diff > 84) ? 0 : diff;
+}
+function markToday(){
+  var t = todayIndex();
+  var all = document.querySelectorAll("#list .card");
+  for(var i=0;i<all.length;i++) all[i].classList.remove("today");
+  if(t){ var el = document.getElementById("day"+t); if(el) el.classList.add("today"); }
+}
+function stats(){
+  var total = 84*4, dt = 0, dd = 0, st = 0;
+  for(var k in state.checks){ if(state.checks[k]) dt++; }
+  for(var d=1;d<=84;d++){ if(dayDone(d)) dd++; }
+  for(var s=1;s<=84;s++){ if(dayDone(s)) st++; else break; }
+  var pct = Math.round(dt/total*100);
+  document.getElementById("kDone").textContent = dd;
+  document.getElementById("kStreak").textContent = st;
+  document.getElementById("kPct").textContent = pct + "%";
+  document.getElementById("barMain").style.width = pct + "%";
+  var pos = "已打卡 " + dd + " / 84 天 · 任务完成 " + dt + " / " + total + " 项";
+  var td = todayIndex();
+  if(td) pos += " · 今天是 Day " + td;
+  document.getElementById("pos").textContent = pos;
+  for(var i=1;i<=84;i++){
+    var el = document.getElementById("f"+i);
+    if(el) el.outerHTML = '<span class="'+(dayDone(i)?"done-flag":"undone-flag")+'" id="f'+i+'">'+(dayDone(i)?"已打卡":"未完成")+'</span>';
+  }
+}
+document.addEventListener("change", function(e){
+  if(e.target && e.target.classList && e.target.classList.contains("cb")){
+    var k = e.target.getAttribute("data-k");
+    state.checks[k] = e.target.checked;
+    if(e.target.checked) e.target.parentNode.classList.add("done");
+    else e.target.parentNode.classList.remove("done");
+    save(); stats();
+  }
+});
+document.addEventListener("click", function(e){
+  var t = e.target;
+  if(t.tagName === "LABEL" && t.getAttribute("data-k")){
+    var k = t.getAttribute("data-k");
+    var cb = document.querySelector('.cb[data-k="'+k+'"]');
+    if(cb){ cb.checked = !cb.checked; cb.dispatchEvent(new Event("change",{bubbles:true})); }
+  }
+});
+document.getElementById("startDate").addEventListener("change", function(e){
+  state.start = e.target.value; save(); markToday(); stats();
+});
+document.getElementById("btnToday").addEventListener("click", function(){
+  var t = todayIndex();
+  if(!t){ alert("请先选择开始日期"); return; }
+  var el = document.getElementById("day"+t);
+  if(el) el.scrollIntoView({behavior:"smooth", block:"center"});
+});
+document.getElementById("btnAll").addEventListener("click", function(){
+  var a = document.querySelectorAll("#list .card");
+  for(var i=0;i<a.length;i++) a[i].classList.remove("hide");
+});
+document.getElementById("btnTodo").addEventListener("click", function(){
+  var a = document.querySelectorAll("#list .card");
+  for(var i=0;i<a.length;i++){
+    var d = parseInt(a[i].getAttribute("data-day"),10);
+    if(dayDone(d)) a[i].classList.add("hide"); else a[i].classList.remove("hide");
+  }
+});
+document.getElementById("btnPrint").addEventListener("click", function(){ window.print(); });
+document.getElementById("btnReset").addEventListener("click", function(){
+  if(!confirm("确定清空所有打卡记录？此操作不可撤销。")) return;
+  state.checks = {}; save(); buildPlan(); markToday(); stats();
+});
+document.getElementById("btnExport").addEventListener("click", function(){
+  var dd = 0, lines = [];
+  for(var d=1;d<=84;d++){ if(dayDone(d)) dd++; }
+  lines.push("# 泰语 84 天学习计划 · 进度导出", "");
+  lines.push("- 开始日期：" + (state.start || "未设置"));
+  lines.push("- 导出时间：" + new Date().toLocaleString());
+  lines.push("- 已完成天数：" + dd + " / 84");
+  lines.push("- 连续打卡：" + document.getElementById("kStreak").textContent + " 天");
+  lines.push("- 任务完成率：" + document.getElementById("kPct").textContent, "");
+  for(var i=0;i<WEEKS.length;i++){
+    var w = WEEKS[i];
+    lines.push("## 第 " + w.w + " 周 · " + w.t);
+    for(var x=1;x<=7;x++){
+      var day = i*7+x, sl = slots(w,x);
+      lines.push("- [ " + (dayDone(day) ? "x" : " ") + " ] Day " + day + "（" + DOW[x-1] + "）");
+      for(var j=0;j<4;j++){
+        lines.push("    - [" + (state.checks[day+"-"+j] ? "x" : " ") + "] " + sl[j][0] + " " + sl[j][1] + " 分：" + sl[j][2]);
+      }
+    }
+    lines.push("");
+  }
+  var blob = new Blob([lines.join("\n")], {type:"text/markdown;charset=utf-8"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "泰语84天进度.md";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+});
+
+/* ========== 视图切换 ========== */
+document.querySelector("nav").addEventListener("click", function(e){
+  var b = e.target.closest ? e.target.closest("button[data-v]") : null;
+  if(!b) return;
+  var v = b.getAttribute("data-v");
+  var bs = document.querySelectorAll("nav button");
+  for(var i=0;i<bs.length;i++) bs[i].classList.remove("act");
+  b.classList.add("act");
+  var ss = document.querySelectorAll("section");
+  for(var j=0;j<ss.length;j++) ss[j].classList.remove("act");
+  document.getElementById("v-"+v).classList.add("act");
+  window.scrollTo(0,0);
+});
+
+/* ========== 启动 ========== */
+buildPlan();
+renderPhrases();
+if(state.start) document.getElementById("startDate").value = state.start;
+if(!state.start){
+  var nd = new Date();
+  state.start = nd.getFullYear() + "-" + String(nd.getMonth()+1).padStart(2,"0") + "-" + String(nd.getDate()).padStart(2,"0");
+  document.getElementById("startDate").value = state.start;
+}
+markToday();
+stats();
+initVoices();
+setTimeout(initVoices, 400);
+</script>
+</body>
+</html>
