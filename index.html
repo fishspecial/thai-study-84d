@@ -2,311 +2,228 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>泰语 84 天 · 计划 + 打卡 + 点读</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>泰语 84 天</title>
 <style>
 :root{
   --bg:#ffffff; --surface:#f7f6f3; --line:#e3e1dc; --line2:#cfccc5;
-  --tx:#2c2c2a; --tx2:#5f5e5a; --tx3:#888780;
+  --tx:#2c2c2a; --tx2:#5f5e5a; --tx3:#8a8983;
   --blue50:#e6f1fb; --blue200:#b5d4f4; --blue600:#185fa5; --blue800:#0c447c;
-  --teal50:#e1f5ee; --teal600:#0f6e56;
   --amber50:#faeeda; --amber200:#fac775; --amber600:#854f0b;
   --green50:#eaf3de; --green600:#3b6d11;
-  --red50:#fcebeb; --red600:#a32d2d;
+  --red50:#fcebeb; --red200:#f09595; --red600:#a32d2d;
+  --purple50:#eeedfb; --purple200:#cecbf9; --purple600:#534ab7;
+  --safe-b:env(safe-area-inset-bottom,0px);
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);
   font-family:system-ui,-apple-system,"Segoe UI","Leelawadee UI","Noto Sans Thai","Microsoft YaHei",sans-serif;
-  font-size:14px;line-height:1.6}
-.wrap{max-width:940px;margin:0 auto;padding:24px 20px 90px}
-h1{font-size:21px;font-weight:500;margin:0 0 4px}
-h2{font-size:17px;font-weight:500;margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-h3{font-size:15px;font-weight:500;margin:20px 0 8px}
+  font-size:15px;line-height:1.65;padding-bottom:calc(66px + var(--safe-b))}
+h1,h2,h3{margin:0}
+h2{font-size:15px;font-weight:600;margin:18px 0 8px}
+h3{font-size:14px;font-weight:600;margin:14px 0 6px}
 p{margin:8px 0}
 .sub{color:var(--tx2);font-size:13px}
-a{color:var(--blue600)}
+a{color:var(--blue600);text-decoration:none}
+b{font-weight:600}
+.th{font-family:"Leelawadee UI","Noto Sans Thai",sans-serif}
 
-nav{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:6px;flex-wrap:wrap}
-nav button{border:none;border-bottom:2px solid transparent;border-radius:0;padding:10px 14px;
-  font-size:14px;color:var(--tx2);background:transparent;cursor:pointer}
-nav button:hover{background:transparent;color:var(--tx)}
-nav button.act{color:var(--blue800);border-bottom-color:var(--blue600);font-weight:500}
-nav .navlink{padding:10px 14px;font-size:14px;color:var(--blue600);text-decoration:none;border-bottom:2px solid transparent}
-nav .navlink:hover{background:var(--surface)}
-section{display:none}
-section.act{display:block}
+/* 顶栏 */
+.topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);padding:9px 14px}
+.topbar .tb{display:flex;align-items:center;gap:10px;max-width:760px;margin:0 auto}
+.topbar .ttl{font-size:15px;font-weight:600}
+.topbar .day{font-size:12px;color:var(--tx2)}
+.topbar .pb{flex:1;height:6px;background:var(--line);border-radius:99px;overflow:hidden;min-width:40px}
+.topbar .pb>i{display:block;height:100%;background:var(--green600);width:0;transition:width .3s}
 
-.hero{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:12px;margin-top:14px}
-.kpi{background:var(--bg);border-radius:8px;padding:12px 14px}
-.kpi .l{font-size:12px;color:var(--tx2)}
-.kpi .v{font-size:22px;font-weight:500;margin-top:2px}
-.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:14px 0 6px}
-.bar>i{display:block;height:100%;background:var(--blue600);width:0;transition:width .25s}
+main{max-width:760px;margin:0 auto;padding:12px 14px 20px}
+.view{display:none}
+.view.on{display:block}
 
-table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
-th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left}
-th{color:var(--tx2);font-weight:500}
+/* 卡片 */
+.card{border:1px solid var(--line);border-radius:14px;padding:16px;margin:10px 0;background:var(--bg)}
+.hero{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kpi{background:var(--bg);border-radius:10px;padding:9px 10px}
+.kpi .l{font-size:11.5px;color:var(--tx2)}
+.kpi .v{font-size:19px;font-weight:600;margin-top:1px;line-height:1.3}
+
+/* 按钮 */
+button{font:inherit}
+.btn{min-height:44px;padding:10px 14px;border-radius:11px;border:1px solid var(--line2);background:transparent;color:var(--tx);cursor:pointer;font-size:14px}
+.btn:active{background:var(--surface)}
+.btn.on{background:var(--blue50);border-color:var(--blue600);color:var(--blue800)}
+.btn.primary{background:var(--blue600);border-color:var(--blue600);color:#fff}
+.btn.primary:active{background:var(--blue800)}
+.btn.ok{border-color:var(--green600);color:var(--green600)}
+.btn.no{border-color:var(--red600);color:var(--red600)}
+.btn.wide{width:100%}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.btnrow>*{flex:1;min-width:96px}
+.mini{min-height:34px;padding:5px 10px;border-radius:9px;border:1px solid var(--line2);background:transparent;color:var(--tx2);cursor:pointer;font-size:12.5px}
+.mini.on{background:var(--green50);border-color:var(--green600);color:var(--green600)}
+select,input[type=text],input[type=number]{font:inherit;font-size:15px;min-height:42px;padding:8px 10px;border:1px solid var(--line2);border-radius:11px;background:var(--bg);color:var(--tx);width:100%}
+textarea{font:inherit;width:100%;min-height:120px;font-size:12px;font-family:ui-monospace,Consolas,monospace;border:1px solid var(--line2);border-radius:11px;padding:10px}
+label.fld{display:block;margin:8px 0}
+label.fld>span{display:block;font-size:12.5px;color:var(--tx2);margin-bottom:4px}
+
+/* 任务 */
+.task{border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+.task.done{background:var(--green50);border-color:var(--green600)}
+.task .th{display:flex;align-items:center;gap:10px}
+.task .nm{font-size:15px;font-weight:600;flex:1}
+.task .sc{font-size:19px;font-weight:600;color:var(--green600)}
+.task .dd{font-size:12.5px;color:var(--tx2);margin:3px 0 9px}
+.mbar{height:5px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:10px}
+.mbar>i{display:block;height:100%;background:var(--blue600);width:0}
+
+/* 学习卡 */
+.study{border:1px solid var(--line2);border-radius:16px;padding:30px 18px;margin:12px 0;text-align:center;background:var(--bg);min-height:230px;display:flex;flex-direction:column;justify-content:center}
+.study .q{font-size:34px;line-height:1.45;margin:8px 0}
+.study .q.sm{font-size:23px}
+.study .rom{font-size:14px;color:var(--tx2)}
+.study .a{font-size:19px;margin-top:12px}
+.study .en{font-size:13px;color:var(--tx2)}
+.study .note{font-size:12.5px;color:var(--amber600);margin-top:4px}
+.study .hint{font-size:12.5px;color:var(--tx3);margin-top:12px}
+.opt{display:block;width:100%;text-align:left;min-height:50px;padding:12px 14px;margin:7px 0;border:1px solid var(--line2);
+  border-radius:12px;background:var(--bg);cursor:pointer;font:inherit;font-size:15px}
+.opt .th{font-size:19px}
+.opt.right{background:var(--green50);border-color:var(--green600)}
+.opt.wrong{background:var(--red50);border-color:var(--red600)}
+.opt:disabled{cursor:default}
+
+/* 词条行 */
+.w{display:flex;gap:11px;align-items:flex-start;padding:11px 13px;border-bottom:1px solid var(--line);cursor:pointer}
+.w:active{background:var(--surface)}
+.w:last-child{border-bottom:none}
+.w.learned{opacity:.5}
+.w .pl{flex:0 0 20px;color:var(--blue600);font-size:13px;margin-top:3px}
+.w .rk{flex:0 0 22px;color:var(--tx3);font-size:12px;margin-top:4px;text-align:right}
+.w .mn{flex:1;min-width:0}
+.w .t1{font-size:19px;line-height:1.5}
+.w .t1.sm{font-size:16px}
+.w .sd{flex:0 0 auto;display:flex;gap:5px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.list{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:8px}
+.tag{font-size:11px;padding:1px 7px;border-radius:99px;background:var(--amber50);color:var(--amber600);border:1px solid var(--amber200);white-space:nowrap}
+.tag.lo{background:var(--surface);color:var(--tx2);border-color:var(--line2)}
+.tag.b{background:var(--blue50);color:var(--blue800);border-color:var(--blue200)}
+.tag.p{background:var(--purple50);color:var(--purple600);border-color:var(--purple200)}
+.tag.r{background:var(--red50);color:var(--red600);border-color:var(--red200)}
+.tag.g{background:var(--green50);color:var(--green600);border-color:var(--green600)}
+.blur{filter:blur(6px);user-select:none}
+
+.note{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13.5px;margin:10px 0}
+.note2{background:var(--amber50);border:1px solid var(--amber200);border-radius:12px;padding:12px 14px;font-size:13px;margin:10px 0}
+.tip{background:var(--blue50);border:1px solid var(--blue200);border-radius:12px;padding:12px 14px;font-size:13px;margin:10px 0}
+.okbox{background:var(--green50);border:1px solid var(--green600);border-radius:12px;padding:12px 14px;font-size:13.5px;margin:10px 0}
+
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:8px 0;display:block;overflow-x:auto;white-space:nowrap}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:left}
+th{color:var(--tx2);font-weight:600;font-size:12px}
 td.n{text-align:right;font-variant-numeric:tabular-nums}
+.chip{display:inline-block;padding:2px 8px;margin:2px 4px 2px 0;border:1px solid var(--line2);border-radius:8px;cursor:pointer;font-size:16px}
+.chip:active{background:var(--surface)}
 
-.card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0;background:var(--bg)}
-.row{display:flex;gap:14px;align-items:flex-start;padding:7px 0}
-.row+.row{border-top:1px dashed var(--line)}
-.cb{width:17px;height:17px;flex:0 0 17px;margin-top:3px;accent-color:var(--blue600);cursor:pointer}
-.row label{cursor:pointer;flex:1}
-.row.done label{text-decoration:line-through;color:var(--tx3)}
-.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;background:var(--surface);color:var(--tx2);border:1px solid var(--line)}
-.tag.p1{background:var(--blue50);color:var(--blue800);border-color:var(--blue200)}
-.tag.p2{background:var(--teal50);color:var(--teal600);border-color:var(--teal50)}
-.tag.p3{background:var(--amber50);color:var(--amber600);border-color:var(--amber200)}
-.tag.p4{background:var(--green50);color:var(--green600);border-color:var(--green50)}
-.tag.min{font-variant-numeric:tabular-nums;margin-left:6px}
-.done-flag{font-size:12px;color:var(--green600);white-space:nowrap}
-.undone-flag{font-size:12px;color:var(--tx3);white-space:nowrap}
+.spark{display:flex;align-items:flex-end;gap:3px;height:64px;margin:8px 0}
+.spark i{flex:1;background:var(--blue600);border-radius:2px 2px 0 0;min-height:2px;display:block}
+.spark i.g{background:var(--green600)}
 
-.weekhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:26px 0 4px}
-.weekhead .w{font-size:15px;font-weight:500}
-.dayhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
-.dayhead .d{font-size:14px;font-weight:500}
-.today{background:var(--amber50)!important;border-color:var(--amber200)!important}
+/* 底栏 */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;background:rgba(255,255,255,.96);
+  backdrop-filter:saturate(180%) blur(12px);border-top:1px solid var(--line);padding-bottom:var(--safe-b)}
+.tabbar button{flex:1;min-height:56px;border:0;background:transparent;color:var(--tx3);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;padding:6px 0}
+.tabbar button .ic{font-size:19px;line-height:1}
+.tabbar button.on{color:var(--blue600)}
+.tabbar button.on .ic{transform:translateY(-1px)}
 
-.ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
-button.btn{font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--line2);background:transparent;color:var(--tx);cursor:pointer}
-button.btn:hover{background:var(--surface)}
-button.btn.on{background:var(--blue50);border-color:var(--blue600);color:var(--blue800)}
-input[type=date],input[type=text],select{font:inherit;font-size:13px;padding:5px 8px;border:1px solid var(--line2);border-radius:8px;background:var(--bg);color:var(--tx)}
-input[type=range]{vertical-align:middle}
-ol,ul{margin:8px 0;padding-left:22px}
-li{margin:4px 0}
-.note{background:var(--amber50);border:1px solid var(--amber200);border-radius:8px;padding:12px 14px;font-size:13px}
-.note.red{background:var(--red50);border-color:var(--red600)}
-.okbox{background:var(--teal50);border:1px solid var(--teal50);border-radius:8px;padding:12px 14px;font-size:13px}
-.cut{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--tx2)}
-.hide{display:none!important}
-code{background:var(--surface);padding:1px 5px;border-radius:4px;font-size:12px}
-
-.item{display:flex;gap:12px;align-items:flex-start;padding:9px 10px;border-radius:8px;cursor:pointer;border:1px solid transparent}
-.item:hover{background:var(--surface)}
-.item.playing{background:var(--blue50);border-color:var(--blue200)}
-.item .play{flex:0 0 22px;color:var(--blue600);font-size:12px;margin-top:2px}
-.item .main{flex:1;min-width:0}
-.item .th{font-family:"Leelawadee UI","Noto Sans Thai",sans-serif;font-size:17px;line-height:1.5}
-.item .rom{font-size:12px;color:var(--tx2);margin-top:1px}
-.item .zh{font-size:13px;color:var(--tx2);margin-top:2px}
-.item .nt{font-size:12px;color:var(--amber600);margin-top:3px}
-.mini{font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid var(--line2);background:transparent;cursor:pointer;color:var(--tx2)}
-.mini:hover{background:var(--surface)}
-.chip{cursor:pointer;font-family:"Leelawadee UI","Noto Sans Thai",sans-serif;font-size:16px}
-
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;background:var(--blue800);color:#fff;
-  font-size:13px;padding:8px 14px;border-radius:8px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:99;max-width:90vw}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(78px + var(--safe-b));background:var(--blue800);color:#fff;
+  font-size:13.5px;padding:9px 15px;border-radius:11px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:99;max-width:90vw;text-align:center}
 .toast.show{opacity:1}
-@media print{
-  nav,button,input,select,.ctl{display:none!important}
-  .card{break-inside:avoid}
-  body{font-size:11px}
-}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<h1>泰语 84 天 · 计划 + 打卡 + 点读</h1>
-<p class="sub">每天 2 小时 · 高频优先 · 目标：跟她沟通，其次是在泰国生活</p>
+<header class="topbar"><div class="tb">
+  <div><div class="ttl">泰语 84 天</div><div class="day" id="tbDay">Day 1</div></div>
+  <div class="pb"><i id="tbBar"></i></div>
+  <div class="day" id="tbDue"></div>
+</div></header>
 
-<nav>
-  <button class="act" data-v="plan">计划与打卡</button>
-  <button data-v="speak">短语本 · 点读</button>
-  <button data-v="rules">规则速查</button>
-  <a class="navlink" href="./wordbook.html">单词本 · 2187 词</a>
-  <a class="navlink" href="./pany.html">她的泰语 · 800 句</a>
-</nav>
+<main>
+  <!-- ========== 今日 ========== -->
+  <section class="view on" id="v-today">
+    <div class="hero">
+      <div class="kpis">
+        <div class="kpi"><div class="l">今日得分</div><div class="v" id="kScore">—</div></div>
+        <div class="kpi"><div class="l">连续天数</div><div class="v" id="kStreak">0</div></div>
+        <div class="kpi"><div class="l">已学条目</div><div class="v" id="kTotal">0</div></div>
+        <div class="kpi"><div class="l">待复习</div><div class="v" id="kDue">0</div></div>
+        <div class="kpi"><div class="l">平均得分</div><div class="v" id="kAvg">—</div></div>
+        <div class="kpi"><div class="l">今日用时</div><div class="v" id="kMin">0′</div></div>
+      </div>
+      <p class="sub" id="dayInfo" style="margin-bottom:0"></p>
+    </div>
+    <div id="taskList"></div>
+    <div id="runner"></div>
+    <div id="finishBox" style="display:none">
+      <div class="okbox" id="finishTxt"></div>
+      <div class="btnrow"><button class="btn primary" id="btnFinish">完成今日打卡</button><button class="btn" id="btnRedo">重做</button></div>
+    </div>
+  </section>
 
-<!-- ============ 视图 1：计划与打卡 ============ -->
-<section id="v-plan" class="act">
+  <!-- ========== 语料 ========== -->
+  <section class="view" id="v-corpus">
+    <div class="btnrow" style="margin-top:10px">
+      <select id="cKind">
+        <option value="top">高频 TOP 100</option>
+        <option value="w">她的常用词</option>
+        <option value="f">语气词 · 虚词</option>
+        <option value="p">她的短句</option>
+        <option value="q">我的表达</option>
+        <option value="s">例句库</option>
+      </select>
+    </div>
+    <div class="btnrow" id="cFilters">
+      <input type="text" id="cQ" placeholder="搜索泰文 / 中文 / 英文">
+    </div>
+    <div class="btnrow" id="cExtra"></div>
+    <p class="sub" id="cInfo"></p>
+    <div class="list" id="cList"></div>
+    <p class="sub" id="cMore"></p>
+  </section>
 
-<div class="hero">
-  <p style="margin-top:0"><strong>核心判断：</strong>她发来的消息是泰文。拼读引擎的意义不只是认路牌——<strong>是为了你能读懂她每一条 LINE</strong>。前 21 天拿下它，之后她发的每句话都会自动变成教材。</p>
-  <p><strong>排序：按「你实际会说 / 会读到多少遍」从高到低</strong></p>
-  <ol style="font-size:13px;color:var(--tx2)">
-    <li>拼读引擎（21 天）—— 读懂她的消息，一切的前提</li>
-    <li>语气词与代词（นะ เหรอ เนาะ / ผม เรา เธอ เค้า）—— 每句话都带，第 3 周就上</li>
-    <li>情绪与感受（คิดถึง เหนื่อย งอน หึง）—— 每天聊天都在说</li>
-    <li>日常闲聊句型 + 疑问词 + 否定 + แล้ว / กำลัง / จะ</li>
-    <li>时间与约会 → 亲昵与情话 → 吵架与和好</li>
-    <li>生活：吃 → 住行钱 → 见家长</li>
-  </ol>
-  <div class="kpis">
-    <div class="kpi"><div class="l">总天数</div><div class="v">84</div></div>
-    <div class="kpi"><div class="l">每日时长</div><div class="v">120<span style="font-size:13px"> 分</span></div></div>
-    <div class="kpi"><div class="l">已完成天数</div><div class="v" id="kDone">0</div></div>
-    <div class="kpi"><div class="l">连续打卡</div><div class="v" id="kStreak">0</div></div>
-    <div class="kpi"><div class="l">任务完成率</div><div class="v" id="kPct">0%</div></div>
-  </div>
-  <div class="bar"><i id="barMain"></i></div>
-  <p class="sub" id="pos"></p>
-</div>
+  <!-- ========== 词库 ========== -->
+  <section class="view" id="v-words">
+    <div class="btnrow" style="margin-top:10px"><input type="text" id="wQ" placeholder="搜索 2187 词的泰文 / 转写 / 中文 / 英文"></div>
+    <div class="btnrow">
+      <button class="mini on" id="wP5">Priority 5</button>
+      <button class="mini" id="wP4">Priority 4</button>
+      <button class="mini" id="wAll">全部</button>
+      <button class="mini" id="wHideL">隐藏已掌握</button>
+    </div>
+    <p class="sub" id="wInfo"></p>
+    <div class="list" id="wList"></div>
+    <p class="sub" id="wMore"></p>
+  </section>
 
-<div class="note red">
-  <strong>Day 1 先摸底（30 分钟）：</strong>打开她最近发你的 20 条消息，试着逐条读出来。读不出、或声调全靠猜，说明你现在的词汇是音译硬记的——第 1–2 周会直接改变这一点。结果记在 Day 1 的自检项里。
-</div>
-
-<h2>每日时间分配骨架</h2>
-<table>
-  <thead><tr><th>星期</th><th>日类型</th><th class="n">复习</th><th class="n">新学</th><th class="n">练习</th><th class="n">自检</th><th class="n">合计</th></tr></thead>
-  <tbody>
-    <tr><td>周一</td><td>新学日</td><td class="n">25</td><td class="n">45</td><td class="n">40</td><td class="n">10</td><td class="n">120</td></tr>
-    <tr><td>周二</td><td>词汇日</td><td class="n">25</td><td class="n">40</td><td class="n">45</td><td class="n">10</td><td class="n">120</td></tr>
-    <tr><td>周三</td><td>听力日</td><td class="n">25</td><td class="n">35</td><td class="n">50</td><td class="n">10</td><td class="n">120</td></tr>
-    <tr><td>周四</td><td>语法日</td><td class="n">25</td><td class="n">40</td><td class="n">45</td><td class="n">10</td><td class="n">120</td></tr>
-    <tr><td>周五</td><td>口语输出日</td><td class="n">20</td><td class="n">30</td><td class="n">60</td><td class="n">10</td><td class="n">120</td></tr>
-    <tr><td>周六</td><td>实战日</td><td class="n">20</td><td class="n">实战 50</td><td class="n">闪卡 40</td><td class="n">10</td><td class="n">120</td></tr>
-    <tr><td>周日</td><td>复盘日</td><td class="n">周测 50</td><td class="n">补漏 40</td><td class="n">预览 20</td><td class="n">10</td><td class="n">120</td></tr>
-  </tbody>
-</table>
-<p class="sub">每周 6 天学新内容，第 7 天固定复盘（仍是 2 小时不休息）。听说占比约 50%。复习用间隔重复：当日 → 次日 → 第 4 日 → 第 8 日 → 第 15 日。</p>
-
-<h2>四个阶段目标与自检</h2>
-<div class="card">
-  <h3 style="margin-top:0"><span class="tag p1">阶段一</span> 读懂她的消息 · Day 1–21</h3>
-  <p><strong>自检：</strong>30 个陌生音节标调 ≥27；她最近发你的 20 条消息全部读出并标调，准确率 ≥85%；数字听写 20 题 ≥18。</p>
-</div>
-<div class="card">
-  <h3 style="margin-top:0"><span class="tag p2">阶段二</span> 每天聊起来 · Day 22–42</h3>
-  <p><strong>自检：</strong>不看稿完成 10 轮日常对话；能说出 15 种情绪与状态；能用泰语完整约定一次见面（时间 + 地点 + 接送）。</p>
-</div>
-<div class="card">
-  <h3 style="margin-top:0"><span class="tag p3">阶段三</span> 亲密与生活落地 · Day 43–63</h3>
-  <p><strong>自检：</strong>给她写 10 句泰语消息（早安 / 关心 / 想念 / 夸奖 / 晚安），她读起来自然 ≥9 句；能完成一次 20 句的和好对话；能独立点一桌菜。</p>
-</div>
-<div class="card">
-  <h3 style="margin-top:0"><span class="tag p4">阶段四</span> 独立生活与真实语速 · Day 64–84</h3>
-  <p><strong>自检：</strong>她的语音消息逐句听写 ≥70%；见家长 15 句寒暄称谓不出错；能报住址、报修、办银行卡。</p>
-</div>
-
-<div class="cut">
-  <strong>不学清单（主动砍掉，别花时间）：</strong>
-  <ul style="margin-bottom:0">
-    <li>关系从句 ที่、被动 ถูก、使役 ให้、多动词连动结构 —— 说短句绕开即可</li>
-    <li>低频字母 ฎ ฏ ฃ ฅ ฌ ฑ ฒ ฬ 的书写 —— 见到能认就行</li>
-    <li>古文符号 ฯ ฯลฯ、王室语、佛教术语、新闻书面体、商务职场泰语</li>
-    <li>方言（伊森话、北部话）—— 只学中部标准泰语</li>
-    <li>签证移民深度词汇 —— 认得 ตม. / 90 วัน / TM30 三个词即可</li>
-  </ul>
-</div>
-
-<h2>84 天打卡清单</h2>
-<div class="ctl">
-  <label class="sub">开始日期</label>
-  <input type="date" id="startDate">
-  <button class="btn" id="btnToday">跳到今天</button>
-  <button class="btn" id="btnAll">显示全部</button>
-  <button class="btn" id="btnTodo">只看未完成</button>
-  <button class="btn" id="btnExport">导出进度</button>
-  <button class="btn" id="btnPrint">打印</button>
-  <button class="btn" id="btnReset">重置</button>
-</div>
-<p class="sub">勾选状态自动保存在本机浏览器。每天四项全勾 = 该日打卡成功。</p>
-<div id="list"></div>
-
-<h2>第 84 天综合达标线</h2>
-<table>
-  <thead><tr><th>能力</th><th>达标标准</th></tr></thead>
-  <tbody>
-    <tr><td>读她的消息</td><td>她发来的泰文能读出并理解，声调准确率 ≥90%</td></tr>
-    <tr><td>日常沟通</td><td>能独立进行 10 分钟日常对话，含关心、开玩笑、解释</td></tr>
-    <tr><td>情绪表达</td><td>能准确说出 15 种情绪与身体状态</td></tr>
-    <tr><td>和好</td><td>能用泰语道歉、解释误会、哄人，不只会说 ไม่เข้าใจ</td></tr>
-    <tr><td>亲密表达</td><td>昵称、夸奖、想念的说法自然，不生硬</td></tr>
-    <tr><td>生活 · 吃</td><td>点餐、买菜、砍价、说忌口全程泰语</td></tr>
-    <tr><td>生活 · 住行</td><td>能报住址（含 ซอย）、问路、打车、报修水电网络</td></tr>
-    <tr><td>见家长</td><td>称谓与寒暄不出错，能完成 15 句见面流程</td></tr>
-    <tr><td>听力</td><td>她和她朋友的正常语速对话听懂主旨；她的语音消息听写 ≥70%</td></tr>
-  </tbody>
-</table>
-<p class="sub">任一项未达标：不要结课，把第 12 周重复一轮，只攻未达标项。</p>
-</section>
-
-<!-- ============ 视图 2：短语本 ============ -->
-<section id="v-speak">
-<div class="okbox" id="engineBox">
-  <div class="ctl" style="margin:0">
-    <label class="sub">发音方式</label>
-    <select id="engineSel">
-      <option value="auto">自动（内置音频 → 本机 → 在线）</option>
-      <option value="file">内置音频（离线，推荐）</option>
-      <option value="local">本机语音</option>
-      <option value="online">在线语音（需联网）</option>
-    </select>
-    <span id="voiceWrap">
-      <label class="sub">泰语语音</label>
-      <select id="voiceSel" style="min-width:220px"></select>
-    </span>
-    <label class="sub">语速</label>
-    <input type="range" id="rate" min="0.5" max="1.2" step="0.05" value="0.85">
-    <span class="sub" id="rateVal">0.85×</span>
-    <button class="btn" id="btnTest">试听</button>
-    <button class="btn" id="btnRecheck">重新检测</button>
-    <button class="btn" id="btnStop">停止</button>
-  </div>
-  <div class="ctl" id="onlineRow" style="margin-top:8px">
-    <label class="sub">在线语音源</label>
-    <select id="ttsSrc">
-      <option value="auto">自动（Google 优先，失败转有道）</option>
-      <option value="google">Google 翻译 TTS</option>
-      <option value="youdao">有道词典 TTS</option>
-    </select>
-    <button class="btn" id="btnTtsTest">测试在线语音</button>
-  </div>
-  <p class="sub" id="ttsResult" style="margin:0 0 6px"></p>
-  <p class="sub" id="lastSay" style="margin:0 0 6px"></p>
-  <p class="sub" id="engineMsg" style="margin-bottom:0"></p>
-</div>
-
-<div class="note">
-  <p style="margin-top:0"><strong>点任意一行立即朗读。</strong>检测不到泰语语音时自动用「在线语音」，无需本机装任何东西。</p>
-  <p><strong>在线语音用的是这两个公开接口</strong>（都是免密钥的第三方 TTS 端点）：</p>
-  <ul style="font-size:12px">
-    <li><code>translate.google.com/translate_tts</code> — Google 翻译的朗读接口，音色最自然；需要能访问 Google</li>
-    <li><code>dict.youdao.com/dictvoice</code> — 有道词典的朗读接口，国内网络可直接访问</li>
-  </ul>
-  <p><strong>听不到声音先点「测试在线语音」</strong>，它会逐个测这两个源并告诉你哪个能用、耗时多少，然后自动选可用的那个。</p>
-  <p style="margin-bottom:0">每行右侧 <code>S</code> = 复制这句泰文并打开 speecher.org，到那边粘贴后播放（要下 MP3 时用）。speecher.org 不支持 URL 传参，所以无法点一下自动朗读，只能这样绕。</p>
-</div>
-
-<div class="cut">
-  <strong>手机装泰语语音的方法（想用本机语音时）</strong>
-  <ul>
-    <li><strong>安卓</strong>：设置 → 系统 → 语言和输入法 → 文字转语音输出（TTS）→ 选「Google 文字转语音」→ 点语言 → 下载<strong>泰语</strong>。装完回到本页点「重新检测」。</li>
-    <li><strong>iPhone</strong>：设置 → 辅助功能 → 朗读内容 → 声音 → 泰语 → 下载（如 Kanya）。装完回到本页点「重新检测」。</li>
-    <li>不想折腾就直接用<strong>在线语音</strong>，效果一样，只是需要联网。</li>
-  </ul>
-</div>
-
-<div class="ctl">
-  <input type="text" id="q" placeholder="搜索泰文 / 转写 / 中文" style="min-width:240px">
-  <button class="btn on" id="tRom">显示转写</button>
-  <button class="btn on" id="tZh">显示中文</button>
-  <span class="sub" id="cnt"></span>
-</div>
-<div id="plist"></div>
-
-<h2>男生必知的几条规则</h2>
-<table>
-  <thead><tr><th>项目</th><th>用法</th><th>说明</th></tr></thead>
-  <tbody>
-    <tr><td>自称</td><td>ผม（通用）/ เรา（亲密）</td><td>跟她聊天两个都能用，เรา 更亲。ฉัน 偏女性，男生一般不用</td></tr>
-    <tr><td>称她</td><td>เธอ / เค้า / ที่รัก</td><td>เค้า 本是「他/她」，情侣间常用来指对方；别用 คุณ，会显得像陌生人</td></tr>
-    <tr><td>句末</td><td>ครับ</td><td>你是男生，句末一律 ครับ，不用 ค่ะ</td></tr>
-    <tr><td>软化</td><td>นะ</td><td>句末加 นะ 立刻变温柔：ไปนอนนะ（去睡吧～）</td></tr>
-    <tr><td>闹别扭</td><td>งอน</td><td>撒娇式的不高兴，中文没对应词。她说 งอนแล้ว 时别讲道理，先哄</td></tr>
-    <tr><td>吃醋</td><td>หึง</td><td>หึงเหรอ = 你吃醋啦？</td></tr>
-  </tbody>
-</table>
-</section>
-
-<!-- ============ 视图 3：规则速查 ============ -->
-<section id="v-rules">
+  <!-- ========== 参考 ========== -->
+  <section class="view" id="v-ref">
+    <div class="btnrow" style="margin-top:10px">
+      <button class="btn on" id="refP">短语点读</button>
+      <button class="btn" id="refR">规则速查</button>
+    </div>
+    <div id="refPhrase">
+      <div class="btnrow"><input type="text" id="pQ" placeholder="搜索 76 条短语"></div>
+      <div class="list" id="pList"></div>
+    </div>
+    <div id="refRules" style="display:none">
+      
 <h2>五个声调</h2>
 <p class="sub">点任意泰文即可发音。</p>
 <table>
@@ -363,644 +280,627 @@ code{background:var(--surface);padding:1px 5px;border-radius:4px;font-size:12px}
 <div class="note">
   <strong>关于发音：</strong>推荐 Learn Thai with Mod（YouTube）、Comprehensible Thai、泰剧情侣日常片段。真实语速阶段直接用<strong>她的语音消息</strong>——那是全世界对你最有用的听力材料。
 </div>
-</section>
+
+    </div>
+  </section>
+
+  <!-- ========== 我的 ========== -->
+  <section class="view" id="v-me">
+    <h2 style="margin-top:12px">学习记录</h2>
+    <div class="hero">
+      <div class="kpis">
+        <div class="kpi"><div class="l">已打卡</div><div class="v" id="rDays">0</div></div>
+        <div class="kpi"><div class="l">累计分钟</div><div class="v" id="rMin">0</div></div>
+        <div class="kpi"><div class="l">平均得分</div><div class="v" id="rAvg">—</div></div>
+        <div class="kpi"><div class="l">累计答题</div><div class="v" id="rQuiz">0</div></div>
+        <div class="kpi"><div class="l">答对率</div><div class="v" id="rAcc">—</div></div>
+        <div class="kpi"><div class="l">薄弱条目</div><div class="v" id="rWeak">0</div></div>
+      </div>
+    </div>
+    <h3>每日得分</h3>
+    <div class="spark" id="spark"></div>
+    <h3>明细</h3>
+    <table><thead><tr><th>天</th><th>日期</th><th>新学</th><th>复习</th><th>答题</th><th>阅读</th><th>输出</th><th>分</th></tr></thead><tbody id="rTbl"></tbody></table>
+
+    <h3>交给老师复盘</h3>
+    <div class="tip">生成一段成绩报告，复制后发给我。我会据此调整明天的任务量和重点。</div>
+    <div class="btnrow"><button class="btn" id="btnReport">生成报告</button><button class="btn" id="btnCopy">复制</button></div>
+    <textarea id="reportBox" placeholder="点「生成报告」后这里会出现可复制的文本"></textarea>
+
+    <h3>每日配额</h3>
+    <label class="fld"><span>新词 / 天</span><input type="number" id="cfgW" min="4" max="40"></label>
+    <label class="fld"><span>新短句 / 天</span><input type="number" id="cfgG" min="0" max="20"></label>
+    <label class="fld"><span>她的例句 / 天</span><input type="number" id="cfgHS" min="0" max="20"></label>
+    <label class="fld"><span>我的例句 / 天</span><input type="number" id="cfgMS" min="0" max="20"></label>
+    <label class="fld"><span>测验题数</span><input type="number" id="cfgQ" min="5" max="30"></label>
+    <div class="btnrow"><button class="btn primary" id="btnCfg">保存配额</button></div>
+
+    <h3>导入老师给的调整方案</h3>
+    <textarea id="planBox" placeholder='例如：{"plan":{"newWords":8,"newHerSent":4},"focus":"weak"}'></textarea>
+    <div class="btnrow"><button class="btn" id="btnPlan">应用方案</button><button class="btn" id="btnBak">导入存档</button></div>
+
+    <h3>数据</h3>
+    <div class="btnrow"><button class="btn" id="btnExportBak">导出完整存档</button><button class="btn no" id="btnReset2">清空记录</button></div>
+    <p class="sub" id="storeInfo"></p>
+  </section>
+</main>
+
+<nav class="tabbar">
+  <button class="on" data-v="today"><span class="ic">◈</span>今日</button>
+  <button data-v="corpus"><span class="ic">☰</span>语料</button>
+  <button data-v="words"><span class="ic">文</span>词库</button>
+  <button data-v="ref"><span class="ic">?</span>参考</button>
+  <button data-v="me"><span class="ic">◐</span>我的</button>
+</nav>
 
 <div class="toast" id="toast"></div>
-</div>
 
+<script src="./pany-data.js"></script>
+<script src="./words-data.js"></script>
+<script src="./phrases-data.js"></script>
 <script>
-/* ========== 数据：12 周 ========== */
-var WEEKS = [
- {w:1,ph:1,t:"拼读引擎 I · 中辅音与高频元音",
-  n:"中辅音 7 个 ก จ ด ต บ ป อ + 元音 เ- -า -ี -ู -ุ -ิ；拿她的名字和你们聊天里的常用词当拼读标本",
-  v:"把你已会的词和她常说的词（คิดถึง รัก น่ารัก อร่อย）全部重新拼读一遍",
-  l:"听辨 ก / ข / ค 三组送气与清浊差异，重新校准耳朵",
-  g:"建立认知：泰语无时态、无复数、无冠词；五个声调属于词本身，错了就是另一个词",
-  s:"摸底：打开她最近发你的 20 条消息，逐条试着读出来，记录读错的词",
-  c:"30 个中辅音音节见字读音 ≥27 正确"},
- {w:2,ph:1,t:"拼读引擎 II · 声调规则",
-  n:"活音节表：中辅音 无调号=中平 / ่=低降 / ้=高降 / ๊=高平 / ๋=升；死音节：中高辅音=低降，低辅音短元音=高平、长元音=高降",
-  v:"最小对立对：มา ม้า หมา（来 / 马 / 狗）；กา ก่า ก้า；คะ ค่า วัด วาด",
-  l:"听辨中平 / 低降 / 高降 / 升调：ข่าว ข้าว、คะ ค่า 各 20 组",
-  g:"头号易错点：低辅音 + ่ = 高降（ค่า khâa），不是低降",
-  s:"把她最近发你的 10 条消息逐字标出声调",
-  c:"30 个混合音节标调 ≥26 正确"},
- {w:3,ph:1,t:"拼读引擎 III + 语气词与代词（提前）",
-  n:"高辅音 11 个 + ห นำ；低辅音成对 14 个；数字 0–1000；语气词 นะ เหรอ เนาะ จ๊ะ เดี๋ยว แล้ว เลย",
-  v:"代词体系：ผม เรา ฉัน / เธอ เค้า ที่รัก แฟน หวานใจ（每句话都要用，所以提前）",
-  l:"听她说话的句尾，专门抓 นะ / เหรอ / เนาะ 三种语气差别",
-  g:"你是男生，句末一律 ครับ；นะ 把命令变请求；称呼用 เธอ / เค้า / ที่รัก，别用 คุณ",
-  s:"用 ผม + ครับ + นะ 造 20 句，全部录入短语本点读",
-  c:"数字听写 20 题 ≥18；能读出她发来的任意一条消息"},
- {w:4,ph:2,t:"情绪与感受（沟通核心）",
-  n:"คิดถึง ชอบ รัก เหนื่อย หิว ง่วง โกรธ งอน หึง ดีใจ เสียใจ เบื่อ กังวล สบายดี",
-  v:"程度词 มาก นิดหน่อย ที่สุด เกินไป + 状态 ดี ไม่ดี ไม่สบาย ปวดหัว",
-  l:"看泰剧情侣对话片段，专门抓情绪词 30 分钟",
-  g:"形容词直接作谓语，不加系动词：เหนื่อย 就是「累」，不说 ผมเป็นเหนื่อย",
-  s:"用 15 个情绪词各造 1 句，讲一遍你今天的状态",
-  c:"能说出 15 种情绪状态；造句 20 句错误 ≤3"},
- {w:5,ph:2,t:"日常闲聊句型",
-  n:"疑问词 อะไร ไหน ใคร ทำไม ยังไง กี่ เท่าไหร่ + ไหม / หรือ 疑问句 + ไม่ / ยังไม่ 否定",
-  v:"高频动词 กิน ไป มา ทำ ได้ เอา อยู่ นอน ตื่น ทำงาน ดู ฟัง พูด",
-  l:"听日常对话开场：ทำอะไรอยู่ / กินข้าวยัง / ไปไหนมา / วันนี้เป็นยังไงบ้าง",
-  g:"体貌三件套：แล้ว（完成）/ กำลัง…อยู่（正在）/ จะ（将要）；主语可省略",
-  s:"写一段 10 轮的日常聊天（你一句她一句），录下来读两遍",
-  c:"10 轮对话不看稿完成；疑问句 20 题 ≥17"},
- {w:6,ph:2,t:"时间与约会",
-  n:"时间词 วันนี้ พรุ่งนี้ เมื่อวาน ตอนนี้ เดี๋ยว แล้ว ทุกวัน สัปดาห์หน้า + กี่โมง",
-  v:"约会动词 นัด เจอ รับ รอ ไป กลับ + 地点 ที่ไหน ที่นี่ ที่นั่น",
-  l:"听约定时间的对话：เจอกันกี่โมง / เดี๋ยวไปรับ / ถึงไหนแล้ว",
-  g:"量词基础 ตัว คน อัน ใบ แก้ว จาน ถุง ครั้ง（买东西躲不开）",
-  s:"完整约一次会：问时间 → 定地点 → 说去接她 → 确认，全程泰语",
-  c:"能完整约定一次见面；量词 20 题 ≥16"},
- {w:7,ph:3,t:"亲昵与情话",
-  n:"昵称体系 หมู เต่า ปลา น้องเหมียว（泰国情侣爱用动物当昵称）+ ที่รัก หวานใจ แฟน",
-  v:"夸奖词 น่ารัก สวย เก่ง ดี น่าเอ็นดู อร่อย + 程度 มากมาก ที่สุด",
-  l:"听情侣 vlog / 泰剧撒娇片段 30 分钟，注意语气和句尾",
-  g:"亲昵句式：ขอกอด งอนแล้ว คิดถึงนะ ฝันดีนะ รักนะ",
-  s:"给她写 10 句泰语消息：早安、关心、想念、夸奖、晚安各 2 句",
-  c:"10 句消息里她读起来自然 ≥9 句（可以请她验证）"},
- {w:8,ph:3,t:"吵架与和好（关系里的真高频）",
-  n:"ขอโทษ ผิดเอง ขอโทษนะ คุยกันดีๆ ไม่โกรธแล้วนะ ใจเย็นๆ ฟังหน่อย",
-  v:"误会与解释：ไม่ได้ตั้งใจ เข้าใจผิด อธิบายให้ฟังหน่อย เรื่องมันไม่ได้เป็นแบบนั้น",
-  l:"听争执与和解场景对话 30 分钟",
-  g:"请求与拒绝：ช่วย…หน่อยได้ไหม / ขอ…หน่อย / ไม่สะดวก ไว้คราวหลัง",
-  s:"模拟一次完整和好：道歉 → 解释 → 哄 → 约定，每个环节 5 句",
-  c:"能完成一次 20 句的和好对话，且不加重矛盾"},
- {w:9,ph:3,t:"生活 · 吃",
-  n:"食物高频词 + 点餐套语：ข้าว ผัด ต้ม แกง เนื้อ หมู ไก่ ปลา ผัก เผ็ด หวาน เปรี้ยว เค็ม อร่อย",
-  v:"忌口与偏好：ไม่เผ็ด ไม่ใส่ผักชี แพ้อาหารทะเล เอาผัดไทยหนึ่งจาน",
-  l:"看点餐与菜市场视频 30 分钟",
-  g:"点餐句式 ขอ…หน่อย / เอา…ที่ / ไม่เอา…（量词实战）",
-  s:"口头点一桌菜（5 菜 2 饮 + 忌口）+ 夸她做的饭 5 种不重复的说法",
-  c:"能独立完成点餐；能夸菜好吃且不重复"},
- {w:10,ph:4,t:"生活 · 住 · 行 · 钱",
-  n:"ซอย 巷子地址系统 + ค่าเช่า มัดจำ สัญญาเช่า ไฟฟ้า น้ำประปา อินเทอร์เน็ต ซ่อม",
-  v:"交通 แท็กซี่ วินมอเตอร์ไซค์ BTS MRT ไป…ยังไง เลี้ยวซ้าย เลี้ยวขวา ตรงไป ใกล้ ไกล + ธนาคาร พร้อมเพย์",
-  l:"听 Grab 司机对话 + 银行柜台常用问句 30 分钟",
-  g:"报修 …ไม่ทำงาน / ช่วย…หน่อยได้ไหม；办事 ขอทำ…หน่อย / ต้องใช้เอกสารอะไรบ้าง",
-  s:"说出自己的住址（含 ซอย）+ 模拟报修 + 模拟银行开户，各 10 句",
-  c:"能报住址、报修、办银行卡的问答"},
- {w:11,ph:4,t:"见家长与社交",
-  n:"称谓系统 พี่ น้อง ลุง ป้า อา ครู（对长辈）+ พ่อ แม่ พี่สาว น้องชาย",
-  v:"寒暄 สบายดีไหม กินข้าวยัง ฝากตัวด้วย ยินดีที่ได้รู้จัก + 礼貌拒绝 ไม่สะดวก ขอบคุณที่ชวน",
-  l:"听家庭聚会与寒暄片段 30 分钟",
-  g:"敬语层级：对长辈句末加 ครับ，用 พี่ / น้อง 称呼，别直呼其名",
-  s:"演练见家长全流程：问候 → 自我介绍 → 寒暄 → 告辞，共 15 句",
-  c:"称谓不出错；能完成 15 句见家长寒暄"},
- {w:12,ph:4,t:"真实语速与输出冲刺",
-  n:"弱项专项：按前 11 周错题统计定向补漏，不再学新规则",
-  v:"她的语音消息 + 她和朋友说话的录音，逐句听写",
-  l:"每天 60 分钟真实材料：她的语音、情侣 vlog、泰剧、街头广播",
-  g:"听不懂时的自救句：พูดช้าๆ ได้ไหม / ช่วยพูดใหม่ได้ไหม / เขียนให้หน่อยได้ไหม",
-  s:"3 分钟自我介绍 + 10 场景模拟 + 看图说话 10 段 + 给她录一段 2 分钟泰语",
-  c:"达成第 84 天综合达标线"}
-];
-var PTXT = {1:"阶段一 · 读懂她的消息",2:"阶段二 · 每天聊起来",3:"阶段三 · 亲密与生活落地",4:"阶段四 · 独立生活与真实语速"};
-var DOW = ["周一","周二","周三","周四","周五","周六","周日"];
+/* ==================== 数据 ==================== */
+var P = window.PANY || {};
+var W5 = window.WORDS5 || [], W4 = window.WORDS4 || [];
+var WEEK = ["拼读 I：辅音与元音","声调规则","拼读 III + 语气词代词","情绪与感受","日常闲聊句型",
+  "时间与约会 + 量词","亲昵与情话","吵架与和好","生活 · 吃","住 · 行 · 钱","见家长与社交","真实语速与输出"];
 
-function slots(w, dow){
-  var ck = w.c;
-  if(dow===1) return [["复习",25,"闪卡复习 + 昨日新学默写"],["新学",45,w.n],["练习",40,"把今日新学录入短语本，点读 20 遍"],["自检",10,ck]];
-  if(dow===2) return [["复习",25,"间隔重复闪卡回滚（昨日 + 3 日前 + 7 日前）"],["新学",40,w.v],["练习",45,"听写 20 词 + 造句 15 句"],["自检",10,ck]];
-  if(dow===3) return [["复习",25,"昨日词汇与句型快闪"],["新学",35,w.l],["练习",50,"精听 20 分 + 跟读 20 分 + 听写 10 分"],["自检",10,ck]];
-  if(dow===4) return [["复习",25,"语法点闪卡回滚"],["新学",40,w.g],["练习",45,"造句 10 句 + 自改 + 改错 5 题"],["自检",10,ck]];
-  if(dow===5) return [["复习",20,"本周新学内容快速过一遍"],["新学",30,w.s],["练习",60,"纯口语输出：自言自语或录音，全程不查资料"],["自检",10,ck]];
-  if(dow===6) return [["复习",20,"本周全部内容闪卡 + 朗读"],["实战",50,"真实任务演练：给她发一段语音 / 点餐 / 报修 / 问路 / 和好，开口说"],["闪卡",40,"标记仍未掌握的词，加大出现频率"],["自检",10,"写下本周 3 个最大卡点"]];
-  return [["周测",50,"闭卷自测：拼读 / 词汇 / 听说各一组"],["补漏",40,"错题归类：拼读类 · 词汇类 · 句型类，只攻最弱一环"],["预习",20,"看下一周主题，预习 10 个关键词"],["自检",10,"给本周打分 1–5 并记录"]];
+var POOL_W = [], seenW = {};
+function addW(o, src){ if (seenW[o.t]) return; seenW[o.t] = 1; o.src = src; POOL_W.push(o); }
+(P.top100 || []).forEach(function(x){ addW({t:x.t,r:x.r,z:x.z,e:x.e,c:x.c,a:'t'+x.i,d:'audio-pany',note:x.note}, 'top100'); });
+(P.words || []).filter(function(w){ return !w.h; }).forEach(function(w){ addW({t:w.t,r:w.r,z:w.z,e:w.e,c:w.c,a:'w'+w.i,d:'audio-pany'}, '她的常用词'); });
+(P.func || []).forEach(function(f){ addW({t:f.t,r:f.r,z:f.z,e:f.e,c:f.c,a:'f'+f.i,d:'audio-pany',note:f.note}, '语气词'); });
+W5.forEach(function(w){ addW({t:w.t,r:w.r,z:w.z,e:w.e,c:0,a:'w'+w.n,d:'audio-words'}, '单词本 P5'); });
+W4.forEach(function(w){ addW({t:w.t,r:w.r,z:w.z,e:w.e,c:0,a:'w'+w.n,d:'audio-words'}, '单词本 P4'); });
+
+var POOL_G = [];
+(P.herGrams || []).filter(function(g){ return !g.h; }).forEach(function(g){ POOL_G.push({t:g.t,z:g.z,e:g.e,c:g.c,a:'p'+g.i}); });
+(P.myGrams || []).filter(function(g){ return !g.h; }).forEach(function(g){ POOL_G.push({t:g.t,z:g.z,e:g.e,c:g.c,a:'q'+g.i}); });
+
+var MINLEN = 6;
+var POOL_HS = (P.sents || []).filter(function(s){ return s.who === 0 && s.len >= MINLEN; }).slice().sort(function(a,b){ return a.len - b.len; });
+var POOL_MS = (P.sents || []).filter(function(s){ return s.who === 1 && s.len >= MINLEN; }).slice().sort(function(a,b){ return a.len - b.len; });
+var SMAP = {}; (P.sents || []).forEach(function(s){ SMAP[s.id] = s; });
+var WMAP = {}; POOL_W.forEach(function(w){ WMAP[w.t] = w; });
+var GMAP = {}; POOL_G.forEach(function(g){ GMAP[g.t] = g; });
+
+/* ==================== 状态 ==================== */
+var KEY = "thai-daily-v1";
+var DEF = { newWords: 12, newGrams: 3, newHerSent: 5, newMySent: 4, quizCount: 10 };
+var S = { day: 1, start: '', cfg: {}, q: { w: 0, g: 0, hs: 0, ms: 0 }, items: {}, days: {}, focus: '' };
+try { var _r = localStorage.getItem(KEY); if (_r) { var _o = JSON.parse(_r); for (var _k in _o) S[_k] = _o[_k]; } } catch (e) {}
+for (var _d in DEF) if (S.cfg[_d] == null) S.cfg[_d] = DEF[_d];
+if (!S.start) S.start = today();
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
+function today(){ var d = new Date(); return d.getFullYear() + '-' + p2(d.getMonth()+1) + '-' + p2(d.getDate()); }
+function p2(n){ return n < 10 ? '0'+n : ''+n; }
+function addDays(s, n){ var d = new Date(s+'T00:00:00'); d.setDate(d.getDate()+n); return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate()); }
+function diffDays(a, b){ return Math.round((new Date(b+'T00:00:00') - new Date(a+'T00:00:00')) / 86400000); }
+
+var BOX = [0,1,2,4,7,15,30];
+function ensure(k){ if (!S.items[k]) S.items[k] = { box:0, due:today(), r:0, w:0, h:0, seen:0 }; return S.items[k]; }
+function grade(k, ok){
+  var it = ensure(k); it.seen++;
+  if (ok === 1){ it.box = Math.min(5, it.box+1); it.r++; }
+  else if (ok === 0.5){ it.h++; }
+  else { it.box = 0; it.w++; }
+  it.due = addDays(today(), BOX[it.box] || 1);
+  save();
+}
+function dueList(pre){
+  var out = [], t = today();
+  for (var k in S.items){ if (pre && k.indexOf(pre) !== 0) continue; if (S.items[k].due <= t && S.items[k].seen > 0) out.push(k); }
+  return out;
+}
+function keyObj(k){
+  var p = k.split('|'), t = p[1];
+  if (p[0] === 'w') return { type:'w', t:t, o:WMAP[t] };
+  if (p[0] === 'g') return { type:'g', t:t, o:GMAP[t] };
+  return { type:'s', t:t, o:SMAP[t] };
 }
 
-/* ========== 数据：短语 ========== */
-var DATA = [
-{g:"A · 日常问候与关心", items:[
- ["สวัสดีครับ","sà-wàt-dii khráp","你好（男生说）","你是男生，句末必须用 ครับ，不是 ค่ะ"],
- ["ทำอะไรอยู่","tham à-rai yùu","在做什么？","白天晚上都能用的开场"],
- ["กินข้าวยัง","gin khâao yang","吃饭了吗？","泰国人最常用的关心方式"],
- ["หิวไหม","hǐu mǎi","饿吗？",""],
- ["เหนื่อยไหม","nùueai mǎi","累吗？",""],
- ["วันนี้เป็นยังไงบ้าง","wan-níi pen yang-ngai bâang","今天过得怎么样？",""],
- ["ดูแลตัวเองดีๆ นะ","duu-lae dtuua-eeng dii-dii ná","照顾好自己哦","นะ 让整句变温柔"],
- ["ไปนอนนะ ดึกแล้ว","bpai nawn ná, dùek láeo","去睡吧，很晚了",""],
- ["ฝันดีนะ","fǎn dii ná","好梦","睡前必说"],
- ["พักผ่อนเยอะๆ นะ","phák-phàwn yér-yér ná","多休息哦",""]
-]},
-{g:"B · 亲昵称呼与情话", items:[
- ["ที่รัก","thîi-rák","亲爱的","字面意思是「所爱的人」，情侣间最普遍"],
- ["หวานใจ","wǎan-jai","甜心",""],
- ["แฟน","faen","男朋友 / 女朋友","中性词，男女朋友都叫 แฟน"],
- ["คิดถึง","khít-thǔeng","想（念）",""],
- ["คิดถึงเธอมาก","khít-thǔeng thoe mâak","好想你",""],
- ["รักนะ","rák ná","爱你哦",""],
- ["รักที่สุด","rák thîi-sùt","最爱你",""],
- ["น่ารัก","nâa-rák","可爱","万能夸奖词，对她、对她家的猫都能用"],
- ["สวยมาก","sǔuai mâak","很漂亮",""],
- ["หมู","mǔu","小猪（昵称）","泰国情侣超爱用动物当昵称，叫她 หมู 比叫名字亲"],
- ["เต่า","dtào","乌龟（昵称）","同上，类似的还有 ปลา（鱼）、น้องเหมียว（小猫）"],
- ["เหนื่อยไหม ที่รัก","nùueai mǎi, thîi-rák","累吗，亲爱的",""]
-]},
-{g:"C · 情绪 · 闹别扭与和好", items:[
- ["งอนแล้ว","ngawn láeo","（我）闹别扭了","泰国恋爱核心词，撒娇式不高兴"],
- ["งอนทำไม","ngawn tham-mai","为什么闹别扭？",""],
- ["หึง","hǔeng","吃醋",""],
- ["หึงเหรอ","hǔeng rěe","吃醋啦？","带点逗她的语气"],
- ["โกรธแล้วเหรอ","gròht láeo rěe","生气了？",""],
- ["ไม่โกรธแล้วนะ","mâi gròht láeo ná","别生气了嘛",""],
- ["ขอโทษนะ","khǒo-thòht ná","对不起",""],
- ["ขอโทษนะ ที่รัก","khǒo-thòht ná, thîi-rák","对不起，亲爱的",""],
- ["ผิดเอง","phìt eeng","是我的错","认错要干脆，泰语一句就够"],
- ["คุยกันดีๆ นะ","khui gan dii-dii ná","我们好好谈谈",""],
- ["ขอกอด","khǒo gòht","要抱抱",""],
- ["กอดหน่อย","gòht nàwy","抱一下",""],
- ["ไม่เป็นไร","mâi pen-rai","没关系",""],
- ["เข้าใจแล้ว","khâo-jai láeo","我明白了",""]
-]},
-{g:"D · 约会与出行", items:[
- ["พรุ่งนี้เจอกันกี่โมง","phrûng-níi joe gan gìi moong","明天几点见？",""],
- ["เดี๋ยวไปรับ","dǐao bpai ráp","待会儿去接你",""],
- ["ถึงไหนแล้ว","thǔeng nǎi láeo","到哪儿了？",""],
- ["รอหน่อยนะ","raw nàwy ná","等我一下哦",""],
- ["อยู่ไหน","yùu nǎi","你在哪儿？",""],
- ["วันนี้ว่างไหม","wan-níi wâang mǎi","今天有空吗？",""],
- ["ไปกินข้าวกันไหม","bpai gin khâao gan mǎi","一起去吃饭吗？",""],
- ["อยากกินอะไร","yàak gin à-rai","想吃什么？",""],
- ["เลือกเอง","lûueak eeng","你选吧",""],
- ["ตามเธอเลย","dtaam thoe loei","听你的","字面意思是「就跟着你」，很受用的说法"]
-]},
-{g:"E · 通话与消息（信号差时救命）", items:[
- ["ไม่ได้ยิน","mâi dâi yin","听不见",""],
- ["สัญญาณไม่ดี","sǎn-yaan mâi dii","信号不好",""],
- ["พูดอีกทีได้ไหม","phûut ìik thii dâi mǎi","能再说一遍吗？",""],
- ["พูดช้าๆ หน่อย","phûut cháa-cháa nàwy","说慢一点","比说 ไม่เข้าใจ 有用得多"],
- ["ส่งรูปให้ดูหน่อย","sòng rûup hâi duu nàwy","发张照片给我看看",""],
- ["เดี๋ยวโทรกลับ","dǐao thoh glàp","待会儿回电话给你",""],
- ["ไลน์มาหน่อย","line maa nàwy","发 Line 给我","泰国人几乎不用微信，用 LINE"],
- ["ขอโทษนะ สายไปหน่อย","khǒo-thòht ná, sǎi bpai nàwy","抱歉，我来晚了",""]
-]},
-{g:"F · 生活刚需", items:[
- ["อันนี้เท่าไหร่","an-níi thâo-rài","这个多少钱？",""],
- ["ลดได้ไหม","lót dâi mǎi","能便宜点吗？","夜市可用，商场别用"],
- ["อร่อยมาก","à-ràwy mâak","太好吃了","夸她做的饭或一起吃的店，高频"],
- ["ไม่เผ็ด","mâi phèt","不要辣","生存关键句"],
- ["ห้องน้ำอยู่ไหน","hâwng-náam yùu nǎi","洗手间在哪儿？",""],
- ["ช่วยด้วย","chûuai dûuai","帮忙！",""],
- ["ไม่เข้าใจ","mâi khâo-jai","听不懂",""],
- ["เขียนให้หน่อยได้ไหม","khǐan hâi nàwy dâi mǎi","能写下来吗？","对方写下来你就能读——前提是拼读过关"]
-]},
-{g:"G · 见家长与家人称谓", items:[
- ["สวัสดีครับ ผมชื่อ...","sà-wàt-dii khráp, phǒm chûue ...","你好，我叫……","省略号换成你的名字"],
- ["ยินดีที่ได้รู้จักครับ","yin-dii thîi dâi rúu-jàk khráp","很高兴认识您","见长辈必带 ครับ"],
- ["ฝากตัวด้วยครับ","fàak dtuua dûuai khráp","请多关照","初次见长辈的标准结束语"],
- ["พ่อ","phâw","爸爸",""],
- ["แม่","mâe","妈妈",""],
- ["พี่สาว","phîi-sǎao","姐姐",""],
- ["น้องชาย","náwng-chaai","弟弟","泰国家庭里 พี่ / น้อง 是核心称谓，跟家里人一律这么叫"]
-]},
-{g:"H · 语气词（决定你听起来像不像在谈恋爱）", items:[
- ["นะ","ná","句末软化","最重要的一个词。加了它，命令变请求"],
- ["จ๊ะ / จ้ะ","já","亲昵语助","女生用得多，男生用会显得撒娇"],
- ["เนาะ","nàw","寻求认同","类似「……对吧？」"],
- ["เหรอ","rěe","是吗？/ 真的吗？","表惊讶或追问"],
- ["เดี๋ยว","dǐao","待会儿",""],
- ["แล้ว","láeo","了（完成）",""],
- ["กำลัง","gam-lang","正在","กำลัง + 动词 = 正在做……"]
-]}
-];
-
-/* ========== 语音引擎 ========== */
-var curVoice = null, lastEl = null;
-function thVoices(){
-  if(!window.speechSynthesis) return [];
-  return speechSynthesis.getVoices().filter(function(v){ return /^th/i.test(v.lang || ""); });
-}
-var onlineAudio = null;
-var PROVIDERS = [
-  {id:"google", label:"Google 翻译 TTS", ok:null,
-   url:function(t){ return "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=th&q=" + encodeURIComponent(t); }},
-  {id:"youdao", label:"有道词典 TTS", ok:null,
-   url:function(t){ return "https://dict.youdao.com/dictvoice?audio=" + encodeURIComponent(t) + "&le=th"; }}
-];
-function providerOrder(){
-  var p = document.getElementById("ttsSrc").value;
-  if(p === "google") return [PROVIDERS[0]];
-  if(p === "youdao") return [PROVIDERS[1]];
-  var okFirst = PROVIDERS.filter(function(x){ return x.ok === true; });
-  if(okFirst.length) return [okFirst[0], PROVIDERS.filter(function(x){ return x !== okFirst[0]; })[0]];
-  return [PROVIDERS[0], PROVIDERS[1]];
-}
-function markSay(label, okFlag){
-  var el = document.getElementById("lastSay");
-  if(!el) return;
-  el.textContent = "上次发音：" + label + (okFlag ? " ✓" : " ✗");
-  el.style.color = okFlag ? "var(--green600)" : "var(--red600)";
-}
-function playUrl(u, el, onFail, label){
-  var settled = false, started = false, timer = null;
-  var a = new Audio();
-  a.preload = "auto";
-  a.playbackRate = Number(document.getElementById("rate").value);
-  if(lastEl) lastEl.classList.remove("playing");
-  if(el){ el.classList.add("playing"); lastEl = el; }
-  a.onplaying = function(){ started = true; clearTimeout(timer); markSay(label, true); };
-  a.onended = function(){ if(el) el.classList.remove("playing"); };
-  a.onerror = function(){
-    if(settled) return;
-    settled = true; clearTimeout(timer);
-    if(!started){ markSay(label, false); onFail(); }
-    else if(el) el.classList.remove("playing");
-  };
-  timer = setTimeout(function(){
-    if(!started && !settled){ settled = true; markSay(label, false); onFail(); }
-  }, 8000);
-  onlineAudio = a;
-  a.src = u;
-  var pr = a.play();
-  if(pr && pr.catch) pr.catch(function(){ if(a.onerror) a.onerror(); });
-}
-function playFile(i, el, onFail){
-  if(i === null || i === undefined || i < 0){ onFail(); return; }
-  playUrl("audio/p" + i + ".mp3", el, onFail, "内置音频（离线）");
-}
-function playLocal(text, el, onFail){
-  if(!window.speechSynthesis || thVoices().length === 0 || !curVoice){ onFail(); return; }
-  var started = false;
-  try{ speechSynthesis.cancel(); }catch(e){}
-  var u = new SpeechSynthesisUtterance(text);
-  u.lang = "th-TH";
-  u.rate = Number(document.getElementById("rate").value);
-  if(curVoice) u.voice = curVoice;
-  if(lastEl) lastEl.classList.remove("playing");
-  if(el){ el.classList.add("playing"); lastEl = el; }
-  u.onstart = function(){ started = true; markSay("本机语音", true); };
-  u.onend = function(){ if(el) el.classList.remove("playing"); };
-  u.onerror = function(){
-    if(!started){ markSay("本机语音", false); onFail(); }
-    else if(el) el.classList.remove("playing");
-  };
-  speechSynthesis.speak(u);
-}
-function playOnline(text, el, onFail){
-  var order = providerOrder();
-  function step(k){
-    if(k >= order.length){ onFail(); return; }
-    var prov = order[k];
-    playUrl(prov.url(text), el, function(){ prov.ok = false; step(k + 1); }, prov.label);
-  }
-  step(0);
-}
-function speak(text, el, i){
-  var mode = document.getElementById("engineSel").value;
-  var chain;
-  if(mode === "file") chain = ["file", "online"];
-  else if(mode === "local") chain = ["local", "online"];
-  else if(mode === "online") chain = ["online"];
-  else chain = ["file", "local", "online"];
-  function step(k){
-    if(k >= chain.length){
-      if(el) el.classList.remove("playing");
-      markSay("全部方式", false);
-      toast("都失败了：请点「测试在线语音」，或用右侧 S 按钮走 Speecher");
-      return;
-    }
-    var kind = chain[k], next = function(){ step(k + 1); };
-    if(kind === "file") playFile(i, el, next);
-    else if(kind === "local") playLocal(text, el, next);
-    else playOnline(text, el, next);
-  }
-  step(0);
-}
-function testProvider(prov, cb){
-  var a = new Audio();
-  var done = false, t0 = Date.now();
-  var timer = setTimeout(function(){ if(!done){ done = true; try{ a.pause(); }catch(e){} cb(false, Date.now()-t0); } }, 9000);
-  function ok(){ if(!done){ done = true; clearTimeout(timer); cb(true, Date.now()-t0); } }
-  a.oncanplay = ok;
-  a.onplaying = ok;
-  a.onerror = function(){ if(!done){ done = true; clearTimeout(timer); cb(false, Date.now()-t0); } };
-  a.src = prov.url("สวัสดีครับ");
-  a.load();
-  var p = a.play();
-  if(p && p.catch) p.catch(function(){});
-}
-document.getElementById("btnTtsTest").addEventListener("click", function(){
-  var out = document.getElementById("ttsResult");
-  out.innerHTML = "测试中…";
-  var lines = [], i = 0;
-  function next(){
-    if(i >= PROVIDERS.length){
-      out.innerHTML = lines.join("<br>");
-      var firstOk = PROVIDERS.filter(function(p){ return p.ok === true; })[0];
-      if(firstOk){
-        document.getElementById("ttsSrc").value = firstOk.id;
-        out.innerHTML += "<br><strong>已自动选择：" + firstOk.label + "</strong>。如果听不到声音，检查手机是否静音或开了静音开关。";
-      }else{
-        out.innerHTML += "<br><strong>两个源都不可用</strong>：当前网络可能屏蔽了这两个接口。改用每行右侧的 <code>S</code> 按钮走 speecher.org。";
-      }
-      return;
-    }
-    var prov = PROVIDERS[i];
-    testProvider(prov, function(okFlag, ms){
-      prov.ok = okFlag;
-      lines.push(prov.label + "：" + (okFlag ? "可用（" + (ms/1000).toFixed(1) + " 秒）" : "不可用（加载失败或超时）"));
-      i++; next();
-    });
-  }
-  next();
-});
-function initVoices(){
-  var sel = document.getElementById("voiceSel");
-  var msg = document.getElementById("engineMsg");
-  var box = document.getElementById("engineBox");
-  var wrap = document.getElementById("voiceWrap");
-  var es = document.getElementById("engineSel");
-  var th = thVoices();
-  sel.innerHTML = "";
-  if(th.length === 0){
-    var o = document.createElement("option");
-    o.textContent = "（本机无泰语语音）";
-    sel.appendChild(o);
-    wrap.style.display = "none";
-    es.value = "auto";
-    msg.innerHTML = "本机没有泰语语音，这没关系——<strong>会优先用「内置音频」</strong>（页面自带的 76 个录音文件，离线可用、不走网络）。想用本机语音，按下方说明在手机里装泰语语音包后点「重新检测」。";
-    box.className = "note";
-    return;
-  }
-  wrap.style.display = "";
-  th.forEach(function(v){
-    var oo = document.createElement("option");
-    oo.value = v.name;
-    oo.textContent = v.name + (v.localService ? "" : "（在线）");
-    sel.appendChild(oo);
-  });
-  curVoice = th[0];
-  sel.value = th[0].name;
-  msg.innerHTML = "检测到 <strong>" + th.length + "</strong> 个本机泰语语音。发音方式可切换：默认「自动」= 先用内置音频（离线最稳），没有再依次试本机、在线。";
-  box.className = "okbox";
-}
-function toSpeecher(text){
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(function(){}, function(){});
-  }
-  toast("已复制：「" + text + "」→ 在 Speecher 按 Ctrl+V 粘贴后播放");
-  window.open("https://speecher.org/zh/thai#app", "_blank");
-}
-var toastTimer = null;
-function toast(msg){
-  var t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2600);
-}
-if(window.speechSynthesis){ speechSynthesis.onvoiceschanged = initVoices; }
-document.addEventListener("touchstart", function(){ setTimeout(initVoices, 50); }, {once:true});
-document.getElementById("voiceSel").addEventListener("change", function(e){
-  var n = e.target.value;
-  curVoice = thVoices().filter(function(v){ return v.name === n; })[0] || null;
-});
-document.getElementById("engineSel").addEventListener("change", function(e){
-  if(e.target.value === "local" && thVoices().length === 0){
-    toast("本机没有泰语语音，先按说明安装，或选「在线语音」");
-  }
-  initVoices();
-});
-document.getElementById("rate").addEventListener("input", function(e){
-  document.getElementById("rateVal").textContent = Number(e.target.value).toFixed(2) + "×";
-});
-document.getElementById("btnTest").addEventListener("click", function(){
-  var idx = -1;
-  FLAT.forEach(function(it){ if(it[0].indexOf("ผมชื่อ") >= 0) idx = it._i; });
-  speak("สวัสดีครับ ผมชื่อ...", null, idx);
-});
-document.getElementById("btnRecheck").addEventListener("click", function(){
-  if(window.speechSynthesis) try{ speechSynthesis.getVoices(); }catch(e){}
-  initVoices();
-  toast(thVoices().length === 0 ? "本机仍无泰语语音，将使用内置音频" : "已重新检测到 " + thVoices().length + " 个语音");
-});
-document.getElementById("btnStop").addEventListener("click", function(){
-  if(window.speechSynthesis) try{ speechSynthesis.cancel(); }catch(e){}
-  if(onlineAudio){ onlineAudio.pause(); onlineAudio = null; }
-  if(lastEl){ lastEl.classList.remove("playing"); lastEl = null; }
-});
-
-/* ========== 短语渲染 ========== */
-var FLAT = [];
-(function(){ DATA.forEach(function(g){ g.items.forEach(function(it){ it._i = FLAT.length; FLAT.push(it); }); }); })();
-var showRom = true, showZh = true, query = "";
-function renderPhrases(){
-  var html = "", n = 0;
-  DATA.forEach(function(grp){
-    var items = grp.items.filter(function(it){
-      if(!query) return true;
-      return (it[0] + " " + it[1] + " " + it[2]).toLowerCase().indexOf(query.toLowerCase()) >= 0;
-    });
-    if(!items.length) return;
-    html += "<h2>" + grp.g + "</h2>";
-    items.forEach(function(it){
-      n++;
-      html += '<div class="item" data-i="' + it._i + '" data-t="' + it[0].replace(/"/g, "&quot;") + '">'
-           +  '<span class="play">&#9654;</span>'
-           +  '<div class="main"><div class="th">' + it[0] + '</div>'
-           +  (showRom ? '<div class="rom">' + it[1] + '</div>' : "")
-           +  (showZh ? '<div class="zh">' + it[2] + '</div>' : "")
-           +  (it[3] ? '<div class="nt">' + it[3] + '</div>' : "")
-           +  '</div><div><button class="mini" data-s="' + it[0].replace(/"/g, "&quot;") + '">S</button></div></div>';
-    });
-  });
-  document.getElementById("plist").innerHTML = html || '<p class="sub">没有匹配结果</p>';
-  document.getElementById("cnt").textContent = "共 " + n + " 条";
-}
-document.getElementById("plist").addEventListener("click", function(e){
-  var s = e.target.closest ? e.target.closest("[data-s]") : null;
-  if(s){ e.stopPropagation(); toSpeecher(s.getAttribute("data-s")); return; }
-  var it = e.target.closest ? e.target.closest(".item") : null;
-  if(it) speak(it.getAttribute("data-t"), it, parseInt(it.getAttribute("data-i"), 10));
-});
-document.getElementById("q").addEventListener("input", function(e){ query = e.target.value.trim(); renderPhrases(); });
-function bindToggle(id, key){
-  document.getElementById(id).addEventListener("click", function(){
-    if(key === "rom") showRom = !showRom; else showZh = !showZh;
-    this.classList.toggle("on", key === "rom" ? showRom : showZh);
-    renderPhrases();
-  });
-}
-bindToggle("tRom", "rom");
-bindToggle("tZh", "zh");
-document.getElementById("v-rules").addEventListener("click", function(e){
-  var c = e.target.closest ? e.target.closest(".chip") : null;
-  if(!c) return;
-  var idx = -1;
-  FLAT.forEach(function(it){ if(it[0] === c.textContent) idx = it._i; });
-  speak(c.textContent, c, idx);
-});
-
-/* ========== 计划与打卡 ========== */
-var KEY = "thai84d-v1";
-var state = {checks:{}, start:""};
-try{
-  var raw = localStorage.getItem(KEY);
-  if(raw){ var p = JSON.parse(raw); if(p && p.checks) state = p; }
-}catch(e){}
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
-function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-
+S.day = Math.max(1, diffDays(S.start, today()) + 1);
 function buildPlan(){
-  var html = "";
-  for(var i=0;i<WEEKS.length;i++){
-    var w = WEEKS[i];
-    html += '<div class="weekhead"><span class="w">第 '+w.w+' 周 · '+esc(w.t)+'</span>'
-         +  '<span class="tag p'+w.ph+'">'+esc(PTXT[w.ph])+'</span>'
-         +  '<span class="sub">Day '+((i*7)+1)+'&ndash;'+((i*7)+7)+'</span></div>';
-    for(var d=1;d<=7;d++){
-      var day = i*7+d, sl = slots(w,d);
-      html += '<div class="card" data-day="'+day+'" id="day'+day+'">'
-           +  '<div class="dayhead"><span class="d">Day '+day+'</span><span class="tag">'+DOW[d-1]+'</span>'
-           +  '<span class="tag min">'+sl[0][1]+'+'+sl[1][1]+'+'+sl[2][1]+'+'+sl[3][1]+' = 120 分</span>'
-           +  '<span class="flag" id="f'+day+'"></span></div>';
-      for(var j=0;j<4;j++){
-        var k = day+"-"+j;
-        html += '<div class="row'+(state.checks[k]?" done":"")+'">'
-             +  '<input type="checkbox" class="cb" data-k="'+k+'"'+(state.checks[k]?" checked":"")+'>'
-             +  '<label data-k="'+k+'"><span class="tag min">'+sl[j][1]+' 分</span> '
-             +  '<strong>'+sl[j][0]+'</strong> — '+esc(sl[j][2])+'</label></div>';
-      }
-      html += '</div>';
-    }
-  }
-  document.getElementById("list").innerHTML = html;
+  var p = { newW:[], dueW:[], newG:[], dueG:[], read:[], out:[] }, i;
+  for (i = 0; i < S.cfg.newWords && S.q.w + i < POOL_W.length; i++) p.newW.push('w|' + POOL_W[S.q.w+i].t);
+  for (i = 0; i < S.cfg.newGrams && S.q.g + i < POOL_G.length; i++) p.newG.push('g|' + POOL_G[S.q.g+i].t);
+  for (i = 0; i < S.cfg.newHerSent && S.q.hs + i < POOL_HS.length; i++) p.read.push('s|' + POOL_HS[S.q.hs+i].id);
+  for (i = 0; i < S.cfg.newMySent && S.q.ms + i < POOL_MS.length; i++) p.out.push('s|' + POOL_MS[S.q.ms+i].id);
+  p.dueW = dueList('w|').slice(0, 80); p.dueG = dueList('g|').slice(0, 40);
+  return p;
 }
-function dayDone(d){
-  for(var j=0;j<4;j++){ if(!state.checks[d+"-"+j]) return false; }
-  return true;
+function getDay(d){ if (!S.days[d]) S.days[d] = { plan:buildPlan(), st:{} }; return S.days[d]; }
+var D = getDay(S.day);
+
+/* ==================== 发音 ==================== */
+var AU = null;
+function say(file, dir, text){
+  var i = 0;
+  var u = [];
+  if (file) u.push((dir || 'audio-pany') + '/' + file + '.mp3');
+  u.push('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=th&q=' + encodeURIComponent(text));
+  u.push('https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&le=th');
+  function nx(){
+    if (i >= u.length){ toast('发音失败，检查网络'); return; }
+    if (AU) AU.pause();
+    var a = new Audio(); AU = a;
+    a.onerror = function(){ i++; nx(); };
+    a.src = u[i++];
+    var pr = a.play(); if (pr && pr.catch) pr.catch(function(){ a.onerror(); });
+  }
+  nx();
 }
-function todayIndex(){
-  if(!state.start) return 0;
-  var s = new Date(state.start + "T00:00:00");
-  var now = new Date(); now.setHours(0,0,0,0);
-  var diff = Math.floor((now - s)/86400000) + 1;
-  return (diff < 1 || diff > 84) ? 0 : diff;
+var TT = null;
+function toast(m){ var t = document.getElementById('toast'); t.textContent = m; t.classList.add('show');
+  clearTimeout(TT); TT = setTimeout(function(){ t.classList.remove('show'); }, 2200); }
+function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function $(id){ return document.getElementById(id); }
+
+/* ==================== 今日 ==================== */
+var TASKS = [
+  { k:'rev',  n:'到期复习', d:'按遗忘曲线到期的词和短句' },
+  { k:'new',  n:'新学',     d:'今天新分配的词和短句' },
+  { k:'read', n:'她的例句', d:'看泰文猜意思，再对答案' },
+  { k:'out',  n:'我的例句', d:'看中文先自己说泰文，再对照' },
+  { k:'quiz', n:'今日测验', d:'四种题型随机' }
+];
+var TNAME = { rev:'到期复习', new:'新学', read:'她的例句', out:'我的例句', quiz:'今日测验' };
+function taskKeys(k){
+  var p = D.plan;
+  if (k === 'rev') return p.dueW.concat(p.dueG);
+  if (k === 'new') return p.newW.concat(p.newG);
+  if (k === 'read') return p.read;
+  if (k === 'out') return p.out;
+  return null;
 }
-function markToday(){
-  var t = todayIndex();
-  var all = document.querySelectorAll("#list .card");
-  for(var i=0;i<all.length;i++) all[i].classList.remove("today");
-  if(t){ var el = document.getElementById("day"+t); if(el) el.classList.add("today"); }
+function dayScoreOf(d){
+  var a = S.days[d].st;
+  var card = (((a.rev && a.rev.score) || 0) + ((a.new && a.new.score) || 0)) / (((a.rev?1:0)+(a.new?1:0)) || 1);
+  return Math.round(0.25*card + 0.35*((a.quiz && a.quiz.score)||0) + 0.20*((a.read&&a.read.score)||0) + 0.20*((a.out&&a.out.score)||0));
 }
-function stats(){
-  var total = 84*4, dt = 0, dd = 0, st = 0;
-  for(var k in state.checks){ if(state.checks[k]) dt++; }
-  for(var d=1;d<=84;d++){ if(dayDone(d)) dd++; }
-  for(var s=1;s<=84;s++){ if(dayDone(s)) st++; else break; }
-  var pct = Math.round(dt/total*100);
-  document.getElementById("kDone").textContent = dd;
-  document.getElementById("kStreak").textContent = st;
-  document.getElementById("kPct").textContent = pct + "%";
-  document.getElementById("barMain").style.width = pct + "%";
-  var pos = "已打卡 " + dd + " / 84 天 · 任务完成 " + dt + " / " + total + " 项";
-  var td = todayIndex();
-  if(td) pos += " · 今天是 Day " + td;
-  document.getElementById("pos").textContent = pos;
-  for(var i=1;i<=84;i++){
-    var el = document.getElementById("f"+i);
-    if(el) el.outerHTML = '<span class="'+(dayDone(i)?"done-flag":"undone-flag")+'" id="f'+i+'">'+(dayDone(i)?"已打卡":"未完成")+'</span>';
+function renderToday(){
+  var h = '';
+  TASKS.forEach(function(t){
+    var keys = taskKeys(t.k);
+    var total = t.k === 'quiz' ? S.cfg.quizCount : keys.length;
+    if (total === 0 && !(D.st[t.k] && D.st[t.k].done)){ D.st[t.k] = { done:true, n:0, score:100 }; save(); }
+    var st = D.st[t.k] || {}, done = !!st.done;
+    var pct = total ? Math.round((st.n||0)/total*100) : 0; if (done) pct = 100;
+    h += '<div class="task' + (done ? ' done' : '') + '">'
+      + '<div class="th"><div class="nm">' + t.n + ' <span class="sub">' + (total ? total+' 项' : '今日无') + '</span></div>'
+      + (done ? '<div class="sc">' + st.score + '</div>' : '') + '</div>'
+      + '<div class="dd">' + t.d + '</div><div class="mbar"><i style="width:' + pct + '%"></i></div>'
+      + '<button class="btn wide' + (done ? '' : ' primary') + '" data-run="' + t.k + '">' + (done ? '重做' : (st.n ? '继续' : '开始')) + '</button></div>';
+  });
+  $('taskList').innerHTML = h;
+  var all = TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
+  $('finishBox').style.display = all ? 'block' : 'none';
+  if (all){
+    $('finishTxt').innerHTML = '<b>今日总分 ' + dayScoreOf(S.day) + '</b>　闪卡 '
+      + Math.round((((D.st.rev&&D.st.rev.score)||0) + ((D.st.new&&D.st.new.score)||0)) / 2)
+      + ' · 答题 ' + (D.st.quiz&&D.st.quiz.score) + ' · 阅读 ' + (D.st.read&&D.st.read.score) + ' · 输出 ' + (D.st.out&&D.st.out.score)
+      + '<br><span class="sub">' + adjustHint() + '</span>';
   }
+  topbar();
 }
-document.addEventListener("change", function(e){
-  if(e.target && e.target.classList && e.target.classList.contains("cb")){
-    var k = e.target.getAttribute("data-k");
-    state.checks[k] = e.target.checked;
-    if(e.target.checked) e.target.parentNode.classList.add("done");
-    else e.target.parentNode.classList.remove("done");
-    save(); stats();
+function adjustHint(){
+  var ds = Object.keys(S.days).map(Number).filter(function(d){ return S.days[d].st && S.days[d].st.done; }).sort(function(a,b){ return a-b; });
+  var l2 = ds.slice(-2).map(dayScoreOf);
+  if (l2.length === 2 && l2[0] < 70 && l2[1] < 70) return '连续两天 < 70 → 明天自动减量、加复习';
+  if (l2.length === 2 && l2[0] > 90 && l2[1] > 90) return '连续两天 > 90 → 明天自动加量';
+  return '明天：新词 ' + S.cfg.newWords + ' · 短句 ' + S.cfg.newGrams + ' · 她的例句 ' + S.cfg.newHerSent + ' · 我的例句 ' + S.cfg.newMySent;
+}
+function topbar(){
+  var doneDays = Object.keys(S.days).filter(function(d){ return S.days[d].st && S.days[d].st.done; });
+  var sc = doneDays.map(function(d){ return dayScoreOf(+d); });
+  var avg = sc.length ? Math.round(sc.reduce(function(a,b){ return a+b; },0)/sc.length) : null;
+  var streak = 0;
+  for (var i = 0; i < 400; i++){ var d = S.day - i; if (S.days[d] && S.days[d].st && S.days[d].st.done) streak++; else if (i > 0) break; }
+  var wk = Math.min(12, Math.floor((S.day-1)/7)+1);
+  $('tbDay').textContent = 'Day ' + S.day + ' · 第 ' + wk + ' 周';
+  $('tbDue').textContent = '待复习 ' + dueList().length;
+  $('kScore').textContent = (D.st.quiz && D.st.quiz.done) ? dayScoreOf(S.day) : '—';
+  $('kStreak').textContent = streak;
+  $('kTotal').textContent = Object.keys(S.items).filter(function(k){ return S.items[k].seen > 0; }).length;
+  $('kDue').textContent = dueList().length;
+  $('kAvg').textContent = avg == null ? '—' : avg;
+  $('kMin').textContent = (D.st.min || 0) + '′';
+  $('dayInfo').textContent = WEEK[wk-1] + '　|　词池 ' + S.q.w + '/' + POOL_W.length
+    + '　她例句 ' + S.q.hs + '/' + POOL_HS.length + '　我例句 ' + S.q.ms + '/' + POOL_MS.length;
+  var dn = TASKS.filter(function(t){ return D.st[t.k] && D.st[t.k].done; }).length;
+  $('tbBar').style.width = (dn / TASKS.length * 100) + '%';
+}
+
+/* ---- 闪卡 ---- */
+var run = null;
+function startCard(kind){
+  var keys = taskKeys(kind).slice();
+  if (!keys.length){ toast('今天这部分没有内容'); return; }
+  run = { kind:kind, keys:keys, i:0, right:0, half:0, wrong:0, show:false, t0:Date.now() };
+  renderRun();
+  document.getElementById('runner').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+function renderRun(){
+  var R = $('runner');
+  if (!run){ R.innerHTML = ''; return; }
+  if (run.i >= run.keys.length){ finishRun(); return; }
+  var k = run.keys[run.i], o = keyObj(k), it = S.items[k];
+  var front = '', back = '';
+  if (o.type === 'w'){
+    front = '<div class="q th">' + esc(o.t) + '</div>' + (o.o && o.o.r ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
+    back = '<div class="a">' + esc(o.o ? o.o.z : '') + '<div class="en">' + esc(o.o ? o.o.e : '') + '</div>'
+      + (o.o && o.o.note ? '<div class="note">' + esc(o.o.note) + '</div>' : '') + '</div>';
+  } else if (o.type === 'g'){
+    front = '<div class="q sm th">' + esc(o.t) + '</div>';
+    back = '<div class="a">' + esc(o.o ? o.o.z : '') + '<div class="en">' + esc(o.o ? o.o.e : '') + '</div></div>';
+  } else if (run.kind === 'read'){
+    front = '<div class="q sm th">' + esc(o.t) + '</div>';
+    back = '<div class="a">' + esc(o.o ? o.o.z : '') + '</div>';
+  } else {
+    front = '<div class="a" style="margin-top:0">' + esc(o.o ? o.o.z : '') + '</div>';
+    back = '<div class="q sm th">' + esc(o.t) + '</div>';
   }
-});
-document.addEventListener("click", function(e){
-  var t = e.target;
-  if(t.tagName === "LABEL" && t.getAttribute("data-k")){
-    var k = t.getAttribute("data-k");
-    var cb = document.querySelector('.cb[data-k="'+k+'"]');
-    if(cb){ cb.checked = !cb.checked; cb.dispatchEvent(new Event("change",{bubbles:true})); }
+  var h = '<div class="study">' + front;
+  if (run.show) h += back;
+  h += '<div class="hint">' + (run.i+1) + ' / ' + run.keys.length + (it ? '　盒' + it.box + ' 对' + it.r + ' 错' + it.w : '') + '</div><div class="btnrow">';
+  var play = function(){
+    if (o.type === 'w') say(o.o ? o.o.a : null, o.o ? o.o.d : 'audio-pany', o.t);
+    else if (o.type === 'g') say(o.o ? o.o.a : null, 'audio-pany', o.t);
+    else say(o.o ? o.o.id : null, 'audio-pany', o.t);
+  };
+  if (!run.show){
+    h += '<button class="btn" id="cPlay">🔊 发音</button><button class="btn primary" id="cShow">显示答案</button>';
+  } else {
+    var a1 = '认识', a2 = '模糊', a3 = '不会';
+    if (run.kind === 'read'){ a1 = '看懂了'; a2 = '半懂'; a3 = '看不懂'; }
+    if (run.kind === 'out'){ a1 = '说得出'; a2 = '勉强'; a3 = '说不出'; }
+    h += '<button class="btn" id="cPlay">🔊</button>'
+      + '<button class="btn ok" id="cR">' + a1 + '</button>'
+      + '<button class="btn" id="cH">' + a2 + '</button>'
+      + '<button class="btn no" id="cW">' + a3 + '</button>';
   }
-});
-document.getElementById("startDate").addEventListener("change", function(e){
-  state.start = e.target.value; save(); markToday(); stats();
-});
-document.getElementById("btnToday").addEventListener("click", function(){
-  var t = todayIndex();
-  if(!t){ alert("请先选择开始日期"); return; }
-  var el = document.getElementById("day"+t);
-  if(el) el.scrollIntoView({behavior:"smooth", block:"center"});
-});
-document.getElementById("btnAll").addEventListener("click", function(){
-  var a = document.querySelectorAll("#list .card");
-  for(var i=0;i<a.length;i++) a[i].classList.remove("hide");
-});
-document.getElementById("btnTodo").addEventListener("click", function(){
-  var a = document.querySelectorAll("#list .card");
-  for(var i=0;i<a.length;i++){
-    var d = parseInt(a[i].getAttribute("data-day"),10);
-    if(dayDone(d)) a[i].classList.add("hide"); else a[i].classList.remove("hide");
+  h += '</div><div class="btnrow"><button class="mini" id="cQuit">退出</button></div></div>';
+  R.innerHTML = h;
+  var bp = $('cPlay'); if (bp) bp.onclick = play;
+  var bs = $('cShow'); if (bs) bs.onclick = function(){ run.show = true; renderRun(); };
+  if ($('cR')) $('cR').onclick = function(){ grade(k, 1); run.right++; nx(); };
+  if ($('cH')) $('cH').onclick = function(){ grade(k, 0.5); run.half++; nx(); };
+  if ($('cW')) $('cW').onclick = function(){ grade(k, 0); run.wrong++; nx(); };
+  $('cQuit').onclick = function(){ run = null; renderToday(); R.innerHTML = ''; };
+  if (!run.show && run.kind !== 'read') setTimeout(play, 200);
+}
+function nx(){ run.i++; run.show = false; renderRun(); }
+function finishRun(){
+  var tot = run.keys.length, sc = Math.round((run.right + run.half*0.5) / tot * 100);
+  var msg = '<div class="okbox">' + TNAME[run.kind] + '完成：<b>' + sc + ' 分</b>　✔ ' + run.right + '　~ ' + run.half + '　✘ ' + run.wrong + '</div>';
+  D.st[run.kind] = { done:true, n:tot, score:sc, right:run.right, half:run.half, wrong:run.wrong };
+  D.st.min = (D.st.min || 0) + Math.round((Date.now() - run.t0) / 60000);
+  save(); run = null;
+  $('runner').innerHTML = msg;
+  renderToday();
+}
+
+/* ---- 测验 ---- */
+var quiz = null;
+function shuffle(a){ for (var i = a.length-1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function pick4(c, pool, f){
+  var o = [c], g = 0;
+  while (o.length < 4 && g++ < 300){ var x = pool[Math.floor(Math.random()*pool.length)]; if (x && x[f] && o.indexOf(x[f]) < 0) o.push(x[f]); }
+  return shuffle(o);
+}
+function startQuiz(){
+  var src = [];
+  D.plan.newW.concat(D.plan.dueW).forEach(function(k){ var o = WMAP[k.split('|')[1]]; if (o) src.push({ w:o, kind:'w' }); });
+  D.plan.newG.concat(D.plan.dueG).forEach(function(k){ var o = GMAP[k.split('|')[1]]; if (o) src.push({ w:o, kind:'g' }); });
+  if (src.length < 4) for (var i = 0; i < 200 && src.length < 12; i++){ var w = POOL_W[Math.floor(Math.random()*Math.min(400, POOL_W.length))]; if (w) src.push({ w:w, kind:'w' }); }
+  var qs = [], n = Math.min(S.cfg.quizCount, Math.max(4, src.length));
+  for (var i = 0; i < n; i++){
+    var s = src[i % src.length], ty = ['th2zh','zh2th','audio','sent'][i % 4];
+    var q = { ty:ty, o:s.w, ans:'', key:(s.kind === 'g' ? 'g|' : 'w|') + s.w.t };
+    if (ty === 'th2zh'){ q.ans = s.w.z || s.w.e; q.opts = pick4(q.ans, POOL_W.slice(0,700), 'z'); }
+    else if (ty === 'zh2th'){ q.ans = s.w.t; q.opts = pick4(q.ans, POOL_W.slice(0,700), 't'); }
+    else if (ty === 'audio'){ q.ans = s.w.t; q.opts = pick4(q.ans, POOL_W.slice(0,700), 't'); }
+    else { var ss = (Math.random() < 0.5 ? POOL_HS : POOL_MS); var pk = ss[Math.floor(Math.random()*Math.min(500, ss.length))]; q.sent = pk; q.ans = pk.t; q.opts = pick4(q.ans, ss.slice(0,600), 't'); }
+    qs.push(q);
   }
+  quiz = { qs:qs, i:0, right:0, done:false, t0:Date.now() };
+  renderQuiz();
+  $('runner').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+function renderQuiz(){
+  var R = $('runner');
+  if (quiz.i >= quiz.qs.length){ finishQuiz(); return; }
+  var q = quiz.qs[quiz.i], h = '<div class="study"><div class="hint" style="margin-top:0">第 ' + (quiz.i+1) + ' / ' + quiz.qs.length + ' 题</div>';
+  if (q.ty === 'th2zh') h += '<div class="q th">' + esc(q.o.t) + '</div><div class="hint">什么意思？</div>';
+  else if (q.ty === 'zh2th') h += '<div class="a" style="margin-top:6px">' + esc(q.o.z) + '</div><div class="hint">泰文怎么说？</div>';
+  else if (q.ty === 'audio') h += '<div class="q" style="font-size:26px">🔊</div><div class="hint"><button class="mini" id="qPlay">再播一次</button></div>';
+  else h += '<div class="a sm" style="margin-top:6px;font-size:16px">' + esc(q.sent.z) + '</div><div class="hint">泰文是？</div>';
+  h += '<div style="margin-top:12px">';
+  q.opts.forEach(function(o){
+    var isTh = /[\u0E00-\u0E7F]/.test(o);
+    h += '<button class="opt" data-o="' + esc(o).replace(/"/g,'&quot;') + '">' + (isTh ? '<span class="th">' + esc(o) + '</span>' : esc(o)) + '</button>';
+  });
+  h += '</div><div class="btnrow"><button class="mini" id="qQuit">退出</button></div></div>';
+  R.innerHTML = h;
+  if (q.ty === 'audio') setTimeout(function(){ say(q.o.a, 'audio-pany', q.o.t); }, 200);
+  if ($('qPlay')) $('qPlay').onclick = function(){ say(q.o.a, 'audio-pany', q.o.t); };
+  $('qQuit').onclick = function(){ quiz = null; renderToday(); R.innerHTML = ''; };
+  R.querySelectorAll('.opt').forEach(function(b){
+    b.onclick = function(){
+      if (quiz.done) return; quiz.done = true;
+      var v = b.getAttribute('data-o');
+      R.querySelectorAll('.opt').forEach(function(x){
+        if (x.getAttribute('data-o') === q.ans) x.classList.add('right'); else if (x === b) x.classList.add('wrong');
+        x.disabled = true;
+      });
+      if (v === q.ans){ quiz.right++; if (q.ty !== 'sent') grade(q.key, 1); }
+      else { grade((q.ty === 'sent') ? ('s|' + q.sent.id) : q.key, 0); }
+      setTimeout(function(){ quiz.i++; quiz.done = false; renderQuiz(); }, v === q.ans ? 380 : 1400);
+    };
+  });
+}
+function finishQuiz(){
+  var sc = Math.round(quiz.right / quiz.qs.length * 100);
+  D.st.quiz = { done:true, n:quiz.qs.length, score:sc, right:quiz.right };
+  D.st.min = (D.st.min || 0) + Math.round((Date.now() - quiz.t0) / 60000);
+  save(); quiz = null;
+  $('runner').innerHTML = '<div class="okbox">测验完成：<b>' + D.st.quiz.score + ' 分</b>（' + D.st.quiz.right + ' / ' + D.st.quiz.n + '）</div>';
+  renderToday();
+}
+
+$('taskList').addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('[data-run]') : null;
+  if (!b) return;
+  var k = b.getAttribute('data-run');
+  if (k === 'quiz') startQuiz(); else startCard(k);
 });
-document.getElementById("btnPrint").addEventListener("click", function(){ window.print(); });
-document.getElementById("btnReset").addEventListener("click", function(){
-  if(!confirm("确定清空所有打卡记录？此操作不可撤销。")) return;
-  state.checks = {}; save(); buildPlan(); markToday(); stats();
-});
-document.getElementById("btnExport").addEventListener("click", function(){
-  var dd = 0, lines = [];
-  for(var d=1;d<=84;d++){ if(dayDone(d)) dd++; }
-  lines.push("# 泰语 84 天学习计划 · 进度导出", "");
-  lines.push("- 开始日期：" + (state.start || "未设置"));
-  lines.push("- 导出时间：" + new Date().toLocaleString());
-  lines.push("- 已完成天数：" + dd + " / 84");
-  lines.push("- 连续打卡：" + document.getElementById("kStreak").textContent + " 天");
-  lines.push("- 任务完成率：" + document.getElementById("kPct").textContent, "");
-  for(var i=0;i<WEEKS.length;i++){
-    var w = WEEKS[i];
-    lines.push("## 第 " + w.w + " 周 · " + w.t);
-    for(var x=1;x<=7;x++){
-      var day = i*7+x, sl = slots(w,x);
-      lines.push("- [ " + (dayDone(day) ? "x" : " ") + " ] Day " + day + "（" + DOW[x-1] + "）");
-      for(var j=0;j<4;j++){
-        lines.push("    - [" + (state.checks[day+"-"+j] ? "x" : " ") + "] " + sl[j][0] + " " + sl[j][1] + " 分：" + sl[j][2]);
-      }
-    }
-    lines.push("");
+$('btnFinish').onclick = function(){
+  D.st.doneAt = new Date().toISOString(); D.st.score = dayScoreOf(S.day);
+  S.q.w += D.plan.newW.length; S.q.g += D.plan.newG.length;
+  S.q.hs += D.plan.read.length; S.q.ms += D.plan.out.length;
+  var ds = Object.keys(S.days).map(Number).filter(function(d){ return S.days[d].st && S.days[d].st.done; }).sort(function(a,b){ return a-b; });
+  var l2 = ds.slice(-2).map(dayScoreOf);
+  if (l2.length === 2 && l2[0] < 70 && l2[1] < 70){ S.cfg.newWords = Math.max(5, S.cfg.newWords - 3); S.cfg.newHerSent = Math.max(2, S.cfg.newHerSent - 1); }
+  else if (l2.length === 2 && l2[0] > 90 && l2[1] > 90){ S.cfg.newWords = Math.min(30, S.cfg.newWords + 3); S.cfg.newHerSent = Math.min(12, S.cfg.newHerSent + 1); }
+  save(); toast('Day ' + S.day + ' 打卡完成 · ' + D.st.score + ' 分');
+  renderToday();
+};
+$('btnRedo').onclick = function(){ if (!confirm('重做今天？已记录的成绩会清除。')) return; D.st = {}; save(); renderToday(); $('runner').innerHTML = ''; };
+
+/* ==================== 语料 ==================== */
+var cKind = 'top', cQ = '', cShow = 100, cWho = 'all', cPriv = '1';
+var CORPUS = {
+  top: function(){ return (P.top100||[]).map(function(x,i){ return { k:'top'+i, t:x.t, r:x.r, z:x.z, e:x.e, note:x.note, c:x.c, h:x.h, m:x.m, a:'t'+x.i, dir:'audio-pany' }; }); },
+  w:   function(){ return (P.words||[]).filter(function(w){ return !w.h; }).map(function(w){ return { t:w.t, r:w.r, z:w.z, e:w.e, c:w.c, a:'w'+w.i, dir:'audio-pany' }; }); },
+  f:   function(){ return (P.func||[]).map(function(f){ return { t:f.t, r:f.r, z:f.z, e:f.e, note:f.note, c:f.c, a:'f'+f.i, dir:'audio-pany' }; }); },
+  p:   function(){ return (P.herGrams||[]).filter(function(g){ return !g.h; }).map(function(g){ return { t:g.t, z:g.z, e:g.e, c:g.c, a:'p'+g.i, dir:'audio-pany' }; }); },
+  q:   function(){ return (P.myGrams||[]).filter(function(g){ return !g.h; }).map(function(g){ return { t:g.t, z:g.z, e:g.e, c:g.c, a:'q'+g.i, dir:'audio-pany' }; }); },
+  s:   function(){ return (P.sents||[]).map(function(s){ return { t:s.t, z:s.z, who:s.who, priv:s.priv, a:s.id, dir:'audio-pany' }; }); }
+};
+function renderCorpus(){
+  var arr = CORPUS[cKind]();
+  var q = cQ.toLowerCase();
+  if (q) arr = arr.filter(function(x){ return ((x.t||'')+(x.r||'')+(x.z||'')+(x.e||'')).toLowerCase().indexOf(q) >= 0; });
+  if (cKind === 's'){
+    if (cWho !== 'all') arr = arr.filter(function(x){ return String(x.who) === cWho; });
+    if (cPriv === '0') arr = arr.filter(function(x){ return !x.priv; });
+    if (cPriv === '2') arr = arr.filter(function(x){ return x.priv; });
+    arr = arr.slice().sort(function(a,b){ return a.t.length - b.t.length; });
   }
-  var blob = new Blob([lines.join("\n")], {type:"text/markdown;charset=utf-8"});
-  var a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "泰语84天进度.md";
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  var ex = '';
+  if (cKind === 's'){
+    ex = '<select id="cWho"><option value="all">她说 + 我说</option><option value="0">她说的</option><option value="1">我说的</option></select>'
+      + '<select id="cPriv"><option value="1">含私密</option><option value="0">只看日常</option><option value="2">只看私密</option></select>';
+  }
+  $('cExtra').innerHTML = ex;
+  if ($('cWho')){ $('cWho').value = cWho; $('cWho').onchange = function(){ cWho = this.value; cShow = 100; renderCorpus(); }; }
+  if ($('cPriv')){ $('cPriv').value = cPriv; $('cPriv').onchange = function(){ cPriv = this.value; cShow = 100; renderCorpus(); }; }
+  var slice = arr.slice(0, cShow), h = '';
+  slice.forEach(function(x, i){
+    h += '<div class="w" data-a="' + (x.a||'') + '" data-d="' + (x.dir||'audio-pany') + '" data-t="' + esc(x.t).replace(/"/g,'&quot;') + '">'
+      + '<span class="pl">▶</span>'
+      + '<div class="mn"><div class="t1 th' + (cKind === 's' ? ' sm' : '') + '">' + esc(x.t) + '</div>'
+      + (x.r ? '<div class="rom sub">' + esc(x.r) + '</div>' : '')
+      + (x.z ? '<div class="sub" style="color:var(--tx);font-size:13.5px">' + esc(x.z) + '</div>' : '')
+      + (x.e ? '<div class="sub" style="font-size:12.5px">' + esc(x.e) + '</div>' : '')
+      + (x.note ? '<div class="sub" style="font-size:12.5px;color:var(--amber600)">' + esc(x.note) + '</div>' : '')
+      + '</div><div class="sd">'
+      + (cKind === 'top' ? '<span class="tag">她'+x.h+'/我'+x.m+'</span>' : '')
+      + (x.c ? '<span class="tag' + (x.c < 5 ? ' lo' : '') + '">×'+x.c+'</span>' : '')
+      + (cKind === 's' ? '<span class="tag ' + (x.who ? 'p' : 'b') + '">' + (x.who ? '我说' : '她说') + '</span>' : '')
+      + (x.priv ? '<span class="tag r">私密</span>' : '')
+      + '</div></div>';
+  });
+  $('cList').innerHTML = h || '<div class="w"><div class="mn sub">没有匹配结果</div></div>';
+  $('cMore').textContent = arr.length > cShow ? '已显示 ' + cShow + ' / ' + arr.length + '，向下滚动加载' : '共 ' + arr.length + ' 条';
+  var info = { top:'两人对话合计最高频的 100 个词（覆盖率 ' + (P.cov||65) + '%）', w:'她在你俩对话里最常挂在嘴边的词',
+    f:'语气词与虚词 · 手写释义 · 决定你能不能读出她的情绪', p:'从她 1257 句话里切出的高频搭配',
+    q:'从你 2074 句话里切出的高频表达 · 输出侧', s:'完整例句库 · 短句优先' };
+  $('cInfo').textContent = info[cKind] || '';
+}
+$('cKind').onchange = function(){ cKind = this.value; cShow = 100; renderCorpus(); };
+$('cQ').oninput = function(){ cQ = this.value.trim(); cShow = 100; renderCorpus(); };
+$('cList').addEventListener('click', function(e){
+  var r = e.target.closest ? e.target.closest('.w') : null;
+  if (r) say(r.getAttribute('data-a'), r.getAttribute('data-d'), r.getAttribute('data-t'));
 });
 
-/* ========== 视图切换 ========== */
-document.querySelector("nav").addEventListener("click", function(e){
-  var b = e.target.closest ? e.target.closest("button[data-v]") : null;
-  if(!b) return;
-  var v = b.getAttribute("data-v");
-  var bs = document.querySelectorAll("nav button");
-  for(var i=0;i<bs.length;i++) bs[i].classList.remove("act");
-  b.classList.add("act");
-  var ss = document.querySelectorAll("section");
-  for(var j=0;j<ss.length;j++) ss[j].classList.remove("act");
-  document.getElementById("v-"+v).classList.add("act");
-  window.scrollTo(0,0);
+/* ==================== 词库 ==================== */
+var WB = W5.concat(W4), wQ = '', wPri = '5', wHide = false, wShow = 80, wbLearn = {};
+var WBKEY = 'thaiwordbook-v1';
+try { var _wb = localStorage.getItem(WBKEY); if (_wb) wbLearn = JSON.parse(_wb) || {}; } catch (e) {}
+function renderWords(){
+  var q = wQ.toLowerCase();
+  var arr = WB.filter(function(w){
+    if (wPri !== 'all' && String(w.p) !== wPri) return false;
+    if (wHide && wbLearn[w.t]) return false;
+    if (!q) return true;
+    return ((w.t||'')+(w.r||'')+(w.z||'')+(w.e||'')).toLowerCase().indexOf(q) >= 0;
+  });
+  var slice = arr.slice(0, wShow), h = '';
+  slice.forEach(function(w){
+    h += '<div class="w' + (wbLearn[w.t] ? ' learned' : '') + '" data-a="w'+w.n+'" data-d="audio-words" data-t="'+esc(w.t).replace(/"/g,'&quot;')+'">'
+      + '<span class="pl">▶</span><div class="mn"><div class="t1 th">'+esc(w.t)+'</div>'
+      + (w.r ? '<div class="rom sub">'+esc(w.r)+'</div>' : '')
+      + (w.z ? '<div class="sub" style="color:var(--tx);font-size:13.5px">'+esc(w.z)+'</div>' : '')
+      + (w.e ? '<div class="sub" style="font-size:12.5px">'+esc(w.e)+'</div>' : '')
+      + '</div><div class="sd"><span class="tag'+(w.p===5?'':' lo')+'">P'+w.p+'</span>'
+      + '<button class="mini'+(wbLearn[w.t]?' on':'')+'" data-lw="'+esc(w.t).replace(/"/g,'&quot;')+'">'+(wbLearn[w.t]?'已掌握':'掌握')+'</button></div></div>';
+  });
+  $('wList').innerHTML = h || '<div class="w"><div class="mn sub">没有匹配结果</div></div>';
+  $('wMore').textContent = arr.length > wShow ? '已显示 '+wShow+' / '+arr.length+'，向下滚动加载' : '共 '+arr.length+' 条';
+  $('wInfo').textContent = 'manao-thai essential · 共 '+WB.length+' 词 · 点行发音';
+}
+$('wQ').oninput = function(){ wQ = this.value.trim(); wShow = 80; renderWords(); };
+function bindMini(id, fn){ $(id).onclick = function(){ fn(); this.classList.toggle('on'); }; }
+$('wP5').onclick = function(){ wPri='5'; wShow=80; syncPri(); renderWords(); };
+$('wP4').onclick = function(){ wPri='4'; wShow=80; syncPri(); renderWords(); };
+$('wAll').onclick = function(){ wPri='all'; wShow=80; syncPri(); renderWords(); };
+function syncPri(){ $('wP5').classList.toggle('on', wPri==='5'); $('wP4').classList.toggle('on', wPri==='4'); $('wAll').classList.toggle('on', wPri==='all'); }
+$('wHideL').onclick = function(){ wHide = !wHide; this.classList.toggle('on', wHide); renderWords(); };
+$('wList').addEventListener('click', function(e){
+  var lb = e.target.closest ? e.target.closest('[data-lw]') : null;
+  if (lb){ var t = lb.getAttribute('data-lw'); if (wbLearn[t]) delete wbLearn[t]; else wbLearn[t] = 1;
+    try { localStorage.setItem(WBKEY, JSON.stringify(wbLearn)); } catch(e2){} renderWords(); return; }
+  var r = e.target.closest ? e.target.closest('.w') : null;
+  if (r) say(r.getAttribute('data-a'), r.getAttribute('data-d'), r.getAttribute('data-t'));
 });
 
-/* ========== 启动 ========== */
-buildPlan();
-renderPhrases();
-if(state.start) document.getElementById("startDate").value = state.start;
-if(!state.start){
-  var nd = new Date();
-  state.start = nd.getFullYear() + "-" + String(nd.getMonth()+1).padStart(2,"0") + "-" + String(nd.getDate()).padStart(2,"0");
-  document.getElementById("startDate").value = state.start;
+/* ==================== 参考 ==================== */
+var FLAT = [];
+DATA.forEach(function(g){ g.items.forEach(function(it){ FLAT.push({ g:g.g, th:it[0], rom:it[1], zh:it[2], note:it[3] }); }); });
+function renderPhrases(){
+  var q = ($('pQ').value || '').toLowerCase(), h = '';
+  FLAT.forEach(function(p, i){
+    if (q && ((p.th+p.rom+p.zh+p.g).toLowerCase().indexOf(q) < 0)) return;
+    h += '<div class="w" data-a="p'+i+'" data-d="audio" data-t="'+esc(p.th).replace(/"/g,'&quot;')+'">'
+      + '<span class="pl">▶</span><div class="mn"><div class="t1 th">'+esc(p.th)+'</div>'
+      + '<div class="rom sub">'+esc(p.rom)+'</div><div class="sub" style="color:var(--tx);font-size:13.5px">'+esc(p.zh)+'</div>'
+      + (p.note ? '<div class="sub" style="font-size:12.5px;color:var(--amber600)">'+esc(p.note)+'</div>' : '')
+      + '</div><div class="sd"><span class="tag lo">'+esc(p.g.split(' ')[0])+'</span></div></div>';
+  });
+  $('pList').innerHTML = h || '<div class="w"><div class="mn sub">没有匹配结果</div></div>';
 }
-markToday();
-stats();
-initVoices();
-setTimeout(initVoices, 400);
+$('pQ').oninput = renderPhrases;
+$('pList').addEventListener('click', function(e){
+  var r = e.target.closest ? e.target.closest('.w') : null;
+  if (r) say(r.getAttribute('data-a'), r.getAttribute('data-d'), r.getAttribute('data-t'));
+});
+$('refP').onclick = function(){ this.classList.add('on'); $('refR').classList.remove('on'); $('refPhrase').style.display=''; $('refRules').style.display='none'; };
+$('refR').onclick = function(){ this.classList.add('on'); $('refP').classList.remove('on'); $('refPhrase').style.display='none'; $('refRules').style.display=''; };
+document.addEventListener('click', function(e){
+  var c = e.target.closest ? e.target.closest('.chip') : null;
+  if (c) say(null, null, c.textContent.trim());
+});
+
+/* ==================== 我的 ==================== */
+function dateOf(d){ return addDays(S.start, d-1); }
+function weakList(){
+  return Object.keys(S.items).filter(function(k){
+    var it = S.items[k]; return it.seen >= 2 && (it.w + it.h) / it.seen > 0.4;
+  }).sort(function(a,b){ return (S.items[b].w + S.items[b].h) - (S.items[a].w + S.items[a].h); });
+}
+function renderMe(){
+  var ds = Object.keys(S.days).map(Number).sort(function(a,b){ return a-b; });
+  var done = ds.filter(function(d){ return S.days[d].st && S.days[d].st.done; });
+  var h = '', tm = 0, tq = 0, tqr = 0, sc = [];
+  done.forEach(function(d){
+    var a = S.days[d].st, s = dayScoreOf(d); sc.push(s);
+    tm += (a.min || 0); var qr = (a.quiz && a.quiz.right) || 0, qt = (a.quiz && a.quiz.n) || 0; tq += qt; tqr += qr;
+    h += '<tr><td>Day '+d+'</td><td class="sub">'+dateOf(d)+'</td><td class="n">'+((a.new&&a.new.n)||0)+'</td>'
+      + '<td class="n">'+((a.rev&&a.rev.n)||0)+'</td><td class="n">'+qr+'/'+qt+'</td>'
+      + '<td class="n">'+((a.read&&a.read.score)||0)+'</td><td class="n">'+((a.out&&a.out.score)||0)+'</td><td class="n"><b>'+s+'</b></td></tr>';
+  });
+  $('rTbl').innerHTML = h || '<tr><td colspan="8" class="sub">还没有打卡记录</td></tr>';
+  var avg = sc.length ? Math.round(sc.reduce(function(a,b){ return a+b; },0)/sc.length) : 0;
+  $('rDays').textContent = done.length; $('rMin').textContent = tm; $('rAvg').textContent = avg || '—';
+  $('rQuiz').textContent = tq; $('rAcc').textContent = tq ? Math.round(tqr/tq*100)+'%' : '—';
+  $('rWeak').textContent = weakList().length;
+  var sp = ''; sc.slice(-30).forEach(function(s){ sp += '<i class="'+(s>=80?'g':'')+'" style="height:'+Math.max(3,s)+'%"></i>'; });
+  $('spark').innerHTML = sp;
+  $('cfgW').value = S.cfg.newWords; $('cfgG').value = S.cfg.newGrams; $('cfgHS').value = S.cfg.newHerSent;
+  $('cfgMS').value = S.cfg.newMySent; $('cfgQ').value = S.cfg.quizCount;
+  $('storeInfo').textContent = '存档约 ' + Math.round(JSON.stringify(S).length/1024) + ' KB';
+}
+$('btnCfg').onclick = function(){
+  S.cfg.newWords = +$('cfgW').value || 12; S.cfg.newGrams = +$('cfgG').value || 0;
+  S.cfg.newHerSent = +$('cfgHS').value || 0; S.cfg.newMySent = +$('cfgMS').value || 0;
+  S.cfg.quizCount = +$('cfgQ').value || 10; save(); toast('已保存'); renderMe();
+};
+$('btnReport').onclick = function(){
+  var ds = Object.keys(S.days).map(Number).filter(function(d){ return S.days[d].st && S.days[d].st.done; }).sort(function(a,b){ return a-b; });
+  var L = [];
+  L.push('【泰语学习复盘 · Day ' + S.day + ' · ' + today() + '】');
+  L.push('开始：' + S.start + '　已打卡：' + ds.length + ' 天');
+  L.push('当前配额：新词 ' + S.cfg.newWords + ' / 短句 ' + S.cfg.newGrams + ' / 她例句 ' + S.cfg.newHerSent + ' / 我例句 ' + S.cfg.newMySent + ' / 测验 ' + S.cfg.quizCount);
+  L.push('');
+  L.push('最近 7 天：');
+  ds.slice(-7).forEach(function(d){
+    var a = S.days[d].st;
+    L.push('  Day ' + d + '(' + dateOf(d) + ') 总分 ' + dayScoreOf(d)
+      + ' | 答题 ' + ((a.quiz&&a.quiz.right)||0) + '/' + ((a.quiz&&a.quiz.n)||0)
+      + ' | 复习卡 ' + ((a.rev&&a.rev.score)||0) + '(' + ((a.rev&&a.rev.n)||0) + ')'
+      + ' | 新学卡 ' + ((a.new&&a.new.score)||0) + '(' + ((a.new&&a.new.n)||0) + ')'
+      + ' | 阅读 ' + ((a.read&&a.read.score)||0) + ' | 输出 ' + ((a.out&&a.out.score)||0)
+      + ' | ' + ((a.min)||0) + ' 分钟');
+  });
+  var sc = ds.map(dayScoreOf), l3 = sc.slice(-3), f3 = sc.slice(0,3);
+  L.push('');
+  L.push('趋势：前三日均分 ' + Math.round(f3.reduce(function(a,b){return a+b;},0)/(f3.length||1)) + ' → 最近三日 ' + Math.round(l3.reduce(function(a,b){return a+b;},0)/(l3.length||1)));
+  var wk = weakList().slice(0, 20);
+  L.push('');
+  L.push('薄弱条目 TOP ' + wk.length + '：');
+  wk.forEach(function(k){ var it = S.items[k], o = keyObj(k); L.push('  ' + o.t + '　' + (o.o ? (o.o.z||'') : '') + '　错' + it.w + ' 模糊' + it.h + ' 见过' + it.seen); });
+  L.push('');
+  L.push('已学 ' + Object.keys(S.items).filter(function(k){ return S.items[k].seen>0; }).length
+    + '　待复习 ' + dueList().length + '　词池 ' + S.q.w + '/' + POOL_W.length
+    + '　她例句 ' + S.q.hs + '/' + POOL_HS.length + '　我例句 ' + S.q.ms + '/' + POOL_MS.length);
+  $('reportBox').value = L.join('\n');
+  toast('已生成，复制后发给我');
+};
+$('btnCopy').onclick = function(){ var t = $('reportBox'); t.select(); t.setSelectionRange(0, 999999);
+  try { document.execCommand('copy'); toast('已复制'); } catch(e){ toast('请手动复制'); } };
+$('btnExportBak').onclick = function(){ $('reportBox').value = JSON.stringify(S); toast('存档已导出到下方文本框'); };
+$('btnPlan').onclick = function(){
+  var v = $('planBox').value.trim(); if (!v){ toast('请先粘贴方案'); return; }
+  try { var o = JSON.parse(v);
+    if (o.plan) for (var k in o.plan) if (k in S.cfg) S.cfg[k] = o.plan[k];
+    if (o.focus) S.focus = o.focus;
+    if (o.day) S.start = addDays(today(), 1 - o.day);
+    save(); renderToday(); renderMe(); toast('方案已应用');
+  } catch(e){ toast('JSON 格式不对'); }
+};
+$('btnBak').onclick = function(){
+  try { var o = JSON.parse($('planBox').value.trim());
+    if (!o.items){ toast('这不像一个存档'); return; }
+    S = o; for (var k in DEF) if (S.cfg[k] == null) S.cfg[k] = DEF[k];
+    S.day = Math.max(1, diffDays(S.start, today()) + 1); D = getDay(S.day);
+    save(); renderToday(); renderMe(); toast('存档已导入');
+  } catch(e){ toast('JSON 格式不对'); }
+};
+$('btnReset2').onclick = function(){ if (!confirm('清空全部学习记录？')) return; localStorage.removeItem(KEY); location.reload(); };
+
+/* ==================== 导航 / 滚动 ==================== */
+var VH = { today:renderToday, corpus:renderCorpus, words:renderWords, ref:renderPhrases, me:renderMe };
+document.querySelectorAll('.tabbar button').forEach(function(b){
+  b.onclick = function(){
+    document.querySelectorAll('.tabbar button').forEach(function(x){ x.classList.remove('on'); });
+    this.classList.add('on');
+    var v = this.getAttribute('data-v');
+    document.querySelectorAll('.view').forEach(function(x){ x.classList.remove('on'); });
+    $('v-' + v).classList.add('on');
+    if (VH[v]) VH[v]();
+    window.scrollTo(0, 0);
+  };
+});
+window.addEventListener('scroll', function(){
+  if (window.innerHeight + window.scrollY < document.body.offsetHeight - 500) return;
+  var v = document.querySelector('.tabbar button.on').getAttribute('data-v');
+  if (v === 'corpus' && $('cList').children.length >= cShow){ cShow += 100; renderCorpus(); }
+  if (v === 'words' && $('wList').children.length >= wShow){ wShow += 80; renderWords(); }
+});
+
+renderToday(); renderCorpus(); renderWords(); renderPhrases(); renderMe();
 </script>
 </body>
 </html>

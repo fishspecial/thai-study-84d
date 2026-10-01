@@ -76,7 +76,7 @@ const known = buildKnown(lines);
 
 const kept = [], dropGarbage = [], dropBlock = [], dropShort = [];
 for (const l of lines) {
-  if (blocked(l.t)) { dropBlock.push(l); continue; }
+  if (blocked(l.t)) { dropBlock.push({ ...l, priv: 1 }); continue; }
   const ns = l.t.replace(/\s/g, '');
   if ([...ns].filter(c => THAI.test(c)).length < 3) { dropShort.push(l); continue; }
   const a = coverage(l.t, known), b = coverage(ns, known);
@@ -160,10 +160,13 @@ for (const l of final) {
 }
 for (const w of wordList) w.ex = wEx.get(w.w);
 
+fs.writeFileSync('func-set.json', JSON.stringify([...FUNC]));
 fs.writeFileSync('pany-clean.json', JSON.stringify({
   sentences: final,
   words: wordList,
   grams: keptG,
+  blocked: dropBlock.map(l => ({ n: l.n, t: l.t, priv: 1 })),
+  garbageKeys: dropGarbage.map(l => l.t.replace(/\s/g, '')),
   dropped: { block: dropBlock.length, short: dropShort.length, garbage: dropGarbage.length, garbageSample: dropGarbage.slice(0, 40) }
 }, null, 1));
 
