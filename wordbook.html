@@ -51,7 +51,7 @@ input[type=range]{vertical-align:middle}
 .w .th{font-family:"Leelawadee UI","Noto Sans Thai",sans-serif;font-size:18px;line-height:1.45}
 .w .rom{font-size:12px;color:var(--tx2)}
 .w .zh{font-size:13px;margin-top:1px}
-.w .en{font-size:12px;color:var(--tx3);margin-top:1px}
+.w .en{font-size:12px;color:var(--tx2);margin-top:1px}
 .w .side{flex:0 0 auto;display:flex;gap:6px;align-items:center}
 .mini{font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid var(--line2);background:transparent;cursor:pointer;color:var(--tx2)}
 .mini:hover{background:var(--surface)}
@@ -92,7 +92,7 @@ input[type=range]{vertical-align:middle}
   </select>
   <input type="text" id="q" placeholder="搜索泰文 / 转写 / 中文 / 英文" style="min-width:220px">
   <button class="btn on" id="tZh">中文</button>
-  <button class="btn" id="tEn">英文</button>
+  <button class="btn on" id="tEn">英文</button>
   <button class="btn on" id="tRom">转写</button>
   <button class="btn" id="tHideLearned">隐藏已掌握</button>
   <span class="sub">语速</span>
@@ -102,7 +102,8 @@ input[type=range]{vertical-align:middle}
 </div>
 
 <div class="note">
-  <strong>发音：</strong>优先播放页面内置音频（离线可用）；没有对应文件时自动走在线接口（Google → 有道）。中文释义为机器翻译，仅供快速理解，个别虚词可能生硬。
+  <strong>发音：</strong>优先播放页面内置音频（离线可用）；没有对应文件时自动走在线接口（Google → 有道）。<br>
+  <strong>释义：</strong>中文与英文同时显示，可单独关掉其中一个。中文为机器翻译，虚词类（如 ก็、ก็คือ）可能生硬，以英文为准。
 </div>
 
 <div class="list" id="list"></div>
@@ -119,7 +120,7 @@ var learned = {};
 try { var raw = localStorage.getItem(KEY); if (raw) learned = JSON.parse(raw) || {}; } catch (e) {}
 function save(){ try { localStorage.setItem(KEY, JSON.stringify(learned)); } catch(e){} }
 
-var showZh = true, showEn = false, showRom = true, hideLearned = false, query = "", pri = "5";
+var showZh = true, showEn = true, showRom = true, hideLearned = false, query = "", pri = "5";
 var audio = null, lastEl = null;
 var LIMIT = 150, shown = LIMIT;
 

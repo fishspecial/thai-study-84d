@@ -7003,7122 +7003,8309 @@
   "th": "ถ่ายรูป",
   "rom": "thàay rûup",
   "en": "take a photo, photograph",
-  "pri": 4
+  "pri": 4,
+  "zh": "拍照"
  },
  {
   "th": "ถ้าอย่างนั้น",
   "rom": "thâa yàaŋ nán",
   "en": "if so, in that case",
-  "pri": 4
+  "pri": 4,
+  "zh": "如果是的话、在这种情况下"
  },
  {
   "th": "ถ้าเกิด",
   "rom": "thâa kə̀ət",
   "en": "if, if it happens that, in case",
-  "pri": 4
+  "pri": 4,
+  "zh": "如果、如果发生这种情况、万一"
  },
  {
   "th": "ถ้าเกิดว่า",
   "rom": "thâa kə̀ət wâa",
   "en": "if, if it happens that, what if",
-  "pri": 4
+  "pri": 4,
+  "zh": "如果、如果发生这种情况"
  },
  {
   "th": "ถึงแม้ว่า",
   "rom": "thʉ̌ŋ mɛ́ɛ wâa",
   "en": "although, even though, even if",
-  "pri": 4
+  "pri": 4,
+  "zh": "尽管、即使"
  },
  {
   "th": "ถุง",
   "rom": "thǔŋ",
   "en": "bag, sack, pouch; bag [classifier for things in bags]",
-  "pri": 4
+  "pri": 4,
+  "zh": "袋、麻袋、小袋； bag [袋子里的东西的分类器]"
  },
  {
   "th": "ถุงเท้า",
   "rom": "thǔŋ tháaw",
   "en": "sock",
-  "pri": 4
+  "pri": 4,
+  "zh": "短袜"
  },
  {
   "th": "ถู",
   "rom": "thǔu",
   "en": "rub, graze against; scrub, wipe, polish, mop",
-  "pri": 4
+  "pri": 4,
+  "zh": "擦、擦；擦洗、擦拭、抛光、拖把"
  },
  {
   "th": "ถูกใจ",
   "rom": "thùuk cay",
   "en": "like, be to one&#39;s liking, be pleased with, be satisfied with",
-  "pri": 4
+  "pri": 4,
+  "zh": "喜欢、合意、满意"
  },
  {
   "th": "ทดลอง",
   "rom": "thótlɔɔŋ",
   "en": "try out, use on a trial basis, pilot",
-  "pri": 4
+  "pri": 4,
+  "zh": "尝试、试用、试验"
  },
  {
   "th": "ทดสอบ",
   "rom": "thótsɔ̀ɔp",
   "en": "test, check the performance of",
-  "pri": 4
+  "pri": 4,
+  "zh": "测试、检查性能"
  },
  {
   "th": "ทน",
   "rom": "thon",
   "en": "endure, tolerate, put up with, bear",
-  "pri": 4
+  "pri": 4,
+  "zh": "忍受、忍耐、忍耐、忍耐"
  },
  {
   "th": "ทบทวน",
   "rom": "thópthuan",
   "en": "review (what one has learned), revise (study material)",
-  "pri": 4
+  "pri": 4,
+  "zh": "复习（所学内容）、修改（学习材料）"
  },
  {
   "th": "ทรง",
   "rom": "soŋ",
   "en": "shape, form, style",
-  "pri": 4
+  "pri": 4,
+  "zh": "形状、形式、风格"
  },
  {
   "th": "ทรงผม",
   "rom": "soŋ phǒm",
   "en": "hairstyle, hairdo",
-  "pri": 4
+  "pri": 4,
+  "zh": "发型"
  },
  {
   "th": "ทราบ",
   "rom": "sâap",
   "en": "know (a fact or information) [polite], learn (of something) [polite], acknowledge (information or instructions)",
-  "pri": 4
+  "pri": 4,
+  "zh": "知道（事实或信息）[礼貌]、了解（某事）[礼貌]、承认（信息或指示）"
  },
  {
   "th": "ทราย",
   "rom": "saay",
   "en": "sand",
-  "pri": 4
+  "pri": 4,
+  "zh": "沙"
  },
  {
   "th": "ทริป",
   "rom": "thríp",
   "en": "trip, short trip",
-  "pri": 4
+  "pri": 4,
+  "zh": "旅行、短途旅行"
  },
  {
   "th": "ท่วม",
   "rom": "thûam",
   "en": "flood, inundate, submerge",
-  "pri": 4
+  "pri": 4,
+  "zh": "淹没"
  },
  {
   "th": "ทหาร",
   "rom": "thahǎan",
   "en": "soldier, military personnel, the military, armed forces",
-  "pri": 4
+  "pri": 4,
+  "zh": "士兵、军事人员、军队、武装部队"
  },
  {
   "th": "ทอง",
   "rom": "thɔɔŋ",
   "en": "gold, gold jewelry",
-  "pri": 4
+  "pri": 4,
+  "zh": "黄金、黄金首饰"
  },
  {
   "th": "ท่อง",
   "rom": "thɔ̂ɔŋ",
   "en": "memorize by repetition, recite from memory",
-  "pri": 4
+  "pri": 4,
+  "zh": "通过重复记忆、凭记忆背诵"
  },
  {
   "th": "ท้องฟ้า",
   "rom": "thɔ́ɔŋfáa",
   "en": "sky",
-  "pri": 4
+  "pri": 4,
+  "zh": "天空"
  },
  {
   "th": "ท่องเที่ยว",
   "rom": "thɔ̂ɔŋthîaw",
   "en": "travel for pleasure, go sightseeing, tour",
-  "pri": 4
+  "pri": 4,
+  "zh": "旅游、观光、游览"
  },
  {
   "th": "ท้องเสีย",
   "rom": "thɔ́ɔŋ sǐa",
   "en": "have diarrhea; diarrhea",
-  "pri": 4
+  "pri": 4,
+  "zh": "腹泻；腹泻"
  },
  {
   "th": "ทอด",
   "rom": "thɔ̂ɔt",
   "en": "fry (food in oil), deep-fry",
-  "pri": 4
+  "pri": 4,
+  "zh": "炸（油中的食物）、油炸"
  },
  {
   "th": "ทอน",
   "rom": "thɔɔn",
   "en": "give change, give back change",
-  "pri": 4
+  "pri": 4,
+  "zh": "给零钱、还零钱"
  },
  {
   "th": "ทะลึ่ง",
   "rom": "thalʉ̂ŋ",
   "en": "cheeky, insolent",
-  "pri": 4
+  "pri": 4,
+  "zh": "厚脸皮的、无礼的"
  },
  {
   "th": "ทะลุ",
   "rom": "thalú",
   "en": "pierce through, have a hole through it; go through to the other side, lead through to",
-  "pri": 4
+  "pri": 4,
+  "zh": "刺穿、穿过它的孔；通向另一边、通向"
  },
  {
   "th": "ทะเล",
   "rom": "thalee",
   "en": "sea, marine; of the sea",
-  "pri": 4
+  "pri": 4,
+  "zh": "海洋、海洋；海的"
  },
  {
   "th": "ทะเลาะ",
   "rom": "thalɔ́",
   "en": "quarrel, argue angrily",
-  "pri": 4
+  "pri": 4,
+  "zh": "争吵、愤怒地争论"
  },
  {
   "th": "ทั้งที่",
   "rom": "tháŋ thîi",
   "en": "even though, although, despite the fact that, in spite of the fact that",
-  "pri": 4
+  "pri": 4,
+  "zh": "尽管、尽管事实"
  },
  {
   "th": "ทัน",
   "rom": "than",
   "en": "be in time, manage to do something in time; catch up with, keep up with",
-  "pri": 4
+  "pri": 4,
+  "zh": "be in time、设法及时做某事；赶上、跟上"
  },
  {
   "th": "ทับ",
   "rom": "tháp",
   "en": "lie or place on top of, weigh down; crush, run over, overlap, overwrite",
-  "pri": 4
+  "pri": 4,
+  "zh": "躺在或放在上面、压下去；挤压、碾过、重叠、覆盖"
  },
  {
   "th": "ทั่ว",
   "rom": "thûa",
   "en": "throughout, all over, across the whole of; all over, everywhere, thoroughly",
-  "pri": 4
+  "pri": 4,
+  "zh": "贯穿、遍及、遍及整个；遍地、到处、彻底"
  },
  {
   "th": "ทัวร์",
   "rom": "thua",
   "en": "tour, organized trip",
-  "pri": 4
+  "pri": 4,
+  "zh": "旅游、有组织的旅行"
  },
  {
   "th": "ทา",
   "rom": "thaa",
   "en": "apply , paint, coat (a surface)",
-  "pri": 4
+  "pri": 4,
+  "zh": "涂抹、涂漆、涂敷（表面）"
  },
  {
   "th": "ท่า",
   "rom": "thâa",
   "en": "posture, pose, gesture; pier or landing place, port or harbor, transportation terminal",
-  "pri": 4
+  "pri": 4,
+  "zh": "姿势、姿态；码头或登陆地点、港口或港湾、运输终点站"
  },
  {
   "th": "ทางขวา",
   "rom": "thaaŋ khwǎa",
   "en": "the right; the right-hand side",
-  "pri": 4
+  "pri": 4,
+  "zh": "右边；右侧"
  },
  {
   "th": "ทางซ้าย",
   "rom": "thaaŋ sáay",
   "en": "the left side, to the left, left-hand",
-  "pri": 4
+  "pri": 4,
+  "zh": "左边"
  },
  {
   "th": "ทางด่วน",
   "rom": "thaaŋ dùan",
   "en": "expressway, toll expressway",
-  "pri": 4
+  "pri": 4,
+  "zh": "高速公路、收费高速公路"
  },
  {
   "th": "ทางไป",
   "rom": "thaaŋ pay",
   "en": "way to (a place), directions to (a place)",
-  "pri": 4
+  "pri": 4,
+  "zh": "去（某个地方）的方式、去（某个地方）的路线"
  },
  {
   "th": "ทางไหน",
   "rom": "thaaŋ nǎy",
   "en": "which way, which route, which course or option",
-  "pri": 4
+  "pri": 4,
+  "zh": "哪条路、哪条路线、哪条路线或选项"
  },
  {
   "th": "ทาน",
   "rom": "thaan",
   "en": "eat, drink, take (medicine)",
-  "pri": 4
+  "pri": 4,
+  "zh": "吃、喝、吃（药）"
  },
  {
   "th": "ท่าน",
   "rom": "thân",
   "en": "you [respectful], sir or madam [as address]; [polite classifier for people], person [respectful counter]",
-  "pri": 4
+  "pri": 4,
+  "zh": "您[尊敬]、先生或女士[作为称呼]； [对人的礼貌分类词]、人[尊敬的计数器]"
  },
  {
   "th": "ทาย",
   "rom": "thaay",
   "en": "guess, figure out",
-  "pri": 4
+  "pri": 4,
+  "zh": "猜测、弄清楚"
  },
  {
   "th": "ท้าย",
   "rom": "tháay",
   "en": "rear, back end, tail end, end of a road or alley; end, final part, ending section, latter part",
-  "pri": 4
+  "pri": 4,
+  "zh": "后方、后端、尾端、道路或小巷的末端；结束、最后部分、结束部分、后半部分"
  },
  {
   "th": "ท่ารถ",
   "rom": "thâa rót",
   "en": "vehicle terminal",
-  "pri": 4
+  "pri": 4,
+  "zh": "车载终端"
  },
  {
   "th": "ท่าเรือ",
   "rom": "thâa rʉa",
   "en": "pier, port",
-  "pri": 4
+  "pri": 4,
+  "zh": "码头、港口"
  },
  {
   "th": "ทำงาน",
   "rom": "tham ŋaan",
   "en": "work, do one&#39;s job, carry out work; operate, function, work (properly)",
-  "pri": 4
+  "pri": 4,
+  "zh": "工作、做自己的工作、开展工作；操作、发挥作用、工作（正确地）"
  },
  {
   "th": "ทำงานบ้าน",
   "rom": "tham ŋaan bâan",
   "en": "do housework, do household chores",
-  "pri": 4
+  "pri": 4,
+  "zh": "做家务"
  },
  {
   "th": "ทำจาก",
   "rom": "tham càak",
   "en": "be made of, be made from",
-  "pri": 4
+  "pri": 4,
+  "zh": "由…制成"
  },
  {
   "th": "ทำซ้ำ",
   "rom": "tham sám",
   "en": "repeat, do again",
-  "pri": 4
+  "pri": 4,
+  "zh": "重复、再做一次"
  },
  {
   "th": "ทำตัว",
   "rom": "tham tua",
   "en": "behave, conduct oneself",
-  "pri": 4
+  "pri": 4,
+  "zh": "表现自己"
  },
  {
   "th": "ทำตาม",
   "rom": "tham taam",
   "en": "follow (instructions, advice, or a plan), comply with (a rule or order), do as instructed",
-  "pri": 4
+  "pri": 4,
+  "zh": "遵循（指示、建议或计划）、遵守（规则或命令）、按指示行事"
  },
  {
   "th": "ทำบุญ",
   "rom": "tham bun",
   "en": "make merit, perform meritorious deeds",
-  "pri": 4
+  "pri": 4,
+  "zh": "做功德"
  },
  {
   "th": "ทำผิด",
   "rom": "tham phìt",
   "en": "make a mistake, do something incorrectly; violate (a law, rule, or agreement), commit a wrongful act, do wrong",
-  "pri": 4
+  "pri": 4,
+  "zh": "犯错误、做错事；违反（法律、规则或协议）、做出不法行为、做错事"
  },
  {
   "th": "ทำพัง",
   "rom": "tham phaŋ",
   "en": "break (something), ruin (something), mess up (something)",
-  "pri": 4
+  "pri": 4,
+  "zh": "破坏（某事）、破坏（某事）、弄乱（某事）"
  },
  {
   "th": "ทำฟัน",
   "rom": "tham fan",
   "en": "have dental work done, receive dental treatment",
-  "pri": 4
+  "pri": 4,
+  "zh": "完成牙科工作、接受牙科治疗"
  },
  {
   "th": "ทำลาย",
   "rom": "thamlaay",
   "en": "destroy, damage, ruin, eliminate",
-  "pri": 4
+  "pri": 4,
+  "zh": "破坏、破坏、破坏、消除"
  },
  {
   "th": "ทำหาย",
   "rom": "tham hǎay",
   "en": "lose (an item), accidentally lose or delete (data, a file)",
-  "pri": 4
+  "pri": 4,
+  "zh": "丢失（项目）、意外丢失或删除（数据、文件）"
  },
  {
   "th": "ทำอาหาร",
   "rom": "tham aahǎan",
   "en": "cook, make a meal",
-  "pri": 4
+  "pri": 4,
+  "zh": "做饭"
  },
  {
   "th": "ทำเอง",
   "rom": "tham eeŋ",
   "en": "do (something) oneself, make (something) oneself",
-  "pri": 4
+  "pri": 4,
+  "zh": "自己做（某事）"
  },
  {
   "th": "ทำเอา",
   "rom": "tham aw",
   "en": "cause, make (someone or something) become or react",
-  "pri": 4
+  "pri": 4,
+  "zh": "导致、使（某人或某物）成为或反应"
  },
  {
   "th": "ทำแต่",
   "rom": "tham tɛ̀ɛ",
   "en": "do only, do nothing but",
-  "pri": 4
+  "pri": 4,
+  "zh": "只做、不做任何事"
  },
  {
   "th": "ทำใจ",
   "rom": "tham cay",
   "en": "come to terms with (something painful), reconcile oneself to (a difficult reality)",
-  "pri": 4
+  "pri": 4,
+  "zh": "接受（痛苦的事情）、接受（困难的现实）"
  },
  {
   "th": "ทำไม่เป็น",
   "rom": "tham mây pen",
   "en": "not know how to do, be unable to do (through lack of skill)",
-  "pri": 4
+  "pri": 4,
+  "zh": "不知道怎么做、无法做（由于缺乏技能）"
  },
  {
   "th": "ทิชชู",
   "rom": "thítchuu",
   "en": "tissue",
-  "pri": 4
+  "pri": 4,
+  "zh": "组织"
  },
  {
   "th": "ที",
   "rom": "thii",
   "en": "turn, occasion, opportunity; time [counting actions], stroke or hit [counting blows]; please do..., do...for me",
-  "pri": 4
+  "pri": 4,
+  "zh": "轮回、场合、机会；时间[计数动作]、击打或击打[计数击打]；请为我做……、做……"
  },
  {
   "th": "ที่จอดรถ",
   "rom": "thîi cɔ̀ɔt rót",
   "en": "parking lot, parking space",
-  "pri": 4
+  "pri": 4,
+  "zh": "停车场、停车位"
  },
  {
   "th": "ที่นอน",
   "rom": "thîi nɔɔn",
   "en": "mattress, sleeping mat",
-  "pri": 4
+  "pri": 4,
+  "zh": "床垫、睡垫"
  },
  {
   "th": "ทีนี้",
   "rom": "thiiníi",
   "en": "that being the case, and so, then (as a result)",
-  "pri": 4
+  "pri": 4,
+  "zh": "既然如此、那么、那么（结果）"
  },
  {
   "th": "ทีม",
   "rom": "thiim",
   "en": "team, group",
-  "pri": 4
+  "pri": 4,
+  "zh": "团队、团体"
  },
  {
   "th": "ที่ระลึก",
   "rom": "thîi ralʉ́k",
   "en": "souvenir, memento, keepsake",
-  "pri": 4
+  "pri": 4,
+  "zh": "纪念品"
  },
  {
   "th": "ทีวี",
   "rom": "thii wii",
   "en": "television set, TV",
-  "pri": 4
+  "pri": 4,
+  "zh": "电视机、电视"
  },
  {
   "th": "ที่หนึ่ง",
   "rom": "thîi nʉ̀ŋ",
   "en": "first place, number one, top priority; first, the first one",
-  "pri": 4
+  "pri": 4,
+  "zh": "第一名、最优先；第一、第一个"
  },
  {
   "th": "ที่อยู่",
   "rom": "thîi yùu",
   "en": "address",
-  "pri": 4
+  "pri": 4,
+  "zh": "地址"
  },
  {
   "th": "ที่เดิม",
   "rom": "thîi dəəm",
   "en": "the original place, the same place as before, the usual place",
-  "pri": 4
+  "pri": 4,
+  "zh": "原来的地方"
  },
  {
   "th": "ทีแรก",
   "rom": "thii rɛ̂ɛk",
   "en": "at first, initially",
-  "pri": 4
+  "pri": 4,
+  "zh": "起初、最初"
  },
  {
   "th": "ที่โน่น",
   "rom": "thîi nôon",
   "en": "over there",
-  "pri": 4
+  "pri": 4,
+  "zh": "在那边"
  },
  {
   "th": "ทุกปี",
   "rom": "thúk pii",
   "en": "every year, year after year",
-  "pri": 4
+  "pri": 4,
+  "zh": "年复一年"
  },
  {
   "th": "ทุกอาทิตย์",
   "rom": "thúk aathít",
   "en": "every week, weekly",
-  "pri": 4
+  "pri": 4,
+  "zh": "每周"
  },
  {
   "th": "ทุกเดือน",
   "rom": "thúk dʉan",
   "en": "every month, monthly",
-  "pri": 4
+  "pri": 4,
+  "zh": "每个月、每月"
  },
  {
   "th": "ทุ่ม",
   "rom": "thûm",
   "en": "evening hour [counted from 6 p.m.]",
-  "pri": 4
+  "pri": 4,
+  "zh": "晚上时间 [从下午 6 点开始计算]"
  },
  {
   "th": "ทุเรียน",
   "rom": "thúrian",
   "en": "durian",
-  "pri": 4
+  "pri": 4,
+  "zh": "榴莲"
  },
  {
   "th": "ธนบัตร",
   "rom": "thanabàt",
   "en": "banknote, bill (money)",
-  "pri": 4
+  "pri": 4,
+  "zh": "钞票、票据（钱）"
  },
  {
   "th": "ธนาคาร",
   "rom": "thanaakhaan",
   "en": "bank, financial institution",
-  "pri": 4
+  "pri": 4,
+  "zh": "银行、金融机构"
  },
  {
   "th": "ธรรมชาติ",
   "rom": "thammachâat",
   "en": "nature, the natural world, natural environment; natural, naturally derived, unforced",
-  "pri": 4
+  "pri": 4,
+  "zh": "自然、自然世界、自然环境；自然的、自然衍生的、非强迫的"
  },
  {
   "th": "ธรรมดา",
   "rom": "thammadaa",
   "en": "ordinary, standard, average; normally, ordinarily, naturally; a natural thing, an expected occurrence",
-  "pri": 4
+  "pri": 4,
+  "zh": "普通、标准、平均；通常、通常、自然地；自然的事情、预期发生的事情"
  },
  {
   "th": "ธันวาคม",
   "rom": "thanwaakhom",
   "en": "December",
-  "pri": 4
+  "pri": 4,
+  "zh": "十二月"
  },
  {
   "th": "ธุรกิจ",
   "rom": "thurakìt",
   "en": "business, commercial enterprise",
-  "pri": 4
+  "pri": 4,
+  "zh": "商业、商业企业"
  },
  {
   "th": "ธุระ",
   "rom": "thúrá",
   "en": "errand, personal business",
-  "pri": 4
+  "pri": 4,
+  "zh": "差事、个人事务"
  },
  {
   "th": "นก",
   "rom": "nók",
   "en": "bird",
-  "pri": 4
+  "pri": 4,
+  "zh": "鸟"
  },
  {
   "th": "นมสด",
   "rom": "nom sòt",
   "en": "fresh milk, liquid milk",
-  "pri": 4
+  "pri": 4,
+  "zh": "鲜奶、液态奶"
  },
  {
   "th": "นวด",
   "rom": "nûat",
   "en": "massage, rub (sore muscles)",
-  "pri": 4
+  "pri": 4,
+  "zh": "按摩、摩擦（肌肉酸痛）"
  },
  {
   "th": "นวดแผนโบราณ",
   "rom": "nûat phɛ̌ɛn booraan",
   "en": "traditional Thai massage",
-  "pri": 4
+  "pri": 4,
+  "zh": "传统泰式按摩"
  },
  {
   "th": "นอกจาก",
   "rom": "nɔ̂ɔk càak",
   "en": "except for, other than; besides, in addition to; not only ... but also",
-  "pri": 4
+  "pri": 4,
+  "zh": "除了、除了；此外、此外；不仅......而且"
  },
  {
   "th": "น้องชาย",
   "rom": "nɔ́ɔŋ chaay",
   "en": "younger brother",
-  "pri": 4
+  "pri": 4,
+  "zh": "弟弟"
  },
  {
   "th": "น้องสาว",
   "rom": "nɔ́ɔŋ sǎaw",
   "en": "younger sister",
-  "pri": 4
+  "pri": 4,
+  "zh": "妹妹"
  },
  {
   "th": "นักท่องเที่ยว",
   "rom": "nák thɔ̂ɔŋ thîaw",
   "en": "tourist, leisure traveler",
-  "pri": 4
+  "pri": 4,
+  "zh": "旅游者、休闲旅行者"
  },
  {
   "th": "นักร้อง",
   "rom": "nákrɔ́ɔŋ",
   "en": "singer",
-  "pri": 4
+  "pri": 4,
+  "zh": "歌手"
  },
  {
   "th": "นักศึกษา",
   "rom": "nák sʉ̀ksǎa",
   "en": "university student, college student",
-  "pri": 4
+  "pri": 4,
+  "zh": "大学生"
  },
  {
   "th": "นักเรียน",
   "rom": "nákrian",
   "en": "school student, student",
-  "pri": 4
+  "pri": 4,
+  "zh": "学校学生、学生"
  },
  {
   "th": "นักแสดง",
   "rom": "nák sadɛɛŋ",
   "en": "actor, performer",
-  "pri": 4
+  "pri": 4,
+  "zh": "演员、表演者"
  },
  {
   "th": "นับ",
   "rom": "náp",
   "en": "count, include in the count",
-  "pri": 4
+  "pri": 4,
+  "zh": "计数、包含在计数中"
  },
  {
   "th": "น้า",
   "rom": "náa",
   "en": "maternal uncle (mother&#39;s younger brother), maternal aunt (mother&#39;s younger sister); auntie or uncle [friendly form of address], I [adult speaking to a child]",
-  "pri": 4
+  "pri": 4,
+  "zh": "舅舅（母亲的弟弟）、姨妈（母亲的妹妹）；阿姨或叔叔[友好的称呼]、我[成人对孩子说话]"
  },
  {
   "th": "นาน",
   "rom": "naan",
   "en": "long (in time or duration), long-term",
-  "pri": 4
+  "pri": 4,
+  "zh": "长期（时间或持续时间）、长期"
  },
  {
   "th": "นามสกุล",
   "rom": "naamsakun",
   "en": "surname, family name, last name",
-  "pri": 4
+  "pri": 4,
+  "zh": "姓氏、姓氏、姓氏"
  },
  {
   "th": "นาย",
   "rom": "naay",
   "en": "boss, employer, master, person in charge",
-  "pri": 4
+  "pri": 4,
+  "zh": "老板、雇主、主人、负责人"
  },
  {
   "th": "น่ารัก",
   "rom": "nâa rák",
   "en": "cute, adorable, lovely; nice, pleasant, likable, friendly",
-  "pri": 4
+  "pri": 4,
+  "zh": "可爱、可爱；好的、令人愉快的、可爱的、友好的"
  },
  {
   "th": "น่าสงสัย",
   "rom": "nâa sǒŋsǎy",
   "en": "suspicious, doubtful, questionable",
-  "pri": 4
+  "pri": 4,
+  "zh": "可疑的、有问题的"
  },
  {
   "th": "น่าสนใจ",
   "rom": "nâa sǒncay",
   "en": "interesting, appealing, worth considering",
-  "pri": 4
+  "pri": 4,
+  "zh": "有趣、有吸引力、值得考虑"
  },
  {
   "th": "นาฬิกา",
   "rom": "naalíkaa",
   "en": "clock, watch",
-  "pri": 4
+  "pri": 4,
+  "zh": "时钟、手表"
  },
  {
   "th": "นาฬิกาข้อมือ",
   "rom": "naalíkaakhɔ̂ɔmʉʉ",
   "en": "wristwatch, watch",
-  "pri": 4
+  "pri": 4,
+  "zh": "手表"
  },
  {
   "th": "น่าเกลียด",
   "rom": "nâa klìat",
   "en": "ugly, unattractive, disgusting (in appearance)",
-  "pri": 4
+  "pri": 4,
+  "zh": "丑陋的、没有吸引力的、令人厌恶的（外表上）"
  },
  {
   "th": "น่าเบื่อ",
   "rom": "nâa bʉ̀a",
   "en": "boring, tedious, tiresome",
-  "pri": 4
+  "pri": 4,
+  "zh": "乏味的"
  },
  {
   "th": "นำ",
   "rom": "nam",
   "en": "lead, guide, direct; bring, take, carry, convey",
-  "pri": 4
+  "pri": 4,
+  "zh": "领导、指导、引导；带来、拿走、携带、传达"
  },
  {
   "th": "น้ำชา",
   "rom": "náam chaa",
   "en": "tea (beverage)",
-  "pri": 4
+  "pri": 4,
+  "zh": "茶（饮料）"
  },
  {
   "th": "น้ำตก",
   "rom": "náamtòk",
   "en": "waterfall",
-  "pri": 4
+  "pri": 4,
+  "zh": "瀑布"
  },
  {
   "th": "น้ำตา",
   "rom": "nám taa",
   "en": "tear, tears",
-  "pri": 4
+  "pri": 4,
+  "zh": "泪水"
  },
  {
   "th": "น้ำตาล",
   "rom": "námtaan",
   "en": "sugar; brown",
-  "pri": 4
+  "pri": 4,
+  "zh": "糖;棕色的"
  },
  {
   "th": "น้ำท่วม",
   "rom": "náam thûam",
   "en": "flood, flooding",
-  "pri": 4
+  "pri": 4,
+  "zh": "洪水"
  },
  {
   "th": "น้ำนม",
   "rom": "nám nom",
   "en": "milk, breast milk",
-  "pri": 4
+  "pri": 4,
+  "zh": "牛奶、母乳"
  },
  {
   "th": "น้ำปลา",
   "rom": "náam plaa",
   "en": "fish sauce",
-  "pri": 4
+  "pri": 4,
+  "zh": "鱼露"
  },
  {
   "th": "น้ำมัน",
   "rom": "nám man",
   "en": "oil; fuel, gasoline",
-  "pri": 4
+  "pri": 4,
+  "zh": "油;燃料、汽油"
  },
  {
   "th": "นำมา",
   "rom": "nam maa",
   "en": "bring, bring along, bring with one",
-  "pri": 4
+  "pri": 4,
+  "zh": "带、带一个"
  },
  {
   "th": "น้ำร้อน",
   "rom": "náam rɔ́ɔn",
   "en": "hot water",
-  "pri": 4
+  "pri": 4,
+  "zh": "热水"
  },
  {
   "th": "น้ำส้ม",
   "rom": "náam sôm",
   "en": "orange juice, citrus juice",
-  "pri": 4
+  "pri": 4,
+  "zh": "橙汁、柑橘汁"
  },
  {
   "th": "น้ำหนัก",
   "rom": "námnàk",
   "en": "weight, body weight",
-  "pri": 4
+  "pri": 4,
+  "zh": "体重"
  },
  {
   "th": "น้ำแข็ง",
   "rom": "náam khɛ̌ŋ",
   "en": "ice",
-  "pri": 4
+  "pri": 4,
+  "zh": "冰"
  },
  {
   "th": "น้ำใจ",
   "rom": "nám cay",
   "en": "kindness, generosity, goodwill",
-  "pri": 4
+  "pri": 4,
+  "zh": "仁慈、慷慨、善意"
  },
  {
   "th": "นำไป",
   "rom": "nam pay",
   "en": "take, bring, carry away",
-  "pri": 4
+  "pri": 4,
+  "zh": "拿走、带来、带走"
  },
  {
   "th": "นิ่ง",
   "rom": "nîŋ",
   "en": "stay still, not move; remain silent, not react, take no action",
-  "pri": 4
+  "pri": 4,
+  "zh": "保持静止、不要移动；保持沉默、不做出反应、不采取任何行动"
  },
  {
   "th": "นิ่งๆ",
   "rom": "nîŋ nîŋ",
   "en": "still (not moving), without moving",
-  "pri": 4
+  "pri": 4,
+  "zh": "静止（不动）、不动"
  },
  {
   "th": "นิดเดียว",
   "rom": "nít diaw",
   "en": "just a little bit, very little",
-  "pri": 4
+  "pri": 4,
+  "zh": "只是一点点、很少"
  },
  {
   "th": "นิ่ม",
   "rom": "nîm",
   "en": "soft (to the touch)",
-  "pri": 4
+  "pri": 4,
+  "zh": "柔软（触感）"
  },
  {
   "th": "นิ้ว",
   "rom": "níw",
   "en": "finger, toe",
-  "pri": 4
+  "pri": 4,
+  "zh": "手指、脚趾"
  },
  {
   "th": "นิสัย",
   "rom": "nísǎy",
   "en": "character, temperament; habit",
-  "pri": 4
+  "pri": 4,
+  "zh": "性格、气质；习惯"
  },
  {
   "th": "นี่ไง",
   "rom": "nîi ŋay",
   "en": "here it is, this is it, see?",
-  "pri": 4
+  "pri": 4,
+  "zh": "就是这里、看到了吗？"
  },
  {
   "th": "นึก",
   "rom": "nʉ́k",
   "en": "remember, bring to mind; think, imagine, picture; think that, assume that, mistakenly think that",
-  "pri": 4
+  "pri": 4,
+  "zh": "记住、想起；思考、想象、想象；认为、假设、错误地认为"
  },
  {
   "th": "นุ่ม",
   "rom": "nûm",
   "en": "soft, tender (food)",
-  "pri": 4
+  "pri": 4,
+  "zh": "软的、嫩的（食物）"
  },
  {
   "th": "บท",
   "rom": "bòt",
   "en": "chapter, lesson, section of text, piece of writing",
-  "pri": 4
+  "pri": 4,
+  "zh": "章节、课程、文本部分、文章"
  },
  {
   "th": "บ่น",
   "rom": "bòn",
   "en": "complain, grumble, mutter complaints, nag",
-  "pri": 4
+  "pri": 4,
+  "zh": "抱怨、发牢骚、嘟哝抱怨、唠叨"
  },
  {
   "th": "บรรยากาศ",
   "rom": "banyaakàat",
   "en": "atmosphere, ambience",
-  "pri": 4
+  "pri": 4,
+  "zh": "气氛"
  },
  {
   "th": "บริการ",
   "rom": "bɔɔrikaan",
   "en": "service, customer service; provide a service, serve (customers)",
-  "pri": 4
+  "pri": 4,
+  "zh": "服务、客户服务；提供服务、服务（顾客）"
  },
  {
   "th": "บริษัท",
   "rom": "bɔɔrisàt",
   "en": "company, firm, corporation",
-  "pri": 4
+  "pri": 4,
+  "zh": "公司、公司、公司"
  },
  {
   "th": "บริเวณ",
   "rom": "bɔɔríween",
   "en": "area, vicinity, grounds",
-  "pri": 4
+  "pri": 4,
+  "zh": "区域、邻近地区、场地"
  },
  {
   "th": "บวม",
   "rom": "buam",
   "en": "swell, be swollen, be puffy",
-  "pri": 4
+  "pri": 4,
+  "zh": "肿胀、浮肿"
  },
  {
   "th": "บ่อย",
   "rom": "bɔ̀y",
   "en": "often, frequently, again and again",
-  "pri": 4
+  "pri": 4,
+  "zh": "经常、一次又一次"
  },
  {
   "th": "บอล",
   "rom": "bɔɔn",
   "en": "ball, sports ball; soccer, soccer match",
-  "pri": 4
+  "pri": 4,
+  "zh": "球、运动球；足球、足球比赛"
  },
  {
   "th": "บะหมี่",
   "rom": "bàmìi",
   "en": "Chinese-style wheat noodles, egg-noodle dish",
-  "pri": 4
+  "pri": 4,
+  "zh": "中式小麦面、鸡蛋面"
  },
  {
   "th": "บัง",
   "rom": "baŋ",
   "en": "block (a view or light), hide from view, shield",
-  "pri": 4
+  "pri": 4,
+  "zh": "阻挡（视线或光线）、隐藏、屏蔽"
  },
  {
   "th": "บังคับ",
   "rom": "baŋkháp",
   "en": "force, compel",
-  "pri": 4
+  "pri": 4,
+  "zh": "强迫"
  },
  {
   "th": "บังเอิญ",
   "rom": "baŋəən",
   "en": "by chance, coincidentally, accidental, coincidental",
-  "pri": 4
+  "pri": 4,
+  "zh": "偶然、巧合"
  },
  {
   "th": "บัญชี",
   "rom": "banchii",
   "en": "account, bank account, online account",
-  "pri": 4
+  "pri": 4,
+  "zh": "帐户、银行帐户、在线帐户"
  },
  {
   "th": "บัตร",
   "rom": "bàt",
   "en": "card, identification document; ticket, pass, coupon",
-  "pri": 4
+  "pri": 4,
+  "zh": "卡、身份证明文件；门票、通行证、优惠券"
  },
  {
   "th": "บัตรประชาชน",
   "rom": "bàt prachaachon",
   "en": "Thai national ID card, national identity card",
-  "pri": 4
+  "pri": 4,
+  "zh": "泰国国民身份证、国民身份证"
  },
  {
   "th": "บัตรเครดิต",
   "rom": "bàt khreedìt",
   "en": "credit card",
-  "pri": 4
+  "pri": 4,
+  "zh": "信用卡"
  },
  {
   "th": "บันทึก",
   "rom": "banthʉ́k",
   "en": "record, write down; save (digital data)",
-  "pri": 4
+  "pri": 4,
+  "zh": "记录、写下；保存（数字数据）"
  },
  {
   "th": "บันได",
   "rom": "banday",
   "en": "stairs, staircase, ladder",
-  "pri": 4
+  "pri": 4,
+  "zh": "楼梯、梯子"
  },
  {
   "th": "บ้า",
   "rom": "bâa",
   "en": "crazy, insane, mentally unstable; foolish, absurd, crazy, weird; be crazy about, be obsessed with, be wild about",
-  "pri": 4
+  "pri": 4,
+  "zh": "疯狂的、精神不稳定的；愚蠢的、荒谬的、疯狂的、怪异的；为之疯狂、为之着迷、为之疯狂"
  },
  {
   "th": "บางครั้ง",
   "rom": "baaŋ khráŋ",
   "en": "sometimes, occasionally",
-  "pri": 4
+  "pri": 4,
+  "zh": "有时、偶尔"
  },
  {
   "th": "บางที",
   "rom": "baaŋ thii",
   "en": "sometimes, occasionally; perhaps, maybe",
-  "pri": 4
+  "pri": 4,
+  "zh": "有时、偶尔；也许、也许"
  },
  {
   "th": "บาดเจ็บ",
   "rom": "bàat cèp",
   "en": "get injured, be injured",
-  "pri": 4
+  "pri": 4,
+  "zh": "受伤"
  },
  {
   "th": "บาน",
   "rom": "baan",
   "en": "[classifier for doors, windows, mirrors, and glass panels]",
-  "pri": 4
+  "pri": 4,
+  "zh": "[门、窗、镜子、玻璃板分类器]"
  },
  {
   "th": "บ่ายสามโมง",
   "rom": "bàay sǎam mooŋ",
   "en": "3 p.m., 15:00",
-  "pri": 4
+  "pri": 4,
+  "zh": "下午 3 点、15:00"
  },
  {
   "th": "บ่ายโมง",
   "rom": "bàay mooŋ",
   "en": "1 p.m., 13:00",
-  "pri": 4
+  "pri": 4,
+  "zh": "下午 1 点、13:00"
  },
  {
   "th": "บาร์",
   "rom": "baa",
   "en": "bar (drinking establishment)",
-  "pri": 4
+  "pri": 4,
+  "zh": "酒吧（饮酒场所）"
  },
  {
   "th": "บิน",
   "rom": "bin",
   "en": "fly; fly (travel by plane)",
-  "pri": 4
+  "pri": 4,
+  "zh": "飞;飞（乘飞机旅行）"
  },
  {
   "th": "บิล",
   "rom": "bin",
   "en": "bill, check, receipt",
-  "pri": 4
+  "pri": 4,
+  "zh": "帐单、支票、收据"
  },
  {
   "th": "บีทีเอส",
   "rom": "bii thii èet",
   "en": "BTS Skytrain, Bangkok’s elevated urban railway",
-  "pri": 4
+  "pri": 4,
+  "zh": "BTS 轻轨、曼谷的高架城市铁路"
  },
  {
   "th": "บีบ",
   "rom": "bìip",
   "en": "squeeze, compress, wring out, pinch",
-  "pri": 4
+  "pri": 4,
+  "zh": "挤压、压缩、拧干、捏紧"
  },
  {
   "th": "บุญ",
   "rom": "bun",
   "en": "merit, virtue, good karma",
-  "pri": 4
+  "pri": 4,
+  "zh": "功德、德行、善业"
  },
  {
   "th": "บุหรี่",
   "rom": "bùrìi",
   "en": "cigarette",
-  "pri": 4
+  "pri": 4,
+  "zh": "卷烟"
  },
  {
   "th": "บูด",
   "rom": "bùut",
   "en": "(of food) go bad, (of food) turn sour",
-  "pri": 4
+  "pri": 4,
+  "zh": "（食物）变质、（食物）变酸"
  },
  {
   "th": "ประกอบ",
   "rom": "prakɔ̀ɔp",
   "en": "consist of",
-  "pri": 4
+  "pri": 4,
+  "zh": "包括"
  },
  {
   "th": "ประจำ",
   "rom": "pracam",
   "en": "regularly, habitually, often, as a routine; regular, usual, habitual, recurring",
-  "pri": 4
+  "pri": 4,
+  "zh": "经常地、习惯性地、作为例行公事；定期的、通常的、习惯性的、经常发生的"
  },
  {
   "th": "ประชด",
   "rom": "prachót",
   "en": "make a sarcastic remark, speak sarcastically",
-  "pri": 4
+  "pri": 4,
+  "zh": "说讽刺的话、讽刺地说话"
  },
  {
   "th": "ประตู",
   "rom": "pratuu",
   "en": "door, gate, doorway",
-  "pri": 4
+  "pri": 4,
+  "zh": "门、大门、门口"
  },
  {
   "th": "ประทับใจ",
   "rom": "prathápcay",
   "en": "be impressed, be moved, have a favorable impression",
-  "pri": 4
+  "pri": 4,
+  "zh": "印象深刻、感动、有好感"
  },
  {
   "th": "ประมาณ",
   "rom": "pramaan",
   "en": "approximately, roughly like",
-  "pri": 4
+  "pri": 4,
+  "zh": "大约、大致像"
  },
  {
   "th": "ประหยัด",
   "rom": "prayàt",
   "en": "save (money, time, or space), conserve (water, energy, or other resources), economize; thrifty, economical, economically",
-  "pri": 4
+  "pri": 4,
+  "zh": "节省（金钱、时间或空间）、节约（水、能源或其他资源）、节约；节俭的、节约的、经济的"
  },
  {
   "th": "ประโยค",
   "rom": "prayòok",
   "en": "sentence",
-  "pri": 4
+  "pri": 4,
+  "zh": "句子"
  },
  {
   "th": "ประโยชน์",
   "rom": "prayòot",
   "en": "usefulness, benefit",
-  "pri": 4
+  "pri": 4,
+  "zh": "有用性、好处"
  },
  {
   "th": "ปรับ",
   "rom": "pràp",
   "en": "adjust, adapt, revise",
-  "pri": 4
+  "pri": 4,
+  "zh": "调整、适应、修改"
  },
  {
   "th": "ปรึกษา",
   "rom": "prʉ̀ksǎa",
   "en": "consult (someone), seek advice (from someone)",
-  "pri": 4
+  "pri": 4,
+  "zh": "咨询（某人）、寻求（某人）的建议"
  },
  {
   "th": "ปรุง",
   "rom": "pruŋ",
   "en": "prepare (food), season (food)",
-  "pri": 4
+  "pri": 4,
+  "zh": "准备（食物）、季节（食物）"
  },
  {
   "th": "ปลอดภัย",
   "rom": "plɔ̀ɔtphay",
   "en": "safe, out of danger, safely",
-  "pri": 4
+  "pri": 4,
+  "zh": "安全、脱离危险"
  },
  {
   "th": "ปลอม",
   "rom": "plɔɔm",
   "en": "fake, counterfeit, forged, artificial",
-  "pri": 4
+  "pri": 4,
+  "zh": "假的、伪造的、人造的"
  },
  {
   "th": "ปลา",
   "rom": "plaa",
   "en": "fish",
-  "pri": 4
+  "pri": 4,
+  "zh": "鱼"
  },
  {
   "th": "ปลาย",
   "rom": "plaay",
   "en": "tip, end, edge; end part, late part, late (in a period or range)",
-  "pri": 4
+  "pri": 4,
+  "zh": "尖端、末端、边缘；结束部分、后期部分、后期（在一个时期或范围内）"
  },
  {
   "th": "ปลาหมึก",
   "rom": "plaa mʉ̀k",
   "en": "squid",
-  "pri": 4
+  "pri": 4,
+  "zh": "乌贼"
  },
  {
   "th": "ปลุก",
   "rom": "plùk",
   "en": "wake (someone) up, awaken (someone)",
-  "pri": 4
+  "pri": 4,
+  "zh": "叫醒（某人）"
  },
  {
   "th": "ปลูก",
   "rom": "plùuk",
   "en": "plant (seeds or plants), grow; cultivate (crops)",
-  "pri": 4
+  "pri": 4,
+  "zh": "植物（种子或植物）、生长；耕种（农作物）"
  },
  {
   "th": "ปวดฟัน",
   "rom": "pùat fan",
   "en": "have a toothache",
-  "pri": 4
+  "pri": 4,
+  "zh": "牙痛"
  },
  {
   "th": "ปวดหลัง",
   "rom": "pùat lǎŋ",
   "en": "have back pain, have a backache",
-  "pri": 4
+  "pri": 4,
+  "zh": "有背痛"
  },
  {
   "th": "ป่วย",
   "rom": "pùay",
   "en": "be ill, feel unwell, become ill",
-  "pri": 4
+  "pri": 4,
+  "zh": "生病、感觉不舒服"
  },
  {
   "th": "ป้องกัน",
   "rom": "pɔ̂ɔŋ kan",
   "en": "prevent, guard against; protect, defend",
-  "pri": 4
+  "pri": 4,
+  "zh": "预防、防范；保护、捍卫"
  },
  {
   "th": "ป้อน",
   "rom": "pɔ̂ɔn",
   "en": "feed, give (medicine, a drink, etc.) by mouth; enter (data), input",
-  "pri": 4
+  "pri": 4,
+  "zh": "经口喂食、给予（药物、饮料等）；输入（数据）、输入"
  },
  {
   "th": "ปัด",
   "rom": "pàt",
   "en": "brush away, deflect, swipe (a screen)",
-  "pri": 4
+  "pri": 4,
+  "zh": "刷掉、偏转、滑动（屏幕）"
  },
  {
   "th": "ปั่น",
   "rom": "pàn",
   "en": "pedal, ride a bicycle; blend",
-  "pri": 4
+  "pri": 4,
+  "zh": "踏板、骑自行车；混合"
  },
  {
   "th": "ปั้น",
   "rom": "pân",
   "en": "mold, shape by hand, knead into shape, sculpt",
-  "pri": 4
+  "pri": 4,
+  "zh": "模具、手工塑造、揉捏成型、雕刻"
  },
  {
   "th": "ปั๊ม",
   "rom": "pám",
   "en": "gas station",
-  "pri": 4
+  "pri": 4,
+  "zh": "加油站"
  },
  {
   "th": "ปั๊มน้ำมัน",
   "rom": "pám nám man",
   "en": "gas station",
-  "pri": 4
+  "pri": 4,
+  "zh": "加油站"
  },
  {
   "th": "ป่า",
   "rom": "pàa",
   "en": "forest; woods, jungle",
-  "pri": 4
+  "pri": 4,
+  "zh": "森林;树林、丛林"
  },
  {
   "th": "ป้า",
   "rom": "pâa",
   "en": "aunt (a parent’s older sister); auntie (an older woman), older woman",
-  "pri": 4
+  "pri": 4,
+  "zh": "阿姨（父母的姐姐）；阿姨（年长的妇女）、年长的妇女"
  },
  {
   "th": "ปากกา",
   "rom": "pàakkaa",
   "en": "pen",
-  "pri": 4
+  "pri": 4,
+  "zh": "笔"
  },
  {
   "th": "ปากกาลูกลื่น",
   "rom": "pàak kaa lûuk lʉ̂ʉn",
   "en": "ballpoint pen",
-  "pri": 4
+  "pri": 4,
+  "zh": "圆珠笔"
  },
  {
   "th": "ปิดไฟ",
   "rom": "pìt fay",
   "en": "turn off the light(s), switch off the light(s)",
-  "pri": 4
+  "pri": 4,
+  "zh": "关掉灯"
  },
  {
   "th": "ปีก",
   "rom": "pìik",
   "en": "wing, wing (of a bird, insect, airplane)",
-  "pri": 4
+  "pri": 4,
+  "zh": "翅膀、（鸟、昆虫、飞机的）翅膀"
  },
  {
   "th": "ปีใหม่",
   "rom": "pii mày",
   "en": "New Year",
-  "pri": 4
+  "pri": 4,
+  "zh": "新年"
  },
  {
   "th": "ปุ่ม",
   "rom": "pùm",
   "en": "button, key (on a keyboard)",
-  "pri": 4
+  "pri": 4,
+  "zh": "按钮、按键（键盘上的）"
  },
  {
   "th": "ปู",
   "rom": "puu",
   "en": "crab; lay out, spread over (a surface), pave or tile",
-  "pri": 4
+  "pri": 4,
+  "zh": "螃蟹;布置、铺在（表面）上、铺平或铺平"
  },
  {
   "th": "ปู่",
   "rom": "pùu",
   "en": "paternal grandfather, Grandpa [father&#39;s side]",
-  "pri": 4
+  "pri": 4,
+  "zh": "祖父、爷爷[父亲一方]"
  },
  {
   "th": "ปูน",
   "rom": "puun",
   "en": "cement; mortar, lime, concrete [everyday speech]",
-  "pri": 4
+  "pri": 4,
+  "zh": "水泥;砂浆、石灰、混凝土[日常用语]"
  },
  {
   "th": "ปู่ย่าตายาย",
   "rom": "pùu yâa taa yaay",
   "en": "grandparents, grandparents on both sides of the family",
-  "pri": 4
+  "pri": 4,
+  "zh": "祖父母、双方家庭的祖父母"
  },
  {
   "th": "ผนัง",
   "rom": "phanǎŋ",
   "en": "wall, partition wall",
-  "pri": 4
+  "pri": 4,
+  "zh": "墙、隔断墙"
  },
  {
   "th": "ผมยาว",
   "rom": "phǒm yaaw",
   "en": "long hair",
-  "pri": 4
+  "pri": 4,
+  "zh": "长头发"
  },
  {
   "th": "ผล",
   "rom": "phǒn",
   "en": "result, outcome, effect, achievement, benefit",
-  "pri": 4
+  "pri": 4,
+  "zh": "结果、成果、效果、成果、利益"
  },
  {
   "th": "ผลัก",
   "rom": "phlàk",
   "en": "push, push away, shove",
-  "pri": 4
+  "pri": 4,
+  "zh": "推、推开、推开"
  },
  {
   "th": "ผลไม้",
   "rom": "phǒnlamáay",
   "en": "fruit",
-  "pri": 4
+  "pri": 4,
+  "zh": "水果"
  },
  {
   "th": "ผสม",
   "rom": "phasǒm",
   "en": "mix, combine, blend",
-  "pri": 4
+  "pri": 4,
+  "zh": "混合"
  },
  {
   "th": "ผ่อน",
   "rom": "phɔ̀ɔn",
   "en": "pay in installments, make loan payments",
-  "pri": 4
+  "pri": 4,
+  "zh": "分期付款、偿还贷款"
  },
  {
   "th": "ผอม",
   "rom": "phɔ̌ɔm",
   "en": "thin, skinny, slim; lose weight, become thinner",
-  "pri": 4
+  "pri": 4,
+  "zh": "瘦、苗条；减肥、变瘦"
  },
  {
   "th": "ผอมลง",
   "rom": "phɔ̌ɔm loŋ",
   "en": "become thinner, lose weight",
-  "pri": 4
+  "pri": 4,
+  "zh": "变瘦、减肥"
  },
  {
   "th": "ผัก",
   "rom": "phàk",
   "en": "vegetable, vegetables; greens",
-  "pri": 4
+  "pri": 4,
+  "zh": "蔬菜、蔬菜；青菜"
  },
  {
   "th": "ผักชี",
   "rom": "phàkchii",
   "en": "cilantro",
-  "pri": 4
+  "pri": 4,
+  "zh": "香菜"
  },
  {
   "th": "ผัด",
   "rom": "phàt",
   "en": "stir-fry",
-  "pri": 4
+  "pri": 4,
+  "zh": "翻炒"
  },
  {
   "th": "ผัดไทย",
   "rom": "phàt thay",
   "en": "pad thai, Thai-style stir-fried rice noodles",
-  "pri": 4
+  "pri": 4,
+  "zh": "pad Thai、泰式炒米粉"
  },
  {
   "th": "ผัว",
   "rom": "phǔa",
   "en": "husband [informal]",
-  "pri": 4
+  "pri": 4,
+  "zh": "丈夫 [非正式]"
  },
  {
   "th": "ผ่า",
   "rom": "phàa",
   "en": "operate on, undergo surgery",
-  "pri": 4
+  "pri": 4,
+  "zh": "进行手术"
  },
  {
   "th": "ผ้าห่ม",
   "rom": "phâa hòm",
   "en": "blanket",
-  "pri": 4
+  "pri": 4,
+  "zh": "毯子"
  },
  {
   "th": "ผ้าเช็ดตัว",
   "rom": "phâa chét tua",
   "en": "bath towel, body towel",
-  "pri": 4
+  "pri": 4,
+  "zh": "浴巾、浴巾"
  },
  {
   "th": "ผิดพลาด",
   "rom": "phìt phlâat",
   "en": "make a mistake; incorrect, incorrectly",
-  "pri": 4
+  "pri": 4,
+  "zh": "犯错误；不正确的、不正确的"
  },
  {
   "th": "ผิดหวัง",
   "rom": "phìtwǎŋ",
   "en": "be disappointed, feel let down",
-  "pri": 4
+  "pri": 4,
+  "zh": "感到失望"
  },
  {
   "th": "ผิว",
   "rom": "phǐw",
   "en": "skin, complexion",
-  "pri": 4
+  "pri": 4,
+  "zh": "皮肤、肤色"
  },
  {
   "th": "ผิวหนัง",
   "rom": "phǐw nǎŋ",
   "en": "skin",
-  "pri": 4
+  "pri": 4,
+  "zh": "皮肤"
  },
  {
   "th": "ผี",
   "rom": "phǐi",
   "en": "ghost, spirit",
-  "pri": 4
+  "pri": 4,
+  "zh": "鬼魂、精神"
  },
  {
   "th": "ผืน",
   "rom": "phʉ̌ʉn",
   "en": "[classifier for cloth, towels, blankets, mats, and similar items], [classifier for tracts or plots of land]",
-  "pri": 4
+  "pri": 4,
+  "zh": "[布料、毛巾、毯子、垫子和类似物品的分类器]、[大片或土地的分类器]"
  },
  {
   "th": "ผุ",
   "rom": "phù",
   "en": "develop tooth decay, be decayed (of a tooth)",
-  "pri": 4
+  "pri": 4,
+  "zh": "出现蛀牙、（牙齿）腐烂"
  },
  {
   "th": "ผูก",
   "rom": "phùuk",
   "en": "tie, bind, fasten, tether",
-  "pri": 4
+  "pri": 4,
+  "zh": "系住、系紧、拴住"
  },
  {
   "th": "ผู้คน",
   "rom": "phûu khon",
   "en": "people",
-  "pri": 4
+  "pri": 4,
+  "zh": "人们"
  },
  {
   "th": "ผู้จัดการ",
   "rom": "phûucàtkaan",
   "en": "manager, administrator",
-  "pri": 4
+  "pri": 4,
+  "zh": "经理、管理员"
  },
  {
   "th": "ผู้ปกครอง",
   "rom": "phûu pòkkhrɔɔŋ",
   "en": "parent or guardian",
-  "pri": 4
+  "pri": 4,
+  "zh": "父母或监护人"
  },
  {
   "th": "ผู้ป่วย",
   "rom": "phûupùay",
   "en": "patient, sick person",
-  "pri": 4
+  "pri": 4,
+  "zh": "病人"
  },
  {
   "th": "ผู้โดยสาร",
   "rom": "phûu dooysǎan",
   "en": "passenger",
-  "pri": 4
+  "pri": 4,
+  "zh": "乘客"
  },
  {
   "th": "ฝนตก",
   "rom": "fǒn tòk",
   "en": "rain, be raining",
-  "pri": 4
+  "pri": 4,
+  "zh": "下雨"
  },
  {
   "th": "ฝรั่ง",
   "rom": "faràŋ",
   "en": "Westerner, white Western foreigner; guava",
-  "pri": 4
+  "pri": 4,
+  "zh": "西方人、西方白人；番石榴"
  },
  {
   "th": "ฝั่ง",
   "rom": "fàŋ",
   "en": "shore, riverbank, coast; side, camp",
-  "pri": 4
+  "pri": 4,
+  "zh": "海岸、河岸、海岸；边、营地"
  },
  {
   "th": "ฝัน",
   "rom": "fǎn",
   "en": "dream, dream about",
-  "pri": 4
+  "pri": 4,
+  "zh": "梦见"
  },
  {
   "th": "ฝันดี",
   "rom": "fǎn dii",
   "en": "sweet dreams, good night [bedtime wish]",
-  "pri": 4
+  "pri": 4,
+  "zh": "好梦、晚安【睡前愿望】"
  },
  {
   "th": "ฝา",
   "rom": "fǎa",
   "en": "lid, cap, cover (for a container)",
-  "pri": 4
+  "pri": 4,
+  "zh": "盖子、盖子（用于容器）"
  },
  {
   "th": "ฝากเงิน",
   "rom": "fàak ŋən",
   "en": "deposit money, entrust money to someone for safekeeping",
-  "pri": 4
+  "pri": 4,
+  "zh": "存钱、将钱委托给某人保管"
  },
  {
   "th": "ฝีมือ",
   "rom": "fǐimʉʉ",
   "en": "skill, craftsmanship, proficiency",
-  "pri": 4
+  "pri": 4,
+  "zh": "技能、技艺、熟练程度"
  },
  {
   "th": "ฝึก",
   "rom": "fʉ̀k",
   "en": "practice, train, drill",
-  "pri": 4
+  "pri": 4,
+  "zh": "练习、训练、操练"
  },
  {
   "th": "ฝุ่น",
   "rom": "fùn",
   "en": "dust, airborne particulate matter",
-  "pri": 4
+  "pri": 4,
+  "zh": "灰尘、空气中的颗粒物"
  },
  {
   "th": "พก",
   "rom": "phók",
   "en": "carry, carry with one, bring along",
-  "pri": 4
+  "pri": 4,
+  "zh": "携带、随身携带"
  },
  {
   "th": "พ้น",
   "rom": "phón",
   "en": "go beyond (a boundary), move clear of (a place or range); escape (danger or hardship), be free from (suffering or restraint), be exempt from (an obligation); be unable to avoid (an outcome) [ไม่พ้น], ultimately come down to (someone or something) [ไม่พ้น]",
-  "pri": 4
+  "pri": 4,
+  "zh": "超越（边界）、移出（一个地方或范围）；逃脱（危险或困难）、免受（痛苦或限制）、免除（义务）；无法避免（结果）[ไม่พ้น]、最终归结为（某人或某事）[ไม่พ้น]"
  },
  {
   "th": "พนักงาน",
   "rom": "phanákŋaan",
   "en": "employee, staff member, attendant・clerk",
-  "pri": 4
+  "pri": 4,
+  "zh": "雇员、工作人员、服务员・职员"
  },
  {
   "th": "พบ",
   "rom": "phóp",
   "en": "meet, see (someone by appointment), have a meeting with; find, discover, detect",
-  "pri": 4
+  "pri": 4,
+  "zh": "见面、见（预约的某人）、与某人会面；发现、发现、检测"
  },
  {
   "th": "พบกันใหม่",
   "rom": "phóp kan mày",
   "en": "see you again, see you later",
-  "pri": 4
+  "pri": 4,
+  "zh": "再见、稍后见"
  },
  {
   "th": "พบเจอ",
   "rom": "phóp cəə",
   "en": "meet (someone), encounter (someone)",
-  "pri": 4
+  "pri": 4,
+  "zh": "遇见（某人）"
  },
  {
   "th": "พยักหน้า",
   "rom": "pháyák nâa",
   "en": "nod",
-  "pri": 4
+  "pri": 4,
+  "zh": "点头"
  },
  {
   "th": "พยาบาล",
   "rom": "phayaabaan",
   "en": "nurse",
-  "pri": 4
+  "pri": 4,
+  "zh": "护士"
  },
  {
   "th": "พยายาม",
   "rom": "phayaayaam",
   "en": "try (to do something), make an effort",
-  "pri": 4
+  "pri": 4,
+  "zh": "尝试（做某事）、努力"
  },
  {
   "th": "พระ",
   "rom": "phrá",
   "en": "Buddhist monk",
-  "pri": 4
+  "pri": 4,
+  "zh": "和尚"
  },
  {
   "th": "พริก",
   "rom": "phrík",
   "en": "chili pepper, chili plant",
-  "pri": 4
+  "pri": 4,
+  "zh": "辣椒、辣椒植物"
  },
  {
   "th": "พริกไทย",
   "rom": "phrík thay",
   "en": "pepper, peppercorn",
-  "pri": 4
+  "pri": 4,
+  "zh": "胡椒、花椒"
  },
  {
   "th": "พฤศจิกายน",
   "rom": "phrʉ́tsacìkaayon",
   "en": "November",
-  "pri": 4
+  "pri": 4,
+  "zh": "十一月"
  },
  {
   "th": "พฤษภา",
   "rom": "phrʉ́tsaphaa",
   "en": "May [short form of พฤษภาคม]",
-  "pri": 4
+  "pri": 4,
+  "zh": "五月 [พฤษภาคม的缩写]"
  },
  {
   "th": "พฤษภาคม",
   "rom": "phrʉ́tsaphaakhom",
   "en": "May",
-  "pri": 4
+  "pri": 4,
+  "zh": "可能"
  },
  {
   "th": "พลัง",
   "rom": "phalaŋ",
   "en": "strength, energy, vitality",
-  "pri": 4
+  "pri": 4,
+  "zh": "力量、能量、活力"
  },
  {
   "th": "พลาด",
   "rom": "phlâat",
   "en": "make a mistake, fail, mess up; miss (an opportunity, event, vehicle), miss (a target), fail to see",
-  "pri": 4
+  "pri": 4,
+  "zh": "犯错误、失败、搞砸；错过（机会、事件、车辆）、错过（目标）、看不到"
  },
  {
   "th": "พลิก",
   "rom": "phlík",
   "en": "turn over, flip over, turn (a page), roll over",
-  "pri": 4
+  "pri": 4,
+  "zh": "翻过来、翻过去、翻（一页）"
  },
  {
   "th": "พ่อค้า",
   "rom": "phɔ̂ɔkháa",
   "en": "male merchant or trader, male seller",
-  "pri": 4
+  "pri": 4,
+  "zh": "男性商人或贸易商、男性卖家"
  },
  {
   "th": "พอดี",
   "rom": "phɔɔ dii",
   "en": "just right, fitting exactly, suitable in degree; just, exactly, right then; as it happens, it just so happens that, actually, because",
-  "pri": 4
+  "pri": 4,
+  "zh": "恰到好处、程度合适；正好、正好、就在那时；碰巧、碰巧、实际上、因为"
  },
  {
   "th": "พอใจ",
   "rom": "phɔɔ cay",
   "en": "be satisfied, be pleased, be content, like; be happy with",
-  "pri": 4
+  "pri": 4,
+  "zh": "满足、高兴、喜欢；感到高兴"
  },
  {
   "th": "พอใช้",
   "rom": "phɔɔ cháy",
   "en": "satisfactory, good enough, usable",
-  "pri": 4
+  "pri": 4,
+  "zh": "满意、足够好、可用"
  },
  {
   "th": "พักผ่อน",
   "rom": "phák phɔ̀ɔn",
   "en": "rest, relax",
-  "pri": 4
+  "pri": 4,
+  "zh": "休息、放松"
  },
  {
   "th": "พัง",
   "rom": "phaŋ",
   "en": "break, be out of order, collapse, break down",
-  "pri": 4
+  "pri": 4,
+  "zh": "破坏、失灵、倒塌、崩溃"
  },
  {
   "th": "พัฒนา",
   "rom": "phátthanaa",
   "en": "develop, improve, advance",
-  "pri": 4
+  "pri": 4,
+  "zh": "发展、改进、进步"
  },
  {
   "th": "พัด",
   "rom": "phát",
   "en": "blow (of wind), carry along or away (of wind or water)",
-  "pri": 4
+  "pri": 4,
+  "zh": "吹（风）、携带或带走（风或水）"
  },
  {
   "th": "พัดลม",
   "rom": "phát lom",
   "en": "electric fan",
-  "pri": 4
+  "pri": 4,
+  "zh": "电扇"
  },
  {
   "th": "พับ",
   "rom": "pháp",
   "en": "fold, fold up",
-  "pri": 4
+  "pri": 4,
+  "zh": "折叠、折叠起来"
  },
  {
   "th": "พัสดุ",
   "rom": "phátsadù",
   "en": "parcel, package",
-  "pri": 4
+  "pri": 4,
+  "zh": "包裹"
  },
  {
   "th": "พากัน",
   "rom": "phaa kan",
   "en": "all do something together, collectively do something",
-  "pri": 4
+  "pri": 4,
+  "zh": "所有人一起做某事、集体做某事"
  },
  {
   "th": "พามา",
   "rom": "phaa maa",
   "en": "bring someone here, lead someone over",
-  "pri": 4
+  "pri": 4,
+  "zh": "带某人来这里、带领某人过来"
  },
  {
   "th": "พาไป",
   "rom": "phaa pay",
   "en": "take someone to, lead someone to, show someone to",
-  "pri": 4
+  "pri": 4,
+  "zh": "带某人去、带领某人去、向某人展示"
  },
  {
   "th": "พิกัด",
   "rom": "phíkàt",
   "en": "coordinates, location",
-  "pri": 4
+  "pri": 4,
+  "zh": "坐标、位置"
  },
  {
   "th": "พิพิธภัณฑ์",
   "rom": "phíphíttháphan",
   "en": "museum",
-  "pri": 4
+  "pri": 4,
+  "zh": "博物馆"
  },
  {
   "th": "พิมพ์",
   "rom": "phim",
   "en": "type, enter (text)",
-  "pri": 4
+  "pri": 4,
+  "zh": "键入、输入（文本）"
  },
  {
   "th": "พิเศษ",
   "rom": "phísèet",
   "en": "special, exceptional, extra, large (food portion); especially, particularly, specially",
-  "pri": 4
+  "pri": 4,
+  "zh": "特别的、特殊的、额外的、大的（食物部分）；特别地、特别地"
  },
  {
   "th": "พี่ชาย",
   "rom": "phîi chaay",
   "en": "older brother",
-  "pri": 4
+  "pri": 4,
+  "zh": "哥哥"
  },
  {
   "th": "พี่สาว",
   "rom": "phîi sǎaw",
   "en": "older sister",
-  "pri": 4
+  "pri": 4,
+  "zh": "姐姐"
  },
  {
   "th": "พึ่ง",
   "rom": "phʉ̂ŋ",
   "en": "just, only recently",
-  "pri": 4
+  "pri": 4,
+  "zh": "刚刚、刚刚、最近"
  },
  {
   "th": "พุธ",
   "rom": "phút",
   "en": "Wednesday",
-  "pri": 4
+  "pri": 4,
+  "zh": "周三"
  },
  {
   "th": "พูดคุย",
   "rom": "phûut khuy",
   "en": "talk with, chat, converse, discuss",
-  "pri": 4
+  "pri": 4,
+  "zh": "交谈、聊天、交谈、讨论"
  },
  {
   "th": "พูดจา",
   "rom": "phûutcaa",
   "en": "speak, talk",
-  "pri": 4
+  "pri": 4,
+  "zh": "说话"
  },
  {
   "th": "ฟรี",
   "rom": "frii",
   "en": "free, free of charge",
-  "pri": 4
+  "pri": 4,
+  "zh": "免费的"
  },
  {
   "th": "ฟอง",
   "rom": "fɔɔŋ",
   "en": "[classifier for eggs and bubbles]",
-  "pri": 4
+  "pri": 4,
+  "zh": "[鸡蛋和气泡的分类器]"
  },
  {
   "th": "ฟอร์ม",
   "rom": "fɔɔm",
   "en": "form, form to fill out",
-  "pri": 4
+  "pri": 4,
+  "zh": "表格、要填写的表格"
  },
  {
   "th": "ฟังดนตรี",
   "rom": "faŋ dontrii",
   "en": "listen to music",
-  "pri": 4
+  "pri": 4,
+  "zh": "听音乐"
  },
  {
   "th": "ฟังดู",
   "rom": "faŋ duu",
   "en": "sound (seem when heard), seem from what one hears",
-  "pri": 4
+  "pri": 4,
+  "zh": "声音（听得见）、听得见的声音"
  },
  {
   "th": "ฟ้า",
   "rom": "fáa",
   "en": "sky; light blue, sky blue",
-  "pri": 4
+  "pri": 4,
+  "zh": "天空;浅蓝色、天蓝色"
  },
  {
   "th": "ฟุตบอล",
   "rom": "fút bɔɔn",
   "en": "soccer, football",
-  "pri": 4
+  "pri": 4,
+  "zh": "足球"
  },
  {
   "th": "ภรรยา",
   "rom": "phanrayaa",
   "en": "wife",
-  "pri": 4
+  "pri": 4,
+  "zh": "妻子"
  },
  {
   "th": "ภาค",
   "rom": "phâak",
   "en": "region, area",
-  "pri": 4
+  "pri": 4,
+  "zh": "地区、地区"
  },
  {
   "th": "ภาพ",
   "rom": "phâap",
   "en": "picture, image, photograph, footage",
-  "pri": 4
+  "pri": 4,
+  "zh": "图片、图像、照片、镜头"
  },
  {
   "th": "ภายใน",
   "rom": "phaay nay",
   "en": "inside, within (a place or area); within (a period of time), by (a deadline)",
-  "pri": 4
+  "pri": 4,
+  "zh": "在（一个地方或区域）内、在（一个地方或区域）内；在（一段时间）内、在（最后期限）之前"
  },
  {
   "th": "ภาษา",
   "rom": "phaasǎa",
   "en": "language; [classifier for languages]",
-  "pri": 4
+  "pri": 4,
+  "zh": "语言; [语言分类器]"
  },
  {
   "th": "ภาษาญี่ปุ่น",
   "rom": "phaasǎa yîipùn",
   "en": "Japanese (language)",
-  "pri": 4
+  "pri": 4,
+  "zh": "日语）"
  },
  {
   "th": "ภาษาอังกฤษ",
   "rom": "phaasǎa aŋkrìt",
   "en": "English",
-  "pri": 4
+  "pri": 4,
+  "zh": "英语"
  },
  {
   "th": "ภาษาไทย",
   "rom": "phaasǎa thay",
   "en": "Thai language",
-  "pri": 4
+  "pri": 4,
+  "zh": "泰语"
  },
  {
   "th": "ภูมิใจ",
   "rom": "phuumcay",
   "en": "feel proud, take pride in",
-  "pri": 4
+  "pri": 4,
+  "zh": "感到自豪"
  },
  {
   "th": "ภูเก็ต",
   "rom": "phuukèt",
   "en": "Phuket Province",
-  "pri": 4
+  "pri": 4,
+  "zh": "普吉府"
  },
  {
   "th": "ภูเขา",
   "rom": "phuukhǎw",
   "en": "mountain",
-  "pri": 4
+  "pri": 4,
+  "zh": "山"
  },
  {
   "th": "มกราคม",
   "rom": "mókkaraakhom",
   "en": "January",
-  "pri": 4
+  "pri": 4,
+  "zh": "一月"
  },
  {
   "th": "มนุษย์",
   "rom": "mánút",
   "en": "human being, humankind",
-  "pri": 4
+  "pri": 4,
+  "zh": "人类"
  },
  {
   "th": "ม่วง",
   "rom": "mûaŋ",
   "en": "purple, violet-colored",
-  "pri": 4
+  "pri": 4,
+  "zh": "紫色、紫罗兰色"
  },
  {
   "th": "มหาลัย",
   "rom": "mahǎalay",
   "en": "university, college",
-  "pri": 4
+  "pri": 4,
+  "zh": "大学、学院"
  },
  {
   "th": "มหาวิทยาลัย",
   "rom": "mahǎawítthayaalay",
   "en": "university",
-  "pri": 4
+  "pri": 4,
+  "zh": "大学"
  },
  {
   "th": "มองหา",
   "rom": "mɔɔŋ hǎa",
   "en": "look for, seek",
-  "pri": 4
+  "pri": 4,
+  "zh": "寻找"
  },
  {
   "th": "มะนาว",
   "rom": "mánaaw",
   "en": "lime, lemon",
-  "pri": 4
+  "pri": 4,
+  "zh": "酸橙、柠檬"
  },
  {
   "th": "มะพร้าว",
   "rom": "máphráaw",
   "en": "coconut",
-  "pri": 4
+  "pri": 4,
+  "zh": "椰子"
  },
  {
   "th": "มะม่วง",
   "rom": "mámûaŋ",
   "en": "mango",
-  "pri": 4
+  "pri": 4,
+  "zh": "芒果"
  },
  {
   "th": "มะรืน",
   "rom": "márʉʉn",
   "en": "the day after tomorrow",
-  "pri": 4
+  "pri": 4,
+  "zh": "后天"
  },
  {
   "th": "มะรืนนี้",
   "rom": "márʉʉn níi",
   "en": "the day after tomorrow",
-  "pri": 4
+  "pri": 4,
+  "zh": "后天"
  },
  {
   "th": "มะละกอ",
   "rom": "málákɔɔ",
   "en": "papaya",
-  "pri": 4
+  "pri": 4,
+  "zh": "木瓜"
  },
  {
   "th": "มะเขือเทศ",
   "rom": "mákhʉ̌athêet",
   "en": "tomato",
-  "pri": 4
+  "pri": 4,
+  "zh": "番茄"
  },
  {
   "th": "มัก",
   "rom": "mák",
   "en": "often, frequently, usually, tend to, be prone to",
-  "pri": 4
+  "pri": 4,
+  "zh": "经常、经常、通常、倾向于、倾向于"
  },
  {
   "th": "มักจะ",
   "rom": "mák cà",
   "en": "often, usually, tend to, be likely to",
-  "pri": 4
+  "pri": 4,
+  "zh": "经常、通常、倾向于、可能"
  },
  {
   "th": "มั้ง",
   "rom": "máŋ",
   "en": "I guess, maybe",
-  "pri": 4
+  "pri": 4,
+  "zh": "我想、也许"
  },
  {
   "th": "มัด",
   "rom": "mát",
   "en": "tie, bind, fasten, bundle up",
-  "pri": 4
+  "pri": 4,
+  "zh": "捆扎、系紧"
  },
  {
   "th": "มันส์",
   "rom": "man",
   "en": "thrillingly fun, exciting and entertaining",
-  "pri": 4
+  "pri": 4,
+  "zh": "令人兴奋的、令人兴奋的和有趣的"
  },
  {
   "th": "มั่นใจ",
   "rom": "mâncay",
   "en": "be confident, be sure, have confidence in",
-  "pri": 4
+  "pri": 4,
+  "zh": "有信心、一定"
  },
  {
   "th": "มัว",
   "rom": "mua",
   "en": "be occupied with doing, keep on doing, do nothing but",
-  "pri": 4
+  "pri": 4,
+  "zh": "忙于做事、继续做事、什么也不做"
  },
  {
   "th": "มัวแต่",
   "rom": "mua tɛ̀ɛ",
   "en": "keep doing nothing but, be too absorbed in doing",
-  "pri": 4
+  "pri": 4,
+  "zh": "继续无所事事、但过于专注于做事"
  },
  {
   "th": "ม้า",
   "rom": "máa",
   "en": "horse",
-  "pri": 4
+  "pri": 4,
+  "zh": "马"
  },
  {
   "th": "มากมาย",
   "rom": "mâakmaay",
   "en": "many, a great deal, in abundance",
-  "pri": 4
+  "pri": 4,
+  "zh": "很多、大量"
  },
  {
   "th": "ม้านั่ง",
   "rom": "máanâŋ",
   "en": "bench",
-  "pri": 4
+  "pri": 4,
+  "zh": "长椅"
  },
  {
   "th": "มารยาท",
   "rom": "maarayâat",
   "en": "manners, etiquette, courtesy",
-  "pri": 4
+  "pri": 4,
+  "zh": "礼仪、礼仪、礼貌"
  },
  {
   "th": "มารับ",
   "rom": "maa ráp",
   "en": "come to pick someone up; come to collect something, come to pick something up",
-  "pri": 4
+  "pri": 4,
+  "zh": "来接人；来拿东西、来拿东西"
  },
  {
   "th": "มาส่ง",
   "rom": "maa sòŋ",
   "en": "come to deliver (something), come to hand in (a document or assignment); bring (someone to a place), drop (someone) off",
-  "pri": 4
+  "pri": 4,
+  "zh": "前来交付（某物）、前来交出（文件或作业）；把（某人）带到某个地方、让（某人）下车"
  },
  {
   "th": "มาสาย",
   "rom": "maa sǎay",
   "en": "arrive late, be late",
-  "pri": 4
+  "pri": 4,
+  "zh": "迟到"
  },
  {
   "th": "มาหา",
   "rom": "maa hǎa",
   "en": "come to see, come visit, come to meet",
-  "pri": 4
+  "pri": 4,
+  "zh": "来看看、来参观、来见面"
  },
  {
   "th": "มิถุนายน",
   "rom": "míthùnaayon",
   "en": "June",
-  "pri": 4
+  "pri": 4,
+  "zh": "六月"
  },
  {
   "th": "มีด",
   "rom": "mîit",
   "en": "knife, kitchen knife, blade",
-  "pri": 4
+  "pri": 4,
+  "zh": "刀、菜刀、刀片"
  },
  {
   "th": "มีนาคม",
   "rom": "miinaakhom",
   "en": "March",
-  "pri": 4
+  "pri": 4,
+  "zh": "行进"
  },
  {
   "th": "มีผล",
   "rom": "mii phǒn",
   "en": "affect, have an effect on, be effective",
-  "pri": 4
+  "pri": 4,
+  "zh": "影响、有效"
  },
  {
   "th": "มีแต่",
   "rom": "mii tɛ̀ɛ",
   "en": "there is nothing but ..., have only ..., be all ...",
-  "pri": 4
+  "pri": 4,
+  "zh": "没有什么、只有……、全部……"
  },
  {
   "th": "มีไข้",
   "rom": "mii khây",
   "en": "have a fever, be running a temperature",
-  "pri": 4
+  "pri": 4,
+  "zh": "发烧"
  },
  {
   "th": "มึง",
   "rom": "mʉŋ",
   "en": "you [rude], you [insulting], yourself [rude]; you [among close friends], yourself [among close friends]",
-  "pri": 4
+  "pri": 4,
+  "zh": "你[粗鲁]、你[侮辱]、你自己[粗鲁]；你[在亲密的朋友中]、你自己[在亲密的朋友中]"
  },
  {
   "th": "มึน",
   "rom": "mʉn",
   "en": "dazed, woozy, groggy",
-  "pri": 4
+  "pri": 4,
+  "zh": "茫然的、昏昏沉沉的"
  },
  {
   "th": "มืด",
   "rom": "mʉ̂ʉt",
   "en": "dark (lacking light), dim, dark-colored",
-  "pri": 4
+  "pri": 4,
+  "zh": "黑暗（缺乏光线）、昏暗、深色"
  },
  {
   "th": "มื้อ",
   "rom": "mʉ́ʉ",
   "en": "meal; meal [unit for counting meals]",
-  "pri": 4
+  "pri": 4,
+  "zh": "一顿饭;餐 [计算餐数的单位]"
  },
  {
   "th": "มือใหม่",
   "rom": "mʉʉ mày",
   "en": "beginner, novice",
-  "pri": 4
+  "pri": 4,
+  "zh": "初学者、新手"
  },
  {
   "th": "มุก",
   "rom": "múk",
   "en": "joke, gag, comic bit",
-  "pri": 4
+  "pri": 4,
+  "zh": "笑话、笑话、喜剧片段"
  },
  {
   "th": "มุม",
   "rom": "mum",
   "en": "corner, nook, small designated area",
-  "pri": 4
+  "pri": 4,
+  "zh": "角落、角落、小指定区域"
  },
  {
   "th": "ยกเลิก",
   "rom": "yóklə̂ək",
   "en": "cancel, terminate (a service or subscription)",
-  "pri": 4
+  "pri": 4,
+  "zh": "取消、终止（服务或订阅）"
  },
  {
   "th": "ยกเว้น",
   "rom": "yók wén",
   "en": "except, excluding",
-  "pri": 4
+  "pri": 4,
+  "zh": "除外、不包括"
  },
  {
   "th": "ยกให้",
   "rom": "yók hây",
   "en": "transfer (property or rights), give over (something to someone)",
-  "pri": 4
+  "pri": 4,
+  "zh": "转让（财产或权利）、给予（某物给某人）"
  },
  {
   "th": "ย่อ",
   "rom": "yɔ̂ɔ",
   "en": "shorten, reduce, summarize, abbreviate",
-  "pri": 4
+  "pri": 4,
+  "zh": "缩短、减少、总结、缩写"
  },
  {
   "th": "ยอด",
   "rom": "yɔ̂ɔt",
   "en": "total, total amount, amount, balance, aggregate figure",
-  "pri": 4
+  "pri": 4,
+  "zh": "总计、总金额、金额、余额、总计"
  },
  {
   "th": "ย้อน",
   "rom": "yɔ́ɔn",
   "en": "go back in time, look back on, go back and review",
-  "pri": 4
+  "pri": 4,
+  "zh": "回到过去、回顾"
  },
  {
   "th": "ยอม",
   "rom": "yɔɔm",
   "en": "agree to, accept; be willing to, be prepared to, not mind doing",
-  "pri": 4
+  "pri": 4,
+  "zh": "同意、接受；愿意、准备好、不介意做"
  },
  {
   "th": "ยอมรับ",
   "rom": "yɔɔm ráp",
   "en": "accept, acknowledge, agree to, accept (a proposal or condition)",
-  "pri": 4
+  "pri": 4,
+  "zh": "接受、承认、同意、接受（提议或条件）"
  },
  {
   "th": "ยอมแพ้",
   "rom": "yɔɔm phɛ́ɛ",
   "en": "surrender, admit defeat, give up, give in",
-  "pri": 4
+  "pri": 4,
+  "zh": "投降、认输、放弃"
  },
  {
   "th": "ย่า",
   "rom": "yâa",
   "en": "paternal grandmother, Grandma [father&#39;s mother]",
-  "pri": 4
+  "pri": 4,
+  "zh": "祖母、祖母 [父亲的母亲]"
  },
  {
   "th": "ยากจน",
   "rom": "yâak con",
   "en": "poor, impoverished",
-  "pri": 4
+  "pri": 4,
+  "zh": "贫穷的"
  },
  {
   "th": "ยาง",
   "rom": "yaaŋ",
   "en": "rubber, rubber item; tire, tyre",
-  "pri": 4
+  "pri": 4,
+  "zh": "橡胶、橡胶制品；轮胎、轮胎"
  },
  {
   "th": "ย่าง",
   "rom": "yâaŋ",
   "en": "grill, roast over a fire",
-  "pri": 4
+  "pri": 4,
+  "zh": "烧烤、在火上烤"
  },
  {
   "th": "ย่าน",
   "rom": "yâan",
   "en": "area, district, neighborhood, locality",
-  "pri": 4
+  "pri": 4,
+  "zh": "地区、区、邻里、地方"
  },
  {
   "th": "ยาม",
   "rom": "yaam",
   "en": "time, period, occasion; security guard, sentry",
-  "pri": 4
+  "pri": 4,
+  "zh": "时间、时期、场合；保安员、哨兵"
  },
  {
   "th": "ยาย",
   "rom": "yaay",
   "en": "maternal grandmother, Grandma [maternal]",
-  "pri": 4
+  "pri": 4,
+  "zh": "外婆、祖母 [母亲]"
  },
  {
   "th": "ย้าย",
   "rom": "yáay",
   "en": "move, move something, relocate, transfer, change location, reschedule",
-  "pri": 4
+  "pri": 4,
+  "zh": "移动、移动某物、搬迁、转移、改变位置、重新安排"
  },
  {
   "th": "ย้ายบ้าน",
   "rom": "yáay bâan",
   "en": "move house, move to a new home",
-  "pri": 4
+  "pri": 4,
+  "zh": "搬家、搬到新家"
  },
  {
   "th": "ยาสีฟัน",
   "rom": "yaa sǐi fan",
   "en": "toothpaste",
-  "pri": 4
+  "pri": 4,
+  "zh": "牙膏"
  },
  {
   "th": "ยำ",
   "rom": "yam",
   "en": "yam (Thai spicy and sour mixed dish), Thai spicy salad",
-  "pri": 4
+  "pri": 4,
+  "zh": "山药（泰式酸辣拌菜）、泰式辣沙拉"
  },
  {
   "th": "ย้ำ",
   "rom": "yáam",
   "en": "reiterate, emphasize repeatedly, insist",
-  "pri": 4
+  "pri": 4,
+  "zh": "重申、反复强调、坚持"
  },
  {
   "th": "ยิง",
   "rom": "yiŋ",
   "en": "shoot, fire (a weapon); shoot (at goal), score (a goal)",
-  "pri": 4
+  "pri": 4,
+  "zh": "射击、开火（武器）；射门（射门）、得分（进球）"
  },
  {
   "th": "ยิ่ง",
   "rom": "yîŋ",
   "en": "even more, all the more; the more …, the more …",
-  "pri": 4
+  "pri": 4,
+  "zh": "甚至更多、更多；越……越……"
  },
  {
   "th": "ยินดี",
   "rom": "yindii",
   "en": "be glad, be pleased; be happy to do, be willing to do",
-  "pri": 4
+  "pri": 4,
+  "zh": "高兴、高兴；乐意做、愿意做"
  },
  {
   "th": "ยินดีที่ได้รู้จัก",
   "rom": "yindii thîi dây rúucàk",
   "en": "pleased to meet you, nice to meet you",
-  "pri": 4
+  "pri": 4,
+  "zh": "很高兴认识你"
  },
  {
   "th": "ยิ้ม",
   "rom": "yím",
   "en": "smile",
-  "pri": 4
+  "pri": 4,
+  "zh": "微笑"
  },
  {
   "th": "ยี่สิบเปอร์เซ็นต์",
   "rom": "yîisìp pəəsen",
   "en": "twenty percent, one fifth",
-  "pri": 4
+  "pri": 4,
+  "zh": "百分之二十、五分之一"
  },
  {
   "th": "ยี่สิบเอ็ด",
   "rom": "yîisìp èt",
   "en": "21",
-  "pri": 4
+  "pri": 4,
+  "zh": "21"
  },
  {
   "th": "ยืด",
   "rom": "yʉ̂ʉt",
   "en": "stretch, stretch out, expand, lengthen",
-  "pri": 4
+  "pri": 4,
+  "zh": "伸展、扩大、拉长"
  },
  {
   "th": "ยื่น",
   "rom": "yʉ̂ʉn",
   "en": "hand over, pass (something to someone), extend (a hand, arm, etc.)",
-  "pri": 4
+  "pri": 4,
+  "zh": "移交、传递（某物给某人）、伸出（手、手臂等）"
  },
  {
   "th": "ยืนยัน",
   "rom": "yʉʉnyan",
   "en": "confirm, affirm, insist",
-  "pri": 4
+  "pri": 4,
+  "zh": "确认、肯定、坚持"
  },
  {
   "th": "ยืม",
   "rom": "yʉʉm",
   "en": "borrow",
-  "pri": 4
+  "pri": 4,
+  "zh": "借"
  },
  {
   "th": "ยุง",
   "rom": "yuŋ",
   "en": "mosquito",
-  "pri": 4
+  "pri": 4,
+  "zh": "蚊子"
  },
  {
   "th": "รก",
   "rom": "rók",
   "en": "messy, cluttered, untidy",
-  "pri": 4
+  "pri": 4,
+  "zh": "凌乱的、杂乱的、不整齐的"
  },
  {
   "th": "รถจักรยาน",
   "rom": "rótcakkrayaan",
   "en": "bicycle, bike",
-  "pri": 4
+  "pri": 4,
+  "zh": "自行车"
  },
  {
   "th": "รถติด",
   "rom": "rót tìt",
   "en": "be stuck in traffic, traffic is congested",
-  "pri": 4
+  "pri": 4,
+  "zh": "堵车、交通拥堵"
  },
  {
   "th": "รถทัวร์",
   "rom": "rót thua",
   "en": "intercity coach, tour bus",
-  "pri": 4
+  "pri": 4,
+  "zh": "城际客车、旅游巴士"
  },
  {
   "th": "รถบัส",
   "rom": "rótbát",
   "en": "bus",
-  "pri": 4
+  "pri": 4,
+  "zh": "公共汽车"
  },
  {
   "th": "รถมอเตอร์ไซค์",
   "rom": "rót mɔɔtəəsay",
   "en": "motorcycle, motorbike",
-  "pri": 4
+  "pri": 4,
+  "zh": "摩托车"
  },
  {
   "th": "รถยนต์",
   "rom": "rótyon",
   "en": "car, automobile",
-  "pri": 4
+  "pri": 4,
+  "zh": "汽车"
  },
  {
   "th": "รถเมล์",
   "rom": "rót mee",
   "en": "public bus, city bus",
-  "pri": 4
+  "pri": 4,
+  "zh": "公共巴士、城市巴士"
  },
  {
   "th": "รถเสีย",
   "rom": "rót sǐa",
   "en": "a vehicle breaks down",
-  "pri": 4
+  "pri": 4,
+  "zh": "车辆抛锚"
  },
  {
   "th": "รถแท็กซี่",
   "rom": "rót thɛ́ksîi",
   "en": "taxi, cab",
-  "pri": 4
+  "pri": 4,
+  "zh": "出租车"
  },
  {
   "th": "รถไฟ",
   "rom": "rót fay",
   "en": "train",
-  "pri": 4
+  "pri": 4,
+  "zh": "火车"
  },
  {
   "th": "รถไฟฟ้า",
   "rom": "rót fay fáa",
   "en": "electric train, urban rail system",
-  "pri": 4
+  "pri": 4,
+  "zh": "电动火车、城市轨道交通系统"
  },
  {
   "th": "รถไฟใต้ดิน",
   "rom": "rót fay tâay din",
   "en": "subway, metro, underground railway",
-  "pri": 4
+  "pri": 4,
+  "zh": "地铁"
  },
  {
   "th": "รบกวน",
   "rom": "rópkuan",
   "en": "disturb, bother, interfere with (sound, signals, or normal operation); ask someone to do something [considerately], trouble someone to do something",
-  "pri": 4
+  "pri": 4,
+  "zh": "扰乱、扰乱、干扰（声音、信号或正常操作）；要求某人做某事[体贴地]、麻烦某人做某事"
  },
  {
   "th": "ร่ม",
   "rom": "rôm",
   "en": "umbrella, parasol",
-  "pri": 4
+  "pri": 4,
+  "zh": "雨伞、阳伞"
  },
  {
   "th": "ร่วง",
   "rom": "rûaŋ",
   "en": "fall off (leaves, fruit, etc.), come out (hair, teeth, etc.), fall (tears, drops, etc.)",
-  "pri": 4
+  "pri": 4,
+  "zh": "脱落（树叶、果实等）、脱落（头发、牙齿等）、掉落（眼泪、水滴等）"
  },
  {
   "th": "รวม",
   "rom": "ruam",
   "en": "gather, collect, combine, put together; add up, total, sum; include, cover, include in the price",
-  "pri": 4
+  "pri": 4,
+  "zh": "收集、收集、组合、放在一起；加起来、合计、总和；包括、涵盖、包含在价格中"
  },
  {
   "th": "ร่วม",
   "rom": "rûam",
   "en": "join, participate in, take part in, share; together, jointly, collectively",
-  "pri": 4
+  "pri": 4,
+  "zh": "加入、参加、参加、分享；一起、共同"
  },
  {
   "th": "รวย",
   "rom": "ruay",
   "en": "rich, wealthy, well-off",
-  "pri": 4
+  "pri": 4,
+  "zh": "有钱的、富裕的"
  },
  {
   "th": "รส",
   "rom": "rót",
   "en": "taste, flavor",
-  "pri": 4
+  "pri": 4,
+  "zh": "味道"
  },
  {
   "th": "รอง",
   "rom": "rɔɔŋ",
   "en": "deputy, vice-, second, secondary",
-  "pri": 4
+  "pri": 4,
+  "zh": "副、第二、次要"
  },
  {
   "th": "รองเท้า",
   "rom": "rɔɔŋtháaw",
   "en": "shoe, footwear",
-  "pri": 4
+  "pri": 4,
+  "zh": "鞋、鞋类"
  },
  {
   "th": "ร้องไห้",
   "rom": "rɔ́ɔŋ hây",
   "en": "cry",
-  "pri": 4
+  "pri": 4,
+  "zh": "哭"
  },
  {
   "th": "รอด",
   "rom": "rɔ̂ɔt",
   "en": "survive, make it out alive; escape (danger or an unwanted outcome), make it through, pull through",
-  "pri": 4
+  "pri": 4,
+  "zh": "生存下来、活着出来；逃脱（危险或不想要的结果）、渡过难关"
  },
  {
   "th": "รอดู",
   "rom": "rɔɔ duu",
   "en": "wait and see, see how things turn out, wait to find out",
-  "pri": 4
+  "pri": 4,
+  "zh": "等等看、看看事情如何发展、等待找出答案"
  },
  {
   "th": "รอบ",
   "rom": "rɔ̂ɔp",
   "en": "around, surrounding; lap, round, time [completed repetition]; showing, run, scheduled slot, session",
-  "pri": 4
+  "pri": 4,
+  "zh": "周围、​​周围；一圈、一圈、时间[完成的重复]；显示、运行、预定时段、会话"
  },
  {
   "th": "รอบๆ",
   "rom": "rɔ̂ɔp rɔ̂ɔp",
   "en": "around, nearby, in the surrounding area; surrounding, nearby, around",
-  "pri": 4
+  "pri": 4,
+  "zh": "周围、附近、周围地区；周围的、附近的、周围的"
  },
  {
   "th": "รอย",
   "rom": "rɔɔy",
   "en": "mark, scratch, stain, scar or crease",
-  "pri": 4
+  "pri": 4,
+  "zh": "痕迹、划痕、污点、疤痕或折痕"
  },
  {
   "th": "ระบบ",
   "rom": "rábòp",
   "en": "system",
-  "pri": 4
+  "pri": 4,
+  "zh": "系统"
  },
  {
   "th": "ระบาย",
   "rom": "rábaay",
   "en": "vent (one&#39;s feelings), open up about (one&#39;s troubles), relieve (stress), take (one&#39;s anger) out on someone",
-  "pri": 4
+  "pri": 4,
+  "zh": "发泄（某人的感受）、敞开心扉（某人的烦恼）、缓解（压力）、向某人发泄（某人的愤怒）"
  },
  {
   "th": "ระยะ",
   "rom": "ráyá",
   "en": "distance, spacing, interval; period, span of time, time",
-  "pri": 4
+  "pri": 4,
+  "zh": "距离、间距、间隔；时期、时间跨度、时间"
  },
  {
   "th": "ระวัง",
   "rom": "ráwaŋ",
   "en": "be careful, watch out for, beware of; Watch out!, Be careful!",
-  "pri": 4
+  "pri": 4,
+  "zh": "小心、当心、当心；小心！、小心！"
  },
  {
   "th": "รักษา",
   "rom": "ráksǎa",
   "en": "treat (an illness or injury), give medical care; maintain, keep, preserve",
-  "pri": 4
+  "pri": 4,
+  "zh": "治疗（疾病或受伤）、提供医疗护理；维护、保留、保存"
  },
  {
   "th": "รับโทรศัพท์",
   "rom": "ráp thoorasàp",
   "en": "answer the phone, handle phone calls",
-  "pri": 4
+  "pri": 4,
+  "zh": "接听电话、处理电话"
  },
  {
   "th": "รั้ว",
   "rom": "rúa",
   "en": "fence, hurdle (in track and field)",
-  "pri": 4
+  "pri": 4,
+  "zh": "栅栏、栏架（田径场）"
  },
  {
   "th": "ราก",
   "rom": "râak",
   "en": "root (of a plant, tooth, or hair)",
-  "pri": 4
+  "pri": 4,
+  "zh": "（植物、牙齿或头发的）根"
  },
  {
   "th": "ราคาสินค้า",
   "rom": "raakhaa sǐnkháa",
   "en": "price of goods",
-  "pri": 4
+  "pri": 4,
+  "zh": "商品价格"
  },
  {
   "th": "ร่างกาย",
   "rom": "râaŋ kaay",
   "en": "body, physical body, physique",
-  "pri": 4
+  "pri": 4,
+  "zh": "身体、体质"
  },
  {
   "th": "ร่างกายแข็งแรง",
   "rom": "râaŋkaay khɛ̌ŋrɛɛŋ",
   "en": "physically healthy and strong, in good physical condition",
-  "pri": 4
+  "pri": 4,
+  "zh": "身体健康强壮、身体状况良好"
  },
  {
   "th": "ราด",
   "rom": "râat",
   "en": "pour over, cover with (a liquid or flowing substance)",
-  "pri": 4
+  "pri": 4,
+  "zh": "倾倒、用（液体或流动物质）覆盖"
  },
  {
   "th": "ร้านกาแฟ",
   "rom": "ráan kaafɛɛ",
   "en": "coffee shop, café",
-  "pri": 4
+  "pri": 4,
+  "zh": "咖啡厅、咖啡馆"
  },
  {
   "th": "ร้านขายของชำ",
   "rom": "ráan khǎay khɔ̌ɔŋ cham",
   "en": "grocery store",
-  "pri": 4
+  "pri": 4,
+  "zh": "杂货店"
  },
  {
   "th": "ร้านขายยา",
   "rom": "ráan khǎay yaa",
   "en": "pharmacy, drugstore",
-  "pri": 4
+  "pri": 4,
+  "zh": "药房、药店"
  },
  {
   "th": "ร้านตัดผม",
   "rom": "ráan tàt phǒm",
   "en": "barbershop",
-  "pri": 4
+  "pri": 4,
+  "zh": "理发店"
  },
  {
   "th": "ร้านหนังสือ",
   "rom": "ráan nǎŋsʉ̌ʉ",
   "en": "bookstore, bookshop",
-  "pri": 4
+  "pri": 4,
+  "zh": "书店"
  },
  {
   "th": "ร้านอาหาร",
   "rom": "ráan aahǎan",
   "en": "restaurant",
-  "pri": 4
+  "pri": 4,
+  "zh": "餐厅"
  },
  {
   "th": "ร้านเสริมสวย",
   "rom": "ráan sə̌əm sǔay",
   "en": "beauty salon, hair salon",
-  "pri": 4
+  "pri": 4,
+  "zh": "美容院、美发厅"
  },
  {
   "th": "ร้าย",
   "rom": "ráay",
   "en": "evil, cruel, malicious; bad (news, dreams, etc.), ominous, unlucky",
-  "pri": 4
+  "pri": 4,
+  "zh": "邪恶的、残忍的、恶意的；坏的（消息、梦境等）、不祥的、不幸的"
  },
  {
   "th": "รายการ",
   "rom": "raaykaan",
   "en": "list, menu; show, program (broadcast or streamed)",
-  "pri": 4
+  "pri": 4,
+  "zh": "列表、菜单；节目、节目（广播或流媒体）"
  },
  {
   "th": "ราว",
   "rom": "raaw",
   "en": "about, approximately, around (a time or amount)",
-  "pri": 4
+  "pri": 4,
+  "zh": "大约、大约（时间或数量）"
  },
  {
   "th": "ราว ๆ",
   "rom": "raaw raaw",
   "en": "approximately, around",
-  "pri": 4
+  "pri": 4,
+  "zh": "大约"
  },
  {
   "th": "ราวๆ",
   "rom": "raw raaw",
   "en": "about, around, approximately",
-  "pri": 4
+  "pri": 4,
+  "zh": "大约"
  },
  {
   "th": "รำคาญ",
   "rom": "ramkhaan",
   "en": "be annoyed by, be bothered by, be irritated by",
-  "pri": 4
+  "pri": 4,
+  "zh": "因...而烦恼、因...而恼怒"
  },
  {
   "th": "ริม",
   "rom": "rim",
   "en": "edge, rim, side, bank (of a river or canal); by, beside, alongside, at the side of",
-  "pri": 4
+  "pri": 4,
+  "zh": "（河流或运河的）边缘、边缘、侧边、岸边；旁边、旁边"
  },
  {
   "th": "รีบ",
   "rom": "rîip",
   "en": "hurry, rush",
-  "pri": 4
+  "pri": 4,
+  "zh": "快点"
  },
  {
   "th": "รีวิว",
   "rom": "riiwiw",
   "en": "review",
-  "pri": 4
+  "pri": 4,
+  "zh": "审查"
  },
  {
   "th": "รุ่น",
   "rom": "rûn",
   "en": "generation, age group; model, product generation",
-  "pri": 4
+  "pri": 4,
+  "zh": "世代、年龄组；模型、产品生成"
  },
  {
   "th": "รุนแรง",
   "rom": "runrɛɛŋ",
   "en": "severe, intense, severely, intensely",
-  "pri": 4
+  "pri": 4,
+  "zh": "严重、严重、严重、严重"
  },
  {
   "th": "รู",
   "rom": "ruu",
   "en": "hole, opening, burrow",
-  "pri": 4
+  "pri": 4,
+  "zh": "洞、开口、洞穴"
  },
  {
   "th": "รู้",
   "rom": "rúu",
   "en": "know (information or a fact), find out, become aware (of something)",
-  "pri": 4
+  "pri": 4,
+  "zh": "知道（信息或事实）、发现、意识到（某事）"
  },
  {
   "th": "รู้ตัว",
   "rom": "rúutua",
   "en": "be aware of oneself, realize what one is doing",
-  "pri": 4
+  "pri": 4,
+  "zh": "意识到自己、意识到自己在做什么"
  },
  {
   "th": "รูป",
   "rom": "rûup",
   "en": "photo, picture; image; [classifier for photos and pictures]",
-  "pri": 4
+  "pri": 4,
+  "zh": "照片、图片；图像; [照片和图片分类器]"
  },
  {
   "th": "รูปถ่าย",
   "rom": "rûupthàay",
   "en": "photograph",
-  "pri": 4
+  "pri": 4,
+  "zh": "照片"
  },
  {
   "th": "รูปร่าง",
   "rom": "rûuprâaŋ",
   "en": "build, figure (body shape); shape, physical form",
-  "pri": 4
+  "pri": 4,
+  "zh": "身材、身材（身体形状）；形状、物理形态"
  },
  {
   "th": "ฤดู",
   "rom": "rʉ́duu",
   "en": "season, period",
-  "pri": 4
+  "pri": 4,
+  "zh": "季节、期间"
  },
  {
   "th": "ฤดูฝน",
   "rom": "rʉ́duu fǒn",
   "en": "rainy season",
-  "pri": 4
+  "pri": 4,
+  "zh": "雨季"
  },
  {
   "th": "ลงทะเบียน",
   "rom": "loŋ thabian",
   "en": "register, enroll",
-  "pri": 4
+  "pri": 4,
+  "zh": "注册、登记"
  },
  {
   "th": "ลด",
   "rom": "lót",
   "en": "reduce, lower, turn down, lessen, alleviate; decrease, drop, fall, go down; discount, reduce the price, mark down",
-  "pri": 4
+  "pri": 4,
+  "zh": "减少、降低、调低、缓解；下降、下降、下降；折扣、降价"
  },
  {
   "th": "ลดราคา",
   "rom": "lót raakhaa",
   "en": "lower the price, discount, be on sale",
-  "pri": 4
+  "pri": 4,
+  "zh": "降低价格、打折、打折"
  },
  {
   "th": "ลดลง",
   "rom": "lót loŋ",
   "en": "decrease, decline, drop, become lower, lessen",
-  "pri": 4
+  "pri": 4,
+  "zh": "减少、减少、减少、降低、减少"
  },
  {
   "th": "ลบ",
   "rom": "lóp",
   "en": "erase, delete, remove",
-  "pri": 4
+  "pri": 4,
+  "zh": "抹去、删除、除去"
  },
  {
   "th": "ลม",
   "rom": "lom",
   "en": "wind, breeze, airflow",
-  "pri": 4
+  "pri": 4,
+  "zh": "风、微风、气流"
  },
  {
   "th": "ลมพัด",
   "rom": "lom phát",
   "en": "the wind blows",
-  "pri": 4
+  "pri": 4,
+  "zh": "风吹过"
  },
  {
   "th": "ลวก",
   "rom": "lûak",
   "en": "blanch, parboil briefly",
-  "pri": 4
+  "pri": 4,
+  "zh": "焯水、短暂煮沸"
  },
  {
   "th": "ล้อ",
   "rom": "lɔ́ɔ",
   "en": "wheel, caster; tease, make fun of, mock",
-  "pri": 4
+  "pri": 4,
+  "zh": "轮子、脚轮；戏弄、取笑、嘲笑"
  },
  {
   "th": "ล็อก",
   "rom": "lɔ́k",
   "en": "lock, secure in place, restrain (someone physically)",
-  "pri": 4
+  "pri": 4,
+  "zh": "锁定、固定到位、约束（身体上的某人）"
  },
  {
   "th": "ลองดู",
   "rom": "lɔɔŋ duu",
   "en": "try it, give it a try, try and see",
-  "pri": 4
+  "pri": 4,
+  "zh": "尝试一下、尝试看看"
  },
  {
   "th": "ล้อเล่น",
   "rom": "lɔ́ɔ lên",
   "en": "joke, tease",
-  "pri": 4
+  "pri": 4,
+  "zh": "玩笑、戏弄"
  },
  {
   "th": "ละ",
   "rom": "lá",
   "en": "per, each, every; [sentence-final emphasis], already [casual], now; then [casual closing]",
-  "pri": 4
+  "pri": 4,
+  "zh": "每个、每一个、每一个； [句末强调]、已经[随意]、现在；然后[随意结束]"
  },
  {
   "th": "ล่ะ",
   "rom": "là",
   "en": "what about...?, then?, so...?; [conversational emphasis], then; in that case, go ahead and..., come on...",
-  "pri": 4
+  "pri": 4,
+  "zh": "那……怎么样？、那么……？； [会话重点]、那么；既然如此、那就继续吧……来吧……"
  },
  {
   "th": "ละคร",
   "rom": "lakhɔɔn",
   "en": "play, drama, stage performance, TV drama",
-  "pri": 4
+  "pri": 4,
+  "zh": "话剧、话剧、舞台表演、电视剧"
  },
  {
   "th": "ละลาย",
   "rom": "lálaay",
   "en": "melt, thaw; dissolve",
-  "pri": 4
+  "pri": 4,
+  "zh": "融化、解冻；溶解"
  },
  {
   "th": "ละเอียด",
   "rom": "láìat",
   "en": "detailed, in detail, specific",
-  "pri": 4
+  "pri": 4,
+  "zh": "详细的、具体的"
  },
  {
   "th": "ลังเล",
   "rom": "laŋlee",
   "en": "hesitate, waver, be undecided",
-  "pri": 4
+  "pri": 4,
+  "zh": "犹豫、犹豫、犹豫不决"
  },
  {
   "th": "ลับ",
   "rom": "láp",
   "en": "secret, confidential; sharpen (a blade), hone (the mind or a skill)",
-  "pri": 4
+  "pri": 4,
+  "zh": "秘密的、机密的；磨利（刀片）、磨练（头脑或技能）"
  },
  {
   "th": "ลา",
   "rom": "laa",
   "en": "take leave, take time off, request leave",
-  "pri": 4
+  "pri": 4,
+  "zh": "请假、请假、请假"
  },
  {
   "th": "ลาก",
   "rom": "lâak",
   "en": "drag, haul, tow; draw (a line), drag (an on-screen item)",
-  "pri": 4
+  "pri": 4,
+  "zh": "拖、拉、拖；绘制（一条线）、拖动（屏幕上的项目）"
  },
  {
   "th": "ลาก่อน",
   "rom": "laa kɔ̀ɔn",
   "en": "goodbye, farewell",
-  "pri": 4
+  "pri": 4,
+  "zh": "再见"
  },
  {
   "th": "ล่าง",
   "rom": "lâaŋ",
   "en": "lower, bottom",
-  "pri": 4
+  "pri": 4,
+  "zh": "下部、底部"
  },
  {
   "th": "ล้าง",
   "rom": "láaŋ",
   "en": "wash",
-  "pri": 4
+  "pri": 4,
+  "zh": "洗"
  },
  {
   "th": "ล้างมือ",
   "rom": "láaŋ mʉʉ",
   "en": "wash one&#39;s hands",
-  "pri": 4
+  "pri": 4,
+  "zh": "洗手"
  },
  {
   "th": "ล่าช้า",
   "rom": "lâa cháa",
   "en": "delayed, slow (in progressing), slowly",
-  "pri": 4
+  "pri": 4,
+  "zh": "延迟的、缓慢的（进行中）、慢慢地"
  },
  {
   "th": "ลาน",
   "rom": "laan",
   "en": "open area, yard, courtyard, plaza",
-  "pri": 4
+  "pri": 4,
+  "zh": "空地、庭院、庭院、广场"
  },
  {
   "th": "ล้าน",
   "rom": "láan",
   "en": "one million",
-  "pri": 4
+  "pri": 4,
+  "zh": "一百万"
  },
  {
   "th": "ลาย",
   "rom": "laay",
   "en": "pattern; design, lines; markings",
-  "pri": 4
+  "pri": 4,
+  "zh": "图案;设计、线条；标记"
  },
  {
   "th": "ล่าสุด",
   "rom": "lâasùt",
   "en": "latest; most recent, most recently",
-  "pri": 4
+  "pri": 4,
+  "zh": "最新的;最近的、最近的"
  },
  {
   "th": "ลาออก",
   "rom": "laa ɔ̀ɔk",
   "en": "resign, quit (a job, school, etc.)",
-  "pri": 4
+  "pri": 4,
+  "zh": "辞职、退出（工作、学校等）"
  },
  {
   "th": "ลำ",
   "rom": "lam",
   "en": "[classifier for boats and ships], [classifier for aircraft], [classifier for bamboo and certain long objects]",
-  "pri": 4
+  "pri": 4,
+  "zh": "[船舶分类器]、[飞机分类器]、[竹子和某些长物体分类器]"
  },
  {
   "th": "ลำดับ",
   "rom": "lamdàp",
   "en": "order, sequence, position in an order",
-  "pri": 4
+  "pri": 4,
+  "zh": "顺序、序列、顺序中的位置"
  },
  {
   "th": "ลำบาก",
   "rom": "lambàak",
   "en": "hard, difficult, troublesome, with difficulty",
-  "pri": 4
+  "pri": 4,
+  "zh": "困难的、麻烦的、有困难的"
  },
  {
   "th": "ลิ้น",
   "rom": "lín",
   "en": "tongue",
-  "pri": 4
+  "pri": 4,
+  "zh": "舌头"
  },
  {
   "th": "ลึก",
   "rom": "lʉ́k",
   "en": "deep, far inside",
-  "pri": 4
+  "pri": 4,
+  "zh": "深处、深处"
  },
  {
   "th": "ลื่น",
   "rom": "lʉ̂ʉn",
   "en": "slip, slide; slippery",
-  "pri": 4
+  "pri": 4,
+  "zh": "滑倒、滑动；滑"
  },
  {
   "th": "ลืมตา",
   "rom": "lʉʉm taa",
   "en": "open one’s eyes",
-  "pri": 4
+  "pri": 4,
+  "zh": "睁开眼睛"
  },
  {
   "th": "ลุง",
   "rom": "luŋ",
   "en": "uncle (a parent&#39;s older brother); uncle (familiar term for an older man), older man",
-  "pri": 4
+  "pri": 4,
+  "zh": "叔叔（父母的哥哥）；叔叔（对年长男人的熟悉称呼）、年长的男人"
  },
  {
   "th": "ลุย",
   "rom": "luy",
   "en": "go for it, tackle enthusiastically",
-  "pri": 4
+  "pri": 4,
+  "zh": "全力以赴、热情应对"
  },
  {
   "th": "ลูกคนเล็ก",
   "rom": "lûuk khon lék",
   "en": "youngest child",
-  "pri": 4
+  "pri": 4,
+  "zh": "最小的孩子"
  },
  {
   "th": "ลูกค้า",
   "rom": "lûukkháa",
   "en": "customer, client",
-  "pri": 4
+  "pri": 4,
+  "zh": "顾客、客户"
  },
  {
   "th": "ลูกชาย",
   "rom": "lûuk chaay",
   "en": "son",
-  "pri": 4
+  "pri": 4,
+  "zh": "儿子"
  },
  {
   "th": "ลูกพี่ลูกน้อง",
   "rom": "lûuk phîi lûuk nɔ́ɔŋ",
   "en": "cousin",
-  "pri": 4
+  "pri": 4,
+  "zh": "表哥"
  },
  {
   "th": "ลูกสาว",
   "rom": "lûuk sǎaw",
   "en": "daughter",
-  "pri": 4
+  "pri": 4,
+  "zh": "女儿"
  },
  {
   "th": "วง",
   "rom": "woŋ",
   "en": "circle, ring, loop; band, musical group, circle (of people); [classifier for rings and bracelets], [classifier for bands and musical groups]",
-  "pri": 4
+  "pri": 4,
+  "zh": "圆、环、环；乐队、音乐团体、（人的）圈子； [戒指和手镯的分类器]、[乐队和音乐团体的分类器]"
  },
  {
   "th": "วัด",
   "rom": "wát",
   "en": "temple, Buddhist temple, monastery; measure, take a measurement, gauge",
-  "pri": 4
+  "pri": 4,
+  "zh": "寺庙、佛寺、寺院；测量、进行测量、测量"
  },
  {
   "th": "วันก่อน",
   "rom": "wan kɔ̀ɔn",
   "en": "the other day, a few days ago",
-  "pri": 4
+  "pri": 4,
+  "zh": "前几天、几天前"
  },
  {
   "th": "วันพฤหัส",
   "rom": "wan pharʉ́hàt",
   "en": "Thursday",
-  "pri": 4
+  "pri": 4,
+  "zh": "周四"
  },
  {
   "th": "วันหยุด",
   "rom": "wan yùt",
   "en": "day off, holiday",
-  "pri": 4
+  "pri": 4,
+  "zh": "休息日、假期"
  },
  {
   "th": "วันเกิด",
   "rom": "wan kə̀ət",
   "en": "birthday, day of birth",
-  "pri": 4
+  "pri": 4,
+  "zh": "生日、出生日期"
  },
  {
   "th": "วันเวย์",
   "rom": "wan wee",
   "en": "one-way (traffic, road)",
-  "pri": 4
+  "pri": 4,
+  "zh": "单向（交通、道路）"
  },
  {
   "th": "วัย",
   "rom": "way",
   "en": "age range, age group",
-  "pri": 4
+  "pri": 4,
+  "zh": "年龄范围、年龄组"
  },
  {
   "th": "วัยรุ่น",
   "rom": "wayrûn",
   "en": "young person, adolescent",
-  "pri": 4
+  "pri": 4,
+  "zh": "年轻人、青少年"
  },
  {
   "th": "วัว",
   "rom": "wua",
   "en": "cow; bovine",
-  "pri": 4
+  "pri": 4,
+  "zh": "奶牛;牛"
  },
  {
   "th": "วางสาย",
   "rom": "waaŋ sǎay",
   "en": "hang up, end a phone call",
-  "pri": 4
+  "pri": 4,
+  "zh": "挂断电话"
  },
  {
   "th": "วางแผน",
   "rom": "waaŋ phɛ̌ɛn",
   "en": "plan, make a plan, plot (something bad)",
-  "pri": 4
+  "pri": 4,
+  "zh": "计划、制定计划、策划（不好的事情）"
  },
  {
   "th": "วาด",
   "rom": "wâat",
   "en": "draw, sketch, paint (a picture)",
-  "pri": 4
+  "pri": 4,
+  "zh": "画画、素描、绘画（一幅画）"
  },
  {
   "th": "วาดรูป",
   "rom": "wâat rûup",
   "en": "draw a picture, paint a picture",
-  "pri": 4
+  "pri": 4,
+  "zh": "画一幅画"
  },
  {
   "th": "ว่าย",
   "rom": "wâay",
   "en": "swim, move through water",
-  "pri": 4
+  "pri": 4,
+  "zh": "游泳、在水中移动"
  },
  {
   "th": "ว่ายน้ำ",
   "rom": "wâay náam",
   "en": "swim",
-  "pri": 4
+  "pri": 4,
+  "zh": "游泳"
  },
  {
   "th": "ว้าว",
   "rom": "wáaw",
   "en": "Wow!",
-  "pri": 4
+  "pri": 4,
+  "zh": "哇！"
  },
  {
   "th": "วิชา",
   "rom": "wíchaa",
   "en": "subject, course subject",
-  "pri": 4
+  "pri": 4,
+  "zh": "科目、课程主题"
  },
  {
   "th": "วิทยุ",
   "rom": "wítthayú",
   "en": "radio, radio receiver",
-  "pri": 4
+  "pri": 4,
+  "zh": "收音机、无线电接收器"
  },
  {
   "th": "วิธี",
   "rom": "wíthii",
   "en": "method, way, means, procedure",
-  "pri": 4
+  "pri": 4,
+  "zh": "方法、途径、手段、程序"
  },
  {
   "th": "วินาที",
   "rom": "wínaathii",
   "en": "second",
-  "pri": 4
+  "pri": 4,
+  "zh": "第二"
  },
  {
   "th": "วิว",
   "rom": "wiw",
   "en": "view, scenic view, landscape, panorama",
-  "pri": 4
+  "pri": 4,
+  "zh": "视图、风景、景观、全景"
  },
  {
   "th": "วีซ่า",
   "rom": "wiisâa",
   "en": "visa",
-  "pri": 4
+  "pri": 4,
+  "zh": "签证"
  },
  {
   "th": "วีดีโอ",
   "rom": "wiidiioo",
   "en": "video",
-  "pri": 4
+  "pri": 4,
+  "zh": "视频"
  },
  {
   "th": "ศัพท์",
   "rom": "sàp",
   "en": "word, vocabulary",
-  "pri": 4
+  "pri": 4,
+  "zh": "单词、词汇"
  },
  {
   "th": "สกปรก",
   "rom": "sòkkapròk",
   "en": "dirty, unclean",
-  "pri": 4
+  "pri": 4,
+  "zh": "肮脏的、不干净的"
  },
  {
   "th": "สงกรานต์",
   "rom": "sǒŋkraan",
   "en": "Songkran, Thai New Year festival",
-  "pri": 4
+  "pri": 4,
+  "zh": "宋干节、泰国新年节日"
  },
  {
   "th": "สงบ",
   "rom": "saŋòp",
   "en": "calm, peaceful, composed; calm down, settle down, subside",
-  "pri": 4
+  "pri": 4,
+  "zh": "冷静、平和、沉着；平静下来、安定下来、平息下来"
  },
  {
   "th": "สงสัย",
   "rom": "sǒŋsǎy",
   "en": "wonder about, doubt, suspect (someone); apparently, probably, I guess",
-  "pri": 4
+  "pri": 4,
+  "zh": "想知道、怀疑、怀疑（某人）；显然、可能、我猜"
  },
  {
   "th": "สงสัยว่า...",
   "rom": "sǒŋsǎy wâa",
   "en": "wonder whether ..., wonder why/how ...; suspect that ..., figure that ... may be the case",
-  "pri": 4
+  "pri": 4,
+  "zh": "想知道是否...、想知道为什么/如何...；怀疑...、认为...可能是这种情况"
  },
  {
   "th": "สงสาร",
   "rom": "sǒŋsǎan",
   "en": "feel sorry for, pity",
-  "pri": 4
+  "pri": 4,
+  "zh": "感到遗憾、遗憾"
  },
  {
   "th": "สดใส",
   "rom": "sòtsǎy",
   "en": "bright, vivid, clear (of the sky)",
-  "pri": 4
+  "pri": 4,
+  "zh": "（天空的）明亮、生动、清晰"
  },
  {
   "th": "สตาร์ท",
   "rom": "satáat",
   "en": "start (an engine or vehicle)",
-  "pri": 4
+  "pri": 4,
+  "zh": "启动（发动机或车辆）"
  },
  {
   "th": "สถานี",
   "rom": "sathǎanii",
   "en": "station, terminal",
-  "pri": 4
+  "pri": 4,
+  "zh": "车站、航站楼"
  },
  {
   "th": "สถานีขนส่ง",
   "rom": "sàthǎanii khǒn sòŋ",
   "en": "bus terminal, intercity bus station",
-  "pri": 4
+  "pri": 4,
+  "zh": "巴士总站、城际巴士站"
  },
  {
   "th": "สถานีตำรวจ",
   "rom": "sathǎanii tamrùat",
   "en": "police station",
-  "pri": 4
+  "pri": 4,
+  "zh": "警察局"
  },
  {
   "th": "สนับสนุน",
   "rom": "sanàpsanǔn",
   "en": "support, sponsor",
-  "pri": 4
+  "pri": 4,
+  "zh": "支持、赞助"
  },
  {
   "th": "สนาม",
   "rom": "sanǎam",
   "en": "field, sports ground, court, open ground",
-  "pri": 4
+  "pri": 4,
+  "zh": "场、运动场、球场、空地"
  },
  {
   "th": "สนามบิน",
   "rom": "sanǎam bin",
   "en": "airport, airfield",
-  "pri": 4
+  "pri": 4,
+  "zh": "机场、飞机场"
  },
  {
   "th": "สนิท",
   "rom": "sanìt",
   "en": "close, intimate, very familiar; completely, totally, soundly (asleep)",
-  "pri": 4
+  "pri": 4,
+  "zh": "亲密、亲密、非常熟悉；完全地、完全地、安稳地（睡着了）"
  },
  {
   "th": "สนใจ",
   "rom": "sǒncay",
   "en": "be interested in, be curious about, show interest in",
-  "pri": 4
+  "pri": 4,
+  "zh": "对…感兴趣、对…感到好奇、对…表现出兴趣"
  },
  {
   "th": "สบู่",
   "rom": "sabùu",
   "en": "soap",
-  "pri": 4
+  "pri": 4,
+  "zh": "肥皂"
  },
  {
   "th": "สภาพ",
   "rom": "saphâap",
   "en": "condition, state",
-  "pri": 4
+  "pri": 4,
+  "zh": "条件、状态"
  },
  {
   "th": "ส้ม",
   "rom": "sôm",
   "en": "orange, mandarin; orange-colored",
-  "pri": 4
+  "pri": 4,
+  "zh": "橙子、柑橘；橙色"
  },
  {
   "th": "สมควร",
   "rom": "sǒmkhuan",
   "en": "should; ought to",
-  "pri": 4
+  "pri": 4,
+  "zh": "应该;应该"
  },
  {
   "th": "ส้มตำ",
   "rom": "sôm tam",
   "en": "som tam (spicy green papaya salad)",
-  "pri": 4
+  "pri": 4,
+  "zh": "som tam（辣青木瓜沙拉）"
  },
  {
   "th": "ส้มตำไทย",
   "rom": "sôm tam thay",
   "en": "Thai-style green papaya salad, som tam Thai",
-  "pri": 4
+  "pri": 4,
+  "zh": "泰式青木瓜沙拉、som tam Thai"
  },
  {
   "th": "สมบูรณ์",
   "rom": "sǒmbuun",
   "en": "complete, perfect, completely",
-  "pri": 4
+  "pri": 4,
+  "zh": "完整的、完美的、彻底的"
  },
  {
   "th": "สมบูรณ์แบบ",
   "rom": "sǒmbuun bɛ̀ɛp",
   "en": "perfect, perfectly",
-  "pri": 4
+  "pri": 4,
+  "zh": "完美的"
  },
  {
   "th": "สมมุติ",
   "rom": "sǒmmút",
   "en": "suppose, assume (for the sake of discussion)",
-  "pri": 4
+  "pri": 4,
+  "zh": "假设、假设（为了讨论）"
  },
  {
   "th": "สมอง",
   "rom": "samɔ̌ɔŋ",
   "en": "brain",
-  "pri": 4
+  "pri": 4,
+  "zh": "脑"
  },
  {
   "th": "สมัคร",
   "rom": "samàk",
   "en": "apply (for a job or admission), register (for an exam); sign up (for a membership or service), subscribe (to a service or updates)",
-  "pri": 4
+  "pri": 4,
+  "zh": "申请（工作或入学）、注册（考试）；注册（会员资格或服务）、订阅（服务或更新）"
  },
  {
   "th": "สมัย",
   "rom": "samǎy",
   "en": "era, period, the time when…",
-  "pri": 4
+  "pri": 4,
+  "zh": "时代、时期、时期……"
  },
  {
   "th": "สมาชิก",
   "rom": "samaachík",
   "en": "member, subscriber",
-  "pri": 4
+  "pri": 4,
+  "zh": "会员、订户"
  },
  {
   "th": "สมุด",
   "rom": "samùt",
   "en": "notebook, exercise book, ledger",
-  "pri": 4
+  "pri": 4,
+  "zh": "笔记本、练习本、分类帐"
  },
  {
   "th": "สร้อย",
   "rom": "sɔ̂ɔy",
   "en": "necklace",
-  "pri": 4
+  "pri": 4,
+  "zh": "项链"
  },
  {
   "th": "สระ",
   "rom": "sà",
   "en": "wash one&#39;s hair, shampoo one&#39;s hair",
-  "pri": 4
+  "pri": 4,
+  "zh": "洗头"
  },
  {
   "th": "สระผม",
   "rom": "sà phǒm",
   "en": "wash one&#39;s hair, shampoo one&#39;s hair",
-  "pri": 4
+  "pri": 4,
+  "zh": "洗头"
  },
  {
   "th": "สร้าง",
   "rom": "sâaŋ",
   "en": "build, construct; create, establish, develop",
-  "pri": 4
+  "pri": 4,
+  "zh": "建造、建造；创造、建立、发展"
  },
  {
   "th": "สรุป",
   "rom": "sarùp",
   "en": "summarize, sum up; in short, to sum up, in the end",
-  "pri": 4
+  "pri": 4,
+  "zh": "总结、总结；简而言之、总结一下、最后"
  },
  {
   "th": "สลัด",
   "rom": "salàt",
   "en": "salad",
-  "pri": 4
+  "pri": 4,
+  "zh": "沙拉"
  },
  {
   "th": "สลับ",
   "rom": "salàp",
   "en": "switch, swap, alternate, take turns",
-  "pri": 4
+  "pri": 4,
+  "zh": "交换、互换、交替、轮流"
  },
  {
   "th": "สวน",
   "rom": "sǔan",
   "en": "garden, park, farm, orchard, plantation",
-  "pri": 4
+  "pri": 4,
+  "zh": "花园、公园、农场、果园、种植园"
  },
  {
   "th": "ส่วนสูง",
   "rom": "sùan sǔuŋ",
   "en": "height (of a person)",
-  "pri": 4
+  "pri": 4,
+  "zh": "（人的）身高"
  },
  {
   "th": "สวม",
   "rom": "sǔam",
   "en": "wear, put on, have on, don",
-  "pri": 4
+  "pri": 4,
+  "zh": "穿、戴上"
  },
  {
   "th": "สว่าง",
   "rom": "sawàaŋ",
   "en": "bright, well-lit, illuminated",
-  "pri": 4
+  "pri": 4,
+  "zh": "明亮的、光线充足的、照亮的"
  },
  {
   "th": "ส่อง",
   "rom": "sɔ̀ɔŋ",
   "en": "peer into or through, look in a mirror, observe through an optical instrument, examine with a medical instrument",
-  "pri": 4
+  "pri": 4,
+  "zh": "凝视或透过、照镜子、通过光学仪器观察、用医疗仪器检查"
  },
  {
   "th": "สองทุ่ม",
   "rom": "sɔ̌ɔŋ thûm",
   "en": "8 p.m., 20:00",
-  "pri": 4
+  "pri": 4,
+  "zh": "晚上 8 点、20:00"
  },
  {
   "th": "สองปีก่อน",
   "rom": "sɔ̌ɔŋ pii kɔ̀ɔn",
   "en": "two years ago",
-  "pri": 4
+  "pri": 4,
+  "zh": "两年前"
  },
  {
   "th": "สองเดือน",
   "rom": "sɔ̌ɔŋ dʉan",
   "en": "two months, a two-month period",
-  "pri": 4
+  "pri": 4,
+  "zh": "两个月、两个月期间"
  },
  {
   "th": "สอน",
   "rom": "sɔ̌ɔn",
   "en": "teach, instruct, train",
-  "pri": 4
+  "pri": 4,
+  "zh": "教导、教导、训练"
  },
  {
   "th": "สอบ",
   "rom": "sɔ̀ɔp",
   "en": "take an exam, test (someone’s knowledge or ability); exam, test",
-  "pri": 4
+  "pri": 4,
+  "zh": "参加考试、测试（某人的知识或能力）；考试、测试"
  },
  {
   "th": "สอบได้",
   "rom": "sɔ̀ɔp dâay",
   "en": "pass an exam, pass a test",
-  "pri": 4
+  "pri": 4,
+  "zh": "通过考试、通过测试"
  },
  {
   "th": "ส้อม",
   "rom": "sɔ̂ɔm",
   "en": "fork",
-  "pri": 4
+  "pri": 4,
+  "zh": "叉"
  },
  {
   "th": "สะกด",
   "rom": "sakòt",
   "en": "spell",
-  "pri": 4
+  "pri": 4,
+  "zh": "拼写"
  },
  {
   "th": "สะดวก",
   "rom": "sadùak",
   "en": "convenient, easy to use, easily; available, convenient (for someone)",
-  "pri": 4
+  "pri": 4,
+  "zh": "方便、好用、轻松；可用的、方便的（对于某人）"
  },
  {
   "th": "สะดุด",
   "rom": "sadùt",
   "en": "trip over, stumble",
-  "pri": 4
+  "pri": 4,
+  "zh": "绊倒"
  },
  {
   "th": "สะพาน",
   "rom": "saphaan",
   "en": "bridge, pier",
-  "pri": 4
+  "pri": 4,
+  "zh": "桥墩"
  },
  {
   "th": "สะพาย",
   "rom": "saphaay",
   "en": "carry (something) over the shoulder, wear (a bag or backpack) over the shoulder",
-  "pri": 4
+  "pri": 4,
+  "zh": "将（某物）扛在肩上、将（包或背包）扛在肩上"
  },
  {
   "th": "สะอาด",
   "rom": "sà àat",
   "en": "clean, uncontaminated",
-  "pri": 4
+  "pri": 4,
+  "zh": "干净、未受污染"
  },
  {
   "th": "สะใจ",
   "rom": "sàcay",
   "en": "feel thrilled and satisfied, feel vindicated, take satisfaction in someone&#39;s comeuppance",
-  "pri": 4
+  "pri": 4,
+  "zh": "感到兴奋和满足、感到平反、对某人的报应感到满意"
  },
  {
   "th": "สังคม",
   "rom": "sǎŋkhom",
   "en": "society, the public",
-  "pri": 4
+  "pri": 4,
+  "zh": "社会、公众"
  },
  {
   "th": "สังเกต",
   "rom": "sǎŋkèet",
   "en": "observe, notice",
-  "pri": 4
+  "pri": 4,
+  "zh": "观察、注意"
  },
  {
   "th": "สัญญา",
   "rom": "sǎnyaa",
   "en": "promise, agreement, contract; promise, pledge",
-  "pri": 4
+  "pri": 4,
+  "zh": "承诺、协议、合同；许诺、保证"
  },
  {
   "th": "สัญญาณ",
   "rom": "sǎnyaan",
   "en": "signal, cue; (electronic) signal, reception",
-  "pri": 4
+  "pri": 4,
+  "zh": "信号、提示； （电子）信号、接收"
  },
  {
   "th": "สัตว์",
   "rom": "sàt",
   "en": "animal",
-  "pri": 4
+  "pri": 4,
+  "zh": "动物"
  },
  {
   "th": "สั่น",
   "rom": "sàn",
   "en": "tremble, shake, vibrate",
-  "pri": 4
+  "pri": 4,
+  "zh": "颤抖、摇动、振动"
  },
  {
   "th": "สับ",
   "rom": "sàp",
   "en": "chop, mince, hack into pieces",
-  "pri": 4
+  "pri": 4,
+  "zh": "剁碎、切碎、切成块"
  },
  {
   "th": "สับปะรด",
   "rom": "sàpparót",
   "en": "pineapple, pineapple plant",
-  "pri": 4
+  "pri": 4,
+  "zh": "菠萝、菠萝植物"
  },
  {
   "th": "สับสน",
   "rom": "sàpsǒn",
   "en": "be confused, get things mixed up",
-  "pri": 4
+  "pri": 4,
+  "zh": "感到困惑、把事情搞混"
  },
  {
   "th": "สัมผัส",
   "rom": "sǎmphàt",
   "en": "touch, come into contact with",
-  "pri": 4
+  "pri": 4,
+  "zh": "触摸、接触到"
  },
  {
   "th": "สาขา",
   "rom": "sǎakhǎa",
   "en": "branch office, branch (of a bank or store), chain location; field, branch of study, major",
-  "pri": 4
+  "pri": 4,
+  "zh": "分公司、分行（银行或商店）、连锁店；领域、研究分支、专业"
  },
  {
   "th": "สามทุ่ม",
   "rom": "sǎam thûm",
   "en": "9 p.m., 21:00",
-  "pri": 4
+  "pri": 4,
+  "zh": "晚上 9 点、21:00"
  },
  {
   "th": "สามนาที",
   "rom": "sǎam naathii",
   "en": "three minutes, a three-minute period",
-  "pri": 4
+  "pri": 4,
+  "zh": "三分钟、三分钟时间"
  },
  {
   "th": "สามอาทิตย์",
   "rom": "sǎam aathít",
   "en": "three weeks",
-  "pri": 4
+  "pri": 4,
+  "zh": "三个星期"
  },
  {
   "th": "สามี",
   "rom": "sǎamii",
   "en": "husband",
-  "pri": 4
+  "pri": 4,
+  "zh": "丈夫"
  },
  {
   "th": "สายการบิน",
   "rom": "sǎay kaan bin",
   "en": "airline, airline company",
-  "pri": 4
+  "pri": 4,
+  "zh": "航空公司"
  },
  {
   "th": "สายตา",
   "rom": "sǎay taa",
   "en": "eyesight, vision; gaze, look (expression in the eyes)",
-  "pri": 4
+  "pri": 4,
+  "zh": "视力、视力；凝视、看（眼神中的表情）"
  },
  {
   "th": "สาว",
   "rom": "sǎaw",
   "en": "young woman; young (of a female), youthful (of a female)",
-  "pri": 4
+  "pri": 4,
+  "zh": "年轻女子；年轻的（女性的）、年轻的（女性的）"
  },
  {
   "th": "สาเหตุ",
   "rom": "sǎahèet",
   "en": "cause, reason",
-  "pri": 4
+  "pri": 4,
+  "zh": "原因"
  },
  {
   "th": "สำนักงาน",
   "rom": "sǎmnákŋaan",
   "en": "office",
-  "pri": 4
+  "pri": 4,
+  "zh": "办公室"
  },
  {
   "th": "สิ่ง",
   "rom": "sìŋ",
   "en": "thing, item, matter, object",
-  "pri": 4
+  "pri": 4,
+  "zh": "事物、项目、物质、对象"
  },
  {
   "th": "สิงหาคม",
   "rom": "sǐŋhǎakhom",
   "en": "August",
-  "pri": 4
+  "pri": 4,
+  "zh": "八月"
  },
  {
   "th": "สินค้า",
   "rom": "sǐnkháa",
   "en": "goods, merchandise, product",
-  "pri": 4
+  "pri": 4,
+  "zh": "货物、商品、产品"
  },
  {
   "th": "สิบวัน",
   "rom": "sìp wan",
   "en": "ten days, a period of ten days",
-  "pri": 4
+  "pri": 4,
+  "zh": "十天、十天的时间"
  },
  {
   "th": "สิบเอ็ดโมงเช้า",
   "rom": "sìp èt mooŋ cháaw",
   "en": "11:00 a.m.",
-  "pri": 4
+  "pri": 4,
+  "zh": "上午 11:00"
  },
  {
   "th": "สิบโมงเช้า",
   "rom": "sìp mooŋ cháaw",
   "en": "10 a.m.",
-  "pri": 4
+  "pri": 4,
+  "zh": "上午 10 点"
  },
  {
   "th": "สีชมพู",
   "rom": "sǐichomphuu",
   "en": "pink",
-  "pri": 4
+  "pri": 4,
+  "zh": "粉色的"
  },
  {
   "th": "สี่ทุ่ม",
   "rom": "sìi thûm",
   "en": "10 p.m., 22:00",
-  "pri": 4
+  "pri": 4,
+  "zh": "晚上 10 点、22:00"
  },
  {
   "th": "สีน้ำตาล",
   "rom": "sǐi námtaan",
   "en": "brown",
-  "pri": 4
+  "pri": 4,
+  "zh": "棕色的"
  },
  {
   "th": "สีน้ำเงิน",
   "rom": "sǐi nám ŋən",
   "en": "blue",
-  "pri": 4
+  "pri": 4,
+  "zh": "蓝色的"
  },
  {
   "th": "สีฟ้า",
   "rom": "sǐi fáa",
   "en": "light blue, sky blue",
-  "pri": 4
+  "pri": 4,
+  "zh": "浅蓝色、天蓝色"
  },
  {
   "th": "สีม่วง",
   "rom": "sǐi mûaŋ",
   "en": "purple, the color purple",
-  "pri": 4
+  "pri": 4,
+  "zh": "紫色、紫色的颜色"
  },
  {
   "th": "สีส้ม",
   "rom": "sǐi sôm",
   "en": "orange (color)",
-  "pri": 4
+  "pri": 4,
+  "zh": "橙色）"
  },
  {
   "th": "สีเทา",
   "rom": "sǐi thaw",
   "en": "gray",
-  "pri": 4
+  "pri": 4,
+  "zh": "灰色的"
  },
  {
   "th": "สีเหลือง",
   "rom": "sǐi lʉ̌aŋ",
   "en": "yellow, yellow-colored",
-  "pri": 4
+  "pri": 4,
+  "zh": "黄色的"
  },
  {
   "th": "สีแดง",
   "rom": "sǐi dɛɛŋ",
   "en": "red, the color red",
-  "pri": 4
+  "pri": 4,
+  "zh": "红色"
  },
  {
   "th": "สี่แยก",
   "rom": "sìi yɛ̂ɛk",
   "en": "four-way intersection, crossroads",
-  "pri": 4
+  "pri": 4,
+  "zh": "四向交叉路口、十字路口"
  },
  {
   "th": "สี่โมงเย็น",
   "rom": "sìi mooŋ yen",
   "en": "4 p.m., 16:00",
-  "pri": 4
+  "pri": 4,
+  "zh": "下午 4 点、16:00"
  },
  {
   "th": "สื่อ",
   "rom": "sʉ̀ʉ",
   "en": "media, the press",
-  "pri": 4
+  "pri": 4,
+  "zh": "媒体、新闻界"
  },
  {
   "th": "สื่อสาร",
   "rom": "sʉ̀ʉsǎan",
   "en": "communicate, convey, get in touch",
-  "pri": 4
+  "pri": 4,
+  "zh": "沟通、传达、联系"
  },
  {
   "th": "สุก",
   "rom": "sùk",
   "en": "cooked, done (cooked through); ripe, ripened",
-  "pri": 4
+  "pri": 4,
+  "zh": "煮熟、完成（煮熟）；熟了、成熟了"
  },
  {
   "th": "สุขภาพ",
   "rom": "sùkkhaphâap",
   "en": "health, state of health",
-  "pri": 4
+  "pri": 4,
+  "zh": "健康、健康状况"
  },
  {
   "th": "สุดๆ",
   "rom": "sùt sùt",
   "en": "extremely, super, really",
-  "pri": 4
+  "pri": 4,
+  "zh": "非常、超级、真的"
  },
  {
   "th": "สุดท้าย",
   "rom": "sùt tháay",
   "en": "last, final; in the end, eventually, lastly",
-  "pri": 4
+  "pri": 4,
+  "zh": "最后的、最后的；最后、最终、最后"
  },
  {
   "th": "สุดสัปดาห์",
   "rom": "sùtsàpdaa",
   "en": "weekend",
-  "pri": 4
+  "pri": 4,
+  "zh": "周末"
  },
  {
   "th": "สุนัข",
   "rom": "sùnák",
   "en": "dog",
-  "pri": 4
+  "pri": 4,
+  "zh": "狗"
  },
  {
   "th": "สุภาพ",
   "rom": "sùphâap",
   "en": "polite, courteous, politely",
-  "pri": 4
+  "pri": 4,
+  "zh": "有礼貌"
  },
  {
   "th": "สู้",
   "rom": "sûu",
   "en": "fight, stand up to; keep going, withstand",
-  "pri": 4
+  "pri": 4,
+  "zh": "战斗、挺身而出；继续前进、承受"
  },
  {
   "th": "สู้ ๆ",
   "rom": "sûu sûu",
   "en": "Keep going!, You can do it!",
-  "pri": 4
+  "pri": 4,
+  "zh": "继续努力！、你可以的！"
  },
  {
   "th": "สูตร",
   "rom": "sùut",
   "en": "recipe, formulation",
-  "pri": 4
+  "pri": 4,
+  "zh": "配方"
  },
  {
   "th": "สูบ",
   "rom": "sùup",
   "en": "smoke, smoke (a cigarette, cigar, etc.)",
-  "pri": 4
+  "pri": 4,
+  "zh": "抽烟、抽烟（香烟、雪茄等）"
  },
  {
   "th": "หกล้ม",
   "rom": "hòk lóm",
   "en": "fall over, fall down",
-  "pri": 4
+  "pri": 4,
+  "zh": "跌倒"
  },
  {
   "th": "หกสิบ",
   "rom": "hòksìp",
   "en": "60",
-  "pri": 4
+  "pri": 4,
+  "zh": "60"
  },
  {
   "th": "หกโมงเช้า",
   "rom": "hòk mooŋ cháaw",
   "en": "6 a.m., six in the morning",
-  "pri": 4
+  "pri": 4,
+  "zh": "早上六点"
  },
  {
   "th": "หกโมงเย็น",
   "rom": "hòk mooŋ yen",
   "en": "6 p.m., 18:00",
-  "pri": 4
+  "pri": 4,
+  "zh": "下午 6 点、18:00"
  },
  {
   "th": "หญิง",
   "rom": "yǐŋ",
   "en": "woman, women; female, for women",
-  "pri": 4
+  "pri": 4,
+  "zh": "女人、女人；女性的、女性用的"
  },
  {
   "th": "หนัง",
   "rom": "nǎŋ",
   "en": "movie, film; skin, animal hide, leather",
-  "pri": 4
+  "pri": 4,
+  "zh": "电影、电影；皮、兽皮、皮革"
  },
  {
   "th": "หนังสือพิมพ์",
   "rom": "nǎŋsʉ̌ʉ phim",
   "en": "newspaper",
-  "pri": 4
+  "pri": 4,
+  "zh": "报纸"
  },
  {
   "th": "หนังสือเดินทาง",
   "rom": "nǎŋsʉ̌ʉ dəən thaaŋ",
   "en": "passport",
-  "pri": 4
+  "pri": 4,
+  "zh": "护照"
  },
  {
   "th": "หนา",
   "rom": "nǎa",
   "en": "thick, heavy (fabric or clothing)",
-  "pri": 4
+  "pri": 4,
+  "zh": "厚、重（织物或衣服）"
  },
  {
   "th": "หน้าต่าง",
   "rom": "nâa tàaŋ",
   "en": "window",
-  "pri": 4
+  "pri": 4,
+  "zh": "窗户"
  },
  {
   "th": "หน้าที่",
   "rom": "nâathîi",
   "en": "duty, responsibility, role",
-  "pri": 4
+  "pri": 4,
+  "zh": "义务、责任、角色"
  },
  {
   "th": "หน้าผาก",
   "rom": "nâaphàak",
   "en": "forehead",
-  "pri": 4
+  "pri": 4,
+  "zh": "前额"
  },
  {
   "th": "หน้าฝน",
   "rom": "nâafǒn",
   "en": "rainy season",
-  "pri": 4
+  "pri": 4,
+  "zh": "雨季"
  },
  {
   "th": "หน้ามืด",
   "rom": "nâamʉ̂ʉt",
   "en": "feel faint, have one&#39;s vision go dark",
-  "pri": 4
+  "pri": 4,
+  "zh": "感觉头晕、视力变暗"
  },
  {
   "th": "หน้าร้อน",
   "rom": "nâa rɔ́ɔn",
   "en": "hot season, summer",
-  "pri": 4
+  "pri": 4,
+  "zh": "炎热的季节、夏季"
  },
  {
   "th": "หนาว",
   "rom": "nǎaw",
   "en": "cold, chilly",
-  "pri": 4
+  "pri": 4,
+  "zh": "寒冷"
  },
  {
   "th": "หน้าหนาว",
   "rom": "nâa nǎaw",
   "en": "winter, cold season",
-  "pri": 4
+  "pri": 4,
+  "zh": "冬天、寒冷的季节"
  },
  {
   "th": "หน้าอก",
   "rom": "nâaòk",
   "en": "chest, breast, bust",
-  "pri": 4
+  "pri": 4,
+  "zh": "胸部、乳房、胸围"
  },
  {
   "th": "หนี",
   "rom": "nǐi",
   "en": "escape, flee, run away; avoid, evade, get away from",
-  "pri": 4
+  "pri": 4,
+  "zh": "逃跑、逃跑；避免、逃避、远离"
  },
  {
   "th": "หนึ่งทุ่ม",
   "rom": "nʉ̀ŋ thûm",
   "en": "7:00 p.m., 19:00",
-  "pri": 4
+  "pri": 4,
+  "zh": "晚上 7:00、19:00"
  },
  {
   "th": "หนุ่ม",
   "rom": "nùm",
   "en": "young man; young (of a male), youthful (of a male)",
-  "pri": 4
+  "pri": 4,
+  "zh": "年轻人；年轻的（男性的）、年轻的（男性的）"
  },
  {
   "th": "หนุ่มสาว",
   "rom": "nùm sǎaw",
   "en": "young men and women, young people",
-  "pri": 4
+  "pri": 4,
+  "zh": "青年男女、年轻人"
  },
  {
   "th": "หนู",
   "rom": "nǔu",
   "en": "mouse, rat; I [used by a child or younger woman to a familiar older person]",
-  "pri": 4
+  "pri": 4,
+  "zh": "小鼠、大鼠； I [由儿童或年轻女性对熟悉的老年人使用]"
  },
  {
   "th": "หมวก",
   "rom": "mùak",
   "en": "hat, cap, headwear",
-  "pri": 4
+  "pri": 4,
+  "zh": "帽子、头饰"
  },
  {
   "th": "หมอ",
   "rom": "mɔ̌ɔ",
   "en": "doctor, physician",
-  "pri": 4
+  "pri": 4,
+  "zh": "医生、医师"
  },
  {
   "th": "หม้อ",
   "rom": "mɔ̂ɔ",
   "en": "cooking pot, cauldron",
-  "pri": 4
+  "pri": 4,
+  "zh": "煮锅、大锅"
  },
  {
   "th": "หมอน",
   "rom": "mɔ̌ɔn",
   "en": "pillow, support cushion",
-  "pri": 4
+  "pri": 4,
+  "zh": "枕头、支撑垫"
  },
  {
   "th": "หมอฟัน",
   "rom": "mɔ̌ɔ fan",
   "en": "dentist",
-  "pri": 4
+  "pri": 4,
+  "zh": "牙医"
  },
  {
   "th": "หม้อหุงข้าว",
   "rom": "mɔ̂ɔ hǔŋ khâaw",
   "en": "rice cooker",
-  "pri": 4
+  "pri": 4,
+  "zh": "电饭锅"
  },
  {
   "th": "หมา",
   "rom": "mǎa",
   "en": "dog",
-  "pri": 4
+  "pri": 4,
+  "zh": "狗"
  },
  {
   "th": "หมาย",
   "rom": "mǎay",
   "en": "mean, refer to",
-  "pri": 4
+  "pri": 4,
+  "zh": "意思是、参考"
  },
  {
   "th": "หมึก",
   "rom": "mʉ̀k",
   "en": "squid, cephalopod (including octopus in some names)",
-  "pri": 4
+  "pri": 4,
+  "zh": "鱿鱼、头足类动物（包括某些名称中的章鱼）"
  },
  {
   "th": "หมื่น",
   "rom": "mʉ̀ʉn",
   "en": "ten thousand, the ten-thousands place",
-  "pri": 4
+  "pri": 4,
+  "zh": "万、万处"
  },
  {
   "th": "หมุน",
   "rom": "mǔn",
   "en": "spin, rotate, revolve, turn",
-  "pri": 4
+  "pri": 4,
+  "zh": "旋转、旋转、公转、旋转"
  },
  {
   "th": "หมู่นี้",
   "rom": "mùu níi",
   "en": "lately, these days, recently",
-  "pri": 4
+  "pri": 4,
+  "zh": "最近、这些天"
  },
  {
   "th": "หมู่บ้าน",
   "rom": "mùu bâan",
   "en": "village, village [Thailand&#39;s smallest rural administrative division]",
-  "pri": 4
+  "pri": 4,
+  "zh": "村庄、村庄[泰国最小的农村行政区划]"
  },
  {
   "th": "หยาบ",
   "rom": "yàap",
   "en": "rude, vulgar, impolite",
-  "pri": 4
+  "pri": 4,
+  "zh": "粗鲁的、粗俗的、不礼貌的"
  },
  {
   "th": "หยิบ",
   "rom": "yìp",
   "en": "take out, take by hand, pick up, select and take",
-  "pri": 4
+  "pri": 4,
+  "zh": "取出、用手拿、拿起、选择并拿走"
  },
  {
   "th": "หยุดพัก",
   "rom": "yùt phák",
   "en": "take a break, stop for a rest",
-  "pri": 4
+  "pri": 4,
+  "zh": "休息一下、停下来休息一下"
  },
  {
   "th": "หรอก",
   "rom": "rɔ̀ɔk",
   "en": "not ... at all [sentence-final particle], of course not, no way",
-  "pri": 4
+  "pri": 4,
+  "zh": "根本不…… [句子最后助词]、当然不、不可能"
  },
  {
   "th": "หลง",
   "rom": "lǒŋ",
   "en": "get lost, lose one&#39;s way, be separated and lost; be infatuated with, be crazy about, be absorbed in, be captivated by",
-  "pri": 4
+  "pri": 4,
+  "zh": "迷路、迷失方向、失散、迷路；着迷于、着迷于"
  },
  {
   "th": "หล่น",
   "rom": "lòn",
   "en": "fall, fall off, drop",
-  "pri": 4
+  "pri": 4,
+  "zh": "跌倒、掉落、落下"
  },
  {
   "th": "หลบ",
   "rom": "lòp",
   "en": "dodge, avoid, move out of the way; hide, take cover, shelter from (rain, danger)",
-  "pri": 4
+  "pri": 4,
+  "zh": "闪避、避开、让开；隐藏、躲避（雨、危险）"
  },
  {
   "th": "หลวง",
   "rom": "lǔaŋ",
   "en": "principal, chief, primary",
-  "pri": 4
+  "pri": 4,
+  "zh": "校长、首席、初级"
  },
  {
   "th": "หลวม",
   "rom": "lǔam",
   "en": "loose, too large, not tight, wobbly",
-  "pri": 4
+  "pri": 4,
+  "zh": "松动、太大、不紧、摇晃"
  },
  {
   "th": "หล่อ",
   "rom": "lɔ̀ɔ",
   "en": "handsome, good-looking, attractive",
-  "pri": 4
+  "pri": 4,
+  "zh": "英俊的、好看的、有魅力的"
  },
  {
   "th": "หลอก",
   "rom": "lɔ̀ɔk",
   "en": "trick, deceive, cheat, trick someone into doing something",
-  "pri": 4
+  "pri": 4,
+  "zh": "欺骗、欺骗某人做某事"
  },
  {
   "th": "หลอด",
   "rom": "lɔ̀ɔt",
   "en": "drinking straw; light bulb, lighting tube",
-  "pri": 4
+  "pri": 4,
+  "zh": "吸管；灯泡、灯管"
  },
  {
   "th": "หลัก",
   "rom": "làk",
   "en": "basis, principle, standard, foundation; main, primary, major, principal",
-  "pri": 4
+  "pri": 4,
+  "zh": "基础、原则、标准、基础；主要的、主要的"
  },
  {
   "th": "หลังอาหาร",
   "rom": "lǎŋ aahǎan",
   "en": "after a meal, post-meal",
-  "pri": 4
+  "pri": 4,
+  "zh": "饭后、餐后"
  },
  {
   "th": "หลาน",
   "rom": "lǎan",
   "en": "grandchild; nephew, niece",
-  "pri": 4
+  "pri": 4,
+  "zh": "孙子；侄子、侄女"
  },
  {
   "th": "หลีกเลี่ยง",
   "rom": "lìik lîaŋ",
   "en": "avoid, evade",
-  "pri": 4
+  "pri": 4,
+  "zh": "避免、回避"
  },
  {
   "th": "หลุด",
   "rom": "lùt",
   "en": "come off, become detached, slip out; drop out, get disconnected, lose one&#39;s composure",
-  "pri": 4
+  "pri": 4,
+  "zh": "脱落、脱离、溜走；退出、失去联系、失去冷静"
  },
  {
   "th": "หลุม",
   "rom": "lǔm",
   "en": "hole, pit, hollow, pothole",
-  "pri": 4
+  "pri": 4,
+  "zh": "洞、凹坑、凹陷、凹坑"
  },
  {
   "th": "หวง",
   "rom": "hǔaŋ",
   "en": "be possessive about (something), be unwilling to share; be possessive of (someone), be protective of (someone)",
-  "pri": 4
+  "pri": 4,
+  "zh": "对（某事）有占有欲、不愿意分享；占有（某人）、保护（某人）"
  },
  {
   "th": "ห่วง",
   "rom": "hùaŋ",
   "en": "worry about, be concerned about, care about",
-  "pri": 4
+  "pri": 4,
+  "zh": "担心、关心"
  },
  {
   "th": "ห่วงใย",
   "rom": "hùaŋyay",
   "en": "care about, be concerned about, worry about",
-  "pri": 4
+  "pri": 4,
+  "zh": "关心、关心、担心"
  },
  {
   "th": "ห่วย",
   "rom": "hùay",
   "en": "terrible, poor-quality",
-  "pri": 4
+  "pri": 4,
+  "zh": "可怕的、质量差的"
  },
  {
   "th": "หวัง",
   "rom": "wǎŋ",
   "en": "hope, expect",
-  "pri": 4
+  "pri": 4,
+  "zh": "希望、期待"
  },
  {
   "th": "หอ",
   "rom": "hɔ̌ɔ",
   "en": "dorm, student accommodation",
-  "pri": 4
+  "pri": 4,
+  "zh": "宿舍、学生宿舍"
  },
  {
   "th": "ห่อ",
   "rom": "hɔ̀ɔ",
   "en": "wrap, wrap up, pack (for carrying or sale)",
-  "pri": 4
+  "pri": 4,
+  "zh": "包裹、包装（用于携带或销售）"
  },
  {
   "th": "ห้องครัว",
   "rom": "hɔ̂ŋ khrua",
   "en": "kitchen",
-  "pri": 4
+  "pri": 4,
+  "zh": "厨房"
  },
  {
   "th": "ห้องนอน",
   "rom": "hɔ̂ɔŋ nɔɔn",
   "en": "bedroom",
-  "pri": 4
+  "pri": 4,
+  "zh": "卧室"
  },
  {
   "th": "ห้องนั่งเล่น",
   "rom": "hɔ̂ɔŋ nâŋ lên",
   "en": "living room",
-  "pri": 4
+  "pri": 4,
+  "zh": "客厅"
  },
  {
   "th": "ห้องรับแขก",
   "rom": "hɔ̂ɔŋ ráp khɛ̀ɛk",
   "en": "reception room, living room",
-  "pri": 4
+  "pri": 4,
+  "zh": "接待室、客厅"
  },
  {
   "th": "ห้องว่าง",
   "rom": "hɔ̂ŋ wâaŋ",
   "en": "vacant room, available room",
-  "pri": 4
+  "pri": 4,
+  "zh": "空房间、可用房间"
  },
  {
   "th": "ห้องสมุด",
   "rom": "hɔ̂ŋ samùt",
   "en": "library",
-  "pri": 4
+  "pri": 4,
+  "zh": "图书馆"
  },
  {
   "th": "ห้องอาบน้ำ",
   "rom": "hɔ̂ŋ àap náam",
   "en": "shower room, bathroom (for bathing)",
-  "pri": 4
+  "pri": 4,
+  "zh": "淋浴间、浴室（洗澡用）"
  },
  {
   "th": "ห้องเรียน",
   "rom": "hɔ̂ŋ rian",
   "en": "classroom",
-  "pri": 4
+  "pri": 4,
+  "zh": "课堂"
  },
  {
   "th": "หอพัก",
   "rom": "hɔ̌ɔ phák",
   "en": "dormitory, boarding house",
-  "pri": 4
+  "pri": 4,
+  "zh": "宿舍、寄宿处"
  },
  {
   "th": "หอม",
   "rom": "hɔ̌ɔm",
   "en": "fragrant, pleasant-smelling, aromatic",
-  "pri": 4
+  "pri": 4,
+  "zh": "芳香的"
  },
  {
   "th": "หอย",
   "rom": "hɔ̌ɔy",
   "en": "mollusk, shellfish, snail",
-  "pri": 4
+  "pri": 4,
+  "zh": "软体动物、贝类、蜗牛"
  },
  {
   "th": "หัก",
   "rom": "hàk",
   "en": "break, be broken, fracture (a bone); deduct, subtract, take off (points, money)",
-  "pri": 4
+  "pri": 4,
+  "zh": "折断、骨折（骨头）；扣除、扣除、扣除（积分、金钱）"
  },
  {
   "th": "หัด",
   "rom": "hàt",
   "en": "practice, learn to do, take up (a new skill), train, teach (someone to do something)",
-  "pri": 4
+  "pri": 4,
+  "zh": "练习、学习做、掌握（一项新技能）、训练、教导（某人做某事）"
  },
  {
   "th": "หัน",
   "rom": "hǎn",
   "en": "turn, turn around, face (a direction), turn toward",
-  "pri": 4
+  "pri": 4,
+  "zh": "转向、面向（一个方向）"
  },
  {
   "th": "หั่น",
   "rom": "hàn",
   "en": "cut (something) into pieces, slice",
-  "pri": 4
+  "pri": 4,
+  "zh": "将（某物）切成片、切片"
  },
  {
   "th": "หัวข้อ",
   "rom": "hǔakhɔ̂ɔ",
   "en": "topic, subject, agenda item",
-  "pri": 4
+  "pri": 4,
+  "zh": "主题、主题、议程项目"
  },
  {
   "th": "หัวหน้า",
   "rom": "hǔanâa",
   "en": "supervisor, person in charge, leader, head",
-  "pri": 4
+  "pri": 4,
+  "zh": "主管、负责人、领导、负责人"
  },
  {
   "th": "หัวหอม",
   "rom": "hǔa hɔ̌ɔm",
   "en": "onion",
-  "pri": 4
+  "pri": 4,
+  "zh": "洋葱"
  },
  {
   "th": "หัวเราะ",
   "rom": "hǔarɔ́",
   "en": "laugh",
-  "pri": 4
+  "pri": 4,
+  "zh": "笑"
  },
  {
   "th": "หัวใจ",
   "rom": "hǔacay",
   "en": "heart (organ); heart (emotions), feelings, inner self",
-  "pri": 4
+  "pri": 4,
+  "zh": "心脏（器官）；心（情绪）、感觉、内在的自我"
  },
  {
   "th": "ห่าง",
   "rom": "hàaŋ",
   "en": "far apart, spaced apart, separated by a gap, distant (in a relationship)",
-  "pri": 4
+  "pri": 4,
+  "zh": "相隔很远、间隔很远、有差距、遥远（在关系中）"
  },
  {
   "th": "ห้าง",
   "rom": "hâaŋ",
   "en": "department store, shopping mall",
-  "pri": 4
+  "pri": 4,
+  "zh": "百货商店、购物中心"
  },
  {
   "th": "หางาน",
   "rom": "hǎa ŋaan",
   "en": "look for a job, look for work",
-  "pri": 4
+  "pri": 4,
+  "zh": "找工作"
  },
  {
   "th": "ห้าชั่วโมง",
   "rom": "hâa chûamooŋ",
   "en": "five hours, for five hours",
-  "pri": 4
+  "pri": 4,
+  "zh": "五个小时"
  },
  {
   "th": "หาด",
   "rom": "hàat",
   "en": "beach, sandbar",
-  "pri": 4
+  "pri": 4,
+  "zh": "海滩、沙洲"
  },
  {
   "th": "ห้าทุ่ม",
   "rom": "hâa thûm",
   "en": "11 p.m., 23:00",
-  "pri": 4
+  "pri": 4,
+  "zh": "晚上 11 点、23:00"
  },
  {
   "th": "ห้าปี",
   "rom": "hâa pii",
   "en": "five years, for five years; five years old",
-  "pri": 4
+  "pri": 4,
+  "zh": "五年、五年；五岁"
  },
  {
   "th": "หายใจ",
   "rom": "hǎaycay",
   "en": "breathe",
-  "pri": 4
+  "pri": 4,
+  "zh": "呼吸"
  },
  {
   "th": "หายไป",
   "rom": "hǎay pay",
   "en": "disappear, go missing, go away (feelings, symptoms)",
-  "pri": 4
+  "pri": 4,
+  "zh": "消失、失踪、消失（感觉、症状）"
  },
  {
   "th": "หาร",
   "rom": "hǎan",
   "en": "split (a bill or shared expense)",
-  "pri": 4
+  "pri": 4,
+  "zh": "分摊（账单或分摊费用）"
  },
  {
   "th": "ห้าสิบ",
   "rom": "hâa sìp",
   "en": "50",
-  "pri": 4
+  "pri": 4,
+  "zh": "50"
  },
  {
   "th": "ห้าโมงเย็น",
   "rom": "hâa mooŋ yen",
   "en": "5 p.m., 17:00",
-  "pri": 4
+  "pri": 4,
+  "zh": "下午 5 点、17:00"
  },
  {
   "th": "หิ้ว",
   "rom": "hîw",
   "en": "carry (something) by its handle or top",
-  "pri": 4
+  "pri": 4,
+  "zh": "通过手柄或顶部携带（某物）"
  },
  {
   "th": "หูฟัง",
   "rom": "hǔufaŋ",
   "en": "headphones, earphones; earbuds",
-  "pri": 4
+  "pri": 4,
+  "zh": "耳机、耳机；耳塞"
  },
  {
   "th": "อก",
   "rom": "òk",
   "en": "chest, breast",
-  "pri": 4
+  "pri": 4,
+  "zh": "胸部、乳房"
  },
  {
   "th": "อด",
   "rom": "òt",
   "en": "miss out on, not get to (do something); go without (food, sleep, etc.), abstain from; hold back (an urge or reaction), refrain from (doing something)",
-  "pri": 4
+  "pri": 4,
+  "zh": "错过、没能做到（做某事）；不吃（食物、睡眠等）、戒掉；抑制（冲动或反应）、克制（做某事）"
  },
  {
   "th": "อดทน",
   "rom": "òtthon",
   "en": "endure, be patient, persevere patiently",
-  "pri": 4
+  "pri": 4,
+  "zh": "忍耐、耐心地坚持"
  },
  {
   "th": "อธิบาย",
   "rom": "athíbaay",
   "en": "explain",
-  "pri": 4
+  "pri": 4,
+  "zh": "解释"
  },
  {
   "th": "อนาคต",
   "rom": "anaakhót",
   "en": "future",
-  "pri": 4
+  "pri": 4,
+  "zh": "未来"
  },
  {
   "th": "อนุญาต",
   "rom": "ànúyâat",
   "en": "allow, give permission",
-  "pri": 4
+  "pri": 4,
+  "zh": "允许、给予许可"
  },
  {
   "th": "อนุบาล",
   "rom": "ànúbaan",
   "en": "kindergarten, kindergarten level",
-  "pri": 4
+  "pri": 4,
+  "zh": "幼儿园、幼儿园级别"
  },
  {
   "th": "อบ",
   "rom": "òp",
   "en": "bake, roast (in an oven), dry with heat, heat-treat or steam-treat",
-  "pri": 4
+  "pri": 4,
+  "zh": "烘烤、烘烤（在烤箱中）、加热干燥、热处理或蒸汽处理"
  },
  {
   "th": "อม",
   "rom": "om",
   "en": "hold in the mouth, suck on (a sweet or lozenge)",
-  "pri": 4
+  "pri": 4,
+  "zh": "含在嘴里、吮吸（糖果或含片）"
  },
  {
   "th": "อย่าเพิ่ง",
   "rom": "yàa phə̂ŋ",
   "en": "don&#39;t … yet, hold off on …",
-  "pri": 4
+  "pri": 4,
+  "zh": "不要……还、等等……"
  },
  {
   "th": "อ้วน",
   "rom": "ûan",
   "en": "fat, overweight",
-  "pri": 4
+  "pri": 4,
+  "zh": "肥胖、超重"
  },
  {
   "th": "อ้อ",
   "rom": "ɔ̂ɔ",
   "en": "oh, I see, ah, now I understand",
-  "pri": 4
+  "pri": 4,
+  "zh": "哦、我明白了、啊、现在我明白了"
  },
  {
   "th": "อ๋อ",
   "rom": "ɔ̌ɔ",
   "en": "oh, I see, oh, right, ah, now I get it",
-  "pri": 4
+  "pri": 4,
+  "zh": "哦、我明白了、对了、啊、现在我明白了"
  },
  {
   "th": "ออกกำลังกาย",
   "rom": "ɔ̀ɔk kamlaŋ kaay",
   "en": "exercise, work out",
-  "pri": 4
+  "pri": 4,
+  "zh": "锻炼"
  },
  {
   "th": "ออกเสียง",
   "rom": "ɔ̀ɔk sǐaŋ",
   "en": "pronounce, utter (a word or sound)",
-  "pri": 4
+  "pri": 4,
+  "zh": "发音、发出（一个词或声音）"
  },
  {
   "th": "ออกไป",
   "rom": "ɔ̀ɔk pay",
   "en": "go out, leave",
-  "pri": 4
+  "pri": 4,
+  "zh": "出去、离开"
  },
  {
   "th": "ออกไปข้างนอก",
   "rom": "ɔ̀ɔk pay khâaŋ nɔ̂ɔk",
   "en": "go outside, go out",
-  "pri": 4
+  "pri": 4,
+  "zh": "出去"
  },
  {
   "th": "อ่อน",
   "rom": "ɔ̀ɔn",
   "en": "soft, pliable, tender; weak, mild, low in intensity, weak (in value, of a currency); light-colored, pale",
-  "pri": 4
+  "pri": 4,
+  "zh": "柔软、柔韧、柔嫩；弱、温和、强度低、弱（货币价值）；浅色的、苍白的"
  },
  {
   "th": "อ่อนแอ",
   "rom": "ɔ̀ɔnɛɛ",
   "en": "weak, feeble, vulnerable",
-  "pri": 4
+  "pri": 4,
+  "zh": "软弱的、脆弱的"
  },
  {
   "th": "ออนไลน์",
   "rom": "ɔɔnlay",
   "en": "online, internet-based, through the internet; online, connected online, on the internet",
-  "pri": 4
+  "pri": 4,
+  "zh": "在线、基于互联网、通过互联网；在线、在线连接、在互联网上"
  },
  {
   "th": "ออฟฟิศ",
   "rom": "ɔ́ɔffít",
   "en": "office",
-  "pri": 4
+  "pri": 4,
+  "zh": "办公室"
  },
  {
   "th": "อ่อย",
   "rom": "ɔ̀ɔy",
   "en": "flirt with, tease suggestively, entice romantically",
-  "pri": 4
+  "pri": 4,
+  "zh": "调情、挑逗、浪漫地引诱"
  },
  {
   "th": "อัด",
   "rom": "àt",
   "en": "record (audio or video)",
-  "pri": 4
+  "pri": 4,
+  "zh": "录制（音频或视频）"
  },
  {
   "th": "อัดลม",
   "rom": "àtlom",
   "en": "carbonated",
-  "pri": 4
+  "pri": 4,
+  "zh": "碳酸的"
  },
  {
   "th": "อันตราย",
   "rom": "antàraay",
   "en": "dangerous, harmful; danger, harm",
-  "pri": 4
+  "pri": 4,
+  "zh": "危险的、有害的；危险、伤害"
  },
  {
   "th": "อันโน้น",
   "rom": "an nóon",
   "en": "that one over there, the one over there",
-  "pri": 4
+  "pri": 4,
+  "zh": "那边那个 那边那个"
  },
  {
   "th": "อัปเดต",
   "rom": "àpdèet",
   "en": "update (information, software, etc.)",
-  "pri": 4
+  "pri": 4,
+  "zh": "更新（信息、软件等）"
  },
  {
   "th": "อา",
   "rom": "aa",
   "en": "father&#39;s younger brother, father&#39;s younger sister",
-  "pri": 4
+  "pri": 4,
+  "zh": "父亲的弟弟、父亲的妹妹"
  },
  {
   "th": "อาการ",
   "rom": "aakaan",
   "en": "symptom, medical condition",
-  "pri": 4
+  "pri": 4,
+  "zh": "症状、医疗状况"
  },
  {
   "th": "อาคาร",
   "rom": "aakhaan",
   "en": "building",
-  "pri": 4
+  "pri": 4,
+  "zh": "建筑"
  },
  {
   "th": "อ้าง",
   "rom": "âaŋ",
   "en": "claim, give as a reason, use as an excuse",
-  "pri": 4
+  "pri": 4,
+  "zh": "声称、给出理由、用作借口"
  },
  {
   "th": "อาจ",
   "rom": "àat",
   "en": "may, might, possibly",
-  "pri": 4
+  "pri": 4,
+  "zh": "可能"
  },
  {
   "th": "อาจารย์",
   "rom": "aacaan",
   "en": "teacher, university instructor, lecturer",
-  "pri": 4
+  "pri": 4,
+  "zh": "教师、大学讲师、讲师"
  },
  {
   "th": "อาชีพ",
   "rom": "aachîip",
   "en": "occupation, livelihood",
-  "pri": 4
+  "pri": 4,
+  "zh": "职业、生计"
  },
  {
   "th": "อาทิตย์ที่แล้ว",
   "rom": "aathít thîi lɛ́ɛw",
   "en": "last week",
-  "pri": 4
+  "pri": 4,
+  "zh": "上星期"
  },
  {
   "th": "อ่าน",
   "rom": "àan",
   "en": "read, read aloud, be pronounced as; study, study from books",
-  "pri": 4
+  "pri": 4,
+  "zh": "读、大声朗读、发音为；学习、从书本上学习"
  },
  {
   "th": "อ่านหนังสือ",
   "rom": "àan nǎŋsʉ̌ʉ",
   "en": "read a book; study (by reading), study for an exam",
-  "pri": 4
+  "pri": 4,
+  "zh": "读一本书；学习（通过阅读）、为考试而学习"
  },
  {
   "th": "อาบ",
   "rom": "àap",
   "en": "bathe, wash (someone&#39;s body)",
-  "pri": 4
+  "pri": 4,
+  "zh": "洗澡、清洗（某人的身体）"
  },
  {
   "th": "อาย",
   "rom": "aay",
   "en": "be shy, feel embarrassed",
-  "pri": 4
+  "pri": 4,
+  "zh": "害羞、感到尴尬"
  },
  {
   "th": "อารมณ์",
   "rom": "aarom",
   "en": "emotion, mood, temper",
-  "pri": 4
+  "pri": 4,
+  "zh": "情绪、情绪、脾气"
  },
  {
   "th": "อาศัย",
   "rom": "aasǎy",
   "en": "live, reside, inhabit; rely on, depend on",
-  "pri": 4
+  "pri": 4,
+  "zh": "居住、居住；依靠、依靠"
  },
  {
   "th": "อาหารจีน",
   "rom": "aahǎan ciin",
   "en": "Chinese food, Chinese cuisine",
-  "pri": 4
+  "pri": 4,
+  "zh": "中国菜"
  },
  {
   "th": "อาหารญี่ปุ่น",
   "rom": "aahǎan yîipùn",
   "en": "Japanese food, Japanese cuisine",
-  "pri": 4
+  "pri": 4,
+  "zh": "日本料理"
  },
  {
   "th": "อาหารทะเล",
   "rom": "aahǎan thalee",
   "en": "seafood, seafood dishes",
-  "pri": 4
+  "pri": 4,
+  "zh": "海鲜、海鲜菜肴"
  },
  {
   "th": "อาหารเที่ยง",
   "rom": "aahǎan thîaŋ",
   "en": "lunch",
-  "pri": 4
+  "pri": 4,
+  "zh": "午餐"
  },
  {
   "th": "อาหารเย็น",
   "rom": "aahǎan yen",
   "en": "dinner, supper",
-  "pri": 4
+  "pri": 4,
+  "zh": "晚餐、晚饭"
  },
  {
   "th": "อาหารไทย",
   "rom": "aahǎan thay",
   "en": "Thai food, Thai cuisine",
-  "pri": 4
+  "pri": 4,
+  "zh": "泰国菜"
  },
  {
   "th": "อาเจียน",
   "rom": "aacian",
   "en": "vomit, throw up",
-  "pri": 4
+  "pri": 4,
+  "zh": "呕吐"
  },
  {
   "th": "อิจฉา",
   "rom": "ìtchǎa",
   "en": "envy, be envious of",
-  "pri": 4
+  "pri": 4,
+  "zh": "羡慕"
  },
  {
   "th": "อีกที",
   "rom": "ìik thii",
   "en": "again, one more time; at a later point",
-  "pri": 4
+  "pri": 4,
+  "zh": "再一次、再一次；稍后"
  },
  {
   "th": "อีเมล",
   "rom": "ii meew",
   "en": "email; email address",
-  "pri": 4
+  "pri": 4,
+  "zh": "电子邮件;电子邮件"
  },
  {
   "th": "อุ่น",
   "rom": "ùn",
   "en": "warm, lukewarm; warm (something), reheat (food)",
-  "pri": 4
+  "pri": 4,
+  "zh": "温暖的、不冷不热的；加热（某物）、重新加热（食物）"
  },
  {
   "th": "อุบัติเหตุ",
   "rom": "ùbàttihèet",
   "en": "accident",
-  "pri": 4
+  "pri": 4,
+  "zh": "事故"
  },
  {
   "th": "อุ้ม",
   "rom": "ûm",
   "en": "carry in one&#39;s arms, pick up and hold, cradle",
-  "pri": 4
+  "pri": 4,
+  "zh": "抱在怀里、拿起并握住、摇篮"
  },
  {
   "th": "อเมริกา",
   "rom": "àmeríkaa",
   "en": "America (the United States)",
-  "pri": 4
+  "pri": 4,
+  "zh": "美洲（美国）"
  },
  {
   "th": "ฮัลโหล",
   "rom": "hanlǒo",
   "en": "hello (on the phone)",
-  "pri": 4
+  "pri": 4,
+  "zh": "你好（在电话中）"
  },
  {
   "th": "ฮิต",
   "rom": "hít",
   "en": "popular, hit, trending; be popular, be a hit, be trending",
-  "pri": 4
+  "pri": 4,
+  "zh": "流行、热门、趋势；成为热门、成为热门、成为趋势"
  },
  {
   "th": "เกม",
   "rom": "keem",
   "en": "game, match, strategic maneuvering",
-  "pri": 4
+  "pri": 4,
+  "zh": "游戏、比赛、策略机动"
  },
  {
   "th": "เกลี้ยง",
   "rom": "klîaŋ",
   "en": "all gone, completely (with nothing left)",
-  "pri": 4
+  "pri": 4,
+  "zh": "一切都消失了、完全（什么也没有留下）"
  },
  {
   "th": "เกลียด",
   "rom": "klìat",
   "en": "hate, detest",
-  "pri": 4
+  "pri": 4,
+  "zh": "讨厌、厌恶"
  },
  {
   "th": "เกลือ",
   "rom": "klʉa",
   "en": "salt, table salt",
-  "pri": 4
+  "pri": 4,
+  "zh": "盐、食盐"
  },
  {
   "th": "เก้าสิบ",
   "rom": "kâaw sìp",
   "en": "90",
-  "pri": 4
+  "pri": 4,
+  "zh": "90"
  },
  {
   "th": "เกาหลี",
   "rom": "kawlǐi",
   "en": "Korea, South Korea; Korean (person)",
-  "pri": 4
+  "pri": 4,
+  "zh": "韩国、韩国；韩国人（人）"
  },
  {
   "th": "เก้าอี้",
   "rom": "kâwîi",
   "en": "chair",
-  "pri": 4
+  "pri": 4,
+  "zh": "椅子"
  },
  {
   "th": "เกาะ",
   "rom": "kɔ̀",
   "en": "island; hold on to, cling to, perch on",
-  "pri": 4
+  "pri": 4,
+  "zh": "岛;坚持、坚持、栖息"
  },
  {
   "th": "เก้าโมงเช้า",
   "rom": "kâaw mooŋ cháaw",
   "en": "9 a.m.",
-  "pri": 4
+  "pri": 4,
+  "zh": "上午 9 点"
  },
  {
   "th": "เกิดขึ้น",
   "rom": "kə̀ət khʉ̂n",
   "en": "happen, occur, arise",
-  "pri": 4
+  "pri": 4,
+  "zh": "发生、出现"
  },
  {
   "th": "เกิน",
   "rom": "kəən",
   "en": "exceed, go beyond, surpass",
-  "pri": 4
+  "pri": 4,
+  "zh": "超越"
  },
  {
   "th": "เกี่ยวข้อง",
   "rom": "kìaw khɔ̂ɔŋ",
   "en": "be related to, be involved in",
-  "pri": 4
+  "pri": 4,
+  "zh": "与 相关、参与"
  },
  {
   "th": "เขต",
   "rom": "khèet",
   "en": "area, zone, district, administrative district, boundary, limit",
-  "pri": 4
+  "pri": 4,
+  "zh": "地区、地带、区、行政区、边界、界限"
  },
  {
   "th": "เข็ม",
   "rom": "khěm",
   "en": "needle, injection needle, pin",
-  "pri": 4
+  "pri": 4,
+  "zh": "针、注射针、针"
  },
  {
   "th": "เข้ม",
   "rom": "khêm",
   "en": "dark (in color), deep (in color); strong (in flavor), concentrated",
-  "pri": 4
+  "pri": 4,
+  "zh": "深色（颜色）、深（颜色）；浓烈（味道）、浓缩"
  },
  {
   "th": "เข้มข้น",
   "rom": "khêm khôn",
   "en": "concentrated, rich (in flavor or aroma), strong (in flavor)",
-  "pri": 4
+  "pri": 4,
+  "zh": "浓缩的、丰富的（味道或香气）、强烈的（味道）"
  },
  {
   "th": "เข็มขัด",
   "rom": "khěm khàt",
   "en": "belt",
-  "pri": 4
+  "pri": 4,
+  "zh": "腰带"
  },
  {
   "th": "เข่า",
   "rom": "khàw",
   "en": "knee",
-  "pri": 4
+  "pri": 4,
+  "zh": "膝盖"
  },
  {
   "th": "เข้าใจ",
   "rom": "khâwcay",
   "en": "understand, comprehend, appreciate (someone’s feelings or situation)",
-  "pri": 4
+  "pri": 4,
+  "zh": "理解、理解、欣赏（某人的感受或情况）"
  },
  {
   "th": "เขิน",
   "rom": "khə̌ən",
   "en": "shy, self-conscious, embarrassed",
-  "pri": 4
+  "pri": 4,
+  "zh": "害羞、难为情、害羞"
  },
  {
   "th": "เขียว",
   "rom": "khǐaw",
   "en": "green",
-  "pri": 4
+  "pri": 4,
+  "zh": "绿色的"
  },
  {
   "th": "เค็ม",
   "rom": "khem",
   "en": "salty, salted",
-  "pri": 4
+  "pri": 4,
+  "zh": "咸的"
  },
  {
   "th": "เครียด",
   "rom": "khrîat",
   "en": "stressed, under mental strain",
-  "pri": 4
+  "pri": 4,
+  "zh": "压力大、精神紧张"
  },
  {
   "th": "เครื่อง",
   "rom": "khrʉ̂aŋ",
   "en": "machine, device, engine; tool, equipment, supplies; [counter for machines and similar equipment]",
-  "pri": 4
+  "pri": 4,
+  "zh": "机器、装置、发动机；工具、设备、用品； [机器和类似设备的计数器]"
  },
  {
   "th": "เครื่องซักผ้า",
   "rom": "khrʉ̂aŋ sák phâa",
   "en": "washing machine, washer",
-  "pri": 4
+  "pri": 4,
+  "zh": "洗衣机"
  },
  {
   "th": "เครื่องดื่ม",
   "rom": "khrʉ̂aŋ dʉ̀ʉm",
   "en": "drink, beverage",
-  "pri": 4
+  "pri": 4,
+  "zh": "饮料"
  },
  {
   "th": "เครื่องบิน",
   "rom": "khrʉ̂aŋ bin",
   "en": "airplane, plane",
-  "pri": 4
+  "pri": 4,
+  "zh": "飞机"
  },
  {
   "th": "เครื่องปรับอากาศ",
   "rom": "khrʉ̂aŋ pràp aakàat",
   "en": "air conditioner",
-  "pri": 4
+  "pri": 4,
+  "zh": "空调"
  },
  {
   "th": "เครื่องใช้ไฟฟ้า",
   "rom": "khrʉ̂aŋ cháy fay fáa",
   "en": "electrical appliance, electrical equipment",
-  "pri": 4
+  "pri": 4,
+  "zh": "电器、电气设备"
  },
  {
   "th": "เคาน์เตอร์",
   "rom": "kháwtə̂ə",
   "en": "counter, service desk",
-  "pri": 4
+  "pri": 4,
+  "zh": "柜台、服务台"
  },
  {
   "th": "เคารพ",
   "rom": "khawróp",
   "en": "respect, pay respect to; respect",
-  "pri": 4
+  "pri": 4,
+  "zh": "尊重、尊重；尊重"
  },
  {
   "th": "เคาะ",
   "rom": "khɔ́",
   "en": "knock, tap",
-  "pri": 4
+  "pri": 4,
+  "zh": "敲、敲"
  },
  {
   "th": "เคี้ยว",
   "rom": "khíaw",
   "en": "chew",
-  "pri": 4
+  "pri": 4,
+  "zh": "嚼"
  },
  {
   "th": "เงา",
   "rom": "ŋaw",
   "en": "shadow, shade",
-  "pri": 4
+  "pri": 4,
+  "zh": "阴影"
  },
  {
   "th": "เงินทอง",
   "rom": "ŋən thɔɔŋ",
   "en": "money, wealth",
-  "pri": 4
+  "pri": 4,
+  "zh": "金钱、财富"
  },
  {
   "th": "เงินสด",
   "rom": "ŋən sòt",
   "en": "cash",
-  "pri": 4
+  "pri": 4,
+  "zh": "现金"
  },
  {
   "th": "เงินเดือน",
   "rom": "ŋən dʉan",
   "en": "salary, monthly pay",
-  "pri": 4
+  "pri": 4,
+  "zh": "工资、月薪"
  },
  {
   "th": "เจ๋ง",
   "rom": "cěŋ",
   "en": "awesome, excellent, impressively capable, cool; Awesome!, Cool!, Great!",
-  "pri": 4
+  "pri": 4,
+  "zh": "很棒的、优秀的、令人印象深刻的能力、酷；太棒了！、酷！、太棒了！"
  },
  {
   "th": "เจ็ดสิบ",
   "rom": "cèt sìp",
   "en": "70",
-  "pri": 4
+  "pri": 4,
+  "zh": "70"
  },
  {
   "th": "เจ็ดโมงเช้า",
   "rom": "cèt mooŋ cháaw",
   "en": "7:00 a.m.",
-  "pri": 4
+  "pri": 4,
+  "zh": "上午 7:00"
  },
  {
   "th": "เจ้าของ",
   "rom": "câw khɔ̌ɔŋ",
   "en": "owner, proprietor",
-  "pri": 4
+  "pri": 4,
+  "zh": "所有者"
  },
  {
   "th": "เจ้าชู้",
   "rom": "câwchúu",
   "en": "flirtatious, prone to playing the field",
-  "pri": 4
+  "pri": 4,
+  "zh": "轻浮、爱耍花招"
  },
  {
   "th": "เจ้านาย",
   "rom": "câw naay",
   "en": "boss, employer, master",
-  "pri": 4
+  "pri": 4,
+  "zh": "老板、雇主、主人"
  },
  {
   "th": "เจ้าหน้าที่",
   "rom": "câwnâathîi",
   "en": "staff member, official, officer",
-  "pri": 4
+  "pri": 4,
+  "zh": "工作人员、官员"
  },
  {
   "th": "เฉพาะ",
   "rom": "chaphɔ́",
   "en": "specific, particular, limited, specialized; only, limited to, restricted to",
-  "pri": 4
+  "pri": 4,
+  "zh": "具体的、特别的、有限的、专门的；仅仅、仅限于"
  },
  {
   "th": "เฉยๆ",
   "rom": "chə̌əy chə̌əy",
   "en": "idle, without doing anything, still; indifferent, unimpressed, just okay; just, without any particular intention",
-  "pri": 4
+  "pri": 4,
+  "zh": "闲着、什么也不做、静止不动；冷漠、不为所动、还好；只是、没有任何特别的意图"
  },
  {
   "th": "เฉลี่ย",
   "rom": "chalìa",
   "en": "average, on average",
-  "pri": 4
+  "pri": 4,
+  "zh": "平均"
  },
  {
   "th": "เช็ก",
   "rom": "chék",
   "en": "check, verify, inspect",
-  "pri": 4
+  "pri": 4,
+  "zh": "检查、核实"
  },
  {
   "th": "เช็ค",
   "rom": "chék",
   "en": "check, inspect",
-  "pri": 4
+  "pri": 4,
+  "zh": "检查"
  },
  {
   "th": "เช็คเอาท์",
   "rom": "chék aw",
   "en": "check out (of a hotel)",
-  "pri": 4
+  "pri": 4,
+  "zh": "(酒店)退房"
  },
  {
   "th": "เช็ด",
   "rom": "chét",
   "en": "wipe, wipe off",
-  "pri": 4
+  "pri": 4,
+  "zh": "擦掉"
  },
  {
   "th": "เชย",
   "rom": "chəəy",
   "en": "old-fashioned, unfashionable",
-  "pri": 4
+  "pri": 4,
+  "zh": "老式的、不时髦的"
  },
  {
   "th": "เช่า",
   "rom": "châw",
   "en": "rent, lease",
-  "pri": 4
+  "pri": 4,
+  "zh": "租金、租赁"
  },
  {
   "th": "เชื้อ",
   "rom": "chʉ́a",
   "en": "germ, pathogen",
-  "pri": 4
+  "pri": 4,
+  "zh": "细菌、病原体"
  },
  {
   "th": "เชื่อม",
   "rom": "chʉ̂am",
   "en": "connect, link",
-  "pri": 4
+  "pri": 4,
+  "zh": "连接、链接"
  },
  {
   "th": "เชื่อมต่อ",
   "rom": "chʉ̂am tɔ̀ɔ",
   "en": "connect, join",
-  "pri": 4
+  "pri": 4,
+  "zh": "连接、加入"
  },
  {
   "th": "เซ็ง",
   "rom": "seŋ",
   "en": "bored, fed up, bummed out",
-  "pri": 4
+  "pri": 4,
+  "zh": "无聊、厌倦、沮丧"
  },
  {
   "th": "เซ็น",
   "rom": "sen",
   "en": "sign",
-  "pri": 4
+  "pri": 4,
+  "zh": "符号"
  },
  {
   "th": "เซฟ",
   "rom": "séf",
   "en": "save (data or game progress)",
-  "pri": 4
+  "pri": 4,
+  "zh": "保存（数据或游戏进度）"
  },
  {
   "th": "เด็ด",
   "rom": "dèt",
   "en": "outstanding, excellent, exceptional",
-  "pri": 4
+  "pri": 4,
+  "zh": "杰出的、优秀的"
  },
  {
   "th": "เด็ดขาด",
   "rom": "dètkhàat",
   "en": "absolutely not, under no circumstances",
-  "pri": 4
+  "pri": 4,
+  "zh": "绝对不、在任何情况下"
  },
  {
   "th": "เดา",
   "rom": "daw",
   "en": "guess, estimate, conjecture",
-  "pri": 4
+  "pri": 4,
+  "zh": "猜测、估计、猜想"
  },
  {
   "th": "เดินทาง",
   "rom": "dəən thaaŋ",
   "en": "travel, go on a trip, go",
-  "pri": 4
+  "pri": 4,
+  "zh": "旅行、去旅行、去"
  },
  {
   "th": "เดินเล่น",
   "rom": "dəən lên",
   "en": "stroll, take a walk",
-  "pri": 4
+  "pri": 4,
+  "zh": "散步"
  },
  {
   "th": "เดิม",
   "rom": "dəəm",
   "en": "original, former, previous; the same as before, the usual",
-  "pri": 4
+  "pri": 4,
+  "zh": "原来的、以前的、以前的；和以前一样、平常的"
  },
  {
   "th": "เดียวกัน",
   "rom": "diaw kan",
   "en": "the same",
-  "pri": 4
+  "pri": 4,
+  "zh": "相同"
  },
  {
   "th": "เดียวกับ",
   "rom": "diaw kàp",
   "en": "the same as",
-  "pri": 4
+  "pri": 4,
+  "zh": "与"
  },
  {
   "th": "เดือด",
   "rom": "dʉ̀at",
   "en": "boil",
-  "pri": 4
+  "pri": 4,
+  "zh": "熬"
  },
  {
   "th": "เต้น",
   "rom": "tên",
   "en": "dance; beat (of the heart), throb, pulsate",
-  "pri": 4
+  "pri": 4,
+  "zh": "舞蹈; （心脏的）跳动、跳动"
  },
  {
   "th": "เต็มที่",
   "rom": "tem thîi",
   "en": "with all one&#39;s effort, to the best of one&#39;s ability; fully, to the fullest extent",
-  "pri": 4
+  "pri": 4,
+  "zh": "竭尽全力、尽最大努力；充分地、最大限度地"
  },
  {
   "th": "เตรียม",
   "rom": "triam",
   "en": "prepare, get ready",
-  "pri": 4
+  "pri": 4,
+  "zh": "准备、准备好"
  },
  {
   "th": "เตะ",
   "rom": "tè",
   "en": "kick, punt",
-  "pri": 4
+  "pri": 4,
+  "zh": "踢、踢"
  },
  {
   "th": "เตา",
   "rom": "taw",
   "en": "stove, oven, furnace or kiln",
-  "pri": 4
+  "pri": 4,
+  "zh": "炉子、烤箱、熔炉或窑炉"
  },
  {
   "th": "เติบโต",
   "rom": "tə̀əptoo",
   "en": "grow, grow up, mature",
-  "pri": 4
+  "pri": 4,
+  "zh": "成长、成长、成熟"
  },
  {
   "th": "เติม",
   "rom": "təəm",
   "en": "add more, refill, fill up, top up",
-  "pri": 4
+  "pri": 4,
+  "zh": "添加更多、补充、填满、加满"
  },
  {
   "th": "เตี้ย",
   "rom": "tîa",
   "en": "short (in height), low (in height)",
-  "pri": 4
+  "pri": 4,
+  "zh": "短（高度）、低（高度）"
  },
  {
   "th": "เตียง",
   "rom": "tiaŋ",
   "en": "bed, berth (on a train)",
-  "pri": 4
+  "pri": 4,
+  "zh": "床、卧铺（火车上）"
  },
  {
   "th": "เตียงคู่",
   "rom": "tiaŋ khûu",
   "en": "double bed",
-  "pri": 4
+  "pri": 4,
+  "zh": "双人床"
  },
  {
   "th": "เตือน",
   "rom": "tʉan",
   "en": "warn, caution, alert; remind",
-  "pri": 4
+  "pri": 4,
+  "zh": "警告、警告；提醒"
  },
  {
   "th": "เถียง",
   "rom": "thǐaŋ",
   "en": "argue, contradict, talk back",
-  "pri": 4
+  "pri": 4,
+  "zh": "争论、反驳、顶嘴"
  },
  {
   "th": "เท",
   "rom": "thee",
   "en": "pour, empty out, pour down, invest (money, time, effort), put a lot into; ditch, flake on, abandon, dump, skip",
-  "pri": 4
+  "pri": 4,
+  "zh": "倾倒、清空、倒下、投资（金钱、时间、精力）、投入很多；沟渠、剥落、放弃、倾倒、跳过"
  },
  {
   "th": "เท่",
   "rom": "thêe",
   "en": "cool, stylish, chic, smart-looking",
-  "pri": 4
+  "pri": 4,
+  "zh": "酷、时尚、别致、聪明"
  },
  {
   "th": "เทศกาล",
   "rom": "thêetsakaan",
   "en": "festival",
-  "pri": 4
+  "pri": 4,
+  "zh": "节日"
  },
  {
   "th": "เทอม",
   "rom": "thəəm",
   "en": "school term, semester",
-  "pri": 4
+  "pri": 4,
+  "zh": "学期"
  },
  {
   "th": "เทา",
   "rom": "thaw",
   "en": "gray, grey",
-  "pri": 4
+  "pri": 4,
+  "zh": "灰色"
  },
  {
   "th": "เที่ยงคืน",
   "rom": "thîaŋ khʉʉn",
   "en": "midnight, 12:00 a.m.",
-  "pri": 4
+  "pri": 4,
+  "zh": "午夜、中午 12:00"
  },
  {
   "th": "เทียบ",
   "rom": "thîap",
   "en": "compare, compare with, check against",
-  "pri": 4
+  "pri": 4,
+  "zh": "比较、核对"
  },
  {
   "th": "เที่ยว",
   "rom": "thîaw",
   "en": "travel for pleasure, visit (for sightseeing), go out for fun",
-  "pri": 4
+  "pri": 4,
+  "zh": "旅游、参观（观光）、出去玩"
  },
  {
   "th": "เที่ยวเดียว",
   "rom": "thîaw diaw",
   "en": "one-way trip, one-way",
-  "pri": 4
+  "pri": 4,
+  "zh": "单程旅行、单程"
  },
  {
   "th": "เธอ",
   "rom": "thəə",
   "en": "you [informal or intimate]; she, her",
-  "pri": 4
+  "pri": 4,
+  "zh": "你[非正式或亲密]；她、她的"
  },
  {
   "th": "เน้น",
   "rom": "nén",
   "en": "focus on, place emphasis on, prioritize",
-  "pri": 4
+  "pri": 4,
+  "zh": "集中于、强调、优先考虑"
  },
  {
   "th": "เนย",
   "rom": "nəəy",
   "en": "butter",
-  "pri": 4
+  "pri": 4,
+  "zh": "黄油"
  },
  {
   "th": "เน่า",
   "rom": "nâw",
   "en": "rotten, decayed, decomposed",
-  "pri": 4
+  "pri": 4,
+  "zh": "腐烂的"
  },
  {
   "th": "เนี่ย",
   "rom": "nîa",
   "en": "[adds emphasis to a question or statement]; as for, [highlights the topic]; look, here, hey",
-  "pri": 4
+  "pri": 4,
+  "zh": "[强调问题或陈述]；至于、[突出主题]；看这里、嘿"
  },
  {
   "th": "เนื่อง",
   "rom": "nʉ̂aŋ",
   "en": "because; because of",
-  "pri": 4
+  "pri": 4,
+  "zh": "因为;由于"
  },
  {
   "th": "เนื้อหา",
   "rom": "nʉ́ahǎa",
   "en": "content, substance (of a text or discussion)",
-  "pri": 4
+  "pri": 4,
+  "zh": "（文本或讨论的）内容、实质内容"
  },
  {
   "th": "เบรก",
   "rom": "brèek",
   "en": "brake, braking system; brake, apply the brakes",
-  "pri": 4
+  "pri": 4,
+  "zh": "制动器、制动系统；刹车、踩刹车"
  },
  {
   "th": "เบอร์ห้อง",
   "rom": "bəə hɔ̂ŋ",
   "en": "room number",
-  "pri": 4
+  "pri": 4,
+  "zh": "房间号"
  },
  {
   "th": "เบอร์โทร",
   "rom": "bəə thoo",
   "en": "phone number",
-  "pri": 4
+  "pri": 4,
+  "zh": "电话号码"
  },
  {
   "th": "เบอร์โทรศัพท์",
   "rom": "bəə thoorasàp",
   "en": "phone number",
-  "pri": 4
+  "pri": 4,
+  "zh": "电话号码"
  },
  {
   "th": "เบา ๆ",
   "rom": "baw baw",
   "en": "soft (in volume), quietly; gently, lightly",
-  "pri": 4
+  "pri": 4,
+  "zh": "轻柔（音量）、安静；轻轻地、轻轻地"
  },
  {
   "th": "เบาๆ",
   "rom": "baw baw",
   "en": "gently, lightly; quiet, low-volume, quietly; light, mild, easy",
-  "pri": 4
+  "pri": 4,
+  "zh": "轻轻地、轻轻地；安静、低音量、安静；轻的、温和的、容易的"
  },
  {
   "th": "เบาลง",
   "rom": "baw loŋ",
   "en": "become quieter, become less intense, ease (of pain or symptoms)",
-  "pri": 4
+  "pri": 4,
+  "zh": "变得更安静、变得不那么强烈、缓解（疼痛或症状）"
  },
  {
   "th": "เบาะ",
   "rom": "bɔ̀",
   "en": "cushion, padded seat, saddle, pad, mattress",
-  "pri": 4
+  "pri": 4,
+  "zh": "坐垫、软垫座椅、马鞍、衬垫、床垫"
  },
  {
   "th": "เบิก",
   "rom": "bə̀ək",
   "en": "withdraw (money), requisition (supplies), claim reimbursement (for expenses), receive (pay) in advance",
-  "pri": 4
+  "pri": 4,
+  "zh": "提款（钱）、请购（物资）、报销（费用）、预收（付款）"
  },
  {
   "th": "เบียร์",
   "rom": "bia",
   "en": "beer",
-  "pri": 4
+  "pri": 4,
+  "zh": "啤酒"
  },
  {
   "th": "เบื่อ",
   "rom": "bʉ̀a",
   "en": "be bored, be tired of, be fed up with",
-  "pri": 4
+  "pri": 4,
+  "zh": "感到无聊、厌倦、受够了"
  },
  {
   "th": "เป็ด",
   "rom": "pèt",
   "en": "duck",
-  "pri": 4
+  "pri": 4,
+  "zh": "鸭子"
  },
  {
   "th": "เป็นมิตร",
   "rom": "pen mít",
   "en": "friendly, amiable",
-  "pri": 4
+  "pri": 4,
+  "zh": "友好的、和蔼可亲的"
  },
  {
   "th": "เป็นห่วง",
   "rom": "pen hùaŋ",
   "en": "be worried about , be concerned about",
-  "pri": 4
+  "pri": 4,
+  "zh": "担心"
  },
  {
   "th": "เป็นหวัด",
   "rom": "pen wàt",
   "en": "have a cold, catch a cold",
-  "pri": 4
+  "pri": 4,
+  "zh": "感冒了"
  },
  {
   "th": "เปรี้ยว",
   "rom": "prîaw",
   "en": "sour, tart",
-  "pri": 4
+  "pri": 4,
+  "zh": "酸、酸"
  },
  {
   "th": "เปลี่ยนชุด",
   "rom": "plìan chút",
   "en": "change clothes, change outfits",
-  "pri": 4
+  "pri": 4,
+  "zh": "换衣服"
  },
  {
   "th": "เปลี่ยนเสื้อผ้า",
   "rom": "plìan sʉ̂a phâa",
   "en": "change clothes, change someone&#39;s clothes",
-  "pri": 4
+  "pri": 4,
+  "zh": "换衣服、换别人的衣服"
  },
  {
   "th": "เปลี่ยนแปลง",
   "rom": "plìan plɛɛŋ",
   "en": "change, become different",
-  "pri": 4
+  "pri": 4,
+  "zh": "改变、变得不同"
  },
  {
   "th": "เปลี่ยนไป",
   "rom": "plìan pay",
   "en": "change, become different",
-  "pri": 4
+  "pri": 4,
+  "zh": "改变、变得不同"
  },
  {
   "th": "เปิด",
   "rom": "pə̀ət",
   "en": "open, remove (a lid, cap, or fastening); turn on, switch on, play (audio or video), turn on (water); open (a shop or facility), be open for business, start a business",
-  "pri": 4
+  "pri": 4,
+  "zh": "打开、移除（盖子、盖子或紧固件）；打开、打开、播放（音频或视频）、打开（水）；开业（商店或设施）、开业、开办企业"
  },
  {
   "th": "เปียก",
   "rom": "pìak",
   "en": "wet, damp",
-  "pri": 4
+  "pri": 4,
+  "zh": "潮湿"
  },
  {
   "th": "เปื้อน",
   "rom": "pʉ̂an",
   "en": "get dirty, get stained",
-  "pri": 4
+  "pri": 4,
+  "zh": "弄脏"
  },
  {
   "th": "เผ็ด",
   "rom": "phèt",
   "en": "spicy-hot",
-  "pri": 4
+  "pri": 4,
+  "zh": "辣的"
  },
  {
   "th": "เผลอ",
   "rom": "phlə̌ə",
   "en": "be absent-minded, let one’s guard down; accidentally, unintentionally, without realizing it",
-  "pri": 4
+  "pri": 4,
+  "zh": "心不在焉、放松警惕；无意中、无意中、没有意识到"
  },
  {
   "th": "เผา",
   "rom": "phǎw",
   "en": "burn, incinerate, cremate, fire (pottery, bricks)",
-  "pri": 4
+  "pri": 4,
+  "zh": "烧伤、焚烧、火葬、火（陶器、砖块）"
  },
  {
   "th": "เฝ้า",
   "rom": "fâw",
   "en": "watch over, guard, attend (someone)",
-  "pri": 4
+  "pri": 4,
+  "zh": "看守、照顾（某人）"
  },
  {
   "th": "เพลง",
   "rom": "phleeŋ",
   "en": "song, piece of music",
-  "pri": 4
+  "pri": 4,
+  "zh": "歌曲、音乐片段"
  },
  {
   "th": "เพศ",
   "rom": "phêet",
   "en": "sex, gender",
-  "pri": 4
+  "pri": 4,
+  "zh": "性别"
  },
  {
   "th": "เพิ่ง",
   "rom": "phə̂ŋ",
   "en": "just; only recently, only now",
-  "pri": 4
+  "pri": 4,
+  "zh": "只是;仅仅最近、仅仅现在"
  },
  {
   "th": "เพิ่ม",
   "rom": "phə̂əm",
   "en": "increase, add, enhance; more, extra",
-  "pri": 4
+  "pri": 4,
+  "zh": "增加、增强；更多、额外"
  },
  {
   "th": "เพียง",
   "rom": "phiaŋ",
   "en": "only, just, merely",
-  "pri": 4
+  "pri": 4,
+  "zh": "仅仅、仅仅、仅仅是"
  },
  {
   "th": "เพียงพอ",
   "rom": "phiaŋphɔɔ",
   "en": "enough, sufficient, sufficiently",
-  "pri": 4
+  "pri": 4,
+  "zh": "够了、足够了"
  },
  {
   "th": "เพื่อนบ้าน",
   "rom": "phʉ̂an bâan",
   "en": "neighbor",
-  "pri": 4
+  "pri": 4,
+  "zh": "邻居"
  },
  {
   "th": "เพื่อนร่วมงาน",
   "rom": "phʉ̂an rûam ŋaan",
   "en": "coworker, colleague",
-  "pri": 4
+  "pri": 4,
+  "zh": "同事"
  },
  {
   "th": "เฟซบุ๊ก",
   "rom": "féesbúk",
   "en": "Facebook",
-  "pri": 4
+  "pri": 4,
+  "zh": "Facebook"
  },
  {
   "th": "เฟอร์นิเจอร์",
   "rom": "fəənícəə",
   "en": "furniture",
-  "pri": 4
+  "pri": 4,
+  "zh": "家具"
  },
  {
   "th": "เมฆ",
   "rom": "mêek",
   "en": "cloud",
-  "pri": 4
+  "pri": 4,
+  "zh": "云"
  },
  {
   "th": "เม็ด",
   "rom": "mét",
   "en": "grain, small bead or rounded piece; [classifier for grains, pills, seeds, beads, and small gems]",
-  "pri": 4
+  "pri": 4,
+  "zh": "粒状、小珠状或圆形片； [谷物、药丸、种子、珠子和小宝石的分类器]"
  },
  {
   "th": "เมนู",
   "rom": "meenuu",
   "en": "menu (list of food and drinks); dish, meal option, meal plan",
-  "pri": 4
+  "pri": 4,
+  "zh": "菜单（食物和饮料清单）；菜肴、膳食选择、膳食计划"
  },
  {
   "th": "เมษายน",
   "rom": "meesǎayon",
   "en": "April",
-  "pri": 4
+  "pri": 4,
+  "zh": "四月"
  },
  {
   "th": "เมา",
   "rom": "maw",
   "en": "be drunk, be intoxicated (by alcohol or drugs); get motion sickness, be carsick or seasick",
-  "pri": 4
+  "pri": 4,
+  "zh": "喝醉、喝醉（通过酒精或药物）；晕车、晕车或晕船"
  },
  {
   "th": "เมีย",
   "rom": "mia",
   "en": "wife",
-  "pri": 4
+  "pri": 4,
+  "zh": "妻子"
  },
  {
   "th": "เมื่อก่อน",
   "rom": "mʉ̂a kɔ̀ɔn",
   "en": "formerly, previously, in the past",
-  "pri": 4
+  "pri": 4,
+  "zh": "以前、过去"
  },
  {
   "th": "เมื่อกี้",
   "rom": "mʉ̂akîi",
   "en": "just now, a moment ago",
-  "pri": 4
+  "pri": 4,
+  "zh": "刚才"
  },
  {
   "th": "เมือง",
   "rom": "mʉaŋ",
   "en": "town; city, urban area; country; land",
-  "pri": 4
+  "pri": 4,
+  "zh": "镇;城市、市区；国家;土地"
  },
  {
   "th": "เมื่อวานซืน",
   "rom": "mʉ̂a waansʉʉn",
   "en": "the day before yesterday",
-  "pri": 4
+  "pri": 4,
+  "zh": "前天"
  },
  {
   "th": "เร่ง",
   "rom": "rêŋ",
   "en": "hurry to do, speed up (a task or process); urge (someone to hurry), press for (a response or action)",
-  "pri": 4
+  "pri": 4,
+  "zh": "赶紧做、加快（一项任务或过程）；敦促（某人快点）、敦促（回应或行动）"
  },
  {
   "th": "เรียน",
   "rom": "rian",
   "en": "learn, study, attend school",
-  "pri": 4
+  "pri": 4,
+  "zh": "学习、学习、上学"
  },
  {
   "th": "เรียนจบ",
   "rom": "rian còp",
   "en": "graduate, complete a course of study",
-  "pri": 4
+  "pri": 4,
+  "zh": "毕业、完成学习课程"
  },
  {
   "th": "เรียนรู้",
   "rom": "rian rúu",
   "en": "learn, study, acquire (knowledge or skills), come to understand",
-  "pri": 4
+  "pri": 4,
+  "zh": "学习、学习、获取（知识或技能）、了解"
  },
  {
   "th": "เรียบร้อย",
   "rom": "rîap rɔ́ɔy",
   "en": "completely and properly, successfully finished; neat and tidy, orderly, in good order",
-  "pri": 4
+  "pri": 4,
+  "zh": "完全正确地、成功地完成了；整齐、有序、井然有序"
  },
  {
   "th": "เรือ",
   "rom": "rʉa",
   "en": "boat; ship",
-  "pri": 4
+  "pri": 4,
+  "zh": "船;船"
  },
  {
   "th": "เล็บ",
   "rom": "lép",
   "en": "fingernail, toenail, claw; talon",
-  "pri": 4
+  "pri": 4,
+  "zh": "手指甲、脚趾甲、爪子；爪"
  },
  {
   "th": "เล่ม",
   "rom": "lêm",
   "en": "[classifier for books and notebooks], [classifier for knives, swords, and certain similar objects]",
-  "pri": 4
+  "pri": 4,
+  "zh": "[书籍和笔记本的分类器]、[刀、剑和某些类似物体的分类器]"
  },
  {
   "th": "เลว",
   "rom": "leew",
   "en": "morally bad, vile, wicked",
-  "pri": 4
+  "pri": 4,
+  "zh": "道德败坏、卑鄙、邪恶"
  },
  {
   "th": "เลอะ",
   "rom": "lə́",
   "en": "dirty, smeared or stained",
-  "pri": 4
+  "pri": 4,
+  "zh": "脏、有污迹或有污渍"
  },
  {
   "th": "เล่า",
   "rom": "lâw",
   "en": "tell, recount, narrate",
-  "pri": 4
+  "pri": 4,
+  "zh": "讲述、叙述"
  },
  {
   "th": "เลี่ยง",
   "rom": "lîaŋ",
   "en": "avoid, go around, evade (questions or responsibilities)",
-  "pri": 4
+  "pri": 4,
+  "zh": "避免、绕过、逃避（问题或责任）"
  },
  {
   "th": "เลี้ยง",
   "rom": "líaŋ",
   "en": "raise (a child), take care of (someone), provide for (a family or person); keep (an animal), raise (livestock), breed or farm (animals); treat (someone to food or drinks), pay for (a meal or drinks), host or entertain (guests)",
-  "pri": 4
+  "pri": 4,
+  "zh": "抚养（孩子）、照顾（某人）、供养（家庭或个人）；饲养（动物）、饲养（牲畜）、繁殖或农场（动物）；请客（某人吃东西或喝饮料）、支付费用（一顿饭或饮料）、招待或款待（客人）"
  },
  {
   "th": "เลี้ยว",
   "rom": "líaw",
   "en": "turn, change direction, turn (a vehicle, etc.)",
-  "pri": 4
+  "pri": 4,
+  "zh": "转向、改变方向、转弯（车辆等）"
  },
  {
   "th": "เลือด",
   "rom": "lʉ̂at",
   "en": "blood",
-  "pri": 4
+  "pri": 4,
+  "zh": "血"
  },
  {
   "th": "เลื่อน",
   "rom": "lʉ̂an",
   "en": "postpone, reschedule; slide, scroll",
-  "pri": 4
+  "pri": 4,
+  "zh": "推迟、重新安排；滑动、滚动"
  },
  {
   "th": "เว้น",
   "rom": "wén",
   "en": "skip, exclude",
-  "pri": 4
+  "pri": 4,
+  "zh": "跳过、排除"
  },
  {
   "th": "เวียน",
   "rom": "wian",
   "en": "feel dizzy [in เวียนหัว or เวียนศีรษะ]",
-  "pri": 4
+  "pri": 4,
+  "zh": "感到头晕 [用 เวียนหัว 或 เวียนศีรษะ]"
  },
  {
   "th": "เวียนหัว",
   "rom": "wian hǔa",
   "en": "feel dizzy, feel light-headed",
-  "pri": 4
+  "pri": 4,
+  "zh": "感到头晕、头晕"
  },
  {
   "th": "เศร้า",
   "rom": "sâw",
   "en": "sad, sorrowful",
-  "pri": 4
+  "pri": 4,
+  "zh": "悲伤的"
  },
  {
   "th": "เศษ",
   "rom": "sèet",
   "en": "fragment, scrap, leftovers",
-  "pri": 4
+  "pri": 4,
+  "zh": "碎片、废料、剩余物"
  },
  {
   "th": "เส้น",
   "rom": "sên",
   "en": "line, strand, thread or cord; [classifier for long, thin objects]; noodles, type of noodle",
-  "pri": 4
+  "pri": 4,
+  "zh": "线、绞线、线或绳； [细长物体的分类器]；面条、面条的类型"
  },
  {
   "th": "เสน่ห์",
   "rom": "sanèe",
   "en": "charm, appeal",
-  "pri": 4
+  "pri": 4,
+  "zh": "魅力、号召力"
  },
  {
   "th": "เสนอ",
   "rom": "sanə̌ə",
   "en": "propose, offer, suggest, nominate",
-  "pri": 4
+  "pri": 4,
+  "zh": "提议、提议、建议、提名"
  },
  {
   "th": "เสา",
   "rom": "sǎw",
   "en": "pillar, post, pole, column",
-  "pri": 4
+  "pri": 4,
+  "zh": "柱子、柱子、杆子、柱子"
  },
  {
   "th": "เสาร์",
   "rom": "sǎw",
   "en": "Saturday",
-  "pri": 4
+  "pri": 4,
+  "zh": "周六"
  },
  {
   "th": "เสี่ยง",
   "rom": "sìaŋ",
   "en": "take a risk, risk (one’s life, money, etc.); risky, at risk (of)",
-  "pri": 4
+  "pri": 4,
+  "zh": "冒风险（生命、金钱等）；有风险的、有风险的（的）"
  },
  {
   "th": "เสียดาย",
   "rom": "sǐadaay",
   "en": "regret, be sorry about (a loss or missed opportunity), hate to waste (something)",
-  "pri": 4
+  "pri": 4,
+  "zh": "后悔、对（损失或错过的机会）感到抱歉、讨厌浪费（某事）"
  },
  {
   "th": "เสียบ",
   "rom": "sìap",
   "en": "insert, plug in",
-  "pri": 4
+  "pri": 4,
+  "zh": "插入、插上"
  },
  {
   "th": "เสียเวลา",
   "rom": "sǐa weelaa",
   "en": "waste time, lose time",
-  "pri": 4
+  "pri": 4,
+  "zh": "浪费时间"
  },
  {
   "th": "เสื้อผ้า",
   "rom": "sʉ̂a phâa",
   "en": "clothes, clothing",
-  "pri": 4
+  "pri": 4,
+  "zh": "衣服"
  },
  {
   "th": "เสื้อยืด",
   "rom": "sʉ̂a yʉ̂ʉt",
   "en": "T-shirt",
-  "pri": 4
+  "pri": 4,
+  "zh": "T恤"
  },
  {
   "th": "เสื้อแขนยาว",
   "rom": "sʉ̂a khɛ̌ɛn yaaw",
   "en": "long-sleeved top, long-sleeved shirt",
-  "pri": 4
+  "pri": 4,
+  "zh": "长袖上衣、长袖衬衫"
  },
  {
   "th": "เสื้อแขนสั้น",
   "rom": "sʉ̂a khɛ̌ɛn sân",
   "en": "short-sleeved top, short-sleeved shirt",
-  "pri": 4
+  "pri": 4,
+  "zh": "短袖上衣、短袖衬衫"
  },
  {
   "th": "เหงา",
   "rom": "ŋǎw",
   "en": "lonely, lonesome, lonely-looking",
-  "pri": 4
+  "pri": 4,
+  "zh": "孤独、孤独、孤独的样子"
  },
  {
   "th": "เหงื่อ",
   "rom": "ŋʉ̀a",
   "en": "sweat, perspiration",
-  "pri": 4
+  "pri": 4,
+  "zh": "汗水"
  },
  {
   "th": "เหงื่อออก",
   "rom": "ŋʉ̀a ɔ̀ɔk",
   "en": "sweat, perspire",
-  "pri": 4
+  "pri": 4,
+  "zh": "出汗"
  },
  {
   "th": "เหตุ",
   "rom": "hèet",
   "en": "cause, reason",
-  "pri": 4
+  "pri": 4,
+  "zh": "原因"
  },
  {
   "th": "เหตุการณ์",
   "rom": "hèetkaan",
   "en": "event, incident",
-  "pri": 4
+  "pri": 4,
+  "zh": "事件"
  },
  {
   "th": "เห็นด้วย",
   "rom": "hěn dûay",
   "en": "agree with, be in favor of",
-  "pri": 4
+  "pri": 4,
+  "zh": "同意、赞成"
  },
  {
   "th": "เห็นแก่ตัว",
   "rom": "hěn kɛ̀ɛ tua",
   "en": "selfish, self-centered",
-  "pri": 4
+  "pri": 4,
+  "zh": "自私的、以自我为中心的"
  },
  {
   "th": "เห็นได้ชัด",
   "rom": "hěn dâay chát",
   "en": "be clearly apparent, be obvious; noticeably, clearly",
-  "pri": 4
+  "pri": 4,
+  "zh": "明显地、明显地；明显地"
  },
  {
   "th": "เหม็น",
   "rom": "měn",
   "en": "foul-smelling, stinky",
-  "pri": 4
+  "pri": 4,
+  "zh": "恶臭的"
  },
  {
   "th": "เหมาะสม",
   "rom": "mɔ̀ sǒm",
   "en": "suitable, appropriate, reasonable (a price or amount), appropriately",
-  "pri": 4
+  "pri": 4,
+  "zh": "适当的、合理的（价格或金额）、适当地"
  },
  {
   "th": "เหมือน",
   "rom": "mʉ̌an",
   "en": "the same, similar; like, in the same way as; seem, appear",
-  "pri": 4
+  "pri": 4,
+  "zh": "相同、类似；像、以同样的方式；似乎、出现"
  },
  {
   "th": "เหยียด",
   "rom": "yìat",
   "en": "look down on, treat as inferior",
-  "pri": 4
+  "pri": 4,
+  "zh": "瞧不起、视为低人一等"
  },
  {
   "th": "เหยียบ",
   "rom": "yìap",
   "en": "step on, tread on, press (a pedal), run over (with a vehicle), set foot in (a place)",
-  "pri": 4
+  "pri": 4,
+  "zh": "踩上、踏上、踩下（踏板）、（用车辆）碾过、踏入（一个地方）"
  },
  {
   "th": "เหยื่อ",
   "rom": "yʉ̀a",
   "en": "victim",
-  "pri": 4
+  "pri": 4,
+  "zh": "受害者"
  },
  {
   "th": "เหรียญ",
   "rom": "rǐan",
   "en": "coin, digital coin",
-  "pri": 4
+  "pri": 4,
+  "zh": "硬币、数字硬币"
  },
  {
   "th": "เหล็ก",
   "rom": "lèk",
   "en": "iron, steel",
-  "pri": 4
+  "pri": 4,
+  "zh": "铁、钢"
  },
  {
   "th": "เหล้า",
   "rom": "lâw",
   "en": "alcoholic drink, alcohol",
-  "pri": 4
+  "pri": 4,
+  "zh": "酒精饮料、酒精"
  },
  {
   "th": "เหล่านั้น",
   "rom": "làw nán",
   "en": "those",
-  "pri": 4
+  "pri": 4,
+  "zh": "那些"
  },
  {
   "th": "เหลือ",
   "rom": "lʉ̌a",
   "en": "remain, be left over",
-  "pri": 4
+  "pri": 4,
+  "zh": "留下来"
  },
  {
   "th": "เหลือเกิน",
   "rom": "lʉ̌akəən",
   "en": "extremely, so very, excessively",
-  "pri": 4
+  "pri": 4,
+  "zh": "非常、过度"
  },
  {
   "th": "เอกสาร",
   "rom": "èekkàsǎan",
   "en": "document, paperwork, written materials",
-  "pri": 4
+  "pri": 4,
+  "zh": "文件、文书工作、书面材料"
  },
  {
   "th": "เอ็มอาร์ที",
   "rom": "em aa thii",
   "en": "MRT, MRT train",
-  "pri": 4
+  "pri": 4,
+  "zh": "捷运、捷运火车"
  },
  {
   "th": "เอว",
   "rom": "eew",
   "en": "waist, waistline (of clothing)",
-  "pri": 4
+  "pri": 4,
+  "zh": "腰围、(衣服的)腰围"
  },
  {
   "th": "เออ",
   "rom": "əə",
   "en": "yeah, yes[casual], okay[casual]; uh-huh, yeah[backchannel], go on",
-  "pri": 4
+  "pri": 4,
+  "zh": "是的、是的[休闲]、好的[休闲]；嗯嗯、是的[backchannel]、继续"
  },
  {
   "th": "เอ่อ",
   "rom": "ə̀ə",
   "en": "uh, um",
-  "pri": 4
+  "pri": 4,
+  "zh": "呃、嗯"
  },
  {
   "th": "เอ้อ",
   "rom": "ə̂ə",
   "en": "by the way, well",
-  "pri": 4
+  "pri": 4,
+  "zh": "顺便说一句、好吧"
  },
  {
   "th": "เอากลับบ้าน",
   "rom": "aw klàp bâan",
   "en": "take home, get (food) to go",
-  "pri": 4
+  "pri": 4,
+  "zh": "带回家、带（食物）走"
  },
  {
   "th": "เอามา",
   "rom": "aw maa",
   "en": "bring",
-  "pri": 4
+  "pri": 4,
+  "zh": "带来"
  },
  {
   "th": "เอาล่ะ",
   "rom": "aw lâ",
   "en": "all right, okay, then, now then",
-  "pri": 4
+  "pri": 4,
+  "zh": "好吧、那么、现在那么"
  },
  {
   "th": "เอาแต่",
   "rom": "aw tɛ̀ɛ",
   "en": "keep doing nothing but..., focus only on...",
-  "pri": 4
+  "pri": 4,
+  "zh": "继续什么都不做、但……、只专注于……"
  },
  {
   "th": "เอาแต่ใจตัวเอง",
   "rom": "aw tɛ̀ɛ cay tua eeŋ",
   "en": "willful, self-centered, determined to have one&#39;s own way",
-  "pri": 4
+  "pri": 4,
+  "zh": "任性、以自我为中心、一意孤行"
  },
  {
   "th": "เอาไป",
   "rom": "aw pay",
   "en": "take away, take along; use (something) to do something, take (something) to be dealt with",
-  "pri": 4
+  "pri": 4,
+  "zh": "带走、带走；用（某事）做某事、拿（某事）处理"
  },
  {
   "th": "เฮ้",
   "rom": "hé",
   "en": "hey, hi [very casual], wait a second!",
-  "pri": 4
+  "pri": 4,
+  "zh": "嘿、嗨[非常随意]、等一下！"
  },
  {
   "th": "เฮ้ย",
   "rom": "hə́əy",
   "en": "what?!, whoa!, wait a minute!; hey!, stop!",
-  "pri": 4
+  "pri": 4,
+  "zh": "什么？！、哇！、等一下！；嘿！、停下来！"
  },
  {
   "th": "แก",
   "rom": "kɛɛ",
   "en": "you [casual, intimate or blunt]",
-  "pri": 4
+  "pri": 4,
+  "zh": "你[随意、亲密或直率]"
  },
  {
   "th": "แก่",
   "rom": "kɛ̀ɛ",
   "en": "old, aged, growing old",
-  "pri": 4
+  "pri": 4,
+  "zh": "老了、变老了"
  },
  {
   "th": "แก้",
   "rom": "kɛ̂ɛ",
   "en": "fix, correct, revise; solve, resolve",
-  "pri": 4
+  "pri": 4,
+  "zh": "修复、纠正、修改；解决、解决"
  },
  {
   "th": "แกง",
   "rom": "kɛɛŋ",
   "en": "Thai curry, Thai soup or stew",
-  "pri": 4
+  "pri": 4,
+  "zh": "泰式咖喱、泰式汤或炖菜"
  },
  {
   "th": "แกงเขียวหวาน",
   "rom": "kɛɛŋ khǐaw wǎan",
   "en": "Thai green curry",
-  "pri": 4
+  "pri": 4,
+  "zh": "泰式绿咖喱"
  },
  {
   "th": "แก้ม",
   "rom": "kɛ̂ɛm",
   "en": "cheek",
-  "pri": 4
+  "pri": 4,
+  "zh": "脸颊"
  },
  {
   "th": "แกล้ง",
   "rom": "klɛ̂ɛŋ",
   "en": "tease, play a prank on, pick on; bully; pretend, feign",
-  "pri": 4
+  "pri": 4,
+  "zh": "戏弄、恶作剧、捉弄；欺负;假装、佯装"
  },
  {
   "th": "แก้ว",
   "rom": "kɛ̂ɛw",
   "en": "drinking glass, cup; glassful [counter for beverages], cupful [counter for beverages]",
-  "pri": 4
+  "pri": 4,
+  "zh": "水杯、杯子； glassful [饮料柜台]、cupful [饮料柜台]"
  },
  {
   "th": "แกะ",
   "rom": "kɛ̀",
   "en": "peel, remove, unwrap, open (packaging)",
-  "pri": 4
+  "pri": 4,
+  "zh": "剥去、除去、拆开、打开（包装）"
  },
  {
   "th": "แขก",
   "rom": "khɛ̀ɛk",
   "en": "guest, visitor",
-  "pri": 4
+  "pri": 4,
+  "zh": "客人、访客"
  },
  {
   "th": "แข่ง",
   "rom": "khɛ̀ŋ",
   "en": "compete, race, play against",
-  "pri": 4
+  "pri": 4,
+  "zh": "竞争、比赛、对抗"
  },
  {
   "th": "แข็งแรง",
   "rom": "khɛ̌ŋrɛɛŋ",
   "en": "healthy, physically strong, robust",
-  "pri": 4
+  "pri": 4,
+  "zh": "健康的、身体强壮的、强健的"
  },
  {
   "th": "แขน",
   "rom": "khɛ̌ɛn",
   "en": "arm",
-  "pri": 4
+  "pri": 4,
+  "zh": "手臂"
  },
  {
   "th": "แขวน",
   "rom": "khwɛ̌ɛn",
   "en": "hang, suspend, be hanging",
-  "pri": 4
+  "pri": 4,
+  "zh": "悬挂、挂起"
  },
  {
   "th": "แคบ",
   "rom": "khɛ̂ɛp",
   "en": "narrow, limited in scope, narrow-minded",
-  "pri": 4
+  "pri": 4,
+  "zh": "狭窄的、范围有限的、心胸狭隘的"
  },
  {
   "th": "แครอท",
   "rom": "khɛɛrɔ̀ɔt",
   "en": "carrot",
-  "pri": 4
+  "pri": 4,
+  "zh": "胡萝卜"
  },
  {
   "th": "แจก",
   "rom": "cɛ̀ɛk",
   "en": "distribute, hand out, give away for free, assign, deal (cards)",
-  "pri": 4
+  "pri": 4,
+  "zh": "分发、分发、免费赠送、转让、交易（卡片）"
  },
  {
   "th": "แจ้ง",
   "rom": "cɛ̂ɛŋ",
   "en": "inform, notify, report, declare",
-  "pri": 4
+  "pri": 4,
+  "zh": "通知、通知、报告、声明"
  },
  {
   "th": "แช่",
   "rom": "chɛ̂ɛ",
   "en": "soak, steep, immerse; chill, refrigerate, freeze",
-  "pri": 4
+  "pri": 4,
+  "zh": "浸泡、浸入、浸泡；冷藏、冷藏、冷冻"
  },
  {
   "th": "แชมพู",
   "rom": "chɛɛmphuu",
   "en": "shampoo",
-  "pri": 4
+  "pri": 4,
+  "zh": "洗发水"
  },
  {
   "th": "แชร์",
   "rom": "chɛɛ",
   "en": "share (content, information, or resources); split the cost, split the bill",
-  "pri": 4
+  "pri": 4,
+  "zh": "共享（内容、信息或资源）；分摊费用、分摊账单"
  },
  {
   "th": "แซ่บ",
   "rom": "sɛ̂ɛp",
   "en": "boldly flavorful and delicious, deliciously spicy",
-  "pri": 4
+  "pri": 4,
+  "zh": "口味大胆、美味可口、辣味十足"
  },
  {
   "th": "แซว",
   "rom": "sɛɛw",
   "en": "tease, kid, joke with, banter with",
-  "pri": 4
+  "pri": 4,
+  "zh": "戏弄、孩子、开玩笑"
  },
  {
   "th": "แดด",
   "rom": "dɛ̀ɛt",
   "en": "sunlight, sunshine, sun rays, direct sun",
-  "pri": 4
+  "pri": 4,
+  "zh": "阳光、直射阳光"
  },
  {
   "th": "แต่ง",
   "rom": "tɛ̀ŋ",
   "en": "decorate, embellish, customize; dress, groom oneself; get married [short for แต่งงาน]",
-  "pri": 4
+  "pri": 4,
+  "zh": "装饰、美化、定制；着装、打扮自己；结婚 [แต่งงาน 的缩写]"
  },
  {
   "th": "แตงกวา",
   "rom": "tɛɛŋkwaa",
   "en": "cucumber",
-  "pri": 4
+  "pri": 4,
+  "zh": "黄瓜"
  },
  {
   "th": "แต่งงาน",
   "rom": "tɛ̀ŋ ŋaan",
   "en": "get married",
-  "pri": 4
+  "pri": 4,
+  "zh": "结婚"
  },
  {
   "th": "แต่งตัว",
   "rom": "tɛ̀ŋtua",
   "en": "get dressed, dress (in a particular way), dress up as (a person or character)",
-  "pri": 4
+  "pri": 4,
+  "zh": "穿好衣服、（以特定方式）打扮、装扮成（一个人或角色）"
  },
  {
   "th": "แต่งหน้า",
   "rom": "tɛ̀ŋ nâa",
   "en": "put on makeup, apply makeup (to someone)",
-  "pri": 4
+  "pri": 4,
+  "zh": "（给某人）化妆、化妆"
  },
  {
   "th": "แตงโม",
   "rom": "tɛɛŋ moo",
   "en": "watermelon",
-  "pri": 4
+  "pri": 4,
+  "zh": "西瓜"
  },
  {
   "th": "แต้ม",
   "rom": "tɛ̂ɛm",
   "en": "point, score; point(s) [unit of score]",
-  "pri": 4
+  "pri": 4,
+  "zh": "点、得分；分 [分数单位]"
  },
  {
   "th": "แต่ละ",
   "rom": "tɛ̀ɛlá",
   "en": "each",
-  "pri": 4
+  "pri": 4,
+  "zh": "每个"
  },
  {
   "th": "แตะ",
   "rom": "tɛ̀",
   "en": "touch lightly, touch briefly, make light contact with; tap (a screen or button), press lightly (a touch control)",
-  "pri": 4
+  "pri": 4,
+  "zh": "轻轻地接触、短暂地接触、轻轻地接触；点击（屏幕或按钮）、轻按（触摸控制）"
  },
  {
   "th": "แถม",
   "rom": "thɛ̌ɛm",
   "en": "give something extra, include as a free bonus, add on; what&#39;s more, on top of that, plus",
-  "pri": 4
+  "pri": 4,
+  "zh": "提供额外的东西、包括作为免费奖金、添加；更重要的是、除此之外、再加上"
  },
  {
   "th": "แถว",
   "rom": "thɛ̌w",
   "en": "row, line, column; area, vicinity, neighborhood, around",
-  "pri": 4
+  "pri": 4,
+  "zh": "行、行、列；地区、邻近地区、邻近地区、周围"
  },
  {
   "th": "แท้",
   "rom": "thɛ́ɛ",
   "en": "genuine, authentic, pure, unmixed; true, real, genuine",
-  "pri": 4
+  "pri": 4,
+  "zh": "真正的、正宗的、纯粹的、不掺杂的；真实的、真实的、真正的"
  },
  {
   "th": "แทบ",
   "rom": "thɛ̂ɛp",
   "en": "almost, nearly, hardly [with a negative expression]",
-  "pri": 4
+  "pri": 4,
+  "zh": "几乎、几乎[用否定表达]"
  },
  {
   "th": "แน่",
   "rom": "nɛ̂ɛ",
   "en": "definitely, for sure",
-  "pri": 4
+  "pri": 4,
+  "zh": "肯定地"
  },
  {
   "th": "แน่ๆ",
   "rom": "nɛ̂ɛ nɛ̂ɛ",
   "en": "definitely, certainly, for sure",
-  "pri": 4
+  "pri": 4,
+  "zh": "肯定地、当然地"
  },
  {
   "th": "แน่น",
   "rom": "nɛ̂n",
   "en": "densely packed, crowded, packed (schedule); tight, firmly fastened; tightly, firmly, securely",
-  "pri": 4
+  "pri": 4,
+  "zh": "密密麻麻的、拥挤的、拥挤的（时间表）；紧、紧固；紧紧地、牢固地、牢固地"
  },
  {
   "th": "แนว",
   "rom": "nɛɛw",
   "en": "line, row, strip, boundary line; style, genre, trend, type",
-  "pri": 4
+  "pri": 4,
+  "zh": "线、行、带、边界线；风格、流派、趋势、类型"
  },
  {
   "th": "แนะนำตัวเอง",
   "rom": "nɛ́nam tua eeŋ",
   "en": "introduce oneself",
-  "pri": 4
+  "pri": 4,
+  "zh": "自我介绍"
  },
  {
   "th": "แน่ใจ",
   "rom": "nɛ̂ɛ cay",
   "en": "be sure, be certain",
-  "pri": 4
+  "pri": 4,
+  "zh": "确定"
  },
  {
   "th": "แน่ใจว่า",
   "rom": "nɛ̂ɛ cay wâa",
   "en": "be sure that, be certain that",
-  "pri": 4
+  "pri": 4,
+  "zh": "确信这一点"
  },
  {
   "th": "แบก",
   "rom": "bɛ̀ɛk",
   "en": "shoulder, carry on one&#39;s back, carry a heavy load",
-  "pri": 4
+  "pri": 4,
+  "zh": "肩上、背上、背负重物"
  },
  {
   "th": "แบ่ง",
   "rom": "bɛ̀ŋ",
   "en": "divide, split, classify; share, distribute, apportion, divide up",
-  "pri": 4
+  "pri": 4,
+  "zh": "划分、分割、分类；分享、分配、分摊、分配"
  },
  {
   "th": "แบงก์",
   "rom": "bɛ́ŋ",
   "en": "bill (paper money), banknote; bank (financial institution)",
-  "pri": 4
+  "pri": 4,
+  "zh": "票据（纸币）、钞票；银行（金融机构）"
  },
  {
   "th": "แบตเตอรี่",
   "rom": "bɛ̀ɛttəərîi",
   "en": "battery",
-  "pri": 4
+  "pri": 4,
+  "zh": "电池"
  },
  {
   "th": "แบน",
   "rom": "bɛɛn",
   "en": "flat, flattened",
-  "pri": 4
+  "pri": 4,
+  "zh": "扁平的、压扁的"
  },
  {
   "th": "แป้ง",
   "rom": "pɛ̂ɛŋ",
   "en": "flour, starch, starchy food; face powder, body powder, talcum powder",
-  "pri": 4
+  "pri": 4,
+  "zh": "面粉、淀粉、淀粉类食品；爽身粉、爽身粉、爽身粉"
  },
  {
   "th": "แปดสิบ",
   "rom": "pɛ̀ɛtsìp",
   "en": "80",
-  "pri": 4
+  "pri": 4,
+  "zh": "80"
  },
  {
   "th": "แปดโมงเช้า",
   "rom": "pɛ̀ɛt mooŋ cháaw",
   "en": "8 a.m.",
-  "pri": 4
+  "pri": 4,
+  "zh": "上午 8 点"
  },
  {
   "th": "แป้น",
   "rom": "pɛ̂ɛn",
   "en": "key (on a keyboard), pedal",
-  "pri": 4
+  "pri": 4,
+  "zh": "键（键盘上）、踏板"
  },
  {
   "th": "แป๊บ",
   "rom": "pɛ́p",
   "en": "for a moment, in a moment",
-  "pri": 4
+  "pri": 4,
+  "zh": "一会儿"
  },
  {
   "th": "แปรง",
   "rom": "prɛɛŋ",
   "en": "brush; brush, brush (one&#39;s teeth or hair)",
-  "pri": 4
+  "pri": 4,
+  "zh": "刷子;刷子、刷子（牙齿或头发）"
  },
  {
   "th": "แปรงฟัน",
   "rom": "prɛɛŋ fan",
   "en": "brush one&#39;s teeth",
-  "pri": 4
+  "pri": 4,
+  "zh": "刷牙"
  },
  {
   "th": "แปรงสีฟัน",
   "rom": "prɛɛŋ sǐi fan",
   "en": "toothbrush",
-  "pri": 4
+  "pri": 4,
+  "zh": "牙刷"
  },
  {
   "th": "แปลก",
   "rom": "plɛ̀ɛk",
   "en": "strange, unusual, unfamiliar",
-  "pri": 4
+  "pri": 4,
+  "zh": "奇怪的、不寻常的、不熟悉的"
  },
  {
   "th": "แปะ",
   "rom": "pɛ̀",
   "en": "stick, paste, post (a link, image), lightly press against",
-  "pri": 4
+  "pri": 4,
+  "zh": "粘贴、粘贴、张贴（链接、图像）、轻轻按压"
  },
  {
   "th": "แผง",
   "rom": "phɛ̌ɛŋ",
   "en": "market stall, sales stand",
-  "pri": 4
+  "pri": 4,
+  "zh": "市场摊位、销售摊位"
  },
  {
   "th": "แผน",
   "rom": "phɛ̌ɛn",
   "en": "plan, strategy",
-  "pri": 4
+  "pri": 4,
+  "zh": "计划、策略"
  },
  {
   "th": "แผ่น",
   "rom": "phɛ̀n",
   "en": "sheet, flat piece, board, slice; [classifier for thin or flat objects]",
-  "pri": 4
+  "pri": 4,
+  "zh": "片材、平板、板材、切片； [薄或扁平物体的分类器]"
  },
  {
   "th": "แผนก",
   "rom": "phanɛ̀ɛk",
   "en": "department, division, section",
-  "pri": 4
+  "pri": 4,
+  "zh": "部门、部门、部门"
  },
  {
   "th": "แผนที่",
   "rom": "phɛ̌ɛnthîi",
   "en": "map",
-  "pri": 4
+  "pri": 4,
+  "zh": "地图"
  },
  {
   "th": "แผล",
   "rom": "phlɛ̌ɛ",
   "en": "wound, cut, sore, ulcer",
-  "pri": 4
+  "pri": 4,
+  "zh": "伤口、割伤、疼痛、溃疡"
  },
  {
   "th": "แฝด",
   "rom": "fɛ̀ɛt",
   "en": "twin, multiple-birth sibling",
-  "pri": 4
+  "pri": 4,
+  "zh": "双胞胎、多胞胎兄弟姐妹"
  },
  {
   "th": "แฟน",
   "rom": "fɛɛn",
   "en": "boyfriend, girlfriend, romantic partner, spouse [informal]; fan, supporter, admirer",
-  "pri": 4
+  "pri": 4,
+  "zh": "boyfriend、girlfriend、romantic partner、spouse [informal];粉丝、支持者、崇拜者"
  },
  {
   "th": "แม้",
   "rom": "mɛ́ɛ",
   "en": "although, even if, even though; even, even so much as [in negatives]",
-  "pri": 4
+  "pri": 4,
+  "zh": "尽管、即使、尽管； even、even so much as [in negatives]"
  },
  {
   "th": "แม่ค้า",
   "rom": "mɛ̂ɛkháa",
   "en": "female vendor, female merchant",
-  "pri": 4
+  "pri": 4,
+  "zh": "女商贩、女商人"
  },
  {
   "th": "แม่ง",
   "rom": "mɛ̂ŋ",
   "en": "fucking [vulgar intensifier], the hell [in questions], damn [emotional emphasis]",
-  "pri": 4
+  "pri": 4,
+  "zh": "他妈的[粗俗强化词]、见鬼[问题]、该死[情感强调]"
  },
  {
   "th": "แม่น",
   "rom": "mɛ̂n",
   "en": "accurate, precise, on target, reliable (prediction, fortune-telling)",
-  "pri": 4
+  "pri": 4,
+  "zh": "准确、精确、准确、可靠（预测、算命）"
  },
  {
   "th": "แม่น้ำ",
   "rom": "mɛ̂ɛnáam",
   "en": "river",
-  "pri": 4
+  "pri": 4,
+  "zh": "河"
  },
  {
   "th": "แม่บ้าน",
   "rom": "mɛ̂ɛ bâan",
   "en": "homemaker, housewife; housekeeper, domestic worker",
-  "pri": 4
+  "pri": 4,
+  "zh": "家庭主妇、家庭主妇；管家、家政工人"
  },
  {
   "th": "แมว",
   "rom": "mɛɛw",
   "en": "cat",
-  "pri": 4
+  "pri": 4,
+  "zh": "猫"
  },
  {
   "th": "แยก",
   "rom": "yɛ̂ɛk",
   "en": "separate, divide, sort out, keep separate; distinguish, tell apart, discern, classify; separate, part, split up, go separate ways; junction, intersection, fork in the road",
-  "pri": 4
+  "pri": 4,
+  "zh": "分开、划分、分类、保持分开；区分、辨别、分类；分开、分道扬镳、分道扬镳；岔路口、十字路口、岔路口"
  },
  {
   "th": "แย่ง",
   "rom": "yɛ̂ɛŋ",
   "en": "compete for, scramble for, race to do, snatch away",
-  "pri": 4
+  "pri": 4,
+  "zh": "争夺、争夺、竞相做、抢夺"
  },
  {
   "th": "แลก",
   "rom": "lɛ̂ɛk",
   "en": "exchange, swap, trade; exchange (money), break (a large bill)",
-  "pri": 4
+  "pri": 4,
+  "zh": "交换、交换、贸易；交换（钱）、打破（大钞票）"
  },
  {
   "th": "แลกเงิน",
   "rom": "lɛ̂ɛk ŋən",
   "en": "exchange currency",
-  "pri": 4
+  "pri": 4,
+  "zh": "兑换货币"
  },
  {
   "th": "แว่น",
   "rom": "wɛ̂ɛn",
   "en": "eyeglasses",
-  "pri": 4
+  "pri": 4,
+  "zh": "眼镜"
  },
  {
   "th": "แว่นกันแดด",
   "rom": "wɛ̂ɛn kan dɛ̀ɛt",
   "en": "sunglasses",
-  "pri": 4
+  "pri": 4,
+  "zh": "太阳镜"
  },
  {
   "th": "แว่นตา",
   "rom": "wɛ̂ɛn taa",
   "en": "glasses, eyeglasses",
-  "pri": 4
+  "pri": 4,
+  "zh": "眼镜"
  },
  {
   "th": "แว่นตากันแดด",
   "rom": "wɛ̂ɛn taa kan dɛ̀ɛt",
   "en": "sunglasses",
-  "pri": 4
+  "pri": 4,
+  "zh": "太阳镜"
  },
  {
   "th": "แวะ",
   "rom": "wɛ́",
   "en": "stop by, drop in",
-  "pri": 4
+  "pri": 4,
+  "zh": "停下来、顺便过来"
  },
  {
   "th": "แสง",
   "rom": "sɛ̌ɛŋ",
   "en": "light, brightness, ray of light",
-  "pri": 4
+  "pri": 4,
+  "zh": "光、亮度、光线"
  },
  {
   "th": "แสดง",
   "rom": "sadɛɛŋ",
   "en": "present, display; express, demonstrate",
-  "pri": 4
+  "pri": 4,
+  "zh": "呈现、展示；表达、展示"
  },
  {
   "th": "แสน",
   "rom": "sɛ̌ɛn",
   "en": "one hundred thousand, 100,000",
-  "pri": 4
+  "pri": 4,
+  "zh": "十万、十万"
  },
  {
   "th": "แห่ง",
   "rom": "hɛ̀ŋ",
   "en": "[classifier for places, facilities, and organizations]",
-  "pri": 4
+  "pri": 4,
+  "zh": "[地点、设施和组织的分类器]"
  },
  {
   "th": "แห้ง",
   "rom": "hɛ̂ɛŋ",
   "en": "dry, dried",
-  "pri": 4
+  "pri": 4,
+  "zh": "干燥"
  },
  {
   "th": "แหลม",
   "rom": "lɛ̌ɛm",
   "en": "pointed, pointy",
-  "pri": 4
+  "pri": 4,
+  "zh": "尖的"
  },
  {
   "th": "แหละ",
   "rom": "lɛ̀",
   "en": "exactly〜, 〜itself, none other than〜; that’s just how it is, you see, indeed",
-  "pri": 4
+  "pri": 4,
+  "zh": "正是〜、〜本身、不是别人、正是〜；事情就是这样、你看、确实如此"
  },
  {
   "th": "แหวน",
   "rom": "wɛ̌ɛn",
   "en": "ring (worn on a finger)",
-  "pri": 4
+  "pri": 4,
+  "zh": "戒指（戴在手指上）"
  },
  {
   "th": "แอดมิน",
   "rom": "ɛ̀ɛtmin",
   "en": "online administrator, page or shop admin",
-  "pri": 4
+  "pri": 4,
+  "zh": "在线管理员、页面或商店管理员"
  },
  {
   "th": "แอบ",
   "rom": "ɛ̀ɛp",
   "en": "secretly, stealthily, without being seen",
-  "pri": 4
+  "pri": 4,
+  "zh": "秘密地、偷偷地、不被人看见"
  },
  {
   "th": "แอร์",
   "rom": "ɛɛ",
   "en": "air conditioner, air conditioning",
-  "pri": 4
+  "pri": 4,
+  "zh": "空调"
  },
  {
   "th": "โกง",
   "rom": "kooŋ",
   "en": "cheat, deceive, swindle, defraud, embezzle",
-  "pri": 4
+  "pri": 4,
+  "zh": "欺骗、诈骗、贪污"
  },
  {
   "th": "โกรธ",
   "rom": "kròot",
   "en": "be angry, be mad",
-  "pri": 4
+  "pri": 4,
+  "zh": "生气"
  },
  {
   "th": "โกหก",
   "rom": "koohòk",
   "en": "lie, tell a lie",
-  "pri": 4
+  "pri": 4,
+  "zh": "说谎"
  },
  {
   "th": "โค้ก",
   "rom": "khóok",
   "en": "Coca-Cola, cola",
-  "pri": 4
+  "pri": 4,
+  "zh": "可口可乐、可乐"
  },
  {
   "th": "โค้ง",
   "rom": "khóoŋ",
   "en": "curved, bent; curve, bend (in a road)",
-  "pri": 4
+  "pri": 4,
+  "zh": "弯曲的、弯曲的；曲线、弯曲（在道路上）"
  },
  {
   "th": "โคตร",
   "rom": "khôot",
   "en": "extremely, damn, as hell",
-  "pri": 4
+  "pri": 4,
+  "zh": "极其、该死的、地狱般的"
  },
  {
   "th": "โฆษณา",
   "rom": "khôotsanaa",
   "en": "advertisement, commercial",
-  "pri": 4
+  "pri": 4,
+  "zh": "广告、商业"
  },
  {
   "th": "โง่",
   "rom": "ŋôo",
   "en": "stupid, foolish, unintelligent, silly",
-  "pri": 4
+  "pri": 4,
+  "zh": "愚蠢的、无知的"
  },
  {
   "th": "โจ๊ก",
   "rom": "cóok",
   "en": "congee, rice porridge",
-  "pri": 4
+  "pri": 4,
+  "zh": "粥、稀饭"
  },
  {
   "th": "โชค",
   "rom": "chôok",
   "en": "luck, fortune, good luck",
-  "pri": 4
+  "pri": 4,
+  "zh": "好运"
  },
  {
   "th": "โชคดี",
   "rom": "chôok dii",
   "en": "lucky, fortunate; good luck, all the best",
-  "pri": 4
+  "pri": 4,
+  "zh": "幸运的、幸运的；祝你好运、一切顺利"
  },
  {
   "th": "โชว์",
   "rom": "choo",
   "en": "show, display, show off; show, performance",
-  "pri": 4
+  "pri": 4,
+  "zh": "展示、炫耀；表演、表演"
  },
  {
   "th": "โซฟา",
   "rom": "soofaa",
   "en": "sofa, couch",
-  "pri": 4
+  "pri": 4,
+  "zh": "沙发"
  },
  {
   "th": "โซเชียลมีเดีย",
   "rom": "soochîaw miidìa",
   "en": "social media",
-  "pri": 4
+  "pri": 4,
+  "zh": "社交媒体"
  },
  {
   "th": "โดด",
   "rom": "dòot",
   "en": "jump, leap",
-  "pri": 4
+  "pri": 4,
+  "zh": "跳跃"
  },
  {
   "th": "โดยเฉพาะ",
   "rom": "dooy chaphɔ́",
   "en": "especially, particularly",
-  "pri": 4
+  "pri": 4,
+  "zh": "特别地"
  },
  {
   "th": "โตขึ้น",
   "rom": "too khʉ̂n",
   "en": "grow, grow up, become more mature",
-  "pri": 4
+  "pri": 4,
+  "zh": "成长、长大、变得更加成熟"
  },
  {
   "th": "โต๊ะ",
   "rom": "tó",
   "en": "table, desk, table (restaurant seating)",
-  "pri": 4
+  "pri": 4,
+  "zh": "桌子、桌子（餐厅座位）"
  },
  {
   "th": "โทร",
   "rom": "thoo",
   "en": "call (by phone), phone",
-  "pri": 4
+  "pri": 4,
+  "zh": "打电话（通过电话）、电话"
  },
  {
   "th": "โทรกลับ",
   "rom": "thoo klàp",
   "en": "call back, return a call",
-  "pri": 4
+  "pri": 4,
+  "zh": "回电"
  },
  {
   "th": "โทรศัพท์มือถือ",
   "rom": "thoorasàp mʉʉ thʉ̌ʉ",
   "en": "mobile phone; cell phone",
-  "pri": 4
+  "pri": 4,
+  "zh": "手机;手机"
  },
  {
   "th": "โทรหา",
   "rom": "thoo hǎa",
   "en": "call (someone on the phone)",
-  "pri": 4
+  "pri": 4,
+  "zh": "打电话（某人打电话）"
  },
  {
   "th": "โทรไม่ติด",
   "rom": "thoo mây tìt",
   "en": "be unable to get through by phone, a call does not connect",
-  "pri": 4
+  "pri": 4,
+  "zh": "电话无法接通"
  },
  {
   "th": "โทษ",
   "rom": "thôot",
   "en": "blame, accuse, put the blame on; sorry [casual], my bad [casual], excuse me [casual]",
-  "pri": 4
+  "pri": 4,
+  "zh": "责备、指责、指责；对不起[休闲]、我不好[休闲]、对不起[休闲]"
  },
  {
   "th": "โน่น",
   "rom": "nôon",
   "en": "over there, yonder",
-  "pri": 4
+  "pri": 4,
+  "zh": "那边"
  },
  {
   "th": "โน้น",
   "rom": "nóon",
   "en": "that … over there, the one over there",
-  "pri": 4
+  "pri": 4,
+  "zh": "那个……那边、那边那个"
  },
  {
   "th": "โบก",
   "rom": "bòok",
   "en": "wave (a hand, flag, etc.), hail (a taxi or other vehicle)",
-  "pri": 4
+  "pri": 4,
+  "zh": "挥手（手、旗帜等）、冰雹（出租车或其他车辆）"
  },
  {
   "th": "โปรด",
   "rom": "pròot",
   "en": "please [formal request]",
-  "pri": 4
+  "pri": 4,
+  "zh": "请[正式请求]"
  },
  {
   "th": "โพสต์",
   "rom": "phóos",
   "en": "post (online); post (online)",
-  "pri": 4
+  "pri": 4,
+  "zh": "发布（在线）；发布（在线）"
  },
  {
   "th": "โมโห",
   "rom": "moohǒo",
   "en": "get angry, lose one&#39;s temper",
-  "pri": 4
+  "pri": 4,
+  "zh": "生气、发脾气"
  },
  {
   "th": "โยน",
   "rom": "yoon",
   "en": "throw; toss",
-  "pri": 4
+  "pri": 4,
+  "zh": "扔;折腾"
  },
  {
   "th": "โรค",
   "rom": "rôok",
   "en": "disease, illness, disorder, -disease, -disorder",
-  "pri": 4
+  "pri": 4,
+  "zh": "疾病、紊乱、-疾病、-紊乱"
  },
  {
   "th": "โรงพยาบาล",
   "rom": "rooŋ phayaabaan",
   "en": "hospital",
-  "pri": 4
+  "pri": 4,
+  "zh": "医院"
  },
  {
   "th": "โรงหนัง",
   "rom": "rooŋnǎŋ",
   "en": "movie theater, cinema",
-  "pri": 4
+  "pri": 4,
+  "zh": "电影院"
  },
  {
   "th": "โรงเรียน",
   "rom": "rooŋ rian",
   "en": "school, school building",
-  "pri": 4
+  "pri": 4,
+  "zh": "学校、教学楼"
  },
  {
   "th": "โรงเรียนประถม",
   "rom": "rooŋ rian prathǒm",
   "en": "elementary school, primary school",
-  "pri": 4
+  "pri": 4,
+  "zh": "小学"
  },
  {
   "th": "โรงแรม",
   "rom": "rooŋ rɛɛm",
   "en": "hotel",
-  "pri": 4
+  "pri": 4,
+  "zh": "酒店"
  },
  {
   "th": "โล่ง",
   "rom": "lôoŋ",
   "en": "open and spacious, unobstructed, bare and uncluttered; relieved, free of worry",
-  "pri": 4
+  "pri": 4,
+  "zh": "开阔、宽敞、无遮挡、空旷、整洁；释然、无忧"
  },
  {
   "th": "โสด",
   "rom": "sòot",
   "en": "single, unmarried",
-  "pri": 4
+  "pri": 4,
+  "zh": "单身、未婚"
  },
  {
   "th": "โอกาส",
   "rom": "ookàat",
   "en": "opportunity, chance (to do something); chance (that something will happen), likelihood",
-  "pri": 4
+  "pri": 4,
+  "zh": "机会、机会（做某事）；机会（某事将会发生）、可能性"
  },
  {
   "th": "โอน",
   "rom": "oon",
   "en": "transfer money, send money",
-  "pri": 4
+  "pri": 4,
+  "zh": "转账、汇款"
  },
  {
   "th": "โอ๊ย",
   "rom": "óoy",
   "en": "Ouch!, Ow!; Ugh!, Oh, come on!",
-  "pri": 4
+  "pri": 4,
+  "zh": "哎哟！、哎呀！；呃！、哦、来吧！"
  },
  {
   "th": "โอเค",
   "rom": "ookhee",
   "en": "OK, all right; okay, fine, acceptable",
-  "pri": 4
+  "pri": 4,
+  "zh": "好吧、好吧；好的、可以、可以接受"
  },
  {
   "th": "โอ้โห",
   "rom": "ôohǒo",
   "en": "Wow!, Whoa!",
-  "pri": 4
+  "pri": 4,
+  "zh": "哇！"
  },
  {
   "th": "ใจกว้าง",
   "rom": "caykwâaŋ",
   "en": "generous, broad-minded, open-minded",
-  "pri": 4
+  "pri": 4,
+  "zh": "慷慨、心胸宽广、心胸开阔"
  },
  {
   "th": "ใจดำ",
   "rom": "cay dam",
   "en": "heartless, unsympathetic, merciless",
-  "pri": 4
+  "pri": 4,
+  "zh": "无情的、无同情心的"
  },
  {
   "th": "ใจดี",
   "rom": "cay dii",
   "en": "kind-hearted, kind, good-natured",
-  "pri": 4
+  "pri": 4,
+  "zh": "心地善良、善良"
  },
  {
   "th": "ใจร้อน",
   "rom": "cay rɔ́ɔn",
   "en": "impatient, quick-tempered, hasty",
-  "pri": 4
+  "pri": 4,
+  "zh": "不耐烦的、急躁的、急躁的"
  },
  {
   "th": "ใจร้าย",
   "rom": "cayráay",
   "en": "mean, heartless, cruel",
-  "pri": 4
+  "pri": 4,
+  "zh": "卑鄙、无情、残忍"
  },
  {
   "th": "ใจเย็น",
   "rom": "cay yen",
   "en": "calm, patient, cool-headed",
-  "pri": 4
+  "pri": 4,
+  "zh": "冷静、耐心、冷静"
  },
  {
   "th": "ใช้เวลา",
   "rom": "cháy weelaa",
   "en": "spend time, devote time; take time, require time",
-  "pri": 4
+  "pri": 4,
+  "zh": "花时间、投入时间；需要时间、需要时间"
  },
  {
   "th": "ในใจ",
   "rom": "nay cay",
   "en": "in one&#39;s mind, inwardly, in one&#39;s heart",
-  "pri": 4
+  "pri": 4,
+  "zh": "在一个人的脑海里、内心深处、在一个人的心里"
  },
  {
   "th": "ใบเสร็จ",
   "rom": "bay sèt",
   "en": "receipt",
-  "pri": 4
+  "pri": 4,
+  "zh": "收据"
  },
  {
   "th": "ใส",
   "rom": "sǎy",
   "en": "clear, transparent, crystal-clear",
-  "pri": 4
+  "pri": 4,
+  "zh": "清澈、透明、晶莹剔透"
  },
  {
   "th": "ใส่ใจ",
   "rom": "sày cay",
   "en": "pay attention to, care about",
-  "pri": 4
+  "pri": 4,
+  "zh": "关注、关心"
  },
  {
   "th": "ไก่",
   "rom": "kày",
   "en": "chicken; chicken (meat)",
-  "pri": 4
+  "pri": 4,
+  "zh": "鸡;鸡肉（肉）"
  },
  {
   "th": "ไข้",
   "rom": "khây",
   "en": "fever",
-  "pri": 4
+  "pri": 4,
+  "zh": "发烧"
  },
  {
   "th": "ไซซ์",
   "rom": "say",
   "en": "size",
-  "pri": 4
+  "pri": 4,
+  "zh": "尺寸"
  },
  {
   "th": "ได้กลิ่น",
   "rom": "dây klìn",
   "en": "smell (an odor), detect a smell",
-  "pri": 4
+  "pri": 4,
+  "zh": "闻（气味）、检测气味"
  },
  {
   "th": "ไต",
   "rom": "tay",
   "en": "kidney",
-  "pri": 4
+  "pri": 4,
+  "zh": "肾"
  },
  {
   "th": "ไถ",
   "rom": "thǎy",
   "en": "scroll through (content on a screen), swipe (a touchscreen)",
-  "pri": 4
+  "pri": 4,
+  "zh": "滚动（屏幕上的内容）、滑动（触摸屏）"
  },
  {
   "th": "ไปกลับ",
   "rom": "pay klàp",
   "en": "go and return, make a round trip; round-trip, return (including both directions)",
-  "pri": 4
+  "pri": 4,
+  "zh": "去又回、往返；往返、返程（包括双向）"
  },
  {
   "th": "ไปก่อนนะ",
   "rom": "pay kɔ̀ɔn ná",
   "en": "I’m off, see you",
-  "pri": 4
+  "pri": 4,
+  "zh": "我走了、再见"
  },
  {
   "th": "ไปถึง",
   "rom": "pay thʉ̌ŋ",
   "en": "arrive at, reach (a destination)",
-  "pri": 4
+  "pri": 4,
+  "zh": "到达、到达（目的地）"
  },
  {
   "th": "ไปพบ",
   "rom": "pay phóp",
   "en": "go to meet someone, go to see someone, visit (a person), consult (a doctor or professional)",
-  "pri": 4
+  "pri": 4,
+  "zh": "去见某人、去看某人、拜访（一个人）、咨询（医生或专业人士）"
  },
  {
   "th": "ไปรษณีย์",
   "rom": "praysanii",
   "en": "post office",
-  "pri": 4
+  "pri": 4,
+  "zh": "邮局"
  },
  {
   "th": "ไปรับ",
   "rom": "pay ráp",
   "en": "go and pick up (someone); go and collect (something), go and pick up (something)",
-  "pri": 4
+  "pri": 4,
+  "zh": "去接（某人）；去收集（某物）、去拾取（某物）"
  },
  {
   "th": "ไปส่ง",
   "rom": "pay sòŋ",
   "en": "take (someone) somewhere, see (someone) off; go deliver (something), take (something) to someone",
-  "pri": 4
+  "pri": 4,
+  "zh": "带（某人）到某个地方、送别（某人）；去交付（某物）、将（某物）带给某人"
  },
  {
   "th": "ไปหา",
   "rom": "pay hǎa",
   "en": "go to see (someone), visit (someone)",
-  "pri": 4
+  "pri": 4,
+  "zh": "去看望（某人）、拜访（某人）"
  },
  {
   "th": "ไปเยี่ยม",
   "rom": "pay yîam",
   "en": "go to visit someone, go to see someone who is ill",
-  "pri": 4
+  "pri": 4,
+  "zh": "去看望某人、去看望生病的人"
  },
  {
   "th": "ไปเอา",
   "rom": "pay aw",
   "en": "go and get, go pick up",
-  "pri": 4
+  "pri": 4,
+  "zh": "去拿、去捡"
  },
  {
   "th": "ไฟฉาย",
   "rom": "faychǎay",
   "en": "flashlight, phone flashlight",
-  "pri": 4
+  "pri": 4,
+  "zh": "手电筒、手机手电筒"
  },
  {
   "th": "ไฟดับ",
   "rom": "fay dàp",
   "en": "the power goes out",
-  "pri": 4
+  "pri": 4,
+  "zh": "停电了"
  },
  {
   "th": "ไฟฟ้า",
   "rom": "fayfáa",
   "en": "electricity, electric power",
-  "pri": 4
+  "pri": 4,
+  "zh": "电力"
  },
  {
   "th": "ไฟแดง",
   "rom": "fay dɛɛŋ",
   "en": "red traffic light, traffic light [in directions]",
-  "pri": 4
+  "pri": 4,
+  "zh": "红色交通灯、交通灯[方向]"
  },
  {
   "th": "ไฟไหม้",
   "rom": "fay mây",
   "en": "catch fire, be on fire, fire (a destructive blaze)",
-  "pri": 4
+  "pri": 4,
+  "zh": "着火、着火（破坏性的大火）"
  },
  {
   "th": "ไม้",
   "rom": "máay",
   "en": "tree, plant; wood, wooden; stick, skewer, stick-like implement, racket, club, or bat",
-  "pri": 4
+  "pri": 4,
+  "zh": "树、植物；木头、木头；棍子、串、棍状工具、球拍、球杆或球棒"
  },
  {
   "th": "ไม่ก็",
   "rom": "mây kɔ̂ɔ",
   "en": "or, or alternatively",
-  "pri": 4
+  "pri": 4,
+  "zh": "或者、或者替代地"
  },
  {
   "th": "ไม่ทราบว่า",
   "rom": "mây sâap wâa",
   "en": "may I ask...?, could you tell me...?",
-  "pri": 4
+  "pri": 4,
+  "zh": "我可以问...？、你能告诉我...吗？"
  },
  {
   "th": "ไม่พอใจ",
   "rom": "mây phɔɔ cay",
   "en": "dissatisfied, displeased",
-  "pri": 4
+  "pri": 4,
+  "zh": "不满意、不高兴"
  },
  {
   "th": "ไม่ยอม",
   "rom": "mây yɔɔm",
   "en": "refuse, be unwilling to do, refuse to give in, not allow [ไม่ยอมให้…]",
-  "pri": 4
+  "pri": 4,
+  "zh": "拒绝、不愿意做、拒绝屈服、不允许[ไม่ยอมให้…]"
  },
  {
   "th": "ไม่สนุก",
   "rom": "mây sanùk",
   "en": "not fun, not interesting, not enjoyable",
-  "pri": 4
+  "pri": 4,
+  "zh": "不好玩、不有趣、不愉快"
  },
  {
   "th": "ไม่เลว",
   "rom": "mây leew",
   "en": "not bad, pretty good",
-  "pri": 4
+  "pri": 4,
+  "zh": "不错"
  },
  {
   "th": "ไร้สาระ",
   "rom": "ráy sǎará",
   "en": "nonsensical, ridiculous, devoid of substance",
-  "pri": 4
+  "pri": 4,
+  "zh": "无意义的、荒谬的、缺乏实质内容的"
  },
  {
   "th": "ไล่",
   "rom": "lây",
   "en": "chase, run after, pursue; drive away, chase away, kick out",
-  "pri": 4
+  "pri": 4,
+  "zh": "追逐、追赶、追求；赶走、赶走、赶走"
  },
  {
   "th": "ไว",
   "rom": "way",
   "en": "fast, quick, swift",
-  "pri": 4
+  "pri": 4,
+  "zh": "快"
  },
  {
   "th": "ไว้ใจ",
   "rom": "wáycay",
   "en": "trust",
-  "pri": 4
+  "pri": 4,
+  "zh": "相信"
  },
  {
   "th": "ไส้",
   "rom": "sây",
   "en": "intestines, guts; entrails; filling, stuffing",
-  "pri": 4
+  "pri": 4,
+  "zh": "肠子、内脏；内脏；填充物、填充物"
  },
  {
   "th": "ไหนบอกว่า",
   "rom": "nǎy bɔ̀ɔk wâa",
   "en": "But you said…, I thought you said…",
-  "pri": 4
+  "pri": 4,
+  "zh": "但你说……、我以为你说……"
  },
  {
   "th": "ไหม้",
   "rom": "mây",
   "en": "burn, become scorched, be damaged by heat; burnt, scorched",
-  "pri": 4
+  "pri": 4,
+  "zh": "被热烧伤、烧焦、损坏；烧焦的、烧焦的"
  },
  {
   "th": "ไหล",
   "rom": "lǎy",
   "en": "flow, run, come out[liquid, body fluid]",
-  "pri": 4
+  "pri": 4,
+  "zh": "流动、运行、出来[液体、体液]"
  },
  {
   "th": "ไหล่",
   "rom": "lày",
   "en": "shoulder, shoulder (of clothing)",
-  "pri": 4
+  "pri": 4,
+  "zh": "肩膀、（衣服的）肩膀"
  },
  {
   "th": "ไหว้",
   "rom": "wâay",
   "en": "wai (to someone), pay respect with a wai",
-  "pri": 4
+  "pri": 4,
+  "zh": "wai（对某人）、用 wai 表示尊重"
  },
  {
   "th": "ไอ",
   "rom": "ay",
   "en": "cough; cough, coughing symptom",
-  "pri": 4
+  "pri": 4,
+  "zh": "咳嗽;咳嗽、咳嗽症状"
  },
  {
   "th": "ไอติม",
   "rom": "aytim",
   "en": "ice cream, frozen treat",
-  "pri": 4
+  "pri": 4,
+  "zh": "冰淇淋、冷冻食品"
  },
  {
   "th": "ไอศกรีม",
   "rom": "aysakriim",
   "en": "ice cream",
-  "pri": 4
+  "pri": 4,
+  "zh": "冰淇淋"
  }
 ]
