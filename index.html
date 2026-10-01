@@ -227,20 +227,38 @@ code{background:var(--surface);padding:1px 5px;border-radius:4px;font-size:12px}
 <section id="v-speak">
 <div class="okbox" id="engineBox">
   <div class="ctl" style="margin:0">
-    <label class="sub">泰语语音</label>
-    <select id="voiceSel" style="min-width:260px"></select>
+    <label class="sub">发音方式</label>
+    <select id="engineSel">
+      <option value="auto">自动（优先本机，无则在线）</option>
+      <option value="local">本机语音</option>
+      <option value="online">在线语音（需联网）</option>
+    </select>
+    <span id="voiceWrap">
+      <label class="sub">泰语语音</label>
+      <select id="voiceSel" style="min-width:220px"></select>
+    </span>
     <label class="sub">语速</label>
     <input type="range" id="rate" min="0.5" max="1.2" step="0.05" value="0.85">
     <span class="sub" id="rateVal">0.85×</span>
     <button class="btn" id="btnTest">试听</button>
+    <button class="btn" id="btnRecheck">重新检测</button>
     <button class="btn" id="btnStop">停止</button>
   </div>
   <p class="sub" id="engineMsg" style="margin-bottom:0"></p>
 </div>
 
 <div class="note">
-  <p style="margin-top:0"><strong>点任意一行立即朗读。</strong>用的是浏览器内置语音，<strong>建议用 Microsoft Edge 打开本页</strong>——Edge 有泰语 Natural 在线语音，音质最好。</p>
-  <p style="margin-bottom:0">每行右侧 <code>S</code> = 复制这句泰文并打开 speecher.org，到那边按 <code>Ctrl+V</code> 粘贴再播放（要下 MP3 时用）。speecher.org 不支持 URL 传参，所以无法点一下自动朗读，只能这样绕。</p>
+  <p style="margin-top:0"><strong>点任意一行立即朗读。</strong>如果检测不到泰语语音，会自动切到「在线语音」，无需本机装任何东西。</p>
+  <p style="margin-bottom:0">每行右侧 <code>S</code> = 复制这句泰文并打开 speecher.org，到那边粘贴后播放（要下 MP3 时用）。speecher.org 不支持 URL 传参，所以无法点一下自动朗读，只能这样绕。</p>
+</div>
+
+<div class="cut">
+  <strong>手机装泰语语音的方法（想用本机语音时）</strong>
+  <ul>
+    <li><strong>安卓</strong>：设置 → 系统 → 语言和输入法 → 文字转语音输出（TTS）→ 选「Google 文字转语音」→ 点语言 → 下载<strong>泰语</strong>。装完回到本页点「重新检测」。</li>
+    <li><strong>iPhone</strong>：设置 → 辅助功能 → 朗读内容 → 声音 → 泰语 → 下载（如 Kanya）。装完回到本页点「重新检测」。</li>
+    <li>不想折腾就直接用<strong>在线语音</strong>，效果一样，只是需要联网。</li>
+  </ul>
 </div>
 
 <div class="ctl">
@@ -532,39 +550,66 @@ function thVoices(){
   if(!window.speechSynthesis) return [];
   return speechSynthesis.getVoices().filter(function(v){ return /^th/i.test(v.lang || ""); });
 }
+var onlineAudio = null;
+function ttsUrl(text){
+  return "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=th&q=" + encodeURIComponent(text);
+}
+function speakOnline(text, el){
+  try{
+    if(onlineAudio){ onlineAudio.pause(); onlineAudio = null; }
+    var a = new Audio(ttsUrl(text));
+    a.playbackRate = Number(document.getElementById("rate").value);
+    if(lastEl) lastEl.classList.remove("playing");
+    if(el){ el.classList.add("playing"); lastEl = el; }
+    a.onended = function(){ if(el) el.classList.remove("playing"); };
+    a.onerror = function(){
+      if(el) el.classList.remove("playing");
+      toast("在线语音加载失败，试试右侧 S 按钮走 Speecher");
+    };
+    onlineAudio = a;
+    var p = a.play();
+    if(p && p.catch) p.catch(function(){
+      if(el) el.classList.remove("playing");
+      toast("点一下屏幕再试在线语音（浏览器要求先有点击）");
+    });
+  }catch(e){ toast("在线语音不可用，试试右侧 S 按钮"); }
+}
 function initVoices(){
   var sel = document.getElementById("voiceSel");
   var msg = document.getElementById("engineMsg");
   var box = document.getElementById("engineBox");
+  var wrap = document.getElementById("voiceWrap");
+  var es = document.getElementById("engineSel");
   var th = thVoices();
   sel.innerHTML = "";
-  if(!window.speechSynthesis){
-    msg.textContent = "当前浏览器不支持语音合成，请改用每行右侧的 S 按钮（Speecher）。";
-    box.className = "note";
-    return;
-  }
   if(th.length === 0){
     var o = document.createElement("option");
-    o.textContent = "（未检测到泰语语音）";
+    o.textContent = "（本机无泰语语音）";
     sel.appendChild(o);
-    msg.innerHTML = "本机没有泰语语音，点行不会出声。<strong>请用 Microsoft Edge 打开本页</strong>（自带泰语 Natural 在线语音），或在 Windows 设置 → 语言里添加泰语语音包。临时可用 S 按钮走 Speecher。";
+    wrap.style.display = "none";
+    es.value = "online";
+    msg.innerHTML = "本机没有泰语语音，<strong>已自动切到「在线语音」</strong>（Google 朗读，需联网）。想用本机语音，按下方说明在手机里装泰语语音包后点「重新检测」。";
     box.className = "note";
     return;
   }
+  wrap.style.display = "";
   th.forEach(function(v){
-    var o = document.createElement("option");
-    o.value = v.name;
-    o.textContent = v.name + (v.localService ? "" : "（在线）");
-    sel.appendChild(o);
+    var oo = document.createElement("option");
+    oo.value = v.name;
+    oo.textContent = v.name + (v.localService ? "" : "（在线）");
+    sel.appendChild(oo);
   });
   curVoice = th[0];
   sel.value = th[0].name;
-  msg.innerHTML = "检测到 <strong>" + th.length + "</strong> 个泰语语音。建议选带 Online / Natural 的，音质最好。语速 0.85× 适合听清声调。";
+  msg.innerHTML = "检测到 <strong>" + th.length + "</strong> 个本机泰语语音。发音方式可在左侧切换；选「在线语音」则不依赖本机。";
   box.className = "okbox";
 }
 function speak(text, el){
-  if(!window.speechSynthesis){ toast("浏览器不支持语音，请用右侧 S 按钮走 Speecher"); return; }
-  speechSynthesis.cancel();
+  var mode = document.getElementById("engineSel").value;
+  var noLocal = !window.speechSynthesis || thVoices().length === 0 || !curVoice;
+  if(mode === "online" || (mode === "auto" && noLocal)){ speakOnline(text, el); return; }
+  if(noLocal){ toast("本机没有泰语语音，请用右侧 S 按钮走 Speecher"); return; }
+  try{ speechSynthesis.cancel(); }catch(e){}
   var u = new SpeechSynthesisUtterance(text);
   u.lang = "th-TH";
   u.rate = Number(document.getElementById("rate").value);
@@ -590,15 +635,31 @@ function toast(msg){
   toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2600);
 }
 if(window.speechSynthesis){ speechSynthesis.onvoiceschanged = initVoices; }
+document.addEventListener("touchstart", function(){ setTimeout(initVoices, 50); }, {once:true});
 document.getElementById("voiceSel").addEventListener("change", function(e){
   var n = e.target.value;
   curVoice = thVoices().filter(function(v){ return v.name === n; })[0] || null;
+});
+document.getElementById("engineSel").addEventListener("change", function(e){
+  if(e.target.value === "local" && thVoices().length === 0){
+    toast("本机没有泰语语音，先按说明安装，或选「在线语音」");
+  }
+  initVoices();
 });
 document.getElementById("rate").addEventListener("input", function(e){
   document.getElementById("rateVal").textContent = Number(e.target.value).toFixed(2) + "×";
 });
 document.getElementById("btnTest").addEventListener("click", function(){ speak("สวัสดีครับ ผมชื่อ..."); });
-document.getElementById("btnStop").addEventListener("click", function(){ if(window.speechSynthesis) speechSynthesis.cancel(); });
+document.getElementById("btnRecheck").addEventListener("click", function(){
+  if(window.speechSynthesis) try{ speechSynthesis.getVoices(); }catch(e){}
+  initVoices();
+  toast(document.getElementById("engineSel").value === "online" ? "仍无本机语音，正使用在线语音" : "已重新检测");
+});
+document.getElementById("btnStop").addEventListener("click", function(){
+  if(window.speechSynthesis) try{ speechSynthesis.cancel(); }catch(e){}
+  if(onlineAudio){ onlineAudio.pause(); onlineAudio = null; }
+  if(lastEl){ lastEl.classList.remove("playing"); lastEl = null; }
+});
 
 /* ========== 短语渲染 ========== */
 var showRom = true, showZh = true, query = "";
