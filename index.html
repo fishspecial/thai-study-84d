@@ -169,6 +169,7 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
       </div>
       <p class="sub" id="dayInfo" style="margin-bottom:0"></p>
     </div>
+    <div id="board"></div>
     <div id="taskList"></div>
     <div id="runner"></div>
     <div id="finishBox" style="display:none">
@@ -191,9 +192,11 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="btnrow" id="cFilters">
       <input type="text" id="cQ" placeholder="搜索泰文 / 中文 / 英文">
+      <button class="mini on" id="cRom" style="flex:0 0 auto">罗马音</button>
     </div>
     <div class="btnrow" id="cExtra"></div>
     <p class="sub" id="cInfo"></p>
+    <div class="tip" style="font-size:12.5px;padding:10px 12px">罗马音：单词来自 manao 词典，准确；短句和例句由转写器生成，<b>仅供参考，以发音为准</b>。觉得碍眼可以用上面「罗马音」开关关掉。</div>
     <div class="list" id="cList"></div>
     <p class="sub" id="cMore"></p>
   </section>
@@ -297,6 +300,7 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
         <div class="kpi"><div class="l">薄弱条目</div><div class="v" id="rWeak">0</div></div>
       </div>
     </div>
+    <div id="board2"></div>
     <h3>每日得分</h3>
     <div class="spark" id="spark"></div>
     <h3>明细</h3>
@@ -367,8 +371,12 @@ var GMAP = {}; POOL_G.forEach(function(g){ GMAP[g.t] = g; });
 /* ==================== 状态 ==================== */
 var KEY = "thai-daily-v1";
 var DEF = { newWords: 12, newGrams: 3, newHerSent: 5, newMySent: 4, quizCount: 10 };
-var S = { day: 1, start: '', cfg: {}, q: { w: 0, g: 0, hs: 0, ms: 0 }, items: {}, days: {}, focus: '' };
+var S = { day: 1, start: '', cfg: {}, q: { w: 0, g: 0, hs: 0, ms: 0 }, items: {}, days: {}, focus: '', master: {} };
 try { var _r = localStorage.getItem(KEY); if (_r) { var _o = JSON.parse(_r); for (var _k in _o) S[_k] = _o[_k]; } } catch (e) {}
+if (!S.master) S.master = {};
+// 迁移旧版单词本的「已掌握」标记
+try { var _wb0 = localStorage.getItem('thaiwordbook-v1');
+  if (_wb0) { var _w0 = JSON.parse(_wb0) || {}; for (var _t0 in _w0) if (!S.master[_t0]) S.master[_t0] = 1; save(); } } catch (e) {}
 for (var _d in DEF) if (S.cfg[_d] == null) S.cfg[_d] = DEF[_d];
 if (!S.start) S.start = today();
 function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
@@ -389,9 +397,13 @@ function grade(k, ok){
 }
 function dueList(pre){
   var out = [], t = today();
-  for (var k in S.items){ if (pre && k.indexOf(pre) !== 0) continue; if (S.items[k].due <= t && S.items[k].seen > 0) out.push(k); }
+  for (var k in S.items){
+    if (pre && k.indexOf(pre) !== 0) continue;
+    if (S.items[k].due <= t && S.items[k].seen > 0 && !S.master[k.split('|')[1]]) out.push(k);
+  }
   return out;
 }
+function setMaster(t, v){ if (v) S.master[t] = 1; else delete S.master[t]; save(); }
 function keyObj(k){
   var p = k.split('|'), t = p[1];
   if (p[0] === 'w') return { type:'w', t:t, o:WMAP[t] };
@@ -401,9 +413,20 @@ function keyObj(k){
 
 S.day = Math.max(1, diffDays(S.start, today()) + 1);
 function buildPlan(){
-  var p = { newW:[], dueW:[], newG:[], dueG:[], read:[], out:[] }, i;
-  for (i = 0; i < S.cfg.newWords && S.q.w + i < POOL_W.length; i++) p.newW.push('w|' + POOL_W[S.q.w+i].t);
-  for (i = 0; i < S.cfg.newGrams && S.q.g + i < POOL_G.length; i++) p.newG.push('g|' + POOL_G[S.q.g+i].t);
+  var p = { newW:[], dueW:[], newG:[], dueG:[], read:[], out:[], wEnd:0, gEnd:0 }, i, j;
+  // 已掌握的词不占配额，直接跳过
+  for (i = 0, j = 0; i < S.cfg.newWords && S.q.w + j < POOL_W.length; j++){
+    var w = POOL_W[S.q.w + j];
+    if (S.master[w.t]) continue;
+    p.newW.push('w|' + w.t); i++;
+  }
+  p.wEnd = S.q.w + j;
+  for (i = 0, j = 0; i < S.cfg.newGrams && S.q.g + j < POOL_G.length; j++){
+    var g = POOL_G[S.q.g + j];
+    if (S.master[g.t]) continue;
+    p.newG.push('g|' + g.t); i++;
+  }
+  p.gEnd = S.q.g + j;
   for (i = 0; i < S.cfg.newHerSent && S.q.hs + i < POOL_HS.length; i++) p.read.push('s|' + POOL_HS[S.q.hs+i].id);
   for (i = 0; i < S.cfg.newMySent && S.q.ms + i < POOL_MS.length; i++) p.out.push('s|' + POOL_MS[S.q.ms+i].id);
   p.dueW = dueList('w|').slice(0, 80); p.dueG = dueList('g|').slice(0, 40);
@@ -458,7 +481,30 @@ function dayScoreOf(d){
   var card = (((a.rev && a.rev.score) || 0) + ((a.new && a.new.score) || 0)) / (((a.rev?1:0)+(a.new?1:0)) || 1);
   return Math.round(0.25*card + 0.35*((a.quiz && a.quiz.score)||0) + 0.20*((a.read&&a.read.score)||0) + 0.20*((a.out&&a.out.score)||0));
 }
+/* ---- 掌握看板 ---- */
+var SRCGROUP = {};
+POOL_W.forEach(function(w){ (SRCGROUP[w.src] = SRCGROUP[w.src] || []).push(w.t); });
+var BUCKETS = ['top100','她的常用词','语气词','单词本 P5','单词本 P4'];
+var SRCNAME = { 'top100':'高频 TOP 100', '她的常用词':'她的常用词', '语气词':'语气词 · 虚词', '单词本 P5':'单词本 P5', '单词本 P4':'单词本 P4' };
+function renderBoard(){
+  var h = '<div class="card"><h3 style="margin-top:0">掌握看板 · 已掌握占高频词的比例</h3>'
+    + '<table><thead><tr><th>词表</th><th>已掌握</th><th class="n">占比</th></tr></thead><tbody>';
+  var tot = 0, got = 0;
+  BUCKETS.forEach(function(s){
+    var arr = SRCGROUP[s] || []; if (!arr.length) return;
+    var g = 0; arr.forEach(function(t){ if (S.master[t]) g++; });
+    tot += arr.length; got += g;
+    h += '<tr><td>' + SRCNAME[s] + '</td><td class="n">' + g + ' / ' + arr.length + '</td><td class="n"><b>' + Math.round(g / arr.length * 100) + '%</b></td></tr>';
+  });
+  var all = tot ? Math.round(got / tot * 100) : 0;
+  h += '</tbody></table><div class="mbar" style="margin-top:6px"><i style="width:' + all + '%"></i></div>'
+    + '<p class="sub" style="margin-bottom:0">合计 <b>' + got + ' / ' + tot + '</b> 词已掌握（<b>' + all + '%</b>）。'
+    + '在闪卡里点「✓ 已掌握」，或到语料 / 词库直接打勾 —— 标记后的词不再出现在每日任务和复习中。</p></div>';
+  return h;
+}
+
 function renderToday(){
+  $('board').innerHTML = renderBoard();
   var h = '';
   TASKS.forEach(function(t){
     var keys = taskKeys(t.k);
@@ -534,11 +580,11 @@ function renderRun(){
     front = '<div class="q sm th">' + esc(o.t) + '</div>';
     back = '<div class="a">' + esc(o.o ? o.o.z : '') + '<div class="en">' + esc(o.o ? o.o.e : '') + '</div></div>';
   } else if (run.kind === 'read'){
-    front = '<div class="q sm th">' + esc(o.t) + '</div>';
+    front = '<div class="q sm th">' + esc(o.t) + '</div>' + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
     back = '<div class="a">' + esc(o.o ? o.o.z : '') + '</div>';
   } else {
     front = '<div class="a" style="margin-top:0">' + esc(o.o ? o.o.z : '') + '</div>';
-    back = '<div class="q sm th">' + esc(o.t) + '</div>';
+    back = '<div class="q sm th">' + esc(o.t) + '</div>' + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
   }
   var h = '<div class="study">' + front;
   if (run.show) h += back;
@@ -559,13 +605,21 @@ function renderRun(){
       + '<button class="btn" id="cH">' + a2 + '</button>'
       + '<button class="btn no" id="cW">' + a3 + '</button>';
   }
-  h += '</div><div class="btnrow"><button class="mini" id="cQuit">退出</button></div></div>';
+  h += '</div><div class="btnrow">';
+  if (o.type !== 's') h += '<button class="mini' + (S.master[o.t] ? ' on' : '') + '" id="cM">' + (S.master[o.t] ? '✓ 已掌握（点击取消）' : '✓ 标记已掌握') + '</button>';
+  h += '<button class="mini" id="cQuit">退出</button></div></div>';
   R.innerHTML = h;
   var bp = $('cPlay'); if (bp) bp.onclick = play;
   var bs = $('cShow'); if (bs) bs.onclick = function(){ run.show = true; renderRun(); };
   if ($('cR')) $('cR').onclick = function(){ grade(k, 1); run.right++; nx(); };
   if ($('cH')) $('cH').onclick = function(){ grade(k, 0.5); run.half++; nx(); };
   if ($('cW')) $('cW').onclick = function(){ grade(k, 0); run.wrong++; nx(); };
+  if ($('cM')) $('cM').onclick = function(){
+    var on = !S.master[o.t];
+    setMaster(o.t, on);
+    if (on){ grade(k, 1); run.right++; toast('已标记为掌握，之后不再出现'); nx(); }
+    else { renderRun(); renderToday(); }
+  };
   $('cQuit').onclick = function(){ run = null; renderToday(); R.innerHTML = ''; };
   if (!run.show && run.kind !== 'read') setTimeout(play, 200);
 }
@@ -656,7 +710,8 @@ $('taskList').addEventListener('click', function(e){
 });
 $('btnFinish').onclick = function(){
   D.st.doneAt = new Date().toISOString(); D.st.score = dayScoreOf(S.day);
-  S.q.w += D.plan.newW.length; S.q.g += D.plan.newG.length;
+  S.q.w = D.plan.wEnd || (S.q.w + D.plan.newW.length);
+  S.q.g = D.plan.gEnd || (S.q.g + D.plan.newG.length);
   S.q.hs += D.plan.read.length; S.q.ms += D.plan.out.length;
   var ds = Object.keys(S.days).map(Number).filter(function(d){ return S.days[d].st && S.days[d].st.done; }).sort(function(a,b){ return a-b; });
   var l2 = ds.slice(-2).map(dayScoreOf);
@@ -668,14 +723,14 @@ $('btnFinish').onclick = function(){
 $('btnRedo').onclick = function(){ if (!confirm('重做今天？已记录的成绩会清除。')) return; D.st = {}; save(); renderToday(); $('runner').innerHTML = ''; };
 
 /* ==================== 语料 ==================== */
-var cKind = 'top', cQ = '', cShow = 100, cWho = 'all', cPriv = '1';
+var cKind = 'top', cQ = '', cShow = 100, cWho = 'all', cPriv = '1', romOn = true;
 var CORPUS = {
   top: function(){ return (P.top100||[]).map(function(x,i){ return { k:'top'+i, t:x.t, r:x.r, z:x.z, e:x.e, note:x.note, c:x.c, h:x.h, m:x.m, a:'t'+x.i, dir:'audio-pany' }; }); },
   w:   function(){ return (P.words||[]).filter(function(w){ return !w.h; }).map(function(w){ return { t:w.t, r:w.r, z:w.z, e:w.e, c:w.c, a:'w'+w.i, dir:'audio-pany' }; }); },
   f:   function(){ return (P.func||[]).map(function(f){ return { t:f.t, r:f.r, z:f.z, e:f.e, note:f.note, c:f.c, a:'f'+f.i, dir:'audio-pany' }; }); },
   p:   function(){ return (P.herGrams||[]).filter(function(g){ return !g.h; }).map(function(g){ return { t:g.t, z:g.z, e:g.e, c:g.c, a:'p'+g.i, dir:'audio-pany' }; }); },
   q:   function(){ return (P.myGrams||[]).filter(function(g){ return !g.h; }).map(function(g){ return { t:g.t, z:g.z, e:g.e, c:g.c, a:'q'+g.i, dir:'audio-pany' }; }); },
-  s:   function(){ return (P.sents||[]).map(function(s){ return { t:s.t, z:s.z, who:s.who, priv:s.priv, a:s.id, dir:'audio-pany' }; }); }
+  s:   function(){ return (P.sents||[]).map(function(s){ return { t:s.t, r:s.r, z:s.z, who:s.who, priv:s.priv, a:s.id, dir:'audio-pany' }; }); }
 };
 function renderCorpus(){
   var arr = CORPUS[cKind]();
@@ -697,10 +752,11 @@ function renderCorpus(){
   if ($('cPriv')){ $('cPriv').value = cPriv; $('cPriv').onchange = function(){ cPriv = this.value; cShow = 100; renderCorpus(); }; }
   var slice = arr.slice(0, cShow), h = '';
   slice.forEach(function(x, i){
+    var showRom = x.r && (cKind === 's' ? romOn : true);
     h += '<div class="w" data-a="' + (x.a||'') + '" data-d="' + (x.dir||'audio-pany') + '" data-t="' + esc(x.t).replace(/"/g,'&quot;') + '">'
       + '<span class="pl">▶</span>'
       + '<div class="mn"><div class="t1 th' + (cKind === 's' ? ' sm' : '') + '">' + esc(x.t) + '</div>'
-      + (x.r ? '<div class="rom sub">' + esc(x.r) + '</div>' : '')
+      + (showRom ? '<div class="rom sub">' + esc(x.r) + '</div>' : '')
       + (x.z ? '<div class="sub" style="color:var(--tx);font-size:13.5px">' + esc(x.z) + '</div>' : '')
       + (x.e ? '<div class="sub" style="font-size:12.5px">' + esc(x.e) + '</div>' : '')
       + (x.note ? '<div class="sub" style="font-size:12.5px;color:var(--amber600)">' + esc(x.note) + '</div>' : '')
@@ -709,6 +765,7 @@ function renderCorpus(){
       + (x.c ? '<span class="tag' + (x.c < 5 ? ' lo' : '') + '">×'+x.c+'</span>' : '')
       + (cKind === 's' ? '<span class="tag ' + (x.who ? 'p' : 'b') + '">' + (x.who ? '我说' : '她说') + '</span>' : '')
       + (x.priv ? '<span class="tag r">私密</span>' : '')
+      + (cKind !== 's' ? '<button class="mini' + (S.master[x.t] ? ' on' : '') + '" data-mc="' + esc(x.t).replace(/"/g,'&quot;') + '">' + (S.master[x.t] ? '✓' : '掌握') + '</button>' : '')
       + '</div></div>';
   });
   $('cList').innerHTML = h || '<div class="w"><div class="mn sub">没有匹配结果</div></div>';
@@ -720,32 +777,39 @@ function renderCorpus(){
 }
 $('cKind').onchange = function(){ cKind = this.value; cShow = 100; renderCorpus(); };
 $('cQ').oninput = function(){ cQ = this.value.trim(); cShow = 100; renderCorpus(); };
+$('cRom').onclick = function(){ romOn = !romOn; this.classList.toggle('on', romOn); renderCorpus(); };
 $('cList').addEventListener('click', function(e){
+  var mb = e.target.closest ? e.target.closest('[data-mc]') : null;
+  if (mb){
+    var t = mb.getAttribute('data-mc');
+    setMaster(t, !S.master[t]);
+    renderCorpus(); renderToday();
+    toast(S.master[t] ? '已标记掌握，以后不再出现在任务里' : '已取消掌握标记');
+    return;
+  }
   var r = e.target.closest ? e.target.closest('.w') : null;
   if (r) say(r.getAttribute('data-a'), r.getAttribute('data-d'), r.getAttribute('data-t'));
 });
 
 /* ==================== 词库 ==================== */
-var WB = W5.concat(W4), wQ = '', wPri = '5', wHide = false, wShow = 80, wbLearn = {};
-var WBKEY = 'thaiwordbook-v1';
-try { var _wb = localStorage.getItem(WBKEY); if (_wb) wbLearn = JSON.parse(_wb) || {}; } catch (e) {}
+var WB = W5.concat(W4), wQ = '', wPri = '5', wHide = false, wShow = 80;
 function renderWords(){
   var q = wQ.toLowerCase();
   var arr = WB.filter(function(w){
     if (wPri !== 'all' && String(w.p) !== wPri) return false;
-    if (wHide && wbLearn[w.t]) return false;
+    if (wHide && S.master[w.t]) return false;
     if (!q) return true;
     return ((w.t||'')+(w.r||'')+(w.z||'')+(w.e||'')).toLowerCase().indexOf(q) >= 0;
   });
   var slice = arr.slice(0, wShow), h = '';
   slice.forEach(function(w){
-    h += '<div class="w' + (wbLearn[w.t] ? ' learned' : '') + '" data-a="w'+w.n+'" data-d="audio-words" data-t="'+esc(w.t).replace(/"/g,'&quot;')+'">'
+    h += '<div class="w' + (S.master[w.t] ? ' learned' : '') + '" data-a="w'+w.n+'" data-d="audio-words" data-t="'+esc(w.t).replace(/"/g,'&quot;')+'">'
       + '<span class="pl">▶</span><div class="mn"><div class="t1 th">'+esc(w.t)+'</div>'
       + (w.r ? '<div class="rom sub">'+esc(w.r)+'</div>' : '')
       + (w.z ? '<div class="sub" style="color:var(--tx);font-size:13.5px">'+esc(w.z)+'</div>' : '')
       + (w.e ? '<div class="sub" style="font-size:12.5px">'+esc(w.e)+'</div>' : '')
       + '</div><div class="sd"><span class="tag'+(w.p===5?'':' lo')+'">P'+w.p+'</span>'
-      + '<button class="mini'+(wbLearn[w.t]?' on':'')+'" data-lw="'+esc(w.t).replace(/"/g,'&quot;')+'">'+(wbLearn[w.t]?'已掌握':'掌握')+'</button></div></div>';
+      + '<button class="mini'+(S.master[w.t]?' on':'')+'" data-lw="'+esc(w.t).replace(/"/g,'&quot;')+'">'+(S.master[w.t]?'✓':'掌握')+'</button></div></div>';
   });
   $('wList').innerHTML = h || '<div class="w"><div class="mn sub">没有匹配结果</div></div>';
   $('wMore').textContent = arr.length > wShow ? '已显示 '+wShow+' / '+arr.length+'，向下滚动加载' : '共 '+arr.length+' 条';
@@ -760,8 +824,7 @@ function syncPri(){ $('wP5').classList.toggle('on', wPri==='5'); $('wP4').classL
 $('wHideL').onclick = function(){ wHide = !wHide; this.classList.toggle('on', wHide); renderWords(); };
 $('wList').addEventListener('click', function(e){
   var lb = e.target.closest ? e.target.closest('[data-lw]') : null;
-  if (lb){ var t = lb.getAttribute('data-lw'); if (wbLearn[t]) delete wbLearn[t]; else wbLearn[t] = 1;
-    try { localStorage.setItem(WBKEY, JSON.stringify(wbLearn)); } catch(e2){} renderWords(); return; }
+  if (lb){ var t = lb.getAttribute('data-lw'); setMaster(t, !S.master[t]); renderWords(); renderToday(); return; }
   var r = e.target.closest ? e.target.closest('.w') : null;
   if (r) say(r.getAttribute('data-a'), r.getAttribute('data-d'), r.getAttribute('data-t'));
 });
@@ -818,6 +881,7 @@ function renderMe(){
   $('rWeak').textContent = weakList().length;
   var sp = ''; sc.slice(-30).forEach(function(s){ sp += '<i class="'+(s>=80?'g':'')+'" style="height:'+Math.max(3,s)+'%"></i>'; });
   $('spark').innerHTML = sp;
+  $('board2').innerHTML = renderBoard();
   $('cfgW').value = S.cfg.newWords; $('cfgG').value = S.cfg.newGrams; $('cfgHS').value = S.cfg.newHerSent;
   $('cfgMS').value = S.cfg.newMySent; $('cfgQ').value = S.cfg.quizCount;
   $('storeInfo').textContent = '存档约 ' + Math.round(JSON.stringify(S).length/1024) + ' KB';

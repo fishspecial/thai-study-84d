@@ -18,8 +18,9 @@ const ROM = {
   'พรุ่ง':'phrûng','นึง':'nùeng',
   'จ๊ะ':'já','เนาะ':'náw','ไง':'ngai','น่ะ':'nâ','อ่ะ':'à','เมื่อไหร่':'mûa-rài'
 };
-const HIDE_W = new Set(['เป็นไร','ค่อน','รีย์','เดีย','งบ่อยๆ','ว่าการ','มีหน้า','มันดี','กี้','หมอบ']);
+const HIDE_W = new Set(['เป็นไร','ค่อน','รีย์','เดีย','งบ่อยๆ','ว่าการ','มีหน้า','มันดี','กี้','หมอบ','ลมี']);
 const HIDE_G = new Set(['ไม่ใช่เห']);
+const ROMX = JSON.parse(fs.readFileSync('rom-extra.json', 'utf8'));
 
 const words = T.words.map((w, i) => ({
   i, t: w.w, r: w.r || ROM[w.w] || '', z: w.z || '', e: w.e || '', c: w.c, df: w.df || 0, h: HIDE_W.has(w.w) ? 1 : 0
@@ -32,13 +33,13 @@ const func = FUNCDEF.map(([t, z, e, note], i) => {
   return { i, t, r: d ? d.rom : (ROM[t] || ''), z, e, note, c: cntMap.get(t) || 0 };
 });
 
-const herGrams = T.herGrams.map((g, i) => ({ i, t: g.g, z: g.z || '', e: g.e || '', c: g.c, h: HIDE_G.has(g.g) ? 1 : 0 }));
-const myGrams = T.grams.map((g, i) => ({ i, t: g.g, z: g.z || '', e: g.e || '', c: g.c, h: HIDE_G.has(g.g) ? 1 : 0 }));
+const herGrams = T.herGrams.map((g, i) => ({ i, t: g.g, r: ROMX.grams[g.g] || '', z: g.z || '', e: g.e || '', c: g.c, h: HIDE_G.has(g.g) ? 1 : 0 }));
+const myGrams = T.grams.map((g, i) => ({ i, t: g.g, r: ROMX.grams[g.g] || '', z: g.z || '', e: g.e || '', c: g.c, h: HIDE_G.has(g.g) ? 1 : 0 }));
 
 // 例句：统一 ID。她 = h{i}，我 = m{i}
 const sents = [];
-T.her.forEach((s, i) => sents.push({ id: 'h' + i, t: s.t, z: s.z || '', who: 0, priv: s.priv ? 1 : 0, len: s.t.length }));
-T.me.forEach((s, i) => sents.push({ id: 'm' + i, t: s.t, z: s.z || '', who: 1, priv: s.priv ? 1 : 0, len: s.t.length }));
+T.her.forEach((s, i) => sents.push({ id: 'h' + i, t: s.t, r: ROMX.sents['h' + i] || '', z: s.z || '', who: 0, priv: s.priv ? 1 : 0, len: s.t.length }));
+T.me.forEach((s, i) => sents.push({ id: 'm' + i, t: s.t, r: ROMX.sents['m' + i] || '', z: s.z || '', who: 1, priv: s.priv ? 1 : 0, len: s.t.length }));
 
 const T100 = JSON.parse(fs.readFileSync('top100.json', 'utf8'));
 const top100 = T100.list.map((x, i) => ({ i, t: x.w, r: x.r || '', z: x.z || '', e: x.e || '', h: x.h, m: x.m, c: x.c, fn: x.fn ? 1 : 0, note: x.note || '' }));
