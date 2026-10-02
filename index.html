@@ -164,6 +164,12 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 .ldb i.r{background:var(--red600)}
 .ldr{display:flex;gap:4px;margin-top:4px}
 .ldr span{flex:1;text-align:center;font-size:10.5px;color:var(--tx3);min-width:6px}
+/* 闪卡简笔画配图 */
+.picbox{display:flex;justify-content:center;margin:0 0 14px}
+.pic{width:150px;height:150px;object-fit:contain;background:var(--surface);
+  border:1px solid var(--line2);border-radius:12px;padding:6px}
+.mini-pic{width:34px;height:34px;object-fit:contain;vertical-align:middle;
+  border-radius:8px;background:var(--surface);border:1px solid var(--line2);flex:0 0 auto}
 
 /* 底栏 */
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;background:rgba(255,255,255,.96);
@@ -393,6 +399,7 @@ if (!window.WorkBuddyCloud) {
 </script>
 <script src="./pany-data.js"></script>
 <script src="./word-sent-data.js"></script>
+<script src="./img/map.js"></script>
 <script src="./words-data.js"></script>
 <script src="./phrases-data.js"></script>
 <script>
@@ -1119,6 +1126,27 @@ function topbar(){
 
 /* ---- 闪卡 ---- */
 var run = null;
+var picMode = true;   // 闪卡正面显示简笔画：先看图想意思，再翻牌对泰文
+
+/* 简笔画配图：没有图就返回空串，全站静默降级 */
+function picOf(t){
+  var m = window.IMG;
+  if (!m || !t) return null;
+  var f = m[t];
+  return f ? './img/' + f + '.webp' : null;
+}
+function hasPic(t){ return !!picOf(t); }
+function picBlock(t){
+  var u = picOf(t);
+  if (!u) return '';
+  return '<div class="picbox"><img class="pic" src="' + u + '" alt="" loading="lazy" decoding="async"'
+    + (picMode ? '' : ' style="display:none"') + '></div>';
+}
+/* 语料/词库列表里的缩略图 */
+function picTag(t){
+  var u = picOf(t);
+  return u ? '<img class="mini-pic" src="' + u + '" alt="" loading="lazy" decoding="async">' : '';
+}
 
 /* 这个词在真实聊天里怎么用：把单词放回她的原话里学，比背孤立释义有效得多 */
 function exList(t){
@@ -1161,11 +1189,11 @@ function renderRun(){
   var k = run.keys[run.i], o = keyObj(k), it = S.items[k];
   var front = '', back = '';
   if (o.type === 'w'){
-    front = '<div class="q th">' + esc(o.t) + '</div>' + (o.o && o.o.r ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
+    front = picBlock(o.t) + '<div class="q th">' + esc(o.t) + '</div>' + (o.o && o.o.r ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
     back = '<div class="a">' + esc(o.o ? o.o.z : '') + '<div class="en">' + esc(o.o ? o.o.e : '') + '</div>'
       + (o.o && o.o.note ? '<div class="note">' + esc(o.o.note) + '</div>' : '') + '</div>';
   } else if (o.type === 'g'){
-    front = '<div class="q sm th">' + esc(o.t) + '</div>';
+    front = picBlock(o.t) + '<div class="q sm th">' + esc(o.t) + '</div>';
     back = '<div class="a">' + esc(o.o ? o.o.z : '') + '<div class="en">' + esc(o.o ? o.o.e : '') + '</div></div>';
   } else if (run.kind === 'read'){
     front = '<div class="q sm th">' + esc(o.t) + '</div>' + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
@@ -1195,6 +1223,7 @@ function renderRun(){
       + '<button class="btn no" id="cW">' + a3 + '</button>';
   }
   h += '</div><div class="btnrow">';
+  if (picOf(o.t)) h += '<button class="mini' + (picMode ? ' on' : '') + '" id="cPic">' + (picMode ? '图已开' : '图已关') + '</button>';
   if (o.type !== 's') h += '<button class="mini' + (S.master[o.t] ? ' on' : '') + '" id="cM">' + (S.master[o.t] ? '✓ 已掌握（点击取消）' : '✓ 标记已掌握') + '</button>';
   h += '<button class="mini" id="cQuit">退出</button></div></div>';
   R.innerHTML = h;
@@ -1209,7 +1238,8 @@ function renderRun(){
     if (on){ grade(k, 1); run.right++; toast('已标记为掌握，之后不再出现'); nx(); }
     else { renderRun(); renderToday(); }
   };
-  $('cQuit').onclick = function(){ run = null; renderToday(); R.innerHTML = ''; };
+  if ($('cQuit')) $('cQuit').onclick = function(){ run = null; renderToday(); R.innerHTML = ''; };
+  if ($('cPic')) $('cPic').onclick = function(){ picMode = !picMode; renderRun(); };
   if (!run.show && run.kind !== 'read') setTimeout(play, 200);
   /* 例句块：点哪句读哪句 */
   R.querySelectorAll('.exs').forEach(function(b){
@@ -1400,6 +1430,7 @@ function renderCorpus(){
     var showRom = x.r && (cKind === 's' ? romOn : true);
     h += '<div class="w" data-a="' + (x.a||'') + '" data-d="' + (x.dir||'audio-pany') + '" data-t="' + esc(x.t).replace(/"/g,'&quot;') + '">'
       + '<span class="pl">▶</span>'
+      + (cKind === 's' ? '' : picTag(x.t))
       + '<div class="mn"><div class="t1 th' + (cKind === 's' ? ' sm' : '') + '">' + esc(x.t) + '</div>'
       + (showRom ? '<div class="rom sub">' + esc(x.r) + '</div>' : '')
       + (x.z ? '<div class="sub" style="color:var(--tx);font-size:13.5px">' + esc(x.z) + '</div>' : '')
