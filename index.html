@@ -790,7 +790,12 @@ function dueList(pre){
   }
   return out;
 }
-function setMaster(t, v){ if (v) S.master[t] = 1; else delete S.master[t]; save(); pushNow(); }
+function setMaster(t, v){
+  if (v) S.master[t] = 1; else delete S.master[t];
+  // 标记掌握会从今天的任务里抽走这个词，立刻从词池后面补上，保证今日份量不变
+  if (v && typeof D !== 'undefined' && D && D.plan) refillMastered();
+  save(); pushNow();
+}
 /* ==================== 跨天考核：唯一能证明「记住了」的口径 ====================
    单日分数只能证明「今天做对了」。真正的证据是：隔几天再遇到同一个词，还能不能认出来。
    所以每个条目都留一条学习轨迹 lg = [[第几天, 得分], ...]，据此算留存率。            */
@@ -942,6 +947,16 @@ function extendToday(kind, n){
   return added.length || n;
 }
 function seenIn(arr, k){ for (var i = 0; i < arr.length; i++) if (arr[i] === k) return true; return false; }
+/* ---- 自动补足：用户标记「已掌握」后，原本分配给今天的词可能被抽空。
+   这里在词池后面补同样数量的新词，保证「今天学 N 个」的承诺不因为手动标记而落空。 ---- */
+function refillMastered(){
+  var p = D.plan, n = 0;
+  var needW = (p.quota || 0) - dropMaster(p.newW).length;
+  if (needW > 0) n += extendToday('w', needW);
+  var needG = (S.cfg.newGrams || 0) - dropMaster(p.newG).length;
+  if (needG > 0) n += extendToday('g', needG);
+  return n;
+}
 function getDay(d){
   if (!S.days[d]) S.days[d] = { plan:buildPlan(), st:{} };
   var p = S.days[d].plan;
@@ -995,6 +1010,15 @@ function taskKeys(k){
   if (k === 'out') return p.out;
   return null;
 }
+/*取词时统一剔除「已掌握」的词。
+   buildPlan / extendToday 虽然在分配时跳过已掌握的，但如果用户在当天学完之后
+   才把某个词标记为掌握，它仍留在 D.plan 里，闪卡会照旧把它翻出来。
+   所以取词这一层必须再过滤一次，才是真正的「标记后不再出现」。 */
+function dropMaster(keys){
+  return (keys || []).filter(function(k){
+    return !S.master[k.split('|')[1]];
+  });
+}
 function dayScoreOf(d){
   var a = S.days[d].st;
   var card = (((a.rev && a.rev.score) || 0) + ((a.new && a.new.score) || 0)) / (((a.rev?1:0)+(a.new?1:0)) || 1);
@@ -1027,7 +1051,7 @@ function renderToday(){
   $('todayReport').innerHTML = renderTodayReport();
   var h = '';
   TASKS.forEach(function(t){
-    var keys = taskKeys(t.k);
+    var keys = dropMaster(taskKeys(t.k));
     var total = t.k === 'quiz' ? S.cfg.quizCount : keys.length;
     if (total === 0 && !(D.st[t.k] && D.st[t.k].done)){ D.st[t.k] = { done:true, n:0, score:100 }; save(); }
     var st = D.st[t.k] || {}, done = !!st.done;
@@ -1058,8 +1082,8 @@ function renderToday(){
 /* 学习轨迹用 null 表示「已接触未作答」（比如只过了一遍闪卡），
    0/0.5/1 表示真实作答得分。分析时把 null 单独算，不混进正确率。 */
 function todayReportData(){
-  var ks = (D.plan.newW || []).concat(D.plan.newG || [])
-    .concat(D.plan.dueW || []).concat(D.plan.dueG || []);
+  var ks = dropMaster((D.plan.newW || []).concat(D.plan.newG || [])
+    .concat(D.plan.dueW || []).concat(D.plan.dueG || []));
   var seen = {}, rows = [];
   for (var i = 0; i < ks.length; i++){
     var k = ks[i];
@@ -1309,7 +1333,7 @@ function exBlock(o){
   return h;
 }
 function startCard(kind){
-  var keys = taskKeys(kind).slice();
+  var keys = dropMaster(taskKeys(kind));
   if (!keys.length){ toast('今天这部分没有内容'); return; }
   run = { kind:kind, keys:keys, i:0, right:0, half:0, wrong:0, show:false, t0:Date.now() };
   renderRun();
@@ -1423,9 +1447,9 @@ function pick4(c, pool, f){
 }
 function startQuiz(){
   var src = [];
-  D.plan.newW.concat(D.plan.dueW).forEach(function(k){ var o = WMAP[k.split('|')[1]]; if (o && isTH(o.t)) src.push({ w:o, kind:'w' }); });
-  D.plan.newG.concat(D.plan.dueG).forEach(function(k){ var o = GMAP[k.split('|')[1]]; if (o && isTH(o.t)) src.push({ w:o, kind:'g' }); });
-  if (src.length < 4) for (var i = 0; i < 200 && src.length < 12; i++){ var w = POOL_W[Math.floor(Math.random()*Math.min(400, POOL_W.length))]; if (w) src.push({ w:w, kind:'w' }); }
+  dropMaster(D.plan.newW).concat(dropMaster(D.plan.dueW)).forEach(function(k){ var o = WMAP[k.split('|')[1]]; if (o && isTH(o.t)) src.push({ w:o, kind:'w' }); });
+  dropMaster(D.plan.newG).concat(dropMaster(D.plan.dueG)).forEach(function(k){ var o = GMAP[k.split('|')[1]]; if (o && isTH(o.t)) src.push({ w:o, kind:'g' }); });
+  if (src.length < 4) for (var i = 0; i < 200 && src.length < 12; i++){ var w = POOL_W[Math.floor(Math.random()*Math.min(400, POOL_W.length))]; if (w && !S.master[w.t]) src.push({ w:w, kind:'w' }); }
   var qs = [], n = Math.min(S.cfg.quizCount, Math.max(4, src.length));
   for (var i = 0; i < n; i++){
     var s = src[i % src.length], ty = ['th2zh','zh2th','audio','sent'][i % 4];
