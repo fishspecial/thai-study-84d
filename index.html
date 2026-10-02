@@ -103,6 +103,16 @@ label.fld>span{display:block;font-size:12.5px;color:var(--tx2);margin-bottom:4px
 .study .en{font-size:13px;color:var(--tx2)}
 .study .note{font-size:12.5px;color:var(--amber600);margin-top:4px}
 .study .hint{font-size:12.5px;color:var(--tx3);margin-top:12px}
+/* 真实用例句：把词放回她的原话里 */
+.exbox{border-top:1px dashed var(--line2);margin-top:16px;padding-top:12px;text-align:left}
+.exh{font-size:12px;color:var(--tx2);margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.exh .exn{color:var(--tx3);font-size:11.5px}
+.exs{border:1px solid var(--line2);border-radius:11px;padding:10px 12px;margin:7px 0;
+  background:var(--surface);cursor:pointer;min-height:44px}
+.exs:active{background:var(--line)}
+.exs .ext{font-size:16px;line-height:1.75}
+.exs .exr{font-size:11.5px;color:var(--tx3);margin-top:2px;font-family:ui-monospace,Consolas,monospace}
+.exs .exz{font-size:13px;color:var(--tx2);margin-top:4px}
 .opt{display:block;width:100%;text-align:left;min-height:50px;padding:12px 14px;margin:7px 0;border:1px solid var(--line2);
   border-radius:12px;background:var(--bg);cursor:pointer;font:inherit;font-size:15px}
 .opt .th{font-size:19px}
@@ -372,6 +382,7 @@ if (!window.WorkBuddyCloud) {
 }
 </script>
 <script src="./pany-data.js"></script>
+<script src="./word-sent-data.js"></script>
 <script src="./words-data.js"></script>
 <script src="./phrases-data.js"></script>
 <script>
@@ -879,6 +890,34 @@ function topbar(){
 
 /* ---- 闪卡 ---- */
 var run = null;
+
+/* 这个词在真实聊天里怎么用：把单词放回她的原话里学，比背孤立释义有效得多 */
+function exList(t){
+  var ids = window.WSENT && window.WSENT[t];
+  if (!ids || !ids.length) return null;
+  var tbl = window.WSENTS || {}, out = [];
+  for (var i = 0; i < ids.length; i++){
+    var row = tbl[ids[i]];
+    if (row && row[0]) out.push({ id:ids[i], t:row[0], z:row[1], r:row[2] || '', who:(ids[i].charAt(0) === 'h' ? 0 : 1) });
+  }
+  return out.length ? out : null;
+}
+function exBlock(o){
+  if (o.type !== 'w' && o.type !== 'g') return '';
+  var list = exList(o.t);
+  if (!list) return '';
+  var me = list.filter(function(x){ return x.who === 1; }).length;
+  var h = '<div class="exbox"><div class="exh">她在用这个说法　<span class="exn">' + list.length + ' 句'
+    + (me ? '（你说过 ' + me + ' 句）' : '') + '</span></div>';
+  list.forEach(function(x, i){
+    h += '<div class="exs" data-ex="' + esc(x.id) + '">'
+      + '<div class="ext thai">' + esc(x.t) + '</div>'
+      + (x.r ? '<div class="exr">' + esc(x.r) + '</div>' : '')
+      + '<div class="exz">' + esc(x.z) + '</div></div>';
+  });
+  h += '</div>';
+  return h;
+}
 function startCard(kind){
   var keys = taskKeys(kind).slice();
   if (!keys.length){ toast('今天这部分没有内容'); return; }
@@ -908,6 +947,7 @@ function renderRun(){
   }
   var h = '<div class="study">' + front;
   if (run.show) h += back;
+  h += exBlock(o);
   h += '<div class="hint">' + (run.i+1) + ' / ' + run.keys.length + (it ? '　盒' + it.box + ' 对' + it.r + ' 错' + it.w : '') + '</div><div class="btnrow">';
   var play = function(){
     if (o.type === 'w') say(o.o ? o.o.a : null, o.o ? o.o.d : 'audio-pany', o.t);
@@ -942,6 +982,10 @@ function renderRun(){
   };
   $('cQuit').onclick = function(){ run = null; renderToday(); R.innerHTML = ''; };
   if (!run.show && run.kind !== 'read') setTimeout(play, 200);
+  /* 例句块：点哪句读哪句 */
+  R.querySelectorAll('.exs').forEach(function(b){
+    b.onclick = function(){ var s = SMAP[b.getAttribute('data-ex')]; if (s) say(s.id, 'audio-pany', s.t); };
+  });
 }
 function nx(){ run.i++; run.show = false; renderRun(); }
 var lastAllDone = {};   // 记录「哪一天已因全部完成而同步过」，避免重复提示
