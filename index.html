@@ -20,7 +20,7 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
 body{background:var(--bg);color:var(--tx);
-  font-family:system-ui,-apple-system,"Segoe UI","Leelawadee UI","Noto Sans Thai","Microsoft YaHei",sans-serif;
+  font-family:system-ui,-apple-system,"Segoe UI","Leelawadee UI","Noto Sans Thai","Noto Sans Thai UI","Microsoft YaHei",sans-serif;
   font-size:15px;line-height:1.65;padding-bottom:calc(66px + var(--safe-b))}
 h1,h2,h3{margin:0}
 h2{font-size:15px;font-weight:600;margin:18px 0 8px}
@@ -29,7 +29,11 @@ p{margin:8px 0}
 .sub{color:var(--tx2);font-size:13px}
 a{color:var(--blue600);text-decoration:none}
 b{font-weight:600}
-.th{font-family:"Leelawadee UI","Noto Sans Thai",sans-serif}
+.th{font-family:"Leelawadee UI","Noto Sans Thai","Noto Sans Thai UI","Sarabun","Tahoma",sans-serif;
+  line-height:1.9;word-break:keep-all;overflow-wrap:break-word}
+/* 泰文题干与选项：显式指定泰文字体，避免部分安卓浏览器回退到无泰文字形的字体而显示成方框 */
+.thai{font-family:"Leelawadee UI","Noto Sans Thai","Noto Sans Thai UI","Sarabun","Tahoma",sans-serif;
+  line-height:1.9;word-break:keep-all;overflow-wrap:break-word;letter-spacing:.2px}
 
 /* 顶栏 */
 .topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);
@@ -289,6 +293,15 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 
   <!-- ========== 我的 ========== -->
   <section class="view" id="v-me">
+    <button class="card" id="meAcct" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;border:1px solid var(--line2)">
+      <span style="font-size:26px;line-height:1">◐</span>
+      <span style="flex:1;min-width:0">
+        <span style="display:block;font-weight:600;font-size:14px" id="meAcctT">登录 / 注册</span>
+        <span style="display:block;font-size:12px;color:var(--tx2)" id="meAcctS">登录后学习记录可存到云端，换设备不丢</span>
+      </span>
+      <span style="color:var(--tx3);font-size:18px">›</span>
+    </button>
+
     <div id="account" style="margin-top:12px"></div>
 
     <h2>学习记录</h2>
@@ -341,7 +354,13 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 
 <div class="toast" id="toast"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
+<!-- 云服务 SDK：本地优先，失败后再走 CDN（国内网络 jsdelivr 常挂） -->
+<script src="./cloud-sdk.js"></script>
+<script>
+if (!window.WorkBuddyCloud) {
+  document.write('<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"><\/script>');
+}
+</script>
 <script src="./pany-data.js"></script>
 <script src="./words-data.js"></script>
 <script src="./phrases-data.js"></script>
@@ -351,15 +370,20 @@ var PUBLIC = {
   endpoint: 'https://thai-84day.app.workbuddy.host',
   publishableKey: 'wbpk_LIM7AV2dr7NJi33K6ypXSA_wt2Lr7rsJTZVJs4CeEyE6M4Om4byqDCP'
 };
-var cloud = null;
-try {
-  if (window.WorkBuddyCloud && PUBLIC.endpoint) {
-    cloud = WorkBuddyCloud.createWorkBuddyCloud({
-      endpoint: PUBLIC.endpoint,
-      publishableKey: PUBLIC.publishableKey
-    });
-  }
-} catch (e) { cloud = null; }
+var cloud = null, cloudErr = '';
+/* WorkBuddy 云服务会校验请求 Origin，GitHub Pages 域名无法登录 —— 在这里直接识别并给出说明 */
+var HOST_OK = /(^|\.)workbuddy\.host$/i.test(location.hostname) || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+function initCloud(){
+  cloud = null; cloudErr = '';
+  try {
+    /* 先判域名：GitHub Pages 镜像无论 SDK 在不在都登不了，直接给引导 */
+    if (!HOST_OK){ cloudErr = 'origin'; return; }
+    if (!window.WorkBuddyCloud){ cloudErr = 'sdk'; return; }
+    cloud = WorkBuddyCloud.createWorkBuddyCloud({ endpoint: PUBLIC.endpoint, publishableKey: PUBLIC.publishableKey });
+    if (!cloud) cloudErr = 'init';
+  } catch (e) { cloud = null; cloudErr = 'init'; }
+}
+initCloud();
 
 var ME = null, syncTimer = null, syncing = false, cloudRow = null, pushOk = false, auCur = 'pw', auPending = null;
 function setSync(txt, cls){
@@ -424,23 +448,22 @@ async function afterLogin(user){
   renderToday();
   setSync('已同步', 'g');
 }
+var APP_URL = 'https://thai-84day.app.workbuddy.host/';
+var acctOpen = false;
+function paintAcctBar(){
+  var t = $('meAcctT'), s = $('meAcctS');
+  if (!t || !s) return;
+  if (ME){ t.textContent = ME.email || '已登录'; s.textContent = '已开启云端同步 · 点这里查看同步与退出'; }
+  else if (cloud){ t.textContent = '登录 / 注册'; s.textContent = '登录后学习记录可存到云端，换设备不丢'; }
+  else if (cloudErr === 'origin'){ t.textContent = '登录（需用正式网址）'; s.textContent = '当前是 GitHub Pages 镜像，点这里看说明'; }
+  else { t.textContent = '登录 / 注册'; s.textContent = '云端组件未加载，点这里重试'; }
+}
 function renderAccount(){
   var box = $('account');
   if (!box) return;
-  if (!cloud){ box.innerHTML = '<div class="note">当前环境不支持云端同步，学习记录只保存在这台设备的浏览器里。</div>'; return; }
-  if (!ME){
-    box.innerHTML = '<div class="card"><h3 style="margin-top:0">账号 · 云端同步</h3>'
-      + '<p class="sub">登录后，学习记录、已掌握标记、打卡历史都会存到云端 —— 换手机、换浏览器、清缓存都不会丢。</p>'
-      + '<div class="btnrow" style="margin-bottom:4px">'
-      + '<button class="mini on" id="auPw">密码登录</button>'
-      + '<button class="mini" id="auOtp">验证码登录</button>'
-      + '<button class="mini" id="auUp">注册</button>'
-      + '</div><div id="auBody"></div></div>';
-    $('auPw').onclick = function(){ auMode('pw'); };
-    $('auOtp').onclick = function(){ auMode('otp'); };
-    $('auUp').onclick = function(){ auMode('up'); };
-    auMode('pw');
-  } else {
+
+  /* ---- 已登录 ---- */
+  if (ME && cloud){
     box.innerHTML = '<div class="card"><h3 style="margin-top:0">账号</h3>'
       + '<p class="sub" style="font-size:14px;color:var(--tx)">' + esc(ME.email || '已登录') + '</p>'
       + '<div class="btnrow"><button class="btn" id="auSync">立即同步</button>'
@@ -452,7 +475,53 @@ function renderAccount(){
       await cloud.auth.signOut(); ME = null; cloudRow = null;
       setSync('未登录', 'lo'); renderAccount();
     };
+    return;
   }
+
+  /* ---- 未登录 / 云端不可用：登录入口与表单始终可见 ---- */
+  var head = '<div class="card"><h3 style="margin-top:0">账号 · 云端同步</h3>';
+  var warn = '';
+
+  if (cloudErr === 'origin'){
+    warn = '<div class="note" style="margin-top:0">当前网址是 <b>' + esc(location.hostname) + '</b>（GitHub Pages 镜像），'
+      + '云服务会校验域名，所以在这里无法登录或同步。<br>'
+      + '请到正式地址使用：<br>'
+      + '<span class="chip" style="word-break:break-all">' + esc(APP_URL) + '</span></div>'
+      + '<div class="btnrow"><button class="btn primary" id="auGoApp">打开正式地址</button>'
+      + '<button class="btn" id="auCopyApp">复制地址</button></div>';
+  } else if (cloudErr === 'sdk'){
+    warn = '<div class="note" style="margin-top:0">云端组件没加载成功（可能是网络问题）。学习记录仍会正常保存在这台设备上，不影响学习。'
+      + '<br>点下方「重试加载云端」再试一次。</div>'
+      + '<div class="btnrow"><button class="btn" id="auRetry">重试加载云端</button></div>';
+  } else if (cloudErr === 'init'){
+    warn = '<div class="note" style="margin-top:0">云端组件初始化失败。学习记录仍会正常保存在这台设备上，不影响学习。'
+      + '<br>点下方「重新初始化」再试一次。</div>'
+      + '<div class="btnrow"><button class="btn" id="auRetry">重新初始化</button></div>';
+  } else {
+    warn = '<p class="sub">登录后，学习记录、已掌握标记、打卡历史都会存到云端 —— 换手机、换浏览器、清缓存都不会丢。</p>';
+  }
+
+  /* 表单一律渲染，即使云端不可用也要让用户看见「登录/注册」长什么样 */
+  var picker = '<div class="btnrow" style="margin-bottom:4px">'
+    + '<button class="mini on" id="auPw">密码登录</button>'
+    + '<button class="mini" id="auOtp">验证码登录</button>'
+    + '<button class="mini" id="auUp">注册</button>'
+    + '</div><div id="auBody"></div>';
+
+  box.innerHTML = head + warn + picker + '</div>';
+
+  if ($('auGoApp')) $('auGoApp').onclick = function(){ location.href = APP_URL; };
+  if ($('auCopyApp')) $('auCopyApp').onclick = function(){
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(APP_URL);
+    else prompt('复制这个地址：', APP_URL);
+    toast('地址已复制');
+  };
+if ($('auRetry')) $('auRetry').onclick = function(){ initCloud(); renderAccount(); if (cloud) boot(); toast(cloud ? '云端已就绪' : '仍然无法加载，可继续用本地记录'); };
+  $('auPw').onclick = function(){ auMode('pw'); };
+  $('auOtp').onclick = function(){ auMode('otp'); };
+  $('auUp').onclick = function(){ auMode('up'); };
+  auMode('pw');
+  paintAcctBar();
 }
 function auMode(m){
   auCur = m; auPending = null;
@@ -483,7 +552,15 @@ function auMode(m){
   if ($('auFg')) $('auFg').onclick = auForgot;
 }
 function auErr(m){ toast(m); }
+/* 云端不可用时，把「为什么不能登录」说清楚，而不是抛一个没头没脑的错 */
+function needCloud(){
+  if (cloud) return true;
+  if (cloudErr === 'origin'){ auErr('这个网址无法登录，请到正式地址：' + APP_URL); return false; }
+  if (cloudErr === 'sdk'){ auErr('云端组件未加载，请点上方「重试加载云端」'); return false; }
+  auErr('云端初始化失败，请点上方「重新初始化」'); return false;
+}
 async function auSendCode(){
+  if (!needCloud()) return;
   var e = ($('auE').value || '').trim();
   if (!e) return auErr('请先填邮箱');
   $('auSend').disabled = true;
@@ -494,6 +571,7 @@ async function auSendCode(){
   toast('验证码已发送到邮箱');
 }
 async function auSubmit(){
+  if (!needCloud()) return;
   var e = ($('auE').value || '').trim();
   if (auCur === 'pw'){
     var p = $('auP').value || '';
@@ -538,8 +616,19 @@ var W5 = window.WORDS5 || [], W4 = window.WORDS4 || [];
 var WEEK = ["拼读 I：辅音与元音","声调规则","拼读 III + 语气词代词","情绪与感受","日常闲聊句型",
   "时间与约会 + 量词","亲昵与情话","吵架与和好","生活 · 吃","住 · 行 · 钱","见家长与社交","真实语速与输出"];
 
+/* 泰语纯度检测：t 字段里泰文字符的占比。用于挡掉混进语料的中文/英文/纯数字条目，
+   否则「泰文怎么说？」这类题会给出没有泰语可答的题面。 */
+function thPure(s){
+  s = String(s == null ? '' : s);
+  var cs = Array.from(s).filter(function(c){ return c.trim(); });
+  if (!cs.length) return 0;
+  var th = cs.filter(function(c){ var n = c.codePointAt(0); return n >= 0x0E00 && n <= 0x0E7F; }).length;
+  return th / cs.length;
+}
+function isTH(s){ return thPure(s) >= 0.6; }
+
 var POOL_W = [], seenW = {};
-function addW(o, src){ if (seenW[o.t]) return; seenW[o.t] = 1; o.src = src; POOL_W.push(o); }
+function addW(o, src){ if (!o.t || !isTH(o.t)) return; if (seenW[o.t]) return; seenW[o.t] = 1; o.src = src; POOL_W.push(o); }
 (P.top100 || []).forEach(function(x){ addW({t:x.t,r:x.r,z:x.z,e:x.e,c:x.c,a:'t'+x.i,d:'audio-pany',note:x.note}, 'top100'); });
 (P.words || []).filter(function(w){ return !w.h; }).forEach(function(w){ addW({t:w.t,r:w.r,z:w.z,e:w.e,c:w.c,a:'w'+w.i,d:'audio-pany'}, '她的常用词'); });
 (P.func || []).forEach(function(f){ addW({t:f.t,r:f.r,z:f.z,e:f.e,c:f.c,a:'f'+f.i,d:'audio-pany',note:f.note}, '语气词'); });
@@ -547,12 +636,12 @@ W5.forEach(function(w){ addW({t:w.t,r:w.r,z:w.z,e:w.e,c:0,a:'w'+w.n,d:'audio-wor
 W4.forEach(function(w){ addW({t:w.t,r:w.r,z:w.z,e:w.e,c:0,a:'w'+w.n,d:'audio-words'}, '单词本 P4'); });
 
 var POOL_G = [];
-(P.herGrams || []).filter(function(g){ return !g.h; }).forEach(function(g){ POOL_G.push({t:g.t,z:g.z,e:g.e,c:g.c,a:'p'+g.i}); });
-(P.myGrams || []).filter(function(g){ return !g.h; }).forEach(function(g){ POOL_G.push({t:g.t,z:g.z,e:g.e,c:g.c,a:'q'+g.i}); });
+(P.herGrams || []).filter(function(g){ return !g.h && isTH(g.t); }).forEach(function(g){ POOL_G.push({t:g.t,z:g.z,e:g.e,c:g.c,a:'p'+g.i}); });
+(P.myGrams || []).filter(function(g){ return !g.h && isTH(g.t); }).forEach(function(g){ POOL_G.push({t:g.t,z:g.z,e:g.e,c:g.c,a:'q'+g.i}); });
 
 var MINLEN = 6;
-var POOL_HS = (P.sents || []).filter(function(s){ return s.who === 0 && s.len >= MINLEN; }).slice().sort(function(a,b){ return a.len - b.len; });
-var POOL_MS = (P.sents || []).filter(function(s){ return s.who === 1 && s.len >= MINLEN; }).slice().sort(function(a,b){ return a.len - b.len; });
+var POOL_HS = (P.sents || []).filter(function(s){ return s.who === 0 && s.len >= MINLEN && isTH(s.t) && s.z; }).slice().sort(function(a,b){ return a.len - b.len; });
+var POOL_MS = (P.sents || []).filter(function(s){ return s.who === 1 && s.len >= MINLEN && isTH(s.t) && s.z; }).slice().sort(function(a,b){ return a.len - b.len; });
 var SMAP = {}; (P.sents || []).forEach(function(s){ SMAP[s.id] = s; });
 var WMAP = {}; POOL_W.forEach(function(w){ WMAP[w.t] = w; });
 var GMAP = {}; POOL_G.forEach(function(g){ GMAP[g.t] = g; });
@@ -656,7 +745,7 @@ function say(file, dir, text){
 var TT = null;
 function toast(m){ var t = document.getElementById('toast'); t.textContent = m; t.classList.add('show');
   clearTimeout(TT); TT = setTimeout(function(){ t.classList.remove('show'); }, 2200); }
-function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function $(id){ return document.getElementById(id); }
 
 /* ==================== 今日 ==================== */
@@ -839,13 +928,16 @@ var quiz = null;
 function shuffle(a){ for (var i = a.length-1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 function pick4(c, pool, f){
   var o = [c], g = 0;
-  while (o.length < 4 && g++ < 300){ var x = pool[Math.floor(Math.random()*pool.length)]; if (x && x[f] && o.indexOf(x[f]) < 0) o.push(x[f]); }
+  while (o.length < 4 && g++ < 400){
+    var x = pool[Math.floor(Math.random()*pool.length)];
+    if (x && x[f] && o.indexOf(x[f]) < 0 && (f !== 't' || isTH(x[f]))) o.push(x[f]);
+  }
   return shuffle(o);
 }
 function startQuiz(){
   var src = [];
-  D.plan.newW.concat(D.plan.dueW).forEach(function(k){ var o = WMAP[k.split('|')[1]]; if (o) src.push({ w:o, kind:'w' }); });
-  D.plan.newG.concat(D.plan.dueG).forEach(function(k){ var o = GMAP[k.split('|')[1]]; if (o) src.push({ w:o, kind:'g' }); });
+  D.plan.newW.concat(D.plan.dueW).forEach(function(k){ var o = WMAP[k.split('|')[1]]; if (o && isTH(o.t)) src.push({ w:o, kind:'w' }); });
+  D.plan.newG.concat(D.plan.dueG).forEach(function(k){ var o = GMAP[k.split('|')[1]]; if (o && isTH(o.t)) src.push({ w:o, kind:'g' }); });
   if (src.length < 4) for (var i = 0; i < 200 && src.length < 12; i++){ var w = POOL_W[Math.floor(Math.random()*Math.min(400, POOL_W.length))]; if (w) src.push({ w:w, kind:'w' }); }
   var qs = [], n = Math.min(S.cfg.quizCount, Math.max(4, src.length));
   for (var i = 0; i < n; i++){
@@ -865,14 +957,15 @@ function renderQuiz(){
   var R = $('runner');
   if (quiz.i >= quiz.qs.length){ finishQuiz(); return; }
   var q = quiz.qs[quiz.i], h = '<div class="study"><div class="hint" style="margin-top:0">第 ' + (quiz.i+1) + ' / ' + quiz.qs.length + ' 题</div>';
-  if (q.ty === 'th2zh') h += '<div class="q th">' + esc(q.o.t) + '</div><div class="hint">什么意思？</div>';
-  else if (q.ty === 'zh2th') h += '<div class="a" style="margin-top:6px">' + esc(q.o.z) + '</div><div class="hint">泰文怎么说？</div>';
+  if (q.ty === 'th2zh') h += '<div class="q thai">' + esc(q.o.t) + '</div>'
+    + (q.o.r ? '<div class="rom">' + esc(q.o.r) + '</div>' : '') + '<div class="hint">什么意思？</div>';
+  else if (q.ty === 'zh2th') h += '<div class="a" style="margin-top:6px">' + esc(q.o.z || q.o.e || '') + '</div><div class="hint">泰文怎么说？</div>';
   else if (q.ty === 'audio') h += '<div class="q" style="font-size:26px">🔊</div><div class="hint"><button class="mini" id="qPlay">再播一次</button></div>';
   else h += '<div class="a sm" style="margin-top:6px;font-size:16px">' + esc(q.sent.z) + '</div><div class="hint">泰文是？</div>';
   h += '<div style="margin-top:12px">';
   q.opts.forEach(function(o){
     var isTh = /[\u0E00-\u0E7F]/.test(o);
-    h += '<button class="opt" data-o="' + esc(o).replace(/"/g,'&quot;') + '">' + (isTh ? '<span class="th">' + esc(o) + '</span>' : esc(o)) + '</button>';
+    h += '<button class="opt" data-o="' + esc(o).replace(/"/g,'&quot;') + '">' + (isTh ? '<span class="thai">' + esc(o) + '</span>' : esc(o)) + '</button>';
   });
   h += '</div><div class="btnrow"><button class="mini" id="qQuit">退出</button></div></div>';
   R.innerHTML = h;
@@ -1164,11 +1257,17 @@ window.addEventListener('scroll', function(){
   if (v === 'words' && $('wList').children.length >= wShow){ wShow += 80; renderWords(); }
 });
 
-renderToday(); renderCorpus(); renderWords(); renderPhrases(); renderMe(); renderAccount();
+renderToday(); renderCorpus(); renderWords(); renderPhrases(); renderMe(); renderAccount(); paintAcctBar();
+$('meAcct').onclick = function(){
+  acctOpen = !acctOpen;
+  $('account').style.display = acctOpen ? '' : 'none';
+  $('meAcct').scrollIntoView({ behavior:'smooth', block:'nearest' });
+};
+$('account').style.display = 'none';
 
 /* ---- 启动：恢复登录态并拉取云端 ---- */
-(function boot(){
-  if (!cloud){ setSync('仅本地', 'lo'); return; }
+function boot(){
+  if (!cloud){ setSync('仅本地', 'lo'); renderAccount(); return; }
   setSync('检查登录…', 'b');
   cloud.auth.getSession().then(function(r){
     if (r.error || !r.data){ setSync('未登录', 'lo'); renderAccount(); return; }
@@ -1202,7 +1301,8 @@ renderToday(); renderCorpus(); renderWords(); renderPhrases(); renderMe(); rende
       renderAccount();
     });
   }).catch(function(){ setSync('仅本地', 'lo'); renderAccount(); });
-})();
+}
+boot();
 window.addEventListener('visibilitychange', function(){
   if (document.visibilityState === 'hidden' && cloud && ME) pushCloud();
 });
