@@ -152,7 +152,7 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 <header class="topbar"><div class="tb">
   <div><div class="ttl">泰语 84 天</div><div class="day" id="tbDay">Day 1</div></div>
   <div class="pb"><i id="tbBar"></i></div>
-  <div class="day" id="tbDue"></div>
+  <span class="tag lo" id="syncChip">…</span>
 </div></header>
 
 <main>
@@ -289,7 +289,9 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 
   <!-- ========== 我的 ========== -->
   <section class="view" id="v-me">
-    <h2 style="margin-top:12px">学习记录</h2>
+    <div id="account" style="margin-top:12px"></div>
+
+    <h2>学习记录</h2>
     <div class="hero">
       <div class="kpis">
         <div class="kpi"><div class="l">已打卡</div><div class="v" id="rDays">0</div></div>
@@ -339,10 +341,197 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 
 <div class="toast" id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
 <script src="./pany-data.js"></script>
 <script src="./words-data.js"></script>
 <script src="./phrases-data.js"></script>
 <script>
+/* ==================== 云端账号与同步 ==================== */
+var PUBLIC = {
+  endpoint: 'https://thai-84day.app.workbuddy.host',
+  publishableKey: 'wbpk_LIM7AV2dr7NJi33K6ypXSA_wt2Lr7rsJTZVJs4CeEyE6M4Om4byqDCP'
+};
+var cloud = null;
+try {
+  if (window.WorkBuddyCloud && PUBLIC.endpoint) {
+    cloud = WorkBuddyCloud.createWorkBuddyCloud({
+      endpoint: PUBLIC.endpoint,
+      publishableKey: PUBLIC.publishableKey
+    });
+  }
+} catch (e) { cloud = null; }
+
+var ME = null, syncTimer = null, syncing = false, cloudRow = null, pushOk = false, auCur = 'pw', auPending = null;
+function setSync(txt, cls){
+  var el = $('syncChip'); if (!el) return;
+  el.textContent = txt; el.className = 'tag ' + (cls || 'lo');
+}
+function localIsEmpty(){
+  return Object.keys(S.items).length === 0 && Object.keys(S.days).length === 0 && S.q.w === 0;
+}
+function markDirty(){
+  S.savedAt = Date.now(); save();
+  if (!cloud || !ME) return;
+  clearTimeout(syncTimer);
+  setSync('同步中…', 'b');
+  syncTimer = setTimeout(pushCloud, 2000);
+}
+async function pushCloud(){
+  if (!cloud || !ME || syncing) return;
+  syncing = true;
+  try {
+    S.savedAt = Date.now();
+    var res = await cloud.database.from('study_state')
+      .upsert({ payload: S, updated_at: new Date().toISOString() }, { onConflict: 'owner_id' })
+      .select();
+    if (res.error) { pushOk = false; setSync('同步失败', 'r'); }
+    else { cloudRow = res.data && res.data[0]; pushOk = true; setSync('已同步', 'g'); }
+  } catch (e) { pushOk = false; setSync('同步失败', 'r'); }
+  syncing = false;
+}
+async function pullCloud(){
+  if (!cloud || !ME) return null;
+  try {
+    var res = await cloud.database.from('study_state').select('payload, updated_at').maybeSingle();
+    if (res.error) { setSync('读取失败', 'r'); return null; }
+    cloudRow = res.data;
+    return res.data;
+  } catch (e) { setSync('读取失败', 'r'); return null; }
+}
+async function afterLogin(user){
+  ME = user;
+  setSync('读取云端…', 'b');
+  var row = await pullCloud();
+  var remote = row && row.payload;
+  var localEmpty = localIsEmpty();
+  if (remote && remote.items && Object.keys(remote.items).length) {
+    var rt = row.updated_at ? new Date(row.updated_at).getTime() : 0;
+    var lt = S.savedAt || 0;
+    if (localEmpty || rt > lt + 5000) {
+      S = remote;
+      if (!S.cfg) S.cfg = {};
+      for (var d in DEF) if (S.cfg[d] == null) S.cfg[d] = DEF[d];
+      if (!S.master) S.master = {};
+      if (!S.q) S.q = { w: 0, g: 0, hs: 0, ms: 0 };
+      if (!S.items) S.items = {}; if (!S.days) S.days = {};
+      S.day = Math.max(1, diffDays(S.start || today(), today()) + 1);
+      D = getDay(S.day);
+      save();
+      toast('已从云端恢复学习记录');
+    }
+  }
+  renderAccount();
+  renderToday();
+  setSync('已同步', 'g');
+}
+function renderAccount(){
+  var box = $('account');
+  if (!box) return;
+  if (!cloud){ box.innerHTML = '<div class="note">当前环境不支持云端同步，学习记录只保存在这台设备的浏览器里。</div>'; return; }
+  if (!ME){
+    box.innerHTML = '<div class="card"><h3 style="margin-top:0">账号 · 云端同步</h3>'
+      + '<p class="sub">登录后，学习记录、已掌握标记、打卡历史都会存到云端 —— 换手机、换浏览器、清缓存都不会丢。</p>'
+      + '<div class="btnrow" style="margin-bottom:4px">'
+      + '<button class="mini on" id="auPw">密码登录</button>'
+      + '<button class="mini" id="auOtp">验证码登录</button>'
+      + '<button class="mini" id="auUp">注册</button>'
+      + '</div><div id="auBody"></div></div>';
+    $('auPw').onclick = function(){ auMode('pw'); };
+    $('auOtp').onclick = function(){ auMode('otp'); };
+    $('auUp').onclick = function(){ auMode('up'); };
+    auMode('pw');
+  } else {
+    box.innerHTML = '<div class="card"><h3 style="margin-top:0">账号</h3>'
+      + '<p class="sub" style="font-size:14px;color:var(--tx)">' + esc(ME.email || '已登录') + '</p>'
+      + '<div class="btnrow"><button class="btn" id="auSync">立即同步</button>'
+      + '<button class="btn no" id="auOut">退出登录</button></div>'
+      + '<p class="sub" style="margin-bottom:0">学习数据存在云端，换设备登录同一账号即可继续。</p></div>';
+    $('auSync').onclick = async function(){ setSync('同步中…', 'b'); await pushCloud(); toast(pushOk ? '已同步到云端' : '同步失败，请重试'); };
+    $('auOut').onclick = async function(){
+      if (!confirm('退出登录？本地记录会保留，云端数据不动。')) return;
+      await cloud.auth.signOut(); ME = null; cloudRow = null;
+      setSync('未登录', 'lo'); renderAccount();
+    };
+  }
+}
+function auMode(m){
+  auCur = m; auPending = null;
+  ['auPw','auOtp','auUp'].forEach(function(id){ $(id).classList.toggle('on', id === 'au' + m.charAt(0).toUpperCase() + m.slice(1)); });
+  var h = '';
+  if (m === 'pw'){
+    h = '<label class="fld"><span>邮箱</span><input type="text" id="auE" placeholder="you@example.com"></label>'
+      + '<label class="fld"><span>密码</span><input type="password" id="auP" placeholder="••••••••"></label>'
+      + '<div class="btnrow"><button class="btn primary" id="auGo">登录</button></div>'
+      + '<div class="btnrow"><button class="mini" id="auFg">忘记密码</button></div>';
+  } else if (m === 'otp'){
+    h = '<label class="fld"><span>邮箱</span><input type="text" id="auE" placeholder="you@example.com"></label>'
+      + '<div class="btnrow"><button class="btn" id="auSend" type="button">获取验证码</button></div>'
+      + '<label class="fld"><span>验证码</span><input type="text" id="auC" placeholder="6 位数字" inputmode="numeric"></label>'
+      + '<div class="btnrow"><button class="btn primary" id="auGo">登录</button></div>'
+      + '<p class="sub">老用户用验证码可直接登录，不用密码。</p>';
+  } else {
+    h = '<label class="fld"><span>邮箱</span><input type="text" id="auE" placeholder="you@example.com"></label>'
+      + '<label class="fld"><span>设置密码（至少 6 位）</span><input type="password" id="auP" placeholder="••••••••"></label>'
+      + '<div class="btnrow"><button class="btn" id="auSend" type="button">获取验证码</button></div>'
+      + '<label class="fld"><span>邮箱验证码</span><input type="text" id="auC" placeholder="6 位数字" inputmode="numeric"></label>'
+      + '<div class="btnrow"><button class="btn primary" id="auGo">注册并登录</button></div>';
+  }
+  $('auBody').innerHTML = h;
+  var go = $('auGo');
+  if (go) go.onclick = auSubmit;
+  if ($('auSend')) $('auSend').onclick = auSendCode;
+  if ($('auFg')) $('auFg').onclick = auForgot;
+}
+function auErr(m){ toast(m); }
+async function auSendCode(){
+  var e = ($('auE').value || '').trim();
+  if (!e) return auErr('请先填邮箱');
+  $('auSend').disabled = true;
+  var sent = await cloud.auth.sendOtp({ email: e });
+  $('auSend').disabled = false;
+  if (sent.error) return auErr(sent.error.message || '验证码发送失败');
+  auPending = { email: e, verificationId: sent.data.verificationId, isExistingUser: sent.data.isExistingUser };
+  toast('验证码已发送到邮箱');
+}
+async function auSubmit(){
+  var e = ($('auE').value || '').trim();
+  if (auCur === 'pw'){
+    var p = $('auP').value || '';
+    if (!e || !p) return auErr('请填邮箱和密码');
+    var r = await cloud.auth.signInWithPassword({ email: e, password: p });
+    if (r.error) return auErr('账号或密码不对');
+    await afterLogin(r.data.user);
+  } else {
+    var c = ($('auC').value || '').trim();
+    if (!auPending || auPending.email !== e) return auErr('请先点「获取验证码」');
+    if (!c) return auErr('请填验证码');
+    var pw = ($('auP') && $('auP').value) || undefined;
+    var r2 = await cloud.auth.verifyOtp({
+      email: auPending.email, verificationId: auPending.verificationId,
+      isExistingUser: auPending.isExistingUser, token: c,
+      password: (auCur === 'up') ? pw : undefined
+    });
+    if (r2.error) return auErr(r2.error.message || '验证码不对');
+    if (auCur === 'up' && auPending.isExistingUser) { toast('这个邮箱已注册，已直接登录'); }
+    auPending = null;
+    await afterLogin(r2.data.user);
+  }
+}
+async function auForgot(){
+  var e = ($('auE').value || '').trim();
+  if (!e) return auErr('请先填邮箱');
+  var st = await cloud.auth.resetPasswordForEmail(e);
+  if (st.error) return auErr(st.error.message || '发送失败');
+  var code = prompt('重置码已发到邮箱，请输入邮件里的验证码');
+  if (!code) return;
+  var np = prompt('设置新密码（至少 6 位）');
+  if (!np) return;
+  var done = await st.data.updateUser({ nonce: code, password: np });
+  if (done.error) return auErr(done.error.message || '重置失败');
+  toast('密码已重置，请用新密码登录');
+  auMode('pw');
+}
+
 /* ==================== 数据 ==================== */
 var P = window.PANY || {};
 var W5 = window.WORDS5 || [], W4 = window.WORDS4 || [];
@@ -379,7 +568,16 @@ try { var _wb0 = localStorage.getItem('thaiwordbook-v1');
   if (_wb0) { var _w0 = JSON.parse(_wb0) || {}; for (var _t0 in _w0) if (!S.master[_t0]) S.master[_t0] = 1; save(); } } catch (e) {}
 for (var _d in DEF) if (S.cfg[_d] == null) S.cfg[_d] = DEF[_d];
 if (!S.start) S.start = today();
-function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
+function persist(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
+function save(){
+  persist();
+  if (cloud && ME){
+    S.savedAt = Date.now();
+    clearTimeout(syncTimer);
+    setSync('同步中…', 'b');
+    syncTimer = setTimeout(pushCloud, 2500);
+  }
+}
 function today(){ var d = new Date(); return d.getFullYear() + '-' + p2(d.getMonth()+1) + '-' + p2(d.getDate()); }
 function p2(n){ return n < 10 ? '0'+n : ''+n; }
 function addDays(s, n){ var d = new Date(s+'T00:00:00'); d.setDate(d.getDate()+n); return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate()); }
@@ -408,7 +606,9 @@ function keyObj(k){
   var p = k.split('|'), t = p[1];
   if (p[0] === 'w') return { type:'w', t:t, o:WMAP[t] };
   if (p[0] === 'g') return { type:'g', t:t, o:GMAP[t] };
-  return { type:'s', t:t, o:SMAP[t] };
+  // 句子的 key 存的是 id（h12 / m34），展示要用泰文原句
+  var s = SMAP[t];
+  return { type:'s', id:t, t:(s ? s.t : t), o:s };
 }
 
 S.day = Math.max(1, diffDays(S.start, today()) + 1);
@@ -964,7 +1164,48 @@ window.addEventListener('scroll', function(){
   if (v === 'words' && $('wList').children.length >= wShow){ wShow += 80; renderWords(); }
 });
 
-renderToday(); renderCorpus(); renderWords(); renderPhrases(); renderMe();
+renderToday(); renderCorpus(); renderWords(); renderPhrases(); renderMe(); renderAccount();
+
+/* ---- 启动：恢复登录态并拉取云端 ---- */
+(function boot(){
+  if (!cloud){ setSync('仅本地', 'lo'); return; }
+  setSync('检查登录…', 'b');
+  cloud.auth.getSession().then(function(r){
+    if (r.error || !r.data){ setSync('未登录', 'lo'); renderAccount(); return; }
+    ME = r.data.user;
+    setSync('读取云端…', 'b');
+    return cloud.database.from('study_state').select('payload, updated_at').maybeSingle().then(function(res){
+      if (res.error || !res.data){ setSync('未登录', 'lo'); renderAccount(); return; }
+      cloudRow = res.data;
+      var remote = res.data.payload;
+      if (remote && remote.items && Object.keys(remote.items).length){
+        var rt = res.data.updated_at ? new Date(res.data.updated_at).getTime() : 0;
+        var lt = S.savedAt || 0;
+        if (localIsEmpty() || rt > lt + 5000){
+          var keep = (localIsEmpty() || confirm('云端有更新的学习记录（' + res.data.updated_at + '）。\n确定用云端记录覆盖这台设备上的本地记录吗？'));
+          if (keep){
+            S = remote;
+            if (!S.cfg) S.cfg = {};
+            for (var d in DEF) if (S.cfg[d] == null) S.cfg[d] = DEF[d];
+            if (!S.master) S.master = {};
+            if (!S.q) S.q = { w:0, g:0, hs:0, ms:0 };
+            if (!S.items) S.items = {}; if (!S.days) S.days = {};
+            S.day = Math.max(1, diffDays(S.start || today(), today()) + 1);
+            D = getDay(S.day);
+            persist();
+            renderToday(); renderCorpus(); renderWords(); renderPhrases(); renderMe();
+            toast('已从云端恢复学习记录');
+          }
+        }
+      }
+      setSync('已同步', 'g');
+      renderAccount();
+    });
+  }).catch(function(){ setSync('仅本地', 'lo'); renderAccount(); });
+})();
+window.addEventListener('visibilitychange', function(){
+  if (document.visibilityState === 'hidden' && cloud && ME) pushCloud();
+});
 </script>
 </body>
 </html>
