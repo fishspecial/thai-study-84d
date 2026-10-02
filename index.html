@@ -395,7 +395,7 @@ function initCloud(){
 }
 initCloud();
 
-var ME = null, syncTimer = null, syncing = false, cloudRow = null, pushOk = false, auCur = 'pw', auPending = null;
+var ME = null, syncTimer = null, syncing = false, pushQueued = false, cloudRow = null, pushOk = false, auCur = 'pw', auPending = null;
 function setSync(txt, cls){
   var el = $('syncChip'); if (!el) return;
   el.textContent = txt; el.className = 'tag ' + (cls || 'lo');
@@ -410,8 +410,14 @@ function markDirty(){
   setSync('同步中…', 'b');
   syncTimer = setTimeout(pushCloud, 2000);
 }
-async function pushCloud(){
-  if (!cloud || !ME || syncing) return;
+async function pushCloud(opts){
+  opts = opts || {};
+  if (!cloud || !ME) return;
+  /* 正在同步时：若是「立即同步」就排队等这一次完成后再补推一次，避免漏掉最新改动 */
+  if (syncing){
+    if (opts.now){ pushQueued = true; }
+    return;
+  }
   syncing = true;
   try {
     S.savedAt = Date.now();
@@ -422,6 +428,15 @@ async function pushCloud(){
     else { cloudRow = res.data && res.data[0]; pushOk = true; setSync('已同步', 'g'); }
   } catch (e) { pushOk = false; setSync('同步失败', 'r'); }
   syncing = false;
+  if (pushQueued){ pushQueued = false; pushCloud({ now:true }); }
+}
+/* 立即同步：清掉防抖定时器马上推。用于「任务完成」等关键节点。 */
+function pushNow(){
+  if (!cloud || !ME) return false;
+  clearTimeout(syncTimer);
+  setSync('同步中…', 'b');
+  pushCloud({ now:true });
+  return true;
 }
 async function pullCloud(){
   if (!cloud || !ME) return null;
@@ -700,7 +715,7 @@ function dueList(pre){
   }
   return out;
 }
-function setMaster(t, v){ if (v) S.master[t] = 1; else delete S.master[t]; save(); }
+function setMaster(t, v){ if (v) S.master[t] = 1; else delete S.master[t]; save(); pushNow(); }
 function keyObj(k){
   var p = k.split('|'), t = p[1];
   if (p[0] === 'w') return { type:'w', t:t, o:WMAP[t] };
@@ -929,6 +944,25 @@ function renderRun(){
   if (!run.show && run.kind !== 'read') setTimeout(play, 200);
 }
 function nx(){ run.i++; run.show = false; renderRun(); }
+var lastAllDone = {};   // 记录「哪一天已因全部完成而同步过」，避免重复提示
+/* 任务完成后的同步策略：
+   1) 每个任务完成 → 立即推一次云端（不等 2.5s 防抖），保证中途换设备也不丢进度
+   2) 当天五项全部完成 → 立刻再推一次 + 明确 toast 告知「今日已存到云端」
+   3) 未登录时静默跳过，只存本地 */
+function onTaskDone(kind){
+  pushNow();
+  var all = TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
+  if (!all) return;
+  var d = today();
+  if (lastAllDone[d]) return;
+  lastAllDone[d] = 1;
+  if (cloud && ME){
+    pushNow();
+    toast('今日任务全部完成，学习记录已存到云端 ✓');
+  } else {
+    toast('今日任务全部完成！登录后可自动存到云端');
+  }
+}
 function finishRun(){
   var tot = run.keys.length, sc = Math.round((run.right + run.half*0.5) / tot * 100);
   var msg = '<div class="okbox">' + TNAME[run.kind] + '完成：<b>' + sc + ' 分</b>　✔ ' + run.right + '　~ ' + run.half + '　✘ ' + run.wrong + '</div>';
@@ -937,6 +971,7 @@ function finishRun(){
   save(); run = null;
   $('runner').innerHTML = msg;
   renderToday();
+  onTaskDone();
 }
 
 /* ---- 测验 ---- */
@@ -1009,6 +1044,7 @@ function finishQuiz(){
   save(); quiz = null;
   $('runner').innerHTML = '<div class="okbox">测验完成：<b>' + D.st.quiz.score + ' 分</b>（' + D.st.quiz.right + ' / ' + D.st.quiz.n + '）</div>';
   renderToday();
+  onTaskDone();
 }
 
 $('taskList').addEventListener('click', function(e){
@@ -1343,7 +1379,15 @@ function boot(){
 }
 boot();
 window.addEventListener('visibilitychange', function(){
-  if (document.visibilityState === 'hidden' && cloud && ME) pushCloud();
+  if (document.visibilityState === 'hidden' && cloud && ME) pushCloud({ now:true });
+});
+/* 关页面前最后兜底一次：写云端是异步的，用 sendBeacon 抢在 unload 前发出 */
+window.addEventListener('pagehide', function(){
+  if (cloud && ME) pushCloud({ now:true });
+});
+window.addEventListener('beforeunload', function(){
+  if (!cloud || !ME) return;
+  try { S.savedAt = Date.now(); persist(); } catch (e) {}
 });
 </script>
 </body>
