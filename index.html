@@ -16,6 +16,7 @@
   --red50:#fcebeb; --red200:#f09595; --red600:#a32d2d;
   --purple50:#eeedfb; --purple200:#cecbf9; --purple600:#534ab7;
   --safe-b:env(safe-area-inset-bottom,0px);
+  --ok:var(--green600); --warn:var(--amber600); --bad:var(--red600);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
@@ -155,6 +156,14 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 .spark{display:flex;align-items:flex-end;gap:3px;height:64px;margin:8px 0}
 .spark i{flex:1;background:var(--blue600);border-radius:2px 2px 0 0;min-height:2px;display:block}
 .spark i.g{background:var(--green600)}
+/* 复习负荷 / 记忆分布柱状图 */
+.ldh{font-size:12px;color:var(--tx2);margin:12px 0 4px}
+.ldb{display:flex;align-items:flex-end;gap:4px;height:56px;padding:0 2px}
+.ldb i{flex:1;background:var(--blue600);border-radius:3px 3px 0 0;min-height:3px;display:block;min-width:6px}
+.ldb i.y{background:var(--amber600)}
+.ldb i.r{background:var(--red600)}
+.ldr{display:flex;gap:4px;margin-top:4px}
+.ldr span{flex:1;text-align:center;font-size:10.5px;color:var(--tx3);min-width:6px}
 
 /* 底栏 */
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;background:rgba(255,255,255,.96);
@@ -190,6 +199,7 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
         <div class="kpi"><div class="l">待复习</div><div class="v" id="kDue">0</div></div>
         <div class="kpi"><div class="l">平均得分</div><div class="v" id="kAvg">—</div></div>
         <div class="kpi"><div class="l">今日用时</div><div class="v" id="kMin">0′</div></div>
+        <div class="kpi"><div class="l">隔天留存</div><div class="v" id="kHold">—</div></div>
       </div>
       <p class="sub" id="dayInfo" style="margin-bottom:0"></p>
     </div>
@@ -709,13 +719,20 @@ function addDays(s, n){ var d = new Date(s+'T00:00:00'); d.setDate(d.getDate()+n
 function diffDays(a, b){ return Math.round((new Date(b+'T00:00:00') - new Date(a+'T00:00:00')) / 86400000); }
 
 var BOX = [0,1,2,4,7,15,30];
-function ensure(k){ if (!S.items[k]) S.items[k] = { box:0, due:today(), r:0, w:0, h:0, seen:0 }; return S.items[k]; }
+var BOXNAME = ['刚接触','见 2 次','记住 1 天','记住 4 天','记住 7 天','记住 15 天','记住 30 天'];
+function ensure(k){ if (!S.items[k]) S.items[k] = { box:0, due:today(), r:0, w:0, h:0, seen:0, lg:[], peak:0 }; return S.items[k]; }
+/* grade 顺手记一条学习轨迹 [第几天, 得分]：这是「到底记住了没有」唯一可靠的证据。
+   单日分数只能证明当天做对了，跨天复现的轨迹才能证明记住了。 */
 function grade(k, ok){
   var it = ensure(k); it.seen++;
   if (ok === 1){ it.box = Math.min(5, it.box+1); it.r++; }
   else if (ok === 0.5){ it.h++; }
   else { it.box = 0; it.w++; }
+  if (it.box > it.peak) it.peak = it.box;
   it.due = addDays(today(), BOX[it.box] || 1);
+  if (!it.lg) it.lg = [];
+  it.lg.push([S.day, ok]);
+  if (it.lg.length > 14) it.lg.shift();   // 只留最近 14 次，够算留存也够小
   save();
 }
 function dueList(pre){
@@ -727,6 +744,58 @@ function dueList(pre){
   return out;
 }
 function setMaster(t, v){ if (v) S.master[t] = 1; else delete S.master[t]; save(); pushNow(); }
+/* ==================== 跨天考核：唯一能证明「记住了」的口径 ====================
+   单日分数只能证明「今天做对了」。真正的证据是：隔几天再遇到同一个词，还能不能认出来。
+   所以每个条目都留一条学习轨迹 lg = [[第几天, 得分], ...]，据此算留存率。            */
+function dayDone(d){
+  var a = S.days[d] && S.days[d].st;
+  if (!a) return false;
+  for (var i = 0; i < TASKS.length; i++){ var t = TASKS[i]; if (!(a[t.k] && a[t.k].done)) return false; }
+  return true;
+}
+/* 留存率：某条词第一次学之后，间隔 ≥ n 天的那次复习，答对的比例 */
+function retention(n){
+  n = n || 1;
+  var tot = 0, ok = 0, dem = 0;
+  for (var k in S.items){
+    var it = S.items[k];
+    if (!it.lg || it.lg.length < 2) continue;
+    var first = it.lg[0][0];
+    for (var i = 1; i < it.lg.length; i++){
+      if (it.lg[i][0] - first >= n){
+        tot++;
+        if (it.lg[i][1] === 1) ok++;
+        else if (it.lg[i][1] === 0) dem++;
+        break;
+      }
+    }
+  }
+  return { n: tot, ok: ok, dem: dem, pct: tot ? Math.round(ok / tot * 100) : null };
+}
+/* 盒子分布：学过的东西现在分布在记忆的哪一层 */
+function boxDist(){
+  var d = [0,0,0,0,0,0], solid = 0, lost = 0;
+  for (var k in S.items){
+    var it = S.items[k];
+    if (!it.seen || S.master[k.split('|')[1]]) continue;
+    d[Math.min(5, it.box)]++;
+    if (it.box >= 3) solid++;
+    if (it.peak >= 2 && it.box === 0) lost++;   // 记住过又彻底忘了 = 最需要警惕的
+  }
+  return { d: d, solid: solid, lost: lost };
+}
+/* 未来复习负荷预测：按每个条目的 due 落到未来 7 天哪一格 */
+function loadForecast(days){
+  days = days || 7;
+  var t = today(), out = [], idx = {}, i;
+  for (i = 0; i < days; i++){ var dd = addDays(t, i); out.push({ d: dd, n: 0, i: i }); idx[dd] = i; }
+  for (var k in S.items){
+    var it = S.items[k];
+    if (!it.seen || S.master[k.split('|')[1]]) continue;
+    if (idx[it.due] != null) out[idx[it.due]].n++;
+  }
+  return out;
+}
 function keyObj(k){
   var p = k.split('|'), t = p[1];
   if (p[0] === 'w') return { type:'w', t:t, o:WMAP[t] };
@@ -737,10 +806,40 @@ function keyObj(k){
 }
 
 S.day = Math.max(1, diffDays(S.start, today()) + 1);
+var BASE_NEW = DEF.newWords;
+/* ---- 联动闸门：决定今天新学多少的唯一入口 ----
+   规则（按优先级）：
+     1. 未来 7 天复习负荷 > 复习上限 → 压低新学，先还债
+     2. 最近 2 天都 < 70 → 减量（跟得吃力）
+     3. 最近 2 天都 > 90 且复习负荷轻 → 加量（吃得下）
+   返回 { n: 新词数, why: 原因说明 }                                        */
+function quotaForDay(){
+  var base = S.cfg.newWords || BASE_NEW, n = base, why = '沿用你的设定';
+  var f = loadForecast(7), load = 0;
+  for (var i = 0; i < f.length; i++) load += f[i].n;
+  var cap = 80;
+  if (load > cap){
+    n = Math.max(5, Math.round(base * cap / load));
+    why = '未来 7 天有 ' + load + ' 条要复习（上限 ' + cap + '），新学自动从 ' + base + ' 降到 ' + n + '，先把复习还完';
+  } else {
+    var ds = doneDays().slice(-2).map(dayScoreOf);
+    if (ds.length === 2 && ds[0] < 70 && ds[1] < 70){
+      n = Math.max(5, base - 3);
+      why = '连续两天低于 70 分（' + ds[0] + ' / ' + ds[1] + '），新学从 ' + base + ' 降到 ' + n + '，先跟稳';
+    } else if (ds.length === 2 && ds[0] > 90 && ds[1] > 90 && load < cap * 0.6){
+      n = Math.min(30, base + 3);
+      why = '连续两天高于 90 分（' + ds[0] + ' / ' + ds[1] + '）且复习不重，新学从 ' + base + ' 加到 ' + n;
+    }
+  }
+  return { n: n, why: why, load: load };
+}
+function doneDays(){ return Object.keys(S.days).map(Number).filter(dayDone).sort(function(a,b){ return a-b; }); }
 function buildPlan(){
-  var p = { newW:[], dueW:[], newG:[], dueG:[], read:[], out:[], wEnd:0, gEnd:0 }, i, j;
+  var p = { newW:[], dueW:[], newG:[], dueG:[], read:[], out:[], wEnd:0, gEnd:0, why:'' }, i, j;
+  var q = quotaForDay();
+  p.why = q.why; p.quota = q.n;
   // 已掌握的词不占配额，直接跳过
-  for (i = 0, j = 0; i < S.cfg.newWords && S.q.w + j < POOL_W.length; j++){
+  for (i = 0, j = 0; i < q.n && S.q.w + j < POOL_W.length; j++){
     var w = POOL_W[S.q.w + j];
     if (S.master[w.t]) continue;
     p.newW.push('w|' + w.t); i++;
@@ -757,7 +856,51 @@ function buildPlan(){
   p.dueW = dueList('w|').slice(0, 80); p.dueG = dueList('g|').slice(0, 40);
   return p;
 }
-function getDay(d){ if (!S.days[d]) S.days[d] = { plan:buildPlan(), st:{} }; return S.days[d]; }
+/* ---- 今日加学：在已完成的基础上继续往后学 ----
+   不改 S.cfg（那是「每日基准」），只给今天追加，并立刻推进游标，
+   让加学的词一样进 Leitner 盒子、一样排进后面的复习。 */
+function extendToday(kind, n){
+  var p = D.plan, added = [];
+  if (kind === 'w'){
+    for (var j = 0; j < POOL_W.length && added.length < n; j++){
+      var w = POOL_W[p.wEnd + j];
+      if (S.master[w.t] || seenIn(p.newW, 'w|' + w.t)) continue;
+      p.newW.push('w|' + w.t); added.push('w|' + w.t);
+    }
+    p.wEnd += j;
+    S.q.w = p.wEnd;
+  } else if (kind === 'g'){
+    for (var j2 = 0; j2 < POOL_G.length && added.length < n; j2++){
+      var g = POOL_G[p.gEnd + j2];
+      if (S.master[g.t] || seenIn(p.newG, 'g|' + g.t)) continue;
+      p.newG.push('g|' + g.t); added.push('g|' + g.t);
+    }
+    p.gEnd += j2;
+    S.q.g = p.gEnd;
+  } else if (kind === 'read'){
+    for (var i = 0; i < n && S.q.hs + p.read.length < POOL_HS.length; i++) p.read.push('s|' + POOL_HS[S.q.hs + p.read.length].id);
+    S.q.hs += p.read.length;
+  } else if (kind === 'out'){
+    for (var i2 = 0; i2 < n && S.q.ms + p.out.length < POOL_MS.length; i2++) p.out.push('s|' + POOL_MS[S.q.ms + p.out.length].id);
+    S.q.ms += p.out.length;
+  }
+  if (!added.length && !p.read.length && !p.out.length) return 0;
+  // 加学后「新学 / 例句」这两项要重新计完成状态
+  if (kind === 'w' || kind === 'g') delete D.st.new;
+  if (kind === 'read') delete D.st.read;
+  if (kind === 'out') delete D.st.out;
+  if (kind === 'read' || kind === 'out') delete D.st.quiz;
+  D.extra = (D.extra || 0) + (added.length || n);
+  save();
+  return added.length || n;
+}
+function seenIn(arr, k){ for (var i = 0; i < arr.length; i++) if (arr[i] === k) return true; return false; }
+function getDay(d){
+  if (!S.days[d]) S.days[d] = { plan:buildPlan(), st:{} };
+  var p = S.days[d].plan;
+  if (!p.why) p.why = quotaForDay().why;
+  return S.days[d];
+}
 var D = getDay(S.day);
 
 /* ==================== 发音 ==================== */
@@ -841,12 +984,17 @@ function renderToday(){
     if (total === 0 && !(D.st[t.k] && D.st[t.k].done)){ D.st[t.k] = { done:true, n:0, score:100 }; save(); }
     var st = D.st[t.k] || {}, done = !!st.done;
     var pct = total ? Math.round((st.n||0)/total*100) : 0; if (done) pct = 100;
+    var ex = '';
+    if (t.k === 'new' && D.extra) ex = '<span class="sub">　含加学 ' + D.extra + ' 个</span>';
     h += '<div class="task' + (done ? ' done' : '') + '">'
-      + '<div class="th"><div class="nm">' + t.n + ' <span class="sub">' + (total ? total+' 项' : '今日无') + '</span></div>'
+      + '<div class="th"><div class="nm">' + t.n + ' <span class="sub">' + (total ? total+' 项' : '今日无') + '</span>' + ex + '</div>'
       + (done ? '<div class="sc">' + st.score + '</div>' : '') + '</div>'
       + '<div class="dd">' + t.d + '</div><div class="mbar"><i style="width:' + pct + '%"></i></div>'
       + '<button class="btn wide' + (done ? '' : ' primary') + '" data-run="' + t.k + '">' + (done ? '重做' : (st.n ? '继续' : '开始')) + '</button></div>';
   });
+  h += renderQuota();
+  h += renderExtra();
+  h += renderProof();
   $('taskList').innerHTML = h;
   var all = TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
   $('finishBox').style.display = all ? 'block' : 'none';
@@ -858,20 +1006,100 @@ function renderToday(){
   }
   topbar();
 }
+/* ---- 今日配额说明：把「为什么今天学这些」讲清楚 ---- */
+function renderQuota(){
+  var f = loadForecast(7), mx = 0, i;
+  for (i = 0; i < f.length; i++) if (f[i].n > mx) mx = f[i].n;
+  var bars = '';
+  for (i = 0; i < f.length; i++){
+    var hgt = mx ? Math.round(f[i].n / mx * 100) : 0;
+    var over = f[i].n > 80;
+    bars += '<i class="' + (over ? 'r' : (f[i].n > 50 ? 'y' : '')) + '" style="height:' + Math.max(4, hgt) + '%" title="' + f[i].d + '：' + f[i].n + ' 条"></i>';
+  }
+  return '<div class="card"><h3 style="margin-top:0">今天的量是怎么定的</h3>'
+    + '<p class="sub" style="margin-top:0">' + esc(D.plan.why || '沿用你的设定')
+    + '　→　<b>新学 ' + D.plan.newW.length + ' 词 + ' + D.plan.newG.length + ' 短句</b>，复习 ' + (D.plan.dueW.length + D.plan.dueG.length) + ' 条。</p>'
+    + '<div class="ldh">未来 7 天到期量</div><div class="ldb">' + bars + '</div>'
+    + '<div class="ldr"><span>今</span>' + f.map(function(x){ return '<span>' + x.n + '</span>'; }).join('') + '</div>'
+    + '<p class="sub" style="margin-bottom:0">柱子越高，那天要复习的越多。你今天多学的词会落在 ' + futureExtraDays()
+    + ' 的柱子上——如果某天超过 80 条，系统会自动压低新学量，先把复习还完。</p></div>';
+}
+/* 多学的词按盒子间隔推算，会在哪几天回到你面前 */
+function futureExtraDays(){
+  var p = D.plan, c = {}, ks = Object.keys(c), i;
+  for (i = 0; i < p.newW.length; i++){
+    var b = S.items[p.newW[i]];
+    if (!b || !b.due) continue;
+    var d = b.due; c[d] = (c[d] || 0) + 1;
+  }
+  ks = Object.keys(c).sort();
+  if (!ks.length) return '接下来几天';
+  if (ks.length === 1) return diffDays(today(), ks[0]) + ' 天内';
+  return diffDays(today(), ks[0]) + ' 天后到 ' + diffDays(today(), ks[ks.length-1]) + ' 天后';
+}
+
+/* ---- 加学入口 ---- */
+function renderExtra(){
+  var poolLeft = POOL_W.length - S.q.w;
+  return '<div class="card"><h3 style="margin-top:0">还想多学一些</h3>'
+    + '<p class="sub" style="margin-top:0">任何时候都能加量。加学的词一样进遗忘曲线、一样排进后面的复习，不会只过一遍就丢。'
+    + '高频词池还剩 <b>' + poolLeft + '</b> 个。</p>'
+    + '<div class="btnrow">'
+    + '<button class="btn" data-ext="w|5">再学 5 个词</button>'
+    + '<button class="btn" data-ext="w|10">再学 10 个词</button>'
+    + '<button class="btn" data-ext="g|3">再加 3 个短句</button>'
+    + '</div><div class="btnrow">'
+    + '<button class="btn" data-ext="read|3">她的例句 +3</button>'
+    + '<button class="btn" data-ext="out|2">我的例句 +2</button>'
+    + '<button class="btn" data-ext="quiz|5">测验题量 +5</button>'
+    + '</div>'
+    + '<p class="sub" style="margin-bottom:0">加完量记得重做一次「新学」和「今日测验」，题目才会覆盖新学的词。'
+    + '加量会自动同步到后面几天的复习排期，不会计入你的每日基准配额。</p></div>';
+}
+
+/* ---- 每日考核面板：用跨天证据判断「记住了」还是「学过就忘」 ---- */
+function renderProof(){
+  var r1 = retention(1), r3 = retention(3), r7 = retention(7), bd = boxDist();
+  var line;
+  if (!r1.n) line = '还没有跨天数据。今天学完、明天回来复习一次，这里就会出现「隔 1 天还能认出多少」的证据。';
+  else if (r1.pct >= 85) line = '<b style="color:var(--ok)">留存 ' + r1.pct + '%</b>：隔 1 天还认出 ' + r1.ok + '/' + r1.n + ' 个，吸收得住，可以加量。';
+  else if (r1.pct >= 65) line = '<b style="color:var(--warn)">留存 ' + r1.pct + '%</b>：隔 1 天认出 ' + r1.ok + '/' + r1.n + ' 个，属正常范围（间隔 1 天本就在遗忘边缘）。';
+  else line = '<b style="color:var(--bad)">留存 ' + r1.pct + '%</b>：隔 1 天只认出 ' + r1.ok + '/' + r1.n + ' 个，就是「学了忘」——明天新学量已自动压低，先把复习还完。';
+  var h = '<div class="card"><h3 style="margin-top:0">今天到底记住了多少</h3>'
+    + '<p class="sub" style="margin-top:0">' + line + '</p>'
+    + '<div class="kpis" style="margin:10px 0">'
+    + '<div class="kpi"><div class="l">隔 1 天留存</div><div class="v">' + (r1.pct == null ? '—' : r1.pct + '%') + '</div></div>'
+    + '<div class="kpi"><div class="l">隔 3 天</div><div class="v">' + (r3.pct == null ? '—' : r3.pct + '%') + '</div></div>'
+    + '<div class="kpi"><div class="l">隔 7 天</div><div class="v">' + (r7.pct == null ? '—' : r7.pct + '%') + '</div></div>'
+    + '<div class="kpi"><div class="l">已记牢</div><div class="v">' + bd.solid + '</div></div>'
+    + '<div class="kpi"><div class="l">记住过又忘</div><div class="v">' + bd.lost + '</div></div>'
+    + '<div class="kpi"><div class="l">待复习</div><div class="v">' + dueList().length + '</div></div>'
+    + '</div>'
+    + '<div class="ldh">记忆分布 · 盒子越深越记牢</div><div class="ldb">';
+  var mx = 0, i;
+  for (i = 0; i < bd.d.length; i++) if (bd.d[i] > mx) mx = bd.d[i];
+  for (i = 0; i < bd.d.length; i++)
+    h += '<i style="height:' + Math.max(4, mx ? Math.round(bd.d[i] / mx * 100) : 0) + '%" title="' + BOXNAME[i] + '：' + bd.d[i] + ' 个"></i>';
+  h += '</div><div class="ldr"><span>新</span>' + bd.d.map(function(x){ return '<span>' + x + '</span>'; }).join('') + '</div>'
+    + '<p class="sub" style="margin-bottom:0"><b>及格标准不是今天拿 100 分</b>，而是这两条：'
+    + '① 隔 1 天留存 ≥ 80%；②「记住过又忘」占比 &lt; 20%。'
+    + '第 1 条不达标说明量太大或复习太浅，第 2 条不达标说明只是在「刷过」，不是在「记住」。</p></div>';
+  return h;
+}
 function adjustHint(){
-  var ds = Object.keys(S.days).map(Number).filter(function(d){ return S.days[d].st && S.days[d].st.done; }).sort(function(a,b){ return a-b; });
-  var l2 = ds.slice(-2).map(dayScoreOf);
-  if (l2.length === 2 && l2[0] < 70 && l2[1] < 70) return '连续两天 < 70 → 明天自动减量、加复习';
-  if (l2.length === 2 && l2[0] > 90 && l2[1] > 90) return '连续两天 > 90 → 明天自动加量';
-  return '明天：新词 ' + S.cfg.newWords + ' · 短句 ' + S.cfg.newGrams + ' · 她的例句 ' + S.cfg.newHerSent + ' · 我的例句 ' + S.cfg.newMySent;
+  var q = quotaForDay(), f = loadForecast(7), ld = 0, i;
+  for (i = 0; i < f.length; i++) ld += f[i].n;
+  return '下一次新学 ' + q.n + ' 词（' + q.why + '）· 未来 7 天复习共 ' + ld + ' 条'
+    + (D.extra ? '　·　今天额外多学了 ' + D.extra + ' 个' : '');
 }
 function topbar(){
-  var doneDays = Object.keys(S.days).filter(function(d){ return S.days[d].st && S.days[d].st.done; });
-  var sc = doneDays.map(function(d){ return dayScoreOf(+d); });
+  var dd = doneDays();
+  var sc = dd.map(dayScoreOf);
   var avg = sc.length ? Math.round(sc.reduce(function(a,b){ return a+b; },0)/sc.length) : null;
   var streak = 0;
-  for (var i = 0; i < 400; i++){ var d = S.day - i; if (S.days[d] && S.days[d].st && S.days[d].st.done) streak++; else if (i > 0) break; }
+  for (var i = 0; i < 400; i++){ var d = S.day - i; if (dayDone(d)) streak++; else if (i > 0) break; }
   var wk = Math.min(12, Math.floor((S.day-1)/7)+1);
+  var r1 = retention(1);
   /* 用 setText 兜底：任何一个 id 缺失都不该让整页渲染中断 */
   setText('tbDay', 'Day ' + S.day + ' · 第 ' + wk + ' 周');
   setText('tbDue', '待复习 ' + dueList().length);
@@ -881,6 +1109,7 @@ function topbar(){
   setText('kDue', dueList().length);
   setText('kAvg', avg == null ? '—' : avg);
   setText('kMin', (D.st.min || 0) + '′');
+  setText('kHold', r1.pct == null ? '—' : r1.pct + '%');
   setText('dayInfo', WEEK[wk-1] + '　|　词池 ' + S.q.w + '/' + POOL_W.length
     + '　她例句 ' + S.q.hs + '/' + POOL_HS.length + '　我例句 ' + S.q.ms + '/' + POOL_MS.length);
   var dn = TASKS.filter(function(t){ return D.st[t.k] && D.st[t.k].done; }).length;
@@ -1093,22 +1322,49 @@ function finishQuiz(){
 
 $('taskList').addEventListener('click', function(e){
   var b = e.target.closest ? e.target.closest('[data-run]') : null;
-  if (!b) return;
-  var k = b.getAttribute('data-run');
-  if (k === 'quiz') startQuiz(); else startCard(k);
+  if (b){
+    var k = b.getAttribute('data-run');
+    if (k === 'quiz') startQuiz(); else startCard(k);
+    return;
+  }
+  /* 加学：data-ext="类型|数量" */
+  var x = e.target.closest ? e.target.closest('[data-ext]') : null;
+  if (!x) return;
+  var a = x.getAttribute('data-ext').split('|'), kind = a[0], n = +a[1] || 1;
+  if (kind === 'quiz'){
+    S.cfg.quizCount = Math.min(40, S.cfg.quizCount + n);
+    delete D.st.quiz;
+    save(); renderToday();
+    toast('测验题量加到 ' + S.cfg.quizCount + ' 题');
+    return;
+  }
+  var got = extendToday(kind, n);
+  renderToday();
+  if (!got){ toast('这部分已经到底了，没有更多可加'); return; }
+  var nm = { w:'词', g:'短句', read:'她的例句', out:'我的例句' }[kind] || '内容';
+  toast('加了 ' + got + ' 个' + nm + '，记得重做「新学」和「今日测验」');
 });
 $('btnFinish').onclick = function(){
-  D.st.doneAt = new Date().toISOString(); D.st.score = dayScoreOf(S.day);
+  D.st.doneAt = new Date().toISOString();
   S.q.w = D.plan.wEnd || (S.q.w + D.plan.newW.length);
   S.q.g = D.plan.gEnd || (S.q.g + D.plan.newG.length);
   S.q.hs += D.plan.read.length; S.q.ms += D.plan.out.length;
-  var ds = Object.keys(S.days).map(Number).filter(function(d){ return S.days[d].st && S.days[d].st.done; }).sort(function(a,b){ return a-b; });
-  var l2 = ds.slice(-2).map(dayScoreOf);
-  if (l2.length === 2 && l2[0] < 70 && l2[1] < 70){ S.cfg.newWords = Math.max(5, S.cfg.newWords - 3); S.cfg.newHerSent = Math.max(2, S.cfg.newHerSent - 1); }
-  else if (l2.length === 2 && l2[0] > 90 && l2[1] > 90){ S.cfg.newWords = Math.min(30, S.cfg.newWords + 3); S.cfg.newHerSent = Math.min(12, S.cfg.newHerSent + 1); }
+  D.st.score = dayScoreOf(S.day);
+  /* 打卡本身也写入学习轨迹的锚点：把今天作为「首次接触日」记下来，
+     之后的跨天留存才有起点可用（旧数据没有 lg 也能从打卡日兜底起算）。 */
+  seedAnchors(S.day);
   save(); toast('Day ' + S.day + ' 打卡完成 · ' + D.st.score + ' 分');
   renderToday();
+  renderMe();
 };
+/* 给当天计划里还没做过记录的条目补一条「第几天首次接触」锚点 */
+function seedAnchors(day){
+  var ks = D.plan.newW.concat(D.plan.newG), i;
+  for (i = 0; i < ks.length; i++){
+    var it = S.items[ks[i]];
+    if (it && !it.lg) { it.lg = [[day, null]]; it.seen = Math.max(1, it.seen || 0); }
+  }
+}
 $('btnRedo').onclick = function(){ if (!confirm('重做今天？已记录的成绩会清除。')) return; D.st = {}; save(); renderToday(); $('runner').innerHTML = ''; };
 
 /* ==================== 语料 ==================== */
@@ -1254,7 +1510,7 @@ function weakList(){
 }
 function renderMe(){
   var ds = Object.keys(S.days).map(Number).sort(function(a,b){ return a-b; });
-  var done = ds.filter(function(d){ return S.days[d].st && S.days[d].st.done; });
+  var done = ds.filter(dayDone);
   var h = '', tm = 0, tq = 0, tqr = 0, sc = [];
   done.forEach(function(d){
     var a = S.days[d].st, s = dayScoreOf(d); sc.push(s);
@@ -1280,13 +1536,26 @@ $('btnCfg').onclick = function(){
   S.cfg.newHerSent = +$('cfgHS').value || 0; S.cfg.newMySent = +$('cfgMS').value || 0;
   S.cfg.quizCount = +$('cfgQ').value || 10; save(); toast('已保存'); renderMe();
 };
-$('btnReport').onclick = function(){
-  var ds = Object.keys(S.days).map(Number).filter(function(d){ return S.days[d].st && S.days[d].st.done; }).sort(function(a,b){ return a-b; });
-  var L = [];
-  L.push('【泰语学习复盘 · Day ' + S.day + ' · ' + today() + '】');
-  L.push('开始：' + S.start + '　已打卡：' + ds.length + ' 天');
-  L.push('当前配额：新词 ' + S.cfg.newWords + ' / 短句 ' + S.cfg.newGrams + ' / 她例句 ' + S.cfg.newHerSent + ' / 我例句 ' + S.cfg.newMySent + ' / 测验 ' + S.cfg.quizCount);
-  L.push('');
+  $('btnReport').onclick = function(){
+    var ds = doneDays();
+    var r1 = retention(1), r3 = retention(3), r7 = retention(7), bd = boxDist();
+    var L = [];
+    L.push('【泰语学习复盘 · Day ' + S.day + ' · ' + today() + '】');
+    L.push('开始：' + S.start + '　已打卡：' + ds.length + ' 天');
+    L.push('基准配额：新词 ' + S.cfg.newWords + ' / 短句 ' + S.cfg.newGrams + ' / 她例句 ' + S.cfg.newHerSent + ' / 我例句 ' + S.cfg.newMySent + ' / 测验 ' + S.cfg.quizCount);
+    L.push('');
+    L.push('【记忆留存 —— 唯一能证明「记住了」的口径】');
+    L.push('  隔 1 天留存：' + (r1.pct == null ? '无数据' : r1.pct + '%（' + r1.ok + '/' + r1.n + '）'));
+    L.push('  隔 3 天留存：' + (r3.pct == null ? '无数据' : r3.pct + '%（' + r3.ok + '/' + r3.n + '）'));
+    L.push('  隔 7 天留存：' + (r7.pct == null ? '无数据' : r7.pct + '%（' + r7.ok + '/' + r7.n + '）'));
+    L.push('  已记牢（盒≥3）：' + bd.solid + '　记住过又忘（峰≥2 掉回 0）：' + bd.lost);
+    L.push('  盒子分布：' + bd.d.map(function(x, i){ return BOXNAME[i] + '=' + x; }).join('　'));
+    L.push('  及格线：隔 1 天留存 ≥ 80%　且　「记住过又忘」占比 < 20%');
+    var solidN = bd.solid + bd.lost;
+    if (solidN) L.push('  当前「记住过又忘」占比：' + Math.round(bd.lost / solidN * 100) + '%');
+    L.push('');
+    L.push('未来 7 天复习负荷：' + loadForecast(7).map(function(x){ return x.n; }).join(' → '));
+    L.push('');
   L.push('最近 7 天：');
   ds.slice(-7).forEach(function(d){
     var a = S.days[d].st;
