@@ -165,9 +165,9 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 .ldr{display:flex;gap:4px;margin-top:4px}
 .ldr span{flex:1;text-align:center;font-size:10.5px;color:var(--tx3);min-width:6px}
 /* 闪卡简笔画配图 */
-.picbox{display:flex;justify-content:center;margin:0 0 14px}
-.pic{width:150px;height:150px;object-fit:contain;background:var(--surface);
-  border:1px solid var(--line2);border-radius:12px;padding:6px}
+.picbox{display:flex;justify-content:center;margin:0 0 10px}
+.pic{width:112px;height:112px;object-fit:contain;background:var(--surface);
+  border:1px solid var(--line2);border-radius:12px;padding:5px}
 .mini-pic{width:34px;height:34px;object-fit:contain;vertical-align:middle;
   border-radius:8px;background:var(--surface);border:1px solid var(--line2);flex:0 0 auto}
 /* 今日总览：词块 */
@@ -1299,10 +1299,13 @@ function picBlock(t){
   return '<div class="picbox"><img class="pic" src="' + u + '" alt="" loading="lazy" decoding="async"'
     + (picMode ? '' : ' style="display:none"') + '></div>';
 }
-/* 语料/词库列表里的缩略图 */
+/* 语料/词库列表里的缩略图。
+   不能加 loading="lazy"：列表所在的 section 在切换 tab 前是 display:none，
+   浏览器对不可见元素的懒加载图片根本不发起请求，切过去时图片还是空的。
+   102 张 webp 合计 624KB，一次性加载完全可接受。 */
 function picTag(t){
   var u = picOf(t);
-  return u ? '<img class="mini-pic" src="' + u + '" alt="" loading="lazy" decoding="async">' : '';
+  return u ? '<img class="mini-pic" src="' + u + '" alt="" decoding="async">' : '';
 }
 
 /* 这个词在真实聊天里怎么用：把单词放回她的原话里学，比背孤立释义有效得多 */
@@ -1323,12 +1326,16 @@ function exBlock(o){
   var me = list.filter(function(x){ return x.who === 1; }).length;
   var h = '<div class="exbox"><div class="exh">她在用这个说法　<span class="exn">' + list.length + ' 句'
     + (me ? '（你说过 ' + me + ' 句）' : '') + '</span></div>';
-  list.forEach(function(x, i){
+  /* 正面（未翻牌）只给 1 句，够用来联想语境；翻面才把全部例句摊开。
+     否则一张卡塞 3 句 + 配图，手机上要滚半屏才看得到「显示答案」。 */
+  var showList = (typeof run === 'object' && run && run.show) ? list : list.slice(0, 1);
+  showList.forEach(function(x, i){
     h += '<div class="exs" data-ex="' + esc(x.id) + '">'
       + '<div class="ext thai">' + esc(x.t) + '</div>'
       + (x.r ? '<div class="exr">' + esc(x.r) + '</div>' : '')
       + '<div class="exz">' + esc(x.z) + '</div></div>';
   });
+  if (!run || !run.show) h += '<div class="sub" style="font-size:11.5px;margin-top:6px">翻面看其余 ' + (list.length - 1) + ' 句</div>';
   h += '</div>';
   return h;
 }
@@ -1648,7 +1655,7 @@ function renderWords(){
   var slice = arr.slice(0, wShow), h = '';
   slice.forEach(function(w){
     h += '<div class="w' + (S.master[w.t] ? ' learned' : '') + '" data-a="w'+w.n+'" data-d="audio-words" data-t="'+esc(w.t).replace(/"/g,'&quot;')+'">'
-      + '<span class="pl">▶</span><div class="mn"><div class="t1 th">'+esc(w.t)+'</div>'
+      + '<span class="pl">▶</span>' + picTag(w.t) + '<div class="mn"><div class="t1 th">'+esc(w.t)+'</div>'
       + (w.r ? '<div class="rom sub">'+esc(w.r)+'</div>' : '')
       + (w.z ? '<div class="sub" style="color:var(--tx);font-size:13.5px">'+esc(w.z)+'</div>' : '')
       + (w.e ? '<div class="sub" style="font-size:12.5px">'+esc(w.e)+'</div>' : '')
