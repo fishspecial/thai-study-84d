@@ -170,6 +170,15 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
   border:1px solid var(--line2);border-radius:12px;padding:6px}
 .mini-pic{width:34px;height:34px;object-fit:contain;vertical-align:middle;
   border-radius:8px;background:var(--surface);border:1px solid var(--line2);flex:0 0 auto}
+/* 今日总览：词块 */
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 2px}
+.chipw{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line2);
+  border-radius:9px;padding:4px 8px 4px 5px;background:var(--surface);max-width:100%}
+.chipw .thai{font-size:14px}
+.chipw .sub{font-size:11px;max-width:78px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.anl{border-left:2px solid var(--line2);padding-left:10px}
+.ani{font-size:13px;color:var(--tx2);line-height:1.6;margin:5px 0}
+.ani b{color:var(--tx);font-weight:500}
 
 /* 底栏 */
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;background:rgba(255,255,255,.96);
@@ -210,6 +219,7 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
       <p class="sub" id="dayInfo" style="margin-bottom:0"></p>
     </div>
     <div id="board"></div>
+    <div id="todayReport"></div>
     <div id="taskList"></div>
     <div id="runner"></div>
     <div id="finishBox" style="display:none">
@@ -259,12 +269,14 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
   <section class="view" id="v-ref">
     <div class="btnrow" style="margin-top:10px">
       <button class="btn on" id="refP">短语点读</button>
+      <button class="btn" id="refM">复习机制</button>
       <button class="btn" id="refR">规则速查</button>
     </div>
     <div id="refPhrase">
       <div class="btnrow"><input type="text" id="pQ" placeholder="搜索 76 条短语"></div>
       <div class="list" id="pList"></div>
     </div>
+    <div id="refMemo" style="display:none"><div id="memoBody"></div></div>
     <div id="refRules" style="display:none">
       
 <h2>五个声调</h2>
@@ -424,6 +436,7 @@ function initCloud(){
 initCloud();
 
 var ME = null, syncTimer = null, syncing = false, pushQueued = false, cloudRow = null, pushOk = false, auCur = 'pw', auPending = null;
+var acctOpen = false;   // 账号面板是否展开（登录后自动收起）
 function setSync(txt, cls){
   var el = $('syncChip'); if (!el) return;
   el.textContent = txt; el.className = 'tag ' + (cls || 'lo');
@@ -497,16 +510,27 @@ async function afterLogin(user){
       toast('已从云端恢复学习记录');
     }
   }
+  /* 登录成功后立刻把账号条收起成一行摘要，登录表单不再占地方 */
+  acctOpen = false;
+  var ab = $('meAcct'), abox = $('account');
+  if (abox) abox.style.display = 'none';
+  if (ab) ab.classList.remove('open');
+  pushOk = true;
   renderAccount();
   renderToday();
+  paintAcctBar();
   setSync('已同步', 'g');
 }
 var APP_URL = 'https://thai-84day.app.workbuddy.host/';
-var acctOpen = false;
 function paintAcctBar(){
   var t = $('meAcctT'), s = $('meAcctS');
   if (!t || !s) return;
-  if (ME){ t.textContent = ME.email || '已登录'; s.textContent = '已开启云端同步 · 点这里查看同步与退出'; }
+  if (ME){
+    t.textContent = ME.email || '已登录';
+    /* 收起时也要一眼看清「已登录 + 同步是否正常」 */
+    s.textContent = '✓ 已登录 · ' + (pushOk ? '已同步到云端' : (syncing ? '正在同步…' : '云端已连接'))
+      + ' · 点开可同步 / 退出';
+  }
   else if (cloud){ t.textContent = '登录 / 注册'; s.textContent = '登录后学习记录可存到云端，换设备不丢'; }
   else if (cloudErr === 'origin'){ t.textContent = '登录（需用正式网址）'; s.textContent = '当前是 GitHub Pages 镜像，点这里看说明'; }
   else { t.textContent = '登录 / 注册'; s.textContent = '云端组件未加载，点这里重试'; }
@@ -516,17 +540,33 @@ function renderAccount(){
   if (!box) return;
 
   /* ---- 已登录 ---- */
-  if (ME && cloud){
+  if (ME){
+    /* 注意：即使 cloud 因为域名限制没初始化，也已经登录成功了
+       （比如从正式地址登录后切到镜像域名）。这时必须显示账号面板而不是登录表单，
+       否则用户会看到「已登录」却还是一堆登录输入框。 */
+    var noCloud = !cloud;
     box.innerHTML = '<div class="card"><h3 style="margin-top:0">账号</h3>'
       + '<p class="sub" style="font-size:14px;color:var(--tx)">' + esc(ME.email || '已登录') + '</p>'
-      + '<div class="btnrow"><button class="btn" id="auSync">立即同步</button>'
-      + '<button class="btn no" id="auOut">退出登录</button></div>'
-      + '<p class="sub" style="margin-bottom:0">学习数据存在云端，换设备登录同一账号即可继续。</p></div>';
-    $('auSync').onclick = async function(){ setSync('同步中…', 'b'); await pushCloud(); toast(pushOk ? '已同步到云端' : '同步失败，请重试'); };
-    $('auOut').onclick = async function(){
+      + (noCloud ? '<div class="note" style="margin-top:6px">当前网址（' + esc(location.hostname) + '）不能连接云服务，'
+          + '所以暂时无法同步或退出。<br>请到正式地址管理账号：<br>'
+          + '<span class="chip" style="word-break:break-all">' + esc(APP_URL) + '</span></div>'
+          + '<div class="btnrow"><button class="btn primary" id="auGoApp">打开正式地址</button></div>' : '')
+      + (noCloud ? '' : '<div class="btnrow"><button class="btn" id="auSync">立即同步</button>'
+          + '<button class="btn no" id="auOut">退出登录</button></div>'
+          + '<p class="sub" style="margin-bottom:0">学习数据存在云端，换设备登录同一账号即可继续。</p>')
+      + '</div>';
+    if ($('auGoApp')) $('auGoApp').onclick = function(){ location.href = APP_URL; };
+    if ($('auSync')) $('auSync').onclick = async function(){ setSync('同步中…', 'b'); await pushCloud(); toast(pushOk ? '已同步到云端' : '同步失败，请重试'); };
+    if ($('auOut')) $('auOut').onclick = async function(){
       if (!confirm('退出登录？本地记录会保留，云端数据不动。')) return;
       await cloud.auth.signOut(); ME = null; cloudRow = null;
-      setSync('未登录', 'lo'); renderAccount();
+      setSync('未登录', 'lo');
+      /* 退出后把账号条重新展开，露出登录入口，不然用户会以为按钮坏了 */
+      var bar = $('meAcct'), box2 = $('account');
+      acctOpen = true;
+      if (box2) box2.style.display = '';
+      if (bar) bar.classList.add('open');
+      renderAccount(); paintAcctBar();
     };
     return;
   }
@@ -984,6 +1024,7 @@ function renderBoard(){
 
 function renderToday(){
   $('board').innerHTML = renderBoard();
+  $('todayReport').innerHTML = renderTodayReport();
   var h = '';
   TASKS.forEach(function(t){
     var keys = taskKeys(t.k);
@@ -1013,7 +1054,99 @@ function renderToday(){
   }
   topbar();
 }
-/* ---- 今日配额说明：把「为什么今天学这些」讲清楚 ---- */
+/* ==================== 今日总览：今天学了什么、错在哪、系统怎么看 ==================== */
+/* 学习轨迹用 null 表示「已接触未作答」（比如只过了一遍闪卡），
+   0/0.5/1 表示真实作答得分。分析时把 null 单独算，不混进正确率。 */
+function todayReportData(){
+  var ks = (D.plan.newW || []).concat(D.plan.newG || [])
+    .concat(D.plan.dueW || []).concat(D.plan.dueG || []);
+  var seen = {}, rows = [];
+  for (var i = 0; i < ks.length; i++){
+    var k = ks[i];
+    if (seen[k]) continue;
+    seen[k] = 1;
+    var it = S.items[k];
+    if (!it || !it.seen) continue;
+    var o = keyObj(k);
+    rows.push({ k: k, t: o.t, z: (o.o && (o.o.z || o.o.e)) || '', box: it.box, r: it.r, w: it.w, h: it.h });
+  }
+  // 今天这一批里，答错过、且还在低盒子
+  var weak = rows.filter(function(x){ return x.w > 0 && x.box <= 1; });
+  var hard = rows.filter(function(x){ return x.box >= 3; });
+  // 高频但今天没学会的：来自 top100 且 box 0
+  var t100 = POOL_W.filter(function(w){ return w.src === 'top100'; });
+  var t100Bad = t100.filter(function(w){ var it = S.items['w|' + w.t]; return it && it.box <= 1 && !S.master[w.t]; });
+  return { rows: rows, weak: weak, hard: hard, t100Bad: t100Bad, t100: t100.length };
+}
+function renderTodayReport(){
+  var d = todayReportData();
+  if (!d.rows.length){
+    return '<div class="card"><h3 style="margin-top:0">今天学了什么</h3>'
+      + '<p class="sub" style="margin-bottom:0">还没开始。做完任意一项任务后，这里会列出你今天碰过的每一个词、'
+      + '哪些是错的、系统从中学到了什么，以及明天该怎么调。</p></div>';
+  }
+  var h = '<div class="card"><h3 style="margin-top:0">今天学了什么</h3>'
+    + '<div class="kpis" style="margin:8px 0 4px">'
+    + '<div class="kpi"><div class="l">今日接触</div><div class="v">' + d.rows.length + '</div></div>'
+    + '<div class="kpi"><div class="l">答错过的</div><div class="v">' + d.weak.length + '</div></div>'
+    + '<div class="kpi"><div class="l">一次记住</div><div class="v">' + d.hard.length + '</div></div>'
+    + '<div class="kpi"><div class="l">高频没拿下</div><div class="v">' + d.t100Bad.length + '</div></div>'
+    + '</div>';
+  // 分三组展示：一次记住 / 还不牢 / 高频未拿下
+  function grp(title, arr, tip){
+    if (!arr.length) return '';
+    var s = '<div class="ldh">' + title + ' · ' + arr.length + '</div><div class="chips">';
+    arr.slice(0, 40).forEach(function(x){
+      var p = picTag(x.t);
+      s += '<span class="chipw">' + p + '<span class="thai">' + esc(x.t) + '</span>'
+        + '<span class="sub">' + esc((x.z || '').slice(0, 10)) + '</span></span>';
+    });
+    if (arr.length > 40) s += '<span class="chipw sub">+' + (arr.length - 40) + '</span>';
+    return s + '</div><p class="sub" style="margin:2px 0 10px">' + tip + '</p>';
+  }
+  h += grp('一次就记住（盒 ≥ 3）', d.hard, '这些词已经进入长期记忆，复习间隔会拉到 15-30 天，别再花时间盯它们。');
+  h += grp('还不牢（答错过且停在低盒）', d.weak, '明天会优先回到你面前。如果连续三天还在这一组，说明词太难或量太大。');
+  var bad = d.t100Bad.map(function(w){ return { t: w.t, z: w.z }; });
+  h += grp('TOP100 里还没拿下的', bad, '这些是你们对话里出现最多的词，优先级高于新词。掌握它们比再学 10 个新词更值。');
+
+  // 系统分析
+  h += '<div class="ldh">系统看到的规律</div><div class="anl">' + analyze(d) + '</div>';
+  h += '<div class="btnrow" style="margin-top:10px"><button class="btn" id="btnWeakDrill">只练薄弱词</button>'
+    + '<button class="btn" id="btnT100Drill">练 TOP100 未拿下</button></div>';
+  h += '<p class="sub" style="margin-bottom:0">「只练薄弱词」会把今天答错的那批重新排一遍；'
+    + '「练 TOP100 未拿下」只抽你对话里最常见但还没记牢的词。练完自动进盒子，不额外占配额。</p></div>';
+  return h;
+}
+function analyze(d){
+  var out = [];
+  var wrongRate = d.rows.length ? d.weak.length / d.rows.length : 0;
+  if (wrongRate > 0.4) out.push('今天错了 <b>' + Math.round(wrongRate * 100) + '%</b>，偏高。这通常是新词一次性塞太多，或者碰上了不熟的词表。明天新学量会往下调。');
+  else if (wrongRate < 0.15 && d.rows.length >= 8) out.push('错误率只有 <b>' + Math.round(wrongRate * 100) + '%</b>，说明这个量对你偏轻，明天会往上加。');
+  else out.push('错误率 <b>' + Math.round(wrongRate * 100) + '%</b>，在健康区间（15%-40% 最利于记忆成型）。');
+
+  var f = loadForecast(7), peak = 0, pd = '';
+  f.forEach(function(x){ if (x.n > peak) { peak = x.n; pd = x.d; } });
+  if (peak > 80) out.push('复习高峰在 <b>' + pd + '</b>，有 <b>' + peak + '</b> 条。到期了会优先安排，先别再加量。');
+  else if (peak > 0) out.push('复习高峰在 <b>' + pd + '</b>，' + peak + ' 条，负荷可控。');
+
+  if (d.t100Bad.length) out.push('TOP100 还有 <b>' + d.t100Bad.length + '</b> 个没拿下（共 ' + d.t100 + ' 个）。这些词在你们对话里出现最频繁，'
+    + '<b>优先把它们啃掉，比多学 20 个低频词有用得多</b>。');
+  if (d.hard.length >= 5) out.push('有 <b>' + d.hard.length + '</b> 个词一次就记住了，说明今天的状态和材料难度都合适。');
+
+  var r1 = retention(1);
+  if (r1.n) out.push('跨天看：隔 1 天留存 <b>' + r1.pct + '%</b>（' + r1.ok + '/' + r1.n + '）。'
+    + (r1.pct >= 80 ? '达标，量可以再往上走。' : r1.pct >= 65 ? '及格线附近。' : '不达标——这就是「学了忘」的量化证据，明天会自动减量。'));
+  return out.map(function(x){ return '<div class="ani">' + x + '</div>'; }).join('');
+}
+/* 定向练习：把指定条目排成一次闪卡，不改配额、不动游标 */
+function drill(keys, label){
+  if (!keys || !keys.length){ toast('没有可练的条目'); return; }
+  run = { kind: 'rev', keys: keys.slice(0, 60), i: 0, right: 0, half: 0, wrong: 0, show: false, t0: Date.now() };
+  renderRun();
+  toast(label + '：' + keys.length + ' 条');
+  $('runner').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function renderQuota(){
   var f = loadForecast(7), mx = 0, i;
   for (i = 0; i < f.length; i++) if (f[i].n > mx) mx = f[i].n;
@@ -1396,6 +1529,17 @@ function seedAnchors(day){
   }
 }
 $('btnRedo').onclick = function(){ if (!confirm('重做今天？已记录的成绩会清除。')) return; D.st = {}; save(); renderToday(); $('runner').innerHTML = ''; };
+/* 今日总览里的两个定向练习按钮 */
+$('todayReport').addEventListener('click', function(e){
+  if (e.target.id === 'btnWeakDrill'){
+    var d = todayReportData();
+    drill(d.weak.map(function(x){ return x.k; }), '薄弱词专项');
+  } else if (e.target.id === 'btnT100Drill'){
+    var d2 = todayReportData();
+    var ks = d2.t100Bad.slice(0, 40).map(function(w){ return 'w|' + w.t; });
+    drill(ks, 'TOP100 专项');
+  }
+});
 
 /* ==================== 语料 ==================== */
 var cKind = 'top', cQ = '', cShow = 100, cWho = 'all', cPriv = '1', romOn = true;
@@ -1521,12 +1665,69 @@ function renderPhrases(){
   $('pList').innerHTML = h || '<div class="w"><div class="mn sub">没有匹配结果</div></div>';
 }
 $('pQ').oninput = renderPhrases;
+/* ==================== 复习机制说明（用你自己的真实数据） ==================== */
+function renderMemo(){
+  var bd = boxDist(), f = loadForecast(7), r1 = retention(1);
+  var tot = bd.d.reduce(function(a,b){ return a+b; }, 0);
+  var gap = [0,1,4,7,15,30], mx = 0, i;
+  for (i = 0; i < f.length; i++) if (f[i].n > mx) mx = f[i].n;
+  var h = '<h2>复习在哪、标准是什么</h2>'
+    + '<p class="sub">这一页用你自己的真实数据把机制讲透，不是理论说明。</p>'
+    + '<h2>一、复习在今日页第 1 张卡</h2>'
+    + '<p>「到期复习」是今天的第一项任务，和「新学」分开。它只放<b>已经到期</b>的词，'
+    + '判定完全由每个条目自己的 <code>due</code> 字段跟今天日期比出来。你现在待复习 <b>' + dueList().length + '</b> 条。</p>'
+    + '<h2>二、间隔是固定的六档</h2>'
+    + '<p>每个词在一个「盒子」里，答对升一档，答错清零。档位决定下次回来的时间：</p>'
+    + '<table><thead><tr><th>盒子</th><th>含义</th><th class="n">下次回来</th><th class="n">当前词数</th></tr></thead><tbody>';
+  for (i = 0; i < bd.d.length; i++)
+    h += '<tr><td>盒 ' + i + '</td><td>' + BOXNAME[i] + '</td><td class="n">' + (i === 0 ? '明天' : gap[i] + ' 天后') + '</td><td class="n">' + bd.d[i] + '</td></tr>';
+  h += '</tbody></table>'
+    + '<p class="sub"><b>认识</b> → 升一档；<b>模糊</b> → 档位不变，明天再来；<b>不会</b> → 回盒 0 明天重来。标了「已掌握」的直接退出循环。</p>'
+    + '<h2>三、复习量是自己算出来的</h2>'
+    + '<p>你手上有 ' + tot + ' 个正在循环的词，分布在未来 7 天里：</p>'
+    + '<div class="ldh">未来 7 天到期量</div><div class="ldb">';
+  for (i = 0; i < f.length; i++)
+    h += '<i class="' + (f[i].n > 80 ? 'r' : (f[i].n > 50 ? 'y' : '')) + '" style="height:' + Math.max(4, mx ? Math.round(f[i].n / mx * 100) : 0) + '%" title="' + f[i].d + '：' + f[i].n + ' 条"></i>';
+  h += '</div><div class="ldr"><span>今</span>' + f.map(function(x){ return '<span>' + x.n + '</span>'; }).join('') + '</div>'
+    + '<p class="sub">7 天合计 <b>' + f.reduce(function(a,b){ return a+b; }, 0) + '</b> 条。'
+    + '这个数就是<b>上限闸门</b>：超过 80 条，明天新学量自动压低。'
+    + '所以你多学的词会让它变大——加量不是免费的。</p>'
+    + '<h2>四、及格线（这才是「记住了」的判据）</h2>'
+    + '<p>单日满分只能证明今天做对了，证明不了记住了。真判据是跨天的复现率。</p>'
+    + '<div class="kpis" style="margin:8px 0">'
+    + '<div class="kpi"><div class="l">隔 1 天留存</div><div class="v">' + (r1.pct == null ? '—' : r1.pct + '%') + '</div></div>'
+    + '<div class="kpi"><div class="l">及格线</div><div class="v">80%</div></div>'
+    + '<div class="kpi"><div class="l">已记牢</div><div class="v">' + bd.solid + '</div></div>'
+    + '<div class="kpi"><div class="l">记住过又忘</div><div class="v">' + bd.lost + '</div></div></div>'
+    + '<p><b>① 隔 1 天留存 ≥ 80%</b>　学完的词第二天随机抽查还能认出八成。</p>'
+    + '<p><b>② 「记住过又忘」&lt; 20%</b>　盒子曾到 ≥2 又掉回 0 的词，是「刷过但没记住」的直接证据。</p>'
+    + '<p><b>③ 已记牢（盒 ≥ 3）持续增加</b>　这才是积累，不是每天重新学一遍。</p>'
+    + '<h2>五、数据是怎么记的</h2>'
+    + '<p>每点一次「认识/模糊/不会」，都会往这个条目的学习轨迹追加一条 <code>[第几天, 得分]</code>。'
+    + '留存率就用这串轨迹算：找到首次接触那天，再找间隔 ≥N 天的第一次复习，看对不对。</p>'
+    + '<p class="sub">所以这个数字骗不了人——今天点「认识」不会让留存变好看，只有<b>明天真的还认得</b>才会。</p>'
+    + '<div class="note"><b>一句话：</b>新学量不是固定 12 个，而是由「未来 7 天复习负荷 + 最近两天分数 + 隔天留存率」共同决定。'
+    + '学得多 → 复习变多 → 系统自动少给新词。这是设计如此，不是失控。</div>';
+  $('memoBody').innerHTML = h;
+}
 $('pList').addEventListener('click', function(e){
   var r = e.target.closest ? e.target.closest('.w') : null;
   if (r) say(r.getAttribute('data-a'), r.getAttribute('data-d'), r.getAttribute('data-t'));
 });
-$('refP').onclick = function(){ this.classList.add('on'); $('refR').classList.remove('on'); $('refPhrase').style.display=''; $('refRules').style.display='none'; };
-$('refR').onclick = function(){ this.classList.add('on'); $('refP').classList.remove('on'); $('refPhrase').style.display='none'; $('refRules').style.display=''; };
+$('refP').onclick = function(){
+  ['refP','refM','refR'].forEach(function(x){ $(x).classList.toggle('on', x === 'refP'); });
+  $('refPhrase').style.display = ''; $('refMemo').style.display = 'none'; $('refRules').style.display = 'none';
+};
+$('refM').onclick = function(){
+  ['refP','refM','refR'].forEach(function(x){ $(x).classList.toggle('on', x === 'refM'); });
+  $('refPhrase').style.display = 'none'; $('refRules').style.display = 'none';
+  $('refMemo').style.display = '';
+  renderMemo();
+};
+$('refR').onclick = function(){
+  ['refP','refM','refR'].forEach(function(x){ $(x).classList.toggle('on', x === 'refR'); });
+  $('refPhrase').style.display = 'none'; $('refMemo').style.display = 'none'; $('refRules').style.display = '';
+};
 document.addEventListener('click', function(e){
   var c = e.target.closest ? e.target.closest('.chip') : null;
   if (c) say(null, null, c.textContent.trim());
@@ -1668,14 +1869,14 @@ safeRun(function(){ renderPhrases(); }, 'renderPhrases');
 safeRun(function(){ renderMe(); }, 'renderMe');
 safeRun(function(){ renderAccount(); paintAcctBar(); }, 'renderAccount');
 
-/* 账号条：默认展开（不再折叠，避免用户点了看不出变化）。
-   点一下只做「收起/展开」，登录表单始终在下面，直接可见。 */
+/* 账号条：未登录时默认展开（不再折叠，避免用户点了看不出变化）；
+   登录后自动收起成一行摘要，把下面的空间让给账号面板。 */
 (function bindAcctBar(){
   var bar = $('meAcct'), box = $('account');
   if (!bar || !box) return;
-  acctOpen = true;
-  box.style.display = '';
-  bar.classList.add('open');
+  acctOpen = !ME;              // 已登录就默认收起
+  box.style.display = acctOpen ? '' : 'none';
+  bar.classList.toggle('open', acctOpen);
   bar.addEventListener('click', function(e){
     e.preventDefault();
     acctOpen = !acctOpen;
