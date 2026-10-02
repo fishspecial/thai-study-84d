@@ -50,6 +50,15 @@ main{max-width:760px;margin:0 auto;padding:12px 14px 20px}
 
 /* 卡片 */
 .card{border:1px solid var(--line);border-radius:14px;padding:16px;margin:10px 0;background:var(--bg)}
+/* 账号条：做成 button 时要重置浏览器默认样式，否则点击区域/外观都会不对 */
+.acctbar{display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;
+  background:var(--surface);color:var(--tx);border:1px solid var(--line2);border-radius:14px;
+  padding:14px 16px;margin:10px 0;min-height:60px;line-height:1.5}
+.acctbar:active{background:var(--line)}
+.acctbar .ab-ic{font-size:24px;line-height:1;flex:0 0 auto}
+.acctbar .ab-tx{flex:1;min-width:0}
+.acctbar .ab-ar{color:var(--tx3);font-size:14px;flex:0 0 auto;transition:transform .18s}
+.acctbar.open .ab-ar{transform:rotate(180deg)}
 .hero{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}
 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .kpi{background:var(--bg);border-radius:10px;padding:9px 10px}
@@ -156,6 +165,7 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 <header class="topbar"><div class="tb">
   <div><div class="ttl">泰语 84 天</div><div class="day" id="tbDay">Day 1</div></div>
   <div class="pb"><i id="tbBar"></i></div>
+  <span class="tag lo" id="tbDue">待复习 0</span>
   <span class="tag lo" id="syncChip">…</span>
 </div></header>
 
@@ -293,16 +303,16 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 
   <!-- ========== 我的 ========== -->
   <section class="view" id="v-me">
-    <button class="card" id="meAcct" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;border:1px solid var(--line2)">
-      <span style="font-size:26px;line-height:1">◐</span>
-      <span style="flex:1;min-width:0">
+    <button class="card acctbar" id="meAcct" type="button">
+      <span class="ab-ic">◐</span>
+      <span class="ab-tx">
         <span style="display:block;font-weight:600;font-size:14px" id="meAcctT">登录 / 注册</span>
         <span style="display:block;font-size:12px;color:var(--tx2)" id="meAcctS">登录后学习记录可存到云端，换设备不丢</span>
       </span>
-      <span style="color:var(--tx3);font-size:18px">›</span>
+      <span class="ab-ar" id="meAcctAr">▾</span>
     </button>
 
-    <div id="account" style="margin-top:12px"></div>
+    <div id="account"></div>
 
     <h2>学习记录</h2>
     <div class="hero">
@@ -747,6 +757,10 @@ function toast(m){ var t = document.getElementById('toast'); t.textContent = m; 
   clearTimeout(TT); TT = setTimeout(function(){ t.classList.remove('show'); }, 2200); }
 function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function $(id){ return document.getElementById(id); }
+/* 安全写文本：元素不存在时静默跳过，绝不让一次赋值异常中断整页渲染 */
+function setText(id, v){ var el = $(id); if (el) el.textContent = v; }
+/* 安全设样式 */
+function setStyle(id, prop, v){ var el = $(id); if (el) el.style[prop] = v; }
 
 /* ==================== 今日 ==================== */
 var TASKS = [
@@ -832,18 +846,20 @@ function topbar(){
   var streak = 0;
   for (var i = 0; i < 400; i++){ var d = S.day - i; if (S.days[d] && S.days[d].st && S.days[d].st.done) streak++; else if (i > 0) break; }
   var wk = Math.min(12, Math.floor((S.day-1)/7)+1);
-  $('tbDay').textContent = 'Day ' + S.day + ' · 第 ' + wk + ' 周';
-  $('tbDue').textContent = '待复习 ' + dueList().length;
-  $('kScore').textContent = (D.st.quiz && D.st.quiz.done) ? dayScoreOf(S.day) : '—';
-  $('kStreak').textContent = streak;
-  $('kTotal').textContent = Object.keys(S.items).filter(function(k){ return S.items[k].seen > 0; }).length;
-  $('kDue').textContent = dueList().length;
-  $('kAvg').textContent = avg == null ? '—' : avg;
-  $('kMin').textContent = (D.st.min || 0) + '′';
-  $('dayInfo').textContent = WEEK[wk-1] + '　|　词池 ' + S.q.w + '/' + POOL_W.length
-    + '　她例句 ' + S.q.hs + '/' + POOL_HS.length + '　我例句 ' + S.q.ms + '/' + POOL_MS.length;
+  /* 用 setText 兜底：任何一个 id 缺失都不该让整页渲染中断 */
+  setText('tbDay', 'Day ' + S.day + ' · 第 ' + wk + ' 周');
+  setText('tbDue', '待复习 ' + dueList().length);
+  setText('kScore', (D.st.quiz && D.st.quiz.done) ? dayScoreOf(S.day) : '—');
+  setText('kStreak', streak);
+  setText('kTotal', Object.keys(S.items).filter(function(k){ return S.items[k].seen > 0; }).length);
+  setText('kDue', dueList().length);
+  setText('kAvg', avg == null ? '—' : avg);
+  setText('kMin', (D.st.min || 0) + '′');
+  setText('dayInfo', WEEK[wk-1] + '　|　词池 ' + S.q.w + '/' + POOL_W.length
+    + '　她例句 ' + S.q.hs + '/' + POOL_HS.length + '　我例句 ' + S.q.ms + '/' + POOL_MS.length);
   var dn = TASKS.filter(function(t){ return D.st[t.k] && D.st[t.k].done; }).length;
-  $('tbBar').style.width = (dn / TASKS.length * 100) + '%';
+  var bar = $('tbBar');
+  if (bar) bar.style.width = (dn / TASKS.length * 100) + '%';
 }
 
 /* ---- 闪卡 ---- */
@@ -1251,19 +1267,42 @@ document.querySelectorAll('.tabbar button').forEach(function(b){
   };
 });
 window.addEventListener('scroll', function(){
+  var onBtn = document.querySelector('.tabbar button.on');
+  if (!onBtn) return;
   if (window.innerHeight + window.scrollY < document.body.offsetHeight - 500) return;
-  var v = document.querySelector('.tabbar button.on').getAttribute('data-v');
+  var v = onBtn.getAttribute('data-v');
   if (v === 'corpus' && $('cList').children.length >= cShow){ cShow += 100; renderCorpus(); }
   if (v === 'words' && $('wList').children.length >= wShow){ wShow += 80; renderWords(); }
-});
+}, { passive:true });
 
-renderToday(); renderCorpus(); renderWords(); renderPhrases(); renderMe(); renderAccount(); paintAcctBar();
-$('meAcct').onclick = function(){
-  acctOpen = !acctOpen;
-  $('account').style.display = acctOpen ? '' : 'none';
-  $('meAcct').scrollIntoView({ behavior:'smooth', block:'nearest' });
-};
-$('account').style.display = 'none';
+/* 安全调用：任何一个渲染函数出错都不应拖垮整页 */
+function safeRun(fn, name){
+  try { return fn(); }
+  catch (e){ console.error('[' + name + '] 渲染失败:', e && e.message); return null; }
+}
+
+safeRun(function(){ renderToday(); }, 'renderToday');
+safeRun(function(){ renderCorpus(); }, 'renderCorpus');
+safeRun(function(){ renderWords(); }, 'renderWords');
+safeRun(function(){ renderPhrases(); }, 'renderPhrases');
+safeRun(function(){ renderMe(); }, 'renderMe');
+safeRun(function(){ renderAccount(); paintAcctBar(); }, 'renderAccount');
+
+/* 账号条：默认展开（不再折叠，避免用户点了看不出变化）。
+   点一下只做「收起/展开」，登录表单始终在下面，直接可见。 */
+(function bindAcctBar(){
+  var bar = $('meAcct'), box = $('account');
+  if (!bar || !box) return;
+  acctOpen = true;
+  box.style.display = '';
+  bar.classList.add('open');
+  bar.addEventListener('click', function(e){
+    e.preventDefault();
+    acctOpen = !acctOpen;
+    box.style.display = acctOpen ? '' : 'none';
+    bar.classList.toggle('open', acctOpen);
+  });
+})();
 
 /* ---- 启动：恢复登录态并拉取云端 ---- */
 function boot(){
