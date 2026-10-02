@@ -114,6 +114,9 @@ label.fld>span{display:block;font-size:12.5px;color:var(--tx2);margin-bottom:4px
 .exs .ext{font-size:16px;line-height:1.75}
 .exs .exr{font-size:11.5px;color:var(--tx3);margin-top:2px;font-family:ui-monospace,Consolas,monospace}
 .exs .exz{font-size:13px;color:var(--tx2);margin-top:4px}
+.exmore{width:100%;margin-top:8px;padding:9px 12px;border:1px dashed var(--line2);
+  border-radius:11px;background:var(--bg);color:var(--tx2);font:inherit;font-size:12.5px;cursor:pointer}
+.exmore:active{background:var(--line)}
 .opt{display:block;width:100%;text-align:left;min-height:50px;padding:12px 14px;margin:7px 0;border:1px solid var(--line2);
   border-radius:12px;background:var(--bg);cursor:pointer;font:inherit;font-size:15px}
 .opt .th{font-size:19px}
@@ -733,6 +736,10 @@ var POOL_G = [];
 (P.myGrams || []).filter(function(g){ return !g.h && isTH(g.t); }).forEach(function(g){ POOL_G.push({t:g.t,z:g.z,e:g.e,c:g.c,a:'q'+g.i}); });
 
 var MINLEN = 6;
+/* 一个单词翻面后最多直接摊开几句例句，剩下的点「展开」再看。
+   导入 ChatGPT 语料后每词最多 12 句，全摊开会让一张闪卡占掉整屏，
+   手机上翻不到下面的评分按钮。 */
+var EX_CAP = 4;
 var POOL_HS = (P.sents || []).filter(function(s){ return s.who === 0 && s.len >= MINLEN && isTH(s.t) && s.z; }).slice().sort(function(a,b){ return a.len - b.len; });
 var POOL_MS = (P.sents || []).filter(function(s){ return s.who === 1 && s.len >= MINLEN && isTH(s.t) && s.z; }).slice().sort(function(a,b){ return a.len - b.len; });
 var SMAP = {}; (P.sents || []).forEach(function(s){ SMAP[s.id] = s; });
@@ -1323,19 +1330,41 @@ function exBlock(o){
   if (o.type !== 'w' && o.type !== 'g') return '';
   var list = exList(o.t);
   if (!list) return '';
-  var me = list.filter(function(x){ return x.who === 1; }).length;
-  var h = '<div class="exbox"><div class="exh">她在用这个说法　<span class="exn">' + list.length + ' 句'
-    + (me ? '（你说过 ' + me + ' 句）' : '') + '</span></div>';
-  /* 正面（未翻牌）只给 1 句，够用来联想语境；翻面才把全部例句摊开。
-     否则一张卡塞 3 句 + 配图，手机上要滚半屏才看得到「显示答案」。 */
-  var showList = (typeof run === 'object' && run && run.show) ? list : list.slice(0, 1);
+  var mine = list.filter(function(x){ return x.who === 1; }).length;
+  var hers = list.length - mine;
+  /* 例句可能全来自她、全来自你、或两边都有（导入 ChatGPT 语料后两边都有很常见），
+     所以标题必须按实际构成写，不能固定写「她在用」——那会给出错误的语感判断。 */
+  var head;
+  if (mine && hers)      head = '你们都在用这个说法　<span class="exn">' + list.length + ' 句（她 ' + hers + ' / 你 ' + mine + '）</span>';
+  else if (mine)         head = '你在用这个说法　<span class="exn">' + list.length + ' 句</span>';
+  else                   head = '她在用这个说法　<span class="exn">' + list.length + ' 句</span>';
+  var h = '<div class="exbox"><div class="exh">' + head + '</div>';
+  /* 正面（未翻牌）只给 1 句，够用来联想语境；翻面后给前 EX_CAP 句，
+     剩下的用「展开」按钮按需放出来——导入 ChatGPT 语料后每词最多 12 句，
+     全摊开会让一张卡占掉整屏，翻不到下面的评分按钮。 */
+  var flipped = (typeof run === 'object' && run && run.show);
+  var cap = EX_CAP;
+  var showList = flipped ? list.slice(0, cap) : list.slice(0, 1);
   showList.forEach(function(x, i){
     h += '<div class="exs" data-ex="' + esc(x.id) + '">'
       + '<div class="ext thai">' + esc(x.t) + '</div>'
       + (x.r ? '<div class="exr">' + esc(x.r) + '</div>' : '')
       + '<div class="exz">' + esc(x.z) + '</div></div>';
   });
-  if (!run || !run.show) h += '<div class="sub" style="font-size:11.5px;margin-top:6px">翻面看其余 ' + (list.length - 1) + ' 句</div>';
+  if (!flipped){
+    if (list.length > 1) h += '<div class="sub" style="font-size:11.5px;margin-top:6px">翻面看其余 ' + (list.length - 1) + ' 句</div>';
+  } else if (list.length > cap){
+    h += '<button class="exmore" data-exmore="1">展开其余 ' + (list.length - cap) + ' 句</button>';
+    /* 剩下的先渲染进 DOM 但隐藏，点「展开」直接取消隐藏。
+       这样不用重跑 exBlock，也不会丢失已经滚动到的位置。 */
+    for (var k = cap; k < list.length; k++){
+      var y = list[k];
+      h += '<div class="exs" data-ex="' + esc(y.id) + '" data-extra="1" hidden>'
+        + '<div class="ext thai">' + esc(y.t) + '</div>'
+        + (y.r ? '<div class="exr">' + esc(y.r) + '</div>' : '')
+        + '<div class="exz">' + esc(y.z) + '</div></div>';
+    }
+  }
   h += '</div>';
   return h;
 }
@@ -1409,6 +1438,17 @@ function renderRun(){
   R.querySelectorAll('.exs').forEach(function(b){
     b.onclick = function(){ var s = SMAP[b.getAttribute('data-ex')]; if (s) say(s.id, 'audio-pany', s.t); };
   });
+  /* 例句「展开/收起」：剩余例句已在 DOM 里（只是带 hidden），
+     所以这里只切 hidden 属性，不重跑 exBlock —— 不会丢滚动位置，也不会闪一下。 */
+  var mb = R.querySelector('[data-exmore]');
+  if (mb) mb.onclick = function(){
+    var all = R.querySelectorAll('.exs[hidden], .exs[data-extra]');
+    var willShow = mb.getAttribute('data-expanded') !== '1';
+    /* 只切那些「多出来的」例句（data-extra），前 EX_CAP 句始终可见。 */
+    all.forEach(function(x){ x.hidden = !willShow; });
+    mb.setAttribute('data-expanded', willShow ? '1' : '0');
+    mb.textContent = willShow ? '收起' : '展开其余 ' + all.length + ' 句';
+  };
 }
 function nx(){ run.i++; run.show = false; renderRun(); }
 var lastAllDone = {};   // 记录「哪一天已因全部完成而同步过」，避免重复提示
