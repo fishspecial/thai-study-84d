@@ -1728,20 +1728,40 @@ function renderQuiz(){
   var R = $('runner');
   if (quiz.i >= quiz.qs.length){ finishQuiz(); return; }
   var q = quiz.qs[quiz.i], h = '<div class="study"><div class="hint" style="margin-top:0">第 ' + (quiz.i+1) + ' / ' + quiz.qs.length + ' 题</div>';
+  /* 四种题型的发音入口。
+     原来只有 audio 题型渲染 #qPlay，另外三种（th2zh / zh2th / sent）
+     一个可点读元素都没有 —— 诊断实测「可点读元素」计数全是 0。
+     音频文件其实全都在：抽查 t8 / t9 / t6 / m1807 都是 HTTP 200，
+     纯粹是页面没给入口。用户原话：「你测验里面的那些句子都没有发音的。」
+
+     zh2th（「泰文怎么说」）作答前不该剧透答案，播放按钮答完才出现；
+     th2zh / sent 的泰文本来就在题面上，随时可听。 */
+  var playBtn = '<button class="mini" id="qPlay">🔊 发音</button>';
   if (q.ty === 'th2zh') h += '<div class="q thai">' + esc(q.o.t) + '</div>'
-    + (q.o.r ? '<div class="rom">' + esc(q.o.r) + '</div>' : '') + '<div class="hint">什么意思？</div>';
+    + (q.o.r ? '<div class="rom">' + esc(q.o.r) + '</div>' : '') + '<div class="hint">什么意思？</div>'
+    + '<div class="btnrow">' + playBtn + '</div>';
   else if (q.ty === 'zh2th') h += '<div class="a" style="margin-top:6px">' + esc(q.o.z || q.o.e || '') + '</div><div class="hint">泰文怎么说？</div>';
-  else if (q.ty === 'audio') h += '<div class="q" style="font-size:26px">🔊</div><div class="hint"><button class="mini" id="qPlay">再播一次</button></div>';
-  else h += '<div class="a sm" style="margin-top:6px;font-size:16px">' + esc(q.sent.z) + '</div><div class="hint">泰文是？</div>';
+  else if (q.ty === 'audio') h += '<div class="q" style="font-size:26px">🔊</div><div class="hint">' + playBtn + '</div>';
+  else h += '<div class="a sm" style="margin-top:6px;font-size:16px">' + esc(q.sent.z) + '</div><div class="hint">泰文是？</div>'
+    + '<div class="btnrow">' + playBtn + '</div>';
   h += '<div style="margin-top:12px">';
   q.opts.forEach(function(o){
     var isTh = /[\u0E00-\u0E7F]/.test(o);
     h += '<button class="opt" data-o="' + esc(o).replace(/"/g,'&quot;') + '">' + (isTh ? '<span class="thai">' + esc(o) + '</span>' : esc(o)) + '</button>';
   });
-  h += '</div><div class="btnrow"><button class="mini" id="qQuit">退出</button></div></div>';
+  /* #qAfter 是答完后补按钮的容器（zh2th 要等作答完才放发音） */
+  h += '</div><div class="btnrow" id="qAfter"></div><div class="btnrow"><button class="mini" id="qQuit">退出</button></div></div>';
   R.innerHTML = h;
-  if (q.ty === 'audio') setTimeout(function(){ say(q.o.a, 'audio-pany', q.o.t); }, 200);
-  if ($('qPlay')) $('qPlay').onclick = function(){ say(q.o.a, 'audio-pany', q.o.t); };
+  /* 发音目标：例句题用句子的 id，词与虚词用词条自带的 a（目录可能不同） */
+  var qFile = (q.ty === 'sent') ? (q.sent ? q.sent.id : null) : (q.o ? q.o.a : null);
+  var qDir  = (q.ty === 'sent') ? 'audio-pany' : (q.o ? (q.o.d || 'audio-pany') : 'audio-pany');
+  var qText = (q.ty === 'sent') ? (q.sent ? q.sent.t : '') : (q.o ? q.o.t : '');
+  var playQ = function(){ say(qFile, qDir, qText); };
+  if ($('qPlay')) $('qPlay').onclick = playQ;
+  if (q.ty === 'audio') setTimeout(playQ, 200);
+  /* th2zh / sent 一进来就自动播一次：这两类题考「认不认识」，
+     先听一遍音是做题的前提，不然得先手动点一下才看得下去。 */
+  else if (q.ty === 'th2zh' || q.ty === 'sent') setTimeout(playQ, 260);
   $('qQuit').onclick = function(){ quiz = null; renderToday(); R.innerHTML = ''; };
   R.querySelectorAll('.opt').forEach(function(b){
     b.onclick = function(){
@@ -1751,6 +1771,16 @@ function renderQuiz(){
         if (x.getAttribute('data-o') === q.ans) x.classList.add('right'); else if (x === b) x.classList.add('wrong');
         x.disabled = true;
       });
+      /* zh2th 答完立刻补一个播放按钮并自动播一遍。
+         选错的人尤其需要听到正确读音 —— 否则这题只留下「我选了个什么」，
+         不知道该记住的是哪个音。 */
+      if (q.ty === 'zh2th'){
+        var ab = $('qAfter');
+        if (ab) ab.innerHTML = '<span class="sub" style="align-self:center">正确读音</span>' + playBtn;
+        var nb = $('qPlay');
+        if (nb) nb.onclick = playQ;
+        setTimeout(playQ, 150);
+      }
       if (v === q.ans){ quiz.right++; if (q.ty !== 'sent') grade(q.key, 1); }
       else { grade((q.ty === 'sent') ? ('s|' + q.sent.id) : q.key, 0); }
       setTimeout(function(){ quiz.i++; quiz.done = false; renderQuiz(); }, v === q.ans ? 380 : 1400);
