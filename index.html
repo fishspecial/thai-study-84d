@@ -196,14 +196,33 @@ label.fld>span{display:block;font-size:12.5px;color:var(--tx2);margin-bottom:4px
    只留 runner。不用 display:none 是因为要保留切换时的滚动位置与动画过渡；
    实际用 max-height 归零 + opacity 归零，退出时能滑回来。
    runner 顶到最上面，让题目从屏幕顶部开始，注意力不被推走。 */
-body.focus .hero, body.focus #board, body.focus #todayReport,
-body.focus #taskList, body.focus #finishBox{
+/* 专注态原来靠折叠今日页实现（body.focus → hero/board/taskList 归零）。
+   练习拆成独立标签后这条路走不通了：那些元素在今日页，
+   折叠它们等于「用户只是切去练习，今日页就变空白」—— 实测 hero 高度掉到 0。
+   现在专注态只作用于练习页内部：题目区显示、任务列表隐藏，由 renderDrill 控制。
+   这两条规则保留给练习页内可能出现的同类区块。 */
+body.focus #drillList{
   max-height:0!important;opacity:0!important;margin:0!important;padding:0!important;
   overflow:hidden!important;pointer-events:none!important;border:0!important}
 .hero, #board, #todayReport, #taskList{transition:max-height .22s ease,opacity .22s ease,margin .22s ease}
 /* 专注态给个明显的返回条，用户不会以为页面坏了 */
 #focusBar{display:none;margin:10px 0 0}
 body.focus #focusBar{display:block}
+/* 练习页已独立，body.focus 不再需要折叠今日页的那些区块。
+   留着这条是为了兼容：万一以后又有人调 enterFocus()，页面不会散架。 */
+#v-drill{padding-bottom:4px}
+.drillHd{display:flex;align-items:baseline;gap:8px;margin:2px 0 10px}
+.drillHd h2{margin:0;font-size:17px}
+.drillHd .sub{margin:0}
+.dcard{background:var(--surface2);border:1px solid var(--line2);border-radius:12px;padding:12px 13px;margin-bottom:8px}
+.dcard.done{opacity:.72}
+.dcard .nm{font-size:15px;font-weight:600;margin-bottom:2px}
+.dcard .dd{font-size:12.5px;color:var(--tx2);line-height:1.5}
+.dcard .mbar{margin:8px 0 9px}
+.dcard .btn{width:100%}
+.dguide{text-align:center;padding:26px 16px;color:var(--tx2)}
+.dguide .big{font-size:34px;line-height:1;margin-bottom:10px}
+.emptyDrill{color:var(--tx3);font-size:13px;text-align:center;padding:16px 0}
 #focusBar .fb{
   display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:12px;
   background:var(--surface2);border:1px solid var(--line2);font-size:13px;color:var(--tx2)}
@@ -218,7 +237,18 @@ body.focus #focusBar{display:block}
 .daypick button.on{background:var(--blue600);border-color:var(--blue600);color:#fff;font-weight:600}
 .daypick button.today{box-shadow:inset 0 0 0 1px var(--blue600)}
 /* 一条学习记录：泰文 + 中文 + 状态 */
-.lrow{display:flex;align-items:center;gap:10px;padding:9px 11px;border-bottom:1px solid var(--line)}
+/* 整行可点发音：用户说「学习记录里的这些内容也要能够发音」，
+   他复盘时是连着点着听的，不该每行还要精确戳那个小按钮。
+   但状态标签（.lv）是纯展示，点它不该出声 —— 用 .lv 的 pointer-events 关掉。 */
+.lrow{display:flex;align-items:center;gap:10px;padding:9px 11px;border-bottom:1px solid var(--line);
+  cursor:pointer;transition:background .12s}
+.lrow:active{background:var(--surface2)}
+.lrow .lv{pointer-events:none}
+/* 发音小圆钮：只是提示「这行能点」，真正的声音走整行 */
+.lrow .lb{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:1px solid var(--line2);
+  background:var(--bg);color:var(--tx2);font-size:14px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center}
+.lrow .lb:active{background:var(--surface2);transform:scale(.94)}
 .lrow:last-child{border-bottom:none}
 .lrow .lt{flex:1 1 auto;min-width:0}
 .lrow .lt .thai{display:block;font-size:15px}
@@ -378,6 +408,12 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
     <div id="board"></div>
     <div id="todayReport"></div>
     <div id="taskList"></div>
+  </section>
+
+  <!-- ========== 练习（与总览彻底分开） ========== -->
+  <section class="view" id="v-drill">
+    <div class="drillHd"><h2>练习</h2><span class="sub" id="drillSub">选一项开始</span></div>
+    <div id="drillList"></div>
     <div id="focusBar"></div>
     <div id="runner"></div>
     <div id="finishBox" style="display:none">
@@ -564,6 +600,7 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 
 <nav class="tabbar">
   <button class="on" data-v="today"><span class="ic">◈</span>今日</button>
+  <button data-v="drill"><span class="ic">✎</span>练习</button>
   <button data-v="corpus"><span class="ic">☰</span>语料</button>
   <button data-v="words"><span class="ic">文</span>词库</button>
   <button data-v="ref"><span class="ic">?</span>参考</button>
@@ -1662,6 +1699,8 @@ function startCard(kind){
   run = { kind:kind, keys:keys, i:0, right:0, half:0, wrong:0, show:false, t0:Date.now() };
   enterFocus(kind);
   renderRun();
+  drillStarted = true;
+  goDrill();
 }
 function renderRun(){
   var R = $('runner');
@@ -1761,6 +1800,7 @@ function onTaskDone(kind){
 }
 function finishRun(){
   var tot = run.keys.length, sc = Math.round((run.right + run.half*0.5) / tot * 100);
+  paintFocusBar();
   var msg = '<div class="okbox">' + TNAME[run.kind] + '完成：<b>' + sc + ' 分</b>　✔ ' + run.right + '　~ ' + run.half + '　✘ ' + run.wrong + '</div>';
   D.st[run.kind] = { done:true, n:tot, score:sc, right:run.right, half:run.half, wrong:run.wrong };
   D.st.min = (D.st.min || 0) + Math.round((Date.now() - run.t0) / 60000);
@@ -1768,6 +1808,11 @@ function finishRun(){
   $('runner').innerHTML = msg + focusBackBtn();
   renderToday();
   paintFocusBar();
+  /* 成绩单要留在屏幕上给用户看，所以这里不能把 runner 清空。
+     但外壳得重画 —— 不然 drillList 保持隐藏、focusBar 显示「进行中」，
+     用户点「返回今日看板」之后回到练习页会看到一片空白。 */
+  drillStarted = true;
+  renderDrillChrome();
   onTaskDone();
 }
 
@@ -1800,6 +1845,8 @@ function startQuiz(){
   quiz = { qs:qs, i:0, right:0, done:false, t0:Date.now() };
   enterFocus('quiz');
   renderQuiz();
+  drillStarted = true;
+  goDrill();
 }
 function renderQuiz(){
   var R = $('runner');
@@ -1882,6 +1929,8 @@ function finishQuiz(){
   $('runner').innerHTML = '<div class="okbox">测验完成：<b>' + D.st.quiz.score + ' 分</b>（' + D.st.quiz.right + ' / ' + D.st.quiz.n + '）</div>' + focusBackBtn();
   renderToday();
   paintFocusBar();
+  drillStarted = true;
+  renderDrillChrome();
   onTaskDone();
 }
 
@@ -2187,7 +2236,74 @@ function weakList(){
     var it = S.items[k]; return it.seen >= 2 && (it.w + it.h) / it.seen > 0.4;
   }).sort(function(a,b){ return (S.items[b].w + S.items[b].h) - (S.items[a].w + S.items[a].h); });
 }
-/* ==================== 需求 1：功能模块隔离 ====================
+/* ==================== 练习页外壳 ====================
+   练习进行中 → 只显示进度条和题目，任务列表藏起来（跟原来的 body.focus 一个意图，
+   但现在作用范围只在练习页内部，不会再影响今日页）。
+   没在练 → 显示 5 张任务卡，让用户可以直接在这一页开练。
+   drillStarted 标记「用户主动开过练习」：之前用 body.hasClass('focus') 判断，
+   但 finishRun 之后 run 被置空、focus 也退掉了，页面会误判成「没开始」而闪回列表。 */
+var drillStarted = false;
+function renderDrill(){
+  var busy = !!(run || quiz);
+  var L = $('drillList');
+  $('drillSub').textContent = busy ? '进行中' : '选一项开始';
+  if (busy){
+    L.innerHTML = '';
+    L.style.display = 'none';
+    paintFocusBar();
+    return;
+  }
+  L.style.display = '';
+  /* 做完了还停在这一页：给个明确的落点，不然用户以为页面空了 */
+  if (drillStarted){
+    var all = TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
+    L.innerHTML = all
+      ? '<div class="dguide"><div class="big">✓</div><div>今天五项都做完了</div>'
+        + '<div class="btnrow" style="justify-content:center;margin-top:12px">'
+        + '<button class="btn primary" id="dGoToday">回今日看板打卡</button>'
+        + '<button class="btn" id="dRedoAll">再练一轮</button></div></div>'
+      : '<div class="dguide"><div class="big">✓</div><div>刚练完一项</div>'
+        + '<p class="sub">继续挑下面任意一项，或回今日看板看总览。</p>'
+        + '<div class="btnrow" style="justify-content:center;margin-top:10px">'
+        + '<button class="btn" id="dGoToday">回今日看板</button></div></div>';
+    var gt = $('dGoToday');
+    if (gt) gt.onclick = function(){
+      drillStarted = false;
+      var b = document.querySelector('.tabbar button[data-v="today"]');
+      b.onclick.call(b);
+    };
+    var ra = $('dRedoAll');
+    if (ra) ra.onclick = function(){ drillStarted = false; renderDrill(); renderToday(); };
+  } else {
+    L.innerHTML = '<div class="dguide"><div class="big">✎</div>'
+      + '<div>这里只放练习，统计数据在「今日」页</div>'
+      + '<p class="sub">选一项开始，做完会记住进度。</p></div>';
+  }
+  if (drillStarted) return;
+  var h = '';
+  TASKS.forEach(function(t){
+    var keys = dropMaster(taskKeys(t.k));
+    var total = t.k === 'quiz' ? S.cfg.quizCount : keys.length;
+    var st = D.st[t.k] || {}, done = !!st.done;
+    var pct = total ? Math.round((st.n || 0) / total * 100) : 0;
+    if (done) pct = 100;
+    h += '<div class="dcard' + (done ? ' done' : '') + '">'
+      + '<div class="nm">' + t.n + (done ? ' <span class="sub">· ' + st.score + ' 分</span>' : '')
+      + ' <span class="sub">' + (total ? total + ' 项' : '今日无') + '</span></div>'
+      + '<div class="dd">' + t.d + '</div>'
+      + '<div class="mbar"><i style="width:' + pct + '%"></i></div>'
+      + '<button class="btn wide' + (done ? '' : ' primary') + '" data-run="' + t.k + '">'
+      + (done ? '重做' : (st.n ? '继续' : '开始')) + '</button></div>';
+  });
+  L.innerHTML += h;
+  L.querySelectorAll('button[data-run]').forEach(function(b){
+    b.onclick = function(){
+      var k = b.getAttribute('data-run');
+      if (k === 'quiz') startQuiz(); else startCard(k);
+    };
+  });
+}
+/* ==================== 功能模块隔离 ====================
    做题（闪卡 run / 测验 quiz）时把无关区块收起来。
    用 body.focus 这个类做开关，CSS 里一条规则搞定显隐，
    JS 这边只负责加类/去类和更新返回条上的进度数字。 */
@@ -2214,9 +2330,29 @@ function bindFocusBack(){
   b.onclick = function(){
     exitFocus();
     $('runner').innerHTML = '';
+    run = null; quiz = null;
+    drillStarted = false;
     renderToday();
-    window.scrollTo({ top:0, behavior:'smooth' });
+    var tb = document.querySelector('.tabbar button[data-v="today"]');
+    if (tb) tb.onclick.call(tb);
   };
+}
+/* 只重画练习页外壳（任务卡/完成提示），**不动 runner**。
+   成绩单阶段必须保留 runner 里的内容，否则用户刚做完就看到空白，
+   会以为白做了 —— 这是拆分时最容易踩的一步。 */
+function renderDrillChrome(){
+  var L = $('drillList');
+  if (!L) return;
+  if (run || quiz) return;
+  var wasHidden = L.style.display === 'none';
+  L.style.display = wasHidden ? 'none' : '';
+  if (!wasHidden) return;
+  /* 列表原本是隐藏的（练习中），现在练习结束 → 展开并显示完成提示 */
+  L.style.display = '';
+  drillStarted = true;
+  renderDrill();
+  var sb = $('drillSub');
+  if (sb) sb.textContent = '继续练';
 }
 /* 每次渲染完 runner 都重绑一次（runner 是整块 innerHTML 覆盖的） */
 function paintFocusBar(){
@@ -2278,7 +2414,16 @@ function dayKeys(d){
       else if (it.w > 0 && it.box <= 1) { lv = 'bad'; lvTx = '答错'; }
       else if (it.box >= 3) { lv = 'ok'; lvTx = '已牢固'; }
       else if (it.box >= 1) { lv = 'half'; lvTx = '还不牢'; }
-      out.push({ k:k, t:o.t, z:(o.o && (o.o.z || o.o.e)) || '', kind:kind, lv:lv, lvTx:lvTx, box:it.box, r:it.r, w:it.w });
+      /* 音频三要素：文件名、目录、要读的泰文。
+         取法必须按 type 分开 —— 词看 o.a/o.d，语气词看 o.a + audio-pany，
+         例句看 o.id + audio-pany（例句对象上没有 a，词条对象上没有 id）。
+         这正是闪卡 renderRun() 里 play 的那三段，抄一份一致的，别自己发挥。 */
+      var af = null, ad = 'audio-pany';
+      if (o.type === 'w'){ af = o.o ? o.o.a : null; ad = (o.o && o.o.d) || 'audio-pany'; }
+      else if (o.type === 'g'){ af = o.o ? o.o.a : null; }
+      else { af = o.o ? o.o.id : null; }
+      out.push({ k:k, t:o.t, z:(o.o && (o.o.z || o.o.e)) || '', kind:kind, lv:lv, lvTx:lvTx,
+        box:it.box, r:it.r, w:it.w, af:af, ad:ad, type:o.type });
     });
   });
   out.sort(function(a, b){
@@ -2334,7 +2479,9 @@ function renderDayDetail(){
     h += '<div class="list" style="border:1px solid var(--line2);border-radius:12px;overflow:hidden">';
     ks.forEach(function(x){
       var sp = splitEmoji(x.t);
-      h += '<div class="lrow"><div class="lt">'
+      h += '<div class="lrow" data-k="' + esc(x.k) + '" data-af="' + esc(x.af || '') + '" data-ad="' + esc(x.ad) + '" data-t="' + esc(x.t) + '">'
+        + '<button class="lb" title="发音">🔊</button>'
+        + '<div class="lt">'
         + '<span class="thai">' + esc(sp.t) + (sp.e ? ' <span style="font-size:13px">' + esc(sp.e) + '</span>' : '') + '</span>'
         + '<span class="sub">' + esc(x.z || '—') + '　盒' + x.box + '　对' + x.r + ' 错' + x.w + '</span>'
         + '</div><span class="lv ' + x.lv + '">' + esc(x.kind + ' · ' + x.lvTx) + '</span></div>';
@@ -2348,6 +2495,14 @@ function renderDayDetail(){
       + '</p>';
   }
   box.innerHTML = h;
+  /* 整行可点发音。data-* 已经把文件名/目录/泰文带在元素上了，
+     不用回头查 keyObj —— 那样每次点击都要重新解析一遍 key。
+     .lv 已设 pointer-events:none，所以点状态标签不会误触发。 */
+  box.querySelectorAll('.lrow').forEach(function(r){
+    r.onclick = function(){
+      say(r.getAttribute('data-af') || null, r.getAttribute('data-ad') || 'audio-pany', r.getAttribute('data-t'));
+    };
+  });
 }
 
 /* ==================== 需求 3：预计学习时长 ====================
@@ -2584,7 +2739,19 @@ $('btnBak').onclick = function(){
 $('btnReset2').onclick = function(){ if (!confirm('清空全部学习记录？')) return; localStorage.removeItem(KEY); location.reload(); };
 
 /* ==================== 导航 / 滚动 ==================== */
-var VH = { today:renderToday, corpus:renderCorpus, words:renderWords, ref:renderPhrases, me:renderMe };
+var VH = { today:renderToday, drill:renderDrill, corpus:renderCorpus, words:renderWords, ref:renderPhrases, me:renderMe };
+/* 练习中切到别的标签再切回来，题目要还在 ——
+   所以切页时不清 runner，只是重画练习页外壳。 */
+function goDrill(){
+  var btn = document.querySelector('.tabbar button[data-v="drill"]');
+  if (!btn) return;
+  document.querySelectorAll('.tabbar button').forEach(function(x){ x.classList.remove('on'); });
+  btn.classList.add('on');
+  document.querySelectorAll('.view').forEach(function(x){ x.classList.remove('on'); });
+  $('v-drill').classList.add('on');
+  renderDrill();
+  window.scrollTo(0, 0);
+}
 document.querySelectorAll('.tabbar button').forEach(function(b){
   b.onclick = function(){
     document.querySelectorAll('.tabbar button').forEach(function(x){ x.classList.remove('on'); });
@@ -2612,6 +2779,7 @@ function safeRun(fn, name){
 }
 
 safeRun(function(){ renderToday(); }, 'renderToday');
+safeRun(function(){ renderDrill(); }, 'renderDrill');
 safeRun(function(){ renderCorpus(); }, 'renderCorpus');
 safeRun(function(){ renderWords(); }, 'renderWords');
 safeRun(function(){ renderPGroups(); renderPhrases(); }, 'renderPGroups/renderPhrases');

@@ -416,7 +416,9 @@ async function newPage(browser, opts) {
     log('G1 有历史记录时页面无 JS 错误', errs.length === 0, errs.length ? errs[0] : '0 个');
     log('G2 TASKS 正常初始化（提升顺序正确）', r.tasks === 5, 'TASKS.length=' + r.tasks);
     log('G3 今日看板有内容（脚本未中断）', r.boardLen > 20, '看板字符数=' + r.boardLen);
-    log('G4 底部导航可切换（事件已绑定）', r.tabBtns === 5 && r.canSwitch,
+    /* 标签数不能写死 5 —— 练习拆成独立标签后是 6 个（2026-10-03）。
+       写死数字的判据会在 UI 正常演进时误报 FAIL，掩盖真正的回归。 */
+    log('G4 底部导航可切换（事件已绑定）', r.tabBtns >= 5 && r.canSwitch,
       '按钮=' + r.tabBtns + ' 可切换=' + r.canSwitch);
     await ctx.close();
   }
