@@ -129,6 +129,74 @@ const CASES = [
       } catch (e) { return [false, String(e.message)]; }
     });
   }],
+
+  /* ---- 同步修复的线上特征（2026-10-03）----
+     这几项查的是「新版代码确实在线上」，因为函数在不在只有这里能作数。
+     行为层面的验证（连续答题会不会推送、换设备能不能恢复）由 verify-sync.js
+     用假云端跑，那套必须在拦截 SDK 的上下文里做，不能混进这份线上检查。 */
+  ['登录态误判已修（res.data 为空不再当成未登录）', async p => {
+    return await p.evaluate(() => {
+      const src = document.documentElement.innerHTML;
+      return [src.indexOf('已登录·云端读取失败') > 0 && src.indexOf('已登录·新建云端记录') > 0,
+        '两个新分支文案都在'];
+    });
+  }],
+  ['本地成果判据已修（localHasProgress 取代 localIsEmpty）', async p => {
+    return await p.evaluate(() => {
+      const src = document.documentElement.innerHTML;
+      const hasFn = typeof window.localHasProgress === 'function';
+      const oldGone = src.indexOf('function localIsEmpty') < 0;
+      return [hasFn && oldGone, '新函数=' + hasFn + ' 旧函数已移除=' + oldGone];
+    });
+  }],
+  ['推送节流机制在线（不是纯防抖）', async p => {
+    return await p.evaluate(() => {
+      const src = document.documentElement.innerHTML;
+      const hasGap = src.indexOf('SYNC_MIN_GAP') > 0;
+      const hasTrailing = src.indexOf('syncTrailing') > 0;
+      return [hasGap && hasTrailing, '节流间隔=' + hasGap + ' 尾部兜底=' + hasTrailing];
+    });
+  }],
+  ['同步失败可点重试（不必去「我的」页找按钮）', async p => {
+    return await p.evaluate(() => {
+      const el = document.getElementById('syncChip');
+      return [!!el && typeof el.onclick === 'function',
+        'syncChip.onclick=' + (el ? typeof el.onclick : '元素不存在')];
+    });
+  }],
+  ['切后台会强制同步（unload 不可靠）', async p => {
+    return await p.evaluate(() => {
+      const src = document.documentElement.innerHTML;
+      return [src.indexOf('visibilitychange') > 0, 'visibilitychange 监听=' + (src.indexOf('visibilitychange') > 0)];
+    });
+  }],
+  ['TASKS 顺序 bug 已修（有历史记录能打开）', async p => {
+    /* 真正验的是「预置一份有历史的 localStorage 再重载，脚本不中断」——
+       只查函数在不在证明不了提升顺序修对了。 */
+    await p.evaluate(() => {
+      localStorage.setItem('thai-daily-v1', JSON.stringify({
+        start: '2026-10-01', day: 2, savedAt: Date.now() - 86400000,
+        items: { 'w|รัก': { box: 2, due: '2026-10-03', r: 2, w: 0, h: 0, seen: 3, lg: [[1, 1]], peak: 2 } },
+        master: { 'รัก': 1 }, q: { w: 12, g: 0, hs: 0, ms: 0 }, cfg: {},
+        days: { 1: { plan: { newW: [], dueW: [], newG: [], dueG: [], read: [], out: [], wEnd: 0, gEnd: 0, why: '' },
+          st: { rev: { done: true, n: 3, score: 100 }, new: { done: true, n: 12, score: 88 },
+                read: { done: true, n: 5, score: 80 }, out: { done: true, n: 4, score: 75 },
+                quiz: { done: true, n: 10, score: 90 } } } },
+      }));
+    });
+    const before = p._errs.length;
+    await p.reload({ waitUntil: 'load' });
+    await p.waitForTimeout(2000);
+    const r = await p.evaluate(() => ({
+      tasks: (typeof TASKS !== 'undefined' && TASKS) ? TASKS.length : 0,
+      board: ((document.getElementById('board') || {}).textContent || '').replace(/\s+/g, '').length,
+      newErrs: window.__NEW_ERRS__ || 0,
+    }));
+    const newErrs = p._errs.slice(before).filter(x => x.indexOf('favicon') < 0);
+    return [r.tasks === 5 && r.board > 20 && newErrs.length === 0,
+      'TASKS=' + r.tasks + ' 看板字符=' + r.board + ' 重载后新错误=' + newErrs.length
+      + (newErrs.length ? '：' + newErrs[0].slice(0, 60) : '')];
+  }],
 ];
 
 (async () => {
