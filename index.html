@@ -545,21 +545,48 @@ function initCloud(){
 }
 initCloud();
 
-var ME = null, syncTimer = null, syncing = false, pushQueued = false, cloudRow = null, pushOk = false, auCur = 'pw', auPending = null;
+/* syncTimer 已废弃：旧的纯防抖推送会导致连续答题时永远不同步，
+   现改为 schedulePush() 的节流 + 尾部兜底（见 save() 下方注释）。 */
+var ME = null, syncing = false, pushQueued = false, cloudRow = null, pushOk = false, auCur = 'pw', auPending = null;
 var acctOpen = false;   // 账号面板是否展开（登录后自动收起）
 function setSync(txt, cls){
   var el = $('syncChip'); if (!el) return;
   el.textContent = txt; el.className = 'tag ' + (cls || 'lo');
+  /* 同步失败时标签本身可点重试 —— 用户不必先跑到「我的」页找按钮。
+     用户原话「我必须手动确认同步」说明他需要一条明确的自救路径。 */
+  el.style.cursor = (cls === 'r') ? 'pointer' : 'default';
+  el.title = (cls === 'r') ? '点此重试同步' : '';
 }
-function localIsEmpty(){
-  return Object.keys(S.items).length === 0 && Object.keys(S.days).length === 0 && S.q.w === 0;
+function retryPush(){
+  if (!cloud || !ME){ toast('还没登录，无法同步'); return; }
+  setSync('同步中…', 'b');
+  pushCloud({ now:true });
+}
+/* 「这台设备上有没有真正的学习成果」。
+   这里踩过一个很隐蔽的坑：原来叫 localIsEmpty()，判据是
+     Object.keys(S.items).length === 0 && Object.keys(S.days).length === 0 && S.q.w === 0
+   但 S.days 永远不可能为空 —— 第 1126 行 `var D = getDay(S.day)` 在模块加载时
+   就建好了今天这条记录，renderToday() 还会马上 save() 写进 localStorage。
+   于是 localIsEmpty() 恒为 false → 换新设备登录时，恢复逻辑永远走 confirm 分支
+   弹窗；用户点「取消」就再也拿不回云端进度（verify-sync 场景 B2/B3 就是这么挂的）。
+   所以判据必须换成「有没有值得保护的学习成果」，而不是「有没有 days 目录」。 */
+function localHasProgress(){
+  if (Object.keys(S.items).length) return true;          // 学过的条目（闪卡/例句/词）
+  if (Object.keys(S.master || {}).length) return true;   // 词库里手动标的「已掌握」
+  var q = S.q || {};
+  if ((q.w || 0) + (q.g || 0) + (q.hs || 0) + (q.ms || 0) > 0) return true;  // 累计答题数
+  for (var d in (S.days || {})){
+    var st = (S.days[d] || {}).st || {};
+    for (var k in st){
+      var s = st[k] || {};
+      /* done 但 n===0 是 renderToday 给「当天没有该任务」自动补的空壳，不算成果 */
+      if ((s.n || 0) > 0) return true;
+    }
+  }
+  return false;
 }
 function markDirty(){
   S.savedAt = Date.now(); save();
-  if (!cloud || !ME) return;
-  clearTimeout(syncTimer);
-  setSync('同步中…', 'b');
-  syncTimer = setTimeout(pushCloud, 2000);
 }
 async function pushCloud(opts){
   opts = opts || {};
@@ -575,18 +602,28 @@ async function pushCloud(opts){
     var res = await cloud.database.from('study_state')
       .upsert({ payload: S, updated_at: new Date().toISOString() }, { onConflict: 'owner_id' })
       .select();
-    if (res.error) { pushOk = false; setSync('同步失败', 'r'); }
-    else { cloudRow = res.data && res.data[0]; pushOk = true; setSync('已同步', 'g'); }
-  } catch (e) { pushOk = false; setSync('同步失败', 'r'); }
+    if (res.error) { pushOk = false; setSync('同步失败·点此重试', 'r'); }
+    else {
+      cloudRow = res.data && res.data[0];
+      pushOk = true;
+      /* 显示「刚刚已同步」而不是干巴巴一个「已同步」。
+         用户之所以不敢刷新、必须手动确认，就是因为看不到任何确认信号。
+         标签有了时间，他就能自己判断「现在刷新安全」。 */
+      var hh = new Date(), mm = (hh.getHours() < 10 ? '0' : '') + hh.getHours(),
+          ss = (hh.getMinutes() < 10 ? '0' : '') + hh.getMinutes();
+      setSync('✓ 已同步 ' + mm + ':' + ss, 'g');
+      paintAcctBar();
+    }
+  } catch (e) { pushOk = false; setSync('同步失败·点此重试', 'r'); }
   syncing = false;
   if (pushQueued){ pushQueued = false; pushCloud({ now:true }); }
 }
-/* 立即同步：清掉防抖定时器马上推。用于「任务完成」等关键节点。 */
+/* 立即同步：清掉待执行的尾部推送马上推。用于「任务完成」等关键节点。 */
 function pushNow(){
   if (!cloud || !ME) return false;
-  clearTimeout(syncTimer);
+  if (syncTrailing){ clearTimeout(syncTrailing); syncTrailing = null; }
   setSync('同步中…', 'b');
-  pushCloud({ now:true });
+  doPush();
   return true;
 }
 async function pullCloud(){
@@ -598,38 +635,63 @@ async function pullCloud(){
     return res.data;
   } catch (e) { setSync('读取失败', 'r'); return null; }
 }
+/* 云端记录回灌到本地状态。
+   原来这份逻辑在 afterLogin() 和 boot() 里各抄了一份，两边都有同一个 bug
+   （用错的「本地是否为空」判据），所以合并成一处，以后只改这里。
+   row = { payload, updated_at }，返回 'restored' | 'kept-local' | 'skip' | 'empty' */
+function restoreFromCloud(row){
+  var remote = row && row.payload;
+  if (!remote || !remote.items || !Object.keys(remote.items).length) return 'empty';
+  var rt = row.updated_at ? new Date(row.updated_at).getTime() : 0;
+  var lt = S.savedAt || 0;
+  var localHas = localHasProgress();
+  /* 本地毫无成果 → 直接用云端，不打扰用户；
+     本地有成果且云端明显更新 → 问一句，别默默覆盖他在这台设备上刚学的东西。 */
+  if (localHas && !(rt > lt + 5000)) return 'kept-local';
+  if (localHas && !confirm('云端有更新的学习记录（' + row.updated_at + '）。\n'
+    + '确定用云端记录覆盖这台设备上的本地记录吗？')) return 'kept-local';
+  S = remote;
+  if (!S.cfg) S.cfg = {};
+  for (var d in DEF) if (S.cfg[d] == null) S.cfg[d] = DEF[d];
+  if (!S.master) S.master = {};
+  if (!S.q) S.q = { w: 0, g: 0, hs: 0, ms: 0 };
+  if (!S.items) S.items = {}; if (!S.days) S.days = {};
+  if (!S.start) S.start = today();
+  S.day = Math.max(1, diffDays(S.start, today()) + 1);
+  D = getDay(S.day);
+  /* 回灌完把云端时间戳写进 savedAt，否则下次进页面又会拿同一份云端数据来「确认覆盖」 */
+  S.savedAt = Date.now();
+  persist();
+  /* 逐个渲染并各自兜住异常：S 已经在上面换成云端数据了，
+     万一某个渲染函数抛错，不能让整条链断在这里 —— 那会让用户看到
+     「数据明明恢复了但界面还是旧的」，比报错更难排查。 */
+  restoring = true;
+  try {
+    [['renderToday', renderToday], ['renderCorpus', renderCorpus],
+     ['renderWords', renderWords], ['renderPhrases', renderPhrases],
+     ['renderMe', renderMe]].forEach(function(p){
+      try { p[1](); } catch (e){ console.error('[' + p[0] + '] 恢复后渲染失败:', e && e.message); }
+    });
+  } finally { restoring = false; }
+  return 'restored';
+}
 async function afterLogin(user){
   ME = user;
   setSync('读取云端…', 'b');
   var row = await pullCloud();
-  var remote = row && row.payload;
-  var localEmpty = localIsEmpty();
-  if (remote && remote.items && Object.keys(remote.items).length) {
-    var rt = row.updated_at ? new Date(row.updated_at).getTime() : 0;
-    var lt = S.savedAt || 0;
-    if (localEmpty || rt > lt + 5000) {
-      S = remote;
-      if (!S.cfg) S.cfg = {};
-      for (var d in DEF) if (S.cfg[d] == null) S.cfg[d] = DEF[d];
-      if (!S.master) S.master = {};
-      if (!S.q) S.q = { w: 0, g: 0, hs: 0, ms: 0 };
-      if (!S.items) S.items = {}; if (!S.days) S.days = {};
-      S.day = Math.max(1, diffDays(S.start || today(), today()) + 1);
-      D = getDay(S.day);
-      save();
-      toast('已从云端恢复学习记录');
-    }
-  }
+  var how = restoreFromCloud(row);
+  if (how === 'restored') toast('已从云端恢复学习记录');
   /* 登录成功后立刻把账号条收起成一行摘要，登录表单不再占地方 */
   acctOpen = false;
   var ab = $('meAcct'), abox = $('account');
   if (abox) abox.style.display = 'none';
   if (ab) ab.classList.remove('open');
-  pushOk = true;
   renderAccount();
   renderToday();
   paintAcctBar();
-  setSync('已同步', 'g');
+  /* 状态标签交给 pushCloud 如实汇报，别在这里写死「已同步」——
+     写死会让同步失败的账号也显示绿色，用户以为可以放心刷新。 */
+  if (cloud && ME) doPush(); else setSync('已登录·仅本地', 'lo');
 }
 var APP_URL = 'https://thai-84day.app.workbuddy.host/';
 function paintAcctBar(){
@@ -637,9 +699,11 @@ function paintAcctBar(){
   if (!t || !s) return;
   if (ME){
     t.textContent = ME.email || '已登录';
-    /* 收起时也要一眼看清「已登录 + 同步是否正常」 */
-    s.textContent = '✓ 已登录 · ' + (pushOk ? '已同步到云端' : (syncing ? '正在同步…' : '云端已连接'))
-      + ' · 点开可同步 / 退出';
+    /* 收起时也要一眼看清「已登录 + 同步是否正常」。
+       同步失败时不能还写「云端已连接」——那是在骗用户，
+       他会以为可以放心刷新，结果一刷新进度全丢。 */
+    var tail = pushOk ? '已同步到云端' : (syncing ? '正在同步…' : '同步失败，点上方标签重试');
+    s.textContent = '✓ 已登录 · ' + tail + ' · 点开可同步 / 退出';
   }
   else if (cloud){ t.textContent = '登录 / 注册'; s.textContent = '登录后学习记录可存到云端，换设备不丢'; }
   else if (cloudErr === 'origin'){ t.textContent = '登录（需用正式网址）'; s.textContent = '当前是 GitHub Pages 镜像，点这里看说明'; }
@@ -853,6 +917,24 @@ var SMAP = {}; (P.sents || []).forEach(function(s){ SMAP[s.id] = s; });
 var WMAP = {}; POOL_W.forEach(function(w){ WMAP[w.t] = w; });
 var GMAP = {}; POOL_G.forEach(function(g){ GMAP[g.t] = g; });
 
+/* ==================== 今日 ==================== */
+/* TASKS / TNAME 必须声明在「状态区」里、也就是第 1128 行 var D = getDay(S.day) 之前。
+   原来它们放在 renderToday 前面，于是 getDay() → buildPlan() → quotaForDay()
+   → doneDays() → dayDone() 读 TASKS.length 时，TASKS 还没赋值（var 提升只提升声明）。
+   后果：只要本地存过任何一天的学习记录，页面一打开就抛
+     TypeError: Cannot read properties of undefined (reading 'length')
+   整个 <script> 块中断执行 —— 今日看板空白、底部导航和所有按钮全部失灵。
+   触发条件是「本地有历史天数 + 跨天」，也就是几乎所有第二天以后打开页面的用户。
+   教训：JS 里 var 提升不等于初始化提前，跨函数提前使用时必须把定义挪到调用点之前。 */
+var TASKS = [
+  { k:'rev',  n:'到期复习', d:'按遗忘曲线到期的词和短句' },
+  { k:'new',  n:'新学',     d:'今天新分配的词和短句' },
+  { k:'read', n:'她的例句', d:'看泰文猜意思，再对答案' },
+  { k:'out',  n:'我的例句', d:'看中文先自己说泰文，再对照' },
+  { k:'quiz', n:'今日测验', d:'四种题型随机' }
+];
+var TNAME = { rev:'到期复习', new:'新学', read:'她的例句', out:'我的例句', quiz:'今日测验' };
+
 /* ==================== 状态 ==================== */
 var KEY = "thai-daily-v1";
 var DEF = { newWords: 12, newGrams: 3, newHerSent: 5, newMySent: 4, quizCount: 10 };
@@ -867,12 +949,44 @@ if (!S.start) S.start = today();
 function persist(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
 function save(){
   persist();
-  if (cloud && ME){
-    S.savedAt = Date.now();
-    clearTimeout(syncTimer);
-    setSync('同步中…', 'b');
-    syncTimer = setTimeout(pushCloud, 2500);
+  /* restoring 期间不推送：恢复流程里的 renderToday() 会调 save()，
+     而 boot()/afterLogin() 结尾还会自己推一次 —— 不挡住就是白跑两趟请求。
+     恢复完成后由调用方统一推一次。 */
+  if (cloud && ME && !restoring) schedulePush();
+}
+var restoring = false;
+/* ==================== 云端推送节奏（曾导致「刷新后进度全丢」） ====================
+   旧实现是纯防抖：save() 里 clearTimeout + setTimeout(2500)。
+   连续答题时每点一次「认识」就 save() 一次 → 定时器被无限重置 →
+   只要不停顿 2.5 秒就永远不推送。用户原话：
+     「我必须手动确认同步。不然的话我只要一刷新这个数据又不见了，
+       我今天的这个单词又得重新去认。」
+   改成节流：首次改动立刻推，之后每 SYNC_MIN_GAP 最多推一次，
+   尾部再补一次兜底，��证「停下来就一定已经同步」。 */
+var SYNC_MIN_GAP = 4000;   // 两次推送的最小间隔
+var lastPushAt = 0;
+var syncTrailing = null;
+function schedulePush(){
+  setSync('同步中…', 'b');
+  var now = Date.now();
+  var wait = Math.max(0, SYNC_MIN_GAP - (now - lastPushAt));
+  if (wait === 0){
+    /* 距上次够久，立刻推 —— 这是「答完就同步」的关键 */
+    if (syncTrailing){ clearTimeout(syncTrailing); syncTrailing = null; }
+    doPush();
+    return;
   }
+  /* 距上次太近：安排一个尾部推送，并在期间继续改动就顺延。
+     用 trailing 而非 leading 的补发，保证最后一下改动一定落到云端。 */
+  if (syncTrailing) clearTimeout(syncTrailing);
+  syncTrailing = setTimeout(function(){
+    syncTrailing = null;
+    doPush();
+  }, wait);
+}
+function doPush(){
+  lastPushAt = Date.now();
+  pushCloud({ now:true });
 }
 function today(){ var d = new Date(); return d.getFullYear() + '-' + p2(d.getMonth()+1) + '-' + p2(d.getDate()); }
 function p2(n){ return n < 10 ? '0'+n : ''+n; }
@@ -1108,14 +1222,6 @@ function setText(id, v){ var el = $(id); if (el) el.textContent = v; }
 function setStyle(id, prop, v){ var el = $(id); if (el) el.style[prop] = v; }
 
 /* ==================== 今日 ==================== */
-var TASKS = [
-  { k:'rev',  n:'到期复习', d:'按遗忘曲线到期的词和短句' },
-  { k:'new',  n:'新学',     d:'今天新分配的词和短句' },
-  { k:'read', n:'她的例句', d:'看泰文猜意思，再对答案' },
-  { k:'out',  n:'我的例句', d:'看中文先自己说泰文，再对照' },
-  { k:'quiz', n:'今日测验', d:'四种题型随机' }
-];
-var TNAME = { rev:'到期复习', new:'新学', read:'她的例句', out:'我的例句', quiz:'今日测验' };
 function taskKeys(k){
   var p = D.plan;
   if (k === 'rev') return p.dueW.concat(p.dueG);
@@ -2109,6 +2215,7 @@ safeRun(function(){ renderAccount(); paintAcctBar(); }, 'renderAccount');
 })();
 
 /* ---- 启动：恢复登录态并拉取云端 ---- */
+$('syncChip').onclick = retryPush;   // 同步失败时点标签直接重试
 function boot(){
   if (!cloud){ setSync('仅本地', 'lo'); renderAccount(); return; }
   setSync('检查登录…', 'b');
@@ -2116,45 +2223,54 @@ function boot(){
     if (r.error || !r.data){ setSync('未登录', 'lo'); renderAccount(); return; }
     ME = r.data.user;
     setSync('读取云端…', 'b');
+    /* 登录态和「云端有没有你的数据」是两件事，必须分开判断。
+       刚注册完还没学任何东西时，study_state 表里没有这一行，
+       maybeSingle() 返回 data:null —— 旧代码写成
+         if (res.error || !res.data) → setSync('未登录')
+       于是「已登录」被误判成未登录，界面又冒出登录/注册表单。
+       用户反馈「登录后还是显示登录按钮」就是这个 bug。
+       正确口径：只有 res.error 才算登录态有问题；data 为空只是「还没存过」。*/
     return cloud.database.from('study_state').select('payload, updated_at').maybeSingle().then(function(res){
-      if (res.error || !res.data){ setSync('未登录', 'lo'); renderAccount(); return; }
-      cloudRow = res.data;
-      var remote = res.data.payload;
-      if (remote && remote.items && Object.keys(remote.items).length){
-        var rt = res.data.updated_at ? new Date(res.data.updated_at).getTime() : 0;
-        var lt = S.savedAt || 0;
-        if (localIsEmpty() || rt > lt + 5000){
-          var keep = (localIsEmpty() || confirm('云端有更新的学习记录（' + res.data.updated_at + '）。\n确定用云端记录覆盖这台设备上的本地记录吗？'));
-          if (keep){
-            S = remote;
-            if (!S.cfg) S.cfg = {};
-            for (var d in DEF) if (S.cfg[d] == null) S.cfg[d] = DEF[d];
-            if (!S.master) S.master = {};
-            if (!S.q) S.q = { w:0, g:0, hs:0, ms:0 };
-            if (!S.items) S.items = {}; if (!S.days) S.days = {};
-            S.day = Math.max(1, diffDays(S.start || today(), today()) + 1);
-            D = getDay(S.day);
-            persist();
-            renderToday(); renderCorpus(); renderWords(); renderPhrases(); renderMe();
-            toast('已从云端恢复学习记录');
-          }
-        }
+      if (res.error){
+        /* 数据读不到不等于没登录 —— 登录态是 getSession 给的，如实反映 */
+        setSync('已登录·云端读取失败', 'r');
+        renderAccount(); paintAcctBar();
+        toast('已登录，但云端记录读取失败，本地记录仍正常保存');
+        return;
       }
-      setSync('已同步', 'g');
-      renderAccount();
+      if (!res.data){
+        /* 已登录、云端为空：这是一份全新记录，主动推上去建行，
+           否则用户第一次刷新后又会因为「云端没数据」而困惑。 */
+        setSync('已登录·新建云端记录', 'b');
+        pushCloud({ now:true });
+        renderAccount(); paintAcctBar();
+        return;
+      }
+      cloudRow = res.data;
+      /* 恢复逻辑在 restoreFromCloud()，登录和启动两条路径共用一处 */
+      var how = restoreFromCloud(res.data);
+      if (how === 'restored') toast('已从云端恢复学习记录');
+      renderAccount(); paintAcctBar();
+      /* 别写死「已同步」：让 pushCloud 如实汇报成功还是失败 */
+      if (how === 'restored' || how === 'kept-local') doPush();
+      else setSync('已登录·云端暂无记录', 'lo');
     });
-  }).catch(function(){ setSync('仅本地', 'lo'); renderAccount(); });
+  }).catch(function(e){ setSync('仅本地', 'lo'); renderAccount(); console.error('boot:', e); });
 }
 boot();
+/* 切后台 / 锁屏这一刻是「用户可能马上关页面」的最后可靠时机。
+   页面隐藏事件比 unload 可靠得多：fetch 在 unload 里会被取消，
+   但 visibilitychange 触发时页面还活着，请求能发出去。 */
 window.addEventListener('visibilitychange', function(){
-  if (document.visibilityState === 'hidden' && cloud && ME) pushCloud({ now:true });
+  if (document.visibilityState !== 'hidden') return;
+  if (syncTrailing){ clearTimeout(syncTrailing); syncTrailing = null; }
+  try { S.savedAt = Date.now(); persist(); } catch (e) {}
+  if (cloud && ME) doPush();
 });
-/* 关页面前最后兜底一次：写云端是异步的，用 sendBeacon 抢在 unload 前发出 */
-window.addEventListener('pagehide', function(){
-  if (cloud && ME) pushCloud({ now:true });
-});
+/* 关页面前把状态落到本地。
+   云端推送不能放这里：fetch 在 unload 阶段会被浏览器取消，发了也白发。
+   云端靠上面的节流 + visibilitychange 保证，不依赖卸载时刻。 */
 window.addEventListener('beforeunload', function(){
-  if (!cloud || !ME) return;
   try { S.savedAt = Date.now(); persist(); } catch (e) {}
 });
 </script>
