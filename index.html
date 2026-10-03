@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16181d" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<!-- 内联 favicon：不额外发一次请求，浏览器标签页和手机主屏都有图标 -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a90d9'/%3E%3Ctext x='32' y='45' font-size='40' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E0%B9%94%3C/text%3E%3C/svg%3E">
 <title>泰语 84 天</title>
 <style>
 :root{
@@ -17,12 +20,38 @@
   --purple50:#eeedfb; --purple200:#cecbf9; --purple600:#534ab7;
   --safe-b:env(safe-area-inset-bottom,0px);
   --ok:var(--green600); --warn:var(--amber600); --bad:var(--red600);
+  /* 阴影层级：低/中/高，卡片与浮层按高度取用 */
+  --sh1:0 1px 2px rgba(28,26,22,.05);
+  --sh2:0 2px 10px rgba(28,26,22,.07);
+  --sh3:0 8px 28px rgba(28,26,22,.13);
+  --r:16px;            /* 统一圆角 */
+  --r-sm:11px;
+}
+/* 深色模式：跟随系统。用户常在泰国，晚上刷这个是主要场景，
+   原来的纯白底在暗环境下刺眼、也影响入睡。 */
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#16181d; --surface:#1e2027; --surface2:#262932; --line:#2c2f38; --line2:#3b3f4a;
+    --tx:#e8e6e1; --tx2:#a8a69f; --tx3:#767570;
+    --blue50:#12283d; --blue200:#1e4a6f; --blue600:#5aaaf0; --blue800:#a6d3fa;
+    --amber50:#33270f; --amber200:#6b4e17; --amber600:#f0c36d;
+    --green50:#1b2a12; --green600:#8fd45a;
+    --red50:#3a1a1a; --red200:#7a3535; --red600:#f08a8a;
+    --purple50:#262347; --purple200:#454080; --purple600:#b0a8f5;
+    --sh1:0 1px 2px rgba(0,0,0,.3);
+    --sh2:0 2px 12px rgba(0,0,0,.4);
+    --sh3:0 10px 32px rgba(0,0,0,.55);
+  }
+  /* 白底手绘图在暗色下会晃眼，压一点亮度让文字成为主角 */
+  img{filter:brightness(.94) contrast(1.02)}
+  .btn.primary{color:#0d1117}
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
 body{background:var(--bg);color:var(--tx);
   font-family:system-ui,-apple-system,"Segoe UI","Leelawadee UI","Noto Sans Thai","Noto Sans Thai UI","Microsoft YaHei",sans-serif;
-  font-size:15px;line-height:1.65;padding-bottom:calc(66px + var(--safe-b))}
+  font-size:15px;line-height:1.65;padding-bottom:calc(66px + var(--safe-b));
+  -webkit-font-smoothing:antialiased}
 h1,h2,h3{margin:0}
 h2{font-size:15px;font-weight:600;margin:18px 0 8px}
 h3{font-size:14px;font-weight:600;margin:14px 0 6px}
@@ -37,20 +66,23 @@ b{font-weight:600}
   line-height:1.9;word-break:keep-all;overflow-wrap:break-word;letter-spacing:.2px}
 
 /* 顶栏 */
-.topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);
-  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);padding:9px 14px}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--line);padding:9px 14px;box-shadow:var(--sh1)}
 .topbar .tb{display:flex;align-items:center;gap:10px;max-width:760px;margin:0 auto}
-.topbar .ttl{font-size:15px;font-weight:600}
+.topbar .ttl{font-size:15px;font-weight:600;letter-spacing:.2px}
 .topbar .day{font-size:12px;color:var(--tx2)}
-.topbar .pb{flex:1;height:6px;background:var(--line);border-radius:99px;overflow:hidden;min-width:40px}
-.topbar .pb>i{display:block;height:100%;background:var(--green600);width:0;transition:width .3s}
+.topbar .pb{flex:1;height:6px;background:var(--surface2);border-radius:99px;overflow:hidden;min-width:40px}
+.topbar .pb>i{display:block;height:100%;background:linear-gradient(90deg,var(--green600),#7cc04a);
+  width:0;transition:width .35s ease;border-radius:99px}
 
 main{max-width:760px;margin:0 auto;padding:12px 14px 20px}
 .view{display:none}
 .view.on{display:block}
 
 /* 卡片 */
-.card{border:1px solid var(--line);border-radius:14px;padding:16px;margin:10px 0;background:var(--bg)}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:10px 0;
+  background:var(--bg);box-shadow:var(--sh1)}
 /* 账号条：做成 button 时要重置浏览器默认样式，否则点击区域/外观都会不对 */
 .acctbar{display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;
   background:var(--surface);color:var(--tx);border:1px solid var(--line2);border-radius:14px;
@@ -60,84 +92,146 @@ main{max-width:760px;margin:0 auto;padding:12px 14px 20px}
 .acctbar .ab-tx{flex:1;min-width:0}
 .acctbar .ab-ar{color:var(--tx3);font-size:14px;flex:0 0 auto;transition:transform .18s}
 .acctbar.open .ab-ar{transform:rotate(180deg)}
-.hero{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}
+.hero{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.kpi{background:var(--bg);border-radius:10px;padding:9px 10px}
+/* KPI 卡片：给一层很轻的渐变和左边色条，比纯灰块更有结构感，
+   颜色语义和数字含义对齐（得分=蓝、连续=绿、失误=红）。 */
+.kpi{background:var(--bg);border-radius:var(--r-sm);padding:10px 11px;position:relative;
+  overflow:hidden;box-shadow:var(--sh1)}
+.kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--line2)}
+.kpi.k-blue::before{background:var(--blue600)}
+.kpi.k-green::before{background:var(--green600)}
+.kpi.k-amber::before{background:var(--amber600)}
+.kpi.k-red::before{background:var(--red600)}
+.kpi.k-purple::before{background:var(--purple600)}
 .kpi .l{font-size:11.5px;color:var(--tx2)}
-.kpi .v{font-size:19px;font-weight:600;margin-top:1px;line-height:1.3}
+.kpi .v{font-size:20px;font-weight:600;margin-top:1px;line-height:1.25;
+  font-variant-numeric:tabular-nums;letter-spacing:-.3px}
 
 /* 按钮 */
 button{font:inherit}
-.btn{min-height:44px;padding:10px 14px;border-radius:11px;border:1px solid var(--line2);background:transparent;color:var(--tx);cursor:pointer;font-size:14px}
-.btn:active{background:var(--surface)}
+.btn{min-height:44px;padding:10px 14px;border-radius:var(--r-sm);border:1px solid var(--line2);
+  background:var(--bg);color:var(--tx);cursor:pointer;font-size:14px;
+  transition:transform .08s,background .12s,border-color .12s,box-shadow .12s}
+.btn:active{background:var(--surface2);transform:scale(.985)}
 .btn.on{background:var(--blue50);border-color:var(--blue600);color:var(--blue800)}
-.btn.primary{background:var(--blue600);border-color:var(--blue600);color:#fff}
-.btn.primary:active{background:var(--blue800)}
+.btn.primary{background:var(--blue600);border-color:var(--blue600);color:#fff;box-shadow:var(--sh1)}
+.btn.primary:active{background:var(--blue800);box-shadow:none}
 .btn.ok{border-color:var(--green600);color:var(--green600)}
 .btn.no{border-color:var(--red600);color:var(--red600)}
 .btn.wide{width:100%}
 .btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
 .btnrow>*{flex:1;min-width:96px}
-.mini{min-height:34px;padding:5px 10px;border-radius:9px;border:1px solid var(--line2);background:transparent;color:var(--tx2);cursor:pointer;font-size:12.5px}
+.mini{min-height:34px;padding:5px 10px;border-radius:9px;border:1px solid var(--line2);background:var(--bg);color:var(--tx2);cursor:pointer;font-size:12.5px;white-space:nowrap;transition:transform .08s,background .12s}
+.mini:active{transform:scale(.96)}
 .mini.on{background:var(--green50);border-color:var(--green600);color:var(--green600)}
-select,input[type=text],input[type=number]{font:inherit;font-size:15px;min-height:42px;padding:8px 10px;border:1px solid var(--line2);border-radius:11px;background:var(--bg);color:var(--tx);width:100%}
-textarea{font:inherit;width:100%;min-height:120px;font-size:12px;font-family:ui-monospace,Consolas,monospace;border:1px solid var(--line2);border-radius:11px;padding:10px}
+select,input[type=text],input[type=number]{font:inherit;font-size:15px;min-height:44px;padding:9px 11px;border:1px solid var(--line2);border-radius:var(--r-sm);background:var(--bg);color:var(--tx);width:100%;transition:border-color .12s,box-shadow .12s}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--blue600);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue600) 18%,transparent)}
+textarea{font:inherit;width:100%;min-height:120px;font-size:12px;font-family:ui-monospace,Consolas,monospace;border:1px solid var(--line2);border-radius:var(--r-sm);padding:10px;background:var(--bg);color:var(--tx)}
 label.fld{display:block;margin:8px 0}
 label.fld>span{display:block;font-size:12.5px;color:var(--tx2);margin-bottom:4px}
 
 /* 任务 */
-.task{border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+.task{border:1px solid var(--line);border-radius:var(--r);padding:14px;margin:10px 0;
+  background:var(--bg);box-shadow:var(--sh1);transition:background .15s,border-color .15s}
 .task.done{background:var(--green50);border-color:var(--green600)}
 .task .th{display:flex;align-items:center;gap:10px}
 .task .nm{font-size:15px;font-weight:600;flex:1}
-.task .sc{font-size:19px;font-weight:600;color:var(--green600)}
+.task .sc{font-size:19px;font-weight:600;color:var(--green600);font-variant-numeric:tabular-nums}
 .task .dd{font-size:12.5px;color:var(--tx2);margin:3px 0 9px}
-.mbar{height:5px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:10px}
-.mbar>i{display:block;height:100%;background:var(--blue600);width:0}
+.mbar{height:6px;background:var(--surface2);border-radius:99px;overflow:hidden;margin-bottom:10px}
+.mbar>i{display:block;height:100%;background:linear-gradient(90deg,var(--blue600),var(--blue800));
+  width:0;border-radius:99px;transition:width .3s ease}
 
 /* 学习卡 */
-.study{border:1px solid var(--line2);border-radius:16px;padding:30px 18px;margin:12px 0;text-align:center;background:var(--bg);min-height:230px;display:flex;flex-direction:column;justify-content:center}
+.study{border:1px solid var(--line2);border-radius:var(--r);padding:30px 18px;margin:12px 0;
+  text-align:center;background:var(--bg);min-height:230px;display:flex;flex-direction:column;
+  justify-content:center;box-shadow:var(--sh2)}
 .study .q{font-size:34px;line-height:1.45;margin:8px 0}
 .study .q.sm{font-size:23px}
 .study .rom{font-size:14px;color:var(--tx2)}
-.study .a{font-size:19px;margin-top:12px}
-.study .en{font-size:13px;color:var(--tx2)}
+/* 释义是这一屏的重点，给它一点重量和分隔，别和题干挤在一起 */
+.study .a{font-size:20px;margin-top:14px;font-weight:500;line-height:1.55}
+.study .en{font-size:13px;color:var(--tx2);margin-top:2px}
 .study .note{font-size:12.5px;color:var(--amber600);margin-top:4px}
 .study .hint{font-size:12.5px;color:var(--tx3);margin-top:12px}
 /* 真实用例句：把词放回她的原话里 */
-.exbox{border-top:1px dashed var(--line2);margin-top:16px;padding-top:12px;text-align:left}
-.exh{font-size:12px;color:var(--tx2);margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.exbox{border-top:1px dashed var(--line2);margin-top:18px;padding-top:14px;text-align:left}
+.exh{font-size:12px;color:var(--tx2);margin-bottom:9px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .exh .exn{color:var(--tx3);font-size:11.5px}
-.exs{border:1px solid var(--line2);border-radius:11px;padding:10px 12px;margin:7px 0;
-  background:var(--surface);cursor:pointer;min-height:44px}
-.exs:active{background:var(--line)}
+.exs{border:1px solid var(--line2);border-radius:var(--r-sm);padding:11px 13px;margin:7px 0;
+  background:var(--surface);cursor:pointer;min-height:44px;
+  transition:background .12s,border-color .12s,transform .08s}
+.exs:active{background:var(--surface2);border-color:var(--blue200);transform:scale(.995)}
 .exs .ext{font-size:16px;line-height:1.75}
 .exs .exr{font-size:11.5px;color:var(--tx3);margin-top:2px;font-family:ui-monospace,Consolas,monospace}
 .exs .exz{font-size:13px;color:var(--tx2);margin-top:4px}
 .exmore{width:100%;margin-top:8px;padding:9px 12px;border:1px dashed var(--line2);
   border-radius:11px;background:var(--bg);color:var(--tx2);font:inherit;font-size:12.5px;cursor:pointer}
 .exmore:active{background:var(--line)}
-.opt{display:block;width:100%;text-align:left;min-height:50px;padding:12px 14px;margin:7px 0;border:1px solid var(--line2);
-  border-radius:12px;background:var(--bg);cursor:pointer;font:inherit;font-size:15px}
+.opt{display:block;width:100%;text-align:left;min-height:52px;padding:12px 14px;margin:7px 0;border:1px solid var(--line2);
+  border-radius:12px;background:var(--bg);cursor:pointer;font:inherit;font-size:15px;
+  transition:background .12s,border-color .12s,transform .08s}
+.opt:active{background:var(--surface2);transform:scale(.99)}
 .opt .th{font-size:19px}
-.opt.right{background:var(--green50);border-color:var(--green600)}
-.opt.wrong{background:var(--red50);border-color:var(--red600)}
+/* 判对错后给明确的颜色 + 左侧色条，光靠背景色在深色模式下不够醒目 */
+.opt.right{background:var(--green50);border-color:var(--green600);box-shadow:inset 3px 0 0 var(--green600)}
+.opt.wrong{background:var(--red50);border-color:var(--red600);box-shadow:inset 3px 0 0 var(--red600)}
 .opt:disabled{cursor:default}
 
 /* 词条行 */
-.w{display:flex;gap:11px;align-items:flex-start;padding:11px 13px;border-bottom:1px solid var(--line);cursor:pointer}
-.w:active{background:var(--surface)}
+.w{display:flex;gap:11px;align-items:flex-start;padding:12px 13px;border-bottom:1px solid var(--line);
+  cursor:pointer;transition:background .12s}
+.w:active{background:var(--surface2)}
 .w:last-child{border-bottom:none}
 .w.learned{opacity:.5}
 .w .pl{flex:0 0 20px;color:var(--blue600);font-size:13px;margin-top:3px}
 .w .rk{flex:0 0 22px;color:var(--tx3);font-size:12px;margin-top:4px;text-align:right}
 .w .mn{flex:1;min-width:0}
+/* 侧栏标签组不能再 flex:0 0 auto —— 泰文释义很长时会被挤成一条窄柱，
+   右边却空一大片（这正是导入长句例句后暴露出来的）。
+   改成整行文字在上、标签在下，窄屏也不会挤压正文。 */
+.w .sd{flex:0 0 auto;display:flex;gap:5px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+/* 宽屏时把标签挪到左下角那一行的行尾，正文拿到全宽 */
+@media (max-width:520px){
+  .w{flex-wrap:wrap}
+  .w .pl{flex:0 0 20px}
+  .w .mn{flex:1 1 calc(100% - 31px)}
+  .w .sd{flex:1 1 100%;justify-content:flex-start;padding-left:31px;margin-top:6px}
+}
 .w .t1{font-size:19px;line-height:1.5}
 .w .t1.sm{font-size:16px}
-.w .sd{flex:0 0 auto;display:flex;gap:5px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-.list{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:8px}
-.tag{font-size:11px;padding:1px 7px;border-radius:99px;background:var(--amber50);color:var(--amber600);border:1px solid var(--amber200);white-space:nowrap}
+.list{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:8px;
+  background:var(--bg);box-shadow:var(--sh1)}
+.tag{font-size:11px;padding:1px 7px;border-radius:99px;background:var(--amber50);color:var(--amber600);
+  border:1px solid var(--amber200);white-space:nowrap}
 .tag.lo{background:var(--surface);color:var(--tx2);border-color:var(--line2)}
+
+/* 短语点读页：分组导航条 + 组标题
+   原来每条短语右侧挂一个只显示「A」的标签，一行只有一个字母，
+   既占宽度又没信息。现在组名提到列表上方做成可点的导航条，
+   组标题只在该组第一次出现时插一次。 */
+.pgs{display:flex;gap:6px;overflow-x:auto;padding:2px 0 9px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.pgs::-webkit-scrollbar{display:none}
+.pg{flex:0 0 auto;display:flex;align-items:center;gap:6px;min-height:34px;
+  padding:5px 11px 5px 7px;border:1px solid var(--line);border-radius:99px;
+  background:var(--bg);color:var(--tx2);font:inherit;font-size:12.5px;cursor:pointer;
+  transition:transform .08s,border-color .12s,background .12s,opacity .12s}
+.pg b{display:grid;place-items:center;width:19px;height:19px;border-radius:50%;
+  background:var(--blue50);color:var(--blue600);font-size:11px;flex:0 0 19px}
+.pg:active{transform:scale(.96)}
+.pg.hit{border-color:var(--blue200);background:var(--blue50);color:var(--tx)}
+.pg.dim{opacity:.42}
+/* 组标题：只是分隔线，不做 sticky。
+   试过 position:sticky，结果滚动时它会盖住该组第一条短语的泰文 ——
+   而那正是用户最需要看清的一行。列表本身不长，粘住反而添乱。 */
+.pgh{display:flex;align-items:baseline;gap:8px;padding:15px 14px 9px;
+  background:var(--surface);border-bottom:1px solid var(--line)}
+.pgh b{font-size:13px;color:var(--blue600);font-weight:700;letter-spacing:.5px}
+.pgh span{font-size:13px;color:var(--tx);font-weight:500}
+/* 第一条组标题紧贴列表上沿，不要再多留一段空白 */
+#pList .pgh:first-child{padding-top:12px}
 .tag.b{background:var(--blue50);color:var(--blue800);border-color:var(--blue200)}
 .tag.p{background:var(--purple50);color:var(--purple600);border-color:var(--purple200)}
 .tag.r{background:var(--red50);color:var(--red600);border-color:var(--red200)}
@@ -184,17 +278,26 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 .ani b{color:var(--tx);font-weight:500}
 
 /* 底栏 */
-.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;background:rgba(255,255,255,.96);
-  backdrop-filter:saturate(180%) blur(12px);border-top:1px solid var(--line);padding-bottom:var(--safe-b)}
-.tabbar button{flex:1;min-height:56px;border:0;background:transparent;color:var(--tx3);cursor:pointer;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;padding:6px 0}
-.tabbar button .ic{font-size:19px;line-height:1}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;
+  background:color-mix(in srgb,var(--bg) 92%,transparent);
+  backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-top:1px solid var(--line);padding-bottom:var(--safe-b);box-shadow:0 -1px 12px rgba(28,26,22,.05)}
+.tabbar button{flex:1;min-height:58px;border:0;background:transparent;color:var(--tx3);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;
+  padding:6px 0;position:relative;transition:color .15s}
+.tabbar button .ic{font-size:19px;line-height:1;transition:transform .18s}
+/* 选中项上方加一段短横条，比只换颜色更容易一眼看出当前位置 */
 .tabbar button.on{color:var(--blue600)}
-.tabbar button.on .ic{transform:translateY(-1px)}
+.tabbar button.on .ic{transform:translateY(-1px) scale(1.06)}
+.tabbar button.on::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:22px;height:3px;border-radius:0 0 3px 3px;background:var(--blue600)}
 
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(78px + var(--safe-b));background:var(--blue800);color:#fff;
-  font-size:13.5px;padding:9px 15px;border-radius:11px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:99;max-width:90vw;text-align:center}
-.toast.show{opacity:1}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(80px + var(--safe-b));
+  background:var(--tx);color:var(--bg);
+  font-size:13.5px;padding:10px 16px;border-radius:12px;opacity:0;transition:opacity .2s,transform .2s;
+  pointer-events:none;z-index:99;max-width:88vw;text-align:center;
+  box-shadow:var(--sh3);transform:translateX(-50%) translateY(6px)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
@@ -211,13 +314,13 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
   <section class="view on" id="v-today">
     <div class="hero">
       <div class="kpis">
-        <div class="kpi"><div class="l">今日得分</div><div class="v" id="kScore">—</div></div>
-        <div class="kpi"><div class="l">连续天数</div><div class="v" id="kStreak">0</div></div>
-        <div class="kpi"><div class="l">已学条目</div><div class="v" id="kTotal">0</div></div>
-        <div class="kpi"><div class="l">待复习</div><div class="v" id="kDue">0</div></div>
-        <div class="kpi"><div class="l">平均得分</div><div class="v" id="kAvg">—</div></div>
-        <div class="kpi"><div class="l">今日用时</div><div class="v" id="kMin">0′</div></div>
-        <div class="kpi"><div class="l">隔天留存</div><div class="v" id="kHold">—</div></div>
+        <div class="kpi k-blue"><div class="l">今日得分</div><div class="v" id="kScore">—</div></div>
+        <div class="kpi k-green"><div class="l">连续天数</div><div class="v" id="kStreak">0</div></div>
+        <div class="kpi k-purple"><div class="l">已学条目</div><div class="v" id="kTotal">0</div></div>
+        <div class="kpi k-amber"><div class="l">待复习</div><div class="v" id="kDue">0</div></div>
+        <div class="kpi k-blue"><div class="l">平均得分</div><div class="v" id="kAvg">—</div></div>
+        <div class="kpi k-green"><div class="l">今日用时</div><div class="v" id="kMin">0′</div></div>
+        <div class="kpi k-red"><div class="l">隔天留存</div><div class="v" id="kHold">—</div></div>
       </div>
       <p class="sub" id="dayInfo" style="margin-bottom:0"></p>
     </div>
@@ -276,7 +379,11 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
       <button class="btn" id="refR">规则速查</button>
     </div>
     <div id="refPhrase">
-      <div class="btnrow"><input type="text" id="pQ" placeholder="搜索 76 条短语"></div>
+      <div class="btnrow">
+        <input type="text" id="pQ" placeholder="搜索短语 / 泰文 / 中文">
+        <span class="sub" id="pCount" style="white-space:nowrap;align-self:center"></span>
+      </div>
+      <div class="pgs" id="pGroups"></div>
       <div class="list" id="pList"></div>
     </div>
     <div id="refMemo" style="display:none"><div id="memoBody"></div></div>
@@ -1721,19 +1828,52 @@ $('wList').addEventListener('click', function(e){
 });
 
 /* ==================== 参考 ==================== */
-var FLAT = [];
-DATA.forEach(function(g){ g.items.forEach(function(it){ FLAT.push({ g:g.g, th:it[0], rom:it[1], zh:it[2], note:it[3] }); }); });
+/* 每条短语带上它属于第几组、组名全称，以及组内序号。
+   之前只存了组名字符串，渲染时再 split(' ')[0] 取字母 ——
+   结果标签上只显示「A」「B」，把「日常问候与关心」这类真正有用的信息全丢了，
+   还得占掉一整行。这里改成预先算好，标签直接显示全称。 */
+var FLAT = [], PGROUPS = [];
+DATA.forEach(function(g, gi){
+  var letter = g.g.split(' ')[0];
+  var full = g.g.replace(/^[A-Z]\s*·\s*/, '');
+  PGROUPS.push({ i: gi, letter: letter, name: full });
+  g.items.forEach(function(it, ii){
+    FLAT.push({ gi: gi, ii: ii, g: g.g, letter: letter, gname: full,
+      th: it[0], rom: it[1], zh: it[2], note: it[3] });
+  });
+});
+
+/* 顶部分组条：点一下滚到那一组开头，比在 76 条里手动翻要快得多 */
+function renderPGroups(){
+  $('pGroups').innerHTML = PGROUPS.map(function(g){
+    return '<button class="pg" data-pg="'+g.i+'">'
+      + '<b>'+esc(g.letter)+'</b><span>'+esc(g.name)+'</span></button>';
+  }).join('');
+}
+
 function renderPhrases(){
-  var q = ($('pQ').value || '').toLowerCase(), h = '';
+  var q = ($('pQ').value || '').toLowerCase(), h = '', lastG = -1, n = 0;
   FLAT.forEach(function(p, i){
     if (q && ((p.th+p.rom+p.zh+p.g).toLowerCase().indexOf(q) < 0)) return;
+    n++;
+    if (p.gi !== lastG){
+      lastG = p.gi;
+      h += '<div class="pgh" data-gi="'+p.gi+'"><b>'+esc(p.letter)+'</b>'
+        + '<span>'+esc(p.gname)+'</span></div>';
+    }
     h += '<div class="w" data-a="p'+i+'" data-d="audio" data-t="'+esc(p.th).replace(/"/g,'&quot;')+'">'
       + '<span class="pl">▶</span><div class="mn"><div class="t1 th">'+esc(p.th)+'</div>'
       + '<div class="rom sub">'+esc(p.rom)+'</div><div class="sub" style="color:var(--tx);font-size:13.5px">'+esc(p.zh)+'</div>'
       + (p.note ? '<div class="sub" style="font-size:12.5px;color:var(--amber600)">'+esc(p.note)+'</div>' : '')
-      + '</div><div class="sd"><span class="tag lo">'+esc(p.g.split(' ')[0])+'</span></div></div>';
+      + '</div></div>';
   });
   $('pList').innerHTML = h || '<div class="w"><div class="mn sub">没有匹配结果</div></div>';
+  $('pCount').textContent = n + (n === FLAT.length ? ' 条' : ' / ' + FLAT.length + ' 条');
+  /* 搜索时高亮命中的组，隐藏其余，避免 8 个组标题全露出来干扰阅读 */
+  document.querySelectorAll('#pGroups .pg').forEach(function(b){
+    b.classList.toggle('hit', !q);
+    b.classList.toggle('dim', !!q);
+  });
 }
 $('pQ').oninput = renderPhrases;
 /* ==================== 复习机制说明（用你自己的真实数据） ==================== */
@@ -1784,6 +1924,18 @@ function renderMemo(){
 $('pList').addEventListener('click', function(e){
   var r = e.target.closest ? e.target.closest('.w') : null;
   if (r) say(r.getAttribute('data-a'), r.getAttribute('data-d'), r.getAttribute('data-t'));
+});
+/* 分组导航条：点组名滚到列表里那一组的组标题。
+   搜索状态下不跳 —— 那时列表里是筛过的结果，滚动位置对不上。 */
+$('pGroups').addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.pg') : null;
+  if (!b) return;
+  if (($('pQ').value || '').trim()) { toast('先清空搜索再按组跳转'); return; }
+  var gi = b.getAttribute('data-pg');
+  var head = $('pList').querySelector('.pgh[data-gi="' + gi + '"]');
+  if (!head) { toast('这一组没有匹配内容'); return; }
+  var y = head.getBoundingClientRect().top + window.scrollY - 76;
+  window.scrollTo({ top: y, behavior: 'smooth' });
 });
 $('refP').onclick = function(){
   ['refP','refM','refR'].forEach(function(x){ $(x).classList.toggle('on', x === 'refP'); });
@@ -1936,7 +2088,7 @@ function safeRun(fn, name){
 safeRun(function(){ renderToday(); }, 'renderToday');
 safeRun(function(){ renderCorpus(); }, 'renderCorpus');
 safeRun(function(){ renderWords(); }, 'renderWords');
-safeRun(function(){ renderPhrases(); }, 'renderPhrases');
+safeRun(function(){ renderPGroups(); renderPhrases(); }, 'renderPGroups/renderPhrases');
 safeRun(function(){ renderMe(); }, 'renderMe');
 safeRun(function(){ renderAccount(); paintAcctBar(); }, 'renderAccount');
 

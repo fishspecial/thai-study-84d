@@ -1,3 +1,5 @@
 node_modules/
 .pick30.json
 .vt/
+live/
+tools/*.log
