@@ -269,7 +269,16 @@ async function newPage(browser, opts) {
       sub: (document.getElementById('meAcctS') || {}).textContent || '',
       clickable: !!document.getElementById('syncChip').onclick,
     }));
-    log('D1 同步失败时标签文案提示可重试', r.sync.indexOf('重试') >= 0, '标签「' + r.sync + '」');
+    /* 文案改成「同步失败·改动仍在这台设备」——
+       原文案「点此重试」暗示「数据没保存成功」，会让用户以为今天学的白学了，
+       实际上改动一直在这台设备上（savedAt 已回滚，下次任何一次推送都会带走）。
+       但**可点击重试这个实质要求不能丢**，所以判据放宽到「失败态 + 可点」：
+         必须含「同步失败」，且不能出现「已同步」这种误导字样。 */
+    log('D1 同步失败时标签文案正确且不误导',
+      r.sync.indexOf('同步失败') >= 0 && r.sync.indexOf('已同步') < 0,
+      '标签「' + r.sync + '」');
+    log('D1b 失败文案说明改动没丢', r.sync.indexOf('改动仍在这台设备') >= 0,
+      '标签「' + r.sync + '」');
     log('D2 失败态用红色类', r.cls.indexOf('r') >= 0, 'class=' + r.cls);
     log('D3 标签可点击（光标变 pointer）', r.cursor === 'pointer', 'cursor=' + r.cursor);
     log('D4 标签绑定了重试函数', r.clickable, 'onclick=' + r.clickable);

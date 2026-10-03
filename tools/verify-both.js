@@ -259,19 +259,30 @@ const CASES = [
     /* 只查「媒体查询规则存在」会报假 FAIL —— 规则在但没生效一样是坏的。
        必须开一个深色上下文，读 body 的实际计算背景值。
        第一版只 flatMap 遍历 cssRules 找 conditionText，本地测一直是 PASS，
-       换个检测口径就露馅了：规则存在 ≠ 生效。 */
-    const dark = await p.context().newPage();
-    await dark.emulateMedia({ colorScheme: 'dark' });
+       换个检测口径就露馅了：规则存在 ≠ 生效。
+
+       第三版修正：原来在同一 context 里 emulateMedia 后又 goto，
+       而 context 本身是浅色的（verify-both 第 366 行 newContext 没传 colorScheme），
+       goto 会按 context 的偏好重置媒体状态 —— 于是 matchMedia 返回 true
+       （因为 emulateMedia 生效过）但页面按浅色渲染，判据自相矛盾。
+       正确做法是新开一个 colorScheme:'dark' 的 context。 */
+    const browser = p.context().browser();
+    const dctx = await browser.newContext({
+      viewport: { width: 390, height: 844 }, colorScheme: 'dark',
+    });
     const r = await (async () => {
+      const dark = await dctx.newPage();
       await dark.goto(p.url(), { waitUntil: 'load', timeout: 30000 });
       await dark.waitForTimeout(2000);
-      return await dark.evaluate(() => ({
+      const v = await dark.evaluate(() => ({
         matches: matchMedia('(prefers-color-scheme: dark)').matches,
         bg: getComputedStyle(document.body).backgroundColor,
         tx: getComputedStyle(document.body).color,
       }));
+      await dark.close();
+      return v;
     })().catch(e => ({ err: e.message }));
-    await dark.close();
+    await dctx.close();
     if (r.err) return [false, '异常: ' + r.err.slice(0, 70)];
     const m = r.bg.match(/\d+/g) || [];
     const lum = m.length >= 3

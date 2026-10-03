@@ -1,8 +1,10 @@
 # 诊断过程的临时产物，不入库
 tools/shots/
+tools/shots-style/
 node_modules/
 .vt/
 
 # 例句导出物：1.3MB HTML + 383KB TXT，由 tools/export-sents.js 一键重建。
 # 源数据 pany-data.js 已入库，导出物再存一份只是重复占用仓库。
 export/
+.synt/
