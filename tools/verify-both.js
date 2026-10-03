@@ -252,14 +252,29 @@ const CASES = [
     });
   }],
 
-  ['深色模式媒体查询存在', async (p) => {
-    return await p.evaluate(() => {
-      const s = [...document.styleSheets]
-        .flatMap(x => { try { return [...x.cssRules]; } catch (e) { return []; } })
-        .some(r => r.conditionText && r.conditionText.indexOf('prefers-color-scheme') >= 0
-          && r.conditionText.indexOf('dark') >= 0);
-      return [s, s ? '已定义' : '缺失'];
-    });
+  ['深色模式真的生效（切深色后重算背景）', async (p) => {
+    /* 只查「媒体查询规则存在」会报假 FAIL —— 规则在但没生效一样是坏的。
+       必须开一个深色上下文，读 body 的实际计算背景值。
+       第一版只 flatMap 遍历 cssRules 找 conditionText，本地测一直是 PASS，
+       换个检测口径就露馅了：规则存在 ≠ 生效。 */
+    const dark = await p.context().newPage();
+    await dark.emulateMedia({ colorScheme: 'dark' });
+    const r = await (async () => {
+      await dark.goto(p.url(), { waitUntil: 'load', timeout: 30000 });
+      await dark.waitForTimeout(2000);
+      return await dark.evaluate(() => ({
+        matches: matchMedia('(prefers-color-scheme: dark)').matches,
+        bg: getComputedStyle(document.body).backgroundColor,
+        tx: getComputedStyle(document.body).color,
+      }));
+    })().catch(e => ({ err: e.message }));
+    await dark.close();
+    if (r.err) return [false, '异常: ' + r.err.slice(0, 70)];
+    const m = r.bg.match(/\d+/g) || [];
+    const lum = m.length >= 3
+      ? (Number(m[0]) * 0.299 + Number(m[1]) * 0.587 + Number(m[2]) * 0.114) : 999;
+    return [r.matches && lum < 80,
+      'matches=' + r.matches + ' 背景=' + r.bg + ' 亮度=' + Math.round(lum) + '（应<80）'];
   }],
 
   ['无真正重复的 CSS 规则（同一作用域内）', async (p) => {
