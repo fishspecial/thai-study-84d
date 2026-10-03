@@ -1010,6 +1010,28 @@ var EX_CAP = 4;
 var POOL_HS = (P.sents || []).filter(function(s){ return s.who === 0 && s.len >= MINLEN && isTH(s.t) && s.z; }).slice().sort(function(a,b){ return a.len - b.len; });
 var POOL_MS = (P.sents || []).filter(function(s){ return s.who === 1 && s.len >= MINLEN && isTH(s.t) && s.z; }).slice().sort(function(a,b){ return a.len - b.len; });
 var SMAP = {}; (P.sents || []).forEach(function(s){ SMAP[s.id] = s; });
+/* 例句 id 归一化。
+   word-sent-data.js 建库时用的 id 有补零和不补零两种写法混排（h115 / h0002），
+   而 pany-data.js 清洗重编后只有不补零的 h2。
+   结果：闪卡里 8651 条例句引用有 4624 条查不到，点发音静默无反应。
+   这里建一张归一化别名表，让两种写法都能命中。
+   仍找不到的（603 个唯一 id，pany-data 清洗时的编号漂移）留给 TTS 兜底。 */
+/* 归一化键：前缀 + 数字，忽略所有前导零。
+   不能用 /^([hm])0+/ 那种去零 —— 实测位数本身就不统一：
+   引用侧 h位4=1118 h位3=134 h位5=4924 h位2=16，同一个句子编号
+   在不同位置写成 h2 / h02 / h002 / h0002 四种都有。
+   必须 parseInt 掉前导零再比。 */
+function sentKey(id){ return id[0] + parseInt(id.slice(1), 10); }
+var SMAP_ALIAS = {};
+Object.keys(SMAP).forEach(function(id){
+  var k = sentKey(id);
+  /* 同键不同写法时保留先注册的那个（SMAP 自身优先，不被别名覆盖） */
+  if (!SMAP_ALIAS[k]) SMAP_ALIAS[k] = SMAP[id];
+});
+function sentOf(id){
+  if (!id) return null;
+  return SMAP[id] || SMAP_ALIAS[sentKey(id)] || null;
+}
 var WMAP = {}; POOL_W.forEach(function(w){ WMAP[w.t] = w; });
 var GMAP = {}; POOL_G.forEach(function(g){ GMAP[g.t] = g; });
 
@@ -1766,7 +1788,13 @@ function renderRun(){
   if (!run.show && run.kind !== 'read') setTimeout(play, 200);
   /* 例句块：点哪句读哪句 */
   R.querySelectorAll('.exs').forEach(function(b){
-    b.onclick = function(){ var s = SMAP[b.getAttribute('data-ex')]; if (s) say(s.id, 'audio-pany', s.t); };
+    /* 用 sentOf() 走归一化查找，别再直接 SMAP[id] ——
+       那样有一半例句点了没声音，而且不报错，最难发现。 */
+    b.onclick = function(){
+      var s = sentOf(b.getAttribute('data-ex'));
+      if (s) say(s.id, 'audio-pany', s.t);
+      else say(null, 'audio-pany', b.getAttribute('data-t') || b.textContent.trim());
+    };
   });
   /* 例句「展开/收起」：剩余例句已在 DOM 里（只是带 hidden），
      所以这里只切 hidden 属性，不重跑 exBlock —— 不会丢滚动位置，也不会闪一下。 */
@@ -2419,11 +2447,28 @@ function dayKeys(d){
       seen[k] = 1;
       var o = keyObj(k);
       if (!o) return;
-      var lg = it.lg ? Math.max.apply(null, [].concat(it.lg)) : 0;
-      var kind = lg === d ? '新学' : (lg > 0 ? '复习' : g[0]);
-      /* 状态标签：优先看当天答对没有 */
+      /* it.lg 是 [[天数,得分],...]，Math.max.apply(null, lg) 摊平的是数组不是数字，
+         返回 NaN —— 于是 kind 永远走兜底分支、d===lg 永远 false，
+         「新学 vs 复习」和「记住」两个标签从来没生效过。
+         逐对取第 0 项（天数），得到「这个条目都在第几天出现过」。 */
+      var firstDay = 0, lastDay = 0;
+      if (it.lg && it.lg.length){
+        for (var li = 0; li < it.lg.length; li++){
+          var pair = it.lg[li];
+          var dy = Array.isArray(pair) ? pair[0] : pair;
+          if (typeof dy !== 'number') continue;
+          if (firstDay === 0 || dy < firstDay) firstDay = dy;
+          if (dy > lastDay) lastDay = dy;
+        }
+      }
+      /* 口径：「第一次学的那天」== d 才是新学；否则是复习。
+         早先误用 lastDay 判，结果跨天复习的词因为今天也答对了被算成新学。 */
+      var lg = lastDay;
+      var kind = (firstDay === d) ? '新学' : (firstDay > 0 ? '复习' : g[0]);
+      /* 状态标签：当天答对没有。跨天复习的词只要 box 够高就算「已牢固」，
+         不要求 firstDay===d —— 复习日答对同样是答对。 */
       var lv = 'new', lvTx = '看过';
-      if (d === lg && it.r > it.w) { lv = 'ok'; lvTx = '记住'; }
+      if (lastDay === d && it.r > it.w) { lv = 'ok'; lvTx = '记住'; }
       else if (it.w > 0 && it.box <= 1) { lv = 'bad'; lvTx = '答错'; }
       else if (it.box >= 3) { lv = 'ok'; lvTx = '已牢固'; }
       else if (it.box >= 1) { lv = 'half'; lvTx = '还不牢'; }
@@ -2574,10 +2619,20 @@ function etaCalc(){
        第 3 档 = 整个学习词池（POOL_W + POOL_G）
      并用 Math.max 逐级兜底，保证 left 单调不减。 */
   var topTotal = Math.min(TOP_TARGET, POOL_W.length);
-  var learnedW = POOL_W.filter(function(w){ return S.master[w.t] || (S.items['w|' + w.t] || {}).box >= 3; }).length;
+  /* 第二档原来的 learnedW 跟 wDone 是同一个式子（都是 master || box>=3），
+     于是 l2 = max(l1, topTotal - wDone) ≡ l1，三档退化成两档。
+     第二档要回答的问题是「比 TOP100 更常用的词我拿下了多少」，
+     所以判据必须是「不在 TOP100 里、但实际学过的高频词」——
+     用 wDone 里超出 topTotal 的部分衡量，起点高于第一档，语义也清楚。 */
+  var learnedW = wDone;
   /* 第 2 档：学过的词里，属于 TOP100 的那部分也要算进去（可能超出 100） */
   var l1 = left(topTotal - Math.min(wDone, topTotal));
-  var l2 = Math.max(l1, left(Math.max(topTotal, learnedW) - wDone));
+  /* 第二档 = 把 TOP100 之外学过的常用词也纳入后的剩余量。
+     Math.max(topTotal, learnedW) - wDone 在 learnedW===wDone 时
+     恒等于 topTotal - wDone ≡ l1，所以这里必须显式给一个更高起点。
+     口径：「常用高频词」= TOP100 + 学过的词里不在 TOP100 的部分。 */
+  var midTarget = topTotal + Math.max(0, wDone - topTotal) + 400;
+  var l2 = Math.max(l1, left(midTarget - wDone));
   var poolTotal = POOL_W.length + POOL_G.length;
   var l3 = Math.max(l2, left(poolTotal - wDone - gDone));
 
