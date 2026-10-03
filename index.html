@@ -243,7 +243,7 @@ body.focus #focusBar{display:block}
 .lrow{display:flex;align-items:center;gap:10px;padding:9px 11px;border-bottom:1px solid var(--line);
   cursor:pointer;transition:background .12s}
 .lrow:active{background:var(--surface2)}
-.lrow .lv{pointer-events:none}
+.lrow .lv{flex:0 0 auto;font-size:11px;padding:2px 7px;border-radius:8px;font-weight:600;pointer-events:none}
 /* 发音小圆钮：只是提示「这行能点」，真正的声音走整行 */
 .lrow .lb{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:1px solid var(--line2);
   background:var(--bg);color:var(--tx2);font-size:14px;line-height:1;cursor:pointer;
@@ -254,7 +254,6 @@ body.focus #focusBar{display:block}
 .lrow .lt .thai{display:block;font-size:15px}
 .lrow .lt .sub{display:block;font-size:11.5px;color:var(--tx3);margin-top:1px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lrow .lv{flex:0 0 auto;font-size:11px;padding:2px 7px;border-radius:8px;font-weight:600}
 .lv.ok{background:var(--green50);color:var(--green700)}
 .lv.half{background:var(--amber50);color:var(--amber700)}
 .lv.bad{background:var(--red50);color:var(--red700)}
@@ -1759,7 +1758,10 @@ function renderRun(){
     if (on){ grade(k, 1); run.right++; toast('已标记为掌握，之后不再出现'); nx(); }
     else { renderRun(); renderToday(); }
   };
-  if ($('cQuit')) $('cQuit').onclick = function(){ run = null; renderToday(); R.innerHTML = ''; };
+  /* 退出闪卡：三件事缺一不可 ——
+     run=null 清状态、exitFocus 收专注态、renderDrillChrome 把任务列表放回来。
+     少了最后一件，用户退出后会停在空白练习页（这坑跟 qQuit 一样，两处一起补）。 */
+  if ($('cQuit')) $('cQuit').onclick = function(){ run = null; exitFocus(); renderToday(); R.innerHTML = ''; renderDrillChrome(); };
   if ($('cPic')) $('cPic').onclick = function(){ picMode = !picMode; renderRun(); };
   if (!run.show && run.kind !== 'read') setTimeout(play, 200);
   /* 例句块：点哪句读哪句 */
@@ -1812,6 +1814,7 @@ function finishRun(){
      但外壳得重画 —— 不然 drillList 保持隐藏、focusBar 显示「进行中」，
      用户点「返回今日看板」之后回到练习页会看到一片空白。 */
   drillStarted = true;
+  drillAfterDone = true;
   renderDrillChrome();
   onTaskDone();
 }
@@ -1895,7 +1898,7 @@ function renderQuiz(){
   /* th2zh / sent 一进来就自动播一次：这两类题考「认不认识」，
      先听一遍音是做题的前提，不然得先手动点一下才看得下去。 */
   else if (q.ty === 'th2zh' || q.ty === 'sent') setTimeout(playQ, 260);
-  $('qQuit').onclick = function(){ quiz = null; exitFocus(); renderToday(); R.innerHTML = ''; };
+  $('qQuit').onclick = function(){ quiz = null; exitFocus(); renderToday(); R.innerHTML = ''; renderDrillChrome(); };
   paintFocusBar();
   R.querySelectorAll('.opt').forEach(function(b){
     b.onclick = function(){
@@ -1930,6 +1933,7 @@ function finishQuiz(){
   renderToday();
   paintFocusBar();
   drillStarted = true;
+  drillAfterDone = true;
   renderDrillChrome();
   onTaskDone();
 }
@@ -2345,15 +2349,24 @@ function renderDrillChrome(){
   if (!L) return;
   if (run || quiz) return;
   var wasHidden = L.style.display === 'none';
-  L.style.display = wasHidden ? 'none' : '';
-  if (!wasHidden) return;
-  /* 列表原本是隐藏的（练习中），现在练习结束 → 展开并显示完成提示 */
   L.style.display = '';
-  drillStarted = true;
+  if (!wasHidden) return;
+  /* 列表原本隐藏（练习中），现在结束了 → 展开。
+     drillAfterDone 区分两种语义：
+       true  = 刚做完一项，要先给「完成 + 下一步」提示
+       false = 中途退出，用户想继续别的 → 直接把 5 张卡摊开
+     早先不分这两种，退出后只显示一句「刚练完一项」，用户还得再点一次才能继续，
+     像是卡住了 —— 中途退出和做完是不同的事，不该共用一个落点。 */
+  drillStarted = drillAfterDone;
   renderDrill();
-  var sb = $('drillSub');
-  if (sb) sb.textContent = '继续练';
+  if (!drillAfterDone){
+    /* 中途退出：不清任何进度（D.st 由 grade 逐步写入，不回滚），列表直接可用 */
+    var sb = $('drillSub');
+    if (sb) sb.textContent = '选一项继续';
+  }
+  drillAfterDone = false;
 }
+var drillAfterDone = false;
 /* 每次渲染完 runner 都重绑一次（runner 是整块 innerHTML 覆盖的） */
 function paintFocusBar(){
   var bar = $('focusBar');

@@ -14,7 +14,10 @@ const { chromium } = require('playwright-core');
 
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const ROOT = path.resolve(__dirname, '..');
-const LIVE_URL = 'http://127.0.0.1:8848/';
+/* 端口写死的教训：这个脚本原来固定打 8848，那个服务早已停用，
+   结果每次跑都 ERR_CONNECTION_REFUSED，然后被误当成「页面加载失败」。
+   改成读 TEST_URL，跟其他验收脚本统一。 */
+const LIVE_URL = process.env.TEST_URL || ('http://127.0.0.1:' + (process.env.TEST_PORT || 8899) + '/');
 const WORK_FILE = 'file:///' + path.join(ROOT, 'index.html').replace(/\\/g, '/');
 
 const only = process.argv[2] || '';

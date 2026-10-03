@@ -62,6 +62,10 @@ const SEED = require('./seed-for-visual.js');
     const g = (id) => { const e = document.getElementById(id); return e ? Math.round(e.getBoundingClientRect().height) : -1; };
     return {
       focus: document.body.classList.contains('focus'),
+      /* 今天页总览不再被折叠 —— 练习已独立出去，折叠它等于「切去练习今日页就空了」。
+         判据改成「练习页的任务列表收起 + 今日页总览保持原样」。 */
+      drillListH: g('drillList'),
+      listDisplay: getComputedStyle(document.getElementById('drillList')).display,
       boardH: g('board'), taskH: g('taskList'), heroH: Math.round(document.querySelector('.hero').getBoundingClientRect().height),
       runnerH: g('runner'), runnerText: (document.getElementById('runner').innerText || '').slice(0, 40),
       bar: (document.getElementById('focusBar').innerText || '').trim(),
@@ -69,25 +73,39 @@ const SEED = require('./seed-for-visual.js');
     };
   });
   log(inFocus.focus === true, '1.3 进入测验后进入专注态（body.focus）', 'focus=' + inFocus.focus);
-  log(inFocus.boardH === 0 && inFocus.taskH === 0 && inFocus.heroH === 0,
-    '1.4 专注态下无关区块高度归零（看板/任务/KPI）',
-    '看板=' + inFocus.boardH + 'px 任务=' + inFocus.taskH + 'px KPI=' + inFocus.heroH + 'px');
+  log(inFocus.listDisplay === 'none',
+    '1.4 专注态下练习页任务列表收起，今日页总览保持可见',
+    'drillList=' + inFocus.listDisplay + ' 看板=' + inFocus.boardH + 'px KPI=' + inFocus.heroH + 'px');
   log(inFocus.runnerH > 100 && inFocus.opts > 0, '1.5 做题区正常显示',
     'runner 高=' + inFocus.runnerH + 'px 选项=' + inFocus.opts + ' 个');
   log(/第\s*\d+\s*\/\s*\d+\s*题/.test(inFocus.bar), '1.6 返回条显示进度（第几题/共几题）',
     '「' + inFocus.bar.replace(/\s+/g, ' ').slice(0, 46) + '」');
 
-  /* 退出 */
+  /* 退出。
+     判据在 2026-10-03 改过：练习拆成独立标签后，看板和任务清单不再受
+     body.focus 控制（那条折叠规则已收敛到 #drillList），元素也不在今日页了。
+     退出专注态后该恢复的是**练习页内部的任务列表**，不是今日页看板。
+     继续拿 boardH/taskH 判会永远 FAIL —— 那是判据过时，不是产品坏了。 */
   await page.evaluate(() => { const b = document.getElementById('qQuit'); if (b) b.click(); });
   await page.waitForTimeout(600);
-  let after = await page.evaluate(() => ({
-    focus: document.body.classList.contains('focus'),
-    boardH: Math.round(document.getElementById('board').getBoundingClientRect().height),
-    taskH: Math.round(document.getElementById('taskList').getBoundingClientRect().height),
-  }));
-  log(!after.focus && after.boardH > 10 && after.taskH > 10,
-    '1.7 退出后恢复（专注态解除，看板与任务列表回来了）',
-    'focus=' + after.focus + ' 看板=' + after.boardH + 'px 任务=' + after.taskH + 'px');
+  let after = await page.evaluate(() => {
+    const L = document.getElementById('drillList');
+    const board = document.getElementById('board');
+    const task = document.getElementById('taskList');
+    return {
+      focus: document.body.classList.contains('focus'),
+      listShown: L ? getComputedStyle(L).display !== 'none' : false,
+      cards: L ? L.querySelectorAll('.dcard').length : 0,
+      /* 今日页两块内容仍在（只是不在练习页了） */
+      boardExists: !!board, taskExists: !!task,
+      boardH: board ? Math.round(board.getBoundingClientRect().height) : -1,
+    };
+  });
+  log(!after.focus && after.listShown && after.cards === 5,
+    '1.7 退出后恢复（专注态解除，练习页任务列表回来了）',
+    'focus=' + after.focus + ' 卡片=' + after.cards + ' 张');
+  log(after.boardExists && after.taskExists,
+    '1.7b 今日页看板与任务清单仍在（只是搬到了今日页）', 'board 存在');
 
   /* 闪卡也要隔离 */
   await page.evaluate(() => { const b = document.querySelector('[data-run="new"]'); if (b) b.click(); });
