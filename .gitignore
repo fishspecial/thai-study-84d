@@ -1,5 +1,4 @@
+# 诊断过程的临时产物，不入库
+tools/shots/
 node_modules/
-.pick30.json
 .vt/
-live/
-tools/*.log

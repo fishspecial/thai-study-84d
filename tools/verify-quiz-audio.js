@@ -16,7 +16,9 @@
  */
 const { chromium } = require('playwright-core');
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const LIVE = 'http://127.0.0.1:8848/';
+/* 指向工作副本而非 8848：8848 跑的是 live/index.html 冻结快照，
+   改完 index.html 立刻访问会拿到旧代码（上一轮因此误判 splitEmoji 未定义）。 */
+const LIVE = process.env.TEST_URL || ('http://127.0.0.1:' + (process.env.TEST_PORT || 8899) + '/');
 
 const results = [];
 function log(name, ok, detail) {
