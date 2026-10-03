@@ -84,6 +84,11 @@
   }
   /* 白底手绘图在暗色下会晃眼，压一点亮度让文字成为主角 */
   img{filter:brightness(.94) contrast(1.02)}
+  /* 练习配图是「黑线白底」的简笔画，放大到 226px 后白块在暗色里非常刺眼。
+     反转成「浅线深底」：白底被压到接近页面背景，线条变浅灰依然清楚。
+     hue-rotate(180deg) 修正经反色后可能出现的轻微偏色。
+     只反 img 本身 —— 边框和底色在外层 .picframe/.qpicframe 上，不受影响。 */
+  img.pic, img.qpic{filter:invert(.90) hue-rotate(180deg) brightness(.96)}
   .btn.primary{color:#0d1117}
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -394,10 +399,31 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 .ldb i.r{background:var(--red600)}
 .ldr{display:flex;gap:var(--s1);margin-top:4px}
 .ldr span{flex:1;text-align:center;font-size:var(--fs-xs);color:var(--tx3);min-width:6px}
-/* 闪卡简笔画配图 */
-.picbox{display:flex;justify-content:center;margin:0 0 10px}
-.pic{width:112px;height:112px;object-fit:contain;background:var(--surface);
-  border:1px solid var(--line2);border-radius:var(--r);padding:5px}
+/* 闪卡简笔画配图 —— 练习时图是主角。
+   原来固定 112px：卡片内容宽约 320px，图只占 1/3，用户原话「图片根本不醒目」。
+   改成三重约束的自适应：
+     58vw —— 窄屏不至于撑破；
+     40vh —— 矮屏留出余地，图 + 泰文 + 释义基本同屏；
+     240px —— 大屏/桌面到此为止（原图 320px，再放大会软）。
+   aspect-ratio 撑方形，object-fit:contain 保证简笔画不被拉伸。
+   翻到背面后（.ans）图要缩回来给释义让位：那时重点已经变成中文了。
+   边框/底色放在 .picframe 上而不是 img 上：暗色模式会给 img 做 invert 反色，
+   filter 作用于整个元素连边框一起反 —— 边框画在 img 上会变成刺眼的亮框。 */
+.picbox{display:flex;justify-content:center;margin:0 0 var(--s3)}
+.picframe{display:inline-block;line-height:0;background:var(--surface);
+  border:1px solid var(--line2);border-radius:var(--r);padding:var(--s2);
+  box-shadow:var(--sh1);overflow:hidden}
+.pic{width:min(58vw, 40vh, 240px);height:auto;aspect-ratio:1/1;object-fit:contain;
+  display:block;border-radius:calc(var(--r) - var(--s2));
+  transition:width var(--t) var(--ease)}
+.study.ans .pic{width:min(38vw, 22vh, 132px)}
+.study.ans .picbox{margin-bottom:var(--s2)}
+/* 测验答完后放的「这是什么」大图：不抢按钮的位置，但要比列表缩略图醒目得多 */
+.qpicframe{display:block;width:min(46vw, 150px);margin:var(--s3) auto 0;line-height:0;
+  background:var(--surface);border:1px solid var(--line2);border-radius:var(--r);
+  padding:var(--s2);box-shadow:var(--sh1);overflow:hidden}
+.qpic{width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;display:block;
+  border-radius:calc(var(--r) - var(--s2))}
 .mini-pic{width:34px;height:34px;object-fit:contain;vertical-align:middle;
   border-radius:var(--r-xs);background:var(--surface);border:1px solid var(--line2);flex:0 0 auto}
 /* 今日总览：词块 */
@@ -1801,8 +1827,8 @@ function hasPic(t){ return !!picOf(t); }
 function picBlock(t){
   var u = picOf(t);
   if (!u) return '';
-  return '<div class="picbox"><img class="pic" src="' + u + '" alt="" loading="lazy" decoding="async"'
-    + (picMode ? '' : ' style="display:none"') + '></div>';
+  return '<div class="picbox"><span class="picframe"><img class="pic" src="' + u + '" alt="" loading="lazy" decoding="async"'
+    + (picMode ? '' : ' style="display:none"') + '></span></div>';
 }
 /* 语料/词库列表里的缩略图。
    不能加 loading="lazy"：列表所在的 section 在切换 tab 前是 display:none，
@@ -1895,7 +1921,9 @@ function renderRun(){
     front = '<div class="a mt0">' + esc(o.o ? o.o.z : '') + '</div>';
     back = '<div class="q sm th">' + esc(o.t) + '</div>' + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
   }
-  var h = '<div class="study">' + front;
+  /* 翻面后加 .ans：CSS 里把配图缩回去，让位给中文释义。
+     正面「看图想意思」时图最大，翻面「对答案」时释义最大 —— 主角随阶段换。 */
+  var h = '<div class="study' + (run.show ? ' ans' : '') + '">' + front;
   if (run.show) h += back;
   h += exBlock(o);
   h += '<div class="hint">' + (run.i+1) + ' / ' + run.keys.length + (it ? '　盒' + it.box + ' 对' + it.r + ' 错' + it.w : '') + '</div><div class="btnrow">';
@@ -2066,7 +2094,7 @@ function renderQuiz(){
     h += '<button class="opt" data-o="' + esc(o).replace(/"/g,'&quot;') + '">' + body + '</button>';
   });
   /* #qAfter 是答完后补按钮的容器（zh2th 要等作答完才放发音） */
-  h += '</div><div class="btnrow" id="qAfter"></div><div class="btnrow"><button class="mini" id="qQuit">退出</button></div></div>';
+  h += '</div><div id="qPic"></div><div class="btnrow" id="qAfter"></div><div class="btnrow"><button class="mini" id="qQuit">退出</button></div></div>';
   R.innerHTML = h;
   /* 发音目标：例句题用句子的 id，词与虚词用词条自带的 a（目录可能不同） */
   var qFile = (q.ty === 'sent') ? (q.sent ? q.sent.id : null) : (q.o ? q.o.a : null);
@@ -2091,6 +2119,15 @@ function renderQuiz(){
       /* zh2th 答完立刻补一个播放按钮并自动播一遍。
          选错的人尤其需要听到正确读音 —— 否则这题只留下「我选了个什么」，
          不知道该记住的是哪个音。 */
+      /* 答完之后才放图 —— 做题的时候放等于把答案写在屏幕上
+         （th2zh「看图猜意思」的题目，图就是意思本身）。
+         答完再看一遍图，是把这题从「选对选项」变成「记住这个画面」的一步。
+         sent 题不适用：那种题的 q.o 是随机抽的别处的词，贴上它的图反而会误导。 */
+      if (q.ty !== 'sent'){
+        var pb = $('qPic');
+        var pu = q.o ? picOf(q.o.t) : null;
+        if (pb && pu) pb.innerHTML = '<span class="qpicframe"><img class="qpic" src="' + pu + '" alt="" decoding="async"></span>';
+      }
       if (q.ty === 'zh2th'){
         var ab = $('qAfter');
         if (ab) ab.innerHTML = '<span class="sub" style="align-self:center">正确读音</span>' + playBtn;
