@@ -294,6 +294,13 @@ label.fld>span{display:block;font-size:var(--fs-md);color:var(--tx2);margin-bott
 .exmore{width:100%;margin-top:8px;padding:9px 12px;border:1px dashed var(--line2);
   border-radius:var(--r-sm);background:var(--bg);color:var(--tx2);font:inherit;font-size:var(--fs-md);cursor:pointer}
 .exmore:active{background:var(--line)}
+/* 听力题：播放键是这一题唯一的入口，要够大、够明显，让人一眼知道点它 */
+.hearwrap{padding:var(--s4) 0 var(--s2)}
+.hearbtn{display:block;width:100%;min-height:96px;font:inherit;font-size:var(--fs-xl);
+  color:var(--blue600);background:var(--blue50);border:2px solid var(--blue200);
+  border-radius:var(--r);cursor:pointer;letter-spacing:.04em;
+  transition:var(--tint),var(--tap-shift)}
+.hearbtn:active{background:var(--blue200);transform:scale(.98)}
 /* 语境义：同一个词在她消息里的几种意思，chip 点开看对应例句 */
 .sensebox{border-top:1px dashed var(--line2);margin-top:var(--s3);padding-top:var(--s3);text-align:left}
 .sensehd{font-size:var(--fs-sm);color:var(--tx2);margin-bottom:var(--s2)}
@@ -959,11 +966,14 @@ function restoreFromCloud(row){
     + '确定用云端记录覆盖这台设备上的本地记录吗？')) return 'kept-local';
   S = remote;
   if (!S.cfg) S.cfg = {};
-  for (var d in DEF) if (S.cfg[d] == null) S.cfg[d] = DEF[d];
   if (!S.master) S.master = {};
   if (!S.q) S.q = { w: 0, g: 0, hs: 0, ms: 0 };
   if (!S.items) S.items = {}; if (!S.days) S.days = {};
   if (!S.start) S.start = today();
+  /* 云端拉回来的可能是别的设备上周存的旧版本存档，缺哪一步迁移都有可能。
+     必须过一遍 migrate()，否则那份旧数据带着老字段名进来，
+     页面会按新字段名去找，显示成「什么都没做过」。 */
+  migrate();
   S.day = Math.max(1, diffDays(S.start, today()) + 1);
   D = getDay(S.day);
   /* 回灌完把云端时间戳写进 savedAt，否则下次进页面又会拿同一份云端数据来「确认覆盖」 */
@@ -1265,41 +1275,60 @@ var TASKS = [
   { k:'new',  n:'新学',     d:'今天新分配的词和短句' },
   { k:'read', n:'她的例句', d:'看泰文猜意思，再对答案' },
   { k:'out',  n:'我的例句', d:'看中文先自己说泰文，再对照' },
+  { k:'hear', n:'听力',     d:'只放她的原声，听懂她到底说了什么' },
   { k:'quiz', n:'今日测验', d:'四种题型随机' },
   { k:'wrong',n:'错题重练', d:'之前答错过的，连续答对 2 次自动移出', opt:true }
 ];
-var TNAME = { revW:'复习单词', revS:'复习句子', new:'新学', read:'她的例句', out:'我的例句', quiz:'今日测验', wrong:'错题重练' };
+var TNAME = { revW:'复习单词', revS:'复习句子', new:'新学', read:'她的例句', out:'我的例句', hear:'听力', quiz:'今日测验', wrong:'错题重练' };
 /* 计入「今天是否做完」的任务。opt 的（错题）不参与 ——
    否则某天没有错题、或错题没练完，整天就永远显示「未完成」，那是假信号。 */
 var MAIN_TASKS = TASKS.filter(function(t){ return !t.opt; });
 
 /* ==================== 状态 ==================== */
 var KEY = "thai-daily-v1";
-var DEF = { newWords: 12, newGrams: 3, newHerSent: 5, newMySent: 4, quizCount: 10 };
+var DEF = { newWords: 12, newGrams: 3, newHerSent: 5, newMySent: 4, quizCount: 10, hearCount: 6 };
 var S = { day: 1, start: '', cfg: {}, q: { w: 0, g: 0, hs: 0, ms: 0 }, items: {}, days: {}, focus: '', master: {} };
 try { var _r = localStorage.getItem(KEY); if (_r) { var _o = JSON.parse(_r); for (var _k in _o) S[_k] = _o[_k]; } } catch (e) {}
-if (!S.master) S.master = {};
-// 迁移旧版单词本的「已掌握」标记
-try { var _wb0 = localStorage.getItem('thaiwordbook-v1');
-  if (_wb0) { var _w0 = JSON.parse(_wb0) || {}; for (var _t0 in _w0) if (!S.master[_t0]) S.master[_t0] = 1; save(); } } catch (e) {}
-for (var _d in DEF) if (S.cfg[_d] == null) S.cfg[_d] = DEF[_d];
-if (!S.start) S.start = today();
-/* 复习拆分成 revW / revS 之后，老存档的 st.rev 必须迁移，
-   否则「今天做完了」永远判不出来（dayDone 遍历新任务名，找不到旧字段），
-   历史天数也会集体显示成未完成 —— 那是在骗用户说他没完成任务。 */
-(function(){
-  var n = 0;
-  for (var d in S.days){
-    var st = S.days[d] && S.days[d].st;
-    if (!st || !st.rev) continue;
-    if (!st.revW) st.revW = st.rev;   // 旧的「到期复习」主要就是单词，给 revW
-    if (!st.revS) st.revS = st.rev;   // 句子那时也混在同一项里，同样算已完成
-    delete st.rev; n++;
+
+/* ==================== 存档迁移 ====================
+   之前这些补丁零散写在各处，加一个新字段就往这里塞一个 if，
+   谁也不知道老存档到底过了哪几道手续。现在收敛成一个带版本号的 migrate()：
+   S.v 记录存档经过到第几版，每版只做一次，做过就跳。
+   新增迁移必须是幂等的 —— 用户随时可能从云端把一周前的存档拉回来，
+   那份存档可能缺中间任何一步。 */
+var SCHEMA_V = 3;
+function migrate(){
+  var changed = false;
+  /* v1 → 单词本「已掌握」标记，从独立 key 并到主存档 */
+  try {
+    var _wb0 = localStorage.getItem('thaiwordbook-v1');
+    if (_wb0) {
+      var _w0 = JSON.parse(_wb0) || {};
+      for (var _t0 in _w0) if (!S.master[_t0]) { S.master[_t0] = 1; changed = true; }
+    }
+  } catch (e) {}
+  if (!S.master) { S.master = {}; changed = true; }
+  for (var _d in DEF) if (S.cfg[_d] == null) { S.cfg[_d] = DEF[_d]; changed = true; }
+  if (!S.start) { S.start = today(); changed = true; }
+  /* v2 → 复习拆成 revW（单词）/ revS（句子）：
+     旧存档只有 st.rev，不迁移的话 dayDone 永远判不出「做完了」，
+     历史天数会集体变成未完成 —— 那是在骗用户说他没完成任务。 */
+  if ((S.v || 0) < 2){
+    for (var d2 in S.days){
+      var st = S.days[d2] && S.days[d2].st;
+      if (!st || !st.rev) continue;
+      if (!st.revW) st.revW = st.rev;   // 旧「到期复习」主要是单词
+      if (!st.revS) st.revS = st.rev;   // 句子那时混在同一项，同样算完成
+      delete st.rev; changed = true;
+    }
   }
-  if (n) persist();
-})();
-if (!S.resume) S.resume = {};   // 断点续传：{ 任务: { d:日期, i, right, half, wrong, seen:{} } }
-if (!S.wrong)  S.wrong  = {};   // 错题本：{ key: { n:累计错次, last:日期, clr:连续答对 } }
+  /* v3 → 断点续传 / 错题本 / 听力三个新字段 */
+  if (!S.resume) { S.resume = {}; changed = true; }
+  if (!S.wrong)  { S.wrong  = {}; changed = true; }
+  S.v = SCHEMA_V;
+  if (changed) persist();
+}
+migrate();
 function persist(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
 function save(){
   persist();
@@ -1350,11 +1379,16 @@ function diffDays(a, b){ return Math.round((new Date(b+'T00:00:00') - new Date(a
 var BOX = [0,1,2,4,7,15,30];
 var BOXNAME = ['刚接触','见 2 次','记住 1 天','记住 4 天','记住 7 天','记住 15 天','记住 30 天'];
 function ensure(k){ if (!S.items[k]) S.items[k] = { box:0, due:today(), r:0, w:0, h:0, seen:0, lg:[], peak:0 }; return S.items[k]; }
+var BOX_TOP = BOX.length - 1;   // BOX 改档数时这里跟着变，不要再写死数字
 /* grade 顺手记一条学习轨迹 [第几天, 得分]：这是「到底记住了没有」唯一可靠的证据。
    单日分数只能证明当天做对了，跨天复现的轨迹才能证明记住了。 */
 function grade(k, ok){
   var it = ensure(k); it.seen++;
-  if (ok === 1){ it.box = Math.min(5, it.box+1); it.r++; }
+  /* 上限必须跟着 BOX 的长度走。
+     原来写死 Math.min(5, ...) 而 BOX 有 7 档（0~6），
+     结果最深那档「记住 30 天」永远进不去 —— 记忆分布图上最后一格恒为 0，
+     定量配额和「已记牢」口径也都跟着失真。 */
+  if (ok === 1){ it.box = Math.min(BOX_TOP, it.box+1); it.r++; }
   else if (ok === 0.5){ it.h++; }
   else { it.box = 0; it.w++; }
   if (it.box > it.peak) it.peak = it.box;
@@ -1639,6 +1673,13 @@ function taskKeys(k){
   /* 错题重练：题目就是之前答错过的条目。
      dropMaster 在 startCard 里统一做，这里不用重复过滤。 */
   if (k === 'wrong') return Object.keys(S.wrong || {});
+  /* 听力：她的原句，只放音频不给字幕 —— 专练「她语音发过来我能不能听懂」。
+     素材限定她说过的句子（POOL_HS），这也是占比最大的真实输入来源。
+     排ength ≤ 8 字：太长的句子做听力题只会变成猜谜，练不到点上。 */
+  if (k === 'hear'){
+    var hs = (POOL_HS || []).filter(function(s){ return s.len <= 8 && s.z && s.z.length >= 3; });
+    return hs.slice(0, S.cfg.hearCount || 6).map(function(s){ return 's|' + s.id; });
+  }
   return null;
 }
 /*取词时统一剔除「已掌握」的词。
@@ -2184,6 +2225,29 @@ function renderRun(){
   } else if (run.kind === 'read'){
     front = '<div class="q sm th">' + esc(o.t) + '</div>' + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
     back = '<div class="a">' + esc(o.o ? o.o.z : '') + '</div>';
+  } else if (run.kind === 'hear'){
+    /* 听力：正面只有播放键，不给泰文也不给罗马音。
+       一旦把字写出来，这题就退化成阅读题 —— 练不到「听懂她说什么」这条路上。 */
+    front = '<div class="hearwrap"><button class="hearbtn" id="hPlay">▶  播放她的语音</button>'
+      + '<div class="sub" style="text-align:center;margin-top:8px">听不清可以再点一次</div></div>';
+    back = '<div class="q sm th">' + esc(o.t) + '</div>'
+      + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '')
+      + '<div class="a">' + esc(o.o ? o.o.z : '') + '</div>';
+  } else if (run.kind === 'revS'){
+    /* 复习句子按「谁说的」定方向 —— 这是整个练习里最重要的一条分工：
+         她说的话 → 泰文在前。练的是「她发过来我能不能读懂」，輸入。
+         我说的话 → 中文在前。练的是「我想表达这句能不能说出泰文」，产出。
+       原来一律「中文→泰文」，等于让她说过的话也当产出题做：
+       一个中国人硬练「把她说的话翻回泰文」，练的是翻译腔，不是沟通。
+       而「认得出」和「说得出」是两种能力，混着练哪边都练不实。 */
+    var she = o.o && o.o.who === 0;
+    if (she){
+      front = '<div class="q sm th">' + esc(o.t) + '</div>' + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
+      back = '<div class="a mt0">' + esc(o.o ? o.o.z : '') + '</div>';
+    } else {
+      front = '<div class="a mt0">' + esc(o.o ? o.o.z : '') + '</div>';
+      back = '<div class="q sm th">' + esc(o.t) + '</div>' + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
+    }
   } else {
     front = '<div class="a mt0">' + esc(o.o ? o.o.z : '') + '</div>';
     back = '<div class="q sm th">' + esc(o.t) + '</div>' + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
@@ -2208,19 +2272,34 @@ function renderRun(){
     var a1 = '认识', a2 = '模糊', a3 = '不会';
     if (run.kind === 'read'){ a1 = '看懂了'; a2 = '半懂'; a3 = '看不懂'; }
     if (run.kind === 'out'){ a1 = '说得出'; a2 = '勉强'; a3 = '说不出'; }
+    /* 听力任务的自评要问「听懂了吗」，不是「认识吗」——
+       词不一样，用户对自己能力的判断也不一样。 */
+    if (run.kind === 'hear'){ a1 = '听懂了'; a2 = '听个大概'; a3 = '没听出来'; }
+    /* 复习句子同样按说话人分：她的话问「读懂了吗」，自己的话问「说得得出吗」 */
+    if (run.kind === 'revS'){
+      var sheSaid = o.o && o.o.who === 0;
+      if (sheSaid){ a1 = '读懂了'; a2 = '半懂'; a3 = '读不出'; }
+      else { a1 = '说得出'; a2 = '勉强'; a3 = '说不出'; }
+    }
     h += '<button class="btn" id="cPlay">🔊</button>'
       + '<button class="btn ok" id="cR">' + a1 + '</button>'
       + '<button class="btn" id="cH">' + a2 + '</button>'
       + '<button class="btn no" id="cW">' + a3 + '</button>';
   }
   h += '</div><div class="btnrow">';
-  if (picOf(o.t)) h += '<button class="mini' + (picMode ? ' on' : '') + '" id="cPic">' + (picMode ? '图已开' : '图已关') + '</button>';
+  /* 听力题绝不给配图开关：27 条短句本身就在图库里（如 ใช่แล้ว），
+     一旦能开图，看一眼简笔画答案就漏了 —— 听力题的图和字一样都是剧透。 */
+  if (run.kind !== 'hear' && picOf(o.t)) h += '<button class="mini' + (picMode ? ' on' : '') + '" id="cPic">' + (picMode ? '图已开' : '图已关') + '</button>';
   if (o.type !== 's') h += '<button class="mini' + (S.master[o.t] ? ' on' : '') + '" id="cM">' + (S.master[o.t] ? '✓ 已掌握（点击取消）' : '✓ 标记已掌握') + '</button>';
   h += '<button class="mini" id="cQuit">退出</button></div></div>';
   R.innerHTML = h;
   paintFocusBar();
   var bp = $('cPlay'); if (bp) bp.onclick = play;
   var bs = $('cShow'); if (bs) bs.onclick = function(){ run.show = true; renderRun(); };
+  /* 听力题的两个自动播放点：进卡就播一遍（不然要手动点，很别扭），
+     点大播放键重播。答案是翻面后才给的，听完之前没有任何文字提示。 */
+  var hp = $('hPlay'); if (hp) hp.onclick = play;
+  if (run.kind === 'hear') setTimeout(play, 350);
   if ($('cR')) $('cR').onclick = function(){ grade(k, 1); run.right++; markDone(k, 1); noteRight(k); nx(); };
   if ($('cH')) $('cH').onclick = function(){ grade(k, 0.5); run.half++; markDone(k, 0.5); nx(); };
   if ($('cW')) $('cW').onclick = function(){ grade(k, 0); run.wrong++; markDone(k, 0); noteWrong(k); nx(); };

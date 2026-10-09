@@ -197,7 +197,7 @@ function mkSeed() {
     Object.keys(S.days[S.day].st || {}).forEach(k => { if (k !== 'read' && k !== 'out' && k !== 'quiz' && k !== 'new' && k !== 'revW' && k !== 'revS') delete S.days[S.day].st[k]; });
     return { before, tasks: TASKS.length, main: MAIN_TASKS.length, hasWrongOpt: TASKS.some(t => t.k === 'wrong' && t.opt) };
   });
-  ok('G1 错题任务是 opt，不阻塞打卡', inch.main === 6 && inch.hasWrongOpt, '总 ' + inch.tasks + ' / 计入 ' + inch.main);
+  ok('G1 错题任务是 opt，不阻塞打卡', inch.main === 7 && inch.hasWrongOpt, '总 ' + inch.tasks + ' / 计入 ' + inch.main);
 
   ok('H1 无 JS 错误', errs.length === 0, errs.slice(0, 2).join(' | '));
 
