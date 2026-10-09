@@ -51,7 +51,7 @@ const SEED = require('./seed-for-visual.js');
        所以造完数据必须 D.plan = buildPlan() 把快照刷新，
        否则 taskKeys 看到的还是加载页面时那份旧 plan（dueSH=0）—— 那是测试写错。 */
     D.plan = buildPlan();
-    var revKeys = taskKeys('rev');
+    var revKeys = taskKeys('revW').concat(taskKeys('revS'));
     return {
       made: made,
       planHasH: (D.plan.dueSH || []).length,
@@ -64,12 +64,12 @@ const SEED = require('./seed-for-visual.js');
     };
   });
   log(plan.planHasH > 0, '1.1 她的例句进了复习计划', 'dueSH=' + plan.planHasH + ' 条');
-  log(plan.revSent > 0, '1.2 rev 任务里真的有例句', plan.revSent + ' / ' + plan.revTotal + ' 条');
+  log(plan.revSent > 0, '1.2 复习任务里真的有例句', plan.revSent + ' / ' + plan.revTotal + ' 条');
   log(plan.revHasMade === plan.made.length, '1.3 造的到期例句全部被派发',
-    '造了 ' + plan.made.length + ' 条，rev 里命中 ' + plan.revHasMade + ' 条');
+    '造了 ' + plan.made.length + ' 条，复习里命中 ' + plan.revHasMade + ' 条');
 
   const kinds = await page.evaluate(() => {
-    var rk = taskKeys('rev').filter(k => k.indexOf('s|') === 0);
+    var rk = taskKeys('revS').filter(k => k.indexOf('s|') === 0);
     return {
       her: rk.filter(k => { var s = SMAP[sentKey(k.slice(2))]; return s && s.who === 0; }).length,
       my: rk.filter(k => { var s = SMAP[sentKey(k.slice(2))]; return s && s.who === 1; }).length,

@@ -6,6 +6,11 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#16181d" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script>
+/* 主题早绑定：在 <style> 解析前把手动选择写到 <html> 上，
+   否则固定深色的用户每次打开都会先闪一帧白。 */
+(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();
+</script>
 <!-- 内联 favicon：不额外发一次请求，浏览器标签页和手机主屏都有图标 -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a90d9'/%3E%3Ctext x='32' y='45' font-size='40' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E0%B9%94%3C/text%3E%3C/svg%3E">
 <title>泰语 84 天</title>
@@ -19,12 +24,25 @@
   --red50:#fcebeb; --red200:#f09595; --red600:#a32d2d;
   --purple50:#eeedfb; --purple200:#cecbf9; --purple600:#534ab7;
   --safe-b:env(safe-area-inset-bottom,0px);
-  /* 阴影层级：低/中/高，卡片与浮层按高度取用 */
-  --sh1:0 1px 2px rgba(28,26,22,.05);
-  --sh2:0 2px 10px rgba(28,26,22,.07);
-  --sh3:0 8px 28px rgba(28,26,22,.13);
-  --r:16px;            /* 统一圆角 */
-  --r-sm:11px;
+  /* 页面底色与卡片底色分离：卡片用 --bg，页面用 --bg-page。
+     以前两者都是纯白，层级只能靠边框撑，界面显得"平"。 */
+  --bg-page:#f2f1ed;
+  color-scheme:light;
+  /* 明暗主题差异收敛成变量：规则本体只写一份，
+     media 查询（跟随系统）和 html[data-theme]（手动固定）各挂一份调色板。
+     以后调深色，改一处调色板即可，不会再出现改漏某半边的情况。 */
+  --img-dim:none;
+  --pic-filter:none;
+  --btn-primary-txt:#fff;
+  /* 阴影层级：低/中/高，卡片与浮层按高度取用。
+     --sh1 是卡片默认层级，做成两段式（近距压边 + 远距扩散），
+     比单层 0 1px 2px 更能把卡片从页面底色上"抬"出来 ——
+     这是 2026 年"分层深度"取代纯扁平的关键：靠阴影而非边框建立层级。 */
+  --sh1:0 1px 2px rgba(28,26,22,.05), 0 4px 14px rgba(28,26,22,.055);
+  --sh2:0 2px 8px rgba(28,26,22,.08), 0 10px 26px rgba(28,26,22,.10);
+  --sh3:0 8px 24px rgba(28,26,22,.14), 0 18px 48px rgba(28,26,22,.16);
+  --r:18px;            /* 统一圆角（卡片/浮层） */
+  --r-sm:12px;
 
   /* 色阶补全：700 = 标签/徽章文字色（11px 小字专用，对比度 ≥ 4.5:1）
      600 = 图标/强调/边框   800 = 标题级强调
@@ -59,12 +77,15 @@
   --tap:44px;
   /* 布局常量：底部标签栏高度，供 body 的 padding-bottom 与 .tabbar 共用，
      避免「加了 safe-b 就顶掉内容」这种两处各写一遍的问题 */
-  --tabbar-h:58px;
+  /* 66 = 按钮 58 + 上下各 4px 外边距（胶囊选中态需要留白） */
+  --tabbar-h:66px;
 }
-/* 深色模式：跟随系统。用户常在泰国，晚上刷这个是主要场景，
-   原来的纯白底在暗环境下刺眼、也影响入睡。 */
+/* 深色模式：默认跟随系统，也可在「我的 → 外观」手动固定。
+   用户常在泰国，晚上刷这个是主要场景，原来的纯白底在暗环境下刺眼、也影响入睡。
+   同一份调色板写两遍：media 查询管「跟随系统」（且未被手动固定为浅色时），
+   html[data-theme="dark"] 管「手动固定深色」。两处色值必须同步改。 */
 @media (prefers-color-scheme:dark){
-  :root{
+  :root:not([data-theme="light"]){
     --bg:#16181d; --surface:#1e2027; --surface2:#262932; --line:#2c2f38; --line2:#3b3f4a;
     --tx:#e8e6e1; --tx2:#a8a69f; --tx3:#767570;
     --blue50:#12283d; --blue200:#1e4a6f; --blue600:#5aaaf0; --blue800:#a6d3fa;
@@ -78,22 +99,47 @@
     --green700:#7cc04a;
     --amber700:#e0b45c;
     --red700:#e07a7a;
-    --sh1:0 1px 2px rgba(0,0,0,.3);
-    --sh2:0 2px 12px rgba(0,0,0,.4);
-    --sh3:0 10px 32px rgba(0,0,0,.55);
+    --sh1:0 1px 2px rgba(0,0,0,.30), 0 6px 18px rgba(0,0,0,.34);
+    --sh2:0 2px 10px rgba(0,0,0,.38), 0 14px 30px rgba(0,0,0,.42);
+    --sh3:0 10px 28px rgba(0,0,0,.52), 0 22px 56px rgba(0,0,0,.58);
+    --bg-page:#111318;
+    --img-dim:brightness(.94) contrast(1.02);
+    --pic-filter:invert(.90) hue-rotate(180deg) brightness(.96);
+    --btn-primary-txt:#0d1117;
+    color-scheme:dark;
   }
-  /* 白底手绘图在暗色下会晃眼，压一点亮度让文字成为主角 */
-  img{filter:brightness(.94) contrast(1.02)}
-  /* 练习配图是「黑线白底」的简笔画，放大到 226px 后白块在暗色里非常刺眼。
-     反转成「浅线深底」：白底被压到接近页面背景，线条变浅灰依然清楚。
-     hue-rotate(180deg) 修正经反色后可能出现的轻微偏色。
-     只反 img 本身 —— 边框和底色在外层 .picframe/.qpicframe 上，不受影响。 */
-  img.pic, img.qpic{filter:invert(.90) hue-rotate(180deg) brightness(.96)}
-  .btn.primary{color:#0d1117}
 }
+html[data-theme="dark"]{
+  --bg:#16181d; --surface:#1e2027; --surface2:#262932; --line:#2c2f38; --line2:#3b3f4a;
+  --tx:#e8e6e1; --tx2:#a8a69f; --tx3:#767570;
+  --blue50:#12283d; --blue200:#1e4a6f; --blue600:#5aaaf0; --blue800:#a6d3fa;
+  --amber50:#33270f; --amber200:#6b4e17; --amber600:#f0c36d;
+  --green50:#1b2a12; --green600:#8fd45a;
+  --red50:#3a1a1a; --red200:#7a3535; --red600:#f08a8a;
+  --purple50:#262347; --purple200:#454080; --purple600:#b0a8f5;
+  --blue700:#7cbcf2;
+  --green700:#7cc04a;
+  --amber700:#e0b45c;
+  --red700:#e07a7a;
+  --sh1:0 1px 2px rgba(0,0,0,.30), 0 6px 18px rgba(0,0,0,.34);
+  --sh2:0 2px 10px rgba(0,0,0,.38), 0 14px 30px rgba(0,0,0,.42);
+  --sh3:0 10px 28px rgba(0,0,0,.52), 0 22px 56px rgba(0,0,0,.58);
+  --bg-page:#111318;
+  --img-dim:brightness(.94) contrast(1.02);
+  --pic-filter:invert(.90) hue-rotate(180deg) brightness(.96);
+  --btn-primary-txt:#0d1117;
+  color-scheme:dark;
+}
+/* 白底手绘图在暗色下会晃眼，压一点亮度让文字成为主角 */
+img{filter:var(--img-dim)}
+/* 练习配图是「黑线白底」的简笔画，放大到 226px 后白块在暗色里非常刺眼。
+   反转成「浅线深底」：白底被压到接近页面背景，线条变浅灰依然清楚。
+   hue-rotate(180deg) 修正经反色后可能出现的轻微偏色。
+   只反 img 本身 —— 边框和底色在外层 .picframe/.qpicframe 上，不受影响。 */
+img.pic, img.qpic{filter:var(--pic-filter)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);
+body{background:var(--bg-page);color:var(--tx);
   font-family:system-ui,-apple-system,"Segoe UI","Leelawadee UI","Noto Sans Thai","Noto Sans Thai UI","Microsoft YaHei",sans-serif;
   font-size:var(--fs-lg);line-height:var(--lh);
   /* 底部留白 = 标签栏高 + 安全区。以前这里是 66px、.tabbar 那里是 58px，
@@ -101,8 +147,10 @@ body{background:var(--bg);color:var(--tx);
   padding-bottom:calc(var(--tabbar-h) + 8px + var(--safe-b));
   -webkit-font-smoothing:antialiased}
 h1,h2,h3{margin:0}
-h2{font-size:var(--fs-lg);font-weight:var(--fw-md);margin:18px 0 8px}
-h3{font-size:var(--fs-base);font-weight:var(--fw-md);margin:14px 0 6px}
+/* 标题层级拉开：h2 提到 17px 并收紧字距，和正文 15px 拉开一个档位，
+   扫读时能立刻区分"这是新一节"而不是正文续行。 */
+h2{font-size:var(--fs-xl);font-weight:var(--fw-md);margin:22px 0 10px;letter-spacing:-.2px}
+h3{font-size:var(--fs-base);font-weight:var(--fw-md);margin:16px 0 8px;letter-spacing:-.1px}
 p{margin:8px 0}
 .sub{color:var(--tx2);font-size:var(--fs-md)}
 /* ---- 布局工具类 ----
@@ -134,7 +182,7 @@ b{font-weight:var(--fw-md)}
 .topbar .pb>i{display:block;height:100%;background:linear-gradient(90deg,var(--green600),#7cc04a);
   width:0;transition:width var(--t-slow) var(--ease);border-radius:var(--r-pill)}
 
-main{max-width:760px;margin:0 auto;padding:var(--s3) 14px 20px}
+main{max-width:760px;margin:0 auto;padding:var(--s4) 14px 26px}
 .view{display:none}
 .view.on{display:block}
 
@@ -150,21 +198,36 @@ main{max-width:760px;margin:0 auto;padding:var(--s3) 14px 20px}
 .acctbar .ab-tx{flex:1;min-width:0}
 .acctbar .ab-ar{color:var(--tx3);font-size:var(--fs-base);flex:0 0 auto;transition:transform var(--t)}
 .acctbar.open .ab-ar{transform:rotate(180deg)}
-.hero{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+/* Hero：柔和渐变让顶部数据区成为视觉锚点。
+   渐变只做很轻的一层（3% 蓝 + 6% 紫），作用是"提气"而不是抢戏。 */
+.hero{background:linear-gradient(158deg,
+    color-mix(in srgb,var(--blue50) 55%,var(--surface) 45%),
+    color-mix(in srgb,var(--purple50) 30%,var(--surface) 70%) 62%,
+    var(--surface));
+  border:1px solid var(--line);border-radius:var(--r);padding:14px}
 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2)}
-/* KPI 卡片：给一层很轻的渐变和左边色条，比纯灰块更有结构感，
-   颜色语义和数字含义对齐（得分=蓝、连续=绿、失误=红）。 */
-.kpi{background:var(--bg);border-radius:var(--r-sm);padding:10px 11px;position:relative;
-  overflow:hidden;box-shadow:var(--sh1)}
-.kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--line2)}
-.kpi.k-blue::before{background:var(--blue600)}
-.kpi.k-green::before{background:var(--green600)}
-.kpi.k-amber::before{background:var(--amber600)}
-.kpi.k-red::before{background:var(--red600)}
-.kpi.k-purple::before{background:var(--purple600)}
-.kpi .l{font-size:var(--fs-sm);color:var(--tx2)}
-.kpi .v{font-size:var(--fs-2xl);font-weight:var(--fw-md);margin-top:1px;line-height:1.25;
-  font-variant-numeric:tabular-nums;letter-spacing:-.3px}
+/* KPI 卡片：从"白块 + 左边色条"改成整块淡色底。
+   理由是色块比 3px 色条更能被扫到 —— 数据面板的价值在"一眼看见"，
+   而 --xx50 这一档本来就是给浅底用的，深色下它自动变成深色底，两边都成立。
+   数字用 700 档（小字/强调文字专用），保证在淡色底上仍有 4.5:1。 */
+.kpi{background:var(--bg);border-radius:var(--r-sm);padding:11px 12px;position:relative;
+  overflow:hidden;box-shadow:var(--sh1);transition:var(--tint)}
+.kpi::before{content:'';position:absolute;inset:0;background:var(--line2);opacity:.10}
+.kpi.k-blue{background:var(--blue50)}
+.kpi.k-green{background:var(--green50)}
+.kpi.k-amber{background:var(--amber50)}
+.kpi.k-red{background:var(--red50)}
+.kpi.k-purple{background:var(--purple50)}
+.kpi.k-blue::before,.kpi.k-green::before,.kpi.k-amber::before,
+.kpi.k-red::before,.kpi.k-purple::before{opacity:0}
+.kpi.k-blue .v{color:var(--blue700)}
+.kpi.k-green .v{color:var(--green700)}
+.kpi.k-amber .v{color:var(--amber700)}
+.kpi.k-red .v{color:var(--red700)}
+.kpi.k-purple .v{color:var(--purple600)}
+.kpi .l{font-size:var(--fs-sm);color:var(--tx2);position:relative}
+.kpi .v{font-size:var(--fs-2xl);font-weight:var(--fw-md);margin-top:2px;line-height:1.2;
+  font-variant-numeric:tabular-nums;letter-spacing:-.4px;position:relative}
 
 /* 按钮 */
 button{font:inherit}
@@ -173,8 +236,12 @@ button{font:inherit}
   transition:var(--tap-shift),var(--tint)}
 .btn:active{background:var(--surface2);transform:scale(.985)}
 .btn.on{background:var(--blue50);border-color:var(--blue600);color:var(--blue800)}
-.btn.primary{background:var(--blue600);border-color:var(--blue600);color:#fff;box-shadow:var(--sh1)}
-.btn.primary:active{background:var(--blue800);box-shadow:none}
+/* 主按钮做一层自上而下的同色渐变：上端亮、下端深，
+   模拟顶光打在凸起面上的效果，比纯色块更"可按"。
+   仍然只用 --blue600/800 两档，不引入新颜色。 */
+.btn.primary{background:linear-gradient(180deg,var(--blue600),var(--blue800));
+  border-color:transparent;color:var(--btn-primary-txt);box-shadow:var(--sh2)}
+.btn.primary:active{background:var(--blue800);box-shadow:var(--sh1)}
 .btn.ok{border-color:var(--green600);color:var(--green600)}
 .btn.no{border-color:var(--red600);color:var(--red600)}
 .btn.wide{width:100%}
@@ -227,6 +294,20 @@ label.fld>span{display:block;font-size:var(--fs-md);color:var(--tx2);margin-bott
 .exmore{width:100%;margin-top:8px;padding:9px 12px;border:1px dashed var(--line2);
   border-radius:var(--r-sm);background:var(--bg);color:var(--tx2);font:inherit;font-size:var(--fs-md);cursor:pointer}
 .exmore:active{background:var(--line)}
+/* 语境义：同一个词在她消息里的几种意思，chip 点开看对应例句 */
+.sensebox{border-top:1px dashed var(--line2);margin-top:var(--s3);padding-top:var(--s3);text-align:left}
+.sensehd{font-size:var(--fs-sm);color:var(--tx2);margin-bottom:var(--s2)}
+.senserow{display:flex;flex-wrap:wrap;gap:var(--s1)}
+.sensechip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line2);
+  border-radius:var(--r-pill);padding:6px 11px;background:var(--surface);color:var(--tx);
+  font:inherit;font-size:var(--fs-md);cursor:pointer;min-height:32px;text-align:left;
+  transition:var(--tint),var(--tap-shift)}
+.sensechip:active{transform:scale(.97)}
+.sensechip.on{background:var(--blue600);border-color:var(--blue600);color:#fff}
+.sensechip i{font-style:normal;font-size:var(--fs-xs);opacity:.65}
+.sensed{font-size:var(--fs-sm);color:var(--tx2);background:var(--surface);
+  border-left:2px solid var(--blue200);padding:6px 10px;border-radius:var(--r-xs);margin:var(--s2) 0}
+.senseex:empty{margin:0}
 /* display:block + text-align:left 改 flex：让泰文块在按钮里几何居中，
    而不是靠 line-height 猜。实测把四行墨迹中心偏移的极差从 3.8px 压到 3.3px。
    gap:var(--s2) 是泰文和 emoji 之间的固定间距，用 gap 而不是空格，
@@ -443,13 +524,16 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
   border-top:1px solid var(--line);padding-bottom:var(--safe-b);box-shadow:0 -1px 12px rgba(28,26,22,.05)}
 .tabbar button{flex:1;min-height:58px;border:0;background:transparent;color:var(--tx3);cursor:pointer;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:var(--fs-xs);
-  padding:6px 0;position:relative;transition:color var(--t-fast)}
+  padding:6px 0;position:relative;margin:4px 5px;border-radius:var(--r-pill);
+  transition:color var(--t-fast),background var(--t-fast)}
 .tabbar button .ic{font-size:var(--fs-xl);line-height:1;transition:transform var(--t)}
-/* 选中项上方加一段短横条，比只换颜色更容易一眼看出当前位置 */
-.tabbar button.on{color:var(--blue600)}
+.tabbar button .ic svg{width:21px;height:21px;display:block}
+/* 选中态：从"顶部一小段横条"换成整块淡色胶囊（Material 3 的指示器做法）。
+   横条只在按钮最上沿 22px，视觉权重太弱；胶囊把整个可点区域标出来，
+   一眼能看出"我在这一页"，也不需要再靠顶部那条线指位置。 */
+.tabbar button.on{color:var(--blue700);background:var(--blue50)}
 .tabbar button.on .ic{transform:translateY(-1px) scale(1.06)}
-.tabbar button.on::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:22px;height:3px;border-radius:0 0 3px 3px;background:var(--blue600)}
+.tabbar button:active{background:var(--surface2)}
 
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(80px + var(--safe-b));
   background:var(--tx);color:var(--bg);
@@ -457,6 +541,26 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
   pointer-events:none;z-index:99;max-width:88vw;text-align:center;
   box-shadow:var(--sh3);transform:translateX(-50%) translateY(6px)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---- 无障碍与运动偏好 ----
+   键盘/读屏用户必须看得见焦点在哪：原来只有输入框有 :focus 边框，
+   button 和 .tabbar button 按 Tab 走过去时完全没有指示。
+   这里统一给 :focus-visible 一圈 2px 描边，鼠标点击不触发（不打扰触屏用户）。 */
+button:focus-visible,.tabbar button:focus-visible,.mini:focus-visible,
+.btn:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,
+.acctbar:focus-visible{
+  outline:2px solid var(--blue600);outline-offset:2px;border-radius:var(--r-sm)}
+/* 有鼠标的设备上给卡片一点悬停抬升：触屏没有 hover，不会误触发 */
+@media (hover:hover) and (pointer:fine){
+  .card:hover,.task:hover{box-shadow:var(--sh2)}
+  .kpi:hover{box-shadow:var(--sh2)}
+}
+/* 尊重系统的"减弱动态效果"：前庭功能敏感的用户会被动效诱发不适。
+   不删功能，只把过渡压到 0 —— 状态照样变，只是不再动。 */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;scroll-behavior:auto !important}
+}
 </style>
 </head>
 <body>
@@ -628,6 +732,16 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 
     <div id="account"></div>
 
+    <h2>外观</h2>
+    <div class="card">
+      <div class="sub mt0">深色模式默认跟随系统，也可以手动固定。选择立即生效并记住，下次打开不闪屏。</div>
+      <div class="btnrow mt8" id="themeBtns">
+        <button class="btn" type="button" data-theme-opt="auto">跟随系统</button>
+        <button class="btn" type="button" data-theme-opt="light">浅色</button>
+        <button class="btn" type="button" data-theme-opt="dark">深色</button>
+      </div>
+    </div>
+
     <h2>学习记录</h2>
     <div class="hero">
       <div class="kpis">
@@ -677,12 +791,12 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 </main>
 
 <nav class="tabbar">
-  <button class="on" data-v="today"><span class="ic">◈</span>今日</button>
-  <button data-v="drill"><span class="ic">✎</span>练习</button>
-  <button data-v="corpus"><span class="ic">☰</span>语料</button>
-  <button data-v="words"><span class="ic">文</span>词库</button>
-  <button data-v="ref"><span class="ic">?</span>参考</button>
-  <button data-v="me"><span class="ic">◐</span>我的</button>
+  <button class="on" data-v="today"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="3"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/></svg></span>今日</button>
+  <button data-v="drill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.4 3.6a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>练习</button>
+  <button data-v="corpus"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg></span>语料</button>
+  <button data-v="words"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span>词库</button>
+  <button data-v="ref"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 1.9-2.8 2.3-2.8 3.8"/><path d="M12 17h.01"/></svg></span>参考</button>
+  <button data-v="me"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>我的</button>
 </nav>
 
 <div class="toast" id="toast"></div>
@@ -696,6 +810,7 @@ if (!window.WorkBuddyCloud) {
 </script>
 <script src="./pany-data.js"></script>
 <script src="./word-sent-data.js"></script>
+<script src="./word-sense.js"></script>
 <script src="./img/map.js"></script>
 <script src="./words-data.js"></script>
 <script src="./phrases-data.js"></script>
@@ -1140,14 +1255,23 @@ var GMAP = {}; POOL_G.forEach(function(g){ GMAP[g.t] = g; });
    整个 <script> 块中断执行 —— 今日看板空白、底部导航和所有按钮全部失灵。
    触发条件是「本地有历史天数 + 跨天」，也就是几乎所有第二天以后打开页面的用户。
    教训：JS 里 var 提升不等于初始化提前，跨函数提前使用时必须把定义挪到调用点之前。 */
+/* 复习原来只有一项 rev，里面混着「到期单词 / 虚词 / 她的例句 / 我的例句」四类，
+   最多一次要过 180 条。用户原话：「单词跟句子混在一起，句子还没有罗马音」。
+   现在拆成 revW（词和虚词）和 revS（句子）两项，各自独立计分、独立算完成。
+   wrong（错题）是 opt —— 不计入「今天是否完成」，没有错题时整天也不出现、不占名额。 */
 var TASKS = [
-  { k:'rev',  n:'到期复习', d:'按遗忘曲线到期的词和短句' },
+  { k:'revW', n:'复习单词', d:'到期的词和短句，按遗忘曲线排' },
+  { k:'revS', n:'复习句子', d:'她的例句和你自己的例句，分开练' },
   { k:'new',  n:'新学',     d:'今天新分配的词和短句' },
   { k:'read', n:'她的例句', d:'看泰文猜意思，再对答案' },
   { k:'out',  n:'我的例句', d:'看中文先自己说泰文，再对照' },
-  { k:'quiz', n:'今日测验', d:'四种题型随机' }
+  { k:'quiz', n:'今日测验', d:'四种题型随机' },
+  { k:'wrong',n:'错题重练', d:'之前答错过的，连续答对 2 次自动移出', opt:true }
 ];
-var TNAME = { rev:'到期复习', new:'新学', read:'她的例句', out:'我的例句', quiz:'今日测验' };
+var TNAME = { revW:'复习单词', revS:'复习句子', new:'新学', read:'她的例句', out:'我的例句', quiz:'今日测验', wrong:'错题重练' };
+/* 计入「今天是否做完」的任务。opt 的（错题）不参与 ——
+   否则某天没有错题、或错题没练完，整天就永远显示「未完成」，那是假信号。 */
+var MAIN_TASKS = TASKS.filter(function(t){ return !t.opt; });
 
 /* ==================== 状态 ==================== */
 var KEY = "thai-daily-v1";
@@ -1160,6 +1284,22 @@ try { var _wb0 = localStorage.getItem('thaiwordbook-v1');
   if (_wb0) { var _w0 = JSON.parse(_wb0) || {}; for (var _t0 in _w0) if (!S.master[_t0]) S.master[_t0] = 1; save(); } } catch (e) {}
 for (var _d in DEF) if (S.cfg[_d] == null) S.cfg[_d] = DEF[_d];
 if (!S.start) S.start = today();
+/* 复习拆分成 revW / revS 之后，老存档的 st.rev 必须迁移，
+   否则「今天做完了」永远判不出来（dayDone 遍历新任务名，找不到旧字段），
+   历史天数也会集体显示成未完成 —— 那是在骗用户说他没完成任务。 */
+(function(){
+  var n = 0;
+  for (var d in S.days){
+    var st = S.days[d] && S.days[d].st;
+    if (!st || !st.rev) continue;
+    if (!st.revW) st.revW = st.rev;   // 旧的「到期复习」主要就是单词，给 revW
+    if (!st.revS) st.revS = st.rev;   // 句子那时也混在同一项里，同样算已完成
+    delete st.rev; n++;
+  }
+  if (n) persist();
+})();
+if (!S.resume) S.resume = {};   // 断点续传：{ 任务: { d:日期, i, right, half, wrong, seen:{} } }
+if (!S.wrong)  S.wrong  = {};   // 错题本：{ key: { n:累计错次, last:日期, clr:连续答对 } }
 function persist(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
 function save(){
   persist();
@@ -1244,7 +1384,7 @@ function setMaster(t, v){
 function dayDone(d){
   var a = S.days[d] && S.days[d].st;
   if (!a) return false;
-  for (var i = 0; i < TASKS.length; i++){ var t = TASKS[i]; if (!(a[t.k] && a[t.k].done)) return false; }
+  for (var i = 0; i < MAIN_TASKS.length; i++){ var t = MAIN_TASKS[i]; if (!(a[t.k] && a[t.k].done)) return false; }
   return true;
 }
 /* 留存率：某条词第一次学之后，间隔 ≥ n 天的那次复习，答对的比例 */
@@ -1491,10 +1631,14 @@ function taskKeys(k){
   /* 用 (p.x || []) 兜底：旧存档的 plan 里没有 dueSH/dueSM/dueSOther（这三个字段是
      后来为「例句进复习队列」加的），直接 concat 会因为 undefined 抛错，
      表现是「今天一打开就白屏」。 */
-  if (k === 'rev') return (p.dueW || []).concat(p.dueG || [], p.dueSH || [], p.dueSM || [], p.dueSOther || []);
+  if (k === 'revW') return (p.dueW || []).concat(p.dueG || []);
+  if (k === 'revS') return (p.dueSH || []).concat(p.dueSM || [], p.dueSOther || []);
   if (k === 'new') return (p.newW || []).concat(p.newG || []);
   if (k === 'read') return p.read || [];
   if (k === 'out') return p.out || [];
+  /* 错题重练：题目就是之前答错过的条目。
+     dropMaster 在 startCard 里统一做，这里不用重复过滤。 */
+  if (k === 'wrong') return Object.keys(S.wrong || {});
   return null;
 }
 /*取词时统一剔除「已掌握」的词。
@@ -1568,8 +1712,16 @@ function renderToday(){
   $('todayReport').innerHTML = renderTodayReport();
   var h = '';
   TASKS.forEach(function(t){
-    var keys = dropMaster(taskKeys(t.k));
-    var total = t.k === 'quiz' ? S.cfg.quizCount : keys.length;
+    var done = !!(D.st[t.k] && D.st[t.k].done);
+    var total, didN, skipCard = false;
+    if (t.k === 'quiz'){ total = S.cfg.quizCount; didN = done ? total : 0; }
+    else {
+      var keys = dropMaster(taskKeys(t.k) || []);
+      total = keys.length;
+      if (t.opt && !total && !done) skipCard = true;
+      didN = done ? total : (resumeOf(t.k) ? resumeOf(t.k).n : 0);
+    }
+    if (skipCard) return;
     /* 空任务（今天没这项内容）不该记 100 分。
        原先写成 {done:true, n:0, score:100}，dayScoreOf 直接把这个 100 当真分数加权，
        dayDone 也算它完成 → 进 streak、进 kAvg、进配额闸门。
@@ -1577,22 +1729,23 @@ function renderToday(){
        例句池耗尽时 read/out 也变空壳，分数能虚高到 82。
        改记 skip 标记：dayDone 仍认为「当天确实没这项」，
        dayScoreOf 用 n>0 && !skip 过滤，权重按实际做了的项归一。 */
-    if (total === 0 && !(D.st[t.k] && D.st[t.k].done)){ D.st[t.k] = { done:true, n:0, score:null, skip:true }; save(); }
-    var st = D.st[t.k] || {}, done = !!st.done;
-    var pct = total ? Math.round((st.n||0)/total*100) : 0; if (done) pct = 100;
+    if (!t.opt && total === 0 && !done){ D.st[t.k] = { done:true, n:0, score:null, skip:true }; save(); }
+    done = !!(D.st[t.k] && D.st[t.k].done);
+    var pct = total ? Math.round(didN/total*100) : 0; if (done) pct = 100;
     var ex = '';
     if (t.k === 'new' && D.extra) ex = '<span class="sub">　含加学 ' + D.extra + ' 个</span>';
+    if (t.k === 'wrong' && total) ex = '<span class="sub">　共 ' + wrongCount() + ' 处</span>';
     h += '<div class="task' + (done ? ' done' : '') + '">'
-      + '<div class="th"><div class="nm">' + t.n + ' <span class="sub">' + (total ? total+' 项' : '今日无') + '</span>' + ex + '</div>'
-      + (done ? '<div class="sc">' + st.score + '</div>' : '') + '</div>'
+      + '<div class="th"><div class="nm">' + t.n + ' <span class="sub">' + (total ? total+' 项' : (t.opt ? '本子空着' : '今日无')) + '</span>' + ex + '</div>'
+      + (done ? '<div class="sc">' + D.st[t.k].score + '</div>' : '') + '</div>'
       + '<div class="dd">' + t.d + '</div><div class="mbar"><i style="width:' + pct + '%"></i></div>'
-      + '<button class="btn wide' + (done ? '' : ' primary') + '" data-run="' + t.k + '">' + (done ? '重做' : (st.n ? '继续' : '开始')) + '</button></div>';
+      + '<button class="btn wide' + (done ? '' : ' primary') + '" data-run="' + t.k + '">' + taskBtnLabel(done, didN, total) + '</button></div>';
   });
   h += renderQuota();
   h += renderExtra();
   h += renderProof();
   $('taskList').innerHTML = h;
-  var all = TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
+  var all = MAIN_TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
   $('finishBox').style.display = all ? 'block' : 'none';
   if (all){
     $('finishTxt').innerHTML = '<b>今日总分 ' + dayScoreOf(S.day) + '</b>　闪卡 '
@@ -1807,9 +1960,9 @@ function topbar(){
   setText('kHold', r1.pct == null ? '—' : r1.pct + '%');
   setText('dayInfo', WEEK[wk-1] + '　|　词池 ' + S.q.w + '/' + POOL_W.length
     + '　她例句 ' + S.q.hs + '/' + POOL_HS.length + '　我例句 ' + S.q.ms + '/' + POOL_MS.length);
-  var dn = TASKS.filter(function(t){ return D.st[t.k] && D.st[t.k].done; }).length;
+  var dn = MAIN_TASKS.filter(function(t){ return D.st[t.k] && D.st[t.k].done; }).length;
   var bar = $('tbBar');
-  if (bar) bar.style.width = (dn / TASKS.length * 100) + '%';
+  if (bar) bar.style.width = (dn / MAIN_TASKS.length * 100) + '%';
 }
 
 /* ---- 闪卡 ---- */
@@ -1869,11 +2022,8 @@ function exBlock(o){
   var flipped = (typeof run === 'object' && run && run.show);
   var cap = EX_CAP;
   var showList = flipped ? list.slice(0, cap) : list.slice(0, 1);
-  showList.forEach(function(x, i){
-    h += '<div class="exs" data-ex="' + esc(x.id) + '">'
-      + '<div class="ext thai">' + esc(x.t) + '</div>'
-      + (x.r ? '<div class="exr">' + esc(x.r) + '</div>' : '')
-      + '<div class="exz">' + esc(x.z) + '</div></div>';
+  showList.forEach(function(x){
+    h += exOne(x);
   });
   if (!flipped){
     if (list.length > 1) h += '<div class="sub" style="font-size:11.5px;margin-top:6px">翻面看其余 ' + (list.length - 1) + ' 句</div>';
@@ -1883,19 +2033,136 @@ function exBlock(o){
        这样不用重跑 exBlock，也不会丢失已经滚动到的位置。 */
     for (var k = cap; k < list.length; k++){
       var y = list[k];
-      h += '<div class="exs" data-ex="' + esc(y.id) + '" data-extra="1" hidden>'
-        + '<div class="ext thai">' + esc(y.t) + '</div>'
-        + (y.r ? '<div class="exr">' + esc(y.r) + '</div>' : '')
-        + '<div class="exz">' + esc(y.z) + '</div></div>';
+      h += exOne(y).replace('class="exs"', 'class="exs" data-extra="1" hidden');
     }
   }
   h += '</div>';
   return h;
 }
+/* ---- 语境义：同一个词在她的消息里到底有几个意思 ----
+   用户原话：「很多例句里面关于这个单词的意思都有不同，但是单词里面的意思就只有一个。」
+   词典给的 z 是字典义项，跟真实对话对不上：
+     ไป 在「ลืมไปเลย = 完全忘了」里是助词，一点「去」的意思都没有；
+     แล้ว 在「แล้วแต่ = 随你吧」里字典根本查不到；
+     กลับ 字典写「回来」，她说的全是「回家 / 回去」。
+   所以另开一层数据 WSENSE：[[短义, "句id", 说明?], ...]，
+   每条都挂真实例句，点了直接听她当时怎么说的。
+   只在翻面后显示 —— 正面给出来等于把答案写在题面上。 */
+function senseOf(t){
+  var m = window.WSENSE;
+  return (m && m[t]) || null;
+}
+/* 例句渲染两处要用（闪卡例句区、语境义展开区），
+   抽出来共用一份，否则改了这处忘了那处 —— 之前「点例句没声音」就是这么来的。 */
+function exOne(x){
+  return '<div class="exs" data-ex="' + esc(x.id) + '">'
+    + '<div class="ext thai">' + esc(x.t) + '</div>'
+    + (x.r ? '<div class="exr">' + esc(x.r) + '</div>' : '')
+    + '<div class="exz">' + esc(x.z) + '</div></div>';
+}
+function bindExs(box){
+  if (!box) return;
+  box.querySelectorAll('.exs').forEach(function(b){
+    /* 用 sentOf() 走归一化查找，别再直接 SMAP[id] ——
+       那样有一半例句点了没声音，而且不报错，最难发现。 */
+    b.onclick = function(){
+      var s = sentOf(b.getAttribute('data-ex'));
+      if (s) say(s.id, 'audio-pany', s.t);
+      else say(null, 'audio-pany', b.getAttribute('data-t') || b.textContent.trim());
+    };
+  });
+}
+function senseBlock(t){
+  var arr = senseOf(t);
+  if (!arr) return '';
+  var h = '<div class="sensebox"><div class="sensehd">她平时这么用（' + arr.length + ' 种意思）</div><div class="senserow">';
+  for (var i = 0; i < arr.length; i++){
+    var ids = arr[i][1].split(' ');
+    h += '<button class="sensechip" data-si="' + i + '" data-t="' + esc(t) + '">'
+      + esc(arr[i][0]) + '<i>' + ids.length + '</i></button>';
+  }
+  return h + '</div><div class="senseex" id="senseEx"></div></div>';
+}
+function bindSense(R){
+  var box = $('senseEx');
+  R.querySelectorAll('.sensechip').forEach(function(b){
+    b.onclick = function(){
+      if (!box) return;
+      var on = b.getAttribute('data-on') === '1';
+      R.querySelectorAll('.sensechip').forEach(function(x){ x.removeAttribute('data-on'); x.classList.remove('on'); });
+      if (on){ box.innerHTML = ''; return; }        // 再点一次收起
+      b.setAttribute('data-on', '1'); b.classList.add('on');
+      var arr = senseOf(b.getAttribute('data-t'));
+      var row = arr && arr[+b.getAttribute('data-si')];
+      if (!row) { box.innerHTML = ''; return; }
+      /* 例句必须逐条查 WSENTS 拿到泰文/中文/罗马音，
+         不能只显示 id —— 用户要看的是「她当时说了什么」。 */
+      var tbl = window.WSENTS || {}, h = '';
+      if (row[2]) h += '<div class="sensed">' + esc(row[2]) + '</div>';
+      row[1].split(' ').forEach(function(id){
+        var s = tbl[id];
+        if (s && s[0]) h += exOne({ id:id, t:s[0], z:s[1], r:s[2] || '' });
+      });
+      box.innerHTML = h;
+      bindExs(box);
+    };
+  });
+}
+/* ---- 断点续传 ----
+   用户原话：「复习了这些单词，把网页关掉之后，再点进复习，发现又得完成今天所有单词的复习。」
+   根因：run 是内存变量。退出或刷新后 run=null，进度全丢，下次从头排。
+   现在每答完一条就往 S.resume[任务] 里记一笔（跨天作废，因为每天的任务列表是新的）。 */
+function resumeOf(kind){
+  var r = S.resume && S.resume[kind];
+  if (!r || r.d !== today()) return null;
+  if (!r.seen || !Object.keys(r.seen).length) return null;
+  return r;
+}
+function markDone(k, ok){
+  if (!run) return;
+  var rs = S.resume[run.kind];
+  if (!rs || rs.d !== today()) rs = S.resume[run.kind] = { d:today(), n:0, right:0, half:0, wrong:0, seen:{} };
+  rs.d = today();
+  if (!rs.seen[k]){ rs.seen[k] = 1; rs.n++; }
+  if (ok === 1) rs.right++; else if (ok === 0.5) rs.half++; else rs.wrong++;
+  save();
+}
+/* 错题本：记错一次进本，连续答对 2 次出本。
+   来源不只闪卡自评 —— 测验里选错也算，那才是「实际回答」里露出来的错。 */
+function noteWrong(k){
+  if (!k) return;
+  var w = S.wrong[k] || (S.wrong[k] = { n:0, last:'', clr:0 });
+  w.n++; w.last = today(); w.clr = 0;
+  save();
+}
+function noteRight(k){
+  var w = S.wrong && S.wrong[k];
+  if (!w) return;
+  w.clr = (w.clr || 0) + 1;
+  /* 连续答对两次（中间没有再错）才算真的捡回来了，直接从本子里去掉 */
+  if (w.clr >= 2) delete S.wrong[k];
+  save();
+}
+/* 任务按钮文案。今日页和练习页两处在渲染同一份按钮，
+   文案逻辑只能有一份，否则改一处忘一处。
+   做过一部分要把「已做 N」写在按钮上 —— 用户看不见进度条就不知道上次做到哪了。 */
+function taskBtnLabel(done, didN, total){
+  if (done) return '重做';
+  if (didN && total && didN < total) return '继续 · 已做 ' + didN + '/' + total;
+  return '开始';
+}
+function wrongCount(){ return Object.keys(S.wrong || {}).length; }
+
 function startCard(kind){
-  var keys = dropMaster(taskKeys(kind));
-  if (!keys.length){ toast('今天这部分没有内容'); return; }
-  run = { kind:kind, keys:keys, i:0, right:0, half:0, wrong:0, show:false, t0:Date.now() };
+  var all = dropMaster(taskKeys(kind) || []);
+  if (!all.length){ toast(kind === 'wrong' ? '错题本是空的，先去做题吧' : '今天这部分没有内容'); return; }
+  /* 上次没做完的部分接着做：把已经答过的 key 摘掉，计数沿用。
+     base 让分数和进度都按「这一整天」算，而不是按剩下的这几条算。 */
+  var rs = resumeOf(kind), seen = rs ? rs.seen : null;
+  var keys = seen ? all.filter(function(k){ return !seen[k]; }) : all;
+  if (!keys.length){ toast('这部分今天已经做完了'); return; }
+  run = { kind:kind, keys:keys, i:0, right:0, half:0, wrong:0, show:false, t0:Date.now(),
+          base: rs ? { n:rs.n, right:rs.right, half:rs.half, wrong:rs.wrong } : { n:0, right:0, half:0, wrong:0 } };
   enterFocus(kind);
   renderRun();
   drillStarted = true;
@@ -1924,9 +2191,12 @@ function renderRun(){
   /* 翻面后加 .ans：CSS 里把配图缩回去，让位给中文释义。
      正面「看图想意思」时图最大，翻面「对答案」时释义最大 —— 主角随阶段换。 */
   var h = '<div class="study' + (run.show ? ' ans' : '') + '">' + front;
-  if (run.show) h += back;
+  if (run.show) h += back + senseBlock(o.t);
   h += exBlock(o);
-  h += '<div class="hint">' + (run.i+1) + ' / ' + run.keys.length + (it ? '　盒' + it.box + ' 对' + it.r + ' 错' + it.w : '') + '</div><div class="btnrow">';
+  /* 进度按「今天的全部」显示，不是按剩下这几条 ——
+     否则续做时看到「1 / 6」会以为今天就这么点内容。 */
+  var b = run.base || { n:0 };
+  h += '<div class="hint">' + (b.n + run.i + 1) + ' / ' + (b.n + run.keys.length) + (it ? '　盒' + it.box + ' 对' + it.r + ' 错' + it.w : '') + '</div><div class="btnrow">';
   var play = function(){
     if (o.type === 'w') say(o.o ? o.o.a : null, o.o ? o.o.d : 'audio-pany', o.t);
     else if (o.type === 'g') say(o.o ? o.o.a : null, 'audio-pany', o.t);
@@ -1951,31 +2221,30 @@ function renderRun(){
   paintFocusBar();
   var bp = $('cPlay'); if (bp) bp.onclick = play;
   var bs = $('cShow'); if (bs) bs.onclick = function(){ run.show = true; renderRun(); };
-  if ($('cR')) $('cR').onclick = function(){ grade(k, 1); run.right++; nx(); };
-  if ($('cH')) $('cH').onclick = function(){ grade(k, 0.5); run.half++; nx(); };
-  if ($('cW')) $('cW').onclick = function(){ grade(k, 0); run.wrong++; nx(); };
+  if ($('cR')) $('cR').onclick = function(){ grade(k, 1); run.right++; markDone(k, 1); noteRight(k); nx(); };
+  if ($('cH')) $('cH').onclick = function(){ grade(k, 0.5); run.half++; markDone(k, 0.5); nx(); };
+  if ($('cW')) $('cW').onclick = function(){ grade(k, 0); run.wrong++; markDone(k, 0); noteWrong(k); nx(); };
   if ($('cM')) $('cM').onclick = function(){
     var on = !S.master[o.t];
     setMaster(o.t, on);
-    if (on){ grade(k, 1); run.right++; toast('已标记为掌握，之后不再出现'); nx(); }
+    if (on){ grade(k, 1); run.right++; markDone(k, 1); noteRight(k); toast('已标记为掌握，之后不再出现'); nx(); }
     else { renderRun(); renderToday(); }
   };
   /* 退出闪卡：三件事缺一不可 ——
      run=null 清状态、exitFocus 收专注态、renderDrillChrome 把任务列表放回来。
      少了最后一件，用户退出后会停在空白练习页（这坑跟 qQuit 一样，两处一起补）。 */
-  if ($('cQuit')) $('cQuit').onclick = function(){ run = null; exitFocus(); renderToday(); R.innerHTML = ''; renderDrillChrome(); };
+  if ($('cQuit')) $('cQuit').onclick = function(){
+    /* 退出不清 resume —— 已经答过的题还留在 S.resume 里，
+       下次进来接着答剩下的，这才是用户要的「复习了一半可以下次继续」。 */
+    var left = run.keys.length - run.i;
+    run = null; exitFocus(); renderToday(); R.innerHTML = ''; renderDrillChrome();
+    if (left > 0) toast('已记住进度，剩 ' + left + ' 条下次接着来');
+  };
   if ($('cPic')) $('cPic').onclick = function(){ picMode = !picMode; renderRun(); };
   if (!run.show && run.kind !== 'read') setTimeout(play, 200);
   /* 例句块：点哪句读哪句 */
-  R.querySelectorAll('.exs').forEach(function(b){
-    /* 用 sentOf() 走归一化查找，别再直接 SMAP[id] ——
-       那样有一半例句点了没声音，而且不报错，最难发现。 */
-    b.onclick = function(){
-      var s = sentOf(b.getAttribute('data-ex'));
-      if (s) say(s.id, 'audio-pany', s.t);
-      else say(null, 'audio-pany', b.getAttribute('data-t') || b.textContent.trim());
-    };
-  });
+  bindExs(R);
+  bindSense(R);
   /* 例句「展开/收起」：剩余例句已在 DOM 里（只是带 hidden），
      所以这里只切 hidden 属性，不重跑 exBlock —— 不会丢滚动位置，也不会闪一下。 */
   var mb = R.querySelector('[data-exmore]');
@@ -1996,7 +2265,7 @@ var lastAllDone = {};   // 记录「哪一天已因全部完成而同步过」�
    3) 未登录时静默跳过，只存本地 */
 function onTaskDone(kind){
   pushNow();
-  var all = TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
+  var all = MAIN_TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
   if (!all) return;
   var d = today();
   if (lastAllDone[d]) return;
@@ -2009,11 +2278,23 @@ function onTaskDone(kind){
   }
 }
 function finishRun(){
-  var tot = run.keys.length, sc = Math.round((run.right + run.half*0.5) / tot * 100);
+  /* 必须收专注态。原来这里只置 run=null，body.focus 类没清，
+     #focusBar 就一直挂在页面顶部，把下面的任务卡片按钮挡住 ——
+     表现是「做完一项之后，下一项怎么点都没反应」。 */
+  exitFocus();
+  /* 分批做完时（中途退出过），分数要按「今天全部」算：
+     之前那半段的对/错记在 run.base 里，这里合并起来再算，
+     不然续做那一小段明明全对就给 100 分，是假成绩。 */
+  var b = run.base || { n:0, right:0, half:0, wrong:0 };
+  var tot = b.n + run.keys.length;
+  var right = b.right + run.right, half = b.half + run.half, wrong = b.wrong + run.wrong;
+  var sc = Math.round((right + half*0.5) / Math.max(1, tot) * 100);
   paintFocusBar();
-  var msg = '<div class="okbox">' + TNAME[run.kind] + '完成：<b>' + sc + ' 分</b>　✔ ' + run.right + '　~ ' + run.half + '　✘ ' + run.wrong + '</div>';
-  D.st[run.kind] = { done:true, n:tot, score:sc, right:run.right, half:run.half, wrong:run.wrong };
+  var msg = '<div class="okbox">' + TNAME[run.kind] + '完成：<b>' + sc + ' 分</b>　✔ ' + right + '　~ ' + half + '　✘ ' + wrong
+    + (b.n ? '<div class="sub" style="margin:6px 0 0">（本次 ' + run.keys.length + ' 条 + 之前 ' + b.n + ' 条合并计分）</div>' : '') + '</div>';
+  D.st[run.kind] = { done:true, n:tot, score:sc, right:right, half:half, wrong:wrong };
   D.st.min = (D.st.min || 0) + Math.round((Date.now() - run.t0) / 60000);
+  delete S.resume[run.kind];
   save(); run = null;
   $('runner').innerHTML = msg + focusBackBtn();
   renderToday();
@@ -2145,6 +2426,7 @@ function finishQuiz(){
   var sc = Math.round(quiz.right / quiz.qs.length * 100);
   D.st.quiz = { done:true, n:quiz.qs.length, score:sc, right:quiz.right };
   D.st.min = (D.st.min || 0) + Math.round((Date.now() - quiz.t0) / 60000);
+  exitFocus();   // 同 finishRun：不清 focus 的话返回条会一直挡着下一步操作
   save(); quiz = null;
   $('runner').innerHTML = '<div class="okbox">测验完成：<b>' + D.st.quiz.score + ' 分</b>（' + D.st.quiz.right + ' / ' + D.st.quiz.n + '）</div>' + focusBackBtn();
   renderToday();
@@ -2487,10 +2769,13 @@ function renderDrill(){
     paintFocusBar();
     return;
   }
+  /* 兜底：没有任何一处在练了，却还挂着 focus 类，说明某条退出路径漏了 exitFocus()。
+     与其寄希望于每条路径都记得收，不如在渲染列表时就地清 —— 挂在上面的返回条会挡住整页点击。 */
+  if (document.body.classList.contains('focus')) exitFocus();
   L.style.display = '';
   /* 做完了还停在这一页：给个明确的落点，不然用户以为页面空了 */
   if (drillStarted){
-    var all = TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
+    var all = MAIN_TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
     L.innerHTML = all
       ? '<div class="dguide"><div class="big">✓</div><div>今天五项都做完了</div>'
         + '<div class="btnrow" style="justify-content:center;margin-top:12px">'
@@ -2516,18 +2801,30 @@ function renderDrill(){
   if (drillStarted) return;
   var h = '';
   TASKS.forEach(function(t){
-    var keys = dropMaster(taskKeys(t.k));
-    var total = t.k === 'quiz' ? S.cfg.quizCount : keys.length;
-    var st = D.st[t.k] || {}, done = !!st.done;
-    var pct = total ? Math.round((st.n || 0) / total * 100) : 0;
+    /* done 必须先算出来：下面判 skipCard 要用它。
+       取 D.st[t.k] 必须容错 —— 新加的 opt 任务（错题本）从来没做过题目时，
+       D.st 里根本没有这个键，直接 .done 会抛 TypeError 打断整页渲染。 */
+    var done = !!(D.st[t.k] && D.st[t.k].done);
+    var total, didN, skipCard = false;
+    if (t.k === 'quiz'){ total = S.cfg.quizCount; didN = done ? total : 0; }
+    else {
+      var keys = dropMaster(taskKeys(t.k) || []);
+      total = keys.length;
+      /* opt 任务（错题本）空的时候干脆不显示卡片 ——
+         空着一张「今日无」的卡，等于每天提醒他「你还有个没做的」，是假压力。 */
+      if (t.opt && !total && !done) skipCard = true;
+      didN = done ? total : (resumeOf(t.k) ? resumeOf(t.k).n : 0);
+    }
+    if (skipCard) return;
+    var pct = total ? Math.round(didN / total * 100) : 0;
     if (done) pct = 100;
     h += '<div class="dcard' + (done ? ' done' : '') + '">'
-      + '<div class="nm">' + t.n + (done ? ' <span class="sub">· ' + st.score + ' 分</span>' : '')
-      + ' <span class="sub">' + (total ? total + ' 项' : '今日无') + '</span></div>'
+      + '<div class="nm">' + t.n + (done ? ' <span class="sub">· ' + D.st[t.k].score + ' 分</span>' : '')
+      + ' <span class="sub">' + (total ? total + ' 项' : (t.opt ? '本子空着' : '今日无')) + '</span></div>'
       + '<div class="dd">' + t.d + '</div>'
       + '<div class="mbar"><i style="width:' + pct + '%"></i></div>'
       + '<button class="btn wide' + (done ? '' : ' primary') + '" data-run="' + t.k + '">'
-      + (done ? '重做' : (st.n ? '继续' : '开始')) + '</button></div>';
+      + taskBtnLabel(done, didN, total) + '</button></div>';
   });
   L.innerHTML += h;
   L.querySelectorAll('button[data-run]').forEach(function(b){
@@ -3063,6 +3360,42 @@ document.querySelectorAll('.tabbar button').forEach(function(b){
     window.scrollTo(0, 0);
   };
 });
+/* ---- 外观（深色模式）----
+   三态：auto 跟随系统 / light / dark，选择存 localStorage('theme')。
+   auto 时不写 data-theme，让 @media (prefers-color-scheme) 生效；
+   手动浅色时写 data-theme="light"，CSS 里深色调色板挂在
+   :root:not([data-theme="light"]) 上，所以能正确压过系统深色。
+   meta theme-color 有两条（明/暗各一条，带 media），手动固定后
+   系统主题不再决定哪条生效，这里按当前主题改写它们的 media。 */
+(function(){
+  var KEY = 'theme', root = document.documentElement;
+  var metas = [].slice.call(document.querySelectorAll('meta[name="theme-color"]'));
+  var mqlDark = window.matchMedia('(prefers-color-scheme:dark)');
+  function saved(){ try { return localStorage.getItem(KEY); } catch(e){ return null; } }
+  function apply(t){
+    if (t !== 'light' && t !== 'dark') t = 'auto';
+    if (t === 'auto') { root.removeAttribute('data-theme'); }
+    else { root.setAttribute('data-theme', t); }
+    document.querySelectorAll('[data-theme-opt]').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-theme-opt') === t);
+    });
+    var effDark = (t === 'dark') || (t === 'auto' && mqlDark.matches);
+    metas.forEach(function(m){
+      var isDarkMeta = /16181d/i.test(m.getAttribute('content') || '');
+      if (t === 'auto') {
+        m.setAttribute('media', isDarkMeta ? '(prefers-color-scheme:dark)' : '(prefers-color-scheme:light)');
+      } else {
+        m.setAttribute('media', (effDark === isDarkMeta) ? '' : 'not all');
+      }
+    });
+    try { localStorage.setItem(KEY, t); } catch(e){}
+  }
+  document.querySelectorAll('[data-theme-opt]').forEach(function(b){
+    b.onclick = function(){ apply(b.getAttribute('data-theme-opt')); };
+  });
+  apply(saved() || 'auto');
+})();
+
 window.addEventListener('scroll', function(){
   var onBtn = document.querySelector('.tabbar button.on');
   if (!onBtn) return;

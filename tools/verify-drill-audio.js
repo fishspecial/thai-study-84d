@@ -94,7 +94,7 @@ const SEED = require('./seed-for-visual.js');
     const L = document.getElementById('drillList');
     return { n: L.querySelectorAll('.dcard').length, txt: (L.textContent || '').slice(0, 60) };
   });
-  log(cards.n === 5, 'A9 练习页列出 5 项任务卡', cards.n + ' 张');
+  log(cards.n === 6, 'A9 练习页列出 6 项任务卡（单词/句子复习已分家，错题空时不显示）', cards.n + ' 张');
   log(/统计|今日/.test(cards.txt), 'A10 引导语说明练习与总览分开', JSON.stringify(cards.txt.trim().slice(0, 30)));
 
   /* 从练习页直接开练 → 应切到练习页并出现题目 */
@@ -126,7 +126,7 @@ const SEED = require('./seed-for-visual.js');
       opa: t.querySelector('.hero') ? getComputedStyle(t.querySelector('.hero')).opacity : '0',
     };
   });
-  log(todayIntact.tasks === 5, 'A15 今日页任务清单仍是 5 项', todayIntact.tasks + ' 项');
+  log(todayIntact.tasks === 6, 'A15 今日页任务清单仍是 6 项', todayIntact.tasks + ' 项');
   log(todayIntact.heroH > 100 && +todayIntact.opa === 1,
     'A16 今日页总览没被折叠', 'hero 高 ' + todayIntact.heroH + 'px 透明度 ' + todayIntact.opa);
 

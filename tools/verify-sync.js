@@ -411,7 +411,7 @@ async function newPage(browser, opts) {
     await page.goto(LIVE, { waitUntil: 'load', timeout: 40000 });
     await page.waitForTimeout(2200);
     const r = await page.evaluate(() => ({
-      tasks: (typeof TASKS !== 'undefined' && TASKS) ? TASKS.length : 0,
+      tasks: (typeof TASKS !== 'undefined' && TASKS) ? TASKS.length : 0, mainTasks: (typeof MAIN_TASKS !== 'undefined' && MAIN_TASKS) ? MAIN_TASKS.length : 0,
       boardLen: ((document.getElementById('board') || {}).textContent || '').replace(/\s+/g, '').length,
       tabBtns: document.querySelectorAll('.tabbar button').length,
       /* 点击「词库」标签必须真的切页 —— 脚本一中断，所有 onclick 都没绑上 */
@@ -423,7 +423,7 @@ async function newPage(browser, opts) {
       })(),
     }));
     log('G1 有历史记录时页面无 JS 错误', errs.length === 0, errs.length ? errs[0] : '0 个');
-    log('G2 TASKS 正常初始化（提升顺序正确）', r.tasks === 5, 'TASKS.length=' + r.tasks);
+    log('G2 TASKS 正常初始化（提升顺序正确）', r.mainTasks === 6 && r.tasks === 7, 'TASKS=' + r.tasks + ' 计入打卡=' + r.mainTasks);
     log('G3 今日看板有内容（脚本未中断）', r.boardLen > 20, '看板字符数=' + r.boardLen);
     /* 标签数不能写死 5 —— 练习拆成独立标签后是 6 个（2026-10-03）。
        写死数字的判据会在 UI 正常演进时误报 FAIL，掩盖真正的回归。 */
