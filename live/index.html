@@ -6,6 +6,11 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#16181d" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script>
+/* 主题早绑定：在 <style> 解析前把手动选择写到 <html> 上，
+   否则固定深色的用户每次打开都会先闪一帧白。 */
+(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();
+</script>
 <!-- 内联 favicon：不额外发一次请求，浏览器标签页和手机主屏都有图标 -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a90d9'/%3E%3Ctext x='32' y='45' font-size='40' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E0%B9%94%3C/text%3E%3C/svg%3E">
 <title>泰语 84 天</title>
@@ -19,18 +24,68 @@
   --red50:#fcebeb; --red200:#f09595; --red600:#a32d2d;
   --purple50:#eeedfb; --purple200:#cecbf9; --purple600:#534ab7;
   --safe-b:env(safe-area-inset-bottom,0px);
-  --ok:var(--green600); --warn:var(--amber600); --bad:var(--red600);
-  /* 阴影层级：低/中/高，卡片与浮层按高度取用 */
-  --sh1:0 1px 2px rgba(28,26,22,.05);
-  --sh2:0 2px 10px rgba(28,26,22,.07);
-  --sh3:0 8px 28px rgba(28,26,22,.13);
-  --r:16px;            /* 统一圆角 */
-  --r-sm:11px;
+  /* 页面底色与卡片底色分离：卡片用 --bg，页面用 --bg-page。
+     以前两者都是纯白，层级只能靠边框撑，界面显得"平"。 */
+  --bg-page:#f2f1ed;
+  color-scheme:light;
+  /* 明暗主题差异收敛成变量：规则本体只写一份，
+     media 查询（跟随系统）和 html[data-theme]（手动固定）各挂一份调色板。
+     以后调深色，改一处调色板即可，不会再出现改漏某半边的情况。 */
+  --img-dim:none;
+  --pic-filter:none;
+  --btn-primary-txt:#fff;
+  /* 阴影层级：低/中/高，卡片与浮层按高度取用。
+     --sh1 是卡片默认层级，做成两段式（近距压边 + 远距扩散），
+     比单层 0 1px 2px 更能把卡片从页面底色上"抬"出来 ——
+     这是 2026 年"分层深度"取代纯扁平的关键：靠阴影而非边框建立层级。 */
+  --sh1:0 1px 2px rgba(28,26,22,.05), 0 4px 14px rgba(28,26,22,.055);
+  --sh2:0 2px 8px rgba(28,26,22,.08), 0 10px 26px rgba(28,26,22,.10);
+  --sh3:0 8px 24px rgba(28,26,22,.14), 0 18px 48px rgba(28,26,22,.16);
+  --r:18px;            /* 统一圆角（卡片/浮层） */
+  --r-sm:12px;
+
+  /* 色阶补全：700 = 标签/徽章文字色（11px 小字专用，对比度 ≥ 4.5:1）
+     600 = 图标/强调/边框   800 = 标题级强调
+     紫色只有背景三档（--purple50/200/600），没有文字用的 700。 */
+  --blue700:#0f4c85;
+  --green700:#2f5610;
+  --amber700:#6b400a;
+  --red700:#852626;
+  /* 排版阶梯：8 档，每档都有明确用途，不要在组件里写字面量 */
+  --fs-xs:11px; --fs-sm:12px; --fs-md:13px; --fs-base:14px;
+  --fs-lg:15px; --fs-xl:17px; --fs-2xl:22px; --fs-3xl:34px;
+  --lh:1.65;        /* 正文基准行高 */
+  --lh-loose:1.9;    /* 泰文专用：上下标（สระ วรรณยุกต์）在 1.65 下会被切 */
+  --fw-md:600;      /* 标题/强调字重。正文 400 是浏览器默认，不必定义 */
+  /* 间距：4px 栅格，只允许用这 6 档 */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px;
+  /* 圆角：4 档。--r-lg 卡片/浮层 16px｜--r 控件 11px｜--r-sm 标签 8px｜--r-pill 胶囊 */
+  --r-pill:99px;
+  --r-xs:8px;
+  /* 动效：只在「按压反馈」和「浮层进出」上用，页面切换不做动画。
+     三档足够，多了只会让界面"各有各的 sluggish"：
+       --t-instant 80ms  按压（transform:scale）—— 必须跟手，慢了有延迟感
+       --t-fast    120ms 颜色/边框/阴影等状态切换
+       --t         180ms 展开收起（max-height / height）
+       --t-slow    350ms 进度条宽度——这是唯一需要"看得见在走"的地方 */
+  --t-instant:80ms; --t-fast:120ms; --t:180ms; --t-slow:350ms;
+  --ease:cubic-bezier(.2,.7,.3,1);
+  /* 常用组合，直接给变量，别再各写各的 */
+  --tap-shift:transform var(--t-instant) var(--ease);
+  --tint:background var(--t-fast),border-color var(--t-fast),box-shadow var(--t-fast);
+  /* 触控目标下限：iOS 44pt / Material 48dp，取 44 */
+  --tap:44px;
+  /* 布局常量：底部标签栏高度，供 body 的 padding-bottom 与 .tabbar 共用，
+     避免「加了 safe-b 就顶掉内容」这种两处各写一遍的问题 */
+  /* 66 = 按钮 58 + 上下各 4px 外边距（胶囊选中态需要留白） */
+  --tabbar-h:66px;
 }
-/* 深色模式：跟随系统。用户常在泰国，晚上刷这个是主要场景，
-   原来的纯白底在暗环境下刺眼、也影响入睡。 */
+/* 深色模式：默认跟随系统，也可在「我的 → 外观」手动固定。
+   用户常在泰国，晚上刷这个是主要场景，原来的纯白底在暗环境下刺眼、也影响入睡。
+   同一份调色板写两遍：media 查询管「跟随系统」（且未被手动固定为浅色时），
+   html[data-theme="dark"] 管「手动固定深色」。两处色值必须同步改。 */
 @media (prefers-color-scheme:dark){
-  :root{
+  :root:not([data-theme="light"]){
     --bg:#16181d; --surface:#1e2027; --surface2:#262932; --line:#2c2f38; --line2:#3b3f4a;
     --tx:#e8e6e1; --tx2:#a8a69f; --tx3:#767570;
     --blue50:#12283d; --blue200:#1e4a6f; --blue600:#5aaaf0; --blue800:#a6d3fa;
@@ -38,152 +93,243 @@
     --green50:#1b2a12; --green600:#8fd45a;
     --red50:#3a1a1a; --red200:#7a3535; --red600:#f08a8a;
     --purple50:#262347; --purple200:#454080; --purple600:#b0a8f5;
-    --sh1:0 1px 2px rgba(0,0,0,.3);
-    --sh2:0 2px 12px rgba(0,0,0,.4);
-    --sh3:0 10px 32px rgba(0,0,0,.55);
+    /* 深色下的 700：比 600 略暗一点（深底上要降亮度防刺眼），
+       比 800 亮，保证 11px 小字仍达 4.5:1 */
+    --blue700:#7cbcf2;
+    --green700:#7cc04a;
+    --amber700:#e0b45c;
+    --red700:#e07a7a;
+    --sh1:0 1px 2px rgba(0,0,0,.30), 0 6px 18px rgba(0,0,0,.34);
+    --sh2:0 2px 10px rgba(0,0,0,.38), 0 14px 30px rgba(0,0,0,.42);
+    --sh3:0 10px 28px rgba(0,0,0,.52), 0 22px 56px rgba(0,0,0,.58);
+    --bg-page:#111318;
+    --img-dim:brightness(.94) contrast(1.02);
+    --pic-filter:invert(.90) hue-rotate(180deg) brightness(.96);
+    --btn-primary-txt:#0d1117;
+    color-scheme:dark;
   }
-  /* 白底手绘图在暗色下会晃眼，压一点亮度让文字成为主角 */
-  img{filter:brightness(.94) contrast(1.02)}
-  .btn.primary{color:#0d1117}
 }
+html[data-theme="dark"]{
+  --bg:#16181d; --surface:#1e2027; --surface2:#262932; --line:#2c2f38; --line2:#3b3f4a;
+  --tx:#e8e6e1; --tx2:#a8a69f; --tx3:#767570;
+  --blue50:#12283d; --blue200:#1e4a6f; --blue600:#5aaaf0; --blue800:#a6d3fa;
+  --amber50:#33270f; --amber200:#6b4e17; --amber600:#f0c36d;
+  --green50:#1b2a12; --green600:#8fd45a;
+  --red50:#3a1a1a; --red200:#7a3535; --red600:#f08a8a;
+  --purple50:#262347; --purple200:#454080; --purple600:#b0a8f5;
+  --blue700:#7cbcf2;
+  --green700:#7cc04a;
+  --amber700:#e0b45c;
+  --red700:#e07a7a;
+  --sh1:0 1px 2px rgba(0,0,0,.30), 0 6px 18px rgba(0,0,0,.34);
+  --sh2:0 2px 10px rgba(0,0,0,.38), 0 14px 30px rgba(0,0,0,.42);
+  --sh3:0 10px 28px rgba(0,0,0,.52), 0 22px 56px rgba(0,0,0,.58);
+  --bg-page:#111318;
+  --img-dim:brightness(.94) contrast(1.02);
+  --pic-filter:invert(.90) hue-rotate(180deg) brightness(.96);
+  --btn-primary-txt:#0d1117;
+  color-scheme:dark;
+}
+/* 白底手绘图在暗色下会晃眼，压一点亮度让文字成为主角 */
+img{filter:var(--img-dim)}
+/* 练习配图是「黑线白底」的简笔画，放大到 226px 后白块在暗色里非常刺眼。
+   反转成「浅线深底」：白底被压到接近页面背景，线条变浅灰依然清楚。
+   hue-rotate(180deg) 修正经反色后可能出现的轻微偏色。
+   只反 img 本身 —— 边框和底色在外层 .picframe/.qpicframe 上，不受影响。 */
+img.pic, img.qpic{filter:var(--pic-filter)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);
+body{background:var(--bg-page);color:var(--tx);
   font-family:system-ui,-apple-system,"Segoe UI","Leelawadee UI","Noto Sans Thai","Noto Sans Thai UI","Microsoft YaHei",sans-serif;
-  font-size:15px;line-height:1.65;padding-bottom:calc(66px + var(--safe-b));
+  font-size:var(--fs-lg);line-height:var(--lh);
+  /* 底部留白 = 标签栏高 + 安全区。以前这里是 66px、.tabbar 那里是 58px，
+     两处各写一遍，改标签栏高度时忘了改这里，内容就被底栏盖住。 */
+  padding-bottom:calc(var(--tabbar-h) + 8px + var(--safe-b));
   -webkit-font-smoothing:antialiased}
 h1,h2,h3{margin:0}
-h2{font-size:15px;font-weight:600;margin:18px 0 8px}
-h3{font-size:14px;font-weight:600;margin:14px 0 6px}
+/* 标题层级拉开：h2 提到 17px 并收紧字距，和正文 15px 拉开一个档位，
+   扫读时能立刻区分"这是新一节"而不是正文续行。 */
+h2{font-size:var(--fs-xl);font-weight:var(--fw-md);margin:22px 0 10px;letter-spacing:-.2px}
+h3{font-size:var(--fs-base);font-weight:var(--fw-md);margin:16px 0 8px;letter-spacing:-.1px}
 p{margin:8px 0}
-.sub{color:var(--tx2);font-size:13px}
+.sub{color:var(--tx2);font-size:var(--fs-md)}
+/* ---- 布局工具类 ----
+   只收「重复 3 次以上、语义明确」的，其余内联 style 保留。
+   内联 style 83 处里 margin-top:0 独占 16 处，全是同一个意思：
+   卡片内首个元素不要上边距。用一个类替掉，比写 16 遍内联样式好维护。 */
+.mt0{margin-top:0}
+.mt6{margin-top:var(--s1) var(--s2)}   /* 上下都留，纵向节奏更匀 */
+.mt8{margin-top:var(--s2)}
+.mt12{margin-top:var(--s3)}
+.row{display:flex;align-items:center;gap:var(--s2)}
+.row.wrap{flex-wrap:wrap}
 a{color:var(--blue600);text-decoration:none}
-b{font-weight:600}
+b{font-weight:var(--fw-md)}
 .th{font-family:"Leelawadee UI","Noto Sans Thai","Noto Sans Thai UI","Sarabun","Tahoma",sans-serif;
-  line-height:1.9;word-break:keep-all;overflow-wrap:break-word}
+  line-height:var(--lh-loose);word-break:keep-all;overflow-wrap:break-word}
 /* 泰文题干与选项：显式指定泰文字体，避免部分安卓浏览器回退到无泰文字形的字体而显示成方框 */
 .thai{font-family:"Leelawadee UI","Noto Sans Thai","Noto Sans Thai UI","Sarabun","Tahoma",sans-serif;
-  line-height:1.9;word-break:keep-all;overflow-wrap:break-word;letter-spacing:.2px}
+  line-height:var(--lh-loose);word-break:keep-all;overflow-wrap:break-word;letter-spacing:.2px}
 
 /* 顶栏 */
 .topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);
   backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);
   border-bottom:1px solid var(--line);padding:9px 14px;box-shadow:var(--sh1)}
 .topbar .tb{display:flex;align-items:center;gap:10px;max-width:760px;margin:0 auto}
-.topbar .ttl{font-size:15px;font-weight:600;letter-spacing:.2px}
-.topbar .day{font-size:12px;color:var(--tx2)}
-.topbar .pb{flex:1;height:6px;background:var(--surface2);border-radius:99px;overflow:hidden;min-width:40px}
+.topbar .ttl{font-size:var(--fs-lg);font-weight:var(--fw-md);letter-spacing:.2px}
+.topbar .day{font-size:var(--fs-sm);color:var(--tx2)}
+.topbar .pb{flex:1;height:6px;background:var(--surface2);border-radius:var(--r-pill);overflow:hidden;min-width:40px}
 .topbar .pb>i{display:block;height:100%;background:linear-gradient(90deg,var(--green600),#7cc04a);
-  width:0;transition:width .35s ease;border-radius:99px}
+  width:0;transition:width var(--t-slow) var(--ease);border-radius:var(--r-pill)}
 
-main{max-width:760px;margin:0 auto;padding:12px 14px 20px}
+main{max-width:760px;margin:0 auto;padding:var(--s4) 14px 26px}
 .view{display:none}
 .view.on{display:block}
 
 /* 卡片 */
-.card{border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:10px 0;
+.card{border:1px solid var(--line);border-radius:var(--r);padding:var(--s4);margin:10px 0;
   background:var(--bg);box-shadow:var(--sh1)}
 /* 账号条：做成 button 时要重置浏览器默认样式，否则点击区域/外观都会不对 */
-.acctbar{display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;
-  background:var(--surface);color:var(--tx);border:1px solid var(--line2);border-radius:14px;
+.acctbar{display:flex;align-items:center;gap:var(--s3);width:100%;text-align:left;cursor:pointer;
+  background:var(--surface);color:var(--tx);border:1px solid var(--line2);border-radius:var(--r);
   padding:14px 16px;margin:10px 0;min-height:60px;line-height:1.5}
 .acctbar:active{background:var(--line)}
-.acctbar .ab-ic{font-size:24px;line-height:1;flex:0 0 auto}
+.acctbar .ab-ic{font-size:var(--fs-2xl);line-height:1;flex:0 0 auto}
 .acctbar .ab-tx{flex:1;min-width:0}
-.acctbar .ab-ar{color:var(--tx3);font-size:14px;flex:0 0 auto;transition:transform .18s}
+.acctbar .ab-ar{color:var(--tx3);font-size:var(--fs-base);flex:0 0 auto;transition:transform var(--t)}
 .acctbar.open .ab-ar{transform:rotate(180deg)}
-.hero{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-/* KPI 卡片：给一层很轻的渐变和左边色条，比纯灰块更有结构感，
-   颜色语义和数字含义对齐（得分=蓝、连续=绿、失误=红）。 */
-.kpi{background:var(--bg);border-radius:var(--r-sm);padding:10px 11px;position:relative;
-  overflow:hidden;box-shadow:var(--sh1)}
-.kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--line2)}
-.kpi.k-blue::before{background:var(--blue600)}
-.kpi.k-green::before{background:var(--green600)}
-.kpi.k-amber::before{background:var(--amber600)}
-.kpi.k-red::before{background:var(--red600)}
-.kpi.k-purple::before{background:var(--purple600)}
-.kpi .l{font-size:11.5px;color:var(--tx2)}
-.kpi .v{font-size:20px;font-weight:600;margin-top:1px;line-height:1.25;
-  font-variant-numeric:tabular-nums;letter-spacing:-.3px}
+/* Hero：柔和渐变让顶部数据区成为视觉锚点。
+   渐变只做很轻的一层（3% 蓝 + 6% 紫），作用是"提气"而不是抢戏。 */
+.hero{background:linear-gradient(158deg,
+    color-mix(in srgb,var(--blue50) 55%,var(--surface) 45%),
+    color-mix(in srgb,var(--purple50) 30%,var(--surface) 70%) 62%,
+    var(--surface));
+  border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2)}
+/* KPI 卡片：从"白块 + 左边色条"改成整块淡色底。
+   理由是色块比 3px 色条更能被扫到 —— 数据面板的价值在"一眼看见"，
+   而 --xx50 这一档本来就是给浅底用的，深色下它自动变成深色底，两边都成立。
+   数字用 700 档（小字/强调文字专用），保证在淡色底上仍有 4.5:1。 */
+.kpi{background:var(--bg);border-radius:var(--r-sm);padding:11px 12px;position:relative;
+  overflow:hidden;box-shadow:var(--sh1);transition:var(--tint)}
+.kpi::before{content:'';position:absolute;inset:0;background:var(--line2);opacity:.10}
+.kpi.k-blue{background:var(--blue50)}
+.kpi.k-green{background:var(--green50)}
+.kpi.k-amber{background:var(--amber50)}
+.kpi.k-red{background:var(--red50)}
+.kpi.k-purple{background:var(--purple50)}
+.kpi.k-blue::before,.kpi.k-green::before,.kpi.k-amber::before,
+.kpi.k-red::before,.kpi.k-purple::before{opacity:0}
+.kpi.k-blue .v{color:var(--blue700)}
+.kpi.k-green .v{color:var(--green700)}
+.kpi.k-amber .v{color:var(--amber700)}
+.kpi.k-red .v{color:var(--red700)}
+.kpi.k-purple .v{color:var(--purple600)}
+.kpi .l{font-size:var(--fs-sm);color:var(--tx2);position:relative}
+.kpi .v{font-size:var(--fs-2xl);font-weight:var(--fw-md);margin-top:2px;line-height:1.2;
+  font-variant-numeric:tabular-nums;letter-spacing:-.4px;position:relative}
 
 /* 按钮 */
 button{font:inherit}
-.btn{min-height:44px;padding:10px 14px;border-radius:var(--r-sm);border:1px solid var(--line2);
-  background:var(--bg);color:var(--tx);cursor:pointer;font-size:14px;
-  transition:transform .08s,background .12s,border-color .12s,box-shadow .12s}
+.btn{min-height:var(--tap);padding:10px 14px;border-radius:var(--r-sm);border:1px solid var(--line2);
+  background:var(--bg);color:var(--tx);cursor:pointer;font-size:var(--fs-base);
+  transition:var(--tap-shift),var(--tint)}
 .btn:active{background:var(--surface2);transform:scale(.985)}
 .btn.on{background:var(--blue50);border-color:var(--blue600);color:var(--blue800)}
-.btn.primary{background:var(--blue600);border-color:var(--blue600);color:#fff;box-shadow:var(--sh1)}
-.btn.primary:active{background:var(--blue800);box-shadow:none}
+/* 主按钮做一层自上而下的同色渐变：上端亮、下端深，
+   模拟顶光打在凸起面上的效果，比纯色块更"可按"。
+   仍然只用 --blue600/800 两档，不引入新颜色。 */
+.btn.primary{background:linear-gradient(180deg,var(--blue600),var(--blue800));
+  border-color:transparent;color:var(--btn-primary-txt);box-shadow:var(--sh2)}
+.btn.primary:active{background:var(--blue800);box-shadow:var(--sh1)}
 .btn.ok{border-color:var(--green600);color:var(--green600)}
 .btn.no{border-color:var(--red600);color:var(--red600)}
 .btn.wide{width:100%}
-.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.btnrow{display:flex;gap:var(--s2);flex-wrap:wrap;margin:10px 0}
 .btnrow>*{flex:1;min-width:96px}
-.mini{min-height:34px;padding:5px 10px;border-radius:9px;border:1px solid var(--line2);background:var(--bg);color:var(--tx2);cursor:pointer;font-size:12.5px;white-space:nowrap;transition:transform .08s,background .12s}
+.mini{min-height:34px;padding:5px 10px;border-radius:var(--r-sm);border:1px solid var(--line2);background:var(--bg);color:var(--tx2);cursor:pointer;font-size:var(--fs-md);white-space:nowrap;transition:var(--tap-shift),var(--t-fast) background}
 .mini:active{transform:scale(.96)}
 .mini.on{background:var(--green50);border-color:var(--green600);color:var(--green600)}
-select,input[type=text],input[type=number]{font:inherit;font-size:15px;min-height:44px;padding:9px 11px;border:1px solid var(--line2);border-radius:var(--r-sm);background:var(--bg);color:var(--tx);width:100%;transition:border-color .12s,box-shadow .12s}
+select,input[type=text],input[type=number]{font:inherit;font-size:var(--fs-lg);min-height:44px;padding:9px 11px;border:1px solid var(--line2);border-radius:var(--r-sm);background:var(--bg);color:var(--tx);width:100%;transition:var(--tint)}
 select:focus,input:focus,textarea:focus{outline:none;border-color:var(--blue600);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue600) 18%,transparent)}
-textarea{font:inherit;width:100%;min-height:120px;font-size:12px;font-family:ui-monospace,Consolas,monospace;border:1px solid var(--line2);border-radius:var(--r-sm);padding:10px;background:var(--bg);color:var(--tx)}
+textarea{font:inherit;width:100%;min-height:120px;font-size:var(--fs-sm);font-family:ui-monospace,Consolas,monospace;border:1px solid var(--line2);border-radius:var(--r-sm);padding:10px;background:var(--bg);color:var(--tx)}
 label.fld{display:block;margin:8px 0}
-label.fld>span{display:block;font-size:12.5px;color:var(--tx2);margin-bottom:4px}
+label.fld>span{display:block;font-size:var(--fs-md);color:var(--tx2);margin-bottom:4px}
 
 /* 任务 */
 .task{border:1px solid var(--line);border-radius:var(--r);padding:14px;margin:10px 0;
-  background:var(--bg);box-shadow:var(--sh1);transition:background .15s,border-color .15s}
+  background:var(--bg);box-shadow:var(--sh1);transition:var(--tint)}
 .task.done{background:var(--green50);border-color:var(--green600)}
 .task .th{display:flex;align-items:center;gap:10px}
-.task .nm{font-size:15px;font-weight:600;flex:1}
-.task .sc{font-size:19px;font-weight:600;color:var(--green600);font-variant-numeric:tabular-nums}
-.task .dd{font-size:12.5px;color:var(--tx2);margin:3px 0 9px}
-.mbar{height:6px;background:var(--surface2);border-radius:99px;overflow:hidden;margin-bottom:10px}
+.task .nm{font-size:var(--fs-lg);font-weight:var(--fw-md);flex:1}
+.task .sc{font-size:var(--fs-xl);font-weight:var(--fw-md);color:var(--green600);font-variant-numeric:tabular-nums}
+.task .dd{font-size:var(--fs-md);color:var(--tx2);margin:3px 0 9px}
+.mbar{height:6px;background:var(--surface2);border-radius:var(--r-pill);overflow:hidden;margin-bottom:10px}
 .mbar>i{display:block;height:100%;background:linear-gradient(90deg,var(--blue600),var(--blue800));
-  width:0;border-radius:99px;transition:width .3s ease}
+  width:0;border-radius:var(--r-pill);transition:width var(--t-slow) var(--ease)}
 
 /* 学习卡 */
 .study{border:1px solid var(--line2);border-radius:var(--r);padding:30px 18px;margin:12px 0;
   text-align:center;background:var(--bg);min-height:230px;display:flex;flex-direction:column;
   justify-content:center;box-shadow:var(--sh2)}
-.study .q{font-size:34px;line-height:1.45;margin:8px 0}
-.study .q.sm{font-size:23px}
-.study .rom{font-size:14px;color:var(--tx2)}
+.study .q{font-size:var(--fs-3xl);line-height:1.45;margin:8px 0}
+.study .q.sm{font-size:var(--fs-2xl)}
+.study .rom{font-size:var(--fs-base);color:var(--tx2)}
 /* 释义是这一屏的重点，给它一点重量和分隔，别和题干挤在一起 */
-.study .a{font-size:20px;margin-top:14px;font-weight:500;line-height:1.55}
-.study .en{font-size:13px;color:var(--tx2);margin-top:2px}
-.study .note{font-size:12.5px;color:var(--amber600);margin-top:4px}
-.study .hint{font-size:12.5px;color:var(--tx3);margin-top:12px}
+.study .a{font-size:var(--fs-2xl);margin-top:14px;font-weight:500;line-height:1.55}
+.study .en{font-size:var(--fs-md);color:var(--tx2);margin-top:2px}
+.study .note{font-size:var(--fs-md);color:var(--amber600);margin-top:4px}
+.study .hint{font-size:var(--fs-md);color:var(--tx3);margin-top:12px}
 /* 真实用例句：把词放回她的原话里 */
 .exbox{border-top:1px dashed var(--line2);margin-top:18px;padding-top:14px;text-align:left}
-.exh{font-size:12px;color:var(--tx2);margin-bottom:9px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.exh .exn{color:var(--tx3);font-size:11.5px}
-.exs{border:1px solid var(--line2);border-radius:var(--r-sm);padding:11px 13px;margin:7px 0;
+.exh{font-size:var(--fs-sm);color:var(--tx2);margin-bottom:9px;display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap}
+.exh .exn{color:var(--tx3);font-size:var(--fs-sm)}
+.exs{border:1px solid var(--line2);border-radius:var(--r-sm);padding:11px var(--s3);margin:7px 0;
   background:var(--surface);cursor:pointer;min-height:44px;
-  transition:background .12s,border-color .12s,transform .08s}
+  transition:var(--tint),var(--tap-shift)}
 .exs:active{background:var(--surface2);border-color:var(--blue200);transform:scale(.995)}
-.exs .ext{font-size:16px;line-height:1.75}
-.exs .exr{font-size:11.5px;color:var(--tx3);margin-top:2px;font-family:ui-monospace,Consolas,monospace}
-.exs .exz{font-size:13px;color:var(--tx2);margin-top:4px}
+.exs .ext{font-size:var(--fs-lg);line-height:1.75}
+.exs .exr{font-size:var(--fs-sm);color:var(--tx3);margin-top:2px;font-family:ui-monospace,Consolas,monospace}
+.exs .exz{font-size:var(--fs-md);color:var(--tx2);margin-top:4px}
 .exmore{width:100%;margin-top:8px;padding:9px 12px;border:1px dashed var(--line2);
-  border-radius:11px;background:var(--bg);color:var(--tx2);font:inherit;font-size:12.5px;cursor:pointer}
+  border-radius:var(--r-sm);background:var(--bg);color:var(--tx2);font:inherit;font-size:var(--fs-md);cursor:pointer}
 .exmore:active{background:var(--line)}
+/* 听力题：播放键是这一题唯一的入口，要够大、够明显，让人一眼知道点它 */
+.hearwrap{padding:var(--s4) 0 var(--s2)}
+.hearbtn{display:block;width:100%;min-height:96px;font:inherit;font-size:var(--fs-xl);
+  color:var(--blue600);background:var(--blue50);border:2px solid var(--blue200);
+  border-radius:var(--r);cursor:pointer;letter-spacing:.04em;
+  transition:var(--tint),var(--tap-shift)}
+.hearbtn:active{background:var(--blue200);transform:scale(.98)}
+/* 语境义：同一个词在她消息里的几种意思，chip 点开看对应例句 */
+.sensebox{border-top:1px dashed var(--line2);margin-top:var(--s3);padding-top:var(--s3);text-align:left}
+.sensehd{font-size:var(--fs-sm);color:var(--tx2);margin-bottom:var(--s2)}
+.senserow{display:flex;flex-wrap:wrap;gap:var(--s1)}
+.sensechip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line2);
+  border-radius:var(--r-pill);padding:6px 11px;background:var(--surface);color:var(--tx);
+  font:inherit;font-size:var(--fs-md);cursor:pointer;min-height:32px;text-align:left;
+  transition:var(--tint),var(--tap-shift)}
+.sensechip:active{transform:scale(.97)}
+.sensechip.on{background:var(--blue600);border-color:var(--blue600);color:#fff}
+.sensechip i{font-style:normal;font-size:var(--fs-xs);opacity:.65}
+.sensed{font-size:var(--fs-sm);color:var(--tx2);background:var(--surface);
+  border-left:2px solid var(--blue200);padding:6px 10px;border-radius:var(--r-xs);margin:var(--s2) 0}
+.senseex:empty{margin:0}
 /* display:block + text-align:left 改 flex：让泰文块在按钮里几何居中，
    而不是靠 line-height 猜。实测把四行墨迹中心偏移的极差从 3.8px 压到 3.3px。
-   gap:8px 是泰文和 emoji 之间的固定间距，用 gap 而不是空格，
+   gap:var(--s2) 是泰文和 emoji 之间的固定间距，用 gap 而不是空格，
    免得 emoji 前的空格宽度随字体变化又把基线推歪。 */
-.opt{display:flex;align-items:center;gap:8px;width:100%;text-align:left;min-height:52px;padding:12px 14px;margin:7px 0;border:1px solid var(--line2);
-  border-radius:12px;background:var(--bg);cursor:pointer;font:inherit;font-size:15px;
-  transition:background .12s,border-color .12s,transform .08s}
+.opt{display:flex;align-items:center;gap:var(--s2);width:100%;text-align:left;min-height:52px;padding:var(--s3) 14px;margin:7px 0;border:1px solid var(--line2);
+  border-radius:var(--r);background:var(--bg);cursor:pointer;font:inherit;font-size:var(--fs-lg);
+  transition:var(--tint),var(--tap-shift)}
 /* 泰文块自己撑开并居中；min-height 固定，保证长短句的按钮内区一样高 */
 .opt .thai{flex:1 1 auto;min-height:1.9em;display:flex;align-items:center}
 /* emoji 独立：固定尺寸 + 自身居中，绝不参与泰文的行盒计算。
    font-size 收到 14px 是因为系统彩色 emoji 字面框比泰文高一圈，
    不压小的话单个 emoji 就能把行顶出去 3px（用户截图里第 4 项就是这样歪掉的）。 */
-.opt .emo{flex:0 0 auto;font-size:14px;line-height:1;align-self:center}
+.opt .emo{flex:0 0 auto;font-size:var(--fs-base);line-height:1;align-self:center}
 .opt:active{background:var(--surface2);transform:scale(.99)}
-.opt .th{font-size:19px}
+.opt .th{font-size:var(--fs-xl)}
 /* 判对错后给明确的颜色 + 左侧色条，光靠背景色在深色模式下不够醒目 */
 .opt.right{background:var(--green50);border-color:var(--green600);box-shadow:inset 3px 0 0 var(--green600)}
 .opt.wrong{background:var(--red50);border-color:var(--red600);box-shadow:inset 3px 0 0 var(--red600)}
@@ -196,35 +342,64 @@ label.fld>span{display:block;font-size:12.5px;color:var(--tx2);margin-bottom:4px
    只留 runner。不用 display:none 是因为要保留切换时的滚动位置与动画过渡；
    实际用 max-height 归零 + opacity 归零，退出时能滑回来。
    runner 顶到最上面，让题目从屏幕顶部开始，注意力不被推走。 */
-body.focus .hero, body.focus #board, body.focus #todayReport,
-body.focus #taskList, body.focus #finishBox{
+/* 专注态原来靠折叠今日页实现（body.focus → hero/board/taskList 归零）。
+   练习拆成独立标签后这条路走不通了：那些元素在今日页，
+   折叠它们等于「用户只是切去练习，今日页就变空白」—— 实测 hero 高度掉到 0。
+   现在专注态只作用于练习页内部：题目区显示、任务列表隐藏，由 renderDrill 控制。
+   这两条规则保留给练习页内可能出现的同类区块。 */
+body.focus #drillList{
   max-height:0!important;opacity:0!important;margin:0!important;padding:0!important;
   overflow:hidden!important;pointer-events:none!important;border:0!important}
-.hero, #board, #todayReport, #taskList{transition:max-height .22s ease,opacity .22s ease,margin .22s ease}
+.hero, #board, #todayReport, #taskList{transition:max-height var(--t) var(--ease),opacity var(--t) var(--ease),margin var(--t) var(--ease)}
 /* 专注态给个明显的返回条，用户不会以为页面坏了 */
 #focusBar{display:none;margin:10px 0 0}
 body.focus #focusBar{display:block}
+/* 练习页已独立，body.focus 不再需要折叠今日页的那些区块。
+   留着这条是为了兼容：万一以后又有人调 enterFocus()，页面不会散架。 */
+#v-drill{padding-bottom:4px}
+.drillHd{display:flex;align-items:baseline;gap:var(--s2);margin:2px 0 10px}
+.drillHd h2{margin:0;font-size:var(--fs-xl)}
+.drillHd .sub{margin:0}
+.dcard{background:var(--surface2);border:1px solid var(--line2);border-radius:var(--r);padding:12px 13px;margin-bottom:8px}
+.dcard.done{opacity:.72}
+.dcard .nm{font-size:var(--fs-lg);font-weight:var(--fw-md);margin-bottom:2px}
+.dcard .dd{font-size:var(--fs-md);color:var(--tx2);line-height:1.5}
+.dcard .mbar{margin:8px 0 9px}
+.dcard .btn{width:100%}
+.dguide{text-align:center;padding:26px 16px;color:var(--tx2)}
+.dguide .big{font-size:var(--fs-3xl);line-height:1;margin-bottom:10px}
+.emptyDrill{color:var(--tx3);font-size:var(--fs-md);text-align:center;padding:var(--s4) 0}
 #focusBar .fb{
-  display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:12px;
-  background:var(--surface2);border:1px solid var(--line2);font-size:13px;color:var(--tx2)}
-#focusBar .fb b{color:var(--tx);font-size:14px}
+  display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--r);
+  background:var(--surface2);border:1px solid var(--line2);font-size:var(--fs-md);color:var(--tx2)}
+#focusBar .fb b{color:var(--tx);font-size:var(--fs-base)}
 #focusBar .fb .sp{flex:1 1 auto}
 
 /* ---- 每日记录查询 ---- */
-.daypick{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.daypick{display:flex;gap:var(--s1);flex-wrap:wrap;margin:8px 0}
 .daypick button{
-  font:inherit;font-size:12.5px;padding:7px 11px;border-radius:10px;cursor:pointer;
+  font:inherit;font-size:var(--fs-md);padding:7px 11px;border-radius:var(--r-sm);cursor:pointer;
   border:1px solid var(--line2);background:var(--bg);color:var(--tx2)}
-.daypick button.on{background:var(--blue600);border-color:var(--blue600);color:#fff;font-weight:600}
+.daypick button.on{background:var(--blue600);border-color:var(--blue600);color:#fff;font-weight:var(--fw-md)}
 .daypick button.today{box-shadow:inset 0 0 0 1px var(--blue600)}
 /* 一条学习记录：泰文 + 中文 + 状态 */
-.lrow{display:flex;align-items:center;gap:10px;padding:9px 11px;border-bottom:1px solid var(--line)}
+/* 整行可点发音：用户说「学习记录里的这些内容也要能够发音」，
+   他复盘时是连着点着听的，不该每行还要精确戳那个小按钮。
+   但状态标签（.lv）是纯展示，点它不该出声 —— 用 .lv 的 pointer-events 关掉。 */
+.lrow{display:flex;align-items:center;gap:10px;padding:9px 11px;border-bottom:1px solid var(--line);
+  cursor:pointer;transition:background var(--t-fast)}
+.lrow:active{background:var(--surface2)}
+.lrow .lv{flex:0 0 auto;font-size:var(--fs-xs);padding:2px var(--s1);border-radius:var(--r-xs);font-weight:var(--fw-md);pointer-events:none}
+/* 发音小圆钮：只是提示「这行能点」，真正的声音走整行 */
+.lrow .lb{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:1px solid var(--line2);
+  background:var(--bg);color:var(--tx2);font-size:var(--fs-base);line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center}
+.lrow .lb:active{background:var(--surface2);transform:scale(.94)}
 .lrow:last-child{border-bottom:none}
 .lrow .lt{flex:1 1 auto;min-width:0}
-.lrow .lt .thai{display:block;font-size:15px}
-.lrow .lt .sub{display:block;font-size:11.5px;color:var(--tx3);margin-top:1px;
+.lrow .lt .thai{display:block;font-size:var(--fs-lg)}
+.lrow .lt .sub{display:block;font-size:var(--fs-sm);color:var(--tx3);margin-top:1px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lrow .lv{flex:0 0 auto;font-size:11px;padding:2px 7px;border-radius:8px;font-weight:600}
 .lv.ok{background:var(--green50);color:var(--green700)}
 .lv.half{background:var(--amber50);color:var(--amber700)}
 .lv.bad{background:var(--red50);color:var(--red700)}
@@ -232,17 +407,17 @@ body.focus #focusBar{display:block}
 
 /* 词条行 */
 .w{display:flex;gap:11px;align-items:flex-start;padding:12px 13px;border-bottom:1px solid var(--line);
-  cursor:pointer;transition:background .12s}
+  cursor:pointer;transition:background var(--t-fast)}
 .w:active{background:var(--surface2)}
 .w:last-child{border-bottom:none}
 .w.learned{opacity:.5}
-.w .pl{flex:0 0 20px;color:var(--blue600);font-size:13px;margin-top:3px}
-.w .rk{flex:0 0 22px;color:var(--tx3);font-size:12px;margin-top:4px;text-align:right}
+.w .pl{flex:0 0 20px;color:var(--blue600);font-size:var(--fs-md);margin-top:3px}
+.w .rk{flex:0 0 22px;color:var(--tx3);font-size:var(--fs-sm);margin-top:4px;text-align:right}
 .w .mn{flex:1;min-width:0}
 /* 侧栏标签组不能再 flex:0 0 auto —— 泰文释义很长时会被挤成一条窄柱，
    右边却空一大片（这正是导入长句例句后暴露出来的）。
    改成整行文字在上、标签在下，窄屏也不会挤压正文。 */
-.w .sd{flex:0 0 auto;display:flex;gap:5px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.w .sd{flex:0 0 auto;display:flex;gap:var(--s1);align-items:center;flex-wrap:wrap;justify-content:flex-end}
 /* 宽屏时把标签挪到左下角那一行的行尾，正文拿到全宽 */
 @media (max-width:520px){
   .w{flex-wrap:wrap}
@@ -250,11 +425,11 @@ body.focus #focusBar{display:block}
   .w .mn{flex:1 1 calc(100% - 31px)}
   .w .sd{flex:1 1 100%;justify-content:flex-start;padding-left:31px;margin-top:6px}
 }
-.w .t1{font-size:19px;line-height:1.5}
-.w .t1.sm{font-size:16px}
+.w .t1{font-size:var(--fs-xl);line-height:1.5}
+.w .t1.sm{font-size:var(--fs-lg)}
 .list{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:8px;
   background:var(--bg);box-shadow:var(--sh1)}
-.tag{font-size:11px;padding:1px 7px;border-radius:99px;background:var(--amber50);color:var(--amber600);
+.tag{font-size:var(--fs-xs);padding:1px var(--s1);border-radius:var(--r-pill);background:var(--amber50);color:var(--amber600);
   border:1px solid var(--amber200);white-space:nowrap}
 .tag.lo{background:var(--surface);color:var(--tx2);border-color:var(--line2)}
 
@@ -262,25 +437,25 @@ body.focus #focusBar{display:block}
    原来每条短语右侧挂一个只显示「A」的标签，一行只有一个字母，
    既占宽度又没信息。现在组名提到列表上方做成可点的导航条，
    组标题只在该组第一次出现时插一次。 */
-.pgs{display:flex;gap:6px;overflow-x:auto;padding:2px 0 9px;
+.pgs{display:flex;gap:var(--s1);overflow-x:auto;padding:2px 0 9px;
   scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .pgs::-webkit-scrollbar{display:none}
-.pg{flex:0 0 auto;display:flex;align-items:center;gap:6px;min-height:34px;
-  padding:5px 11px 5px 7px;border:1px solid var(--line);border-radius:99px;
-  background:var(--bg);color:var(--tx2);font:inherit;font-size:12.5px;cursor:pointer;
-  transition:transform .08s,border-color .12s,background .12s,opacity .12s}
+.pg{flex:0 0 auto;display:flex;align-items:center;gap:var(--s1);min-height:34px;
+  padding:5px 11px 5px 7px;border:1px solid var(--line);border-radius:var(--r-pill);
+  background:var(--bg);color:var(--tx2);font:inherit;font-size:var(--fs-md);cursor:pointer;
+  transition:var(--tap-shift),border-color .12s,background .12s,opacity .12s}
 .pg b{display:grid;place-items:center;width:19px;height:19px;border-radius:50%;
-  background:var(--blue50);color:var(--blue600);font-size:11px;flex:0 0 19px}
+  background:var(--blue50);color:var(--blue600);font-size:var(--fs-xs);flex:0 0 19px}
 .pg:active{transform:scale(.96)}
 .pg.hit{border-color:var(--blue200);background:var(--blue50);color:var(--tx)}
 .pg.dim{opacity:.42}
 /* 组标题：只是分隔线，不做 sticky。
    试过 position:sticky，结果滚动时它会盖住该组第一条短语的泰文 ——
    而那正是用户最需要看清的一行。列表本身不长，粘住反而添乱。 */
-.pgh{display:flex;align-items:baseline;gap:8px;padding:15px 14px 9px;
+.pgh{display:flex;align-items:baseline;gap:var(--s2);padding:15px 14px 9px;
   background:var(--surface);border-bottom:1px solid var(--line)}
-.pgh b{font-size:13px;color:var(--blue600);font-weight:700;letter-spacing:.5px}
-.pgh span{font-size:13px;color:var(--tx);font-weight:500}
+.pgh b{font-size:var(--fs-md);color:var(--blue600);font-weight:700;letter-spacing:.5px}
+.pgh span{font-size:var(--fs-md);color:var(--tx);font-weight:500}
 /* 第一条组标题紧贴列表上沿，不要再多留一段空白 */
 #pList .pgh:first-child{padding-top:12px}
 .tag.b{background:var(--blue50);color:var(--blue800);border-color:var(--blue200)}
@@ -289,43 +464,64 @@ body.focus #focusBar{display:block}
 .tag.g{background:var(--green50);color:var(--green600);border-color:var(--green600)}
 .blur{filter:blur(6px);user-select:none}
 
-.note{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13.5px;margin:10px 0}
-.note2{background:var(--amber50);border:1px solid var(--amber200);border-radius:12px;padding:12px 14px;font-size:13px;margin:10px 0}
-.tip{background:var(--blue50);border:1px solid var(--blue200);border-radius:12px;padding:12px 14px;font-size:13px;margin:10px 0}
-.okbox{background:var(--green50);border:1px solid var(--green600);border-radius:12px;padding:12px 14px;font-size:13.5px;margin:10px 0}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s3) 14px;font-size:var(--fs-base);margin:10px 0}
+.note2{background:var(--amber50);border:1px solid var(--amber200);border-radius:var(--r);padding:var(--s3) 14px;font-size:var(--fs-md);margin:10px 0}
+.tip{background:var(--blue50);border:1px solid var(--blue200);border-radius:var(--r);padding:var(--s3) 14px;font-size:var(--fs-md);margin:10px 0}
+.okbox{background:var(--green50);border:1px solid var(--green600);border-radius:var(--r);padding:var(--s3) 14px;font-size:var(--fs-base);margin:10px 0}
 
-table{border-collapse:collapse;width:100%;font-size:13.5px;margin:8px 0;display:block;overflow-x:auto;white-space:nowrap}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-base);margin:8px 0;display:block;overflow-x:auto;white-space:nowrap}
 th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:left}
-th{color:var(--tx2);font-weight:600;font-size:12px}
+th{color:var(--tx2);font-weight:var(--fw-md);font-size:var(--fs-sm)}
 td.n{text-align:right;font-variant-numeric:tabular-nums}
-.chip{display:inline-block;padding:2px 8px;margin:2px 4px 2px 0;border:1px solid var(--line2);border-radius:8px;cursor:pointer;font-size:16px}
+.chip{display:inline-block;padding:2px 8px;margin:2px 4px 2px 0;border:1px solid var(--line2);border-radius:var(--r-xs);cursor:pointer;font-size:var(--fs-lg)}
 .chip:active{background:var(--surface)}
 
 .spark{display:flex;align-items:flex-end;gap:3px;height:64px;margin:8px 0}
 .spark i{flex:1;background:var(--blue600);border-radius:2px 2px 0 0;min-height:2px;display:block}
 .spark i.g{background:var(--green600)}
 /* 复习负荷 / 记忆分布柱状图 */
-.ldh{font-size:12px;color:var(--tx2);margin:12px 0 4px}
-.ldb{display:flex;align-items:flex-end;gap:4px;height:56px;padding:0 2px}
+.ldh{font-size:var(--fs-sm);color:var(--tx2);margin:12px 0 4px}
+.ldb{display:flex;align-items:flex-end;gap:var(--s1);height:56px;padding:0 2px}
 .ldb i{flex:1;background:var(--blue600);border-radius:3px 3px 0 0;min-height:3px;display:block;min-width:6px}
 .ldb i.y{background:var(--amber600)}
 .ldb i.r{background:var(--red600)}
-.ldr{display:flex;gap:4px;margin-top:4px}
-.ldr span{flex:1;text-align:center;font-size:10.5px;color:var(--tx3);min-width:6px}
-/* 闪卡简笔画配图 */
-.picbox{display:flex;justify-content:center;margin:0 0 10px}
-.pic{width:112px;height:112px;object-fit:contain;background:var(--surface);
-  border:1px solid var(--line2);border-radius:12px;padding:5px}
+.ldr{display:flex;gap:var(--s1);margin-top:4px}
+.ldr span{flex:1;text-align:center;font-size:var(--fs-xs);color:var(--tx3);min-width:6px}
+/* 闪卡简笔画配图 —— 练习时图是主角。
+   原来固定 112px：卡片内容宽约 320px，图只占 1/3，用户原话「图片根本不醒目」。
+   改成三重约束的自适应：
+     58vw —— 窄屏不至于撑破；
+     40vh —— 矮屏留出余地，图 + 泰文 + 释义基本同屏；
+     240px —— 大屏/桌面到此为止（原图 320px，再放大会软）。
+   aspect-ratio 撑方形，object-fit:contain 保证简笔画不被拉伸。
+   翻到背面后（.ans）图要缩回来给释义让位：那时重点已经变成中文了。
+   边框/底色放在 .picframe 上而不是 img 上：暗色模式会给 img 做 invert 反色，
+   filter 作用于整个元素连边框一起反 —— 边框画在 img 上会变成刺眼的亮框。 */
+.picbox{display:flex;justify-content:center;margin:0 0 var(--s3)}
+.picframe{display:inline-block;line-height:0;background:var(--surface);
+  border:1px solid var(--line2);border-radius:var(--r);padding:var(--s2);
+  box-shadow:var(--sh1);overflow:hidden}
+.pic{width:min(58vw, 40vh, 240px);height:auto;aspect-ratio:1/1;object-fit:contain;
+  display:block;border-radius:calc(var(--r) - var(--s2));
+  transition:width var(--t) var(--ease)}
+.study.ans .pic{width:min(38vw, 22vh, 132px)}
+.study.ans .picbox{margin-bottom:var(--s2)}
+/* 测验答完后放的「这是什么」大图：不抢按钮的位置，但要比列表缩略图醒目得多 */
+.qpicframe{display:block;width:min(46vw, 150px);margin:var(--s3) auto 0;line-height:0;
+  background:var(--surface);border:1px solid var(--line2);border-radius:var(--r);
+  padding:var(--s2);box-shadow:var(--sh1);overflow:hidden}
+.qpic{width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;display:block;
+  border-radius:calc(var(--r) - var(--s2))}
 .mini-pic{width:34px;height:34px;object-fit:contain;vertical-align:middle;
-  border-radius:8px;background:var(--surface);border:1px solid var(--line2);flex:0 0 auto}
+  border-radius:var(--r-xs);background:var(--surface);border:1px solid var(--line2);flex:0 0 auto}
 /* 今日总览：词块 */
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 2px}
-.chipw{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line2);
-  border-radius:9px;padding:4px 8px 4px 5px;background:var(--surface);max-width:100%}
-.chipw .thai{font-size:14px}
-.chipw .sub{font-size:11px;max-width:78px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:var(--s1);margin:4px 0 2px}
+.chipw{display:inline-flex;align-items:center;gap:var(--s1);border:1px solid var(--line2);
+  border-radius:var(--r-sm);padding:4px 8px 4px 5px;background:var(--surface);max-width:100%}
+.chipw .thai{font-size:var(--fs-base)}
+.chipw .sub{font-size:var(--fs-xs);max-width:78px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .anl{border-left:2px solid var(--line2);padding-left:10px}
-.ani{font-size:13px;color:var(--tx2);line-height:1.6;margin:5px 0}
+.ani{font-size:var(--fs-md);color:var(--tx2);line-height:1.6;margin:5px 0}
 .ani b{color:var(--tx);font-weight:500}
 
 /* 底栏 */
@@ -334,21 +530,44 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
   backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);
   border-top:1px solid var(--line);padding-bottom:var(--safe-b);box-shadow:0 -1px 12px rgba(28,26,22,.05)}
 .tabbar button{flex:1;min-height:58px;border:0;background:transparent;color:var(--tx3);cursor:pointer;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;
-  padding:6px 0;position:relative;transition:color .15s}
-.tabbar button .ic{font-size:19px;line-height:1;transition:transform .18s}
-/* 选中项上方加一段短横条，比只换颜色更容易一眼看出当前位置 */
-.tabbar button.on{color:var(--blue600)}
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:var(--fs-xs);
+  padding:6px 0;position:relative;margin:4px 5px;border-radius:var(--r-pill);
+  transition:color var(--t-fast),background var(--t-fast)}
+.tabbar button .ic{font-size:var(--fs-xl);line-height:1;transition:transform var(--t)}
+.tabbar button .ic svg{width:21px;height:21px;display:block}
+/* 选中态：从"顶部一小段横条"换成整块淡色胶囊（Material 3 的指示器做法）。
+   横条只在按钮最上沿 22px，视觉权重太弱；胶囊把整个可点区域标出来，
+   一眼能看出"我在这一页"，也不需要再靠顶部那条线指位置。 */
+.tabbar button.on{color:var(--blue700);background:var(--blue50)}
 .tabbar button.on .ic{transform:translateY(-1px) scale(1.06)}
-.tabbar button.on::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:22px;height:3px;border-radius:0 0 3px 3px;background:var(--blue600)}
+.tabbar button:active{background:var(--surface2)}
 
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(80px + var(--safe-b));
   background:var(--tx);color:var(--bg);
-  font-size:13.5px;padding:10px 16px;border-radius:12px;opacity:0;transition:opacity .2s,transform .2s;
+  font-size:var(--fs-base);padding:10px 16px;border-radius:var(--r);opacity:0;transition:opacity var(--t),transform .2s;
   pointer-events:none;z-index:99;max-width:88vw;text-align:center;
   box-shadow:var(--sh3);transform:translateX(-50%) translateY(6px)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---- 无障碍与运动偏好 ----
+   键盘/读屏用户必须看得见焦点在哪：原来只有输入框有 :focus 边框，
+   button 和 .tabbar button 按 Tab 走过去时完全没有指示。
+   这里统一给 :focus-visible 一圈 2px 描边，鼠标点击不触发（不打扰触屏用户）。 */
+button:focus-visible,.tabbar button:focus-visible,.mini:focus-visible,
+.btn:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,
+.acctbar:focus-visible{
+  outline:2px solid var(--blue600);outline-offset:2px;border-radius:var(--r-sm)}
+/* 有鼠标的设备上给卡片一点悬停抬升：触屏没有 hover，不会误触发 */
+@media (hover:hover) and (pointer:fine){
+  .card:hover,.task:hover{box-shadow:var(--sh2)}
+  .kpi:hover{box-shadow:var(--sh2)}
+}
+/* 尊重系统的"减弱动态效果"：前庭功能敏感的用户会被动效诱发不适。
+   不删功能，只把过渡压到 0 —— 状态照样变，只是不再动。 */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;scroll-behavior:auto !important}
+}
 </style>
 </head>
 <body>
@@ -378,6 +597,12 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
     <div id="board"></div>
     <div id="todayReport"></div>
     <div id="taskList"></div>
+  </section>
+
+  <!-- ========== 练习（与总览彻底分开） ========== -->
+  <section class="view" id="v-drill">
+    <div class="drillHd"><h2>练习</h2><span class="sub" id="drillSub">选一项开始</span></div>
+    <div id="drillList"></div>
     <div id="focusBar"></div>
     <div id="runner"></div>
     <div id="finishBox" style="display:none">
@@ -506,13 +731,23 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
     <button class="card acctbar" id="meAcct" type="button">
       <span class="ab-ic">◐</span>
       <span class="ab-tx">
-        <span style="display:block;font-weight:600;font-size:14px" id="meAcctT">登录 / 注册</span>
+        <span style="display:block;font-weight:var(--fw-md);font-size:14px" id="meAcctT">登录 / 注册</span>
         <span style="display:block;font-size:12px;color:var(--tx2)" id="meAcctS">登录后学习记录可存到云端，换设备不丢</span>
       </span>
       <span class="ab-ar" id="meAcctAr">▾</span>
     </button>
 
     <div id="account"></div>
+
+    <h2>外观</h2>
+    <div class="card">
+      <div class="sub mt0">深色模式默认跟随系统，也可以手动固定。选择立即生效并记住，下次打开不闪屏。</div>
+      <div class="btnrow mt8" id="themeBtns">
+        <button class="btn" type="button" data-theme-opt="auto">跟随系统</button>
+        <button class="btn" type="button" data-theme-opt="light">浅色</button>
+        <button class="btn" type="button" data-theme-opt="dark">深色</button>
+      </div>
+    </div>
 
     <h2>学习记录</h2>
     <div class="hero">
@@ -563,11 +798,12 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 </main>
 
 <nav class="tabbar">
-  <button class="on" data-v="today"><span class="ic">◈</span>今日</button>
-  <button data-v="corpus"><span class="ic">☰</span>语料</button>
-  <button data-v="words"><span class="ic">文</span>词库</button>
-  <button data-v="ref"><span class="ic">?</span>参考</button>
-  <button data-v="me"><span class="ic">◐</span>我的</button>
+  <button class="on" data-v="today"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="3"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/></svg></span>今日</button>
+  <button data-v="drill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.4 3.6a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>练习</button>
+  <button data-v="corpus"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg></span>语料</button>
+  <button data-v="words"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span>词库</button>
+  <button data-v="ref"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 1.9-2.8 2.3-2.8 3.8"/><path d="M12 17h.01"/></svg></span>参考</button>
+  <button data-v="me"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>我的</button>
 </nav>
 
 <div class="toast" id="toast"></div>
@@ -581,6 +817,7 @@ if (!window.WorkBuddyCloud) {
 </script>
 <script src="./pany-data.js"></script>
 <script src="./word-sent-data.js"></script>
+<script src="./word-sense.js"></script>
 <script src="./img/map.js"></script>
 <script src="./words-data.js"></script>
 <script src="./phrases-data.js"></script>
@@ -657,15 +894,46 @@ async function pushCloud(opts){
     return;
   }
   syncing = true;
+  /* savedAt 必须在推送**成功后**才前进。
+     原先在 await 之前无条件推进，推送失败时本地时间戳跑到未来，
+     而云端 row 还是旧的 —— pullCloud 的 `rt > lt + 5005` 判据于是永远不成立，
+     本地被当成「已是最新」，这些改动再也推不上去（换设备就等于丢了）。
+     这里先记下旧值，失败时回滚，让「本地比云端新」如实反映。 */
+  var savedAtBefore = S.savedAt || 0;
   try {
-    S.savedAt = Date.now();
+    /* 推送前必须先确认：云端那行是不是被别的设备写过。
+       不看就直接 upsert = 拿本地整包盖掉对方，
+       「上午书房学的、下午手机学的」只能活下来一半 —— 这就是多设备丢进度的根因。
+       先只取时间戳（几十字节），确认真的有变化才下载全量存档做合并。 */
+    if (!opts.skipCheck){
+      var pk = await peekCloud();
+      var prt = pk && pk.updated_at ? new Date(pk.updated_at).getTime() : 0;
+      if (prt > (S.base || 0)){
+        var pf = await pullCloud();
+        if (pf && pf.payload) applyMerged(mergeInto(pf.payload, prt), true);
+      }
+    }
+    /* 带上设备标识：别的设备拉到这行时能看出是谁写的 */
+    S.dev = DEV; S.devAt = Date.now();
     var res = await cloud.database.from('study_state')
       .upsert({ payload: S, updated_at: new Date().toISOString() }, { onConflict: 'owner_id' })
       .select();
-    if (res.error) { pushOk = false; setSync('同步失败·点此重试', 'r'); }
+    if (res.error) {
+      pushOk = false;
+      S.savedAt = savedAtBefore;   /* 回滚：本地确实比云端新，别装作已同步 */
+      setSync('同步失败·改动仍在这台设备', 'r');
+    }
     else {
       cloudRow = res.data && res.data[0];
       pushOk = true;
+      /* 成功才推进时间戳。用 res 里的 updated_at 而不是本地 Date.now()：
+         服务器时间才是下一次比较的基准，两边时钟不一致时也不会误判。 */
+      S.savedAt = cloudRow && cloudRow.updated_at
+        ? new Date(cloudRow.updated_at).getTime() : Date.now();
+      /* base = 这次对齐到的云端时刻。之后只要有别的设备写过，
+         updated_at 就会超过它，下次推送前就能察觉「有人比我新」并先合并。 */
+      S.base = S.savedAt;
+      persist();
       /* 显示「刚刚已同步」而不是干巴巴一个「已同步」。
          用户之所以不敢刷新、必须手动确认，就是因为看不到任何确认信号。
          标签有了时间，他就能自己判断「现在刷新安全」。 */
@@ -674,7 +942,11 @@ async function pushCloud(opts){
       setSync('✓ 已同步 ' + mm + ':' + ss, 'g');
       paintAcctBar();
     }
-  } catch (e) { pushOk = false; setSync('同步失败·点此重试', 'r'); }
+  } catch (e) {
+    pushOk = false;
+    S.savedAt = savedAtBefore;
+    setSync('同步失败·改动仍在这台设备', 'r');
+  }
   syncing = false;
   if (pushQueued){ pushQueued = false; pushCloud({ now:true }); }
 }
@@ -692,8 +964,179 @@ async function pullCloud(){
     var res = await cloud.database.from('study_state').select('payload, updated_at').maybeSingle();
     if (res.error) { setSync('读取失败', 'r'); return null; }
     cloudRow = res.data;
+    /* 记下这行是谁写的：展示用，也让「合并」有个可解释的对象 */
+    if (res.data && res.data.payload && res.data.payload.dev){
+      lastRemoteDev = res.data.payload.dev;
+      lastRemoteAt = res.data.updated_at ? new Date(res.data.updated_at).getTime() : Date.now();
+    }
     return res.data;
   } catch (e) { setSync('读取失败', 'r'); return null; }
+}
+/* 只看时间戳、不下载存档的轻量探测。
+   每次推送前都要确认「云端有没有被别的设备写过」，
+   全量 payload 动辄上百 KB，为了一个时间戳下载一遍太浪费。 */
+async function peekCloud(){
+  if (!cloud || !ME) return null;
+  try {
+    var res = await cloud.database.from('study_state').select('updated_at').maybeSingle();
+    if (res.error || !res.data) return null;
+    return { updated_at: res.data.updated_at };
+  } catch (e) { return null; }
+}
+
+/* ==================== 多设备合并 ====================
+   为什么必须有这个：云端那张表按 owner_id 只有一行，
+   两台设备都往同一行写。原来的规则是「谁的时间戳新谁整包赢」，
+   于是必然出现这种事 ——
+     上午在书房电脑上学了 20 个词（云端 = 上午）
+     下午在手机上又学了 15 个词（云端 = 下午，电脑上那 20 个被整包盖掉）
+   这不是同步，这是互相覆盖。
+   合并的原则只有一条：**任何一边学到的东西都不能因为同步而消失**。
+   所以按字段取「更优」而不是「更新」：
+     记忆强度取高、做过的事取并集、计数取大、配额按最后改的那台。
+   只有一种情况合并表达不了 —— 用户主动「删除/重置」，
+   删除语义不在合并里，真要重置得在每台设备上各清一次。 */
+function mergeInto(remote, remoteAt){
+  var stat = { items: 0, days: 0, master: 0, wrong: 0 };
+  if (!remote || typeof remote !== 'object') return stat;
+  if (remote.dev) { lastRemoteDev = remote.dev; if (remoteAt) lastRemoteAt = remoteAt; }
+
+  /* ---- items：同一条目取「学得更熟」的那份 ---- */
+  var ri = remote.items || {};
+  for (var k in ri){
+    var b = ri[k]; if (!b) continue;
+    if (!S.items[k]){ S.items[k] = b; stat.items++; continue; }
+    var a = S.items[k];
+    var boxA = +a.box || 0, boxB = +b.box || 0;
+    /* due 由 box 决定，box 高的那份说了算；
+       box 一样时取更早的 —— 宁可早点复习，也别因为同步把复习日推后 */
+    if (boxB > boxA || (boxB === boxA && (b.due || '9999-99-99') < (a.due || '9999-99-99'))) a.due = b.due;
+    a.box  = Math.max(boxA, boxB);
+    a.peak = Math.max(+a.peak || 0, +b.peak || 0);   // 曾达到过的最深档，只涨不落
+    a.r    = Math.max(+a.r || 0, +b.r || 0);
+    a.w    = Math.max(+a.w || 0, +b.w || 0);
+    a.h    = Math.max(+a.h || 0, +b.h || 0);
+    a.seen = Math.max(+a.seen || 0, +b.seen || 0);
+    /* lg 是 [第几天, 得分] 的轨迹，两边各记各的，都要留下来：
+       按天排序后去掉相邻完全重复项（同一天同一结果在两台各记了一次） */
+    var lgB = b.lg || [];
+    if (lgB.length){
+      var all = (a.lg || []).concat(lgB).filter(function(x){ return x && x.length === 2; });
+      all.sort(function(x, y){ return (x[0] - y[0]) || (x[1] - y[1]); });
+      var out = [];
+      for (var i = 0; i < all.length; i++){
+        var p = out[out.length - 1];
+        if (p && p[0] === all[i][0] && p[1] === all[i][1]) continue;
+        out.push(all[i]);
+      }
+      a.lg = out.slice(-14);
+    }
+  }
+
+  /* ---- days：同一天按「做得更多」合并 ---- */
+  var rd = remote.days || {};
+  for (var d in rd){
+    var rb = rd[d]; if (!rb) continue;
+    if (!S.days[d]){ S.days[d] = rb; stat.days++; continue; }
+    var ra = S.days[d];
+    if (!ra.plan && rb.plan) ra.plan = rb.plan;
+    var sa = ra.st || (ra.st = {}), sb = rb.st || {};
+    for (var t in sb){
+      var xb = sb[t] || {}, xa = sa[t] || (sa[t] = {});
+      /* 数值取大（n/score/right…），布尔取或（done），其余谁有值用谁的 */
+      for (var f in xb){
+        var vb = xb[f], va = xa[f];
+        if (typeof vb === 'boolean')      xa[f] = !!(va || vb);
+        else if (typeof vb === 'number')  xa[f] = Math.max(+va || 0, +vb || 0);
+        else if (va == null)              xa[f] = vb;
+      }
+    }
+    ra.min = Math.max(+ra.min || 0, +rb.min || 0);   // 当天用时，取多的那边
+  }
+
+  /* ---- master / wrong：并集 ---- */
+  var rm = remote.master || {};
+  for (var m in rm) if (!S.master[m]) { S.master[m] = rm[m]; stat.master++; }
+  var rw = remote.wrong || {};
+  for (var wk in rw){
+    if (!S.wrong[wk]){ S.wrong[wk] = rw[wk]; stat.wrong++; continue; }
+    var wb = rw[wk] || {};
+    S.wrong[wk].n   = Math.max(+S.wrong[wk].n || 0, +wb.n || 0);
+    /* clr（连续答对次数）取小：一边刚答对一次、另一边还没答对，
+       取小意味着还要再练一次才移出错题本 —— 宁可多练，不让学生漏掉 */
+    S.wrong[wk].clr = Math.min(+S.wrong[wk].clr || 0, +wb.clr || 0);
+    if ((wb.last || '') > (S.wrong[wk].last || '')) S.wrong[wk].last = wb.last;
+  }
+
+  /* ---- resume（断点续传）：只对今天有效，已答的条目取并集 ---- */
+  var rr = remote.resume || {};
+  for (var rk in rr){
+    if (!rr[rk] || rr[rk].d !== today()) continue;
+    if (!S.resume[rk]){ S.resume[rk] = rr[rk]; continue; }
+    var sb2 = rr[rk], sa2 = S.resume[rk];
+    var seenA = sa2.seen || {}, seenB = sb2.seen || {};
+    for (var sk in seenB) if (seenA[sk] == null) seenA[sk] = seenB[sk];
+    sa2.seen  = seenA;
+    sa2.n     = Math.max(+sa2.n || 0, +sb2.n || 0, Object.keys(seenA).length);
+    sa2.right = Math.max(+sa2.right || 0, +sb2.right || 0);
+    sa2.half  = Math.max(+sa2.half || 0, +sb2.half || 0);
+    sa2.wrong = Math.max(+sa2.wrong || 0, +sb2.wrong || 0);
+  }
+
+  /* ---- 游标一律取大 ----
+     游标回退的后果是把学过的词再发一遍，用户会以为「我明明学过了」 */
+  var rq = remote.q || {}, sq = S.q || (S.q = {});
+  for (var qk in rq) sq[qk] = Math.max(+sq[qk] || 0, +rq[qk] || 0);
+
+  /* ---- 配额：按「最后改的那台」为准 ----
+     用户在手机上把每天新词从 12 调到 8，不该被电脑上的旧值顶回去。
+     两边都没时间戳时取补缺，不动本地已设的值。 */
+  var rc = remote.cfg || {};
+  if ((+remote.cfgAt || 0) > (+S.cfgAt || 0)) S.cfg = rc;
+  else if (remote.cfgAt == null && S.cfgAt == null)
+    for (var ck in rc) if (S.cfg[ck] == null) S.cfg[ck] = rc[ck];
+
+  /* ---- start 取更早：Day 数只会变大，不会把进度算没 ---- */
+  if (remote.start && (!S.start || remote.start < S.start)) S.start = remote.start;
+  S.day = Math.max(1, diffDays(S.start || today(), today()) + 1);
+  if (remoteAt) S.base = Math.max(+S.base || 0, remoteAt);
+  return stat;
+}
+
+/* 合并落地：存盘 + 重算当天 + 重渲染 + 如实告诉用户合并了多少。
+   inRun 时只存盘不重渲染 —— 练习进行到一半把 D 换掉会打断正在答的卡。 */
+function applyMerged(stat, quiet){
+  migrate();
+  S.day = Math.max(1, diffDays(S.start || today(), today()) + 1);
+  var inRun = document.body.classList.contains('focus');
+  if (!inRun) D = getDay(S.day);
+  S.savedAt = Date.now();
+  persist();
+  if (inRun) return 0;
+  restoring = true;
+  try {
+    [['renderToday', renderToday], ['renderCorpus', renderCorpus],
+     ['renderWords', renderWords], ['renderPhrases', renderPhrases],
+     ['renderMe', renderMe]].forEach(function(p){
+      try { p[1](); } catch (e){ console.error('[' + p[0] + '] 合并后渲染失败:', e && e.message); }
+    });
+  } finally { restoring = false; }
+  var n = (stat.items || 0) + (stat.days || 0) + (stat.master || 0) + (stat.wrong || 0);
+  if (!quiet && n > 0) toast('已合并' + (lastRemoteDev ? '「' + lastRemoteDev + '」' : '另一台设备') + '的进度：多出 ' + n + ' 条');
+  return n;
+}
+
+/* 与云端对账：发现云端那行被别的设备写过就合并进来，再把合并结果推回去。
+   两个时机调用：页面切回前台、以及每次推送之前。 */
+async function reconcile(){
+  if (!cloud || !ME) return 0;
+  var pk = await peekCloud();
+  var rt = pk && pk.updated_at ? new Date(pk.updated_at).getTime() : 0;
+  if (!(rt > (S.base || 0))) return 0;
+  var full = await pullCloud();
+  if (!full || !full.payload) return 0;
+  var stat = mergeInto(full.payload, rt);
+  return applyMerged(stat, true);
 }
 /* 云端记录回灌到本地状态。
    原来这份逻辑在 afterLogin() 和 boot() 里各抄了一份，两边都有同一个 bug
@@ -703,37 +1146,40 @@ function restoreFromCloud(row){
   var remote = row && row.payload;
   if (!remote || !remote.items || !Object.keys(remote.items).length) return 'empty';
   var rt = row.updated_at ? new Date(row.updated_at).getTime() : 0;
-  var lt = S.savedAt || 0;
   var localHas = localHasProgress();
-  /* 本地毫无成果 → 直接用云端，不打扰用户；
-     本地有成果且云端明显更新 → 问一句，别默默覆盖他在这台设备上刚学的东西。 */
-  if (localHas && !(rt > lt + 5000)) return 'kept-local';
-  if (localHas && !confirm('云端有更新的学习记录（' + row.updated_at + '）。\n'
-    + '确定用云端记录覆盖这台设备上的本地记录吗？')) return 'kept-local';
-  S = remote;
-  if (!S.cfg) S.cfg = {};
-  for (var d in DEF) if (S.cfg[d] == null) S.cfg[d] = DEF[d];
-  if (!S.master) S.master = {};
-  if (!S.q) S.q = { w: 0, g: 0, hs: 0, ms: 0 };
-  if (!S.items) S.items = {}; if (!S.days) S.days = {};
-  if (!S.start) S.start = today();
-  S.day = Math.max(1, diffDays(S.start, today()) + 1);
-  D = getDay(S.day);
-  /* 回灌完把云端时间戳写进 savedAt，否则下次进页面又会拿同一份云端数据来「确认覆盖」 */
-  S.savedAt = Date.now();
-  persist();
-  /* 逐个渲染并各自兜住异常：S 已经在上面换成云端数据了，
-     万一某个渲染函数抛错，不能让整条链断在这里 —— 那会让用户看到
-     「数据明明恢复了但界面还是旧的」，比报错更难排查。 */
-  restoring = true;
-  try {
-    [['renderToday', renderToday], ['renderCorpus', renderCorpus],
-     ['renderWords', renderWords], ['renderPhrases', renderPhrases],
-     ['renderMe', renderMe]].forEach(function(p){
-      try { p[1](); } catch (e){ console.error('[' + p[0] + '] 恢复后渲染失败:', e && e.message); }
-    });
-  } finally { restoring = false; }
-  return 'restored';
+  /* 本地毫无成果（换新设备、清过缓存）→ 直接用云端，不打扰用户。 */
+  if (!localHas){
+    if (remote.dev){ lastRemoteDev = remote.dev; lastRemoteAt = rt || Date.now(); }
+    S = remote;
+    if (!S.base) S.base = rt;
+    if (!S.cfg) S.cfg = {};
+    if (!S.master) S.master = {};
+    if (!S.q) S.q = { w: 0, g: 0, hs: 0, ms: 0 };
+    if (!S.items) S.items = {}; if (!S.days) S.days = {};
+    if (!S.start) S.start = today();
+    migrate();
+    S.day = Math.max(1, diffDays(S.start, today()) + 1);
+    D = getDay(S.day);
+    S.savedAt = Date.now();
+    persist();
+    restoring = true;
+    try {
+      [['renderToday', renderToday], ['renderCorpus', renderCorpus],
+       ['renderWords', renderWords], ['renderPhrases', renderPhrases],
+       ['renderMe', renderMe]].forEach(function(p){
+        try { p[1](); } catch (e){ console.error('[' + p[0] + '] 恢复后渲染失败:', e && e.message); }
+      });
+    } finally { restoring = false; }
+    return 'restored';
+  }
+  /* 本地有成果 → 合并，不再「二选一」。
+     旧实现在这里弹 confirm 让用户决定覆盖哪一边，是个假选择：
+     点确定 = 丢掉这台设备刚学的，点取消 = 拿不回另一台学的。
+     两边都学到东西是最常见的情况（上午书房、下午手机），
+     正确答案从来不是选一边，而是加起来。 */
+  var stat = mergeInto(remote, rt);
+  var n = applyMerged(stat, true);
+  return n > 0 ? 'merged' : 'kept-local';
 }
 async function afterLogin(user){
   ME = user;
@@ -741,6 +1187,7 @@ async function afterLogin(user){
   var row = await pullCloud();
   var how = restoreFromCloud(row);
   if (how === 'restored') toast('已从云端恢复学习记录');
+  else if (how === 'merged') toast('已把你在这台设备上的进度和云端合并');
   /* 登录成功后立刻把账号条收起成一行摘要，登录表单不再占地方 */
   acctOpen = false;
   var ab = $('meAcct'), abox = $('account');
@@ -769,6 +1216,18 @@ function paintAcctBar(){
   else if (cloudErr === 'origin'){ t.textContent = '登录（需用正式网址）'; s.textContent = '当前是 GitHub Pages 镜像，点这里看说明'; }
   else { t.textContent = '登录 / 注册'; s.textContent = '云端组件未加载，点这里重试'; }
 }
+/* 账号面板里那行「上次同步来自哪台设备」。
+   写它的理由：多设备最容易让人不安的是「我到底有没有同步上」，
+   给一个具体的设备名和时间，比一句「已同步到云端」可信得多。 */
+function syncWhoText(){
+  if (!lastRemoteDev) return '学习数据存在云端，换设备登录同一账号即可继续。';
+  var t = '';
+  if (lastRemoteAt){
+    var d = new Date(lastRemoteAt);
+    t = ' · ' + p2(d.getHours()) + ':' + p2(d.getMinutes());
+  }
+  return '上次同步来自「' + esc(lastRemoteDev) + '」' + t + '。换设备学习会自动合并，不会互相覆盖。';
+}
 function renderAccount(){
   var box = $('account');
   if (!box) return;
@@ -779,18 +1238,27 @@ function renderAccount(){
        （比如从正式地址登录后切到镜像域名）。这时必须显示账号面板而不是登录表单，
        否则用户会看到「已登录」却还是一堆登录输入框。 */
     var noCloud = !cloud;
-    box.innerHTML = '<div class="card"><h3 style="margin-top:0">账号</h3>'
+    box.innerHTML = '<div class="card"><h3 class="mt0">账号</h3>'
       + '<p class="sub" style="font-size:14px;color:var(--tx)">' + esc(ME.email || '已登录') + '</p>'
       + (noCloud ? '<div class="note" style="margin-top:6px">当前网址（' + esc(location.hostname) + '）不能连接云服务，'
           + '所以暂时无法同步或退出。<br>请到正式地址管理账号：<br>'
           + '<span class="chip" style="word-break:break-all">' + esc(APP_URL) + '</span></div>'
           + '<div class="btnrow"><button class="btn primary" id="auGoApp">打开正式地址</button></div>' : '')
       + (noCloud ? '' : '<div class="btnrow"><button class="btn" id="auSync">立即同步</button>'
+          + '<button class="btn" id="auRecon">与云端对账</button>'
           + '<button class="btn no" id="auOut">退出登录</button></div>'
-          + '<p class="sub" style="margin-bottom:0">学习数据存在云端，换设备登录同一账号即可继续。</p>')
+          + '<p class="sub" style="margin-bottom:0">' + syncWhoText() + '</p>')
       + '</div>';
     if ($('auGoApp')) $('auGoApp').onclick = function(){ location.href = APP_URL; };
     if ($('auSync')) $('auSync').onclick = async function(){ setSync('同步中…', 'b'); await pushCloud(); toast(pushOk ? '已同步到云端' : '同步失败，请重试'); };
+    /* 对账 = 先合并云端（别的设备写的），再把合并结果推回去。
+       和「立即同步」的区别：同步是单向推，对账是先把对方的成果收下再推。 */
+    if ($('auRecon')) $('auRecon').onclick = async function(){
+      setSync('对账中…', 'b');
+      var n = await reconcile();
+      await pushCloud({ now:true, skipCheck:true });
+      toast(n ? ('已合并 ' + n + ' 条来自另一台设备的进度') : '两边已经一致');
+    };
     if ($('auOut')) $('auOut').onclick = async function(){
       if (!confirm('退出登录？本地记录会保留，云端数据不动。')) return;
       await cloud.auth.signOut(); ME = null; cloudRow = null;
@@ -806,22 +1274,22 @@ function renderAccount(){
   }
 
   /* ---- 未登录 / 云端不可用：登录入口与表单始终可见 ---- */
-  var head = '<div class="card"><h3 style="margin-top:0">账号 · 云端同步</h3>';
+  var head = '<div class="card"><h3 class="mt0">账号 · 云端同步</h3>';
   var warn = '';
 
   if (cloudErr === 'origin'){
-    warn = '<div class="note" style="margin-top:0">当前网址是 <b>' + esc(location.hostname) + '</b>（GitHub Pages 镜像），'
+    warn = '<div class="note mt0">当前网址是 <b>' + esc(location.hostname) + '</b>（GitHub Pages 镜像），'
       + '云服务会校验域名，所以在这里无法登录或同步。<br>'
       + '请到正式地址使用：<br>'
       + '<span class="chip" style="word-break:break-all">' + esc(APP_URL) + '</span></div>'
       + '<div class="btnrow"><button class="btn primary" id="auGoApp">打开正式地址</button>'
       + '<button class="btn" id="auCopyApp">复制地址</button></div>';
   } else if (cloudErr === 'sdk'){
-    warn = '<div class="note" style="margin-top:0">云端组件没加载成功（可能是网络问题）。学习记录仍会正常保存在这台设备上，不影响学习。'
+    warn = '<div class="note mt0">云端组件没加载成功（可能是网络问题）。学习记录仍会正常保存在这台设备上，不影响学习。'
       + '<br>点下方「重试加载云端」再试一次。</div>'
       + '<div class="btnrow"><button class="btn" id="auRetry">重试加载云端</button></div>';
   } else if (cloudErr === 'init'){
-    warn = '<div class="note" style="margin-top:0">云端组件初始化失败。学习记录仍会正常保存在这台设备上，不影响学习。'
+    warn = '<div class="note mt0">云端组件初始化失败。学习记录仍会正常保存在这台设备上，不影响学习。'
       + '<br>点下方「重新初始化」再试一次。</div>'
       + '<div class="btnrow"><button class="btn" id="auRetry">重新初始化</button></div>';
   } else {
@@ -974,6 +1442,28 @@ var EX_CAP = 4;
 var POOL_HS = (P.sents || []).filter(function(s){ return s.who === 0 && s.len >= MINLEN && isTH(s.t) && s.z; }).slice().sort(function(a,b){ return a.len - b.len; });
 var POOL_MS = (P.sents || []).filter(function(s){ return s.who === 1 && s.len >= MINLEN && isTH(s.t) && s.z; }).slice().sort(function(a,b){ return a.len - b.len; });
 var SMAP = {}; (P.sents || []).forEach(function(s){ SMAP[s.id] = s; });
+/* 例句 id 归一化。
+   word-sent-data.js 建库时用的 id 有补零和不补零两种写法混排（h115 / h0002），
+   而 pany-data.js 清洗重编后只有不补零的 h2。
+   结果：闪卡里 8651 条例句引用有 4624 条查不到，点发音静默无反应。
+   这里建一张归一化别名表，让两种写法都能命中。
+   仍找不到的（603 个唯一 id，pany-data 清洗时的编号漂移）留给 TTS 兜底。 */
+/* 归一化键：前缀 + 数字，忽略所有前导零。
+   不能用 /^([hm])0+/ 那种去零 —— 实测位数本身就不统一：
+   引用侧 h位4=1118 h位3=134 h位5=4924 h位2=16，同一个句子编号
+   在不同位置写成 h2 / h02 / h002 / h0002 四种都有。
+   必须 parseInt 掉前导零再比。 */
+function sentKey(id){ return id[0] + parseInt(id.slice(1), 10); }
+var SMAP_ALIAS = {};
+Object.keys(SMAP).forEach(function(id){
+  var k = sentKey(id);
+  /* 同键不同写法时保留先注册的那个（SMAP 自身优先，不被别名覆盖） */
+  if (!SMAP_ALIAS[k]) SMAP_ALIAS[k] = SMAP[id];
+});
+function sentOf(id){
+  if (!id) return null;
+  return SMAP[id] || SMAP_ALIAS[sentKey(id)] || null;
+}
 var WMAP = {}; POOL_W.forEach(function(w){ WMAP[w.t] = w; });
 var GMAP = {}; POOL_G.forEach(function(g){ GMAP[g.t] = g; });
 
@@ -986,26 +1476,118 @@ var GMAP = {}; POOL_G.forEach(function(g){ GMAP[g.t] = g; });
    整个 <script> 块中断执行 —— 今日看板空白、底部导航和所有按钮全部失灵。
    触发条件是「本地有历史天数 + 跨天」，也就是几乎所有第二天以后打开页面的用户。
    教训：JS 里 var 提升不等于初始化提前，跨函数提前使用时必须把定义挪到调用点之前。 */
+/* 复习原来只有一项 rev，里面混着「到期单词 / 虚词 / 她的例句 / 我的例句」四类，
+   最多一次要过 180 条。用户原话：「单词跟句子混在一起，句子还没有罗马音」。
+   现在拆成 revW（词和虚词）和 revS（句子）两项，各自独立计分、独立算完成。
+   wrong（错题）是 opt —— 不计入「今天是否完成」，没有错题时整天也不出现、不占名额。 */
 var TASKS = [
-  { k:'rev',  n:'到期复习', d:'按遗忘曲线到期的词和短句' },
+  { k:'revW', n:'复习单词', d:'到期的词和短句，按遗忘曲线排' },
+  { k:'revS', n:'复习句子', d:'她的例句和你自己的例句，分开练' },
   { k:'new',  n:'新学',     d:'今天新分配的词和短句' },
   { k:'read', n:'她的例句', d:'看泰文猜意思，再对答案' },
   { k:'out',  n:'我的例句', d:'看中文先自己说泰文，再对照' },
-  { k:'quiz', n:'今日测验', d:'四种题型随机' }
+  { k:'hear', n:'听力',     d:'只放她的原声，听懂她到底说了什么' },
+  { k:'quiz', n:'今日测验', d:'四种题型随机' },
+  { k:'wrong',n:'错题重练', d:'之前答错过的，连续答对 2 次自动移出', opt:true }
 ];
-var TNAME = { rev:'到期复习', new:'新学', read:'她的例句', out:'我的例句', quiz:'今日测验' };
+var TNAME = { revW:'复习单词', revS:'复习句子', new:'新学', read:'她的例句', out:'我的例句', hear:'听力', quiz:'今日测验', wrong:'错题重练' };
+/* 计入「今天是否做完」的任务。opt 的（错题）不参与 ——
+   否则某天没有错题、或错题没练完，整天就永远显示「未完成」，那是假信号。 */
+var MAIN_TASKS = TASKS.filter(function(t){ return !t.opt; });
 
 /* ==================== 状态 ==================== */
 var KEY = "thai-daily-v1";
-var DEF = { newWords: 12, newGrams: 3, newHerSent: 5, newMySent: 4, quizCount: 10 };
+var DEF = { newWords: 12, newGrams: 3, newHerSent: 5, newMySent: 4, quizCount: 10, hearCount: 6 };
 var S = { day: 1, start: '', cfg: {}, q: { w: 0, g: 0, hs: 0, ms: 0 }, items: {}, days: {}, focus: '', master: {} };
 try { var _r = localStorage.getItem(KEY); if (_r) { var _o = JSON.parse(_r); for (var _k in _o) S[_k] = _o[_k]; } } catch (e) {}
-if (!S.master) S.master = {};
-// 迁移旧版单词本的「已掌握」标记
-try { var _wb0 = localStorage.getItem('thaiwordbook-v1');
-  if (_wb0) { var _w0 = JSON.parse(_wb0) || {}; for (var _t0 in _w0) if (!S.master[_t0]) S.master[_t0] = 1; save(); } } catch (e) {}
-for (var _d in DEF) if (S.cfg[_d] == null) S.cfg[_d] = DEF[_d];
-if (!S.start) S.start = today();
+
+/* ==================== 设备标识 ====================
+   同一个账号会在这台电脑、那台手机、公司机器上同时登录。
+   每次推送都带上「是谁写的」，一来出问题时知道该看哪台，
+   二来恢复时能判断云端那份是不是自己写的 —— 不是就必须合并而不是覆盖。
+   存在独立 key 里，不进主存档（主存档会被云端整包替换，换设备就串味了）。 */
+var DEV_KEY = 'thai-device-v1';
+var DEV = (function(){
+  try { var v = localStorage.getItem(DEV_KEY); if (v) return v; } catch (e) {}
+  var ua = navigator.userAgent || '';
+  var plat = /Windows/i.test(ua) ? 'Win' : /Macintosh|Mac OS/i.test(ua) ? 'Mac'
+    : /Android/i.test(ua) ? 'Android' : /iPhone|iPad|iPod/i.test(ua) ? 'iPhone'
+    : /Linux/i.test(ua) ? 'Linux' : '设备';
+  var br = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera'
+    : /Chrome\//.test(ua) ? 'Chrome' : /Firefox\//.test(ua) ? 'Firefox'
+    : /Safari\//.test(ua) ? 'Safari' : '浏览器';
+  var v2 = plat + '-' + br + '-' + Math.random().toString(36).slice(2, 5);
+  try { localStorage.setItem(DEV_KEY, v2); } catch (e) {}
+  return v2;
+})();
+/* 云端那一行最后一次是谁写的、什么时候写的。只用于展示，不参与合并判据。 */
+var lastRemoteDev = '', lastRemoteAt = 0;
+
+/* ==================== 存档迁移 ====================
+   之前这些补丁零散写在各处，加一个新字段就往这里塞一个 if，
+   谁也不知道老存档到底过了哪几道手续。现在收敛成一个带版本号的 migrate()：
+   S.v 记录存档经过到第几版，每版只做一次，做过就跳。
+   新增迁移必须是幂等的 —— 用户随时可能从云端把一周前的存档拉回来，
+   那份存档可能缺中间任何一步。 */
+var SCHEMA_V = 4;
+function migrate(){
+  var changed = false;
+  /* v1 → 单词本「已掌握」标记，从独立 key 并到主存档 */
+  try {
+    var _wb0 = localStorage.getItem('thaiwordbook-v1');
+    if (_wb0) {
+      var _w0 = JSON.parse(_wb0) || {};
+      for (var _t0 in _w0) if (!S.master[_t0]) { S.master[_t0] = 1; changed = true; }
+    }
+  } catch (e) {}
+  if (!S.master) { S.master = {}; changed = true; }
+  for (var _d in DEF) if (S.cfg[_d] == null) { S.cfg[_d] = DEF[_d]; changed = true; }
+  if (!S.start) { S.start = today(); changed = true; }
+  /* v2 → 复习拆成 revW（单词）/ revS（句子）：
+     旧存档只有 st.rev，不迁移的话 dayDone 永远判不出「做完了」，
+     历史天数会集体变成未完成 —— 那是在骗用户说他没完成任务。 */
+  if ((S.v || 0) < 2){
+    for (var d2 in S.days){
+      var st = S.days[d2] && S.days[d2].st;
+      if (!st || !st.rev) continue;
+      if (!st.revW) st.revW = st.rev;   // 旧「到期复习」主要是单词
+      if (!st.revS) st.revS = st.rev;   // 句子那时混在同一项，同样算完成
+      delete st.rev; changed = true;
+    }
+  }
+  /* v3 → 断点续传 / 错题本 / 听力三个新字段 */
+  if (!S.resume) { S.resume = {}; changed = true; }
+  if (!S.wrong)  { S.wrong  = {}; changed = true; }
+  /* v4 → 多设备合并。
+     base = 「本地这份已经和云端对齐到哪一刻」。
+     没有它就无法判断云端那行是不是被别的设备写过：
+     只能拿 savedAt 跟 updated_at 比大小，谁的时间戳新谁整包赢 ——
+     于是「上午在这台学的、下午在另一台学的」必然二选一，另一半就没了。 */
+  if (S.base == null) { S.base = 0; changed = true; }
+  /* v4 → 新增「听力」任务后，历史打卡天数会集体变成未完成。
+     和当初拆 revW/revS 踩的是同一个坑：dayDone() 要求每个主任务都 done，
+     老存档里压根没有 hear 这个键，于是「已打卡 6 天」一夜变 0，
+     得分趋势图和逐天明细表跟着全空 —— 用户会以为历史记录被删了。
+     处理：那天在旧口径下确实做完的，补一个 done 的空壳。
+     **今天不补** —— 今天还没练听力就标完成，等于帮用户骗自己。 */
+  if ((S.v || 0) < 4){
+    var oldMain = MAIN_TASKS.filter(function(t){ return t.k !== 'hear'; });
+    for (var d4 in S.days){
+      if (Number(d4) === Number(S.day)) continue;
+      var a4 = S.days[d4] && S.days[d4].st;
+      if (!a4 || a4.hear) continue;
+      var ok4 = true;
+      for (var mi = 0; mi < oldMain.length; mi++){
+        var mk = oldMain[mi].k;
+        if (!(a4[mk] && a4[mk].done)) { ok4 = false; break; }
+      }
+      if (ok4) { a4.hear = { done: true, n: 0, score: 0 }; changed = true; }
+    }
+  }
+  S.v = SCHEMA_V;
+  if (changed) persist();
+}
+migrate();
 function persist(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
 function save(){
   persist();
@@ -1056,11 +1638,16 @@ function diffDays(a, b){ return Math.round((new Date(b+'T00:00:00') - new Date(a
 var BOX = [0,1,2,4,7,15,30];
 var BOXNAME = ['刚接触','见 2 次','记住 1 天','记住 4 天','记住 7 天','记住 15 天','记住 30 天'];
 function ensure(k){ if (!S.items[k]) S.items[k] = { box:0, due:today(), r:0, w:0, h:0, seen:0, lg:[], peak:0 }; return S.items[k]; }
+var BOX_TOP = BOX.length - 1;   // BOX 改档数时这里跟着变，不要再写死数字
 /* grade 顺手记一条学习轨迹 [第几天, 得分]：这是「到底记住了没有」唯一可靠的证据。
    单日分数只能证明当天做对了，跨天复现的轨迹才能证明记住了。 */
 function grade(k, ok){
   var it = ensure(k); it.seen++;
-  if (ok === 1){ it.box = Math.min(5, it.box+1); it.r++; }
+  /* 上限必须跟着 BOX 的长度走。
+     原来写死 Math.min(5, ...) 而 BOX 有 7 档（0~6），
+     结果最深那档「记住 30 天」永远进不去 —— 记忆分布图上最后一格恒为 0，
+     定量配额和「已记牢」口径也都跟着失真。 */
+  if (ok === 1){ it.box = Math.min(BOX_TOP, it.box+1); it.r++; }
   else if (ok === 0.5){ it.h++; }
   else { it.box = 0; it.w++; }
   if (it.box > it.peak) it.peak = it.box;
@@ -1090,7 +1677,7 @@ function setMaster(t, v){
 function dayDone(d){
   var a = S.days[d] && S.days[d].st;
   if (!a) return false;
-  for (var i = 0; i < TASKS.length; i++){ var t = TASKS[i]; if (!(a[t.k] && a[t.k].done)) return false; }
+  for (var i = 0; i < MAIN_TASKS.length; i++){ var t = MAIN_TASKS[i]; if (!(a[t.k] && a[t.k].done)) return false; }
   return true;
 }
 /* 留存率：某条词第一次学之后，间隔 ≥ n 天的那次复习，答对的比例 */
@@ -1128,21 +1715,29 @@ function boxDist(){
 function loadForecast(days){
   days = days || 7;
   var t = today(), out = [], idx = {}, i;
-  for (i = 0; i < days; i++){ var dd = addDays(t, i); out.push({ d: dd, n: 0, i: i }); idx[dd] = i; }
+  for (i = 0; i < days; i++){ var dd = addDays(t, i); out.push({ d: dd, n: 0, i: i, over: i === 0 }); idx[dd] = i; }
   for (var k in S.items){
     var it = S.items[k];
     if (!it.seen || S.master[k.split('|')[1]]) continue;
-    if (idx[it.due] != null) out[idx[it.due]].n++;
+    /* 过期条目（due < 今天）必须并进第 0 格，不能因为 idx 查不到就丢掉。
+       dueList() 用的是 due <= t，包含过期的；这里原来跟它口径不一致，
+       后果是断更 2 天回来 loadForecast 全 0 → 配额闸门以为负荷轻 →
+       照常派 12 个新词，实际要面对 24 条以上。
+       最需要系统帮忙「先还债」的那一天，恰恰是它最盲目的那一天。 */
+    if (it.due < t) out[0].n++;
+    else if (idx[it.due] != null) out[idx[it.due]].n++;
   }
   return out;
 }
 function keyObj(k){
   var p = k.split('|'), t = p[1];
-  if (p[0] === 'w') return { type:'w', t:t, o:WMAP[t] };
-  if (p[0] === 'g') return { type:'g', t:t, o:GMAP[t] };
-  // 句子的 key 存的是 id（h12 / m34），展示要用泰文原句
-  var s = SMAP[t];
-  return { type:'s', id:t, t:(s ? s.t : t), o:s };
+  if (p[0] === 'w') return { type:'w', t:t, o:WMAP[t], orphan:!WMAP[t] };
+  if (p[0] === 'g') return { type:'g', t:t, o:GMAP[t], orphan:!GMAP[t] };
+  /* 句子的 key 存的是 id（h12 / m34），展示要用泰文原句。
+     这里必须走 sentOf 而不是 SMAP[t] —— 例句 id 的位数不统一
+     （同一个编号有 h2/h02/h002/h0002 四种写法），直查只能命中 46.5%。 */
+  var s = sentOf(t);
+  return { type:'s', id:t, t:(s ? s.t : t), o:s, orphan:!s };
 }
 
 S.day = Math.max(1, diffDays(S.start, today()) + 1);
@@ -1175,7 +1770,8 @@ function quotaForDay(){
 }
 function doneDays(){ return Object.keys(S.days).map(Number).filter(dayDone).sort(function(a,b){ return a-b; }); }
 function buildPlan(){
-  var p = { newW:[], dueW:[], newG:[], dueG:[], read:[], out:[], wEnd:0, gEnd:0, why:'' }, i, j;
+  var p = { newW:[], dueW:[], newG:[], dueG:[], read:[], out:[], dueSH:[], dueSM:[], dueSOther:[],
+            wEnd:0, gEnd:0, hsEnd:0, msEnd:0, why:'' }, i, j;
   var q = quotaForDay();
   p.why = q.why; p.quota = q.n;
   // 已掌握的词不占配额，直接跳过
@@ -1193,7 +1789,29 @@ function buildPlan(){
   p.gEnd = S.q.g + j;
   for (i = 0; i < S.cfg.newHerSent && S.q.hs + i < POOL_HS.length; i++) p.read.push('s|' + POOL_HS[S.q.hs+i].id);
   for (i = 0; i < S.cfg.newMySent && S.q.ms + i < POOL_MS.length; i++) p.out.push('s|' + POOL_MS[S.q.ms+i].id);
+  /* 例句游标端点：btnFinish 用它做幂等赋值（原先是 +=，会双倍推进） */
+  p.hsEnd = S.q.hs + p.read.length;
+  p.msEnd = S.q.ms + p.out.length;
   p.dueW = dueList('w|').slice(0, 80); p.dueG = dueList('g|').slice(0, 40);
+  /* 例句也要进复习队列。原先只派发 w|/g|，而例句的 key 是 's|h1'，
+     前缀永远不匹配 —— 于是例句进了 S.items、进了 Leitner 盒子、due 也算过，
+     却没有任何路径会把它派发到「到期复习」。
+     read/out 是唯一直接练「她的原话」的入口，每天的例句学完就再也不见，
+     对「跟 Pany 沟通」这个目标是最直接的损失。
+     她的例句和我的例句分开存：卡片形态不同（前者认词后者造句）。 */
+  var dueS = dueList('s|');
+  p.dueSH = [], p.dueSM = [];
+  /* 用独立的 ds 变量，不复用外层的 i —— 上面几个 for 循环已经把 i 推到别的值了，
+     复用会在长计划下算错下标。 */
+  for (var ds = 0; ds < dueS.length; ds++){
+    var so = SMAP[sentKey(dueS[ds].slice(2))];
+    if (so && so.who === 0){ if (p.dueSH.length < 30) p.dueSH.push(dueS[ds]); }
+    else if (so && so.who === 1){ if (p.dueSM.length < 30) p.dueSM.push(dueS[ds]); }
+  }
+  /* 区分不出说话人的（编号漂移导致查不到）也要派发，不能静默丢掉 */
+  p.dueSOther = dueS.filter(function(k){
+    return p.dueSH.indexOf(k) < 0 && p.dueSM.indexOf(k) < 0;
+  }).slice(0, 20);
   return p;
 }
 /* ---- 今日加学：在已完成的基础上继续往后学 ----
@@ -1218,11 +1836,16 @@ function extendToday(kind, n){
     p.gEnd += j2;
     S.q.g = p.gEnd;
   } else if (kind === 'read'){
+    /* 这里不要推进 S.q.hs ——
+       btnFinish 会用 p.hsEnd 一次推进。原先两边都 += 一次，
+       累加下来等于跳过：点一次「+3」再打卡，h6..h16 共 11 条永远读不到；
+       点两次，Day2 直接读不到她的例句。
+       词/短句用的是 p.wEnd 赋值（幂等），例句这里对齐成同一套口径。 */
     for (var i = 0; i < n && S.q.hs + p.read.length < POOL_HS.length; i++) p.read.push('s|' + POOL_HS[S.q.hs + p.read.length].id);
-    S.q.hs += p.read.length;
+    p.hsEnd = S.q.hs + p.read.length;
   } else if (kind === 'out'){
     for (var i2 = 0; i2 < n && S.q.ms + p.out.length < POOL_MS.length; i2++) p.out.push('s|' + POOL_MS[S.q.ms + p.out.length].id);
-    S.q.ms += p.out.length;
+    p.msEnd = S.q.ms + p.out.length;
   }
   if (!added.length && !p.read.length && !p.out.length) return 0;
   // 加学后「新学 / 例句」这两项要重新计完成状态
@@ -1298,10 +1921,24 @@ function setStyle(id, prop, v){ var el = $(id); if (el) el.style[prop] = v; }
 /* ==================== 今日 ==================== */
 function taskKeys(k){
   var p = D.plan;
-  if (k === 'rev') return p.dueW.concat(p.dueG);
-  if (k === 'new') return p.newW.concat(p.newG);
-  if (k === 'read') return p.read;
-  if (k === 'out') return p.out;
+  /* 用 (p.x || []) 兜底：旧存档的 plan 里没有 dueSH/dueSM/dueSOther（这三个字段是
+     后来为「例句进复习队列」加的），直接 concat 会因为 undefined 抛错，
+     表现是「今天一打开就白屏」。 */
+  if (k === 'revW') return (p.dueW || []).concat(p.dueG || []);
+  if (k === 'revS') return (p.dueSH || []).concat(p.dueSM || [], p.dueSOther || []);
+  if (k === 'new') return (p.newW || []).concat(p.newG || []);
+  if (k === 'read') return p.read || [];
+  if (k === 'out') return p.out || [];
+  /* 错题重练：题目就是之前答错过的条目。
+     dropMaster 在 startCard 里统一做，这里不用重复过滤。 */
+  if (k === 'wrong') return Object.keys(S.wrong || {});
+  /* 听力：她的原句，只放音频不给字幕 —— 专练「她语音发过来我能不能听懂」。
+     素材限定她说过的句子（POOL_HS），这也是占比最大的真实输入来源。
+     排ength ≤ 8 字：太长的句子做听力题只会变成猜谜，练不到点上。 */
+  if (k === 'hear'){
+    var hs = (POOL_HS || []).filter(function(s){ return s.len <= 8 && s.z && s.z.length >= 3; });
+    return hs.slice(0, S.cfg.hearCount || 6).map(function(s){ return 's|' + s.id; });
+  }
   return null;
 }
 /*取词时统一剔除「已掌握」的词。
@@ -1315,8 +1952,38 @@ function dropMaster(keys){
 }
 function dayScoreOf(d){
   var a = S.days[d].st;
-  var card = (((a.rev && a.rev.score) || 0) + ((a.new && a.new.score) || 0)) / (((a.rev?1:0)+(a.new?1:0)) || 1);
-  return Math.round(0.25*card + 0.35*((a.quiz && a.quiz.score)||0) + 0.20*((a.read&&a.read.score)||0) + 0.20*((a.out&&a.out.score)||0));
+  /* 只对真正做过的项计分，权重按实际项数归一。
+     原式用固定权重 0.25/0.35/0.20/0.20，缺项时：
+       - skip 标记的项（今天没这项内容）score 已被置 null，||0 会算成 0 分
+       - 缺项的项同样算 0 分，等于凭空扣分
+     两种都会让分数失真：Day 1 因 rev 空壳（曾经记 100 分）虚高，
+     现在改成 skip 后又变成偏低。归一之后「做了几项就按几项算」。 */
+  function sc(k){
+    var t = a[k];
+    if (!t || t.skip || !(t.n > 0)) return null;   // 空壳 / 没做 → 不计
+    return (t.score || 0);
+  }
+  var parts = [];
+  var cards = [sc('rev'), sc('new')].filter(function(x){ return x !== null; });
+  if (cards.length) parts.push([0.25, cards.reduce(function(a2, b){ return a2 + b; }, 0) / cards.length]);
+  [['quiz',0.35],['read',0.20],['out',0.20]].forEach(function(p){
+    var v = sc(p[0]);
+    if (v !== null) parts.push([p[1], v]);
+  });
+  if (!parts.length) return 0;
+  var sum = parts.reduce(function(a2, p){ return a2 + p[0] * p[1]; }, 0);
+  var wsum = parts.reduce(function(a2, p){ return a2 + p[0]; }, 0);
+  return wsum ? Math.round(sum / wsum) : 0;
+}
+/* 今天做了哪几项 —— 给「闪卡分」显示用：只平均真做过的两项，
+   别把空壳的 0 分和真做的 80 分平均成 40。 */
+function cardScoreOf(d){
+  var a = S.days[d].st, got = [];
+  ['rev','new'].forEach(function(k){
+    var t = a[k];
+    if (t && !t.skip && t.n > 0) got.push(t.score || 0);
+  });
+  return got.length ? Math.round(got.reduce(function(x, y){ return x + y; }, 0) / got.length) : 0;
 }
 /* ---- 掌握看板 ---- */
 var SRCGROUP = {};
@@ -1324,7 +1991,7 @@ POOL_W.forEach(function(w){ (SRCGROUP[w.src] = SRCGROUP[w.src] || []).push(w.t);
 var BUCKETS = ['top100','她的常用词','语气词','单词本 P5','单词本 P4'];
 var SRCNAME = { 'top100':'高频 TOP 100', '她的常用词':'她的常用词', '语气词':'语气词 · 虚词', '单词本 P5':'单词本 P5', '单词本 P4':'单词本 P4' };
 function renderBoard(){
-  var h = '<div class="card"><h3 style="margin-top:0">掌握看板 · 已掌握占高频词的比例</h3>'
+  var h = '<div class="card"><h3 class="mt0">掌握看板 · 已掌握占高频词的比例</h3>'
     + '<table><thead><tr><th>词表</th><th>已掌握</th><th class="n">占比</th></tr></thead><tbody>';
   var tot = 0, got = 0;
   BUCKETS.forEach(function(s){
@@ -1345,28 +2012,44 @@ function renderToday(){
   $('todayReport').innerHTML = renderTodayReport();
   var h = '';
   TASKS.forEach(function(t){
-    var keys = dropMaster(taskKeys(t.k));
-    var total = t.k === 'quiz' ? S.cfg.quizCount : keys.length;
-    if (total === 0 && !(D.st[t.k] && D.st[t.k].done)){ D.st[t.k] = { done:true, n:0, score:100 }; save(); }
-    var st = D.st[t.k] || {}, done = !!st.done;
-    var pct = total ? Math.round((st.n||0)/total*100) : 0; if (done) pct = 100;
+    var done = !!(D.st[t.k] && D.st[t.k].done);
+    var total, didN, skipCard = false;
+    if (t.k === 'quiz'){ total = S.cfg.quizCount; didN = done ? total : 0; }
+    else {
+      var keys = dropMaster(taskKeys(t.k) || []);
+      total = keys.length;
+      if (t.opt && !total && !done) skipCard = true;
+      didN = done ? total : (resumeOf(t.k) ? resumeOf(t.k).n : 0);
+    }
+    if (skipCard) return;
+    /* 空任务（今天没这项内容）不该记 100 分。
+       原先写成 {done:true, n:0, score:100}，dayScoreOf 直接把这个 100 当真分数加权，
+       dayDone 也算它完成 → 进 streak、进 kAvg、进配额闸门。
+       Day 1 必然触发（新用户无到期复习，rev 白送 25% 权重满分）；
+       例句池耗尽时 read/out 也变空壳，分数能虚高到 82。
+       改记 skip 标记：dayDone 仍认为「当天确实没这项」，
+       dayScoreOf 用 n>0 && !skip 过滤，权重按实际做了的项归一。 */
+    if (!t.opt && total === 0 && !done){ D.st[t.k] = { done:true, n:0, score:null, skip:true }; save(); }
+    done = !!(D.st[t.k] && D.st[t.k].done);
+    var pct = total ? Math.round(didN/total*100) : 0; if (done) pct = 100;
     var ex = '';
     if (t.k === 'new' && D.extra) ex = '<span class="sub">　含加学 ' + D.extra + ' 个</span>';
+    if (t.k === 'wrong' && total) ex = '<span class="sub">　共 ' + wrongCount() + ' 处</span>';
     h += '<div class="task' + (done ? ' done' : '') + '">'
-      + '<div class="th"><div class="nm">' + t.n + ' <span class="sub">' + (total ? total+' 项' : '今日无') + '</span>' + ex + '</div>'
-      + (done ? '<div class="sc">' + st.score + '</div>' : '') + '</div>'
+      + '<div class="th"><div class="nm">' + t.n + ' <span class="sub">' + (total ? total+' 项' : (t.opt ? '本子空着' : '今日无')) + '</span>' + ex + '</div>'
+      + (done ? '<div class="sc">' + D.st[t.k].score + '</div>' : '') + '</div>'
       + '<div class="dd">' + t.d + '</div><div class="mbar"><i style="width:' + pct + '%"></i></div>'
-      + '<button class="btn wide' + (done ? '' : ' primary') + '" data-run="' + t.k + '">' + (done ? '重做' : (st.n ? '继续' : '开始')) + '</button></div>';
+      + '<button class="btn wide' + (done ? '' : ' primary') + '" data-run="' + t.k + '">' + taskBtnLabel(done, didN, total) + '</button></div>';
   });
   h += renderQuota();
   h += renderExtra();
   h += renderProof();
   $('taskList').innerHTML = h;
-  var all = TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
+  var all = MAIN_TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
   $('finishBox').style.display = all ? 'block' : 'none';
   if (all){
     $('finishTxt').innerHTML = '<b>今日总分 ' + dayScoreOf(S.day) + '</b>　闪卡 '
-      + Math.round((((D.st.rev&&D.st.rev.score)||0) + ((D.st.new&&D.st.new.score)||0)) / 2)
+      + cardScoreOf(S.day)
       + ' · 答题 ' + (D.st.quiz&&D.st.quiz.score) + ' · 阅读 ' + (D.st.read&&D.st.read.score) + ' · 输出 ' + (D.st.out&&D.st.out.score)
       + '<br><span class="sub">' + adjustHint() + '</span>';
   }
@@ -1400,11 +2083,11 @@ function todayReportData(){
 function renderTodayReport(){
   var d = todayReportData();
   if (!d.rows.length){
-    return '<div class="card"><h3 style="margin-top:0">今天学了什么</h3>'
+    return '<div class="card"><h3 class="mt0">今天学了什么</h3>'
       + '<p class="sub" style="margin-bottom:0">还没开始。做完任意一项任务后，这里会列出你今天碰过的每一个词、'
       + '哪些是错的、系统从中学到了什么，以及明天该怎么调。</p></div>';
   }
-  var h = '<div class="card"><h3 style="margin-top:0">今天学了什么</h3>'
+  var h = '<div class="card"><h3 class="mt0">今天学了什么</h3>'
     + '<div class="kpis" style="margin:8px 0 4px">'
     + '<div class="kpi"><div class="l">今日接触</div><div class="v">' + d.rows.length + '</div></div>'
     + '<div class="kpi"><div class="l">答错过的</div><div class="v">' + d.weak.length + '</div></div>'
@@ -1458,12 +2141,18 @@ function analyze(d){
   return out.map(function(x){ return '<div class="ani">' + x + '</div>'; }).join('');
 }
 /* 定向练习：把指定条目排成一次闪卡，不改配额、不动游标 */
+/* 从今日页的「今天学了什么」触发的定向练习。
+   必须和 startCard() 一样补上 enterFocus + goDrill ——
+   #runner 在 #v-drill 里，而 .view{display:none}，不切 view 的话
+   卡片写进隐藏容器，用户看到的是「点了完全没反应」，只有一句 2 秒 toast。 */
 function drill(keys, label){
   if (!keys || !keys.length){ toast('没有可练的条目'); return; }
   run = { kind: 'rev', keys: keys.slice(0, 60), i: 0, right: 0, half: 0, wrong: 0, show: false, t0: Date.now() };
+  enterFocus('rev');
   renderRun();
-  toast(label + '：' + keys.length + ' 条');
-  $('runner').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  drillStarted = true;
+  goDrill();
+  toast(label + '：' + Math.min(keys.length, 60) + ' 条');
 }
 
 function renderQuota(){
@@ -1475,8 +2164,8 @@ function renderQuota(){
     var over = f[i].n > 80;
     bars += '<i class="' + (over ? 'r' : (f[i].n > 50 ? 'y' : '')) + '" style="height:' + Math.max(4, hgt) + '%" title="' + f[i].d + '：' + f[i].n + ' 条"></i>';
   }
-  return '<div class="card"><h3 style="margin-top:0">今天的量是怎么定的</h3>'
-    + '<p class="sub" style="margin-top:0">' + esc(D.plan.why || '沿用你的设定')
+  return '<div class="card"><h3 class="mt0">今天的量是怎么定的</h3>'
+    + '<p class="sub mt0">' + esc(D.plan.why || '沿用你的设定')
     + '　→　<b>新学 ' + D.plan.newW.length + ' 词 + ' + D.plan.newG.length + ' 短句</b>，复习 ' + (D.plan.dueW.length + D.plan.dueG.length) + ' 条。</p>'
     + '<div class="ldh">未来 7 天到期量</div><div class="ldb">' + bars + '</div>'
     + '<div class="ldr"><span>今</span>' + f.map(function(x){ return '<span>' + x.n + '</span>'; }).join('') + '</div>'
@@ -1500,8 +2189,8 @@ function futureExtraDays(){
 /* ---- 加学入口 ---- */
 function renderExtra(){
   var poolLeft = POOL_W.length - S.q.w;
-  return '<div class="card"><h3 style="margin-top:0">还想多学一些</h3>'
-    + '<p class="sub" style="margin-top:0">任何时候都能加量。加学的词一样进遗忘曲线、一样排进后面的复习，不会只过一遍就丢。'
+  return '<div class="card"><h3 class="mt0">还想多学一些</h3>'
+    + '<p class="sub mt0">任何时候都能加量。加学的词一样进遗忘曲线、一样排进后面的复习，不会只过一遍就丢。'
     + '高频词池还剩 <b>' + poolLeft + '</b> 个。</p>'
     + '<div class="btnrow">'
     + '<button class="btn" data-ext="w|5">再学 5 个词</button>'
@@ -1524,8 +2213,8 @@ function renderProof(){
   else if (r1.pct >= 85) line = '<b style="color:var(--ok)">留存 ' + r1.pct + '%</b>：隔 1 天还认出 ' + r1.ok + '/' + r1.n + ' 个，吸收得住，可以加量。';
   else if (r1.pct >= 65) line = '<b style="color:var(--warn)">留存 ' + r1.pct + '%</b>：隔 1 天认出 ' + r1.ok + '/' + r1.n + ' 个，属正常范围（间隔 1 天本就在遗忘边缘）。';
   else line = '<b style="color:var(--bad)">留存 ' + r1.pct + '%</b>：隔 1 天只认出 ' + r1.ok + '/' + r1.n + ' 个，就是「学了忘」——明天新学量已自动压低，先把复习还完。';
-  var h = '<div class="card"><h3 style="margin-top:0">今天到底记住了多少</h3>'
-    + '<p class="sub" style="margin-top:0">' + line + '</p>'
+  var h = '<div class="card"><h3 class="mt0">今天到底记住了多少</h3>'
+    + '<p class="sub mt0">' + line + '</p>'
     + '<div class="kpis" style="margin:10px 0">'
     + '<div class="kpi"><div class="l">隔 1 天留存</div><div class="v">' + (r1.pct == null ? '—' : r1.pct + '%') + '</div></div>'
     + '<div class="kpi"><div class="l">隔 3 天</div><div class="v">' + (r3.pct == null ? '—' : r3.pct + '%') + '</div></div>'
@@ -1571,9 +2260,9 @@ function topbar(){
   setText('kHold', r1.pct == null ? '—' : r1.pct + '%');
   setText('dayInfo', WEEK[wk-1] + '　|　词池 ' + S.q.w + '/' + POOL_W.length
     + '　她例句 ' + S.q.hs + '/' + POOL_HS.length + '　我例句 ' + S.q.ms + '/' + POOL_MS.length);
-  var dn = TASKS.filter(function(t){ return D.st[t.k] && D.st[t.k].done; }).length;
+  var dn = MAIN_TASKS.filter(function(t){ return D.st[t.k] && D.st[t.k].done; }).length;
   var bar = $('tbBar');
-  if (bar) bar.style.width = (dn / TASKS.length * 100) + '%';
+  if (bar) bar.style.width = (dn / MAIN_TASKS.length * 100) + '%';
 }
 
 /* ---- 闪卡 ---- */
@@ -1591,8 +2280,8 @@ function hasPic(t){ return !!picOf(t); }
 function picBlock(t){
   var u = picOf(t);
   if (!u) return '';
-  return '<div class="picbox"><img class="pic" src="' + u + '" alt="" loading="lazy" decoding="async"'
-    + (picMode ? '' : ' style="display:none"') + '></div>';
+  return '<div class="picbox"><span class="picframe"><img class="pic" src="' + u + '" alt="" loading="lazy" decoding="async"'
+    + (picMode ? '' : ' style="display:none"') + '></span></div>';
 }
 /* 语料/词库列表里的缩略图。
    不能加 loading="lazy"：列表所在的 section 在切换 tab 前是 display:none，
@@ -1633,11 +2322,8 @@ function exBlock(o){
   var flipped = (typeof run === 'object' && run && run.show);
   var cap = EX_CAP;
   var showList = flipped ? list.slice(0, cap) : list.slice(0, 1);
-  showList.forEach(function(x, i){
-    h += '<div class="exs" data-ex="' + esc(x.id) + '">'
-      + '<div class="ext thai">' + esc(x.t) + '</div>'
-      + (x.r ? '<div class="exr">' + esc(x.r) + '</div>' : '')
-      + '<div class="exz">' + esc(x.z) + '</div></div>';
+  showList.forEach(function(x){
+    h += exOne(x);
   });
   if (!flipped){
     if (list.length > 1) h += '<div class="sub" style="font-size:11.5px;margin-top:6px">翻面看其余 ' + (list.length - 1) + ' 句</div>';
@@ -1647,21 +2333,140 @@ function exBlock(o){
        这样不用重跑 exBlock，也不会丢失已经滚动到的位置。 */
     for (var k = cap; k < list.length; k++){
       var y = list[k];
-      h += '<div class="exs" data-ex="' + esc(y.id) + '" data-extra="1" hidden>'
-        + '<div class="ext thai">' + esc(y.t) + '</div>'
-        + (y.r ? '<div class="exr">' + esc(y.r) + '</div>' : '')
-        + '<div class="exz">' + esc(y.z) + '</div></div>';
+      h += exOne(y).replace('class="exs"', 'class="exs" data-extra="1" hidden');
     }
   }
   h += '</div>';
   return h;
 }
+/* ---- 语境义：同一个词在她的消息里到底有几个意思 ----
+   用户原话：「很多例句里面关于这个单词的意思都有不同，但是单词里面的意思就只有一个。」
+   词典给的 z 是字典义项，跟真实对话对不上：
+     ไป 在「ลืมไปเลย = 完全忘了」里是助词，一点「去」的意思都没有；
+     แล้ว 在「แล้วแต่ = 随你吧」里字典根本查不到；
+     กลับ 字典写「回来」，她说的全是「回家 / 回去」。
+   所以另开一层数据 WSENSE：[[短义, "句id", 说明?], ...]，
+   每条都挂真实例句，点了直接听她当时怎么说的。
+   只在翻面后显示 —— 正面给出来等于把答案写在题面上。 */
+function senseOf(t){
+  var m = window.WSENSE;
+  return (m && m[t]) || null;
+}
+/* 例句渲染两处要用（闪卡例句区、语境义展开区），
+   抽出来共用一份，否则改了这处忘了那处 —— 之前「点例句没声音」就是这么来的。 */
+function exOne(x){
+  return '<div class="exs" data-ex="' + esc(x.id) + '">'
+    + '<div class="ext thai">' + esc(x.t) + '</div>'
+    + (x.r ? '<div class="exr">' + esc(x.r) + '</div>' : '')
+    + '<div class="exz">' + esc(x.z) + '</div></div>';
+}
+function bindExs(box){
+  if (!box) return;
+  box.querySelectorAll('.exs').forEach(function(b){
+    /* 用 sentOf() 走归一化查找，别再直接 SMAP[id] ——
+       那样有一半例句点了没声音，而且不报错，最难发现。 */
+    b.onclick = function(){
+      var s = sentOf(b.getAttribute('data-ex'));
+      if (s) say(s.id, 'audio-pany', s.t);
+      else say(null, 'audio-pany', b.getAttribute('data-t') || b.textContent.trim());
+    };
+  });
+}
+function senseBlock(t){
+  var arr = senseOf(t);
+  if (!arr) return '';
+  var h = '<div class="sensebox"><div class="sensehd">她平时这么用（' + arr.length + ' 种意思）</div><div class="senserow">';
+  for (var i = 0; i < arr.length; i++){
+    var ids = arr[i][1].split(' ');
+    h += '<button class="sensechip" data-si="' + i + '" data-t="' + esc(t) + '">'
+      + esc(arr[i][0]) + '<i>' + ids.length + '</i></button>';
+  }
+  return h + '</div><div class="senseex" id="senseEx"></div></div>';
+}
+function bindSense(R){
+  var box = $('senseEx');
+  R.querySelectorAll('.sensechip').forEach(function(b){
+    b.onclick = function(){
+      if (!box) return;
+      var on = b.getAttribute('data-on') === '1';
+      R.querySelectorAll('.sensechip').forEach(function(x){ x.removeAttribute('data-on'); x.classList.remove('on'); });
+      if (on){ box.innerHTML = ''; return; }        // 再点一次收起
+      b.setAttribute('data-on', '1'); b.classList.add('on');
+      var arr = senseOf(b.getAttribute('data-t'));
+      var row = arr && arr[+b.getAttribute('data-si')];
+      if (!row) { box.innerHTML = ''; return; }
+      /* 例句必须逐条查 WSENTS 拿到泰文/中文/罗马音，
+         不能只显示 id —— 用户要看的是「她当时说了什么」。 */
+      var tbl = window.WSENTS || {}, h = '';
+      if (row[2]) h += '<div class="sensed">' + esc(row[2]) + '</div>';
+      row[1].split(' ').forEach(function(id){
+        var s = tbl[id];
+        if (s && s[0]) h += exOne({ id:id, t:s[0], z:s[1], r:s[2] || '' });
+      });
+      box.innerHTML = h;
+      bindExs(box);
+    };
+  });
+}
+/* ---- 断点续传 ----
+   用户原话：「复习了这些单词，把网页关掉之后，再点进复习，发现又得完成今天所有单词的复习。」
+   根因：run 是内存变量。退出或刷新后 run=null，进度全丢，下次从头排。
+   现在每答完一条就往 S.resume[任务] 里记一笔（跨天作废，因为每天的任务列表是新的）。 */
+function resumeOf(kind){
+  var r = S.resume && S.resume[kind];
+  if (!r || r.d !== today()) return null;
+  if (!r.seen || !Object.keys(r.seen).length) return null;
+  return r;
+}
+function markDone(k, ok){
+  if (!run) return;
+  var rs = S.resume[run.kind];
+  if (!rs || rs.d !== today()) rs = S.resume[run.kind] = { d:today(), n:0, right:0, half:0, wrong:0, seen:{} };
+  rs.d = today();
+  if (!rs.seen[k]){ rs.seen[k] = 1; rs.n++; }
+  if (ok === 1) rs.right++; else if (ok === 0.5) rs.half++; else rs.wrong++;
+  save();
+}
+/* 错题本：记错一次进本，连续答对 2 次出本。
+   来源不只闪卡自评 —— 测验里选错也算，那才是「实际回答」里露出来的错。 */
+function noteWrong(k){
+  if (!k) return;
+  var w = S.wrong[k] || (S.wrong[k] = { n:0, last:'', clr:0 });
+  w.n++; w.last = today(); w.clr = 0;
+  save();
+}
+function noteRight(k){
+  var w = S.wrong && S.wrong[k];
+  if (!w) return;
+  w.clr = (w.clr || 0) + 1;
+  /* 连续答对两次（中间没有再错）才算真的捡回来了，直接从本子里去掉 */
+  if (w.clr >= 2) delete S.wrong[k];
+  save();
+}
+/* 任务按钮文案。今日页和练习页两处在渲染同一份按钮，
+   文案逻辑只能有一份，否则改一处忘一处。
+   做过一部分要把「已做 N」写在按钮上 —— 用户看不见进度条就不知道上次做到哪了。 */
+function taskBtnLabel(done, didN, total){
+  if (done) return '重做';
+  if (didN && total && didN < total) return '继续 · 已做 ' + didN + '/' + total;
+  return '开始';
+}
+function wrongCount(){ return Object.keys(S.wrong || {}).length; }
+
 function startCard(kind){
-  var keys = dropMaster(taskKeys(kind));
-  if (!keys.length){ toast('今天这部分没有内容'); return; }
-  run = { kind:kind, keys:keys, i:0, right:0, half:0, wrong:0, show:false, t0:Date.now() };
+  var all = dropMaster(taskKeys(kind) || []);
+  if (!all.length){ toast(kind === 'wrong' ? '错题本是空的，先去做题吧' : '今天这部分没有内容'); return; }
+  /* 上次没做完的部分接着做：把已经答过的 key 摘掉，计数沿用。
+     base 让分数和进度都按「这一整天」算，而不是按剩下的这几条算。 */
+  var rs = resumeOf(kind), seen = rs ? rs.seen : null;
+  var keys = seen ? all.filter(function(k){ return !seen[k]; }) : all;
+  if (!keys.length){ toast('这部分今天已经做完了'); return; }
+  run = { kind:kind, keys:keys, i:0, right:0, half:0, wrong:0, show:false, t0:Date.now(),
+          base: rs ? { n:rs.n, right:rs.right, half:rs.half, wrong:rs.wrong } : { n:0, right:0, half:0, wrong:0 } };
   enterFocus(kind);
   renderRun();
+  drillStarted = true;
+  goDrill();
 }
 function renderRun(){
   var R = $('runner');
@@ -1679,14 +2484,42 @@ function renderRun(){
   } else if (run.kind === 'read'){
     front = '<div class="q sm th">' + esc(o.t) + '</div>' + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
     back = '<div class="a">' + esc(o.o ? o.o.z : '') + '</div>';
+  } else if (run.kind === 'hear'){
+    /* 听力：正面只有播放键，不给泰文也不给罗马音。
+       一旦把字写出来，这题就退化成阅读题 —— 练不到「听懂她说什么」这条路上。 */
+    front = '<div class="hearwrap"><button class="hearbtn" id="hPlay">▶  播放她的语音</button>'
+      + '<div class="sub" style="text-align:center;margin-top:8px">听不清可以再点一次</div></div>';
+    back = '<div class="q sm th">' + esc(o.t) + '</div>'
+      + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '')
+      + '<div class="a">' + esc(o.o ? o.o.z : '') + '</div>';
+  } else if (run.kind === 'revS'){
+    /* 复习句子按「谁说的」定方向 —— 这是整个练习里最重要的一条分工：
+         她说的话 → 泰文在前。练的是「她发过来我能不能读懂」，輸入。
+         我说的话 → 中文在前。练的是「我想表达这句能不能说出泰文」，产出。
+       原来一律「中文→泰文」，等于让她说过的话也当产出题做：
+       一个中国人硬练「把她说的话翻回泰文」，练的是翻译腔，不是沟通。
+       而「认得出」和「说得出」是两种能力，混着练哪边都练不实。 */
+    var she = o.o && o.o.who === 0;
+    if (she){
+      front = '<div class="q sm th">' + esc(o.t) + '</div>' + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
+      back = '<div class="a mt0">' + esc(o.o ? o.o.z : '') + '</div>';
+    } else {
+      front = '<div class="a mt0">' + esc(o.o ? o.o.z : '') + '</div>';
+      back = '<div class="q sm th">' + esc(o.t) + '</div>' + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
+    }
   } else {
-    front = '<div class="a" style="margin-top:0">' + esc(o.o ? o.o.z : '') + '</div>';
+    front = '<div class="a mt0">' + esc(o.o ? o.o.z : '') + '</div>';
     back = '<div class="q sm th">' + esc(o.t) + '</div>' + (o.o && o.o.r && romOn ? '<div class="rom">' + esc(o.o.r) + '</div>' : '');
   }
-  var h = '<div class="study">' + front;
-  if (run.show) h += back;
+  /* 翻面后加 .ans：CSS 里把配图缩回去，让位给中文释义。
+     正面「看图想意思」时图最大，翻面「对答案」时释义最大 —— 主角随阶段换。 */
+  var h = '<div class="study' + (run.show ? ' ans' : '') + '">' + front;
+  if (run.show) h += back + senseBlock(o.t);
   h += exBlock(o);
-  h += '<div class="hint">' + (run.i+1) + ' / ' + run.keys.length + (it ? '　盒' + it.box + ' 对' + it.r + ' 错' + it.w : '') + '</div><div class="btnrow">';
+  /* 进度按「今天的全部」显示，不是按剩下这几条 ——
+     否则续做时看到「1 / 6」会以为今天就这么点内容。 */
+  var b = run.base || { n:0 };
+  h += '<div class="hint">' + (b.n + run.i + 1) + ' / ' + (b.n + run.keys.length) + (it ? '　盒' + it.box + ' 对' + it.r + ' 错' + it.w : '') + '</div><div class="btnrow">';
   var play = function(){
     if (o.type === 'w') say(o.o ? o.o.a : null, o.o ? o.o.d : 'audio-pany', o.t);
     else if (o.type === 'g') say(o.o ? o.o.a : null, 'audio-pany', o.t);
@@ -1698,35 +2531,58 @@ function renderRun(){
     var a1 = '认识', a2 = '模糊', a3 = '不会';
     if (run.kind === 'read'){ a1 = '看懂了'; a2 = '半懂'; a3 = '看不懂'; }
     if (run.kind === 'out'){ a1 = '说得出'; a2 = '勉强'; a3 = '说不出'; }
+    /* 听力任务的自评要问「听懂了吗」，不是「认识吗」——
+       词不一样，用户对自己能力的判断也不一样。 */
+    if (run.kind === 'hear'){ a1 = '听懂了'; a2 = '听个大概'; a3 = '没听出来'; }
+    /* 复习句子同样按说话人分：她的话问「读懂了吗」，自己的话问「说得得出吗」 */
+    if (run.kind === 'revS'){
+      var sheSaid = o.o && o.o.who === 0;
+      if (sheSaid){ a1 = '读懂了'; a2 = '半懂'; a3 = '读不出'; }
+      else { a1 = '说得出'; a2 = '勉强'; a3 = '说不出'; }
+    }
     h += '<button class="btn" id="cPlay">🔊</button>'
       + '<button class="btn ok" id="cR">' + a1 + '</button>'
       + '<button class="btn" id="cH">' + a2 + '</button>'
       + '<button class="btn no" id="cW">' + a3 + '</button>';
   }
   h += '</div><div class="btnrow">';
-  if (picOf(o.t)) h += '<button class="mini' + (picMode ? ' on' : '') + '" id="cPic">' + (picMode ? '图已开' : '图已关') + '</button>';
+  /* 听力题绝不给配图开关：27 条短句本身就在图库里（如 ใช่แล้ว），
+     一旦能开图，看一眼简笔画答案就漏了 —— 听力题的图和字一样都是剧透。 */
+  if (run.kind !== 'hear' && picOf(o.t)) h += '<button class="mini' + (picMode ? ' on' : '') + '" id="cPic">' + (picMode ? '图已开' : '图已关') + '</button>';
   if (o.type !== 's') h += '<button class="mini' + (S.master[o.t] ? ' on' : '') + '" id="cM">' + (S.master[o.t] ? '✓ 已掌握（点击取消）' : '✓ 标记已掌握') + '</button>';
   h += '<button class="mini" id="cQuit">退出</button></div></div>';
   R.innerHTML = h;
   paintFocusBar();
   var bp = $('cPlay'); if (bp) bp.onclick = play;
   var bs = $('cShow'); if (bs) bs.onclick = function(){ run.show = true; renderRun(); };
-  if ($('cR')) $('cR').onclick = function(){ grade(k, 1); run.right++; nx(); };
-  if ($('cH')) $('cH').onclick = function(){ grade(k, 0.5); run.half++; nx(); };
-  if ($('cW')) $('cW').onclick = function(){ grade(k, 0); run.wrong++; nx(); };
+  /* 听力题的两个自动播放点：进卡就播一遍（不然要手动点，很别扭），
+     点大播放键重播。答案是翻面后才给的，听完之前没有任何文字提示。 */
+  var hp = $('hPlay'); if (hp) hp.onclick = play;
+  if (run.kind === 'hear') setTimeout(play, 350);
+  if ($('cR')) $('cR').onclick = function(){ grade(k, 1); run.right++; markDone(k, 1); noteRight(k); nx(); };
+  if ($('cH')) $('cH').onclick = function(){ grade(k, 0.5); run.half++; markDone(k, 0.5); nx(); };
+  if ($('cW')) $('cW').onclick = function(){ grade(k, 0); run.wrong++; markDone(k, 0); noteWrong(k); nx(); };
   if ($('cM')) $('cM').onclick = function(){
     var on = !S.master[o.t];
     setMaster(o.t, on);
-    if (on){ grade(k, 1); run.right++; toast('已标记为掌握，之后不再出现'); nx(); }
+    if (on){ grade(k, 1); run.right++; markDone(k, 1); noteRight(k); toast('已标记为掌握，之后不再出现'); nx(); }
     else { renderRun(); renderToday(); }
   };
-  if ($('cQuit')) $('cQuit').onclick = function(){ run = null; renderToday(); R.innerHTML = ''; };
+  /* 退出闪卡：三件事缺一不可 ——
+     run=null 清状态、exitFocus 收专注态、renderDrillChrome 把任务列表放回来。
+     少了最后一件，用户退出后会停在空白练习页（这坑跟 qQuit 一样，两处一起补）。 */
+  if ($('cQuit')) $('cQuit').onclick = function(){
+    /* 退出不清 resume —— 已经答过的题还留在 S.resume 里，
+       下次进来接着答剩下的，这才是用户要的「复习了一半可以下次继续」。 */
+    var left = run.keys.length - run.i;
+    run = null; exitFocus(); renderToday(); R.innerHTML = ''; renderDrillChrome();
+    if (left > 0) toast('已记住进度，剩 ' + left + ' 条下次接着来');
+  };
   if ($('cPic')) $('cPic').onclick = function(){ picMode = !picMode; renderRun(); };
   if (!run.show && run.kind !== 'read') setTimeout(play, 200);
   /* 例句块：点哪句读哪句 */
-  R.querySelectorAll('.exs').forEach(function(b){
-    b.onclick = function(){ var s = SMAP[b.getAttribute('data-ex')]; if (s) say(s.id, 'audio-pany', s.t); };
-  });
+  bindExs(R);
+  bindSense(R);
   /* 例句「展开/收起」：剩余例句已在 DOM 里（只是带 hidden），
      所以这里只切 hidden 属性，不重跑 exBlock —— 不会丢滚动位置，也不会闪一下。 */
   var mb = R.querySelector('[data-exmore]');
@@ -1747,7 +2603,7 @@ var lastAllDone = {};   // 记录「哪一天已因全部完成而同步过」�
    3) 未登录时静默跳过，只存本地 */
 function onTaskDone(kind){
   pushNow();
-  var all = TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
+  var all = MAIN_TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
   if (!all) return;
   var d = today();
   if (lastAllDone[d]) return;
@@ -1760,14 +2616,33 @@ function onTaskDone(kind){
   }
 }
 function finishRun(){
-  var tot = run.keys.length, sc = Math.round((run.right + run.half*0.5) / tot * 100);
-  var msg = '<div class="okbox">' + TNAME[run.kind] + '完成：<b>' + sc + ' 分</b>　✔ ' + run.right + '　~ ' + run.half + '　✘ ' + run.wrong + '</div>';
-  D.st[run.kind] = { done:true, n:tot, score:sc, right:run.right, half:run.half, wrong:run.wrong };
+  /* 必须收专注态。原来这里只置 run=null，body.focus 类没清，
+     #focusBar 就一直挂在页面顶部，把下面的任务卡片按钮挡住 ——
+     表现是「做完一项之后，下一项怎么点都没反应」。 */
+  exitFocus();
+  /* 分批做完时（中途退出过），分数要按「今天全部」算：
+     之前那半段的对/错记在 run.base 里，这里合并起来再算，
+     不然续做那一小段明明全对就给 100 分，是假成绩。 */
+  var b = run.base || { n:0, right:0, half:0, wrong:0 };
+  var tot = b.n + run.keys.length;
+  var right = b.right + run.right, half = b.half + run.half, wrong = b.wrong + run.wrong;
+  var sc = Math.round((right + half*0.5) / Math.max(1, tot) * 100);
+  paintFocusBar();
+  var msg = '<div class="okbox">' + TNAME[run.kind] + '完成：<b>' + sc + ' 分</b>　✔ ' + right + '　~ ' + half + '　✘ ' + wrong
+    + (b.n ? '<div class="sub" style="margin:6px 0 0">（本次 ' + run.keys.length + ' 条 + 之前 ' + b.n + ' 条合并计分）</div>' : '') + '</div>';
+  D.st[run.kind] = { done:true, n:tot, score:sc, right:right, half:half, wrong:wrong };
   D.st.min = (D.st.min || 0) + Math.round((Date.now() - run.t0) / 60000);
+  delete S.resume[run.kind];
   save(); run = null;
   $('runner').innerHTML = msg + focusBackBtn();
   renderToday();
   paintFocusBar();
+  /* 成绩单要留在屏幕上给用户看，所以这里不能把 runner 清空。
+     但外壳得重画 —— 不然 drillList 保持隐藏、focusBar 显示「进行中」，
+     用户点「返回今日看板」之后回到练习页会看到一片空白。 */
+  drillStarted = true;
+  drillAfterDone = true;
+  renderDrillChrome();
   onTaskDone();
 }
 
@@ -1800,11 +2675,13 @@ function startQuiz(){
   quiz = { qs:qs, i:0, right:0, done:false, t0:Date.now() };
   enterFocus('quiz');
   renderQuiz();
+  drillStarted = true;
+  goDrill();
 }
 function renderQuiz(){
   var R = $('runner');
   if (quiz.i >= quiz.qs.length){ finishQuiz(); return; }
-  var q = quiz.qs[quiz.i], h = '<div class="study"><div class="hint" style="margin-top:0">第 ' + (quiz.i+1) + ' / ' + quiz.qs.length + ' 题</div>';
+  var q = quiz.qs[quiz.i], h = '<div class="study"><div class="hint mt0">第 ' + (quiz.i+1) + ' / ' + quiz.qs.length + ' 题</div>';
   /* 四种题型的发音入口。
      原来只有 audio 题型渲染 #qPlay，另外三种（th2zh / zh2th / sent）
      一个可点读元素都没有 —— 诊断实测「可点读元素」计数全是 0。
@@ -1836,7 +2713,7 @@ function renderQuiz(){
     h += '<button class="opt" data-o="' + esc(o).replace(/"/g,'&quot;') + '">' + body + '</button>';
   });
   /* #qAfter 是答完后补按钮的容器（zh2th 要等作答完才放发音） */
-  h += '</div><div class="btnrow" id="qAfter"></div><div class="btnrow"><button class="mini" id="qQuit">退出</button></div></div>';
+  h += '</div><div id="qPic"></div><div class="btnrow" id="qAfter"></div><div class="btnrow"><button class="mini" id="qQuit">退出</button></div></div>';
   R.innerHTML = h;
   /* 发音目标：例句题用句子的 id，词与虚词用词条自带的 a（目录可能不同） */
   var qFile = (q.ty === 'sent') ? (q.sent ? q.sent.id : null) : (q.o ? q.o.a : null);
@@ -1848,7 +2725,7 @@ function renderQuiz(){
   /* th2zh / sent 一进来就自动播一次：这两类题考「认不认识」，
      先听一遍音是做题的前提，不然得先手动点一下才看得下去。 */
   else if (q.ty === 'th2zh' || q.ty === 'sent') setTimeout(playQ, 260);
-  $('qQuit').onclick = function(){ quiz = null; exitFocus(); renderToday(); R.innerHTML = ''; };
+  $('qQuit').onclick = function(){ quiz = null; exitFocus(); renderToday(); R.innerHTML = ''; renderDrillChrome(); };
   paintFocusBar();
   R.querySelectorAll('.opt').forEach(function(b){
     b.onclick = function(){
@@ -1861,6 +2738,15 @@ function renderQuiz(){
       /* zh2th 答完立刻补一个播放按钮并自动播一遍。
          选错的人尤其需要听到正确读音 —— 否则这题只留下「我选了个什么」，
          不知道该记住的是哪个音。 */
+      /* 答完之后才放图 —— 做题的时候放等于把答案写在屏幕上
+         （th2zh「看图猜意思」的题目，图就是意思本身）。
+         答完再看一遍图，是把这题从「选对选项」变成「记住这个画面」的一步。
+         sent 题不适用：那种题的 q.o 是随机抽的别处的词，贴上它的图反而会误导。 */
+      if (q.ty !== 'sent'){
+        var pb = $('qPic');
+        var pu = q.o ? picOf(q.o.t) : null;
+        if (pb && pu) pb.innerHTML = '<span class="qpicframe"><img class="qpic" src="' + pu + '" alt="" decoding="async"></span>';
+      }
       if (q.ty === 'zh2th'){
         var ab = $('qAfter');
         if (ab) ab.innerHTML = '<span class="sub" style="align-self:center">正确读音</span>' + playBtn;
@@ -1878,10 +2764,14 @@ function finishQuiz(){
   var sc = Math.round(quiz.right / quiz.qs.length * 100);
   D.st.quiz = { done:true, n:quiz.qs.length, score:sc, right:quiz.right };
   D.st.min = (D.st.min || 0) + Math.round((Date.now() - quiz.t0) / 60000);
+  exitFocus();   // 同 finishRun：不清 focus 的话返回条会一直挡着下一步操作
   save(); quiz = null;
   $('runner').innerHTML = '<div class="okbox">测验完成：<b>' + D.st.quiz.score + ' 分</b>（' + D.st.quiz.right + ' / ' + D.st.quiz.n + '）</div>' + focusBackBtn();
   renderToday();
   paintFocusBar();
+  drillStarted = true;
+  drillAfterDone = true;
+  renderDrillChrome();
   onTaskDone();
 }
 
@@ -1909,11 +2799,22 @@ $('taskList').addEventListener('click', function(e){
   var nm = { w:'词', g:'短句', read:'她的例句', out:'我的例句' }[kind] || '内容';
   toast('加了 ' + got + ' 个' + nm + '，记得重做「新学」和「今日测验」');
 });
+/* 防重入：打卡按钮点两下就跳过一整段例句，必须挡住。
+   800ms 内的重复点击直接忽略，并把按钮置灰给出明确反馈。 */
+var __finishing = false;
 $('btnFinish').onclick = function(){
+  if (__finishing){ toast('正在打卡，请稍候'); return; }
+  if (D.st.doneAt){ toast('今天已经打过卡了（' + (D.st.score || 0) + ' 分）'); return; }
+  __finishing = true;
+  var btn = $('btnFinish');
+  btn.disabled = true;
   D.st.doneAt = new Date().toISOString();
-  S.q.w = D.plan.wEnd || (S.q.w + D.plan.newW.length);
-  S.q.g = D.plan.gEnd || (S.q.g + D.plan.newG.length);
-  S.q.hs += D.plan.read.length; S.q.ms += D.plan.out.length;
+  /* 游标一律用 plan 里的端点做赋值，幂等。
+     原来例句是 +=，而词是 || 赋值 —— 两边都推一次等于跳过中间那段。 */
+  S.q.w = (typeof D.plan.wEnd === 'number') ? D.plan.wEnd : (S.q.w + D.plan.newW.length);
+  S.q.g = (typeof D.plan.gEnd === 'number') ? D.plan.gEnd : (S.q.g + D.plan.newG.length);
+  S.q.hs = (typeof D.plan.hsEnd === 'number') ? D.plan.hsEnd : S.q.hs;
+  S.q.ms = (typeof D.plan.msEnd === 'number') ? D.plan.msEnd : S.q.ms;
   D.st.score = dayScoreOf(S.day);
   /* 打卡本身也写入学习轨迹的锚点：把今天作为「首次接触日」记下来，
      之后的跨天留存才有起点可用（旧数据没有 lg 也能从打卡日兜底起算）。 */
@@ -1921,6 +2822,8 @@ $('btnFinish').onclick = function(){
   save(); toast('Day ' + S.day + ' 打卡完成 · ' + D.st.score + ' 分');
   renderToday();
   renderMe();
+  btn.textContent = '今日已打卡 · ' + (D.st.score || 0) + ' 分';
+  setTimeout(function(){ __finishing = false; if ($('btnFinish')) $('btnFinish').disabled = false; }, 900);
 };
 /* 给当天计划里还没做过记录的条目补一条「第几天首次接触」锚点 */
 function seedAnchors(day){
@@ -2187,7 +3090,89 @@ function weakList(){
     var it = S.items[k]; return it.seen >= 2 && (it.w + it.h) / it.seen > 0.4;
   }).sort(function(a,b){ return (S.items[b].w + S.items[b].h) - (S.items[a].w + S.items[a].h); });
 }
-/* ==================== 需求 1：功能模块隔离 ====================
+/* ==================== 练习页外壳 ====================
+   练习进行中 → 只显示进度条和题目，任务列表藏起来（跟原来的 body.focus 一个意图，
+   但现在作用范围只在练习页内部，不会再影响今日页）。
+   没在练 → 显示 5 张任务卡，让用户可以直接在这一页开练。
+   drillStarted 标记「用户主动开过练习」：之前用 body.hasClass('focus') 判断，
+   但 finishRun 之后 run 被置空、focus 也退掉了，页面会误判成「没开始」而闪回列表。 */
+var drillStarted = false;
+function renderDrill(){
+  var busy = !!(run || quiz);
+  var L = $('drillList');
+  $('drillSub').textContent = busy ? '进行中' : '选一项开始';
+  if (busy){
+    L.innerHTML = '';
+    L.style.display = 'none';
+    paintFocusBar();
+    return;
+  }
+  /* 兜底：没有任何一处在练了，却还挂着 focus 类，说明某条退出路径漏了 exitFocus()。
+     与其寄希望于每条路径都记得收，不如在渲染列表时就地清 —— 挂在上面的返回条会挡住整页点击。 */
+  if (document.body.classList.contains('focus')) exitFocus();
+  L.style.display = '';
+  /* 做完了还停在这一页：给个明确的落点，不然用户以为页面空了 */
+  if (drillStarted){
+    var all = MAIN_TASKS.every(function(t){ return D.st[t.k] && D.st[t.k].done; });
+    L.innerHTML = all
+      ? '<div class="dguide"><div class="big">✓</div><div>今天五项都做完了</div>'
+        + '<div class="btnrow" style="justify-content:center;margin-top:12px">'
+        + '<button class="btn primary" id="dGoToday">回今日看板打卡</button>'
+        + '<button class="btn" id="dRedoAll">再练一轮</button></div></div>'
+      : '<div class="dguide"><div class="big">✓</div><div>刚练完一项</div>'
+        + '<p class="sub">继续挑下面任意一项，或回今日看板看总览。</p>'
+        + '<div class="btnrow" style="justify-content:center;margin-top:10px">'
+        + '<button class="btn" id="dGoToday">回今日看板</button></div></div>';
+    var gt = $('dGoToday');
+    if (gt) gt.onclick = function(){
+      drillStarted = false;
+      var b = document.querySelector('.tabbar button[data-v="today"]');
+      b.onclick.call(b);
+    };
+    var ra = $('dRedoAll');
+    if (ra) ra.onclick = function(){ drillStarted = false; renderDrill(); renderToday(); };
+  } else {
+    L.innerHTML = '<div class="dguide"><div class="big">✎</div>'
+      + '<div>这里只放练习，统计数据在「今日」页</div>'
+      + '<p class="sub">选一项开始，做完会记住进度。</p></div>';
+  }
+  if (drillStarted) return;
+  var h = '';
+  TASKS.forEach(function(t){
+    /* done 必须先算出来：下面判 skipCard 要用它。
+       取 D.st[t.k] 必须容错 —— 新加的 opt 任务（错题本）从来没做过题目时，
+       D.st 里根本没有这个键，直接 .done 会抛 TypeError 打断整页渲染。 */
+    var done = !!(D.st[t.k] && D.st[t.k].done);
+    var total, didN, skipCard = false;
+    if (t.k === 'quiz'){ total = S.cfg.quizCount; didN = done ? total : 0; }
+    else {
+      var keys = dropMaster(taskKeys(t.k) || []);
+      total = keys.length;
+      /* opt 任务（错题本）空的时候干脆不显示卡片 ——
+         空着一张「今日无」的卡，等于每天提醒他「你还有个没做的」，是假压力。 */
+      if (t.opt && !total && !done) skipCard = true;
+      didN = done ? total : (resumeOf(t.k) ? resumeOf(t.k).n : 0);
+    }
+    if (skipCard) return;
+    var pct = total ? Math.round(didN / total * 100) : 0;
+    if (done) pct = 100;
+    h += '<div class="dcard' + (done ? ' done' : '') + '">'
+      + '<div class="nm">' + t.n + (done ? ' <span class="sub">· ' + D.st[t.k].score + ' 分</span>' : '')
+      + ' <span class="sub">' + (total ? total + ' 项' : (t.opt ? '本子空着' : '今日无')) + '</span></div>'
+      + '<div class="dd">' + t.d + '</div>'
+      + '<div class="mbar"><i style="width:' + pct + '%"></i></div>'
+      + '<button class="btn wide' + (done ? '' : ' primary') + '" data-run="' + t.k + '">'
+      + taskBtnLabel(done, didN, total) + '</button></div>';
+  });
+  L.innerHTML += h;
+  L.querySelectorAll('button[data-run]').forEach(function(b){
+    b.onclick = function(){
+      var k = b.getAttribute('data-run');
+      if (k === 'quiz') startQuiz(); else startCard(k);
+    };
+  });
+}
+/* ==================== 功能模块隔离 ====================
    做题（闪卡 run / 测验 quiz）时把无关区块收起来。
    用 body.focus 这个类做开关，CSS 里一条规则搞定显隐，
    JS 这边只负责加类/去类和更新返回条上的进度数字。 */
@@ -2214,10 +3199,39 @@ function bindFocusBack(){
   b.onclick = function(){
     exitFocus();
     $('runner').innerHTML = '';
+    run = null; quiz = null;
+    drillStarted = false;
     renderToday();
-    window.scrollTo({ top:0, behavior:'smooth' });
+    var tb = document.querySelector('.tabbar button[data-v="today"]');
+    if (tb) tb.onclick.call(tb);
   };
 }
+/* 只重画练习页外壳（任务卡/完成提示），**不动 runner**。
+   成绩单阶段必须保留 runner 里的内容，否则用户刚做完就看到空白，
+   会以为白做了 —— 这是拆分时最容易踩的一步。 */
+function renderDrillChrome(){
+  var L = $('drillList');
+  if (!L) return;
+  if (run || quiz) return;
+  var wasHidden = L.style.display === 'none';
+  L.style.display = '';
+  if (!wasHidden) return;
+  /* 列表原本隐藏（练习中），现在结束了 → 展开。
+     drillAfterDone 区分两种语义：
+       true  = 刚做完一项，要先给「完成 + 下一步」提示
+       false = 中途退出，用户想继续别的 → 直接把 5 张卡摊开
+     早先不分这两种，退出后只显示一句「刚练完一项」，用户还得再点一次才能继续，
+     像是卡住了 —— 中途退出和做完是不同的事，不该共用一个落点。 */
+  drillStarted = drillAfterDone;
+  renderDrill();
+  if (!drillAfterDone){
+    /* 中途退出：不清任何进度（D.st 由 grade 逐步写入，不回滚），列表直接可用 */
+    var sb = $('drillSub');
+    if (sb) sb.textContent = '选一项继续';
+  }
+  drillAfterDone = false;
+}
+var drillAfterDone = false;
 /* 每次渲染完 runner 都重绑一次（runner 是整块 innerHTML 覆盖的） */
 function paintFocusBar(){
   var bar = $('focusBar');
@@ -2270,15 +3284,46 @@ function dayKeys(d){
       seen[k] = 1;
       var o = keyObj(k);
       if (!o) return;
-      var lg = it.lg ? Math.max.apply(null, [].concat(it.lg)) : 0;
-      var kind = lg === d ? '新学' : (lg > 0 ? '复习' : g[0]);
-      /* 状态标签：优先看当天答对没有 */
+      /* 语料更新后旧存档会留下查不到对象的孤儿 key（词被删、语气词被删、
+         例句编号漂移）。它们照样有 box/r/w，照样进列表，
+         渲染出「有泰文、没释义、点读只能掉 TTS」的空壳行 —— 比不显示更误导，
+         因为用户会以为那天真的学过这个词。直接跳过。 */
+      if (o.orphan) return;
+      /* it.lg 是 [[天数,得分],...]，Math.max.apply(null, lg) 摊平的是数组不是数字，
+         返回 NaN —— 于是 kind 永远走兜底分支、d===lg 永远 false，
+         「新学 vs 复习」和「记住」两个标签从来没生效过。
+         逐对取第 0 项（天数），得到「这个条目都在第几天出现过」。 */
+      var firstDay = 0, lastDay = 0;
+      if (it.lg && it.lg.length){
+        for (var li = 0; li < it.lg.length; li++){
+          var pair = it.lg[li];
+          var dy = Array.isArray(pair) ? pair[0] : pair;
+          if (typeof dy !== 'number') continue;
+          if (firstDay === 0 || dy < firstDay) firstDay = dy;
+          if (dy > lastDay) lastDay = dy;
+        }
+      }
+      /* 口径：「第一次学的那天」== d 才是新学；否则是复习。
+         早先误用 lastDay 判，结果跨天复习的词因为今天也答对了被算成新学。 */
+      var lg = lastDay;
+      var kind = (firstDay === d) ? '新学' : (firstDay > 0 ? '复习' : g[0]);
+      /* 状态标签：当天答对没有。跨天复习的词只要 box 够高就算「已牢固」，
+         不要求 firstDay===d —— 复习日答对同样是答对。 */
       var lv = 'new', lvTx = '看过';
-      if (d === lg && it.r > it.w) { lv = 'ok'; lvTx = '记住'; }
+      if (lastDay === d && it.r > it.w) { lv = 'ok'; lvTx = '记住'; }
       else if (it.w > 0 && it.box <= 1) { lv = 'bad'; lvTx = '答错'; }
       else if (it.box >= 3) { lv = 'ok'; lvTx = '已牢固'; }
       else if (it.box >= 1) { lv = 'half'; lvTx = '还不牢'; }
-      out.push({ k:k, t:o.t, z:(o.o && (o.o.z || o.o.e)) || '', kind:kind, lv:lv, lvTx:lvTx, box:it.box, r:it.r, w:it.w });
+      /* 音频三要素：文件名、目录、要读的泰文。
+         取法必须按 type 分开 —— 词看 o.a/o.d，语气词看 o.a + audio-pany，
+         例句看 o.id + audio-pany（例句对象上没有 a，词条对象上没有 id）。
+         这正是闪卡 renderRun() 里 play 的那三段，抄一份一致的，别自己发挥。 */
+      var af = null, ad = 'audio-pany';
+      if (o.type === 'w'){ af = o.o ? o.o.a : null; ad = (o.o && o.o.d) || 'audio-pany'; }
+      else if (o.type === 'g'){ af = o.o ? o.o.a : null; }
+      else { af = o.o ? o.o.id : null; }
+      out.push({ k:k, t:o.t, z:(o.o && (o.o.z || o.o.e)) || '', kind:kind, lv:lv, lvTx:lvTx,
+        box:it.box, r:it.r, w:it.w, af:af, ad:ad, type:o.type });
     });
   });
   out.sort(function(a, b){
@@ -2334,7 +3379,9 @@ function renderDayDetail(){
     h += '<div class="list" style="border:1px solid var(--line2);border-radius:12px;overflow:hidden">';
     ks.forEach(function(x){
       var sp = splitEmoji(x.t);
-      h += '<div class="lrow"><div class="lt">'
+      h += '<div class="lrow" data-k="' + esc(x.k) + '" data-af="' + esc(x.af || '') + '" data-ad="' + esc(x.ad) + '" data-t="' + esc(x.t) + '">'
+        + '<button class="lb" title="发音">🔊</button>'
+        + '<div class="lt">'
         + '<span class="thai">' + esc(sp.t) + (sp.e ? ' <span style="font-size:13px">' + esc(sp.e) + '</span>' : '') + '</span>'
         + '<span class="sub">' + esc(x.z || '—') + '　盒' + x.box + '　对' + x.r + ' 错' + x.w + '</span>'
         + '</div><span class="lv ' + x.lv + '">' + esc(x.kind + ' · ' + x.lvTx) + '</span></div>';
@@ -2348,6 +3395,14 @@ function renderDayDetail(){
       + '</p>';
   }
   box.innerHTML = h;
+  /* 整行可点发音。data-* 已经把文件名/目录/泰文带在元素上了，
+     不用回头查 keyObj —— 那样每次点击都要重新解析一遍 key。
+     .lv 已设 pointer-events:none，所以点状态标签不会误触发。 */
+  box.querySelectorAll('.lrow').forEach(function(r){
+    r.onclick = function(){
+      say(r.getAttribute('data-af') || null, r.getAttribute('data-ad') || 'audio-pany', r.getAttribute('data-t'));
+    };
+  });
 }
 
 /* ==================== 需求 3：预计学习时长 ====================
@@ -2406,10 +3461,20 @@ function etaCalc(){
        第 3 档 = 整个学习词池（POOL_W + POOL_G）
      并用 Math.max 逐级兜底，保证 left 单调不减。 */
   var topTotal = Math.min(TOP_TARGET, POOL_W.length);
-  var learnedW = POOL_W.filter(function(w){ return S.master[w.t] || (S.items['w|' + w.t] || {}).box >= 3; }).length;
+  /* 第二档原来的 learnedW 跟 wDone 是同一个式子（都是 master || box>=3），
+     于是 l2 = max(l1, topTotal - wDone) ≡ l1，三档退化成两档。
+     第二档要回答的问题是「比 TOP100 更常用的词我拿下了多少」，
+     所以判据必须是「不在 TOP100 里、但实际学过的高频词」——
+     用 wDone 里超出 topTotal 的部分衡量，起点高于第一档，语义也清楚。 */
+  var learnedW = wDone;
   /* 第 2 档：学过的词里，属于 TOP100 的那部分也要算进去（可能超出 100） */
   var l1 = left(topTotal - Math.min(wDone, topTotal));
-  var l2 = Math.max(l1, left(Math.max(topTotal, learnedW) - wDone));
+  /* 第二档 = 把 TOP100 之外学过的常用词也纳入后的剩余量。
+     Math.max(topTotal, learnedW) - wDone 在 learnedW===wDone 时
+     恒等于 topTotal - wDone ≡ l1，所以这里必须显式给一个更高起点。
+     口径：「常用高频词」= TOP100 + 学过的词里不在 TOP100 的部分。 */
+  var midTarget = topTotal + Math.max(0, wDone - topTotal) + 400;
+  var l2 = Math.max(l1, left(midTarget - wDone));
   var poolTotal = POOL_W.length + POOL_G.length;
   var l3 = Math.max(l2, left(poolTotal - wDone - gDone));
 
@@ -2476,7 +3541,7 @@ function renderEta(){
       ? '还剩约 ' + Math.ceil(t.days) + ' 天'
       : (t.days < 60 ? '还剩约 ' + Math.round(t.days / 7) + ' 周' : '还剩约 ' + (t.days / 30).toFixed(1) + ' 个月');
     h += '<div class="card" style="padding:11px 13px;margin:7px 0">'
-      + '<b>' + esc(t.n) + '</b>　<span style="color:var(--blue600);font-weight:600">' + txt + '</span>'
+      + '<b>' + esc(t.n) + '</b>　<span style="color:var(--blue600);font-weight:var(--fw-md)">' + txt + '</span>'
       + '<div class="sub">' + esc(t.need) + '　还差 ' + t.left + ' 条</div>'
       + '<div class="sub" style="color:var(--tx3)">' + esc(t.desc) + '</div></div>';
   });
@@ -2515,7 +3580,11 @@ function renderMe(){
 $('btnCfg').onclick = function(){
   S.cfg.newWords = +$('cfgW').value || 12; S.cfg.newGrams = +$('cfgG').value || 0;
   S.cfg.newHerSent = +$('cfgHS').value || 0; S.cfg.newMySent = +$('cfgMS').value || 0;
-  S.cfg.quizCount = +$('cfgQ').value || 10; save(); toast('已保存'); renderMe();
+  S.cfg.quizCount = +$('cfgQ').value || 10;
+  /* cfgAt 让多设备合并时知道哪边是「用户最后一次改的」。
+     没有它，合并只能逐项取大 —— 你在手机上把配额调小，会被电脑上的旧值顶回去。 */
+  S.cfgAt = Date.now();
+  save(); toast('已保存'); renderMe();
 };
   $('btnReport').onclick = function(){
     var ds = doneDays();
@@ -2569,8 +3638,24 @@ $('btnPlan').onclick = function(){
   try { var o = JSON.parse(v);
     if (o.plan) for (var k in o.plan) if (k in S.cfg) S.cfg[k] = o.plan[k];
     if (o.focus) S.focus = o.focus;
-    if (o.day) S.start = addDays(today(), 1 - o.day);
-    save(); renderToday(); renderMe(); toast('方案已应用');
+    /* o.day 必须是正整数。原先只判真值，{"day":-5} 会把 S.start 推到未来，
+       diffDays 变负 → 被 Math.max(1,…) 夹住 → 之后永远停在 Day 1 且无任何提示；
+       {"day":"abc"} 更是把 NaN 喂给 addDays。 */
+    if (o.day != null){
+      var nd = Math.floor(Number(o.day));
+      if (!isFinite(nd) || nd < 1 || nd > 3650){
+        toast('方案里的 day 必须是 1~3650 之间的天数，没应用');
+        return;
+      }
+      S.start = addDays(today(), 1 - nd);
+      /* 改了起始日必须重算 S.day 与 D —— 少了这两行，
+         顶栏还写旧天数，任务卡/进度/打卡全写到错的那一天。
+         btnBak 导入存档时本来就做了这两行，这里对齐。 */
+      S.day = Math.max(1, diffDays(S.start, today()) + 1);
+      D = getDay(S.day);
+    }
+    save(); renderToday(); renderMe(); renderDrillChrome();
+    toast('方案已应用' + (o.day != null ? ' · 现在是 Day ' + S.day : ''));
   } catch(e){ toast('JSON 格式不对'); }
 };
 $('btnBak').onclick = function(){
@@ -2581,10 +3666,31 @@ $('btnBak').onclick = function(){
     save(); renderToday(); renderMe(); toast('存档已导入');
   } catch(e){ toast('JSON 格式不对'); }
 };
-$('btnReset2').onclick = function(){ if (!confirm('清空全部学习记录？')) return; localStorage.removeItem(KEY); location.reload(); };
+$('btnReset2').onclick = function(){
+  /* 两个 key 都要清。词库页的「已掌握」打勾存在 thaiwordbook-v1 里，
+     只清 thai-daily-v1 的话：学习记录没了，但打勾还在，
+     而 buildPlan 会跳过 S.master 里的词 → 用户看到「明明清空了，怎么新计划里
+     还是跳过这些词」。这是清空记录后最容易被当成 bug 的现象。 */
+  if (!confirm('清空全部学习记录？\n\n包含：学习进度、掌握标记、词库里的「已掌握」打勾。不可撤销。')) return;
+  localStorage.removeItem(KEY);
+  try { localStorage.removeItem('thaiwordbook-v1'); } catch (e) {}
+  location.reload();
+};
 
 /* ==================== 导航 / 滚动 ==================== */
-var VH = { today:renderToday, corpus:renderCorpus, words:renderWords, ref:renderPhrases, me:renderMe };
+var VH = { today:renderToday, drill:renderDrill, corpus:renderCorpus, words:renderWords, ref:renderPhrases, me:renderMe };
+/* 练习中切到别的标签再切回来，题目要还在 ——
+   所以切页时不清 runner，只是重画练习页外壳。 */
+function goDrill(){
+  var btn = document.querySelector('.tabbar button[data-v="drill"]');
+  if (!btn) return;
+  document.querySelectorAll('.tabbar button').forEach(function(x){ x.classList.remove('on'); });
+  btn.classList.add('on');
+  document.querySelectorAll('.view').forEach(function(x){ x.classList.remove('on'); });
+  $('v-drill').classList.add('on');
+  renderDrill();
+  window.scrollTo(0, 0);
+}
 document.querySelectorAll('.tabbar button').forEach(function(b){
   b.onclick = function(){
     document.querySelectorAll('.tabbar button').forEach(function(x){ x.classList.remove('on'); });
@@ -2596,6 +3702,42 @@ document.querySelectorAll('.tabbar button').forEach(function(b){
     window.scrollTo(0, 0);
   };
 });
+/* ---- 外观（深色模式）----
+   三态：auto 跟随系统 / light / dark，选择存 localStorage('theme')。
+   auto 时不写 data-theme，让 @media (prefers-color-scheme) 生效；
+   手动浅色时写 data-theme="light"，CSS 里深色调色板挂在
+   :root:not([data-theme="light"]) 上，所以能正确压过系统深色。
+   meta theme-color 有两条（明/暗各一条，带 media），手动固定后
+   系统主题不再决定哪条生效，这里按当前主题改写它们的 media。 */
+(function(){
+  var KEY = 'theme', root = document.documentElement;
+  var metas = [].slice.call(document.querySelectorAll('meta[name="theme-color"]'));
+  var mqlDark = window.matchMedia('(prefers-color-scheme:dark)');
+  function saved(){ try { return localStorage.getItem(KEY); } catch(e){ return null; } }
+  function apply(t){
+    if (t !== 'light' && t !== 'dark') t = 'auto';
+    if (t === 'auto') { root.removeAttribute('data-theme'); }
+    else { root.setAttribute('data-theme', t); }
+    document.querySelectorAll('[data-theme-opt]').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-theme-opt') === t);
+    });
+    var effDark = (t === 'dark') || (t === 'auto' && mqlDark.matches);
+    metas.forEach(function(m){
+      var isDarkMeta = /16181d/i.test(m.getAttribute('content') || '');
+      if (t === 'auto') {
+        m.setAttribute('media', isDarkMeta ? '(prefers-color-scheme:dark)' : '(prefers-color-scheme:light)');
+      } else {
+        m.setAttribute('media', (effDark === isDarkMeta) ? '' : 'not all');
+      }
+    });
+    try { localStorage.setItem(KEY, t); } catch(e){}
+  }
+  document.querySelectorAll('[data-theme-opt]').forEach(function(b){
+    b.onclick = function(){ apply(b.getAttribute('data-theme-opt')); };
+  });
+  apply(saved() || 'auto');
+})();
+
 window.addEventListener('scroll', function(){
   var onBtn = document.querySelector('.tabbar button.on');
   if (!onBtn) return;
@@ -2612,6 +3754,7 @@ function safeRun(fn, name){
 }
 
 safeRun(function(){ renderToday(); }, 'renderToday');
+safeRun(function(){ renderDrill(); }, 'renderDrill');
 safeRun(function(){ renderCorpus(); }, 'renderCorpus');
 safeRun(function(){ renderWords(); }, 'renderWords');
 safeRun(function(){ renderPGroups(); renderPhrases(); }, 'renderPGroups/renderPhrases');
@@ -2670,9 +3813,10 @@ function boot(){
       /* 恢复逻辑在 restoreFromCloud()，登录和启动两条路径共用一处 */
       var how = restoreFromCloud(res.data);
       if (how === 'restored') toast('已从云端恢复学习记录');
+      else if (how === 'merged') toast('已合并另一台设备的进度');
       renderAccount(); paintAcctBar();
       /* 别写死「已同步」：让 pushCloud 如实汇报成功还是失败 */
-      if (how === 'restored' || how === 'kept-local') doPush();
+      if (how !== 'empty') doPush();
       else setSync('已登录·云端暂无记录', 'lo');
     });
   }).catch(function(e){ setSync('仅本地', 'lo'); renderAccount(); console.error('boot:', e); });
@@ -2682,6 +3826,14 @@ boot();
    页面隐藏事件比 unload 可靠得多：fetch 在 unload 里会被取消，
    但 visibilitychange 触发时页面还活着，请求能发出去。 */
 window.addEventListener('visibilitychange', function(){
+  /* 切回前台：另一台设备可能刚学过，必须对一次账。
+     挑这个时机是因为「换设备学习」最常见的动作就是
+     这台切走 → 打开那台 → 再切回这台。不对账的话，这台永远不知道对面改过，
+     一答题就把对方那半份整包盖掉。 */
+  if (document.visibilityState === 'visible'){
+    if (cloud && ME) setTimeout(function(){ reconcile(); }, 400);
+    return;
+  }
   if (document.visibilityState !== 'hidden') return;
   if (syncTrailing){ clearTimeout(syncTrailing); syncTrailing = null; }
   try { S.savedAt = Date.now(); persist(); } catch (e) {}

@@ -140,7 +140,7 @@ const TODAY = ymd(new Date());
       score: S.days['1'].st.revW && S.days['1'].st.revW.score,
     };
   });
-  ok('D1 旧存档过一遍 migrate 就补齐', mig.hasResume && mig.hasWrong && mig.hasCfg && mig.v === 3, JSON.stringify(mig));
+  ok('D1 旧存档过一遍 migrate 就补齐', mig.hasResume && mig.hasWrong && mig.hasCfg && mig.v === 4, JSON.stringify(mig));
   ok('D2 老 st.rev 迁移后成绩不丢', mig.day1revW && !mig.day1rev && mig.score === 75, 'score=' + mig.score);
 
   ok('E1 无 JS 错误', errs.length === 0, errs.slice(0, 2).join(' | '));

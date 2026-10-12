@@ -901,6 +901,20 @@ async function pushCloud(opts){
      这里先记下旧值，失败时回滚，让「本地比云端新」如实反映。 */
   var savedAtBefore = S.savedAt || 0;
   try {
+    /* 推送前必须先确认：云端那行是不是被别的设备写过。
+       不看就直接 upsert = 拿本地整包盖掉对方，
+       「上午书房学的、下午手机学的」只能活下来一半 —— 这就是多设备丢进度的根因。
+       先只取时间戳（几十字节），确认真的有变化才下载全量存档做合并。 */
+    if (!opts.skipCheck){
+      var pk = await peekCloud();
+      var prt = pk && pk.updated_at ? new Date(pk.updated_at).getTime() : 0;
+      if (prt > (S.base || 0)){
+        var pf = await pullCloud();
+        if (pf && pf.payload) applyMerged(mergeInto(pf.payload, prt), true);
+      }
+    }
+    /* 带上设备标识：别的设备拉到这行时能看出是谁写的 */
+    S.dev = DEV; S.devAt = Date.now();
     var res = await cloud.database.from('study_state')
       .upsert({ payload: S, updated_at: new Date().toISOString() }, { onConflict: 'owner_id' })
       .select();
@@ -916,6 +930,10 @@ async function pushCloud(opts){
          服务器时间才是下一次比较的基准，两边时钟不一致时也不会误判。 */
       S.savedAt = cloudRow && cloudRow.updated_at
         ? new Date(cloudRow.updated_at).getTime() : Date.now();
+      /* base = 这次对齐到的云端时刻。之后只要有别的设备写过，
+         updated_at 就会超过它，下次推送前就能察觉「有人比我新」并先合并。 */
+      S.base = S.savedAt;
+      persist();
       /* 显示「刚刚已同步」而不是干巴巴一个「已同步」。
          用户之所以不敢刷新、必须手动确认，就是因为看不到任何确认信号。
          标签有了时间，他就能自己判断「现在刷新安全」。 */
@@ -946,8 +964,179 @@ async function pullCloud(){
     var res = await cloud.database.from('study_state').select('payload, updated_at').maybeSingle();
     if (res.error) { setSync('读取失败', 'r'); return null; }
     cloudRow = res.data;
+    /* 记下这行是谁写的：展示用，也让「合并」有个可解释的对象 */
+    if (res.data && res.data.payload && res.data.payload.dev){
+      lastRemoteDev = res.data.payload.dev;
+      lastRemoteAt = res.data.updated_at ? new Date(res.data.updated_at).getTime() : Date.now();
+    }
     return res.data;
   } catch (e) { setSync('读取失败', 'r'); return null; }
+}
+/* 只看时间戳、不下载存档的轻量探测。
+   每次推送前都要确认「云端有没有被别的设备写过」，
+   全量 payload 动辄上百 KB，为了一个时间戳下载一遍太浪费。 */
+async function peekCloud(){
+  if (!cloud || !ME) return null;
+  try {
+    var res = await cloud.database.from('study_state').select('updated_at').maybeSingle();
+    if (res.error || !res.data) return null;
+    return { updated_at: res.data.updated_at };
+  } catch (e) { return null; }
+}
+
+/* ==================== 多设备合并 ====================
+   为什么必须有这个：云端那张表按 owner_id 只有一行，
+   两台设备都往同一行写。原来的规则是「谁的时间戳新谁整包赢」，
+   于是必然出现这种事 ——
+     上午在书房电脑上学了 20 个词（云端 = 上午）
+     下午在手机上又学了 15 个词（云端 = 下午，电脑上那 20 个被整包盖掉）
+   这不是同步，这是互相覆盖。
+   合并的原则只有一条：**任何一边学到的东西都不能因为同步而消失**。
+   所以按字段取「更优」而不是「更新」：
+     记忆强度取高、做过的事取并集、计数取大、配额按最后改的那台。
+   只有一种情况合并表达不了 —— 用户主动「删除/重置」，
+   删除语义不在合并里，真要重置得在每台设备上各清一次。 */
+function mergeInto(remote, remoteAt){
+  var stat = { items: 0, days: 0, master: 0, wrong: 0 };
+  if (!remote || typeof remote !== 'object') return stat;
+  if (remote.dev) { lastRemoteDev = remote.dev; if (remoteAt) lastRemoteAt = remoteAt; }
+
+  /* ---- items：同一条目取「学得更熟」的那份 ---- */
+  var ri = remote.items || {};
+  for (var k in ri){
+    var b = ri[k]; if (!b) continue;
+    if (!S.items[k]){ S.items[k] = b; stat.items++; continue; }
+    var a = S.items[k];
+    var boxA = +a.box || 0, boxB = +b.box || 0;
+    /* due 由 box 决定，box 高的那份说了算；
+       box 一样时取更早的 —— 宁可早点复习，也别因为同步把复习日推后 */
+    if (boxB > boxA || (boxB === boxA && (b.due || '9999-99-99') < (a.due || '9999-99-99'))) a.due = b.due;
+    a.box  = Math.max(boxA, boxB);
+    a.peak = Math.max(+a.peak || 0, +b.peak || 0);   // 曾达到过的最深档，只涨不落
+    a.r    = Math.max(+a.r || 0, +b.r || 0);
+    a.w    = Math.max(+a.w || 0, +b.w || 0);
+    a.h    = Math.max(+a.h || 0, +b.h || 0);
+    a.seen = Math.max(+a.seen || 0, +b.seen || 0);
+    /* lg 是 [第几天, 得分] 的轨迹，两边各记各的，都要留下来：
+       按天排序后去掉相邻完全重复项（同一天同一结果在两台各记了一次） */
+    var lgB = b.lg || [];
+    if (lgB.length){
+      var all = (a.lg || []).concat(lgB).filter(function(x){ return x && x.length === 2; });
+      all.sort(function(x, y){ return (x[0] - y[0]) || (x[1] - y[1]); });
+      var out = [];
+      for (var i = 0; i < all.length; i++){
+        var p = out[out.length - 1];
+        if (p && p[0] === all[i][0] && p[1] === all[i][1]) continue;
+        out.push(all[i]);
+      }
+      a.lg = out.slice(-14);
+    }
+  }
+
+  /* ---- days：同一天按「做得更多」合并 ---- */
+  var rd = remote.days || {};
+  for (var d in rd){
+    var rb = rd[d]; if (!rb) continue;
+    if (!S.days[d]){ S.days[d] = rb; stat.days++; continue; }
+    var ra = S.days[d];
+    if (!ra.plan && rb.plan) ra.plan = rb.plan;
+    var sa = ra.st || (ra.st = {}), sb = rb.st || {};
+    for (var t in sb){
+      var xb = sb[t] || {}, xa = sa[t] || (sa[t] = {});
+      /* 数值取大（n/score/right…），布尔取或（done），其余谁有值用谁的 */
+      for (var f in xb){
+        var vb = xb[f], va = xa[f];
+        if (typeof vb === 'boolean')      xa[f] = !!(va || vb);
+        else if (typeof vb === 'number')  xa[f] = Math.max(+va || 0, +vb || 0);
+        else if (va == null)              xa[f] = vb;
+      }
+    }
+    ra.min = Math.max(+ra.min || 0, +rb.min || 0);   // 当天用时，取多的那边
+  }
+
+  /* ---- master / wrong：并集 ---- */
+  var rm = remote.master || {};
+  for (var m in rm) if (!S.master[m]) { S.master[m] = rm[m]; stat.master++; }
+  var rw = remote.wrong || {};
+  for (var wk in rw){
+    if (!S.wrong[wk]){ S.wrong[wk] = rw[wk]; stat.wrong++; continue; }
+    var wb = rw[wk] || {};
+    S.wrong[wk].n   = Math.max(+S.wrong[wk].n || 0, +wb.n || 0);
+    /* clr（连续答对次数）取小：一边刚答对一次、另一边还没答对，
+       取小意味着还要再练一次才移出错题本 —— 宁可多练，不让学生漏掉 */
+    S.wrong[wk].clr = Math.min(+S.wrong[wk].clr || 0, +wb.clr || 0);
+    if ((wb.last || '') > (S.wrong[wk].last || '')) S.wrong[wk].last = wb.last;
+  }
+
+  /* ---- resume（断点续传）：只对今天有效，已答的条目取并集 ---- */
+  var rr = remote.resume || {};
+  for (var rk in rr){
+    if (!rr[rk] || rr[rk].d !== today()) continue;
+    if (!S.resume[rk]){ S.resume[rk] = rr[rk]; continue; }
+    var sb2 = rr[rk], sa2 = S.resume[rk];
+    var seenA = sa2.seen || {}, seenB = sb2.seen || {};
+    for (var sk in seenB) if (seenA[sk] == null) seenA[sk] = seenB[sk];
+    sa2.seen  = seenA;
+    sa2.n     = Math.max(+sa2.n || 0, +sb2.n || 0, Object.keys(seenA).length);
+    sa2.right = Math.max(+sa2.right || 0, +sb2.right || 0);
+    sa2.half  = Math.max(+sa2.half || 0, +sb2.half || 0);
+    sa2.wrong = Math.max(+sa2.wrong || 0, +sb2.wrong || 0);
+  }
+
+  /* ---- 游标一律取大 ----
+     游标回退的后果是把学过的词再发一遍，用户会以为「我明明学过了」 */
+  var rq = remote.q || {}, sq = S.q || (S.q = {});
+  for (var qk in rq) sq[qk] = Math.max(+sq[qk] || 0, +rq[qk] || 0);
+
+  /* ---- 配额：按「最后改的那台」为准 ----
+     用户在手机上把每天新词从 12 调到 8，不该被电脑上的旧值顶回去。
+     两边都没时间戳时取补缺，不动本地已设的值。 */
+  var rc = remote.cfg || {};
+  if ((+remote.cfgAt || 0) > (+S.cfgAt || 0)) S.cfg = rc;
+  else if (remote.cfgAt == null && S.cfgAt == null)
+    for (var ck in rc) if (S.cfg[ck] == null) S.cfg[ck] = rc[ck];
+
+  /* ---- start 取更早：Day 数只会变大，不会把进度算没 ---- */
+  if (remote.start && (!S.start || remote.start < S.start)) S.start = remote.start;
+  S.day = Math.max(1, diffDays(S.start || today(), today()) + 1);
+  if (remoteAt) S.base = Math.max(+S.base || 0, remoteAt);
+  return stat;
+}
+
+/* 合并落地：存盘 + 重算当天 + 重渲染 + 如实告诉用户合并了多少。
+   inRun 时只存盘不重渲染 —— 练习进行到一半把 D 换掉会打断正在答的卡。 */
+function applyMerged(stat, quiet){
+  migrate();
+  S.day = Math.max(1, diffDays(S.start || today(), today()) + 1);
+  var inRun = document.body.classList.contains('focus');
+  if (!inRun) D = getDay(S.day);
+  S.savedAt = Date.now();
+  persist();
+  if (inRun) return 0;
+  restoring = true;
+  try {
+    [['renderToday', renderToday], ['renderCorpus', renderCorpus],
+     ['renderWords', renderWords], ['renderPhrases', renderPhrases],
+     ['renderMe', renderMe]].forEach(function(p){
+      try { p[1](); } catch (e){ console.error('[' + p[0] + '] 合并后渲染失败:', e && e.message); }
+    });
+  } finally { restoring = false; }
+  var n = (stat.items || 0) + (stat.days || 0) + (stat.master || 0) + (stat.wrong || 0);
+  if (!quiet && n > 0) toast('已合并' + (lastRemoteDev ? '「' + lastRemoteDev + '」' : '另一台设备') + '的进度：多出 ' + n + ' 条');
+  return n;
+}
+
+/* 与云端对账：发现云端那行被别的设备写过就合并进来，再把合并结果推回去。
+   两个时机调用：页面切回前台、以及每次推送之前。 */
+async function reconcile(){
+  if (!cloud || !ME) return 0;
+  var pk = await peekCloud();
+  var rt = pk && pk.updated_at ? new Date(pk.updated_at).getTime() : 0;
+  if (!(rt > (S.base || 0))) return 0;
+  var full = await pullCloud();
+  if (!full || !full.payload) return 0;
+  var stat = mergeInto(full.payload, rt);
+  return applyMerged(stat, true);
 }
 /* 云端记录回灌到本地状态。
    原来这份逻辑在 afterLogin() 和 boot() 里各抄了一份，两边都有同一个 bug
@@ -957,40 +1146,40 @@ function restoreFromCloud(row){
   var remote = row && row.payload;
   if (!remote || !remote.items || !Object.keys(remote.items).length) return 'empty';
   var rt = row.updated_at ? new Date(row.updated_at).getTime() : 0;
-  var lt = S.savedAt || 0;
   var localHas = localHasProgress();
-  /* 本地毫无成果 → 直接用云端，不打扰用户；
-     本地有成果且云端明显更新 → 问一句，别默默覆盖他在这台设备上刚学的东西。 */
-  if (localHas && !(rt > lt + 5000)) return 'kept-local';
-  if (localHas && !confirm('云端有更新的学习记录（' + row.updated_at + '）。\n'
-    + '确定用云端记录覆盖这台设备上的本地记录吗？')) return 'kept-local';
-  S = remote;
-  if (!S.cfg) S.cfg = {};
-  if (!S.master) S.master = {};
-  if (!S.q) S.q = { w: 0, g: 0, hs: 0, ms: 0 };
-  if (!S.items) S.items = {}; if (!S.days) S.days = {};
-  if (!S.start) S.start = today();
-  /* 云端拉回来的可能是别的设备上周存的旧版本存档，缺哪一步迁移都有可能。
-     必须过一遍 migrate()，否则那份旧数据带着老字段名进来，
-     页面会按新字段名去找，显示成「什么都没做过」。 */
-  migrate();
-  S.day = Math.max(1, diffDays(S.start, today()) + 1);
-  D = getDay(S.day);
-  /* 回灌完把云端时间戳写进 savedAt，否则下次进页面又会拿同一份云端数据来「确认覆盖」 */
-  S.savedAt = Date.now();
-  persist();
-  /* 逐个渲染并各自兜住异常：S 已经在上面换成云端数据了，
-     万一某个渲染函数抛错，不能让整条链断在这里 —— 那会让用户看到
-     「数据明明恢复了但界面还是旧的」，比报错更难排查。 */
-  restoring = true;
-  try {
-    [['renderToday', renderToday], ['renderCorpus', renderCorpus],
-     ['renderWords', renderWords], ['renderPhrases', renderPhrases],
-     ['renderMe', renderMe]].forEach(function(p){
-      try { p[1](); } catch (e){ console.error('[' + p[0] + '] 恢复后渲染失败:', e && e.message); }
-    });
-  } finally { restoring = false; }
-  return 'restored';
+  /* 本地毫无成果（换新设备、清过缓存）→ 直接用云端，不打扰用户。 */
+  if (!localHas){
+    if (remote.dev){ lastRemoteDev = remote.dev; lastRemoteAt = rt || Date.now(); }
+    S = remote;
+    if (!S.base) S.base = rt;
+    if (!S.cfg) S.cfg = {};
+    if (!S.master) S.master = {};
+    if (!S.q) S.q = { w: 0, g: 0, hs: 0, ms: 0 };
+    if (!S.items) S.items = {}; if (!S.days) S.days = {};
+    if (!S.start) S.start = today();
+    migrate();
+    S.day = Math.max(1, diffDays(S.start, today()) + 1);
+    D = getDay(S.day);
+    S.savedAt = Date.now();
+    persist();
+    restoring = true;
+    try {
+      [['renderToday', renderToday], ['renderCorpus', renderCorpus],
+       ['renderWords', renderWords], ['renderPhrases', renderPhrases],
+       ['renderMe', renderMe]].forEach(function(p){
+        try { p[1](); } catch (e){ console.error('[' + p[0] + '] 恢复后渲染失败:', e && e.message); }
+      });
+    } finally { restoring = false; }
+    return 'restored';
+  }
+  /* 本地有成果 → 合并，不再「二选一」。
+     旧实现在这里弹 confirm 让用户决定覆盖哪一边，是个假选择：
+     点确定 = 丢掉这台设备刚学的，点取消 = 拿不回另一台学的。
+     两边都学到东西是最常见的情况（上午书房、下午手机），
+     正确答案从来不是选一边，而是加起来。 */
+  var stat = mergeInto(remote, rt);
+  var n = applyMerged(stat, true);
+  return n > 0 ? 'merged' : 'kept-local';
 }
 async function afterLogin(user){
   ME = user;
@@ -998,6 +1187,7 @@ async function afterLogin(user){
   var row = await pullCloud();
   var how = restoreFromCloud(row);
   if (how === 'restored') toast('已从云端恢复学习记录');
+  else if (how === 'merged') toast('已把你在这台设备上的进度和云端合并');
   /* 登录成功后立刻把账号条收起成一行摘要，登录表单不再占地方 */
   acctOpen = false;
   var ab = $('meAcct'), abox = $('account');
@@ -1026,6 +1216,18 @@ function paintAcctBar(){
   else if (cloudErr === 'origin'){ t.textContent = '登录（需用正式网址）'; s.textContent = '当前是 GitHub Pages 镜像，点这里看说明'; }
   else { t.textContent = '登录 / 注册'; s.textContent = '云端组件未加载，点这里重试'; }
 }
+/* 账号面板里那行「上次同步来自哪台设备」。
+   写它的理由：多设备最容易让人不安的是「我到底有没有同步上」，
+   给一个具体的设备名和时间，比一句「已同步到云端」可信得多。 */
+function syncWhoText(){
+  if (!lastRemoteDev) return '学习数据存在云端，换设备登录同一账号即可继续。';
+  var t = '';
+  if (lastRemoteAt){
+    var d = new Date(lastRemoteAt);
+    t = ' · ' + p2(d.getHours()) + ':' + p2(d.getMinutes());
+  }
+  return '上次同步来自「' + esc(lastRemoteDev) + '」' + t + '。换设备学习会自动合并，不会互相覆盖。';
+}
 function renderAccount(){
   var box = $('account');
   if (!box) return;
@@ -1043,11 +1245,20 @@ function renderAccount(){
           + '<span class="chip" style="word-break:break-all">' + esc(APP_URL) + '</span></div>'
           + '<div class="btnrow"><button class="btn primary" id="auGoApp">打开正式地址</button></div>' : '')
       + (noCloud ? '' : '<div class="btnrow"><button class="btn" id="auSync">立即同步</button>'
+          + '<button class="btn" id="auRecon">与云端对账</button>'
           + '<button class="btn no" id="auOut">退出登录</button></div>'
-          + '<p class="sub" style="margin-bottom:0">学习数据存在云端，换设备登录同一账号即可继续。</p>')
+          + '<p class="sub" style="margin-bottom:0">' + syncWhoText() + '</p>')
       + '</div>';
     if ($('auGoApp')) $('auGoApp').onclick = function(){ location.href = APP_URL; };
     if ($('auSync')) $('auSync').onclick = async function(){ setSync('同步中…', 'b'); await pushCloud(); toast(pushOk ? '已同步到云端' : '同步失败，请重试'); };
+    /* 对账 = 先合并云端（别的设备写的），再把合并结果推回去。
+       和「立即同步」的区别：同步是单向推，对账是先把对方的成果收下再推。 */
+    if ($('auRecon')) $('auRecon').onclick = async function(){
+      setSync('对账中…', 'b');
+      var n = await reconcile();
+      await pushCloud({ now:true, skipCheck:true });
+      toast(n ? ('已合并 ' + n + ' 条来自另一台设备的进度') : '两边已经一致');
+    };
     if ($('auOut')) $('auOut').onclick = async function(){
       if (!confirm('退出登录？本地记录会保留，云端数据不动。')) return;
       await cloud.auth.signOut(); ME = null; cloudRow = null;
@@ -1290,13 +1501,35 @@ var DEF = { newWords: 12, newGrams: 3, newHerSent: 5, newMySent: 4, quizCount: 1
 var S = { day: 1, start: '', cfg: {}, q: { w: 0, g: 0, hs: 0, ms: 0 }, items: {}, days: {}, focus: '', master: {} };
 try { var _r = localStorage.getItem(KEY); if (_r) { var _o = JSON.parse(_r); for (var _k in _o) S[_k] = _o[_k]; } } catch (e) {}
 
+/* ==================== 设备标识 ====================
+   同一个账号会在这台电脑、那台手机、公司机器上同时登录。
+   每次推送都带上「是谁写的」，一来出问题时知道该看哪台，
+   二来恢复时能判断云端那份是不是自己写的 —— 不是就必须合并而不是覆盖。
+   存在独立 key 里，不进主存档（主存档会被云端整包替换，换设备就串味了）。 */
+var DEV_KEY = 'thai-device-v1';
+var DEV = (function(){
+  try { var v = localStorage.getItem(DEV_KEY); if (v) return v; } catch (e) {}
+  var ua = navigator.userAgent || '';
+  var plat = /Windows/i.test(ua) ? 'Win' : /Macintosh|Mac OS/i.test(ua) ? 'Mac'
+    : /Android/i.test(ua) ? 'Android' : /iPhone|iPad|iPod/i.test(ua) ? 'iPhone'
+    : /Linux/i.test(ua) ? 'Linux' : '设备';
+  var br = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera'
+    : /Chrome\//.test(ua) ? 'Chrome' : /Firefox\//.test(ua) ? 'Firefox'
+    : /Safari\//.test(ua) ? 'Safari' : '浏览器';
+  var v2 = plat + '-' + br + '-' + Math.random().toString(36).slice(2, 5);
+  try { localStorage.setItem(DEV_KEY, v2); } catch (e) {}
+  return v2;
+})();
+/* 云端那一行最后一次是谁写的、什么时候写的。只用于展示，不参与合并判据。 */
+var lastRemoteDev = '', lastRemoteAt = 0;
+
 /* ==================== 存档迁移 ====================
    之前这些补丁零散写在各处，加一个新字段就往这里塞一个 if，
    谁也不知道老存档到底过了哪几道手续。现在收敛成一个带版本号的 migrate()：
    S.v 记录存档经过到第几版，每版只做一次，做过就跳。
    新增迁移必须是幂等的 —— 用户随时可能从云端把一周前的存档拉回来，
    那份存档可能缺中间任何一步。 */
-var SCHEMA_V = 3;
+var SCHEMA_V = 4;
 function migrate(){
   var changed = false;
   /* v1 → 单词本「已掌握」标记，从独立 key 并到主存档 */
@@ -1325,6 +1558,32 @@ function migrate(){
   /* v3 → 断点续传 / 错题本 / 听力三个新字段 */
   if (!S.resume) { S.resume = {}; changed = true; }
   if (!S.wrong)  { S.wrong  = {}; changed = true; }
+  /* v4 → 多设备合并。
+     base = 「本地这份已经和云端对齐到哪一刻」。
+     没有它就无法判断云端那行是不是被别的设备写过：
+     只能拿 savedAt 跟 updated_at 比大小，谁的时间戳新谁整包赢 ——
+     于是「上午在这台学的、下午在另一台学的」必然二选一，另一半就没了。 */
+  if (S.base == null) { S.base = 0; changed = true; }
+  /* v4 → 新增「听力」任务后，历史打卡天数会集体变成未完成。
+     和当初拆 revW/revS 踩的是同一个坑：dayDone() 要求每个主任务都 done，
+     老存档里压根没有 hear 这个键，于是「已打卡 6 天」一夜变 0，
+     得分趋势图和逐天明细表跟着全空 —— 用户会以为历史记录被删了。
+     处理：那天在旧口径下确实做完的，补一个 done 的空壳。
+     **今天不补** —— 今天还没练听力就标完成，等于帮用户骗自己。 */
+  if ((S.v || 0) < 4){
+    var oldMain = MAIN_TASKS.filter(function(t){ return t.k !== 'hear'; });
+    for (var d4 in S.days){
+      if (Number(d4) === Number(S.day)) continue;
+      var a4 = S.days[d4] && S.days[d4].st;
+      if (!a4 || a4.hear) continue;
+      var ok4 = true;
+      for (var mi = 0; mi < oldMain.length; mi++){
+        var mk = oldMain[mi].k;
+        if (!(a4[mk] && a4[mk].done)) { ok4 = false; break; }
+      }
+      if (ok4) { a4.hear = { done: true, n: 0, score: 0 }; changed = true; }
+    }
+  }
   S.v = SCHEMA_V;
   if (changed) persist();
 }
@@ -3321,7 +3580,11 @@ function renderMe(){
 $('btnCfg').onclick = function(){
   S.cfg.newWords = +$('cfgW').value || 12; S.cfg.newGrams = +$('cfgG').value || 0;
   S.cfg.newHerSent = +$('cfgHS').value || 0; S.cfg.newMySent = +$('cfgMS').value || 0;
-  S.cfg.quizCount = +$('cfgQ').value || 10; save(); toast('已保存'); renderMe();
+  S.cfg.quizCount = +$('cfgQ').value || 10;
+  /* cfgAt 让多设备合并时知道哪边是「用户最后一次改的」。
+     没有它，合并只能逐项取大 —— 你在手机上把配额调小，会被电脑上的旧值顶回去。 */
+  S.cfgAt = Date.now();
+  save(); toast('已保存'); renderMe();
 };
   $('btnReport').onclick = function(){
     var ds = doneDays();
@@ -3550,9 +3813,10 @@ function boot(){
       /* 恢复逻辑在 restoreFromCloud()，登录和启动两条路径共用一处 */
       var how = restoreFromCloud(res.data);
       if (how === 'restored') toast('已从云端恢复学习记录');
+      else if (how === 'merged') toast('已合并另一台设备的进度');
       renderAccount(); paintAcctBar();
       /* 别写死「已同步」：让 pushCloud 如实汇报成功还是失败 */
-      if (how === 'restored' || how === 'kept-local') doPush();
+      if (how !== 'empty') doPush();
       else setSync('已登录·云端暂无记录', 'lo');
     });
   }).catch(function(e){ setSync('仅本地', 'lo'); renderAccount(); console.error('boot:', e); });
@@ -3562,6 +3826,14 @@ boot();
    页面隐藏事件比 unload 可靠得多：fetch 在 unload 里会被取消，
    但 visibilitychange 触发时页面还活着，请求能发出去。 */
 window.addEventListener('visibilitychange', function(){
+  /* 切回前台：另一台设备可能刚学过，必须对一次账。
+     挑这个时机是因为「换设备学习」最常见的动作就是
+     这台切走 → 打开那台 → 再切回这台。不对账的话，这台永远不知道对面改过，
+     一答题就把对方那半份整包盖掉。 */
+  if (document.visibilityState === 'visible'){
+    if (cloud && ME) setTimeout(function(){ reconcile(); }, 400);
+    return;
+  }
   if (document.visibilityState !== 'hidden') return;
   if (syncTrailing){ clearTimeout(syncTrailing); syncTrailing = null; }
   try { S.savedAt = Date.now(); persist(); } catch (e) {}

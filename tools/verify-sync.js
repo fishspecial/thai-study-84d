@@ -18,7 +18,8 @@
  *            这条是 localHasProgress() 的主战场。旧判据 localIsEmpty()
  *            查 S.days 是否为空，但 getDay() 在页面加载时就建好了今天那条记录
  *            → 恒为 false → 必定弹 confirm，用户点「取消」就再也拿不回进度
- *   场景 F：本地有成果且比云端新 → 不得被云端静默覆盖
+ *   场景 F：本地有成果 → 与云端合并，不得二选一
+ *         （旧口径是「不得被云端静默覆盖」，改成合并后两边都要保住）
  *
  * 用法：NODE_PATH=... node tools/verify-sync.js
  */
@@ -371,7 +372,14 @@ async function newPage(browser, opts) {
     }));
     log('F1 本地更新时不弹窗（本地比云端新，无需打扰）', dialogs.length === 0,
       dialogs.length ? '弹了 ' + dialogs.length + ' 次' : '无弹窗');
-    log('F2 本地成果未被云端覆盖', r.hasLocal && !r.hasCloud,
+    /* 这条断言在 2026-10-12 被有意改写。
+       旧版要求 !hasCloud —— 本地有成果时，云端那份必须被拒之门外，
+       因为当时的恢复逻辑是「整包覆盖」，收下云端就等于丢掉本地。
+
+       改成合并之后，正确的结果恰恰相反：两边的成果都要在。
+       只保住本地而丢掉云端，跟只保住云端而丢掉本地是同一种错 ——
+       用户上午在这台学、下午在那台学，两边都是他的进度。 */
+    log('F2 本地成果保留，且云端的也合并进来（不是二选一）', r.hasLocal && r.hasCloud,
       '本地条目=' + r.hasLocal + ' 云端条目=' + r.hasCloud + ' items=' + r.items);
     log('F3 本地答题数保留', r.qw === 12, 'q.w=' + r.qw + '（本地 12）');
     log('F4 无 JS 错误', errs.length === 0, errs.length ? errs[0] : '0 个');

@@ -101,7 +101,9 @@ const SEED = require('./seed-for-visual.js');
       boardH: board ? Math.round(board.getBoundingClientRect().height) : -1,
     };
   });
-  log(!after.focus && after.listShown && after.cards === 5,
+  /* 卡片数 5 → 7：复习拆成「复习单词/复习句子」并新增「听力」之后，
+     主任务是 7 项（错题重练是 opt，没有错题时不显示）。 */
+  log(!after.focus && after.listShown && after.cards === 7,
     '1.7 退出后恢复（专注态解除，练习页任务列表回来了）',
     'focus=' + after.focus + ' 卡片=' + after.cards + ' 张');
   log(after.boardExists && after.taskExists,
@@ -137,7 +139,11 @@ const SEED = require('./seed-for-visual.js');
   }
   await page.waitForTimeout(700);
   const done1 = await page.evaluate(() => ({ hasBack: !!document.getElementById('focusBack'), focus: document.body.classList.contains('focus') }));
-  log(done1.focus, '1.10 做完闪卡仍留在专注态（成绩单要看得见）', 'focus=' + done1.focus);
+  /* 这条在 2026-10-03 被有意反转：原来做完闪卡留在专注态，
+     但返回条会浮在任务卡上面挡住按钮（真实点击超时暴露的）。
+     修法是 finishRun 里主动 exitFocus()，成绩单改成在任务卡片上显示，
+     所以这里期望的是「做完就退出专注态」。 */
+  log(done1.hasBack && !done1.focus, '1.10 做完闪卡退出专注态（返回条不再挡住任务卡）', 'focus=' + done1.focus);
 
   if (done1.hasBack) {
     await page.evaluate(() => document.getElementById('focusBack').click());
@@ -310,7 +316,9 @@ const SEED = require('./seed-for-visual.js');
   }));
   log(meOk.rows >= 5, 'R1 「我的」页原有明细表没坏', meOk.rows + ' 行');
   log(meOk.spark > 0, 'R2 得分趋势图没坏', meOk.spark + ' 根柱');
-  log(meOk.kpi === '6', 'R3 已打卡天数算对（种子数据 6 天，今天也补齐了五项任务）', 'rDays=' + meOk.kpi);
+  /* 种子有 6 天，其中第 6 天是「今天」，migrate 不会替今天补听力 ——
+     今天没练听力就标完成等于帮用户骗自己，所以要算 5 天。 */
+  log(meOk.kpi === '5', 'R3 已打卡天数算对（种子 6 天，今天不算，应为 5）', 'rDays=' + meOk.kpi);
 
   /* 今日页三个原有模块 */
   await page.evaluate(() => { document.querySelector('.tabbar button[data-v="today"]').click(); });
@@ -323,7 +331,7 @@ const SEED = require('./seed-for-visual.js');
   }));
   log(todayOk.board > 50 && todayOk.report > 50, 'R4 今日看板与「今天学了什么」没坏',
     '看板=' + todayOk.board + ' 报告=' + todayOk.report);
-  log(todayOk.tasks === 5, 'R5 五个任务卡片都在', todayOk.tasks + ' 个');
+  log(todayOk.tasks === 8, 'R5 八个任务卡片都在（7 主 + 错题重练）', todayOk.tasks + ' 个');
   log(todayOk.kpi !== null && todayOk.kpi !== '0', 'R6 KPI 已学条目数有值', 'kTotal=' + todayOk.kpi);
 
   const realErrs = errs.filter(x => x.indexOf('favicon') < 0);
