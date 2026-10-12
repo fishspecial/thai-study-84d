@@ -193,7 +193,8 @@ const CASES = [
       newErrs: window.__NEW_ERRS__ || 0,
     }));
     const newErrs = p._errs.slice(before).filter(x => x.indexOf('favicon') < 0);
-    return [r.tasks === 5 && r.board > 20 && newErrs.length === 0,
+    /* 5 → 8：复习拆成单词/句子、新增听力，加上 opt 的错题重练，共 8 项（7 主 + 1 opt） */
+    return [r.tasks === 8 && r.board > 20 && newErrs.length === 0,
       'TASKS=' + r.tasks + ' 看板字符=' + r.board + ' 重载后新错误=' + newErrs.length
       + (newErrs.length ? '：' + newErrs[0].slice(0, 60) : '')];
   }],
